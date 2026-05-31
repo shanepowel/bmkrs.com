@@ -1,0 +1,22 @@
+# Vercel ignore
+node_modules
+.git
+.DS_Store
+*.log
+
+# Server-specific directories
+ssl/
+repositories/
+tmp/
+public_ftp/
+bin/
+etc/
+mail/
+perl/
+php/
+logs/
+
+# Other projects in the same directory
+amplified/
+benative/
+bmkrs.com/

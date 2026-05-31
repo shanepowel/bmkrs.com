@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "bmkrs",
+  "framework": null,
+  "public": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/public_html/$1"
+    }
+  ],
+  "functions": {
+    "public_html/index.php": {
+      "runtime": "vercel-php@0.7.1"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*\\.php)",
+      "dest": "/public_html/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public_html/$1"
+    }
+  ],
+  "buildCommand": null,
+  "devCommand": "php -S localhost:8000 -t public_html",
+  "installCommand": null,
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
