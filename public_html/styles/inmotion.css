@@ -1,0 +1,347 @@
+@font-face {
+  font-family: 'Gell';
+  src: url("/fonts/Gellatio.ttf"); /* File to be stored at your site */
+  }
+  @font-face {
+    font-family: 'Avenir Next';
+    src: url("fonts/Avenir/AvenirNext.otf"); /* File to be stored at your site */
+    }
+body {
+    background-color: rgb(255, 252, 248);
+    overflow-x: hidden;
+}
+.in-motion-header {
+    width: 100%;
+    position: relative;
+    padding: 0px; /* some padding */
+    text-align: center; /* center the text */
+    /*background-color: rgb(157, 168, 168); /* rgb(149, 156, 149); /* green background */
+    /*background-image: url("/images/abstract-blue-patterns-design-min.jpg")!important;*/
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(255,255,255,0.5)), url("/images/abstract-blue-patterns-design-min.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    color: #fff; /* white text color */
+    height: 750px;
+    margin: 0px;
+    top:0;
+    left:0;
+    font-family: "Avenir Next"!important;
+    z-index: 9999;
+
+  }
+#in-motions-header {
+    position: relative;
+    width: 80%;
+    overflow: visible!important;
+    z-index: 2;
+    font-family: "Avenir Next"!important;
+}
+
+  #boldic  {
+    
+    font-family: "Avenir Next"!important;
+  }
+
+  h2.meetclass {
+    position: relative;
+    left: 200px;
+    top: 10px;
+    font-size: 100px;
+  }
+span.inmotionheading2 {
+  position: relative;
+  top:-100px!important;
+  left: 200px;
+  font-family: "Gell";
+  font-size: 80px!important;
+}
+h4.free3 {
+  position: relative;
+  top: -40px;
+  left: 50px;
+  font-size: 30px;
+}
+
+
+
+
+  #inmotion-1 {
+      float: left;
+      line-height: 30px;
+      font-size: 30px;
+  }
+  #inmotion-subtext {
+      position: relative;
+      display: block;
+      float: left;
+      line-height: 30px;
+  }
+
+.dis-container2 {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  float: left;
+  top: 0;
+  left: 0;
+  padding: 0px;
+  margin: 0px;
+  background:linear-gradient(rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.904)), url("/images/stains-min.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+}
+
+.dis-container2 ul {
+  width: 100%;
+  margin: 30px;
+}
+
+
+.columns p {
+  font-family: "Avenir Next";
+  color: #fff;
+  font-size: 18px;
+  z-index: 20;
+  
+}
+
+.dis-container2 h4 {
+  font-family: "Avenir Next";
+  color: #fff;
+  font-size: 50px;
+  z-index: 10;
+}
+
+.dis-container2 #wyg {
+  position: relative;
+  float: left;
+  font-family: "Avenir Next";
+  color: #fff;
+  font-size: 50px;
+  z-index: 20;
+}
+h4.colserv {
+  margin-right: 20px;
+  font-family: "Avenir Next";
+  font-size: 25px!important;
+  border-bottom: solid 1px #fff!important;
+  opacity: 1!important;
+}
+.col
+{
+    float: left;
+    width: 20%;
+    margin-right: 60px;
+    color: rgb(247, 247, 247)!important;
+}
+
+.opa
+{
+    opacity: 0.5;
+}
+.opa:hover
+{
+  
+    opacity: 1;
+}
+.rowm{
+    overflow: hidden;  /* "overflow: auto;" works just as well instead */
+    width:100%;        /* Helps older versions of IE */
+}
+
+p.headaboutmotion {
+  width: 520px;
+  color: rgb(247, 247, 247)!important;
+  position: relative;
+  float: left;
+  text-align: center;
+  font-weight: 100;
+  font-size: 17px;
+  letter-spacing: 0px;
+  left: 100px;
+  line-height: 30px;
+  margin-top: -100px;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+}
+
+#headingbuttonmotion {
+  position: relative;
+  margin-top: -250px;
+  margin-right: -300px;
+  margin-bottom: 0px;
+  float: right;
+  line-height:2em!important;
+  z-index: 999999999999!important;
+}
+#headingbuttonmotion a{
+  
+  line-height:2em!important;
+}
+
+
+/** CONTACT FORM 
+
+
+*=================== contact banner start ====================*/
+
+.form-style-6{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 400px;
+	margin: 10px auto;
+  padding: 16px;
+  float: left;
+  right: 250px;
+  margin-top: -380px;
+  position: absolute!important;
+	background: transparent;
+}
+.form-style-6 h1{
+	background: transparent;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+}
+
+.form-style-6 ::placeholder {
+  color: #fff;
+}
+.form-style-6 select[id="form_need"] {
+  padding: 3%!important;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select,
+.form-style-6 option
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.226);
+	margin-bottom: 4%;
+  border: 0px solid #ccc;
+  border-radius: 15px;
+	padding: 3%!important;
+	color: rgb(255, 255, 255)!important;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus
+{
+	box-shadow: 0 0 5px rgb(27, 85, 119);
+	padding: 3%;
+	border: 1px solid rgba(27, 85, 119, 0.062);
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"]{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+  padding: 3%;
+  font-size: 16px;
+	background: rgba(27, 101, 119, 0.493);
+  border-bottom: 2px solid rgba(27, 85, 119, 0.288);
+  border-radius: 15px;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff!important;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover{
+	background: rgba(50, 83, 102, 0.329);
+}
+/*=================== contact form end ====================*/
+/* Contact Success and error Area css
+============================================================================================ */
+/* line 97, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_contact.scss */
+.modal-message .modal-dialog {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) !important;
+  margin: 0px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* line 106, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_contact.scss */
+.modal-message .modal-dialog .modal-content .modal-header {
+  text-align: center;
+  display: block;
+  border-bottom: none;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/* line 112, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_contact.scss */
+.modal-message .modal-dialog .modal-content .modal-header .close {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  padding: 0px;
+  color: #fff;
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* line 121, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_contact.scss */
+.modal-message .modal-dialog .modal-content .modal-header h2 {
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/* line 126, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_contact.scss */
+.modal-message .modal-dialog .modal-content .modal-header p {
+  display: block;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .form-style-6{
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 400px;
+    margin: auto;
+    float: none!important;
+    text-align: center!important;
+    left:0px;
+    top: -100px;
+    position: relative!important;
+    background: transparent;
+  }
+  .in-motion-header {
+    height: 950px!important;
+    background-position: right;
+  }
+}

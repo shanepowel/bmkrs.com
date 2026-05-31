@@ -1,0 +1,212 @@
+<header>
+  
+  <div class="navbar"> 
+   
+    <div class="Navbar__Link Navbar__Link-brand"><a class="logoblacks" href="/"><img src="../images/white.png" alt="bmkrs logo"></a></div>
+      
+    
+      <nav class="Navbar__Items">
+      
+        <div class="Navbar__Link"><li><a id="Menu1" class="underline--magical" href="/">HOME</a></li></div>
+      <div class="Navbar__Link"><li><a id="Menu2" class="underline--magical" href="/discover/">DISCOVER</a></li></div>
+      <div class="Navbar__Link"><li><a id="Menu6" class="underline--magical" href="/work/">WORK</a></li></div>
+      <div class="Navbar__Link" id="about"><li><a id="Menu4" class="underline--magical" href="/discover/">ABOUT</a></li></div>
+	  <div class="Navbar__Link"><li><a id="Menu5" class="underline--magical" href="/motion/">Motion</a></li></div>
+	  <div class="Navbar__Link"><li><a id="Menu5" class="underline--magical" href="/blog/">Blog</a></li></div>
+      <div class="Navbar__Link"><li><a id="login" href="/contact/"><div class="contact-icon"></div></a></li></div>
+	  <div class="Navbar__Link"><li><a id="login" href="/blog/register.php"><div class="lock"></div></a></li></div>
+  </nav>
+  
+  </div>
+
+      
+ <div class="cd-header">
+    <div class="Navbar__Link-brand2"><a class="logowhites-2" href="/"><img src="images/white.png" alt="bmkrs-logo-white"></a></div>
+    
+   
+    
+		 <!-- <div class="header-wrapper">
+			<div class="nav-but-wrap">
+				<div class="menu-icon hover-target" id="menu-button">
+					<span class="menu-icon__line menu-icon__line-left"></span>
+					<span class="menu-icon__line"></span>
+					<span class="menu-icon__line menu-icon__line-right"></span>
+				</div>	
+			</div>	--->				
+        </div> 
+    
+
+
+<!--  M O B I L E   N A V
+<div class="nav">
+  <a class="logowhites-4" href="/"><img src="/images/white.png" alt="bmkrs-logo-white"></a>
+  
+
+      <div class="nav__content">
+        
+          <ul class="nav__list">
+              <li class="nav__list-item active-nav"><a href="/" class="hover-target">home</a></li>
+      <li class="nav__list-item"><a href="/discover/" class="hover-target">discover</a></li>
+      <li class="nav__list-item"><a href="/work/" class="hover-target">work</a></li>
+      <li class="nav__list-item"><a href="/discover/" class="hover-target">about</a></li>
+      <li class="nav__list-item"><a href="/motion/" class="hover-target">motion</a></li>
+              <li class="nav__list-item"><a href="/contact/" class="hover-target">contact</a></li>
+          </ul>
+      </div>
+  </div>		
+
+-->
+</header>
+<!-- <div class="navbar2">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/discover/">Discover</a></li>
+        <li><a href="/work/">Work</a></li>
+        <li><a href="/discover/">About</a></li>
+        <li><a href="/motion/">Motion</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+</div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+<script src="https://unpkg.com/react-motion/build/react-motion.js"></script>
+<div id="render"></div>
+<script type="text/babel" src="/hamburger.js"></script>
+
+<!-- J A V A   S C R I P T S -->
+
+<!--<script>
+    $(document).ready(function () {
+    
+    'use strict';
+    
+     var c, currentScrollTop = 0,
+         navbar = $('.navbar');
+    
+     $(window).scroll(function () {
+        var a = $(window).scrollTop();
+        var b = navbar.height();
+       
+        currentScrollTop = a;
+       
+        if (c < currentScrollTop && a > b + b || a == 0) {
+          navbar.removeClass("hideonLoad");
+          navbar.addClass("scrollUp");
+        } else if (c > currentScrollTop && !(a <= b)) {
+          navbar.removeClass("scrollUp");
+        }
+        c = currentScrollTop;
+    });
+    
+    });
+        </script>
+    
+    <script>
+    $(document).ready(function($) {
+       var header = $('.navbar');
+       $(window).on('load', function() {
+           header.addClass("hideonLoad");
+    });
+    });
+    </script>
+    <script>
+        $(document).ready(function () {
+          
+        'use strict';
+        
+         var c, currentScrollTop = 0,
+             navbar = $('.Navbar__Link-brand2');
+        
+         $(window).scroll(function () {
+            var a = $(window).scrollTop();
+            var b = navbar.height();
+           
+            currentScrollTop = a;
+           
+            if (c < currentScrollTop && a > b + b ) {
+             
+              navbar.addClass("scrollUp2");
+            } else if (c > currentScrollTop && !(a <= b)) {
+              navbar.removeClass("scrollUp2");
+            }
+            c = currentScrollTop;
+        });
+        
+        });
+            </script>
+            
+      <script>
+        $(document).ready(function () {
+          
+        'use strict';
+        
+         var c, currentScrollTop = 0,
+             navbar = $('#render');
+        
+         $(window).scroll(function () {
+            var a = $(window).scrollTop();
+            var b = navbar.height();
+           
+            currentScrollTop = a;
+           
+            if (c < currentScrollTop && a > b + b ) {
+             
+              navbar.addClass("scrollUp2");
+            } else if (c > currentScrollTop && !(a <= b)) {
+              navbar.removeClass("scrollUp2");
+            }
+            c = currentScrollTop;
+        });
+        
+        });
+            </script>
+            <script>
+                function classToggle() {
+                  const navs = document.querySelectorAll('.navbar')
+                  
+                  navs.forEach(nav => nav.classList.toggle('toggle-background'));
+                }
+                
+                document.querySelector('.Navbar__Link-toggle')
+                .addEventListener('click', classToggle),
+                document.querySelector('.Navbar__Link-toggle2')
+                  .addEventListener('click', classToggle);
+                </script>
+            <script>
+              function classToggle() {
+                const navs = document.querySelectorAll('.logowhites')
+                
+                navs.forEach(nav => nav.classList.toggle('toggle-logo'));
+              }
+              
+              document.querySelector('.Navbar__Link-toggle')
+                .addEventListener('click', classToggle);
+                document.querySelector('.Navbar__Link-toggle2')
+                .addEventListener('click', classToggle);
+              </script>
+            
+              <script>
+                function classToggle() {
+                  const navs = document.querySelectorAll('.logoblacks')
+                  
+                  navs.forEach(nav => nav.classList.toggle('toggle-logo2'));
+                }
+                
+                document.querySelector('.Navbar__Link-toggle')
+                  .addEventListener('click', classToggle);
+                  document.querySelector('.Navbar__Link-toggle2')
+                .addEventListener('click', classToggle);
+                </script>
+            
+            <script>
+            function classToggle() {
+              const navs = document.querySelectorAll('.Navbar__Items')
+              
+              navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
+            }
+            
+            document.querySelector('.Navbar__Link-toggle')
+              .addEventListener('click', classToggle);
+              document.querySelector('.Navbar__Link-toggle2')
+                .addEventListener('click', classToggle);
+            </script>
+           

@@ -1,0 +1,12 @@
+# Gruppe 1
+User-agent: Googlebot
+Disallow: /nogooglebot/
+Disallow: /hauzz/
+Disallow: /fdb/
+
+
+# Gruppe 2
+User-agent: *
+Allow: /
+
+Sitemap: http://bmkrs.com/sitemap.xml

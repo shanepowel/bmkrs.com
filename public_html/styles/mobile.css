@@ -1,0 +1,3676 @@
+@font-face {
+  font-family: 'Gell';
+  src: url("/fonts/Gellatio.ttf"); /* File to be stored at your site */
+  }
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 768px) {
+  
+    html {
+        overflow-x: hidden!important;
+        
+      }
+    body {
+      overflow-y: hidden!important;
+      overflow-x: hidden!important;
+      background-color: white;
+      z-index: 10!important;
+    }
+   
+    .navbar2 {
+      display: none;
+    }
+   /* LOADER ANIMATED TEXT */
+   #Container1Body,
+   #Container2Body {
+     font-size: 18px;
+   }
+   .ml7 {
+    position: relative;
+    font-weight: 900;
+    font-size: 1.5em;
+    z-index: 9999999;
+  }
+  .ml7 .text-wrapper {
+    position: relative;
+    width:100%;
+    top: 350px;
+    left: 30%;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+    color: rgb(122, 49, 218);
+    z-index: 9999999;
+  }
+  .ml7 .letter {
+    transform-origin: 0 100%;
+    display: inline-block;
+    line-height: 1em;
+  }
+  
+  /* LOADER ANIMATED TEXT */
+  
+    #loader-wrapper .loader-section {
+      position: fixed;
+      top: 0;
+      width: 51%;
+      height: 100%;
+      background: #0e0e0e;
+      z-index: 1000;
+      -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: translateX(0);  /* IE 9 */
+      transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+      z-index: 999;
+  }
+  
+  #loader-wrapper .loader-section.section-left {
+    left: 0;
+  }
+  
+  #loader-wrapper .loader-section.section-right {
+      right: 0;
+  }
+  #loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999;
+  }
+  #loader {
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 40%;
+      color: #fff;
+      width: 150px;
+      height: 150px;
+      margin: -50px 0 0 -75px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #ffffff;
+      -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+      z-index: 9999999999;
+  }
+  #loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #8a8a8a;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+  }
+  
+  #loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2e2e2e;
+    -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+  }
+  
+  @-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+  }
+  @keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+  }
+  
+  /* Loaded */
+  
+  
+  .loaded #loader-wrapper {
+    visibility: hidden;
+  }
+  .loaded #loader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out; 
+            transition: all 0.3s ease-out;
+  }
+  .loaded #loader-wrapper .loader-section.section-right,
+  .loaded #loader-wrapper .loader-section.section-left {
+    -webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateX(100%);  /* IE 9 */
+    transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+      -webkit-transition: all 0.3s 0.3s ease-out; 
+              transition: all 0.3s 0.3s ease-out;
+  }
+  .loaded #loader-wrapper {
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+  
+    -webkit-transition: all 0.3s  ease-out!important; 
+            transition: all 0.3s  ease-out!important;
+  }
+  
+    .navbar{
+      top: -20px;
+      z-index: 9999!important;
+      overflow-y: hidden!important;
+      color: #000;
+      background: #000;
+  
+      
+    }
+    
+    .navbar a:hover {
+        border: 0px solid black!important;
+      }
+    .Navbar__Items,
+    .navbar{
+      flex-direction: column;
+      z-index: 9999!important;
+    }
+  
+    
+    .Navbar__Items {
+      position: relative!important;
+      display:none;
+      text-align: left!important;
+      margin-left: -210px;
+      font-size: 30px!important;
+      padding-bottom: 500px!important;
+      margin-top: 250px!important;
+      
+      
+    }
+    .Navbar__Link-brand {
+      margin-top: 30px!important;
+      padding-bottom: 10px!important;
+      margin-left: -50px!important;
+    }
+    .Navbar__Link-brand2 {
+      margin-top: 0px!important;
+      margin-left: 0px!important;
+      z-index: 99999999!important;
+
+    }
+   
+  
+    
+  
+    .logowhites {
+      position: relative!important;
+      display: block;
+      margin-left: 0px!important;
+      width: 100px!important;
+      
+    }
+    .logowhites img {
+      width: 100px!important;
+    }
+   .logowhites {
+      display: none; 
+      
+    }
+    .toggle-logo{
+      display: inline;
+      z-index: 9999999999999!important;
+   
+    }
+    .logoblacks {
+      display: inline;
+    }
+    .logowhites-2 {
+      position: relative;
+      left: -30px;
+      top: 5px;
+      display: inline;  
+      z-index: 999999999999!important;    
+    }
+    .logowhites-2 img { 
+      width: 100px!important;
+    }
+  
+    .toggle-logo2{
+      display: none;
+    }
+    .toggle-background {
+      color: #fff!important;
+      background-image: url("/images/menu-gradient-min.jpg")!important;
+      background-position: top;
+      animation: fadeIn ease 0.8s;
+      -webkit-animation: fadeIn ease 0.8s;
+      -moz-animation: fadeIn ease 0.8s;
+      -o-animation: fadeIn ease 0.8s;
+      -ms-animation: fadeIn ease 0.8s;
+      
+    
+    
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity:0;
+      }
+      100% {
+        opacity:1;
+      }
+    }
+    
+    @-moz-keyframes fadeIn {
+      0% {
+        opacity:0;
+      }
+      100% {
+        opacity:1;
+      }
+    }
+    
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity:0;
+      }
+      100% {
+        opacity:1;
+      }
+    }
+    
+    @-o-keyframes fadeIn {
+      0% {
+        opacity:0;
+      }
+      100% {
+        opacity:1;
+      }
+    }
+    
+    @-ms-keyframes fadeIn {
+      0% {
+        opacity:0;
+      }
+      100% {
+        opacity:1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
+  }
+    .toggle-background a {
+      color: #fff!important;
+    }
+    .Navbar__Link {
+      text-align: left!important;
+      margin-left: 0;
+      margin-top:15px;
+      margin-bottom: -30px!important;
+      padding-bottom: 30px!important;
+      
+     
+    
+    }
+    .navbar a {
+       float: none!important;
+       text-align: left!important;
+       margin-right: 0px!important;
+       font-size: 28px!important;
+       text-transform: none!important;
+       font-family: "Avenir Next"!important;
+       font-weight: normal!important;
+     }
+     .navbar li {
+       float: none!important;
+       text-align: left;
+     }
+     .navbar a#Menu3 {
+      margin-left: -15px!important;
+      border: 0px solid #fff!important;
+    }
+    
+   
+    .Navbar__ToggleShow {
+      display: flex;
+      align-self: center;
+      
+      }
+      header {
+        color: #fff;
+       
+  
+      }
+      .Navbar__Link-toggle2 {
+      display: inline;
+      position: absolute;
+      cursor: pointer;
+      text-align: center;
+      top: 10px;
+      right: 20px;
+      z-index: 9999999999!important;
+        }
+  
+    .Navbar__Link-toggle {
+      align-self: flex-end;
+      display: initial;
+      position: absolute;
+      cursor: pointer;
+      text-align: center;
+      top: 35px;
+      right: 20px;
+    }
+    /*.Navbar__Link-toggle {
+      display: block; /* BLOCK *
+      position: fixed;
+      cursor: pointer;
+      text-align: center;
+      top: 0px;
+      right: 20px;
+      z-index: 9999999999;
+      
+    }*/
+    .Navbar__Link-toggle img {
+        width: 40px;
+      }
+     
+    .header-background {
+        position: fixed!important;
+        background-color:#3931a8!important;
+        z-index: 999!important;
+        float: left!important;
+  
+      }
+   
+    .header-home {
+      width: 100%!important;
+      text-align: left;
+      height: 900px!important;
+      position: fixed!important;
+      display: block!important;
+      overflow-x: hidden!important;
+      overflow-y: hidden!important;
+      z-index: 9999!important;
+      top: 0px!important;
+      float: left;
+      left: 0px;
+    }
+
+   .content {
+      position: relative!important;
+      width: 100%;
+      top: 0px;
+      float: left;
+      margin-top: 0;
+      margin-bottom: -50px;
+      left: 0px;
+      color: #fff!important;
+      background-color: rgb(247, 247, 247)!important;
+      z-index: 999999999!important;
+     
+  
+    }
+    .content2 {
+      position: relative;
+      width: 100%;
+      top: 0px;
+      float: left;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      left: 0px;
+      background-image: linear-gradient(to bottom, rgb(32, 32, 32) 10%, #242424 80%);
+      z-index: 999999999!important;
+    }
+    #inmotion-header {
+      position: relative;
+      float: right!important;
+      display:block;
+      margin-top: -240px;
+      margin-left: 0px!important;
+      z-index: 999999999999!important;
+  
+    }
+    
+    .info-container-inmotion{
+      width: 100%!important;
+      position: relative!important;
+      float: left!important;
+      text-align: left;
+      left: 20px!important;
+      margin-top: auto!important;
+      overflow-x: hidden!important;
+      overflow-y: hidden!important;
+      height: 400px!important;
+      z-index: 0!important;
+    }
+    .info-container-inmotion ul {
+      position: relative!important;
+      width: 100%!important;
+      
+      left: -20px;
+    }
+    .info-container-inmotion h3 {
+      margin-top: 50px;
+      font-family: "Djalal";
+      font-size: 35px;
+      color: #fff;
+    }
+    .info-container-inmotion h4 {
+      margin-top:80px;
+      margin-left: 20px;
+      font-family: "Avenir Next";
+      font-size: 20px;
+      color: #fff;
+    }
+    .info-container-inmotion p {
+      margin-top: 100px;
+      font-family: "Avenir Next";
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .info-container {
+      width: 100%!important;
+      position: relative!important;
+      float: none!important;
+      left: 0px!important;
+      margin-top: auto!important;
+      overflow-x: hidden!important;
+      overflow-y: hidden!important;
+      z-index: 999999999!important;
+    }
+    .info-container ul {
+      width: 90%!important;
+      float: left;
+      left: 0px;
+      margin-right: 50px!important;
+      margin-top: 100px;
+      margin-bottom: 0px!important;
+      text-align: left;
+      padding-bottom: 0px!important;
+      overflow-x: hidden!important;
+    }
+    .info-containerhead {
+      position: relative!important;
+      width: 100% !important;
+      margin-bottom: 500px;
+      margin-top: 0px;
+      margin-left: -290px;
+      float: left;
+      text-align: center;
+      overflow-x: hidden!important;
+      z-index: 9999999999;
+      
+    
+    }
+    .info-containerhead span{
+      font-size: 25px!important;
+    }
+
+    
+    .my-container2 {
+      width: 80% !important;
+      left: 40px!important;
+      top: 200px;
+      float: left;
+      display: block;
+      text-align: left;
+      z-index: 99!important;
+      overflow-x: hidden!important;
+    }
+    .my-container2 h1{
+      position: relative!important;
+      width: 100%!important;
+      float: left;
+      display: block;
+      text-align: left;
+      z-index: 999!important;
+    }
+    .heading-cont-footer {
+      position: absolute;
+      width: 80% !important;
+      left: 20px!important;
+      top: 520px;
+      float: left;
+      display: block;
+      text-align: left;
+      z-index: 99!important;
+      overflow-x: hidden!important;
+    }
+    .heading-cont-footer h2{
+      position: relative!important;
+      width: 100%!important;
+      float: left;
+      display: block;
+      margin-top: 100px;
+      text-align: left;
+      z-index: 999!important;
+      font-size: 40px;
+      font-family: "Avenir Next";
+    }
+  
+  
+    .buttoncontainer {
+      width: 100%;
+      position: absolute;
+      left: 90px;
+      top: 400px;
+      float: left;
+      z-index: 999999!important;
+    }
+      #headingbutton {
+      left: 40px!important;
+      float: left!important;
+    }
+    .button {
+      width: 10.6em;
+	    height: 6.3em;
+    }
+   
+  
+    .buttoncontainer2 {
+      width: 100%!important;
+      position: relative;
+      margin-top: 0px;
+      margin-left: 30px!important;
+      margin-bottom: 10px;
+      float: none!important;
+      display:block!important;
+      text-align: center!important;
+      z-index: 20!important;
+      line-height: 2px!important;
+    }
+
+  
+    .ourwork {
+      width: 100%!important;
+      
+    }
+    .row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%!important;
+      text-align: left!important;
+      padding-bottom: 20px;
+  
+    
+    }
+    .row a {
+      margin-top: 50px!important;
+      float: none!important;
+      color: black;
+      font-size: 18px!important;
+      font-weight: 600!important;
+      text-decoration: none;
+      margin-left:30px!important;
+      z-index: 999;
+      display: block!important;
+      text-align: left!important;
+      font-family: "Avenir Next"!important;
+  
+    }
+    
+    
+    .row p {
+      float: none!important;
+      color: lightgray;
+      font-size: 15px;
+      text-decoration: none;
+      margin-left: 30px!important;
+      margin-bottom: -20px!important;
+      text-align: left!important;
+    }
+    
+    .column {
+      width: 100%!important;
+      float: none!important;
+      display: block;
+      text-align: center!important;
+      margin-right: 50px!important;
+      
+    }
+    .column-right {
+      width: 100%!important;
+      float: none!important;
+      display: block;
+      text-align: center!important;
+      margin-right: 50px!important;
+      top: 0px!important;
+      
+     
+    }
+    .column-right img {
+      width: 100%!important;
+      display: block;
+      text-align: left;
+      margin-bottom: 20px!important;
+      margin-left: 25px!important;
+      margin-right: 0px!important;
+      z-index: 9999!important;
+    }
+    .column img {
+      width: 100%!important;
+      display: block;
+      text-align: left;
+      margin-bottom: 20px!important;
+      margin-left: 25px!important;
+      margin-right: 0px!important;
+      z-index: 9999!important;
+    }
+    .column img:hover {
+      opacity: 0.7;
+      z-index: -3;
+      cursor: pointer;
+    }
+  
+    #photo1 {
+      width:80%; /*width of your image*/
+     height:400px; /*height of your image*/
+     background-image:url('/images/stars_space_glow_planet_99744_1920x1080-min.jpg');
+     margin:auto; /* If you want no margin */
+     padding:0; /*if your want to padding */
+  
+    }
+    /* EXPERIENCE CONTAINER - SECOND AFTER WORK*/
+  .exp-container {
+      position:relative!important;
+    width: 100% !important;
+        left: 0px!important;
+        
+        float: left!important;
+        display: block;
+        text-align: left;
+        margin-bottom:50px!important;
+        height: auto!important;
+        z-index: 99999999!important;
+        background-color: rgb(29, 29, 29);
+  }
+  .exp-container img {
+    position:relative!important;
+        width: 300px!important;
+        float: none!important;
+        margin-top: 0px!important;
+        margin-left: 20px!important;
+        margin-right: 0px!important;
+        margin-bottom: 40px!important;
+  }
+  .exp-container ul {
+    float: left;
+    display: block;
+    margin-top: -100px;
+    }
+    .exp-container ul li {
+      list-style-type: none;
+      }
+  .exp-container p {
+  display: block;
+  float: left;
+  margin-top: 100px;
+  margin-left: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: grey;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  font-family: "Avenir Next";
+  }
+  
+  .exp-container h3 {
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-family: "Avenir Next";
+    font-size: 20px;
+  }
+  
+  .exp-container h3 a {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-family: "Avenir Next";
+    text-decoration: none;
+  }
+  
+  .brand-img {
+      width:100%!important;
+    position: relative!important;
+    height: auto!important;
+    float:none!important;
+    left: 0!important;
+  }
+  .brand-img img{
+    float:none!important;
+    margin-top: 0px!important;
+    width: 350px!important;
+  }
+  
+  .info-container2 {
+    height: auto; 
+    width: 100%!important;    
+    /*!!!*/
+    position: relative; /*RELATIVE*/
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+    display: block!important;
+    float: left;
+    left: 0px!important; /* 50px */
+    font-family: "Avenir Next";
+    font-weight: normal;
+    font-size: 20px;
+    text-align: left;
+    z-index: 999;
+  
+  }
+  
+  .info-container2 ul {
+    position: relative;
+    float: left;
+    top: 0;
+    left: 0px;
+    margin-right: 30px;
+    margin-top: 0px;
+    font-size: 35px;
+    width: 90%!important;
+    padding-top: 100px!important;
+    padding-bottom: 100px!important;
+    font-family: "Avenir Next";
+  }
+  .liber {
+    height: 550px; 
+    width: 100%!important;    
+    /*!!!*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative; /*RELATIVE*/
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: "Avenir Next";
+    font-weight: normal;
+    float: left;
+    z-index: 9999999999999!important;
+  }
+  .info-container3 {
+    height: auto; 
+    width: 100%!important;    
+    /*!!!*/
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative; /*RELATIVE*/
+    margin-top: -100px;
+    margin-bottom: -150px;
+    font-family: "Avenir Next";
+    font-weight: normal;
+    float: left;
+    z-index: 9999;
+  }
+  .inmotion {
+    position: relative;
+    width: 100%!important;
+    /*background-color: rgb(51, 108, 110);*/
+    background-image: url("/images/futurecrop-min.jpg");
+  }
+  
+  #inmotionid {
+    position: relative!important;
+    width: 100%;
+    margin: auto;
+    margin-top: -550px!important;
+    left: 0%!important;
+    text-align: left!important;
+  }
+  
+  .info-container3 .inmotion ul {
+    position: relative!important;
+    width: 80%!important;
+    height: 600px;
+    font-family: "Avenir Next";
+    font-size: 10px!important;
+    float: none!important;
+    text-align: center!important;
+    margin-left: auto!important;
+    margin-right: 15%!important;
+    
+  }
+  
+  
+  
+  .inmotion span.word {
+    width: 100%!important;
+    float: none!important;
+    text-align: center!important;
+    font-size: 40px!important;
+    margin-bottom: -150px!important;
+    margin-top: 50px!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
+  .ml15 {
+    float: none!important;
+    width: 100%!important;
+    position: relative!important;
+    text-align: center!important;
+    font-weight: 800;
+    font-size: 3.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    margin-bottom: -200px;
+  }
+  
+  .ml15 .word {
+    position: relative!important;
+    margin-top: 0px!important;
+    display: inline-block;
+    line-height: 1em;
+    margin: auto!important;
+  
+  }
+  .info-container3 ul h2 {
+    position: relative;
+    float: none!important;
+    width: 100%!important;
+    margin-top: 150px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    text-align: center!important;
+    }
+  .info-container3 ul p {
+    position: relative!important;
+    width: 50%!important;
+    margin-top: 300px;
+    margin-bottom: 200px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    color: #fff;
+    text-align: center;
+    font-family: "Avenir Next";
+    letter-spacing: 2px;
+    font-weight: bold;
+    }
+
+    /* ------ FOOTER -----------*/
+    
+    .footer {
+      display: flex;
+      flex-flow: row wrap;
+      padding: 10px 30px 20px 30px;
+      color: #fff;
+      background-color: #000;
+      border-top: 1px solid #2f2f2f;
+      font-size: 12px;
+      margin-top: -10px;
+      height: 520px;
+      width: 100%;
+    }
+    .legal {
+      margin-top: 20px!important;
+      width: 50%!important;
+      text-align: center!important;
+    }
+    .legal__links {
+      margin-top: -120px!important;
+      width: 50%!important;
+      margin-left: 10px!important;
+      text-align: center!important;
+    }
+    .footer__addr {
+      margin-top: 10px;
+      margin-right: 1.25em;
+      margin-bottom: 2em;
+    }
+    
+    .footer__addr img{
+      width: 100px;
+    }
+
+    #legals {
+      margin-top: 100px;
+    }
+    #footer-title {
+      margin-top: 50px;
+      margin-right: 50px;
+      margin-bottom: -50px;
+      font-size: 35px;
+    display: flex;
+    align-self: flex-start;
+      line-height: 35px;
+      flex: 1;
+    }
+    
+    .social {
+      position: relative;
+      top: 10px;
+      width: 80%;
+      float: left;
+      text-align: center;
+    
+    }
+  /* DISCOVER PAGE */
+  .my-container3 {
+    width: 95% !important;
+    top:0px!important;
+    left: 0px!important;
+    float: left;
+    display: block;
+    text-align: left;
+  }
+  .my-container3 span {
+    width: 50% !important;
+    position: relative!important;
+    font-size: 40px!important;
+    left: 0px!important;
+    top: 30px!important;
+    margin: auto;
+    text-align: center;
+  }
+  .my-container3 h1 {
+    margin-left: 20px!important;
+    margin-top:150px;
+      font-size: 35px!important;
+      padding-bottom: 50px!important;
+  }
+  p.headaboutmotion {
+    width: 100%!important;
+    color: rgb(247, 247, 247)!important;
+    position: relative;
+    float: none!important;
+    margin-right: 0px;
+    margin-top: 50px!important;
+    font-weight: 100;
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 30px;
+  }
+ #discovery-header {
+   width: 80%!important;
+    top:20px!important;
+    font-size: 35px!important;
+    padding-bottom: 50px!important;
+}
+
+  .dis-container {
+    width: 100% !important;
+    left: 0px!important;
+    float: left;
+    display: block;
+    text-align: left;
+    margin-left:0px!important;
+    
+}
+
+.dis-container img {
+    width: 90%!important;
+    float: none!important;
+    margin-top: 0px!important;
+    margin-left: 12%!important;
+    margin-right: 40px!important;
+    margin-bottom: 40px!important;
+    z-index: 999;
+    text-align: center!important;
+   
+}
+
+.dis-container ul {
+    float: none!important;
+    width: 90%!important;
+    font-family: "Avenir Next";
+    font-size: 45px;
+    text-align: center!important;
+}
+.dis-container span {
+   
+    font-family: "Avenir Next";
+    float: none!important;
+    width: 95%!important;
+    font-family: "Avenir Next";
+    font-size: 45px;
+    margin:auto!important;
+    text-align: center!important;
+   
+}
+.dis-container ul p {
+    float: left;
+    font-family: "Avenir Next";
+    margin-top: 20px;
+    margin-right:0px!important;
+    font-size: 15px;
+}
+.dis-container ul li {
+    float: left;
+    font-family: "Avenir Next";
+    margin-right: 20px;
+    font-size: 15px;
+    color: gray;
+    padding: 5px;
+    width:90%!important;
+    margin-right:0px!important;
+
+    list-style-type: disc;
+}
+.dis-container-left {
+    width: 100% !important;
+    left: 0px!important;
+    float: left;
+    display: block;
+    text-align: left;
+    margin-left:0px!important;
+    margin-bottom: -50px!important;
+    
+}
+
+.dis-container-left img {
+    width: 90%!important;
+    float: none!important;
+    margin-top: 0px!important;
+    margin-left: 12%!important;
+    margin-right: 40px!important;
+    margin-bottom: 40px!important;
+    z-index: 999;
+    text-align: center!important;
+}
+
+.dis-container-left ul {
+    float: none!important;
+    width: 90%!important;
+    font-family: "Avenir Next";
+    font-size: 45px;
+    text-align: center!important;
+    
+}
+.dis-container-left span {
+   
+    font-family: "Avenir Next";
+    float: none!important;
+    width: 95%!important;
+    font-family: "Avenir Next";
+    font-size: 45px;
+    margin:auto!important;
+    text-align: center!important;
+   
+}
+
+#discover-1 {
+    width:80%!important;
+    margin: auto!important;
+    text-align: center!important;
+
+}
+#discover-2 {
+    width:80%!important;
+    margin: auto!important;
+    text-align: center!important;
+
+}
+.dis-container-left ul p {
+    float: left;
+    font-family: "Avenir Next";
+    margin-top: 20px;
+    margin-right: 0px!important;
+    font-size: 15px;
+}
+.dis-container-left ul li {
+    float: left;
+    font-family: "Avenir Next";
+    margin-right: 20px;
+    font-size: 15px;
+    color: gray;
+    padding: 5px;
+    width:90%!important;
+    margin-right:0px!important;
+}
+#list1 {
+    width: 90%!important;
+    float:left!important;
+    margin-bottom: 0px!important;
+    text-align: left!important;
+}
+#list2 {
+    width: 90%!important;
+    float:left!important;
+    margin-top: 0px!important;
+    text-align: left!important;
+}
+}
+
+
+/* 2688x1242px at 458ppi - iPHONE XS MAX */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 3) { }
+
+
+/* 2436x1125px at 458ppi - iPHONE XS */
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+      #second-heading {
+        font-size: 30px!important;
+      }
+      .ml7 .text-wrapper { 
+        margin-top: 45px!important;
+    
+      }
+      .info-containerhead {
+        margin-top: 50px!important; 
+        margin-bottom: 350px!important;
+      }
+
+    #inmotion-header {
+        margin-top: -350px!important;
+        right: 100px!important;
+      }
+      #headingbutton {
+        top: 360px!important;
+      }
+      #headingbuttonmotion {
+        float: left!important;
+        text-align: center!important;
+        left: 20%!important;
+        margin-top: 150px;
+      }
+
+      p.headaboutmotion {
+        top: -100px!important;
+        font-weight: 300!important;
+      }
+      .my-container3 {
+        margin-top: -30px!important;
+      }
+      h4.colserv {
+        font-size: 16px!important;
+      }
+
+   
+      .col p
+{
+    font-size: 14px!important;
+
+}
+    }
+
+
+/* 1792x828px at 326ppi - iPHONE XR */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 2) { 
+      .navbar2 {
+        display: none;
+      }
+      .info-containerhead {
+        margin-top: -30px!important; 
+        margin-bottom: 450px!important;
+      }
+      .buttoncontainer {
+        top: 380px!important;
+      }
+      .my-container2 {
+        top: 200px!important;
+      }
+      .info-container-inmotion p {
+        margin-top: 280px;
+      }
+      #inmotion-header {
+        margin-top: -180px;
+      }
+      .heading-cont-footer {
+        top: 400px!important;
+      }
+      .ml7 .text-wrapper {
+        top: 180px!important;
+        left: 15%!important;
+      }
+      #second-heading {
+        font-size: 25px;
+      }
+      .content {
+        position: relative!important;
+        width: 100%;
+        top: 0px;
+        float: left;
+        margin-bottom: 0px;
+        left: 0px;
+        background-color: rgb(247, 247, 247)!important;
+        z-index: 999999999!important;
+      }
+      #Container1Body,
+      #Container2Body {
+        font-size: 18px;
+      }
+}
+
+
+ /* ---------------- iPHONE 7 ----------------- */
+ @media only screen
+ and (device-width : 375px)
+ and (orientation : portrait) {
+  .navbar2 {
+    display: none;
+  }
+  .my-container2 {
+    width: 80% !important;
+    left: 20px!important;
+    top: 190px!important;
+    z-index: 99!important;
+    overflow-x: hidden!important;
+  }
+  .my-container2 h1{
+    position: relative!important;
+    width: 100%!important;
+    z-index: 999!important;
+  }
+  #second-heading {
+    font-family: "Avenir Next";
+    float: left;
+    text-align: left;
+    font-size: 30px;
+  }
+  .info-containerhead {
+    position: relative!important;
+    width: 100% !important;
+    margin-bottom: 500px;
+    margin-top: -120px;
+    margin-left: -100px!important;
+    overflow-x: hidden!important;
+    z-index: 999999999!important;
+  }
+  .ml7 {
+  font-weight: 300;
+      font-size: 1.3em!important;
+  }
+  .ml7 .text-wrapper { 
+    top: 100px!important;
+
+  }
+  
+  .info-containerhead span{
+    font-size: 25px!important;
+  }
+  .buttoncontainer {
+    position: absolute!important;
+    width: 100%!important;
+    left: 90px!important;
+    top: 420px!important;
+    float: left;
+    text-align: left!important;
+    z-index: 999!important;
+  }
+  .info-container-inmotion p {
+    margin-top: 180px!important;
+    font-family: "Avenir Next";
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+  }
+  #Container1Body,
+  #Container2Body {
+    font-size: 18px;
+  }
+  }
+
+    /* ----------------------------------------------- */
+
+    @media only screen and (max-width: 768px) {
+      html {
+          overflow-x: hidden!important;
+          
+        }
+      body {
+        overflow-y: hidden!important;
+        overflow-x: hidden!important;
+        background-color: white;
+        z-index: 10!important;
+        -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
+      }
+
+      #render {
+        display: initial;
+      }
+      #second-heading {
+        
+        font-size: 35px;
+      }
+      .info-containerhead {
+        float: left;
+        position: relative;
+        left: -10px!important;
+      }
+      .Container1Body ul p{
+        color: #fff!important;
+        z-index: 9999999999!important;
+      }
+      .first-heading h2{
+        float: left;
+        position: relative;
+        left: 0px!important;
+      }
+
+      #workbutton {
+        margin-left: 20px!important;
+      }
+      .in-motion-header {
+        height: 900px;
+        left: 0px;
+        position: relative;
+      }
+
+      h2.meetclass {
+        text-align: left!important;
+        float: left!important;
+        position: relative;
+        top: -50px;
+        left: -60px!important;
+        font-size: 100px;
+      }
+    span.inmotionheading2 {
+      text-align: left!important;
+      position: relative;
+      float:none!important;
+      left: -10px!important;
+      margin-left: 20px!important;
+      top:-180px!important;
+      font-family: "Gell";
+      font-size: 70px!important;
+    }
+      .rowm{
+        overflow: hidden;  /* "overflow: auto;" works just as well instead */
+        width:100%;  
+        position: relative;
+        left: -15px!important;
+        padding-right: 0px!important;
+        float: left;      /* Helps older versions of IE */
+    }
+      .col
+{
+    float: left;
+    width: 44%;
+    margin-right: 20px;
+    height: auto;
+    padding-bottom: 30px;
+    color: rgb(247, 247, 247)!important;
+    
+}
+
+p.headaboutmotion {
+  text-align: center!important;
+  width: 80vw!important;
+  color: rgb(247, 247, 247)!important;
+  position: relative!important;
+  float: left!important;
+  left: -100px!important;
+  margin-top:-250px!important;
+  font-weight: 100;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 20px;
+}
+
+h4.free3 {
+  width: 100%;
+  display: block;
+  left: -50px!important;
+  margin-right: auto;
+  margin-top: 230px;
+  margin-bottom: 0px!important;
+  position: relative;
+  text-align: center!important;
+  font-size: 15px;
+}
+h4.colserv {
+  width: 100%;
+  float: left!important;
+  height: auto;
+  margin-right: 0px!important;
+  position: relative;
+  display: block;
+  padding-bottom: 0px;
+
+}
+h4.wyg {
+  margin-left: -15px!important;
+  margin-right: 20px;
+}
+#headingbuttonmotion {
+  position: relative;
+  text-align: center;
+position:relative;
+margin-top: -180px!important;
+  left: 0%;
+  float: left;
+}
+
+#mettbutt {
+  line-height:0px!important;
+}
+
+
+
+
+.col p
+{
+    line-height: 15px;
+
+}
+.dis-container2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index:9999999;
+  
+  
+}
+      .dis-container2 ul {
+        width: 100%;
+        margin-left: -5px!important;
+        color: rgb(255, 255, 255);
+  
+      }
+      .dis-container2 p {
+        color: rgb(255, 255, 255);
+        line-height: 1.3em;
+  
+      }
+      .dis-container2 .wyg {
+        position: relative;
+        float: left;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+        z-index: 20;
+        margin-left: 0px;
+      }
+      h4.growtitle {
+        text-transform: uppercase;
+        font-size: 25px;
+      }
+    
+      #growp {
+        color: #000;
+        line-height: 1.3em;
+        font-size: 20px;
+      }
+      #growcol {
+        float: none;
+        text-align: center;
+        width: 95%;
+        margin: auto;
+      }
+  
+  .info-container {
+    width: 100%;    
+    /*!!!*/
+    position: relative; /*RELATIVE*/
+    margin-bottom: 50px;
+    margin-top: 65%;
+
+    float: left;
+    left: 50px; /* 50px */
+    font-family: "Avenir Next";
+    font-weight: normal;
+    font-size: 25px;
+    text-align: left;
+    z-index: 999999!important;
+    color: #fff!important;
+ 
+}
+.info-container p {
+  margin-left: -20px;
+  font-size: 20px;
+  color: #fff!important;
+}
+      #logoimg-web {
+        display: none;
+      }
+      .navbar2 {
+        display: none;
+      }
+     /* LOADER ANIMATED TEXT */
+     #Container1Body,
+     #Container2Body {
+       font-size: 18px;
+     }
+     .ml7 {
+      position: relative;
+      font-weight: 900;
+      font-size: 1.5em;
+      z-index: 9999999;
+    }
+    .ml7 .text-wrapper {
+      position: relative;
+      width:100%;
+      top: 220px;
+      left: 15%;
+      display: inline-block;
+      padding-top: 0.2em;
+      padding-right: 0.05em;
+      padding-bottom: 0.1em;
+      overflow: hidden;
+      color: rgb(255, 255, 255);
+      z-index: 9999999;
+      
+    }
+    .ml7 .letter {
+      transform-origin: 0 100%;
+      display: inline-block;
+      line-height: 1em;
+    }
+    
+    /* LOADER ANIMATED TEXT */
+    
+      #loader-wrapper .loader-section {
+        position: fixed;
+        top: 0;
+        width: 51%;
+        height: 100%;
+        background: #222222;
+        z-index: 1000;
+        -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateX(0);  /* IE 9 */
+        transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+        z-index: 999;
+    }
+    
+    #loader-wrapper .loader-section.section-left {
+      left: 0;
+    }
+    
+    #loader-wrapper .loader-section.section-right {
+        right: 0;
+    }
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999999999;
+      
+    }
+    #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 40%;
+        color: #fff;
+        width: 150px;
+        height: 150px;
+        margin: -50px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #ffffff;
+        -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+        z-index: 9999999999;
+    }
+    #loader:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #3e1770;
+      -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+    
+    #loader:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #2c2c2c;
+      -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+    
+    @-webkit-keyframes spin {
+      0%   {
+          -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);  /* IE 9 */
+          transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+      }
+      100% {
+          -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);  /* IE 9 */
+          transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+      }
+    }
+    @keyframes spin {
+      0%   {
+          -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);  /* IE 9 */
+          transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+      }
+      100% {
+          -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);  /* IE 9 */
+          transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+      }
+    }
+    
+    /* Loaded */
+    
+    
+    .loaded #loader-wrapper {
+      visibility: hidden;
+    }
+    .loaded #loader {
+      opacity: 0;
+      -webkit-transition: all 0.3s ease-out; 
+              transition: all 0.3s ease-out;
+    }
+    .loaded #loader-wrapper .loader-section.section-right,
+    .loaded #loader-wrapper .loader-section.section-left {
+      -webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: translateX(100%);  /* IE 9 */
+      transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+        -webkit-transition: all 0.3s 0.3s ease-out; 
+                transition: all 0.3s 0.3s ease-out;
+    }
+    .loaded #loader-wrapper {
+      -webkit-transform: translateY(-100%);
+          -ms-transform: translateY(-100%);
+              transform: translateY(-100%);
+    
+      -webkit-transition: all 0.3s  ease-out!important; 
+              transition: all 0.3s  ease-out!important;
+    }
+    /* NEW MENU */
+
+
+
+/* Please ❤ this if you like it! */
+header {
+  z-index: 9999999999999999;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
+
+a {
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;
+}
+
+
+
+/* #Primary style
+================================================== */
+
+.section {
+  position: relative;
+width: 100%;
+display: block;
+}
+.over-hide{
+overflow: hidden;
+}
+.full-height {
+height: 100vh;
+}
+
+/* #Navigation
+================================================== */
+.shadow-title{
+position: fixed;
+bottom: -10px;
+left: -100%;
+width: 300%;
+text-align: center;
+font-size: 10vw;
+line-height: 1;
+color: rgba(200,200,200,.1);
+background: linear-gradient(rgba(200,200,200,0), rgba(200,200,200,0.07));
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-weight: 900;
+z-index: 1;
+}
+.cd-header{
+  position: fixed;
+width:100%;
+top:0;
+left:0;
+z-index:99999999999;
+} 
+.header-wrapper{
+  position: relative;
+margin: 0 auto;
+text-align: right;
+width: 100%;
+} 
+.nav-but-wrap{ 
+position: relative;
+display: inline-block;
+margin: 0 auto;
+text-align: right;
+padding-top: 15px;
+margin-top: 5px;
+margin-right: 30px!important;
+transition : all 0.3s ease-out;
+}
+.menu-icon {
+height: 30px;
+width: 30px;
+position: relative;
+z-index: 9999999999;
+cursor: pointer;
+display: block;
+margin: 0 auto;
+text-align: right;
+transition: all 0.5s;
+}
+
+.menu-icon__line {
+  position: relative;
+height: 2px;
+width: 30px;
+display: block;
+background-color: #fff;
+margin-bottom: 7px;
+cursor: pointer;
+-webkit-transition: background-color .5s ease, -webkit-transform .2s ease;
+transition: background-color .5s ease, -webkit-transform .2s ease;
+transition: transform .2s ease, background-color .5s ease;
+transition: transform .2s ease, background-color .5s ease, -webkit-transform .2s ease;
+}
+.menu-icon__line-left {
+width: 30px;
+margin-bottom: 7px;
+-webkit-transition: all 200ms linear;
+transition: all 200ms linear;
+}
+.menu-icon__line-right {
+width: 30px;
+float: right;
+-webkit-transition: all 200ms linear;
+-moz-transition: all 200ms linear;
+-o-transition: all 200ms linear;
+-ms-transition: all 200ms linear;
+transition: all 200ms linear;
+}
+.menu-icon:hover .menu-icon__line-left,
+.menu-icon:hover .menu-icon__line-right {
+width: 30px;
+}
+.logowhites-4 {
+  position: fixed;
+  -webkit-transition-delay: 0.8s;
+        transition-delay: 0.8s;
+        display: block;
+        opacity: 0;
+  top: 10px;
+  left: 30px;
+  float: left;
+  -webkit-transform: translate(0%, 40px);
+        transform: translate(0%, 40px);
+-webkit-transition: opacity .2s ease, -webkit-transform .3s ease;
+transition: opacity .2s ease, -webkit-transform .3s ease;
+transition: opacity .2s ease, transform .3s ease;
+transition: opacity .2s ease, transform .3s ease, -webkit-transform .3s ease;
+}
+
+.logowhites-4 a:after{ 
+  position: absolute;
+  content: '';
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 6;
+  opacity: 0;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear; 
+    
+  }
+.logowhites-4 img{
+  width: 100px;
+}
+.nav {
+  display: initial;
+position: fixed;
+z-index: 999999999;
+}
+
+
+.nav:before, .nav:after {
+content: "";
+position: fixed;
+width: 100vw;
+height: 100vh;
+background: rgba(20, 21, 26,0.6);
+border-bottom-left-radius: 100%;
+border-bottom-right-radius: 100%;
+z-index: -1;
+-webkit-transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+-webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+}
+.nav:after {
+  /*background-image: url("/images/futurecrop-min.jpg");*/
+background: rgba(9,9,12,1);
+-webkit-transition-delay: 0s;
+        transition-delay: 0s;
+        margin-top: -20px;
+        
+}
+.nav:before {
+-webkit-transition-delay: .2s;
+        transition-delay: .2s;
+        
+}
+
+
+.nav__content {
+position: fixed;
+visibility: hidden;
+margin-top: 50px;
+-webkit-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+width: 100%;
+text-align: center;
+top:40%;
+}
+.nav__list {
+position: relative;
+padding: 0;
+margin: 0;
+z-index: 2;
+
+}
+.nav__list-item {
+position: relative;
+display: block;
+-webkit-transition-delay: 0.8s;
+        transition-delay: 0.8s;
+opacity: 0;
+text-align: center;
+color: #fff;
+overflow: hidden; 
+font-family: 'Poppins', sans-serif;
+font-size: 7vh;
+font-weight: 900;
+line-height: 1.05;
+letter-spacing: 3px;
+-webkit-transform: translate(0%, 40px);
+        transform: translate(0%, 40px);
+-webkit-transition: opacity .2s ease, -webkit-transform .3s ease;
+transition: opacity .2s ease, -webkit-transform .3s ease;
+transition: opacity .2s ease, transform .3s ease;
+transition: opacity .2s ease, transform .3s ease, -webkit-transform .3s ease;
+margin-top: 0;
+margin-bottom: 0;
+}
+.middle-line {
+  color: #fff;
+  position: relative;
+  margin-top: 100px;
+  margin-bottom: -100px;
+  opacity: 0.8;
+  font-size: 10px;
+}
+.copyrights {
+  color: #fff;
+  position: relative;
+  margin-top: 130px;
+  margin-bottom: -100px;
+  opacity: 0.8;
+  font-size: 10px;
+}
+.nav-menu-slogan {
+  color: #fff;
+  font-family: "Avenir Next";
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: -100px;
+  opacity: 0.8;
+  font-size: 20px;
+}
+.nav__list-item a{ 
+position: relative;
+text-decoration: none;
+color: rgba(255,255,255,0.6);
+overflow: hidden; 
+cursor: pointer;
+padding-left: 5px;
+padding-right: 5px;
+font-weight: 700;
+z-index: 2;
+display: inline-block;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear; 
+}
+.nav__list-item a:after{ 
+position: absolute;
+content: '';
+bottom: 8px;
+left: 50%;
+width: 0;
+height: 6;
+opacity: 0;
+background: linear-gradient(to bottom, rgb(117, 57, 226) 1%,transparent 100%);z-index: 1;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear; 
+}
+.nav__list-item a:hover:after{ 
+height: 6px;
+opacity: 0.7;
+left: 0;
+width: 100%;
+}
+.nav__list-item a:hover{
+color: rgba(255,255,255,1);
+}
+.nav__list-item.active-nav a{
+color: rgba(255,255,255,1);
+}
+.nav__list-item.active-nav a:after{ 
+height: 6px;
+opacity: 0.7;
+left: 0;
+width: 100%;
+}
+body.nav-active .nav__content {
+visibility: visible;
+}
+body.nav-active .menu-icon__line {
+background-color: #fff;
+-webkit-transform: translate(0px, 0px) rotate(-45deg);
+        transform: translate(0px, 0px) rotate(-45deg);
+}
+body.nav-active .menu-icon__line-left {
+width: 15px;
+-webkit-transform: translate(2px, 4px) rotate(45deg);
+        transform: translate(2px, 4px) rotate(45deg);
+}
+body.nav-active .menu-icon__line-right {
+width: 15px;
+float: right;
+-webkit-transform: translate(-3px, -3.5px) rotate(45deg);
+        transform: translate(-3px, -3.5px) rotate(45deg);
+}
+body.nav-active .menu-icon:hover .menu-icon__line-left,
+body.nav-active .menu-icon:hover .menu-icon__line-right {
+width: 15px;
+}
+body.nav-active .nav {
+visibility: visible;
+}
+body.nav-active .nav:before, body.nav-active .nav:after {
+-webkit-transform: translateY(0%);
+        transform: translateY(0%);
+border-radius: 0;
+}
+body.nav-active .nav:after {
+-webkit-transition-delay: .1s;
+        transition-delay: .1s;
+}
+body.nav-active .nav:before {
+-webkit-transition-delay: 0s;
+        transition-delay: 0s;
+}
+body.nav-active .logowhites-2 {
+  opacity: 0;
+}
+body.nav-active .logowhites-4 {
+  opacity: 1;
+  
+
+-webkit-transform: translateY(0%);
+        transform: translateY(0%);
+-webkit-transition: opacity .3s ease, color .3s ease, -webkit-transform .3s ease;
+transition: opacity .3s ease, color .3s ease, -webkit-transform .3s ease;
+transition: opacity .3s ease, transform .3s ease, color .3s ease;
+transition: opacity .3s ease, transform .3s ease, color .3s ease, -webkit-transform .3s ease;
+}
+body.nav-active .logowhites-4 {
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+  
+body.nav-active .nav__list-item {
+opacity: 1;
+-webkit-transform: translateY(0%);
+        transform: translateY(0%);
+-webkit-transition: opacity .3s ease, color .3s ease, -webkit-transform .3s ease;
+transition: opacity .3s ease, color .3s ease, -webkit-transform .3s ease;
+transition: opacity .3s ease, transform .3s ease, color .3s ease;
+transition: opacity .3s ease, transform .3s ease, color .3s ease, -webkit-transform .3s ease;
+}
+body.nav-active .nav__list-item:nth-child(0) {
+-webkit-transition-delay: 0.7s;
+        transition-delay: 0.7s;
+}
+body.nav-active .nav__list-item:nth-child(1) {
+-webkit-transition-delay: 0.8s;
+        transition-delay: 0.8s;
+}
+body.nav-active .nav__list-item:nth-child(2) {
+-webkit-transition-delay: 0.9s;
+        transition-delay: 0.9s;
+}
+body.nav-active .nav__list-item:nth-child(3) {
+-webkit-transition-delay: 1s;
+        transition-delay: 1s;
+}
+body.nav-active .nav__list-item:nth-child(4) {
+-webkit-transition-delay: 1.1s;
+        transition-delay: 1.1s;
+}
+body.nav-active .nav__list-item:nth-child(5) {
+-webkit-transition-delay: 1.2s;
+        transition-delay: 1.2s;
+}
+body.nav-active .nav__list-item:nth-child(6) {
+-webkit-transition-delay: 1.3s;
+        transition-delay: 1.3s;
+}
+body.nav-active .nav__list-item:nth-child(7) {
+-webkit-transition-delay: 1.4s;
+        transition-delay: 1.4s;
+}
+body.nav-active .nav__list-item:nth-child(8) {
+-webkit-transition-delay: 1.5s;
+        transition-delay: 1.5s;
+}
+body.nav-active .nav__list-item:nth-child(9) {
+-webkit-transition-delay: 1.6s;
+        transition-delay: 1.6s;
+}
+body.nav-active .nav__list-item:nth-child(10) {
+-webkit-transition-delay: 1.7s;
+        transition-delay: 1.7s;
+}
+
+.switch-wrap {
+position: absolute;
+top: 50%;
+left: 0;
+z-index: 10;
+  transform: translateY(-50%);
+width: 100%;
+-webkit-transition: all 500ms linear;
+transition: all 500ms linear; 
+margin: 0 auto;
+margin-top: 20px;
+text-align: center;
+}
+.switch-wrap p {
+font-weight: 500;
+font-size: 14px;
+letter-spacing: 1px;
+line-height: 1.3;
+color: #fff;
+text-align: center;
+margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+    /* NEW MENU */
+      .navbar{
+        top: 0px;
+        z-index: 999999999!important;
+        overflow-y: hidden!important;
+        color: #000;
+        height: 60px;
+        background: #000;
+      }
+      .scrollUp {
+        transform: translateY(-90px);
+      }
+      
+      .navbar a:hover {
+          border: 0px solid black!important;
+        }
+
+      .Navbar__Items,
+      .navbar{
+        flex-direction: column;
+      }
+    
+      .Navbar__Items {
+        position: relative!important;
+        display:none;
+        text-align: left!important;
+        margin-left: -210px;
+        font-size: 30px!important;
+        padding-bottom: 500px!important;
+        margin-top: 250px!important;
+      }
+
+      .Navbar__Link-brand {
+        margin-top: 5px!important;
+        padding-top: 3px;
+        margin-bottom: 30px!important;
+        margin-left: -50px!important;
+        }
+      .Navbar__Link-brand2 {
+        position: fixed;
+        margin-top: 0px!important;
+        margin-left: 50px!important;
+        z-index: 999999999!important;
+        transition: all 0.4s ease-out;
+      }
+      .Navbar__Link-brand3 {
+        margin-top: -20px!important;
+        margin-left: -50px!important;
+      }
+     
+      .logowhites-3 {
+        position: absolute;
+        left: -25px;
+        top: 10px;
+        display: inline;  
+        z-index: 9999999999!important;
+            }
+      .logowhites-3 img {
+        width: 80px!important;
+      }
+    
+      .logowhites-2 {
+        position: absolute;
+        left: -30px;
+        top: 5px;
+        display: block;  
+        z-index: 9999999999999!important;    
+      }
+      .logowhites-2 img { 
+        width: 100px!important;
+      }
+     .logowhites {
+        display: inline; 
+      }
+      .toggle-logo{
+        display: inline;
+        z-index: 9999999!important;
+     
+      }
+      .logoblacks {
+        display: none;
+      }
+      
+      .toggle-logo2{
+        display: none;
+      }
+      .toggle-background {
+        color: #fff!important;
+        background-image: url("/images/menu-gradient-min.jpg")!important;
+        background-position: top;
+        animation: fadeIn ease 0.8s;
+        -webkit-animation: fadeIn ease 0.8s;
+        -moz-animation: fadeIn ease 0.8s;
+        -o-animation: fadeIn ease 0.8s;
+        -ms-animation: fadeIn ease 0.8s;
+        
+      
+      
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+      }
+      
+      @-moz-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+      }
+      
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+      }
+      
+      @-o-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+      }
+      
+      @-ms-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity:1;
+      }
+      100% {
+        opacity:0;
+      }
+    }
+    
+    @-moz-keyframes fadeOut {
+      0% {
+        opacity:1;
+      }
+      100% {
+        opacity:0;
+      }
+    }
+    
+    @-webkit-keyframes fadeOut {
+      0% {
+        opacity:1;
+      }
+      100% {
+        opacity:0;
+      }
+    }
+    
+    @-o-keyframes fadeOut {
+      0% {
+        opacity:1;
+      }
+      100% {
+        opacity:0;
+      }
+    }
+    
+    @-ms-keyframes fadeOut {
+      0% {
+        opacity:1;
+      }
+      100% {
+        opacity:0;
+    }
+    }
+      .toggle-background a {
+        color: #fff!important;
+      }
+      .Navbar__Link {
+        text-align: left!important;
+        margin-left: 0;
+        margin-top:15px;
+        margin-bottom: -30px!important;
+        padding-bottom: 30px!important;
+       
+      
+      }
+      .navbar a {
+         float: none!important;
+         text-align: left!important;
+         margin-right: 0px!important;
+         font-size: 28px!important;
+         text-transform: none!important;
+         font-family: "Avenir Next"!important;
+         font-weight: normal!important;
+       }
+       .navbar li {
+         float: none!important;
+         text-align: left;
+       }
+       .navbar a#Menu3 {
+        margin-left: -15px!important;
+        border: 0px solid #fff!important;
+      }
+      
+     
+      .Navbar__ToggleShow {
+        display: flex;
+        align-self: center;
+        
+        }
+        header {
+          color: #fff;
+         
+    
+        }
+        .Navbar__Link-toggle2 {
+        display: inline;
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+        top: 10px;
+        right: 20px;
+        z-index: 999999!important;
+          }
+    
+      .Navbar__Link-toggle {
+        align-self: flex-end;
+        display: initial;
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+        top: 35px;
+        right: 20px;
+      }
+     
+      .Navbar__Link-toggle img {
+          width: 40px;
+        }
+       
+      .header-background {
+          position: fixed!important;
+          background-color:#3931a8!important;
+          z-index: 999!important;
+          float: left!important;
+    
+        }
+     
+      .header-home {
+        width: 100%!important;
+        text-align: left;
+        height: 900px!important;
+        position: fixed!important;
+        display: block!important;
+        overflow-x: hidden!important;
+        overflow-y: hidden!important;
+        z-index: 9999!important;
+        top: 0px!important;
+        float: left;
+        left: 0px;
+      }
+     .content {
+        position: relative!important;
+        width: 100%;
+        top: 0px;
+        float: left;
+        margin-top: 0;
+        left: 0px;
+        background-color: rgb(0, 0, 0)!important;
+        color: white;
+        z-index: 9999999!important;
+       
+    
+      }
+      .content2 {
+        position: relative;
+        width: 100%;
+        top: 0px;
+        float: left;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        left: 0px;
+        background-image: linear-gradient(to bottom, rgb(10, 10, 10) 10%, #242424 80%);
+        z-index: 99999999!important;
+      }
+
+
+/* =============== MEET MOTION HOMEPAGE BUTTON ========= */
+      #inmotionbutton svg {
+        left:-50px!important;
+      }
+     
+      #inmotion-header {
+        display: relative!important;
+        float: right;
+        display:block;
+        margin-top: -330px;
+        right: -50px!important;
+        z-index: 99999999!important;
+    
+      }
+      .pulse-box {
+        position: relative;
+        top: 35px;
+        float: right;
+        width: 50%;
+        height: 0px;
+        right: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      
+      /* pulse in SVG */
+      svg.pulse-svg {
+        overflow: visible;
+      }
+      
+      svg.pulse-svg .first-circle, svg.pulse-svg .second-circle, svg.pulse-svg .third-circle {
+        fill: rgb(255, 255, 255);
+        transform: scale(0.5);
+        transform-origin: center center;
+        animation: pulse-me 3s linear infinite;
+      }
+      
+      svg.pulse-svg .second-circle {
+        animation-delay: 1s;
+      }
+      
+      svg.pulse-svg .third-circle {
+        animation-delay: 2s;
+      }
+      
+      /* pulse in CSS */
+      .pulse-css {
+        width: 50px;
+        height: 50px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        background: rgb(255, 255, 255);
+        position: relative;
+        -webkit-transition: all 0.3s 0.3s ease-in-out; 
+              transition: all 0.3s 0.3s ease-in-out;
+      }
+      
+      .pulse-css:before, .pulse-css:after {
+        color: rgb(85, 24, 24);
+        content: '';
+        width: 50px;
+        height: 50px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        transform: scale(0.5);
+        transform-origin: center center;
+        animation: pulse-me 3s linear infinite;
+        
+      }
+      
+      .pulse-css:after {
+        animation-delay: 2s;
+      }
+
+      .pulse-css:hover {
+        background: rgb(115, 28, 197);
+        
+    
+      }
+      
+      @keyframes pulse-me {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+      
+        50% {
+          opacity: 0.1;
+        }
+      
+        70% {
+          opacity: 0.09;
+        }
+      
+        100% {
+          transform: scale(5);
+          opacity: 0;
+        }
+      }
+
+/* =============== MEET MOTION HOMEPAGE BUTTON ========= */
+
+     
+      .info-container-inmotion{
+        width: 100%!important;
+        position: relative!important;
+        float: left!important;
+        left: 0px!important;
+        margin-top: auto!important;
+        overflow-x: hidden!important;
+        overflow-y: hidden!important;
+        height: 300px!important;
+        z-index: 0!important;
+      }
+      .info-container-inmotion ul {
+        position: relative!important;
+        width: 100%!important;
+        top: 20px;
+        left: -20px;
+      }
+      .info-container-inmotion h3 {
+        margin-top: 20px;
+        margin-bottom: 60px;
+        font-family: "Avenir Next";
+        font-size: 35px;
+        color: #fff;
+      }
+      .info-container-inmotion h4 {
+        margin-top:80px;
+        margin-left: 20px;
+        font-family: "Avenir Next";
+        font-size: 20px;
+        color: #fff;
+      }
+      .info-container-inmotion p {
+        margin-top: 50px;
+        font-family: "Avenir Next";
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+      }
+   
+     
+      .info-container {
+        width: 100%!important;
+        position: relative!important;
+        float: left!important;
+        left: 0px!important;
+        margin-top: auto!important;
+        overflow-x: hidden!important;
+        overflow-y: hidden!important;
+        z-index: 0!important;
+      }
+      .info-container ul {
+        width: 90%!important;
+        float: left;
+        text-align: left;
+        margin-right: 30px!important;
+        margin-top: 100px;
+        margin-bottom: 0px!important;
+        padding-bottom: 0px!important;
+        overflow-x: hidden!important;
+        line-height: 35px;
+      }
+      .info-containerhead {
+        position: relative!important;
+        width: 100% !important;
+        margin-bottom: 450px;
+        margin-top: 100px;
+        margin-left: -115px;
+        float: left;
+        text-align: center;
+        overflow-x: hidden!important;
+        z-index: 99999999!important;
+        
+      
+      }
+      .info-containerhead span{
+        font-size: 25px!important;
+      }
+      .my-container2 {
+        width: 80% !important;
+        left: 20px!important;
+        top: 250px;
+        float: left;
+        display: block;
+        text-align: left;
+        z-index: 99!important;
+        overflow-x: hidden!important;
+      }
+      .my-container2 h1{
+        position: relative!important;
+        width: 100%!important;
+        float: left;
+        display: block;
+        text-align: left;
+        z-index: 999!important;
+      }
+      .heading-cont-footer {
+        position: absolute;
+        width: 80% !important;
+        left: 20px!important;
+        top: 520px;
+        float: left;
+        display: block;
+        text-align: left;
+        z-index: 99!important;
+        overflow-x: hidden!important;
+      }
+      .heading-cont-footer h2{
+        position: relative!important;
+        width: 100%!important;
+        float: left;
+        display: block;
+        margin-top: 100px;
+        text-align: left;
+        z-index: 999!important;
+        font-size: 40px;
+        font-family: "Avenir Next";
+      }
+    
+    
+      .buttoncontainer {
+        position: absolute!important;
+        width: 100%!important;
+        left: 90px!important;
+        top: 400px;
+        float: left;
+        text-align: left!important;
+        z-index: 999999!important;
+      }
+        #headingbutton {
+        position: absolute!important;
+        width: 100%!important;
+        left: 20px!important;
+        float: none!important;
+        top: 450px;
+        text-align: left!important;
+        z-index: 999999!important;
+        line-height: 4px!important;
+      }
+      .button {
+        width: 100%!important;
+        display: inline-block;
+        text-align: left;
+        z-index: 9999!important;
+        margin-bottom: 50px!important;
+        color: white;
+        line-height: 30px;
+      }
+      .button a{
+        position: relative;
+       display: block;
+        color: white;
+      }
+      .button svg g line, 
+      .button svg g polyline, 
+      .button svg g circle {
+        position: relative;
+         fill: none;
+         stroke: white;
+    
+       }
+       #inmid span {
+        line-height: 30px!important;
+       }
+      #modal2 a,
+      #modal1 a,
+      #modal3 a,
+      #modal4 a
+      {
+        line-height: 30px;
+      }
+
+      .button p {
+        position: relative;
+        display: inline-block;
+        margin-right: 20px!important;
+      }
+      .buttoncontainer2 {
+        position: relative;
+        display: block;
+        top: 40px!important;
+        margin-left: 0px!important;
+        float: none!important;
+        z-index: 20!important;
+      }
+      .ourwork {
+        width: 100%!important;
+        margin-bottom: 50px!important;
+        padding-bottom: 0px;
+      }
+
+      .ourwork .btn-slice {
+        margin: 20px;
+        border: 2px solid #fff;
+        color: #ffffff;
+      }
+      .ourwork .btn-slice:before {
+        background-color: #fff;
+      }
+      .row {
+        position: relative;
+        width: 100%!important;
+        text-align: left!important;
+        padding-bottom: 50px;
+        float: none!important;
+      
+      }
+      .row a {
+        margin-top: 20px!important;
+        float: none!important;
+        color: rgb(255, 255, 255);
+        font-size: 18px!important;
+        font-weight: 600!important;
+        text-decoration: none;
+        margin-left:0px!important;
+        z-index: 999;
+        display: block!important;
+        text-align: left!important;
+        font-family: "Avenir Next"!important;
+    
+      }
+      
+      
+      .row p {
+        float: none!important;
+        color: lightgray!important;
+        font-size: 15px;
+        text-decoration: none;
+        margin-left: 0px!important;
+        margin-bottom: -20px!important;
+        text-align: left!important;
+      }
+     
+      .column {
+        width: 90%!important;
+        float: none!important;
+        display: block;
+        text-align: center!important;
+        margin-right: 0px!important;
+        margin-left: 20px!important;
+        float: none!important;
+        
+      }
+      .column-right {
+        width: 90%!important;
+        float: none!important;
+        display: block;
+        text-align: center!important;
+        margin-right: 20px!important;
+        margin-left: 20px!important;
+        top: 0px!important;
+
+        float: none!important;
+        
+      }
+      .image2,
+      .image3,
+      .image4,
+      .image5 {
+        position: relative;
+        width: 100%;
+        max-height: 400px;
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        margin-top: 50px!important;
+        margin-right: 0;
+        margin-bottom: 0px!important;
+        float: none!important;
+        background-color: transparent;
+      }
+    
+      #photo1 {
+        width:80%; /*width of your image*/
+       height:400px; /*height of your image*/
+       background-image:url('/images/stars_space_glow_planet_99744_1920x1080-min.jpg');
+       margin:auto; /* If you want no margin */
+       padding:0; /*if your want to padding */
+    
+      }
+      /* EXPERIENCE CONTAINER - SECOND AFTER WORK*/
+    .exp-container {
+        position:relative!important;
+      width: 100% !important;
+          left: 0px!important;
+          float: left;
+          display: block;
+          text-align: left;
+          padding-bottom: 50px;
+          margin-top: -150px;
+          margin-bottom:0px!important;
+          height: auto!important;
+          z-index: 9999999!important;
+          background-color: rgb(0, 0, 0);
+    }
+    .exp-container img {
+      position:relative!important;
+          width: 300px!important;
+          float: none!important;
+          margin-top: 0px!important;
+          margin-left: 20px!important;
+          margin-right: 0px!important;
+          margin-bottom: 40px!important;
+    }
+    .exp-container ul {
+      float: left;
+      display: block;
+      margin-top: -100px;
+      }
+      .exp-container ul li {
+        list-style-type: none;
+        }
+    .exp-container p {
+    display: block;
+    float: left;
+    margin-top: 100px;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    font-family: "Avenir Next";
+    }
+    
+    .exp-container h3 {
+      float: left;
+      margin-top: 10px;
+      margin-left: 5px;
+      font-family: "Avenir Next";
+      font-size: 20px;
+    }
+    
+    .exp-container h3 a {
+      display: block;
+      color: rgb(255, 255, 255);
+      font-family: "Avenir Next";
+      text-decoration: none;
+    }
+    
+    .brand-img {
+        width:100%!important;
+      position: relative!important;
+      height: auto!important;
+      float:none!important;
+      left: 0!important;
+    }
+    .brand-img img{
+      float:none!important;
+      margin-top: 0px!important;
+      width: 350px!important;
+    }
+    
+    .info-container2 {
+      height: auto; 
+      width: 100%!important;    
+      /*!!!*/
+      position: relative; /*RELATIVE*/
+      margin-top: 0px!important;
+      margin-bottom: 0px!important;
+      display: block!important;
+      float: left;
+      left: 0px!important; /* 50px */
+      font-family: "Avenir Next";
+      font-weight: normal;
+      font-size: 20px;
+      text-align: left;
+      z-index: 999;
+    
+    }
+    
+    .info-container2 ul {
+      position: relative;
+      float: left;
+      top: 0;
+      left: 0px;
+      margin-right: 30px;
+      margin-top: 0px;
+      font-size: 35px;
+      width: 90%!important;
+      padding-top: 50px!important;
+      padding-bottom: 100px!important;
+      font-family: "Avenir Next";
+      line-height: 35px!important;
+    }
+    .liber {
+      height: 550px; 
+      width: 100%!important;    
+      /*!!!*/
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      position: relative; /*RELATIVE*/
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: "Avenir Next";
+      font-weight: normal;
+      float: left;
+      z-index: 999999999!important;
+    }
+
+    .info-container3 {
+      height: auto; 
+      width: 100%;    
+      /*!!!*/
+      text-align: center;
+      position: relative; /*RELATIVE*/
+      margin-top: -150px;
+      margin-bottom: -150px;
+      font-family: "Avenir Next";
+      font-weight: normal;
+      z-index: 999;
+      float: left;
+      z-index: 9999999;
+    }
+    .info-container3 .inmotion span.word {
+      display: block;
+      position: relative;
+      font-family: "Avenir Next";
+      font-size: 90px;
+      top: 50px!important;
+      float: left;
+    }
+    .info-container3 .inmotion span.motionword {
+      position: relative;
+      font-size: 70px;
+      display: block;
+      font-family: "Gell";
+      margin-top: 0px;
+    }
+    .info-container3 .inmotion span {
+      position: relative;
+      text-align: center;
+    }
+    .inmotion {
+      position: relative;
+      width: 100%;
+      margin: auto;
+      margin-top: 150px;
+      color: #fff;
+      /*background-color: rgb(51, 108, 110);*/
+      background-image: url("/images/abstract-blue-patterns-design-min.jpg");
+      z-index: 999999999;
+    }
+    .inmotion .btn-slice2 {
+      float: none;
+      margin-top: -150px;
+      margin-left: 14%;
+      text-align: center!important;
+      text-decoration: none;
+    } 
+    #inmotionid {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      top: 450px;
+      left: 20%!important;
+      text-align: center;
+    }
+    
+     .inmotion ul {
+      position: relative;
+      width: 80%;
+      height: 600px;
+      margin-top: 50px!important;
+      font-family: "Avenir Next";
+      text-align: center;
+    }
+    
+    .inmotion ul h1 {
+      position: absolute;
+    width: 100%;
+    color: #fff;
+    margin-top: 100px;
+    text-align: center;
+    }
+    
+    .info-container3 ul h2 {
+      position: relative;
+      width: 100%;
+      margin-top: 150px;
+      margin-left: 35%;
+      text-align: center;
+      }
+    .info-container3 ul p {
+      position: relative;
+      width: 50%;
+      margin-top: 0px;
+      margin-bottom: 200px;
+      margin-left: 32%;
+      color: #fff;
+      text-align: center;
+      font-family: "Avenir Next";
+      letter-spacing: 2px;
+      font-weight: bold;
+      }
+
+    /* ------------ DISCOVER / INMOTION PAGE MAX 768px -------------- */
+
+    @media only screen and (max-width: 768px) {
+      /* MOBILE APP */
+      .navbar2 {
+        display: none;
+      }
+      .discover-header {
+        background-position: left!important; /* Center the image */
+        
+      }
+      .buttoncontainer2 .btn-slice {
+        display: none;
+      }
+      .buttoncontainer2 .btn-slice2 {
+        display: initial;
+        margin-top:0px!important;
+        margin-bottom: 80px!important;
+
+      }
+      .buttoncontainer2 .btn-slice2 span{
+        font-size: 0.6875rem!important;
+        font-family: "Avenir Next";
+        float: none!important;
+        width: 100%!important;
+        font-family: "Avenir Next";
+        margin-top:0px!important;
+        text-align: center!important;
+
+      }
+
+
+      .my-container3 {
+          width: 95% !important;
+          top:0px!important;
+          left: 0px!important;
+          float: left;
+          text-align: left;
+          z-index: 9999999999;
+        }
+        .my-container3 span {
+          width: 100% !important;
+          position: relative!important;
+          font-size: 40px;
+          float: left;
+          left: -100px!important;
+          top: 220px;
+        }
+        .my-container3 h1 {
+          margin-right:px!important;
+          font-size: 35px;
+          padding-bottom: 50px!important;
+        }
+       #discovery-header {
+         width: 80%!important;
+          top:20px!important;
+          font-size: 35px!important;
+          padding-bottom: 50px!important;
+      }
+    
+        .dis-container {
+          width: 100% !important;
+          left: 0px!important;
+          float: left;
+          display: block;
+          text-align: left;
+          margin-left:0px!important;
+          margin-top: -50px!important;
+          background-color: #000;
+          color: #fff;
+          
+      }
+      
+      .dis-container img {
+          width: 90%!important;
+          float: none!important;
+          margin-top: 0px!important;
+          margin-left: 20px!important;
+          margin-right: 40px!important;
+          margin-bottom: 0px!important;
+          padding-top: 50px;
+          z-index: 999;
+          text-align: center!important;
+         
+      }
+      
+      .dis-container ul {
+          float: none!important;
+          width: 90%!important;
+          font-family: "Avenir Next";
+          font-size: 45px;
+          text-align: center!important;
+      }
+      .dis-container span {
+         
+          font-family: "Avenir Next";
+          float: none!important;
+          width: 95%!important;
+          font-family: "Avenir Next";
+          font-size: 45px;
+          margin:auto!important;
+          text-align: center!important;
+         
+      }
+      .dis-container ul p {
+          float: left;
+          font-family: "Avenir Next";
+          margin-top: 20px;
+          margin-right:0px!important;
+          font-size: 15px;
+      }
+      .dis-container ul li {
+          float: left;
+          font-family: "Avenir Next";
+          margin-right: 20px;
+          font-size: 15px;
+          color: gray;
+          padding: 5px;
+          width:90%!important;
+          margin-right:0px!important;
+      
+          list-style-type: disc;
+      }
+      .dis-container-left {
+          width: 100% !important;
+          left: 0px!important;
+          float: left;
+          display: block;
+          text-align: left;
+        
+          margin-left:0px!important;
+          margin-bottom: 0px!important;
+          background-color: #000!important;
+          color: #fff;
+  
+          
+      }
+      
+      .dis-container-left img {
+          width: 90%!important;
+          float: none!important;
+          margin-top: 0px!important;
+          margin-left: 20px!important;
+          margin-right: 40px!important;
+          margin-bottom: 40px!important;
+          z-index: 999;
+          text-align: center!important;
+      }
+      
+      .dis-container-left ul {
+          float: none!important;
+          width: 90%!important;
+          font-family: "Avenir Next";
+          font-size: 45px;
+          text-align: center!important;
+          
+      }
+      .dis-container-left span {
+         
+          font-family: "Avenir Next";
+          float: none!important;
+          width: 95%!important;
+          font-family: "Avenir Next";
+          font-size: 45px;
+          margin:auto!important;
+          text-align: center!important;
+         
+      }
+      
+      #discover-1 {
+          width:80%!important;
+          margin: auto!important;
+          text-align: center!important;
+      
+      }
+      #discover-2 {
+          width:80%!important;
+          margin: auto!important;
+          text-align: center!important;
+      
+      }
+      .dis-container-left ul p {
+          float: left;
+          font-family: "Avenir Next";
+          margin-top: 20px;
+          margin-right: 0px!important;
+          font-size: 15px;
+      }
+      .dis-container-left ul li {
+          float: left;
+          font-family: "Avenir Next";
+          margin-right: 20px;
+          font-size: 15px;
+          color: gray;
+          padding: 5px;
+          width:90%!important;
+          margin-right:0px!important;
+      }
+      #list1 {
+          width: 90%!important;
+          float:left!important;
+          margin-bottom: 0px!important;
+          text-align: left!important;
+      }
+      #list2 {
+          width: 90%!important;
+          float:left!important;
+          margin-top: 0px!important;
+          text-align: left!important;
+      }
+      }
+
+      /* ------------- CONTACT PAGE MAX 768px -------------- */
+
+      @media only screen and (max-width: 768px) {
+        .navbar2 {
+          display: none;
+        }
+        .cont-container {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            background-color: rgb(241, 250, 250);
+            opacity: 1;
+            overflow: hidden;
+            height: auto;
+            z-index: 999;
+        }
+        
+        #rel-container {
+            display: inline-block;
+            position: relative;
+            margin-top: 300px!important;
+            margin-left:20px!important;
+            margin-bottom: 50px!important;
+            background-color: #fff;
+            width: 90%!important;
+            height: 200px;
+        }
+        #rel-container p {
+            text-align: left;
+            font-family: "Avenir Next";
+            text-transform: uppercase;
+            padding-top: 50px;
+            padding-left: 50px;
+            font-size: 15px;
+            color: #ccc;
+        }
+        
+        #rel-container2 {
+            display: inline-block;
+            position: relative;
+            margin-top: 0px!important;
+            margin-left:20px!important;
+            margin-bottom: 300px!important;
+            background-color: #fff;
+            width: 90%!important;
+            height: 200px;
+        }
+        #rel-container2 p {
+            position:relative!important;
+            width:95%!important;
+            text-align: left;
+            font-family: "Avenir Next";
+            text-transform: uppercase;
+            padding-top: 60px;
+            padding-left: 50px;
+            font-size: 12px!important;
+            color: #ccc;
+        }
+        #rel-container2 a {
+            text-align: left;
+            font-family: "Avenir Next Bold";
+            text-transform: none;
+            padding-top: 60px;
+            padding-left: 50px;
+            font-size: 12px!important;
+            text-decoration: none;
+            color: #000;
+        }
+        .buttoncontainer4 {
+            position: relative;
+            margin-top: -10px;
+            margin-left: 45px;
+            margin-bottom: 0px;
+            float: left;
+            font-weight: bold;
+        }
+      }
+    
+        .buttoncontainer4 .button2 p {
+            margin-top: -40px;
+            margin-left: -48px;
+            font-family: "Avenir Next Bold"!important;
+            font-size: 15px!important;
+            text-transform: none!important;
+            color: black;
+        }
+      /* INMOTION */
+      
+        #inmotionlink {
+            width:100%!important;
+            margin-left: 30px!important;
+        }
+        .inmotionheading {
+            position: relative!important;
+            margin-top: -60px!important;
+            line-height: 0px!important;
+            font-family: "Gell"!important;
+            font-size: 60px!important;
+            color: #fff!important;
+        }
+       
+      
+        /* FOOTER */
+      
+        .footer {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 10px 30px 20px 30px;
+            color: #fff;
+            background-color: #000;
+            border-top: 1px solid #2f2f2f;
+            font-size: 12px;
+            margin-top: -10px;
+            height: 520px;
+            width: 100%;
+          }
+          .legal {
+            margin-top: 50px!important;
+            width: 50%!important;
+            text-align: center!important;
+          }
+          .legal__links {
+            margin-top: -10px!important;
+            width: 50%!important;
+            margin-left: 40px!important;
+            text-align: center!important;
+          }
+          .footer__addr {
+            margin-top: 10px;
+            margin-right: 1.25em;
+            margin-bottom: 2em;
+          }
+          
+          .footer__addr img{
+            width: 100px;
+          }
+          #footer-title {
+            margin-top: 10px;
+            margin-right: 50px;
+            margin-bottom: -50px;
+            font-size: 25px;
+          display: flex;
+          align-self: flex-start;
+            line-height: 35px;
+            flex: 1;
+          }
+          
+          .social {
+            display: flex;
+            position: relative;
+            top: 70px;
+            width: 80%;
+            float: left!important;
+            text-align: center!important;
+            margin-bottom: 80px;
+          }
+      .social img {
+        width: 30px;
+        height:auto;
+      }
+        }
+
+
+        /* ---------- WAVES ANIMATED ----------- */
+@media only screen and (max-width: 768px) {
+
+
+          .ocean2 { 
+            height: 5%;
+            width:100%;
+            position:absolute;
+            bottom:0;
+            display: block;
+            left:0;
+            background: transparent;
+          }
+          
+          .wave2 {
+            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+            position: absolute;
+            top: -450px;
+            display: block;
+            width: 6400px;
+            height: 198px;
+            opacity: 0.5;
+            animation: wave 3s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+          }
+          .ocean { 
+            height: 5%;
+            width:100%;
+            position:absolute;
+            bottom:0;
+            display: block;
+            left:0;
+            background: transparent;
+          }
+          
+          .wave {
+            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+            position: absolute;
+            top: -150px;
+            display: block;
+            width: 6400px;
+            height: 198px;
+            opacity: 0.5;
+            animation: wave 3s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+          }
+          
+          .wave:nth-of-type(2) {
+            top: -175px;
+            animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+            opacity: 1;
+          }
+          
+          @keyframes wave {
+            0% {
+              margin-left: 0;
+            }
+            100% {
+              margin-left: -1600px;
+            }
+          }
+          
+          @keyframes swell {
+            0%, 100% {
+              transform: translate3d(0,-25px,0);
+            }
+            50% {
+              transform: translate3d(0,5px,0);
+            }
+          }
+          }
+
+/* W O R K   P A G E  */
+
+@media only screen and (max-width: 768px) {
+
+  .img-hover-zoom {
+    position: relative;
+    float: left;
+    width: 100%!important;
+    height: 300px!important; /* [1.1] Set it as per your need */
+    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: none!important;
+  }
+  .img-hover-zoom img {
+    position: relative;
+    width: auto!important;
+    height: auto!important;
+    object-fit: fill!important;
+  }
+  .worktitle {
+    font-size: 24px!important;
+  }
+}
+
+/*  P R O J E C T S  P A G E S */
+
+@media only screen and (max-width: 768px) { 
+  .ourwork {
+    position: relative!important;
+    margin-top: -20px;
+    left: 0;
+    height: auto!important;
+    margin-right: 20px!important;
+    margin-bottom: 0px!important;
+    
+}
+  .container-desc {
+    position: relative!important;  
+      top:0px;
+    left: 0px!important;
+    margin: 20px;
+    margin-right: 20px!important;
+    padding-bottom: 0px!important;
+    float: none; 
+    width: 90%!important;
+    height: auto!important;
+    margin-bottom: 0px!important;
+    
+}
+  .container-wrapper {
+    width: 90%!important;
+    position: relative!important;
+    top: 400px;
+    float:left!important;
+    padding-left: 0px!important;
+    min-height: 100%!important;
+    height: 600px!important;
+    overflow: hidden;
+    right: 0px!important;
+    margin: 20px!important;
+    margin-bottom: 280px!important;
+}
+.container-desc-right {
+  top:0px;
+  float:left!important;
+  padding-bottom: 0px!important;
+  float: left!important; 
+  width: 100%!important;
+  position: absolute!important;
+  margin-top: 20px;
+  overflow: hidden!important;
+  height: auto!important;
+  margin-bottom: 0px!important;
+  
+}
+iframe {
+  margin-top: 0px!important;
+  margin-bottom: -100px!important;
+  width: 100%!important;
+}
+
+.scroll-icon {
+  position: relative!important;
+  display: block!important;
+  float: none;
+  text-align: center;
+  margin: auto;
+  width:50%;
+  top: 400px!important;
+}
+
+.scroll-icon img{
+margin-top: 50px;
+width: 30px;
+}
+.my-container3{
+  top: 15px!important;
+  left: 135px!important;
+  -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck;
+-moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck;
+-ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck;
+animation-delay: 0s;animation-duration: 2s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck2;
+}
+
+.my-container4 {
+  position: relative!important;
+  top: 10px!important;
+  font-size: 40px;
+  right: 115px!important;
+  float: right!important;
+  text-align: right!important;
+  -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck;
+  -moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck;
+  -ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck;
+  animation-delay: 0.5s;animation-duration: 3s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck3;
+}
+
+}

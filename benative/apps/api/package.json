@@ -1,0 +1,34 @@
+{
+  "name": "@benative/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "clean": "rm -rf node_modules dist"
+  },
+  "dependencies": {
+    "fastify": "^5.1.0",
+    "@fastify/cors": "^10.0.0",
+    "@fastify/rate-limit": "^10.0.0",
+    "@fastify/multipart": "^9.0.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "zod": "^3.23.0",
+    "openai": "^4.73.0",
+    "date-fns": "^4.1.0",
+    "@benative/shared": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  }
+}

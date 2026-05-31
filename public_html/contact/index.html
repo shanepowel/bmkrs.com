@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>BMKRS | Contact | Digital Media Agency</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="social media,marketing,advertising">
+<meta name="author" content="Adrian Tan">
+<meta property="og:title" name="title" content="BMKRS | We are the Brandmakers | Digital Media Agency">
+<meta property="og:description" name="description" content="Let us now about your project. Contact us and we will be back to you as soon as possible.">
+<meta property="og:url" content="https://bmkrs.com/" />
+<meta property="og:image" content="/images/bmkrs_white_instapic.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles/mobile.css">
+<link rel="stylesheet" href="/styles/contact.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://kit.fontawesome.com/45475bf449.js" crossorigin="anonymous"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://unpkg.com/react-motion/build/react-motion.js"></script>
+<script src="/scripts/jquery-3.4.1.min.js"></script>
+<script src="/scripts/variable.js"></script>
+
+</head>
+<body data-page="contact">
+    <div id="root"></div>
+    
+    <script>
+        AOS.init();
+      </script>
+      
+      
+  <!------------ H E A D E R header.html -------------->
+
+  <div id="render"></div>
+  <div id="nav-placeholder">
+  </div>
+  <script>
+  $(function(){
+    $("#nav-placeholder").load("/header.html");
+  });
+  </script>
+<!------------- MOBILE MENU ANIMATION -------------->
+<div class="nav">
+  <a class="logowhites-4" href="/"><img src="/images/white.png" alt="bmkrs-logo-white"></a>
+  
+
+      <div class="nav__content">
+        
+          <ul class="nav__list">
+              <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
+      <li class="nav__list-item"><a href="/discover/" class="hover-target">discover</a></li>
+      <li class="nav__list-item"><a href="/work/" class="hover-target">work</a></li>
+      <li class="nav__list-item"><a href="/discover/" class="hover-target">about</a></li>
+      <li class="nav__list-item"><a href="/motion/" class="hover-target">motion</a></li>
+              <li class="nav__list-item active-nav"><a href="/contact/" class="hover-target">contact</a></li>
+         
+              <li class="nav-menu-slogan" id="mobile-menu-text">We are the Brandmakers.</li>
+              <li class="copyrights" id="mobile-menu-copy">2020 © Brandmakers (BMKRS).</li>
+          </ul>
+      </div>
+  </div>	
+<!------------- MOBILE MENU ANIMATION -------------->
+<!------------- H E A D E R header.html -------------->
+
+  
+     <div class="body-fade">
+    <div class="contact-header">
+        
+        <div id="discovery-header">
+            
+            <div class="my-container3">
+                <div class="wordwrap">
+                  <span id="getintouch-header" class="wordwrap">TEST</span>
+            </div>
+            </div>
+        </div>
+    </div>
+     </div>
+</header>
+<div class="body-fade">
+    <div class="cont-container">
+        <div data-aos="flip-left" style="margin-top: -120px;"><div id="rel-container">
+            
+            <p>START A PROJECT</p>
+            <div class="buttoncontainer4">
+                <div class="button2"><a id="discover-button-link" href="mailto:office@bmkrs.com">
+                    <p id="contact-button">Get in touch</p>
+                      <svg>
+                       <g>
+                         <line y1="31.28" x2="227.62" y2="31.28" />
+                         <polyline points="222.62 25.78 228.12 31.28 222.62 36.78" />
+                         <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"/> 
+                       </g>
+                     </svg>
+                    </a>
+                </div>
+            </div>
+        
+        </div>
+        <div id="rel-container2">
+            <p>Have a question?</p>
+            <a href="mailto:office@bmkrs.com">office@bmkrs.com</a>
+        </div></div>
+    </div>
+</div>
+    
+ 
+
+<script>
+    contact();
+</script>
+<script>
+
+  // MENU JQUERY 
+  
+  (function($) { "use strict";
+        
+    //Page cursors
+  
+      
+    //Navigation
+  
+    var app = function () {
+      var body = undefined;
+      var menu = undefined;
+      var menuItems = undefined;
+      var init = function init() {
+        body = document.querySelector('body');
+        menu = document.querySelector('#render');
+        menuItems = document.querySelectorAll('.nav__list-item');
+        applyListeners();
+      };
+      var applyListeners = function applyListeners() {
+        menu.addEventListener('click', function () {
+          return toggleClass(body, 'nav-active');
+        });
+      };
+      var toggleClass = function toggleClass(element, stringClass) {
+        if (element.classList.contains(stringClass)) element.classList.remove(stringClass);else element.classList.add(stringClass);
+      };
+      init();
+    }();
+  
+    
+    //Switch light/dark
+          
+                
+  })(jQuery); 
+</script>
+<script>
+  function classToggle() {
+    const navs = document.querySelectorAll('.navbar')
+    
+    navs.forEach(nav => nav.classList.toggle('toggle-background'));
+  }
+  
+  document.querySelector('.Navbar__Link-toggle')
+  .addEventListener('click', classToggle),
+  document.querySelector('.Navbar__Link-toggle2')
+    .addEventListener('click', classToggle);
+  </script>
+<script>
+function classToggle() {
+  const navs = document.querySelectorAll('.logowhites')
+  
+  navs.forEach(nav => nav.classList.toggle('toggle-logo'));
+}
+
+document.querySelector('.Navbar__Link-toggle')
+  .addEventListener('click', classToggle);
+  document.querySelector('.Navbar__Link-toggle2')
+  .addEventListener('click', classToggle);
+</script>
+
+<script>
+  function classToggle() {
+    const navs = document.querySelectorAll('.logoblacks')
+    
+    navs.forEach(nav => nav.classList.toggle('toggle-logo2'));
+  }
+  
+  document.querySelector('.Navbar__Link-toggle')
+    .addEventListener('click', classToggle);
+    document.querySelector('.Navbar__Link-toggle2')
+  .addEventListener('click', classToggle);
+  </script>
+
+<script>
+function classToggle() {
+const navs = document.querySelectorAll('.Navbar__Items')
+
+navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
+}
+
+document.querySelector('.Navbar__Link-toggle')
+.addEventListener('click', classToggle);
+document.querySelector('.Navbar__Link-toggle2')
+  .addEventListener('click', classToggle);
+</script>
+
+<script>
+    // FUNCTION FOR SCROLLING ON DIV
+    $(document).ready(function () {
+var scrolling = function scrolling() {
+    // Handler for .ready() called.
+    $('html, body').animate({
+        scrollTop: $('.cont-container').offset().top
+    }, 'slow');
+};
+//after 3000 milliseconds (=3 seconds), call the hideOverlay function
+window.setTimeout(scrolling, 1000);
+});
+</script>
+   
+
+
+<script>
+$(document).ready(function () {
+
+'use strict';
+
+var c, currentScrollTop = 0,
+   navbar = $('.navbar');
+
+$(window).scroll(function () {
+  var a = $(window).scrollTop();
+  var b = navbar.height();
+ 
+  currentScrollTop = a;
+ 
+  if (c < currentScrollTop && a > b + b || a == 0) {
+    navbar.removeClass("hideonLoad");
+    navbar.addClass("scrollUp");
+  } else if (c > currentScrollTop && !(a <= b)) {
+    navbar.removeClass("scrollUp");
+  }
+  c = currentScrollTop;
+});
+
+});
+  </script>
+
+ 
+
+<script>
+$(document).ready(function($) {
+ var header = $('.navbar');
+ $(window).load(function () {
+     header.addClass("hideonLoad");
+});
+});
+</script>
+
+  
+</body>
+<div class="body-fade">
+  <footer class="footer">
+
+
+<!----------- F O O T E R footer.html ------------->
+
+<div id="footer-placeholder">
+
+</div>
+
+<script>
+$(function(){
+  $("#footer-placeholder").load("../footer.html");
+});
+</script>
+
+<!------------ F O O T E R footer.html ------------>
+
+
+  </footer>
+</div>
+
+</html>
+<script type="text/babel" src="/components.jsx"></script>
+<script type="text/babel" src="/contact.jsx"></script>
+<script src="/site.js"></script>

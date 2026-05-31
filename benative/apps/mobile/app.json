@@ -1,0 +1,68 @@
+{
+  "expo": {
+    "name": "BeNative",
+    "slug": "benative",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "benative",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1A73E8"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.benative.app",
+      "config": {
+        "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "BeNative uses your location to show nearby places, deals, and events.",
+        "NSLocationAlwaysUsageDescription": "BeNative uses your location in the background to notify you about nearby deals.",
+        "NSCameraUsageDescription": "BeNative uses your camera for AR discovery mode and photo uploads.",
+        "NSPhotoLibraryUsageDescription": "BeNative accesses your photos to upload images to reviews and check-ins."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#1A73E8"
+      },
+      "package": "com.benative.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-location",
+      "expo-camera",
+      "expo-image-picker",
+      "expo-notifications",
+      [
+        "expo-sensors",
+        { "motionPermission": "Allow BeNative to access device motion for AR discovery." }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "YOUR_EAS_PROJECT_ID"
+      },
+      "supabaseUrl": "YOUR_SUPABASE_URL",
+      "supabaseAnonKey": "YOUR_SUPABASE_ANON_KEY"
+    }
+  }
+}

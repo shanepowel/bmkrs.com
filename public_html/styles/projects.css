@@ -1,0 +1,247 @@
+body {
+  position: fixed;
+}
+@media only screen and (max-width: 768px) {
+  body {
+    position: relative;
+  }
+}
+.container-intro
+{
+  background-color:rgb(0, 0, 0);
+  color: #fff;
+  width: 100%;
+  height: 500px;
+  position: relative;
+  top: 0px; bottom: 0;
+  left:0; right: 0;
+  -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck;
+  -moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck;
+  -ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck;
+  animation-duration: 2s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck;
+  
+
+}
+.container-intro2
+{
+  background-color:rgb(0, 0, 0);
+  color: #fff;
+  width: 100%;
+  display: none;
+  height: 500px;
+  position: relative;
+  top: 0px; bottom: 0;
+  left:0; right: 0;
+  
+  
+
+}
+@keyframes bck 
+{
+  0% {transform: translate(000px,-600px);}
+  35% {transform: translate(000px,-200px);}
+  50% {transform: translate(000px, 0px);}
+  75% {transform: translate(000px, 0px);}
+  75% {transform: translate(000px, -150px);}
+  100% {transform: translate(000px,-380px);}
+}
+
+.kakamaka1 {
+    color: rgb(233, 233, 233)!important;
+}
+
+  .ourwork {
+    margin-top: -220px!important;
+  }
+  @keyframes work 
+{
+  0% {transform: translate(000px,1000px);}
+  35% {transform: translate(000px, 0px);}
+  100% {transform: translate(000px,0px);}
+}
+  
+.my-container3{
+    -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck;
+  -moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck;
+  -ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck;
+  animation-delay: 0s;animation-duration: 2s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck2;
+}
+@keyframes bck2
+{
+  0% {transform: translate(000px,-1000px);}
+  20% {transform: translate(000px,-800px);}
+  65%,75% {transform: translate(000px,20px);}
+  100% {transform: translate(-260px,250px) scale(0.3);}
+}
+
+
+.my-container4 {
+    position: relative!important;
+    top: 10px!important;
+    font-size: 40px;
+    right: 150px;
+    float: right!important;
+    text-align: right!important;
+    -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck;
+    -moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck;
+    -ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck;
+    animation-delay: 0.5s;animation-duration: 3s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck3;
+}
+@keyframes bck3
+{
+  0% {transform: translate(1000px,0px);}
+  20% {transform: translate(1000px,0px);}
+  25%{transform: translate(1000px,100px);}
+  65%,75% {transform: translate(190px,100px) scale(0.3);}
+  100% {transform: translate(190px,100px) scale(0.3);}
+}
+.ourwork {
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    left: 0;
+    height: 500px!important;
+    margin-bottom: 200px!important;
+    
+}
+.ourwork2 {
+    left: 0;
+    height: 100%;
+    -webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: work;
+    -moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: work;
+    -ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: work;
+    animation-delay: 1.5s;animation-duration: 2s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: work;
+   
+}
+
+@keyframes work 
+{
+  0% {transform: translate(000px,1000px);}
+  35% {transform: translate(000px, -150px);}
+  100% {transform: translate(000px,-150px);}
+}
+.scroll-icon {
+  position: relative!important;
+  display: block!important;
+  float: none;
+  text-align: center;
+  margin: auto;
+  width:50%;
+  margin-top: 0px;
+  top: -30px;
+}
+
+.scroll-icon img{
+margin-top: 50px;
+width: 30px;
+}
+.container-desc {
+    position: fixed!important;  
+      top:0px;
+    left: 80px;
+    padding-bottom: 100px;
+    float: none; 
+    width: 30%;
+    height: 600px;
+    
+}
+.container-desc img{
+    position: relative;
+    vertical-align: middle;
+}
+.container-desc p{
+    color: rgb(124, 124, 124);
+    
+    
+}
+.container-wrapper {
+    position: absolute;
+    padding-left: 210px;
+    margin-bottom: 30px;
+    
+    height: 450px;
+    overflow-y: auto;
+    right: 60px;
+}
+.container-desc-right {
+    top:0px;
+    padding-bottom: 100px;
+    float: right; 
+    width: 60%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    text-align: center;
+    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+
+
+.container-desc-right img {
+    margin: auto;
+    text-align: center;
+    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+
+/***** MOBILE ******/
+
+@media only screen and (max-width: 767px) {
+  .kakamaka1, .kakamaka{
+   display: none;
+   animation-duration: 0s;
+  }
+  .my-container3, .my-container4, .work-header, .container-intro, .container-desc, .ourwork2 {
+    animation-duration: 0s; animation-delay: 0s;
+  }
+  .ourwork2 {
+
+animation-delay: 0s !important;
+  }
+
+  .ourwork .btn-slice2 {
+    display: initial!important;
+    color: #000!important;
+    border: 2px solid #000000!important;
+    margin-left: 20px;
+    
+  }
+  .btn-slice2:before {
+ 
+    background-color: #000000!important;
+  }
+  .container-intro {
+    height: 440px;
+  }
+  .container-wrapper {
+    position: relative!important;
+    float:left;
+    margin-top: 50px!important;
+}
+.scroll-icon {
+  position: relative!important;
+  display: block!important;
+  float: none;
+  text-align: center;
+  margin: auto;
+  width:50%;
+  margin-top: 0px;
+}
+
+.scroll-icon img{
+margin-top: 120px;
+}
+h1.work-title-mobile{
+  display: block!important;
+  position: relative;
+  top: 0!important;
+  color: rgb(231, 231, 231);
+
+}
+.ourwork {
+  margin-top: -250px!important;
+}
+  }

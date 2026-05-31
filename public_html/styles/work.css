@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'Gell';
+    src: url("/fonts/Gellatio.ttf"); /* File to be stored at your site */
+    }
+   
+.work-header {
+    width: 100%;
+    position: relative;
+    padding: 0px; /* some padding */
+    text-align: center; /* center the text */
+    /*background-color: rgb(157, 168, 168); /* rgb(149, 156, 149); /* green background */
+    background-image: url("/images/intelligent-brands-min.png")!important;
+    background-position: left; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    color: #fff; /* white text color */
+    height: 800px;
+    margin: 0px;
+    top:0;
+    left:0;
+    font-family: "Avenir Next Bold";
+    z-index: 9999;
+   
+  }
+
+
+.ourwork {
+    position: relative;
+    width :100%;
+  }
+
+  .row a {
+    position: relative;
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 999;
+  }
+  
+  
+  .row p {
+    color: lightgray;
+    font-size: 15px;
+    text-decoration: none;
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+  
+
+   .column {
+    position: relative;
+    width: 95%;
+    margin-left: 5%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+  .column a {
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  /* [1] The container */
+.img-hover-zoom {
+    position: relative;
+    float: left;
+    width: 45vw;
+    height: 300px; /* [1.1] Set it as per your need */
+    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: none!important;
+  }
+  
+  /* [2] Transition property for smooth transformation of images */
+
+  
+  /* [3] Finally, transforming the image when container gets hovered */
+
+  .img-hover-zoom img {
+    width: 100%;
+    filter: brightness(20%);
+-webkit-filter: brightness(20%);
+-moz-filter: brightness(20%);
+-o-filter: brightness(20%);
+-ms-filter: brightness(20%);
+    transition: transform 1.8s ease-in-out;
+   
+  }
+  .center {
+    display: block;
+    margin-top:-80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .worktitle {
+    font-size: 40px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+  }
+  /* The Transformation */
+  .img-hover-zoom:hover img {
+      
+    transform: scale(1.2) rotate(5deg);
+    filter: brightness(40%);
+-webkit-filter: brightness(40%);
+-moz-filter: brightness(40%);
+-o-filter: brightness(40%);
+-ms-filter: brightness(40%);
+  }
+  
+  .img-hover-zoom:after, .img-hover-zoom:before {
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.img-hover-zoom:after {
+    content: '\A';
+    width: 100%; height:100%;
+    top: 0; left:0;
+   /*background:rgba(115, 62, 240, 0.8);*/
+}
+.img-hover-zoom:before {
+    content: '\A';
+    width: 100%;
+    color: #fff;
+    z-index: 1;
+    bottom: 0;
+    padding: 4px 10px;
+    text-align: center;
+}
+.img-hover-zoom:hover:after, .img-hover-zoom:hover:before {
+    opacity: 0.8;
+    cursor: pointer;
+
+}
+/*.img-hover-zoom:hover .text-overlay { 
+  -webkit-animation-duration: 2s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: bck3;
+  -moz-animation-duration: 2s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: bck3;
+  -ms-animation-duration: 2s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: bck3;
+  animation-delay: 0s;animation-duration: 1s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: bck3;
+  }
+  @keyframes bck3
+{
+  0% {transform: translate(0px,0px)scale(1);}
+  85% {transform: translate(150px,100px)scale(0.6);}
+  100% {transform: translate(150px,100px)scale(0.6);}
+}*/
+.img-hover-zoom .text-overlay {
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    top: 20px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+}
+.img-hover-zoom .text-overlay h2 {
+    color: white;
+    font-size: 35px;
+    line-height: 50px;
+    margin: 0 0 5px;
+}
+.img-hover-zoom .text-overlay p {
+    color: white;
+    font-size: 28px;
+}
+/* MOBILE */
+
+@media only screen and (max-width: 767px) {
+  .img-hover-zoom {
+    height: 200px!important; /* [1.1] Set it as per your need */
+  }
+  .img-hover-zoom .text-overlay {
+    top: 30px!important;
+}
+.img-hover-zoom .text-overlay h2 {
+  color: white;
+  font-size: 30px;
+  line-height: 35px;
+}
+.work-header {
+
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  }
+}

@@ -1,0 +1,177 @@
+body {
+    background-color: rgb(255, 252, 248);
+    overflow-x: hidden;
+}
+.discover-header {
+    width: 100%;
+    position: relative;
+    padding: 0px; /* some padding */
+    text-align: center; /* center the text */
+    /*background-color: rgb(157, 168, 168); /* rgb(149, 156, 149); /* green background */
+    background-image: url("/images/capabilities-min3.png")!important;
+    /*background-image: url("/images/vector1-min.jpg")!important;*/
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    color: #fff; /* white text color */
+    height: 900px;
+    margin: 0px;
+    top:0;
+    left:0;
+    font-family: "Avenir Next Bold";
+    z-index: -10;
+  }
+  
+#discovery-header {
+    position: relative;
+    width: 100%;
+    overflow: visible!important;
+    z-index: 2;
+}
+
+.dis-container {
+    position: relative;
+    width:100%;
+    margin-top: 50px;
+    margin-left: 50px;
+    
+}
+
+.dis-container img {
+    max-width: 600px;
+    float: right;
+    margin-top: -150px;
+    margin-right: 80px;
+    z-index: 999;
+    top:0;
+    left:0;
+}
+
+.dis-container ul {
+    float: left;
+    width: 550px;
+    font-family: "Avenir Next";
+    font-size: 45px;
+}
+.dis-container span {
+   
+    font-family: "Avenir Next";
+   
+}
+.dis-container ul p {
+    float: left;
+    font-family: "Avenir Next";
+    margin-top: 20px;
+    font-size: 15px;
+}
+.dis-container ul li {
+    float: left;
+    font-family: "Avenir Next";
+    margin-right: 20px;
+    font-size: 15px;
+    color: gray;
+    padding: 5px;
+
+    list-style-type: disc;
+}
+.dis-container-left {
+    position: relative;
+    float: left;
+    width:100%;
+    margin-top:0px;
+    margin-left: 80px;
+    margin-bottom: 100px;
+    
+}
+
+.dis-container-left img {
+    max-width: 600px;
+    float: left;
+    margin-top: 0px;
+    margin-right: 80px;
+    z-index: 999;
+    top:0;
+    left:0;
+}
+
+.dis-container-left ul {
+    float: left;
+    width: 500px;
+    font-family: "Avenir Next";
+    margin-top: 0px;
+    font-size: 45px;
+}
+.dis-container-left span {
+   
+    font-family: "Avenir Next";
+   
+}
+.dis-container-left ul p {
+    float: left;
+    font-family: "Avenir Next";
+    margin-top: 20px;
+    font-size: 15px;
+}
+.dis-container-left ul li {
+    float: left;
+    font-family: "Avenir Next";
+    margin-right: 20px;
+    font-size: 15px;
+    color: gray;
+    padding: 5px;
+
+    list-style-type: disc;
+}
+#list1 {
+    margin-top: 40px;
+    margin-left: -20px;
+    columns: 1;
+    column-gap: 5px;
+    width: 300px;
+    float: left;
+  }
+  
+#list2 {
+    margin-top: 40px;
+    margin-left: -20px;
+    float: left;
+    columns: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto; /* can change this */
+    width: 200px;
+  }
+  
+#list2 li {
+    width: 200px;
+    height: auto;
+  }
+
+.buttoncontainer3 {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: left;
+    font-weight: bold;
+
+}
+.buttoncontainer3 .button2 p {
+    font-family: "Avenir Next Bold";
+}
+.hideonLoad { /* NAVBAR HIDE ON LOAD */
+    margin-top: -80px;
+}
+.scrollUp {
+    transform: translateY(-80px);
+}
+
+
+@media only screen and (max-width: 767px) {
+    .discover-header {
+        /*background-image: url("/images/vector1-min.jpg")!important;*/
+        background-position: center!important; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover!important; /* Resize the background image to cover the entire container */
+  }
+}

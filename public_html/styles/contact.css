@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Avenir Next';
+    src: url("/fonts/Avenir/AvenirNext.otf"); /* File to be stored at your site */
+    }
+  @font-face {
+      font-family: 'Avenir Next Bold';
+      src: url("/fonts/Avenir/AvenirNextLTPro-Bold.otf"); /* File to be stored at your site */
+      }
+.contact-header {
+    width: 100%;
+    position: relative;
+    padding: 0px; /* some padding */
+    text-align: center; /* center the text */
+    background-image: url("/images/blue_gradient_background-wallpaper-1920x1200.jpg"); /* rgb(149, 156, 149); /* green background */
+    /*background-image: url("/images/1092593.png")!important;*/
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    color: #fff; /* white text color */
+    height: 800px;
+    margin: 0px;
+    top:0;
+    left:0;
+    font-family: "Avenir Next Bold";
+    z-index: -10;
+
+  }
+
+.cont-container {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: rgb(241, 250, 250);
+    opacity: 1;
+    overflow: hidden;
+    height: auto;
+    z-index: 999;
+}
+
+#rel-container {
+    display: inline-block;
+    position: relative;
+    margin-top: 200px;
+    margin-left: 150px;
+    margin-bottom: 350px;
+    background-color: #fff;
+    width: 450px;
+    height: 200px;
+}
+#rel-container p {
+    text-align: left;
+    font-family: "Avenir Next";
+    text-transform: uppercase;
+    padding-top: 50px;
+    padding-left: 50px;
+    font-size: 15px;
+    color: #ccc;
+}
+
+#rel-container2 {
+    float: left;
+    position: relative;
+    margin-top: 200px;
+    margin-left: 130px;
+    margin-bottom: 350px;
+    background-color: #fff;
+    width: 450px;
+    height: 200px;
+}
+#rel-container2 p {
+    text-align: left;
+    font-family: "Avenir Next";
+    text-transform: uppercase;
+    padding-top: 60px;
+    padding-left: 50px;
+    font-size: 15px;
+    color: #ccc;
+}
+#rel-container2 a {
+    text-align: left;
+    font-family: "Avenir Next Bold";
+    text-transform: none;
+    padding-top: 60px;
+    padding-left: 50px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+}
+.buttoncontainer4 {
+    position: relative;
+    margin-top: -10px;
+    margin-left: 45px;
+    margin-bottom: 0px;
+    float: left;
+    font-weight: bold;
+}
+.buttoncontainer4 .button2 p {
+    margin-top: -40px;
+    margin-left: -48px;
+    font-family: "Avenir Next Bold"!important;
+    font-size: 25px!important;
+    text-transform: none!important;
+    color: black;
+}
+
+#getintouch-header {
+    color: #fff!important;
+    font-size: 55px!important;
+}

@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'Gell';
+    src: url("/fonts/Gellatio.ttf"); /* File to be stored at your site */
+    }
+.work-header {
+    width: 100%;
+    position: relative;
+    padding: 0px; /* some padding */
+    text-align: center; /* center the text */
+    /*background-color: rgb(157, 168, 168); /* rgb(149, 156, 149); /* green background */
+    background-image: url("/images/dust.jpg")!important;
+    background-position: left; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: auto; /* Resize the background image to cover the entire container */
+    color: #fff; /* white text color */
+    height: 800px;
+    margin: 0px;
+    top:0;
+    left:0;
+    font-family: "Avenir Next Bold";
+    z-index: 9999;
+
+  }
+
+
+.ourwork {
+    position: relative;
+    width :100%;
+  }
+
+  .row a {
+    position: relative;
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 999;
+  }
+  
+  
+  .row p {
+    color: lightgray;
+    font-size: 15px;
+    text-decoration: none;
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+  
+
+   .column {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: auto;
+    text-align: center;
+  }
+  .column a {
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  /* [1] The container */
+.img-hover-zoom {
+    position: relative;
+    float: left;
+    width: 550px;
+    height: 300px; /* [1.1] Set it as per your need */
+    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
+  
+  /* [2] Transition property for smooth transformation of images */
+
+  
+  /* [3] Finally, transforming the image when container gets hovered */
+
+  .img-hover-zoom img {
+    filter: brightness(20%);
+-webkit-filter: brightness(20%);
+-moz-filter: brightness(20%);
+-o-filter: brightness(20%);
+-ms-filter: brightness(20%);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* The Transformation */
+  .img-hover-zoom:hover img {
+      
+    transform: scale(1.2) rotate(5deg);
+    filter: brightness(50%);
+-webkit-filter: brightness(50%);
+-moz-filter: brightness(50%);
+-o-filter: brightness(50%);
+-ms-filter: brightness(50%);
+  }
+  
+  .img-hover-zoom:after, .img-hover-zoom:before {
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.img-hover-zoom:after {
+    content: '\A';
+    width: 100%; height:100%;
+    top: 0; left:0;
+    background:rgba(132, 16, 240, 0.6);
+}
+.img-hover-zoom:before {
+    content: '\A';
+    width: 100%;
+    color: #fff;
+    z-index: 1;
+    bottom: 0;
+    padding: 4px 10px;
+    text-align: center;
+}
+.img-hover-zoom:hover:after, .img-hover-zoom:hover:before {
+    opacity: 0.8;
+    cursor: pointer;
+
+}
+
+.img-hover-zoom .text-overlay {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+}
+.img-hover-zoom .text-overlay h2 {
+    color: white;
+    font-size: 60px;
+    line-height: 74px;
+    margin: 0 0 10px;
+}
+.img-hover-zoom .text-overlay p {
+    color: white;
+    font-size: 28px;
+}
