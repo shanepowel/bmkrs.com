@@ -89,9 +89,34 @@ export type HomePillar = {
 };
 
 export type CapabilityTile = {
+  number?: string;
   title: string;
   description: string;
   href: string;
+};
+
+export type HomeStat = {
+  value: string;
+  highlight?: string;
+  label: string;
+};
+
+export type Testimonial = {
+  quote: string;
+  attribution: string;
+};
+
+export type MotionTier = {
+  id: string;
+  tag?: string;
+  name: string;
+  price: string;
+  priceNote?: string;
+  description: string;
+  features: string[];
+  ctaLabel: string;
+  featured?: boolean;
+  plus?: boolean;
 };
 
 export type MotionBenefit = {
@@ -100,6 +125,27 @@ export type MotionBenefit = {
 };
 
 export type HomeContent = {
+  heroLines: string[];
+  heroSub: string;
+  marqueeItems: string[];
+  positioning: {
+    eyebrow: string;
+    statement: string;
+    lead: string;
+  };
+  capabilitiesHead: {
+    title: string;
+    subtitle: string;
+  };
+  capabilityTiles: CapabilityTile[];
+  stats: HomeStat[];
+  statsDisclaimer?: string;
+  whoWeWorkWith: {
+    eyebrow: string;
+    statement: string;
+    lead: string;
+  };
+  clientMarquee: string[];
   motionTeaser: {
     eyebrow: string;
     heading: string;
@@ -107,9 +153,9 @@ export type HomeContent = {
     ctaLabel: string;
     href: string;
   };
-  capabilityTiles: CapabilityTile[];
   howWeWorkIntro: string;
   pillars: HomePillar[];
+  testimonial?: Testimonial;
   selectedWork: {
     eyebrow: string;
     title: string;
@@ -119,7 +165,18 @@ export type HomeContent = {
 
 export type MotionContent = {
   benefits: MotionBenefit[];
-  offer: {
+  motionPlus: {
+    eyebrow: string;
+    statement: string;
+    paragraphs: string[];
+    poweredBy?: string;
+  };
+  tiersHead: {
+    title: string;
+    subtitle: string;
+  };
+  tiers: MotionTier[];
+  closingCta: {
     title: string;
     body: string;
     ctaLabel: string;

@@ -51,8 +51,9 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 }
 
 export async function getPage(slug: string): Promise<CmsPage> {
-  const data = await fetchSanity<CmsPage>(pageBySlugQuery, { slug });
-  return data ?? fallbackPages[slug] ?? fallbackPages.home;
+  const key = slug === "discover" ? "services" : slug;
+  const data = await fetchSanity<CmsPage>(pageBySlugQuery, { slug: key });
+  return data ?? fallbackPages[key] ?? fallbackPages.home;
 }
 
 export async function getHomeContent(): Promise<HomeContent> {

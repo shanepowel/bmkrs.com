@@ -11,8 +11,8 @@ export default async function SiteLayout({
 
   return (
     <>
-      <SiteHeader navigation={settings.navigation} tagline={settings.tagline} />
-      <main className="pt-16">{children}</main>
+      <SiteHeader navigation={settings.navigation} />
+      <main>{children}</main>
       <SiteFooter settings={settings} />
     </>
   );

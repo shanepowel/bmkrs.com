@@ -8,17 +8,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        surface: "var(--surface)",
-        foreground: "var(--foreground)",
-        muted: "var(--muted)",
-        brand: {
-          DEFAULT: "var(--brand)",
-          hover: "var(--brand-hover)",
-        },
+        bg: "#FBF9F5",
+        ink: "#181613",
+        muted: "#7C766C",
+        accent: "#FF5A36",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+      },
+      borderRadius: {
+        bmkrs: "24px",
       },
     },
   },

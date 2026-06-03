@@ -1,74 +1,62 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { SiteSettings } from "@/lib/types";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   return (
-    <footer className="border-t border-white/10 bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-3">
-          <div>
-            <Image
-              src="/images/white.png"
-              alt="BMKRS — design and growth studio"
-              width={100}
-              height={28}
-              className="mb-4 h-7 w-auto"
-            />
-            <p className="text-lg font-medium text-white">{settings.tagline}</p>
-            <a
-              href={`mailto:${settings.email}`}
-              className="mt-2 inline-block text-sm text-brand hover:underline"
-            >
-              {settings.email}
-            </a>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted">
-              Explore
-            </h3>
-            <ul className="space-y-2">
+    <footer className="bg-ink px-[var(--pad)] pb-10 pt-[clamp(70px,9vw,120px)] text-bg">
+      <div className="wrap">
+        <div className="mb-[70px] flex flex-wrap justify-between gap-12">
+          <p className="display text-[clamp(46px,9vw,134px)] font-bold leading-[0.9] tracking-[-0.04em]">
+            we are the <br />
+            <span className="text-accent">brandmakers.</span>
+          </p>
+          <div className="flex flex-wrap gap-16">
+            <div>
+              <h4 className="mb-4 text-[13px] font-semibold text-accent">explore</h4>
               {settings.navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-white/80 hover:text-brand"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="mb-2.5 block text-[15px] opacity-80 transition hover:text-accent hover:opacity-100"
+                >
+                  {item.label}
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted">
-              Connect
-            </h3>
-            <ul className="space-y-2">
+            </div>
+            <div>
+              <h4 className="mb-4 text-[13px] font-semibold text-accent">connect</h4>
               {settings.socialLinks.map((link) => (
-                <li key={link.platform}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/80 hover:text-brand"
-                  >
-                    {link.platform}
-                  </a>
-                </li>
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-2.5 block text-[15px] opacity-80 transition hover:text-accent hover:opacity-100"
+                >
+                  {link.platform.toLowerCase()}
+                </a>
               ))}
-            </ul>
+            </div>
+            <div>
+              <h4 className="mb-4 text-[13px] font-semibold text-accent">studio</h4>
+              <a
+                href={`mailto:${settings.email}`}
+                className="nocase mb-2.5 block text-[15px] opacity-80 transition hover:text-accent hover:opacity-100"
+              >
+                {settings.email}
+              </a>
+              <Link
+                href="/contact"
+                className="mb-2.5 block text-[15px] opacity-80 transition hover:text-accent hover:opacity-100"
+              >
+                start a project
+              </Link>
+            </div>
           </div>
         </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>{settings.copyright}</p>
-          <div className="flex gap-6">
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
-          </div>
+        <div className="flex flex-wrap justify-between gap-4 border-t border-bg/20 pt-7 text-[13px] text-bg/60">
+          <span>{settings.copyright}</span>
+          <span className="nocase">privacy policy · terms of use</span>
         </div>
       </div>
     </footer>

@@ -1,35 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Schibsted_Grotesk } from "next/font/google";
 import { getSiteSettings } from "@/lib/content";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Schibsted_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const body = Figtree({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return {
     title: {
-      default: "BMKRS — We are the Brandmakers.",
-      template: "%s | BMKRS",
+      default: "bmkrs. we are the brandmakers.",
+      template: "%s | bmkrs.",
     },
     description: settings.description,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com"),
     openGraph: {
-      title: "BMKRS — We are the Brandmakers.",
+      title: "bmkrs. we are the brandmakers.",
       description: settings.description,
       siteName: settings.siteName,
       images: [
         {
           url: "/images/bmkrs_white_instapic.png",
-          alt: "BMKRS — design and growth studio",
+          alt: "bmkrs. a brand company",
         },
       ],
     },
@@ -43,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}>
+      <body className={`${display.variable} ${body.variable} min-h-screen`}>
         {children}
       </body>
     </html>

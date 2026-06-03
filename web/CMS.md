@@ -21,14 +21,14 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 |------|---------|
 | `siteSettings` | Global nav, email, social links, tagline |
 | `navigationItem` | Menu links (referenced from site settings) |
-| `page` | Per-route copy (`home`, `discover`, `work`, `motion`, `contact`, `about`) |
+| `page` | Per-route copy (`home`, `services`, `work`, `motion`, `contact`, `about`) |
 | `service` | Discover / Motion capability blocks |
 | `project` | Portfolio entries + case study media |
 | `homePillar` | Home “Innovate / Design / Grow / Learn” blocks |
 
 ## Slugs
 
-**Pages** — use slug: `home`, `discover`, `work`, `motion`, `contact`, `about`
+**Pages** — use slug: `home`, `services`, `work`, `motion`, `contact`, `about` (`discover` aliases to `services`)
 
 **Projects** — recommended slugs: `fdb`, `copa`, `carter`, `wanderlust`, `smoothies`, `flipster`
 
