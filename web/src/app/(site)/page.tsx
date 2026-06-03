@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import {
+  CAPABILITY_LED_WORDS,
+  HERO_BRAND_ADJECTIVES,
+  TEAM_CENTER_WORDS,
+} from "@/lib/b-words";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
@@ -30,30 +35,14 @@ export default async function HomePage() {
               <span className="eyebrow">{hero.eyebrow}</span>
             </Reveal>
             <h1 className="display mt-2 text-[clamp(2.5rem,11vw,10.5rem)] font-bold leading-[0.92]">
-              <span className="block">
-                {hero.headlineBefore} <BWordRotate className="text-[1em]" />
-              </span>
-              <span className="block">
-                {hero.headlineAfter}{" "}
-                <span className="text-accent">{hero.headlineAccent}</span>
-              </span>
+              {hero.headlineLead}{" "}
+              <BWordRotate words={HERO_BRAND_ADJECTIVES} className="text-[1em]" />{" "}
+              {hero.headlineTail}
             </h1>
             <Reveal delay={1}>
-              <p className="lead mt-8 max-w-[520px]">{hero.sub}</p>
+              <p className="lead mt-8 max-w-[560px]">{hero.sub}</p>
             </Reveal>
             <Reveal delay={2}>
-              <ul className="mt-6 flex flex-wrap gap-2.5">
-                {hero.proof.map((line) => (
-                  <li
-                    key={line}
-                    className="max-w-full rounded-full border-2 border-ink px-3 py-1.5 text-[12px] font-medium sm:text-[13px]"
-                  >
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={3}>
               <div className="btn-row mt-10">
                 <Link href={hero.primaryCta.href} className="btn-primary">
                   {hero.primaryCta.label} <ArrowIcon />
@@ -84,7 +73,7 @@ export default async function HomePage() {
           <Reveal>
             <span className="eyebrow">{home.positioning.eyebrow}</span>
           </Reveal>
-          <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
             {home.positioning.statement.split("identity, voice + messaging.")[0]}
             <span className="text-accent">identity, voice + messaging.</span>
           </h2>
@@ -96,9 +85,9 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="sec-head">
             <Reveal>
-              <h2 className="display max-w-[820px] text-[clamp(2rem,6vw,5.375rem)]">
-                <BWordRotate suffix="-led. " />
-                <span className="text-accent">growth-built.</span>
+              <h2 className="display heading-case max-w-[820px] text-[clamp(2rem,6vw,5.375rem)]">
+                <BWordRotate words={CAPABILITY_LED_WORDS} suffix="-led. " />
+                <span className="text-accent">Growth-built.</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -113,7 +102,9 @@ export default async function HomePage() {
                     {tile.number}
                   </span>
                   <div>
-                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">{tile.title}</h3>
+                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
+                      {tile.title}
+                    </h3>
                     <p className="max-w-[360px] text-base text-muted">{tile.description}</p>
                   </div>
                   <span className="text-[22px] text-accent">↗</span>
@@ -134,14 +125,11 @@ export default async function HomePage() {
                     {stat.highlight && <span className="text-accent">{stat.highlight}</span>}
                     {stat.value}
                   </p>
-                  <p className="mt-3 max-w-[190px] text-[15px] text-ink/60">{stat.label}</p>
+                  <p className="nocase mt-3 max-w-[190px] text-[15px] text-ink/60">{stat.label}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-          {home.statsDisclaimer && (
-            <p className="mt-6 text-xs text-muted">{home.statsDisclaimer}</p>
-          )}
         </div>
       </section>
 
@@ -160,7 +148,7 @@ export default async function HomePage() {
 
       <div className="pb-0 pt-12 text-center">
         <Reveal>
-          <span className="eyebrow justify-center">trusted by ambitious brands</span>
+          <span className="eyebrow justify-center">Trusted by ambitious brands</span>
         </Reveal>
       </div>
       <Marquee items={home.clientMarquee} dark duration="30s" />
@@ -170,7 +158,8 @@ export default async function HomePage() {
           <div className="sec-head">
             <Reveal>
               <h2 className="display text-[clamp(2rem,6vw,5.375rem)]">
-                the <BWordRotate />s we <span className="text-accent">build for</span>
+                the <BWordRotate words={HERO_BRAND_ADJECTIVES} /> brands we{" "}
+                <span className="text-accent">build for</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -203,11 +192,11 @@ export default async function HomePage() {
       <section className="section-pad">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">how we work</span>
+            <span className="eyebrow">How we work</span>
           </Reveal>
-          <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            one team, built around your <BWordRotate />.{" "}
-            <span className="text-accent">no churn, no hand-offs.</span>
+          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+            One team, built around your <BWordRotate words={TEAM_CENTER_WORDS} />.{" "}
+            <span className="text-accent">No churn, no hand-offs.</span>
           </h2>
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {home.pillars.map((pillar, i) => (
@@ -216,7 +205,9 @@ export default async function HomePage() {
                   <p className="display text-[30px] font-bold text-accent">
                     {["i", "ii", "iii", "iv"][i]}
                   </p>
-                  <h3 className="display mt-4 text-[25px]">{pillar.title}</h3>
+                  <h3 className="display heading-case mt-4 text-[25px] capitalize">
+                    {pillar.title}
+                  </h3>
                   <p className="mt-2.5 text-[15px] text-muted">{pillar.description}</p>
                 </div>
               </Reveal>

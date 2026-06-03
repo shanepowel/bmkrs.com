@@ -75,11 +75,34 @@ body {
   }
 
   .sec-head {
-    @apply mb-12 flex flex-col items-start gap-6 sm:mb-16 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between sm:gap-10;
+    @apply mb-12 flex w-full flex-col items-start gap-6 sm:mb-16 sm:flex-row sm:items-end sm:justify-between sm:gap-10;
+  }
+
+  .sec-head > *:first-child {
+    @apply min-w-0 flex-1;
+  }
+
+  .sec-head > *:last-child:not(:only-child) {
+    @apply max-w-[340px] shrink-0;
   }
 
   .eyebrow {
     @apply mb-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide text-accent;
+    text-transform: none;
+  }
+
+  .section-label {
+    text-transform: none;
+    letter-spacing: 0.03em;
+  }
+
+  .meta-label {
+    text-transform: none;
+    font-size: 13px;
+  }
+
+  .heading-case {
+    text-transform: none;
   }
 
   .eyebrow::before {

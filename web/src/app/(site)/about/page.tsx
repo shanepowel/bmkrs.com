@@ -3,16 +3,17 @@ import type { ReactNode } from "react";
 import { AccentLine } from "@/components/bmkrs/AccentLine";
 import { BMakersLine } from "@/components/bmkrs/BMakersLine";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { ABOUT_IDENTITY_WORDS, HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage } from "@/lib/content";
 
 export const metadata = { title: "about" };
 
 const beliefs: { num: string; title: string; body: string; rotate?: boolean }[] = [
-  { num: "01", title: "a brand is a promise.", body: "we make sure yours is worth keeping." },
-  { num: "02", title: "design does a job.", body: "it isn't decoration. it earns its place." },
-  { num: "03", title: "growth beats noise.", body: "we measure what actually matters." },
-  { num: "04", title: "one team, all in.", body: "no churn, no hand-offs, no excuses." },
+  { num: "01", title: "A brand is a promise.", body: "we make sure yours is worth keeping." },
+  { num: "02", title: "Design does a job.", body: "it isn't decoration. it earns its place." },
+  { num: "03", title: "Growth beats noise.", body: "we measure what actually matters." },
+  { num: "04", title: "One team, all in.", body: "no churn, no hand-offs, no excuses." },
 ];
 
 function sectionText(page: Awaited<ReturnType<typeof getPage>>, key: string) {
@@ -31,7 +32,9 @@ function SideBySideSection({
   return (
     <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-14">
       <Reveal>
-        <span className="text-[13px] font-semibold tracking-[0.04em] text-accent">{label}</span>
+        <span className="section-label text-[13px] font-semibold tracking-[0.04em] text-accent">
+          {label}
+        </span>
       </Reveal>
       <Reveal delay={delay}>{children}</Reveal>
     </div>
@@ -86,21 +89,21 @@ export default async function AboutPage() {
             <dl className="space-y-6">
               {since && (
                 <div>
-                  <dt className="text-[13px] font-semibold text-accent">since</dt>
-                  <dd className="mt-1 text-base">{since}</dd>
+                  <dt className="meta-label font-semibold text-accent">Since</dt>
+                  <dd className="nocase mt-1 text-base">{since}</dd>
                 </div>
               )}
               {where && (
                 <div>
-                  <dt className="text-[13px] font-semibold text-accent">where</dt>
-                  <dd className="mt-1 text-base">{where}</dd>
+                  <dt className="meta-label font-semibold text-accent">Where</dt>
+                  <dd className="nocase mt-1 text-base">{where}</dd>
                 </div>
               )}
               {what && (
                 <div>
-                  <dt className="text-[13px] font-semibold text-accent">what</dt>
+                  <dt className="meta-label font-semibold text-accent">What</dt>
                   <dd className="mt-1 text-base">
-                    a <BWordRotate /> company
+                    we are the <BWordRotate words={ABOUT_IDENTITY_WORDS} />.
                   </dd>
                 </div>
               )}
@@ -109,7 +112,7 @@ export default async function AboutPage() {
           <div className="space-y-5">
             {intro && (
               <Reveal delay={1}>
-                <p className="display text-[clamp(24px,3.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                <p className="display heading-case text-[clamp(24px,3.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
                   {intro}
                 </p>
               </Reveal>
@@ -135,7 +138,7 @@ export default async function AboutPage() {
         <section className="section-pad pt-0">
           <div className="wrap space-y-16">
             {(whoWeAre1 || whoWeAre2) && (
-              <SideBySideSection label="who we are">
+              <SideBySideSection label="Who we are">
                 <div className="space-y-5">
                   {whoWeAre1 && (
                     <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whoWeAre1}</p>
@@ -149,7 +152,7 @@ export default async function AboutPage() {
               </SideBySideSection>
             )}
             {(whatWeLove1 || whatWeLove2) && (
-              <SideBySideSection label="what we love" delay={1}>
+              <SideBySideSection label="What we love" delay={1}>
                 <div className="space-y-5">
                   {whatWeLove1 && (
                     <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whatWeLove1}</p>
@@ -169,11 +172,11 @@ export default async function AboutPage() {
       <section className="section-pad block-mint">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">what we stand for</span>
+            <span className="eyebrow">What we stand for</span>
           </Reveal>
           {beliefsIntro && (
             <Reveal delay={1}>
-              <h2 className="display mt-2 max-w-[20ch] text-[clamp(28px,4vw,48px)] font-semibold leading-[1.05]">
+              <h2 className="display heading-case mt-2 max-w-[20ch] text-[clamp(28px,4vw,48px)] font-semibold leading-[1.05]">
                 {beliefsIntro}
               </h2>
             </Reveal>
@@ -186,10 +189,10 @@ export default async function AboutPage() {
                     {b.num}
                   </span>
                   <div className="col-span-2">
-                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">
+                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
                       {"rotate" in b && b.rotate ? (
                         <>
-                          a <BWordRotate /> {b.title}
+                          a <BWordRotate words={HERO_BRAND_ADJECTIVES} /> {b.title}
                         </>
                       ) : (
                         b.title
@@ -207,10 +210,10 @@ export default async function AboutPage() {
       {(longGameLead || longGame1 || longGame2) && (
         <section className="section-pad pt-0">
           <div className="wrap">
-            <SideBySideSection label="the long game">
+            <SideBySideSection label="The long game">
               <div className="space-y-5">
                 {longGameLead && (
-                  <p className="display text-[clamp(24px,3.2vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                  <p className="display heading-case text-[clamp(24px,3.2vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
                     {longGameLead}
                   </p>
                 )}
@@ -234,12 +237,12 @@ export default async function AboutPage() {
         <section className="section-pad block-peach">
           <div className="wrap">
             <Reveal>
-              <span className="eyebrow">in our own words</span>
+              <span className="eyebrow">In our own words</span>
             </Reveal>
             <div className="mt-8 grid gap-1">
               {creedLines.map((line, i) => (
                 <Reveal key={line} delay={(i % 2) as 0 | 1}>
-                  <p className="display text-[clamp(26px,4.6vw,58px)] font-semibold leading-[1.05] tracking-[-0.035em]">
+                  <p className="display heading-case text-[clamp(26px,4.6vw,58px)] font-semibold leading-[1.05] tracking-[-0.035em]">
                     <AccentLine content={line} />
                   </p>
                 </Reveal>

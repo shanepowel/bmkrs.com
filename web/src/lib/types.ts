@@ -174,13 +174,11 @@ export type MotionBenefit = {
 
 export type HomeHero = {
   eyebrow: string;
-  /** Text before the rotating B word, e.g. "your" */
-  headlineBefore: string;
-  /** Text between rotate and accent, e.g. "made to" */
-  headlineAfter: string;
-  headlineAccent: string;
+  /** e.g. "we make" */
+  headlineLead: string;
+  /** e.g. "brands." */
+  headlineTail: string;
   sub: string;
-  proof: string[];
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   /** Optional stills for the hero collage (falls back to featured work) */

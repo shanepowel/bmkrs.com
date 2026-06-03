@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { SERVICES_FOCUS_WORDS } from "@/lib/b-words";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage, getServices } from "@/lib/content";
 
@@ -19,7 +20,7 @@ export default async function ServicesPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
-              everything your <BWordRotate /> <br />
+              everything your <BWordRotate words={SERVICES_FOCUS_WORDS} /> <br />
               needs to <span className="text-accent">grow.</span>
             </h1>
           </Reveal>
@@ -43,7 +44,9 @@ export default async function ServicesPage() {
                 <p className="display text-2xl font-bold text-accent">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h2 className="display mt-3 text-[clamp(30px,4.5vw,62px)]">{service.title}</h2>
+                <h2 className="display heading-case mt-3 text-[clamp(30px,4.5vw,62px)]">
+                  {service.title}
+                </h2>
                 {service.imagePath && (
                   <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[var(--radius)] border-2 border-ink">
                     <Image

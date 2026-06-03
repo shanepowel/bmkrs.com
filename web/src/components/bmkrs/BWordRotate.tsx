@@ -1,15 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NARRATIVE_B_WORDS, type NarrativeBWord } from "@/lib/b-words";
+import { NARRATIVE_B_WORDS } from "@/lib/b-words";
 import { cn } from "@/lib/utils";
 
 type BWordRotateProps = {
-  words?: readonly NarrativeBWord[];
+  words?: readonly string[];
   intervalMs?: number;
   suffix?: string;
   className?: string;
 };
+
+function longestCh(words: readonly string[]) {
+  return Math.max(...words.map((w) => w.length), 4);
+}
 
 export function BWordRotate({
   words = NARRATIVE_B_WORDS,
@@ -29,13 +33,14 @@ export function BWordRotate({
   }, [words, intervalMs]);
 
   const word = words[index];
+  const maxCh = longestCh(words);
 
   return (
     <span className={cn("inline-flex items-baseline gap-0", className)}>
       <span
-        className="relative inline-grid max-w-[min(100%,12ch)] overflow-hidden text-accent"
+        className="relative inline-grid overflow-hidden text-accent"
         style={{
-          minWidth: `clamp(4.5ch, ${Math.max(...words.map((w) => w.length))}ch, 12ch)`,
+          minWidth: `clamp(4.5ch, ${maxCh}ch, 16ch)`,
         }}
         aria-live="polite"
       >

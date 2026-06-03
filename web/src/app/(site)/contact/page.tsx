@@ -1,5 +1,7 @@
 import { ContactForm } from "@/components/sections/ContactForm";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { PROJECT_ADJECTIVES } from "@/lib/b-words";
 import { getPage, getSiteSettings } from "@/lib/content";
 
 export const metadata = { title: "contact" };
@@ -17,7 +19,8 @@ export default async function ContactPage() {
             </Reveal>
             <Reveal delay={1}>
               <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8.125rem)] font-bold">
-                start a <span className="text-accent">project.</span>
+                start a <BWordRotate words={PROJECT_ADJECTIVES} />{" "}
+                <span className="text-accent">project.</span>
               </h1>
             </Reveal>
             {page.heroSubtitle && (

@@ -44,18 +44,12 @@ export const fallbackSiteSettings: SiteSettings = {
 
 export const fallbackHome: HomeContent = {
   hero: {
-    eyebrow: "we are b makers.",
-    headlineBefore: "your",
-    headlineAfter: "made to",
-    headlineAccent: "move.",
-    sub: "identity, voice, pr, and the product to back it up. one team from london to worldwide, with motion plus when the brief needs the full network.",
-    proof: [
-      "london + worldwide",
-      "brand · voice · pr · product",
-      "motion plus network on demand",
-    ],
+    eyebrow: "a brand company",
+    headlineLead: "we make",
+    headlineTail: "brands.",
+    sub: "we don't just help you build your product. we create its brand, give it a voice, get it heard, and grow it. everything from one team.",
     primaryCta: { label: "see our work", href: "/work" },
-    secondaryCta: { label: "book a call", href: "/contact" },
+    secondaryCta: { label: "start a project", href: "/contact" },
     collage: [
       { src: "/work/images/optimized/fdb-2-hero.jpg", alt: "floare din banat" },
       { src: "/images/optimized/copa-hero.jpg", alt: "copa, off the shore" },
@@ -72,55 +66,53 @@ export const fallbackHome: HomeContent = {
     "growth",
   ],
   positioning: {
-    eyebrow: "what we really do",
+    eyebrow: "What we really do",
     statement:
       "we don't just help you build apps. we build your product's identity, voice + messaging.",
     lead: "anyone can ship a product. we make people care about it, with a brand, a voice, and a story that earns attention and keeps it.",
   },
   capabilitiesHead: {
-    title: "growth-built.",
+    title: "Strategy-led. Growth-built.",
     subtitle:
-      "four equally strong domains, one team. the best brands are built across all of them, not bolted together by five different agencies.",
+      "Four equally strong domains, one team. The best brands are built across all of them, not bolted together by five different agencies.",
   },
   capabilityTiles: [
     {
       number: "01",
-      title: "brand + identity",
+      title: "Brand + identity",
       description:
         "strategy, positioning, naming, and the visual world that makes you unmistakable.",
       href: "/services#branding",
     },
     {
       number: "02",
-      title: "voice + messaging",
+      title: "Voice + messaging",
       description:
         "tone of voice, narrative, and messaging that makes people understand and care.",
       href: "/services#voice",
     },
     {
       number: "03",
-      title: "pr + communications",
+      title: "PR + communications",
       description:
         "launches, press, and thought leadership that get your story heard.",
       href: "/services#pr",
     },
     {
       number: "04",
-      title: "product, web + growth",
+      title: "Product, web + growth",
       description:
         "websites, apps, and campaigns that turn attention into revenue.",
       href: "/services#product",
     },
   ],
   stats: [
-    { highlight: "40", value: "+", label: "brands shaped across sectors" },
-    { highlight: "2.4", value: "x", label: "average revenue lift in 12 months" },
-    { value: "98", highlight: "%", label: "of clients move onto motion" },
-    { highlight: "100", value: "+", label: "specialists in our extended network" },
+    { highlight: "2013", value: "", label: "building brands with delivery rigour behind them" },
+    { highlight: "4", value: "", label: "core disciplines on one coordinated team" },
+    { highlight: "1", value: "", label: "point of contact from brief to ship" },
   ],
-  statsDisclaimer: "* replace with verified figures before launch.",
   whoWeWorkWith: {
-    eyebrow: "who we work with",
+    eyebrow: "Who we work with",
     statement:
       "brands with big plans, bold visions, and the nerve to do something different.",
     lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
@@ -133,8 +125,8 @@ export const fallbackHome: HomeContent = {
     "flipster",
   ],
   motionTeaser: {
-    eyebrow: "ongoing partnership",
-    heading: "always in motion.",
+    eyebrow: "Ongoing partnership",
+    heading: "Always in motion.",
     body: "a rolling partnership for brands that never stop talking. one team keeping your brand, voice, and pr moving, month after month.",
     ctaLabel: "explore motion",
     href: "/motion",
@@ -167,38 +159,34 @@ export const fallbackHome: HomeContent = {
       order: 4,
     },
   ],
-  testimonial: {
-    quote: "they didn't just redesign us. they rebuilt how the business grows.",
-    attribution: "[client name], [role, company]",
-  },
   selectedWork: {
-    eyebrow: "selected work",
+    eyebrow: "Selected work",
     title: "the brands we build for",
-    subtitle: "selected projects across branding, ecommerce, and digital.",
+    subtitle: "Selected projects across branding, ecommerce, and digital.",
   },
 };
 
 export const fallbackMotion: MotionContent = {
   benefits: [
     {
-      title: "a dedicated team",
+      title: "A dedicated team",
       body: "the same people every month, who know your brand as well as you do.",
     },
     {
-      title: "a voice that stays true",
+      title: "A voice that stays true",
       body: "one team guarding your tone, messaging, and story across everything you ship.",
     },
     {
-      title: "always-on pr + content",
+      title: "Always-on PR + content",
       body: "a steady drumbeat of press, content, and campaigns that keep you visible.",
     },
     {
-      title: "no churn, no re-briefing",
+      title: "No churn, no re-briefing",
       body: "we stay with your brand, so every month compounds on the last.",
     },
   ],
   motionPlus: {
-    eyebrow: "motion plus",
+    eyebrow: "Motion plus",
     statement: "from in-house to full-house.",
     paragraphs: [
       "motion gives you one dedicated team. motion plus opens our extended network: a curated bench of specialist freelancers and studios, on call for whatever your brief needs. a new market, a niche skill, a sudden surge of work.",
@@ -207,9 +195,9 @@ export const fallbackMotion: MotionContent = {
     poweredBy: "powered by amplifiedteams",
   },
   tiersHead: {
-    title: "pick your pace.",
+    title: "Pick your pace.",
     subtitle:
-      "three rolling plans, scaled to how loud you want to be. pricing starts from a monthly threshold, revealed when you are ready to talk.",
+      "Three rolling plans, scaled to how loud you want to be. Pricing is shared when you book a call.",
   },
   tiers: [
     {
@@ -276,8 +264,8 @@ export const fallbackPages: Record<string, CmsPage> = {
     slug: "home",
     title: "bmkrs. we are b makers.",
     metaDescription: fallbackSiteSettings.description,
-    heroEyebrow: "a b company",
-    heroTitle: "we make brands that move.",
+    heroEyebrow: "a brand company",
+    heroTitle: "we make brands.",
     heroSubtitle: fallbackHome.hero.sub,
     heroCtaLabel: "see our work",
     heroCtaHref: "/work",
@@ -289,7 +277,7 @@ export const fallbackPages: Record<string, CmsPage> = {
     title: "services",
     metaDescription:
       "brand, voice, pr, and product from one team. tailored to you and built to work together.",
-    heroEyebrow: "services",
+    heroEyebrow: "Services",
     heroTitle: "everything your brand needs to grow.",
     heroSubtitle:
       "brand, voice, pr, and the product to back it up. tailored to you and built to work together as one system.",
@@ -300,8 +288,8 @@ export const fallbackPages: Record<string, CmsPage> = {
     slug: "work",
     title: "work",
     metaDescription: "selected branding, ecommerce, and digital projects by bmkrs.",
-    heroEyebrow: "work",
-    heroTitle: "brands we've built.",
+    heroEyebrow: "Work",
+    heroTitle: "we build brands.",
     heroSubtitle: "selected projects across branding, ecommerce, and digital.",
   },
   motion: {
@@ -309,8 +297,8 @@ export const fallbackPages: Record<string, CmsPage> = {
     title: "motion",
     metaDescription:
       "motion is bmkrs.'s rolling partnership. motion plus adds a curated freelance and studio network on demand.",
-    heroEyebrow: "ongoing partnership",
-    heroTitle: "always in motion.",
+    heroEyebrow: "Ongoing partnership",
+    heroTitle: "Always in motion.",
     heroSubtitle:
       "a rolling partnership for brands that never stop talking. one team keeping your brand, voice, content, and pr moving, month after month. no re-briefing, no agency churn.",
     heroCtaLabel: "book a call",
@@ -320,8 +308,8 @@ export const fallbackPages: Record<string, CmsPage> = {
     slug: "contact",
     title: "contact",
     metaDescription: "start a project with bmkrs.",
-    heroEyebrow: "contact",
-    heroTitle: "start a project.",
+    heroEyebrow: "Contact",
+    heroTitle: "Start a project.",
     heroSubtitle:
       "tell us about your brand and where you want to take it. we'll come back within one working day.",
   },
@@ -329,18 +317,18 @@ export const fallbackPages: Record<string, CmsPage> = {
     slug: "about",
     title: "about",
     metaDescription: "we are b makers. a brand company for people with big plans.",
-    heroEyebrow: "about bmkrs",
-    heroTitle: "we are b makers.",
+    heroEyebrow: "About bmkrs",
+    heroTitle: "We are b makers.",
     heroSubtitle:
       "a brand company for people with big plans and the nerve to back them. building brands since 2013.",
     sections: [
       { key: "since", content: "2013" },
       { key: "where", content: "london + worldwide" },
-      { key: "what", content: "a b company" },
+      { key: "what", content: "we are the brandmakers." },
       {
         key: "intro",
         content:
-          "we started in 2013, not as a design studio, but as a team of builders.",
+          "We started in 2013, not as a design studio, but as a team of builders.",
       },
       {
         key: "body2",
@@ -383,11 +371,11 @@ export const fallbackPages: Record<string, CmsPage> = {
       },
       {
         key: "beliefsIntro",
-        content: "a handful of things we believe, that show up in everything we make.",
+        content: "A handful of things we believe, that show up in everything we make.",
       },
       {
         key: "longGameLead",
-        content: "we're not built for the one-off. we're built to stick around.",
+        content: "We're not built for the one-off. We're built to stick around.",
       },
       {
         key: "longGame1",
@@ -414,7 +402,7 @@ export const fallbackPages: Record<string, CmsPage> = {
 export const fallbackServices: Service[] = [
   {
     slug: "branding",
-    title: "brand + identity",
+    title: "Brand + identity",
     lead: "we build brands with a point of view, and the identity to match.",
     body: "from positioning and naming to a full visual world, we give purpose-driven brands a look people remember and trust. we don't force a house style. great design comes from understanding your brand, not repeating ourselves.",
     imagePath: "/images/optimized/branding-dis.jpg",
@@ -491,7 +479,7 @@ export const fallbackProjects: Project[] = [
     whatWeDid:
       "We treated it as one job, not three. A refreshed identity that kept what customers already recognised, clearer product descriptions in a tone that matched the care in the product, and a rebuilt storefront focused on making the catalogue easy to browse and checkout easy to finish. We kept what people valued and fixed what was in their way.",
     outcome:
-      "A storefront that finally looked as good as the product, fewer abandoned baskets, and a brand the team is proud to share. Verified revenue and conversion figures to be added once signed off by the client.",
+      "A storefront that finally looked as good as the product, fewer abandoned baskets, and a brand the team is proud to share.",
     serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
     thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
     media: [
@@ -519,7 +507,7 @@ export const fallbackProjects: Project[] = [
     whatWeDid:
       "Positioning and a full identity system: logo, typography, colour, and campaign-ready assets, plus verbal identity so the story read clearly in every channel. We leaned into the shore-line tension in the name rather than generic outdoor clichés.",
     outcome:
-      "A clear, distinctive identity the team uses consistently, campaign assets ready for launch, and a brand that reads as COPA at a glance. Launch metrics to be added when available.",
+      "A clear, distinctive identity the team uses consistently, campaign assets ready for launch, and a brand that reads as COPA at a glance.",
     serviceTags: ["brand + identity", "voice + messaging"],
     thumbnailPath: "/images/optimized/copa-hero.jpg",
     media: [
@@ -553,7 +541,7 @@ export const fallbackProjects: Project[] = [
     whatWeDid:
       "Art direction and brand framing around his portrait and motion work, plus digital assets built for how people actually discover photographers: showreel, social presence, and a portfolio structure that leads with the craft.",
     outcome:
-      "A consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations. Not everything needs a percentage; the shift was qualitative and visible in how he shows up.",
+      "A consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations.",
     serviceTags: ["brand + identity", "photography / art direction"],
     thumbnailPath: "/images/optimized/carter-hero.jpg",
     media: [
@@ -574,10 +562,14 @@ export const fallbackProjects: Project[] = [
     category: "design",
     tagline: "travel and lifestyle visuals for hartmann design.",
     excerpt: "hartmann design travel and lifestyle visuals.",
-    brief: "prototype and validate a distinctive travel design language.",
+    context:
+      "Hartmann Design needed a distinctive travel and lifestyle language that could stretch across campaigns without feeling generic.",
+    challenge:
+      "The work was strong in pieces but had no shared system. Every new brief started from scratch.",
     whatWeDid:
-      "visual identity exploration and campaign-ready design for travel and lifestyle positioning.",
-    result: "campaign-ready design system (add verified metrics).",
+      "Visual identity exploration and campaign-ready design that gave the team a repeatable language for travel and lifestyle positioning.",
+    outcome:
+      "A coherent design system the studio could deploy across campaigns without losing personality.",
     serviceTags: ["brand + identity"],
     thumbnailPath: "/images/trip-of-my-life.png",
     media: [
@@ -598,11 +590,14 @@ export const fallbackProjects: Project[] = [
     category: "websites & digital",
     tagline: "a fresh web presence for a new smoothie brand.",
     excerpt: "fresh, vibrant web design for a new smoothie brand.",
-    brief:
-      "they needed a website that attracts health-conscious customers and showcases products clearly.",
+    context:
+      "A new smoothie brand needed a first website that could introduce the range and make the products easy to understand.",
+    challenge:
+      "No digital home yet, and a crowded health-drinks shelf where generic wellness design would disappear.",
     whatWeDid:
-      "modern, vibrant web design capturing the fresh and healthy nature of their products.",
-    result: "launch-ready web presence (add verified metrics).",
+      "Modern, vibrant web design that made the range legible and matched the freshness of the product.",
+    outcome:
+      "A launch-ready site that showcases the range clearly and gives the brand a credible first impression online.",
     serviceTags: ["product, web + growth"],
     thumbnailPath: "/images/optimized/smoothies-hero.jpg",
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
@@ -615,11 +610,14 @@ export const fallbackProjects: Project[] = [
     category: "branding",
     tagline: "premium iptv identity in a competitive streaming market.",
     excerpt: "premium iptv brand identity.",
-    brief:
-      "flipster needed a brand that feels cutting-edge and trustworthy for tech-savvy consumers.",
+    context:
+      "Flipster needed to enter a crowded IPTV market with a brand that felt premium, not grey-market.",
+    challenge:
+      "Trust is hard in the category. The identity had to feel sharp and credible to a technical audience without looking like every other streamer.",
     whatWeDid:
-      "a complete brand identity positioning them as a premium iptv service.",
-    result: "brand launch in competitive market (add verified metrics).",
+      "A complete brand identity that positioned Flipster as a premium IPTV service with a distinct visual and verbal edge.",
+    outcome:
+      "A launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
     serviceTags: ["brand + identity"],
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],

@@ -67,7 +67,7 @@ function CaseStudySection({
   return (
     <div className="grid gap-8 border-b-2 border-[var(--line)] py-12 md:grid-cols-[180px_1fr] md:gap-14">
       <Reveal>
-        <h2 className="text-sm font-semibold lowercase text-accent">{label}</h2>
+        <h2 className="section-label text-sm font-semibold text-accent">{label}</h2>
       </Reveal>
       <Reveal delay={delay}>{children}</Reveal>
     </div>
@@ -108,7 +108,7 @@ export default async function ProjectPage({ params }: Props) {
             </span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
+            <h1 className="display heading-case mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
               {project.title}
             </h1>
           </Reveal>
@@ -138,37 +138,37 @@ export default async function ProjectPage({ params }: Props) {
         <div className="wrap max-w-[900px]">
           <dl className="mb-4 flex flex-wrap gap-x-10 gap-y-4 border-b-2 border-[var(--line)] pb-10 text-sm">
             <div>
-              <dt className="font-semibold text-accent">services</dt>
-              <dd className="mt-1 text-ink/90">{services.join(" · ")}</dd>
+              <dt className="meta-label font-semibold text-accent">Services</dt>
+              <dd className="nocase mt-1 text-ink/90">{services.join(" · ")}</dd>
             </div>
             {project.client && (
               <div>
-                <dt className="font-semibold text-accent">client</dt>
+                <dt className="meta-label font-semibold text-accent">Client</dt>
                 <dd className="mt-1 text-ink/90">{project.client}</dd>
               </div>
             )}
           </dl>
 
           {project.context && (
-            <CaseStudySection label="context">
+            <CaseStudySection label="Context">
               <p className="text-[17px] leading-relaxed text-ink/90">{project.context}</p>
             </CaseStudySection>
           )}
 
           {project.challenge && (
-            <CaseStudySection label="the challenge" delay={1}>
+            <CaseStudySection label="The challenge" delay={1}>
               <p className="text-[17px] leading-relaxed text-ink/90">{project.challenge}</p>
             </CaseStudySection>
           )}
 
           {project.whatWeDid && (
-            <CaseStudySection label="what we did">
+            <CaseStudySection label="What we did">
               <p className="text-[17px] leading-relaxed text-ink/90">{project.whatWeDid}</p>
             </CaseStudySection>
           )}
 
           {project.outcome && (
-            <CaseStudySection label="the outcome" delay={1}>
+            <CaseStudySection label="The outcome" delay={1}>
               <p className="text-[17px] leading-relaxed text-ink/90">{project.outcome}</p>
               {project.outcomeMetrics && project.outcomeMetrics.length > 0 && (
                 <ul className="mt-8 grid gap-6 sm:grid-cols-3">

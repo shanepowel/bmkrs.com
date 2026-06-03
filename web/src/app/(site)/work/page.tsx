@@ -1,4 +1,5 @@
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { WORK_BUILD_TARGETS } from "@/lib/b-words";
 import { ProjectTile, ProjectTilePlaceholder } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage, getProjects } from "@/lib/content";
@@ -17,7 +18,8 @@ export default async function WorkPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(2.25rem,11vw,10rem)] font-bold">
-              <BWordRotate />s we&apos;ve <span className="text-accent">built.</span>
+              we build <BWordRotate words={WORK_BUILD_TARGETS} className="text-[1em]" />
+              <span className="text-accent">.</span>
             </h1>
           </Reveal>
           {page.heroSubtitle && (

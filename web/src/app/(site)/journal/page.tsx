@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { JOURNAL_TOPIC_WORDS } from "@/lib/b-words";
 import { getJournalArticles } from "@/lib/content";
 
 export const metadata = {
@@ -30,11 +32,12 @@ export default async function JournalPage() {
       <section className="page-hero min-h-[52vh]">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">journal</span>
+            <span className="eyebrow">Journal</span>
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
-              notes on <span className="text-accent">brand work.</span>
+              notes on <BWordRotate words={JOURNAL_TOPIC_WORDS} />{" "}
+              <span className="text-accent">work.</span>
             </h1>
           </Reveal>
           <Reveal delay={2}>

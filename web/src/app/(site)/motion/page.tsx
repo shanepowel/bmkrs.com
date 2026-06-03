@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
 import { TierPricingCta } from "@/components/bmkrs/TierPricingCta";
 import { getMotionContent, getPage } from "@/lib/content";
 
@@ -18,7 +20,8 @@ export default async function MotionPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(2.5rem,12vw,11.875rem)] font-bold">
-              always in <span className="text-accent">motion.</span>
+              always <BWordRotate words={HERO_BRAND_ADJECTIVES} /> in{" "}
+              <span className="text-accent">motion.</span>
             </h1>
           </Reveal>
           {page.heroSubtitle && (
@@ -46,7 +49,9 @@ export default async function MotionPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="col-span-2">
-                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">{item.title}</h3>
+                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
+                      {item.title}
+                    </h3>
                     <p className="text-base text-muted">{item.body}</p>
                   </div>
                 </div>
@@ -61,8 +66,8 @@ export default async function MotionPage() {
           <Reveal>
             <span className="eyebrow">{motion.motionPlus.eyebrow}</span>
           </Reveal>
-          <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            from in-house <br />
+          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+            From in-house <br />
             to <span className="text-accent">full-house.</span>
           </h2>
           {motion.motionPlus.paragraphs.map((p, i) => (
@@ -80,8 +85,8 @@ export default async function MotionPage() {
         <div className="wrap">
           <div className="sec-head">
             <Reveal>
-              <h2 className="display text-[clamp(2rem,6vw,5.375rem)]">
-                pick your <span className="text-accent">pace.</span>
+              <h2 className="display heading-case text-[clamp(2rem,6vw,5.375rem)]">
+                Pick your <span className="text-accent">pace.</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
