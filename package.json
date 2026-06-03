@@ -5,6 +5,8 @@
   "main": "public_html/index.php",
   "scripts": {
     "start": "php -S localhost:8000 -t public_html",
+    "build": "npm run build --prefix web",
+    "vercel-build": "npm run build --prefix web",
     "lint": "echo 'Linting complete'",
     "test": "echo 'No tests specified yet'"
   },
