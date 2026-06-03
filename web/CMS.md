@@ -33,7 +33,7 @@ Legacy URLs (`/work/project1`, etc.) redirect to the new slugs.
 
 ## Vercel
 
-1. Set **Root Directory** to `web` (or use repo `vercel.json` which builds from `web/`)
+1. Set **Root Directory** to `web` in the Vercel project settings (required — not valid in `vercel.json`)
 2. Add the same env vars in Project → Settings → Environment Variables
 3. Connect domain **bmkrs.com** in Project → Domains
 4. Optional: `CONTACT_WEBHOOK_URL` for form submissions
