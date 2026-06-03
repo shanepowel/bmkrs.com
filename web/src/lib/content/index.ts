@@ -9,10 +9,12 @@ import type {
   CmsPage,
   HomeContent,
   HomePillar,
+  MotionContent,
   Project,
   Service,
   SiteSettings,
 } from "@/lib/types";
+import { fallbackMotion } from "./fallback";
 import { sanityClient } from "@/lib/sanity/client";
 import {
   homePillarsQuery,
@@ -70,6 +72,16 @@ export async function getServices(): Promise<Service[]> {
 export async function getProjects(): Promise<Project[]> {
   const data = await fetchSanity<Project[]>(projectsQuery);
   return data?.length ? data : fallbackProjects;
+}
+
+export async function getFeaturedProjects(): Promise<Project[]> {
+  const projects = await getProjects();
+  const featured = projects.filter((p) => p.featured);
+  return featured.length > 0 ? featured : projects.slice(0, 3);
+}
+
+export async function getMotionContent(): Promise<MotionContent> {
+  return fallbackMotion;
 }
 
 export async function getProject(slug: string): Promise<Project | null> {

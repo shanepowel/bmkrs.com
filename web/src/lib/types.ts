@@ -41,10 +41,13 @@ export type CmsPage = {
   slug: string;
   title: string;
   metaDescription?: string;
+  heroEyebrow?: string;
   heroTitle?: string;
   heroSubtitle?: string;
   heroCtaLabel?: string;
   heroCtaHref?: string;
+  heroCta2Label?: string;
+  heroCta2Href?: string;
   heroVideoUrl?: string;
   sections?: PageSection[];
 };
@@ -52,6 +55,7 @@ export type CmsPage = {
 export type Service = {
   slug: string;
   title: string;
+  lead?: string;
   summary?: string;
   body?: string;
   imagePath?: string;
@@ -63,13 +67,19 @@ export type Project = {
   slug: string;
   title: string;
   category: string;
+  tagline?: string;
   excerpt?: string;
+  brief?: string;
+  whatWeDid?: string;
+  result?: string;
+  serviceTags?: string[];
   client?: string;
   background?: string;
   problem?: string;
   thumbnailPath: string;
   media: MediaItem[];
   order: number;
+  featured?: boolean;
 };
 
 export type HomePillar = {
@@ -82,25 +92,36 @@ export type CapabilityTile = {
   title: string;
   description: string;
   href: string;
-  imageClass?: string;
+};
+
+export type MotionBenefit = {
+  title: string;
+  body: string;
 };
 
 export type HomeContent = {
-  bannerText: string;
-  introText: string;
   motionTeaser: {
-    label: string;
+    eyebrow: string;
     heading: string;
-    description: string;
+    body: string;
+    ctaLabel: string;
     href: string;
   };
   capabilityTiles: CapabilityTile[];
+  howWeWorkIntro: string;
   pillars: HomePillar[];
-  specializations: string[];
-  motionProgram: {
-    meet: string;
-    heading: string;
-    offer: string;
+  selectedWork: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+  };
+};
+
+export type MotionContent = {
+  benefits: MotionBenefit[];
+  offer: {
+    title: string;
+    body: string;
     ctaLabel: string;
     ctaHref: string;
   };

@@ -29,7 +29,7 @@ export function SiteHeader({ navigation, tagline }: SiteHeaderProps) {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/white.png"
-            alt="BMKRS"
+            alt="BMKRS — design and growth studio"
             width={120}
             height={32}
             className="h-8 w-auto"

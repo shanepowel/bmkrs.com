@@ -3,13 +3,13 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemaTypes";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "xwgymvao";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 export default defineConfig({
   name: "bmkrs",
   title: "BMKRS",
-  projectId: projectId || "placeholder",
+  projectId,
   dataset,
   basePath: "/studio",
   plugins: [structureTool(), visionTool()],

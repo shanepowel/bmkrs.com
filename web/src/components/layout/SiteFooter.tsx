@@ -10,7 +10,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           <div>
             <Image
               src="/images/white.png"
-              alt="BMKRS"
+              alt="BMKRS — design and growth studio"
               width={100}
               height={28}
               className="mb-4 h-7 w-auto"

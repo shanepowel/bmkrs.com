@@ -4,10 +4,13 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 ## Quick start
 
-1. Create a project at [sanity.io/manage](https://www.sanity.io/manage)
-2. Copy `web/.env.example` → `web/.env.local` and set:
-   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
-   - `NEXT_PUBLIC_SANITY_DATASET` (usually `production`)
+1. Project ID: **xwgymvao** · dataset: **production** (see `web/.env.local`)
+2. Log in locally: `cd web && npx sanity login`
+3. Link / init (only if studio is not already set up):
+   ```bash
+   npm create sanity@latest -- --project xwgymvao --dataset production --template clean
+   ```
+   **Note:** This repo already has schemas in `web/sanity/schemaTypes/`. Prefer keeping those and only running the command in a temp folder if you need a fresh Sanity CLI link — do not overwrite `sanity.config.ts` unless you intend to.
 3. Run the site: `cd web && npm run dev`
 4. Open the studio: [http://localhost:3000/studio](http://localhost:3000/studio)
 5. Create documents matching the schemas in `web/sanity/schemaTypes/`

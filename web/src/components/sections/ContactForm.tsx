@@ -4,9 +4,11 @@ import { useState } from "react";
 
 const serviceOptions = [
   "Branding & Identity",
+  "Websites & Digital",
+  "eCommerce",
   "Performance Marketing",
-  "Websites & Digital Platforms",
-  "eCommerce Platforms",
+  "Motion",
+  "Not sure yet",
 ];
 
 export function ContactForm({ email }: { email: string }) {
@@ -57,14 +59,14 @@ export function ContactForm({ email }: { email: string }) {
         </label>
       </div>
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">Business</span>
+        <span className="mb-2 block text-sm text-muted">Company</span>
         <input
-          name="business"
+          name="company"
           className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
         />
       </label>
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">Service</span>
+        <span className="mb-2 block text-sm text-muted">What can we help with?</span>
         <select
           name="service"
           className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
@@ -77,7 +79,7 @@ export function ContactForm({ email }: { email: string }) {
         </select>
       </label>
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">Message</span>
+        <span className="mb-2 block text-sm text-muted">Tell us about your project</span>
         <textarea
           name="message"
           rows={4}
@@ -90,7 +92,7 @@ export function ContactForm({ email }: { email: string }) {
         disabled={status === "loading"}
         className="w-full rounded-full bg-brand py-3 font-medium text-white hover:bg-brand-hover disabled:opacity-50"
       >
-        {status === "loading" ? "Sending…" : "Send message"}
+        {status === "loading" ? "Sending…" : "Send it over"}
       </button>
       {message && (
         <p className={status === "error" ? "text-red-400" : "text-brand"}>{message}</p>

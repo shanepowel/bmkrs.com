@@ -19,11 +19,22 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return {
     title: {
-      default: `${settings.siteName} | ${settings.tagline}`,
-      template: `%s | ${settings.siteName}`,
+      default: "BMKRS — We are the Brandmakers.",
+      template: "%s | BMKRS",
     },
     description: settings.description,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com"),
+    openGraph: {
+      title: "BMKRS — We are the Brandmakers.",
+      description: settings.description,
+      siteName: settings.siteName,
+      images: [
+        {
+          url: "/images/bmkrs_white_instapic.png",
+          alt: "BMKRS — design and growth studio",
+        },
+      ],
+    },
   };
 }
 
@@ -35,7 +46,7 @@ export default async function RootLayout({
   const settings = await getSiteSettings();
 
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}>
         <SiteHeader navigation={settings.navigation} tagline={settings.tagline} />
         <main className="pt-16">{children}</main>

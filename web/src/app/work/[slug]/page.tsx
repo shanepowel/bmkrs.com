@@ -47,13 +47,16 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) return { title: "Project" };
-  return { title: project.title, description: project.excerpt };
+  return { title: project.title, description: project.tagline || project.excerpt };
 }
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
+
+  const brief = project.brief || project.problem;
+  const whatWeDid = project.whatWeDid || project.background;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -63,31 +66,44 @@ export default async function ProjectPage({ params }: Props) {
       <h1 className="mt-2 text-4xl font-semibold text-white sm:text-5xl">
         {project.title}
       </h1>
+      {project.tagline && (
+        <p className="mt-4 max-w-2xl text-lg text-muted">{project.tagline}</p>
+      )}
 
       <div className="mt-16 grid gap-16 lg:grid-cols-[320px_1fr]">
         <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
-          {project.client && (
+          {brief && (
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
-                The client
+                The brief
               </h2>
-              <p className="mt-2 text-white/90 leading-relaxed">{project.client}</p>
+              <p className="mt-2 text-white/90 leading-relaxed">{brief}</p>
             </div>
           )}
-          {project.background && (
+          {whatWeDid && (
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
-                Background
+                What we did
               </h2>
-              <p className="mt-2 text-white/90 leading-relaxed">{project.background}</p>
+              <p className="mt-2 text-white/90 leading-relaxed">{whatWeDid}</p>
             </div>
           )}
-          {project.problem && (
+          {project.result && (
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
-                The problem
+                The result
               </h2>
-              <p className="mt-2 text-white/90 leading-relaxed">{project.problem}</p>
+              <p className="mt-2 text-white/90 leading-relaxed">{project.result}</p>
+            </div>
+          )}
+          {project.serviceTags && project.serviceTags.length > 0 && (
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+                Services
+              </h2>
+              <p className="mt-2 text-sm text-white/90">
+                {project.serviceTags.join(" · ")}
+              </p>
             </div>
           )}
           <Button href="/work" variant="outline">

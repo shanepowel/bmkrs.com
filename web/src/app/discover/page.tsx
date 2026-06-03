@@ -13,16 +13,17 @@ export default async function DiscoverPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeading
-        eyebrow="Services"
+        eyebrow={page.heroEyebrow || "Services"}
         title={page.heroTitle || page.title}
-        subtitle="Strategy, design, and growth — tailored to your brand."
+        subtitle={page.heroSubtitle}
       />
 
       <div className="space-y-24">
         {services.map((service, i) => (
           <article
             key={service.slug}
-            className={`grid gap-10 lg:grid-cols-2 lg:items-center ${
+            id={service.slug}
+            className={`scroll-mt-24 grid gap-10 lg:grid-cols-2 lg:items-center ${
               i % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
           >
@@ -41,8 +42,8 @@ export default async function DiscoverPage() {
               <h2 className="text-2xl font-semibold text-white sm:text-3xl">
                 {service.title}
               </h2>
-              {service.summary && (
-                <p className="mt-4 text-lg text-muted">{service.summary}</p>
+              {service.lead && (
+                <p className="mt-4 text-lg text-white/90">{service.lead}</p>
               )}
               {service.body && (
                 <p className="mt-4 text-muted leading-relaxed">{service.body}</p>
@@ -66,7 +67,9 @@ export default async function DiscoverPage() {
       </div>
 
       <div className="mt-20 text-center">
-        <Button href="/work">See projects</Button>
+        <Button href={page.heroCtaHref || "/work"}>
+          {page.heroCtaLabel || "See these in action"}
+        </Button>
       </div>
     </div>
   );

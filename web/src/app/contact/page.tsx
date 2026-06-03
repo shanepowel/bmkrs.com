@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { getPage, getSiteSettings } from "@/lib/content";
@@ -13,23 +12,15 @@ export default async function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeading
-        eyebrow="Contact"
-        title={page.heroTitle || "Get in touch"}
-        subtitle="You are one email away from starting your next project."
+        eyebrow={page.heroEyebrow || "Contact"}
+        title={page.heroTitle || "Start a project."}
+        subtitle={page.heroSubtitle}
       />
-
-      <div className="mb-12 flex flex-wrap gap-4">
-        {page.heroCtaLabel && page.heroCtaHref && (
-          <Button href={page.heroCtaHref} external>
-            {page.heroCtaLabel}
-          </Button>
-        )}
-      </div>
 
       <div className="grid gap-12 lg:grid-cols-2">
         <div className="space-y-6">
           <div className="rounded-2xl bg-surface p-8 ring-1 ring-white/10">
-            <h2 className="text-lg font-semibold text-white">Have a question?</h2>
+            <h2 className="text-lg font-semibold text-white">Direct line</h2>
             <a
               href={`mailto:${settings.email}`}
               className="mt-2 block text-xl text-brand hover:underline"
@@ -37,10 +28,6 @@ export default async function ContactPage() {
               {settings.email}
             </a>
           </div>
-          <p className="text-muted">
-            Based in South Germany, working with brands worldwide on strategy,
-            design, and performance marketing.
-          </p>
         </div>
         <ContactForm email={settings.email} />
       </div>
