@@ -68,14 +68,15 @@ export function ContactForm({ email }: { email: string }) {
         </label>
         <input id="company" name="company" className="field-input" placeholder="company name" />
       </div>
-      <div className="field">
-        <span className="field-label">what can we help with?</span>
-        <div className="flex flex-wrap gap-2.5">
+      <fieldset className="field">
+        <legend className="field-label">what can we help with?</legend>
+        <div className="flex flex-wrap gap-2.5" role="group">
           {serviceOptions.map((opt) => (
             <button
               key={opt}
               type="button"
-              className={`rounded-full border-2 border-ink px-4 py-2 text-sm font-medium transition hover:-translate-y-0.5 hover:bg-ink hover:text-bg ${
+              aria-pressed={service === opt}
+              className={`min-h-11 rounded-full border-2 border-ink px-4 py-2.5 text-sm font-medium transition touch-manipulation hover:-translate-y-0.5 hover:bg-ink hover:text-bg ${
                 service === opt ? "bg-ink text-bg" : ""
               }`}
               onClick={() => setService(opt)}
@@ -85,7 +86,7 @@ export function ContactForm({ email }: { email: string }) {
           ))}
         </div>
         <input type="hidden" name="service" value={service} />
-      </div>
+      </fieldset>
       <div className="field">
         <label className="field-label" htmlFor="message">
           tell us about your project

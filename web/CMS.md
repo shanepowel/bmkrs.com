@@ -23,14 +23,19 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 | `navigationItem` | Menu links (referenced from site settings) |
 | `page` | Per-route copy (`home`, `services`, `work`, `motion`, `contact`, `about`) |
 | `service` | Discover / Motion capability blocks |
-| `project` | Portfolio entries + case study media |
+| `project` | Portfolio entries + case study (context, challenge, what we did, outcome, testimonial) |
+| `journalArticle` | SEO articles at `/journal/[slug]` (markdown body) |
 | `homePillar` | Home “Innovate / Design / Grow / Learn” blocks |
 
 ## Slugs
 
 **Pages** — use slug: `home`, `services`, `work`, `motion`, `contact`, `about` (`discover` aliases to `services`)
 
-**Projects** — recommended slugs: `fdb`, `copa`, `carter`, `wanderlust`, `smoothies`, `flipster`
+**About page sections** (optional `sections[]` keys): `since`, `where`, `what`, `intro`, `body2`–`body4`, `closing`, `whoWeAre1`–`whoWeAre2`, `whatWeLove1`–`whatWeLove2`, `beliefsIntro`, `longGameLead`–`longGame2`, `creed1`–`creed5` (use `|word|` in creed copy for accent highlights). Keep `where` as `london + worldwide`, not street addresses.
+
+**Projects** — recommended slugs: `fdb`, `copa`, `carter`, `wanderlust`, `smoothies`, `flipster`. Use `context`, `challenge`, `whatWeDid`, `outcome` for case study copy; leave `outcomeMetrics` empty until you have signed-off figures.
+
+**Journal** — slugs: `brand-tone-of-voice`, `pr-for-startups`, `rebrand-or-refresh`, `agency-freelancer-in-house`. Body is markdown: `###` for section headings (lowercase on site), `-` for lists, `[label](/path)` for links.
 
 Legacy URLs (`/work/project1`, etc.) redirect to the new slugs.
 

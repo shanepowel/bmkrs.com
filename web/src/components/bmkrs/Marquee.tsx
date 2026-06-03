@@ -19,13 +19,13 @@ export function Marquee({
       )}
     >
       <div
-        className="inline-flex animate-marquee gap-12"
+        className="inline-flex animate-marquee gap-8 sm:gap-12"
         style={{ animationDuration: duration }}
       >
         {track.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="inline-flex items-center gap-12 font-display text-[clamp(28px,4vw,56px)] font-semibold after:content-['✺'] after:text-[0.65em] after:text-accent"
+            className="inline-flex items-center gap-8 font-display text-[clamp(1.375rem,5vw,3.5rem)] font-semibold after:content-['✺'] after:text-[0.65em] after:text-accent sm:gap-12"
           >
             {item}
           </span>

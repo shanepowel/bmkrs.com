@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
@@ -8,10 +9,14 @@ import { getFeaturedProjects, getHomeContent } from "@/lib/content";
 
 export default async function HomePage() {
   const [home, featured] = await Promise.all([getHomeContent(), getFeaturedProjects()]);
+  const { hero } = home;
+  const collage =
+    hero.collage ??
+    featured.slice(0, 4).map((p) => ({ src: p.thumbnailPath, alt: p.title }));
 
   return (
     <>
-      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-[var(--pad)] pb-24 pt-32">
+      <section className="page-hero relative">
         <div
           className="pointer-events-none absolute inset-[-10%] -z-10 blur-md"
           style={{
@@ -19,31 +24,54 @@ export default async function HomePage() {
               "radial-gradient(42% 48% at 82% 8%, rgba(255,150,110,0.5), transparent 62%), radial-gradient(40% 46% at 8% 22%, rgba(196,176,255,0.46), transparent 62%), radial-gradient(52% 56% at 60% 100%, rgba(160,224,202,0.44), transparent 62%)",
           }}
         />
-        <div className="wrap">
-          <Reveal>
-            <span className="eyebrow">
-              a <BWordRotate /> company
-            </span>
-          </Reveal>
-          <h1 className="display mt-2 text-[clamp(58px,13.5vw,210px)] font-bold">
-            <span className="block">
-              {home.heroLines[0]} <BWordRotate className="text-[1em]" />
-            </span>
-            <span className="block">
-              {home.heroLines[1]} <span className="text-accent">move.</span>
-            </span>
-          </h1>
-          <p className="lead mt-8 max-w-[540px]">{home.heroSub}</p>
-          <div className="mt-10 flex flex-wrap gap-3.5">
-            <Link href="/work" className="btn-primary">
-              see our work <ArrowIcon />
-            </Link>
-            <Link href="/contact" className="btn-ghost">
-              start a project
-            </Link>
+        <div className="wrap grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div>
+            <Reveal>
+              <span className="eyebrow">{hero.eyebrow}</span>
+            </Reveal>
+            <h1 className="display mt-2 text-[clamp(2.5rem,11vw,10.5rem)] font-bold leading-[0.92]">
+              <span className="block">
+                {hero.headlineBefore} <BWordRotate className="text-[1em]" />
+              </span>
+              <span className="block">
+                {hero.headlineAfter}{" "}
+                <span className="text-accent">{hero.headlineAccent}</span>
+              </span>
+            </h1>
+            <Reveal delay={1}>
+              <p className="lead mt-8 max-w-[520px]">{hero.sub}</p>
+            </Reveal>
+            <Reveal delay={2}>
+              <ul className="mt-6 flex flex-wrap gap-2.5">
+                {hero.proof.map((line) => (
+                  <li
+                    key={line}
+                    className="max-w-full rounded-full border-2 border-ink px-3 py-1.5 text-[12px] font-medium sm:text-[13px]"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={3}>
+              <div className="btn-row mt-10">
+                <Link href={hero.primaryCta.href} className="btn-primary">
+                  {hero.primaryCta.label} <ArrowIcon />
+                </Link>
+                <Link href={hero.secondaryCta.href} className="btn-ghost">
+                  {hero.secondaryCta.label}
+                </Link>
+              </div>
+            </Reveal>
           </div>
+          <Reveal delay={2} className="hidden lg:block">
+            <HeroCollage images={collage} />
+          </Reveal>
         </div>
-        <p className="absolute bottom-8 left-[var(--pad)] flex items-center gap-2.5 text-[13px] text-muted">
+        <div className="wrap mt-10 max-lg:max-w-full lg:hidden">
+          <HeroCollage images={collage} />
+        </div>
+        <p className="absolute bottom-[max(2rem,var(--page-bottom))] left-[var(--pad)] hidden items-center gap-2.5 text-[13px] text-muted sm:flex">
           scroll
           <span className="h-0.5 w-10 rounded-sm bg-accent" />
         </p>
@@ -66,9 +94,9 @@ export default async function HomePage() {
 
       <section className="section-pad">
         <div className="wrap">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-10">
+          <div className="sec-head">
             <Reveal>
-              <h2 className="display max-w-[820px] text-[clamp(38px,6vw,86px)]">
+              <h2 className="display max-w-[820px] text-[clamp(2rem,6vw,5.375rem)]">
                 <BWordRotate suffix="-led. " />
                 <span className="text-accent">growth-built.</span>
               </h2>
@@ -139,9 +167,9 @@ export default async function HomePage() {
 
       <section className="section-pad block-mint">
         <div className="wrap">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-10">
+          <div className="sec-head">
             <Reveal>
-              <h2 className="display text-[clamp(38px,6vw,86px)]">
+              <h2 className="display text-[clamp(2rem,6vw,5.375rem)]">
                 the <BWordRotate />s we <span className="text-accent">build for</span>
               </h2>
             </Reveal>

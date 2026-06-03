@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
 const webRoot = path.join(__dirname, "..");
 const repoRoot = path.join(webRoot, "..");
@@ -54,6 +55,26 @@ function pruneDir(dirRel, allowedRelPaths) {
 
 pruneDir("images", required);
 pruneDir("work/images", required);
+
+const faviconSrc = path.join(legacyPublic, "favicon.ico");
+const faviconDest = path.join(publicRoot, "favicon.ico");
+if (fs.existsSync(faviconSrc)) {
+  fs.copyFileSync(faviconSrc, faviconDest);
+  copied += 1;
+}
+
+const logoSrc = path.join(publicRoot, "images", "blacklogo.png");
+const iconDest = path.join(publicRoot, "icon.png");
+const appleDest = path.join(publicRoot, "apple-icon.png");
+if (fs.existsSync(logoSrc)) {
+  try {
+    execSync(`sips -z 32 32 "${logoSrc}" --out "${iconDest}"`, { stdio: "ignore" });
+    execSync(`sips -z 180 180 "${logoSrc}" --out "${appleDest}"`, { stdio: "ignore" });
+    copied += 2;
+  } catch {
+    /* sips optional off macOS */
+  }
+}
 
 if (missing.length > 0) {
   console.error("Asset sync failed — missing files:");

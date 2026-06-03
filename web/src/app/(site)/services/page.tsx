@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
@@ -11,13 +12,13 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <section className="flex min-h-[68vh] flex-col justify-center px-[var(--pad)] pt-32">
+      <section className="page-hero min-h-[68vh]">
         <div className="wrap">
           <Reveal>
             <span className="eyebrow">{page.heroEyebrow}</span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(48px,9vw,128px)] font-bold">
+            <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
               everything your <BWordRotate /> <br />
               needs to <span className="text-accent">grow.</span>
             </h1>
@@ -36,13 +37,26 @@ export default async function ServicesPage() {
             <article
               key={service.slug}
               id={service.slug}
-              className="scroll-mt-28 grid gap-14 border-b-2 border-[var(--line)] py-[clamp(46px,6vw,80px)] first:border-t-2 md:grid-cols-[0.85fr_1.15fr]"
+              className="scroll-mt-28 grid gap-10 border-b-2 border-[var(--line)] py-[clamp(32px,6vw,80px)] first:border-t-2 md:grid-cols-[0.85fr_1.15fr] md:gap-14"
             >
               <Reveal>
                 <p className="display text-2xl font-bold text-accent">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h2 className="display mt-3 text-[clamp(30px,4.5vw,62px)]">{service.title}</h2>
+                {service.imagePath && (
+                  <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[var(--radius)] border-2 border-ink">
+                    <Image
+                      src={service.imagePath}
+                      alt={service.title}
+                      fill
+                      quality={75}
+                      loading="lazy"
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 360px"
+                    />
+                  </div>
+                )}
               </Reveal>
               <Reveal delay={1}>
                 {service.lead && (

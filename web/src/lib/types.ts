@@ -76,23 +76,56 @@ export type Service = {
   order: number;
 };
 
+export type CaseStudyMetric = {
+  value: string;
+  label: string;
+};
+
+export type CaseStudyTestimonial = {
+  quote: string;
+  attribution: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
   category: string;
   tagline?: string;
   excerpt?: string;
-  brief?: string;
+  sector?: string;
+  year?: string;
+  context?: string;
+  challenge?: string;
   whatWeDid?: string;
+  outcome?: string;
+  outcomeMetrics?: CaseStudyMetric[];
+  testimonial?: CaseStudyTestimonial;
+  /** @deprecated use challenge */
+  brief?: string;
+  /** @deprecated use outcome */
   result?: string;
   serviceTags?: string[];
   client?: string;
+  /** @deprecated use whatWeDid */
   background?: string;
+  /** @deprecated use challenge */
   problem?: string;
   thumbnailPath: string;
   media: MediaItem[];
   order: number;
   featured?: boolean;
+};
+
+export type JournalArticle = {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  metaDescription: string;
+  h1: string;
+  targetKeyword?: string;
+  publishedAt: string;
+  body: string;
+  relatedLinks?: { label: string; href: string }[];
 };
 
 export type HomePillar = {
@@ -139,9 +172,23 @@ export type MotionBenefit = {
   body: string;
 };
 
+export type HomeHero = {
+  eyebrow: string;
+  /** Text before the rotating B word, e.g. "your" */
+  headlineBefore: string;
+  /** Text between rotate and accent, e.g. "made to" */
+  headlineAfter: string;
+  headlineAccent: string;
+  sub: string;
+  proof: string[];
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+  /** Optional stills for the hero collage (falls back to featured work) */
+  collage?: { src: string; alt: string }[];
+};
+
 export type HomeContent = {
-  heroLines: string[];
-  heroSub: string;
+  hero: HomeHero;
   marqueeItems: string[];
   positioning: {
     eyebrow: string;

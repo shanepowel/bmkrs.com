@@ -8,15 +8,15 @@ export default async function ContactPage() {
   const [page, settings] = await Promise.all([getPage("contact"), getSiteSettings()]);
 
   return (
-    <section className="px-[var(--pad)] pb-24 pt-36">
+    <section className="page-top px-[var(--pad)] pb-[max(6rem,var(--page-bottom))]">
       <div className="wrap">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <Reveal>
               <span className="eyebrow">{page.heroEyebrow}</span>
             </Reveal>
             <Reveal delay={1}>
-              <h1 className="display mt-4 text-[clamp(52px,9vw,130px)] font-bold">
+              <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8.125rem)] font-bold">
                 start a <span className="text-accent">project.</span>
               </h1>
             </Reveal>
@@ -28,7 +28,7 @@ export default async function ContactPage() {
             <Reveal delay={3}>
               <a
                 href={`mailto:${settings.email}`}
-                className="nocase display mt-10 inline-block text-[clamp(22px,3vw,34px)] font-semibold hover:text-accent"
+                className="nocase display mt-10 inline-block max-w-full break-all text-[clamp(1.25rem,3vw,2.125rem)] font-semibold hover:text-accent sm:break-normal"
               >
                 {settings.email}
               </a>

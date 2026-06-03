@@ -6,10 +6,12 @@ import {
   fallbackServices,
   fallbackSiteSettings,
 } from "./fallback";
+import { fallbackJournalArticles } from "./journal-fallback";
 import type {
   CmsPage,
   HomeContent,
   HomePillar,
+  JournalArticle,
   MotionContent,
   Project,
   Service,
@@ -18,6 +20,8 @@ import type {
 import { sanityClient } from "@/lib/sanity/client";
 import {
   homePillarsQuery,
+  journalArticleBySlugQuery,
+  journalArticlesQuery,
   pageBySlugQuery,
   projectBySlugQuery,
   projectsQuery,
@@ -71,7 +75,8 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getProjects(): Promise<Project[]> {
   const data = await fetchSanity<Project[]>(projectsQuery);
-  return data?.length ? data : fallbackProjects;
+  const list = data?.length ? data : fallbackProjects;
+  return list.map(normalizeProject);
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
@@ -86,6 +91,40 @@ export async function getMotionContent(): Promise<MotionContent> {
 
 export async function getProject(slug: string): Promise<Project | null> {
   const data = await fetchSanity<Project>(projectBySlugQuery, { slug });
-  if (data) return data;
-  return fallbackProjects.find((p) => p.slug === slug) ?? null;
+  if (data) return normalizeProject(data);
+  const fallback = fallbackProjects.find((p) => p.slug === slug);
+  return fallback ? normalizeProject(fallback) : null;
+}
+
+function normalizeProject(project: Project): Project {
+  return {
+    ...project,
+    context: project.context || project.excerpt,
+    challenge: project.challenge || project.brief || project.problem,
+    whatWeDid: project.whatWeDid || project.background,
+    outcome: project.outcome || project.result,
+  };
+}
+
+export async function getJournalArticles(): Promise<JournalArticle[]> {
+  const data = await fetchSanity<JournalArticle[]>(journalArticlesQuery);
+  if (data?.length) {
+    return data.map(normalizeJournalArticle);
+  }
+  return fallbackJournalArticles;
+}
+
+export async function getJournalArticle(slug: string): Promise<JournalArticle | null> {
+  const data = await fetchSanity<JournalArticle>(journalArticleBySlugQuery, { slug });
+  if (data) return normalizeJournalArticle(data);
+  const fallback = fallbackJournalArticles.find((a) => a.slug === slug);
+  return fallback ? normalizeJournalArticle(fallback) : null;
+}
+
+function normalizeJournalArticle(article: JournalArticle): JournalArticle {
+  return {
+    ...article,
+    seoTitle: article.seoTitle || article.title,
+    publishedAt: article.publishedAt?.slice(0, 10) || "",
+  };
 }

@@ -39,8 +39,12 @@ export function ProjectTile({
             src={project.thumbnailPath}
             alt={project.title}
             fill
+            quality={75}
             className="object-cover transition duration-700 group-hover:scale-105"
-            sizes={featured ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+            sizes={featured ? "(max-width: 768px) 100vw, 1200px" : "(max-width: 768px) 100vw, 50vw"}
+            priority={featured}
+            fetchPriority={featured ? "high" : "auto"}
+            loading={featured ? "eager" : "lazy"}
           />
           <div className="pointer-events-none absolute inset-0 bg-ink/0 transition group-hover:bg-ink/10" />
           <span className="absolute right-5 top-4 grid h-12 w-12 place-items-center rounded-full bg-ink text-xl text-bg opacity-0 transition group-hover:opacity-100">

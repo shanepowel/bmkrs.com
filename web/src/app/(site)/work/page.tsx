@@ -10,13 +10,13 @@ export default async function WorkPage() {
 
   return (
     <>
-      <section className="flex min-h-[58vh] flex-col justify-center px-[var(--pad)] pt-32">
+      <section className="page-hero min-h-[58vh]">
         <div className="wrap">
           <Reveal>
             <span className="eyebrow">{page.heroEyebrow}</span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(52px,11vw,160px)] font-bold">
+            <h1 className="display mt-4 text-[clamp(2.25rem,11vw,10rem)] font-bold">
               <BWordRotate />s we&apos;ve <span className="text-accent">built.</span>
             </h1>
           </Reveal>

@@ -11,13 +11,13 @@ export default async function MotionPage() {
 
   return (
     <>
-      <section className="flex min-h-[78vh] flex-col justify-center px-[var(--pad)] pt-32">
+      <section className="page-hero min-h-[78vh]">
         <div className="wrap">
           <Reveal>
             <span className="eyebrow">{page.heroEyebrow}</span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(56px,12vw,190px)] font-bold">
+            <h1 className="display mt-4 text-[clamp(2.5rem,12vw,11.875rem)] font-bold">
               always in <span className="text-accent">motion.</span>
             </h1>
           </Reveal>
@@ -78,9 +78,9 @@ export default async function MotionPage() {
 
       <section className="section-pad">
         <div className="wrap">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-10">
+          <div className="sec-head">
             <Reveal>
-              <h2 className="display text-[clamp(38px,6vw,86px)]">
+              <h2 className="display text-[clamp(2rem,6vw,5.375rem)]">
                 pick your <span className="text-accent">pace.</span>
               </h2>
             </Reveal>
@@ -92,7 +92,7 @@ export default async function MotionPage() {
             {motion.tiers.map((tier, i) => (
               <Reveal key={tier.id} delay={i as 0 | 1 | 2}>
                 <div
-                  className={`flex h-full flex-col rounded-[var(--radius)] border-2 border-ink p-8 transition hover:-translate-y-2 ${
+                  className={`flex h-full flex-col rounded-[var(--radius)] border-2 border-ink p-5 transition hover:-translate-y-2 sm:p-8 ${
                     tier.featured
                       ? "bg-ink text-bg"
                       : tier.plus
@@ -165,7 +165,7 @@ export default async function MotionPage() {
             <p className="lead mx-auto mb-9">{motion.closingCta.body}</p>
           </Reveal>
           <Reveal delay={2}>
-            <Link href={motion.closingCta.ctaHref} className="btn-primary">
+            <Link href={motion.closingCta.ctaHref} className="btn-primary mx-auto w-full max-w-md sm:w-auto">
               {motion.closingCta.ctaLabel} <ArrowIcon />
             </Link>
           </Reveal>

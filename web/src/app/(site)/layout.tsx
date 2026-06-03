@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { getProjects, getSiteSettings } from "@/lib/content";
 
 export default async function SiteLayout({
@@ -11,8 +12,9 @@ export default async function SiteLayout({
 
   return (
     <>
+      <SkipLink />
       <SiteHeader navigation={settings.navigation} />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <SiteFooter settings={settings} caseStudies={projects.slice(0, 3)} />
     </>
   );

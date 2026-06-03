@@ -35,30 +35,58 @@ export const servicesQuery = `*[_type == "service"] | order(order asc){
   order
 }`;
 
-export const projectsQuery = `*[_type == "project"] | order(order asc){
+const projectFields = `
   "slug": slug.current,
   title,
   category,
   excerpt,
+  tagline,
+  sector,
+  year,
   client,
+  context,
+  challenge,
+  whatWeDid,
+  outcome,
+  outcomeMetrics,
+  testimonial,
+  serviceTags,
+  featured,
   background,
   problem,
+  brief,
+  result,
   thumbnailPath,
   media,
   order
+`;
+
+export const projectsQuery = `*[_type == "project"] | order(order asc){${projectFields}}`;
+
+export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0]{${projectFields}}`;
+
+export const journalArticlesQuery = `*[_type == "journalArticle"] | order(publishedAt desc){
+  "slug": slug.current,
+  title,
+  seoTitle,
+  metaDescription,
+  h1,
+  targetKeyword,
+  publishedAt,
+  body,
+  relatedLinks
 }`;
 
-export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0]{
+export const journalArticleBySlugQuery = `*[_type == "journalArticle" && slug.current == $slug][0]{
   "slug": slug.current,
   title,
-  category,
-  excerpt,
-  client,
-  background,
-  problem,
-  thumbnailPath,
-  media,
-  order
+  seoTitle,
+  metaDescription,
+  h1,
+  targetKeyword,
+  publishedAt,
+  body,
+  relatedLinks
 }`;
 
 export const homePillarsQuery = `*[_type == "homePillar"] | order(order asc){

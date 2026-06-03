@@ -29,7 +29,7 @@ export function TierPricingCta({
         type="button"
         onClick={() => setRevealed(true)}
         className={cn(
-          "w-full rounded-full border-2 px-5 py-3 text-left font-display text-[15px] font-semibold transition hover:-translate-y-0.5",
+          "w-full min-h-11 rounded-full border-2 px-5 py-3 text-left font-display text-[15px] font-semibold transition touch-manipulation hover:-translate-y-0.5",
           featured
             ? "border-bg/40 text-bg hover:border-bg hover:bg-bg/10"
             : "border-ink hover:bg-ink hover:text-bg"

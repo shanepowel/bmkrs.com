@@ -18,6 +18,18 @@ You have **Root Directory = `bmkrs.com`** and an install command with **`--prefi
 **Fix:** Project → Settings → General → set **Root Directory** to `web`.  
 Then Project → Settings → Build → **clear** any custom Install Command that contains `--prefix web`. Redeploy.
 
+## Mobile
+
+- Layout uses `100dvh` / `100svh`, safe-area insets (notch/home indicator), and `viewport-fit: cover`.
+- Nav: full-screen overlay on small screens, body scroll lock, 44px touch targets, 16px form inputs (no iOS zoom).
+- Test in Chrome DevTools device mode and on a real phone after deploy.
+
+## Lighthouse / performance
+
+- `npm run prebuild` syncs assets and generates `public/**/optimized/*.jpg` (macOS `sips`) for lighter LCP images.
+- Homepage hero uses optimized JPEGs; Next Image serves AVIF/WebP on Vercel automatically.
+- After deploy, run [PageSpeed Insights](https://pagespeed.web.dev/) on `https://bmkrs.com`.
+
 ## Images on production
 
 Marketing images are served from `web/public/` (see `web/scripts/required-assets.json`). They are copied from `archive/legacy-public-site/public_html` via `npm run prebuild` and **must be committed** in `web/public` — `.vercelignore` excludes most of `archive/`, so a deploy cannot rely on archive-only sync.

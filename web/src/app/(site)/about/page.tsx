@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { AccentLine } from "@/components/bmkrs/AccentLine";
 import { BMakersLine } from "@/components/bmkrs/BMakersLine";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
@@ -7,7 +9,7 @@ import { getPage } from "@/lib/content";
 export const metadata = { title: "about" };
 
 const beliefs: { num: string; title: string; body: string; rotate?: boolean }[] = [
-  { num: "01", title: "a promise.", body: "we make sure yours is worth keeping.", rotate: true },
+  { num: "01", title: "a brand is a promise.", body: "we make sure yours is worth keeping." },
   { num: "02", title: "design does a job.", body: "it isn't decoration. it earns its place." },
   { num: "03", title: "growth beats noise.", body: "we measure what actually matters." },
   { num: "04", title: "one team, all in.", body: "no churn, no hand-offs, no excuses." },
@@ -15,6 +17,25 @@ const beliefs: { num: string; title: string; body: string; rotate?: boolean }[] 
 
 function sectionText(page: Awaited<ReturnType<typeof getPage>>, key: string) {
   return page.sections?.find((s) => s.key === key)?.content;
+}
+
+function SideBySideSection({
+  label,
+  children,
+  delay = 0,
+}: {
+  label: string;
+  children: ReactNode;
+  delay?: 0 | 1;
+}) {
+  return (
+    <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-14">
+      <Reveal>
+        <span className="text-[13px] font-semibold tracking-[0.04em] text-accent">{label}</span>
+      </Reveal>
+      <Reveal delay={delay}>{children}</Reveal>
+    </div>
+  );
 }
 
 export default async function AboutPage() {
@@ -27,17 +48,28 @@ export default async function AboutPage() {
   const body3 = sectionText(page, "body3");
   const body4 = sectionText(page, "body4");
   const closing = sectionText(page, "closing");
+  const whoWeAre1 = sectionText(page, "whoWeAre1");
+  const whoWeAre2 = sectionText(page, "whoWeAre2");
+  const whatWeLove1 = sectionText(page, "whatWeLove1");
+  const whatWeLove2 = sectionText(page, "whatWeLove2");
+  const beliefsIntro = sectionText(page, "beliefsIntro");
+  const longGameLead = sectionText(page, "longGameLead");
+  const longGame1 = sectionText(page, "longGame1");
+  const longGame2 = sectionText(page, "longGame2");
+  const creedLines = ["creed1", "creed2", "creed3", "creed4", "creed5"]
+    .map((key) => sectionText(page, key))
+    .filter((line): line is string => Boolean(line));
 
   return (
     <>
-      <section className="flex min-h-[72vh] flex-col justify-center px-[var(--pad)] pt-32">
+      <section className="page-hero min-h-[72vh]">
         <div className="wrap">
           <Reveal>
             <span className="eyebrow">{page.heroEyebrow}</span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="mt-4 text-[clamp(48px,9vw,144px)]">
-              <BMakersLine multiline className="text-[clamp(48px,9vw,144px)]" />
+            <h1 className="mt-4 text-[clamp(2.25rem,9vw,9rem)]">
+              <BMakersLine multiline className="text-[clamp(2.25rem,9vw,9rem)]" />
             </h1>
           </Reveal>
           {page.heroSubtitle && (
@@ -99,12 +131,54 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {(whoWeAre1 || whoWeAre2) && (
+        <section className="section-pad pt-0">
+          <div className="wrap space-y-16">
+            {(whoWeAre1 || whoWeAre2) && (
+              <SideBySideSection label="who we are">
+                <div className="space-y-5">
+                  {whoWeAre1 && (
+                    <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whoWeAre1}</p>
+                  )}
+                  {whoWeAre2 && (
+                    <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed text-muted">
+                      {whoWeAre2}
+                    </p>
+                  )}
+                </div>
+              </SideBySideSection>
+            )}
+            {(whatWeLove1 || whatWeLove2) && (
+              <SideBySideSection label="what we love" delay={1}>
+                <div className="space-y-5">
+                  {whatWeLove1 && (
+                    <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whatWeLove1}</p>
+                  )}
+                  {whatWeLove2 && (
+                    <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed text-muted">
+                      {whatWeLove2}
+                    </p>
+                  )}
+                </div>
+              </SideBySideSection>
+            )}
+          </div>
+        </section>
+      )}
+
       <section className="section-pad block-mint">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">what we believe</span>
+            <span className="eyebrow">what we stand for</span>
           </Reveal>
-          <div className="mt-7 grid gap-4 md:grid-cols-2">
+          {beliefsIntro && (
+            <Reveal delay={1}>
+              <h2 className="display mt-2 max-w-[20ch] text-[clamp(28px,4vw,48px)] font-semibold leading-[1.05]">
+                {beliefsIntro}
+              </h2>
+            </Reveal>
+          )}
+          <div className="mt-11 grid gap-4 md:grid-cols-2">
             {beliefs.map((b, i) => (
               <Reveal key={b.num} delay={(i % 2) as 0 | 1}>
                 <div className="cap-card">
@@ -115,7 +189,7 @@ export default async function AboutPage() {
                     <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">
                       {"rotate" in b && b.rotate ? (
                         <>
-                          a <BWordRotate /> is {b.title}
+                          a <BWordRotate /> {b.title}
                         </>
                       ) : (
                         b.title
@@ -130,6 +204,51 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {(longGameLead || longGame1 || longGame2) && (
+        <section className="section-pad pt-0">
+          <div className="wrap">
+            <SideBySideSection label="the long game">
+              <div className="space-y-5">
+                {longGameLead && (
+                  <p className="display text-[clamp(24px,3.2vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                    {longGameLead}
+                  </p>
+                )}
+                {longGame1 && (
+                  <p className="text-[clamp(17px,1.7vw,20px)] leading-relaxed text-muted">
+                    {longGame1}
+                  </p>
+                )}
+                {longGame2 && (
+                  <p className="text-[clamp(17px,1.7vw,20px)] leading-relaxed text-muted">
+                    {longGame2}
+                  </p>
+                )}
+              </div>
+            </SideBySideSection>
+          </div>
+        </section>
+      )}
+
+      {creedLines.length > 0 && (
+        <section className="section-pad block-peach">
+          <div className="wrap">
+            <Reveal>
+              <span className="eyebrow">in our own words</span>
+            </Reveal>
+            <div className="mt-8 grid gap-1">
+              {creedLines.map((line, i) => (
+                <Reveal key={line} delay={(i % 2) as 0 | 1}>
+                  <p className="display text-[clamp(26px,4.6vw,58px)] font-semibold leading-[1.05] tracking-[-0.035em]">
+                    <AccentLine content={line} />
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section-pad text-center">
         <div className="wrap">
           <Reveal>
@@ -138,7 +257,7 @@ export default async function AboutPage() {
             </h2>
           </Reveal>
           <Reveal delay={1}>
-            <div className="flex flex-wrap justify-center gap-3.5">
+            <div className="btn-row mx-auto justify-center sm:mx-0">
               <Link href="/contact" className="btn-primary">
                 work with us
               </Link>

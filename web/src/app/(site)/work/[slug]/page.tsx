@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getProject, getProjects } from "@/lib/content";
@@ -13,14 +14,15 @@ export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-function MediaBlock({ item }: { item: MediaItem }) {
+function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
   if (item.type === "iframe" && item.src) {
     return (
       <div className="aspect-video overflow-hidden rounded-[var(--radius)] ring-2 ring-ink/10">
         <iframe
           src={item.src}
-          title="Project video"
+          title={`${title} video`}
           className="h-full w-full"
+          loading="lazy"
           allow="autoplay; fullscreen"
           allowFullScreen
         />
@@ -30,7 +32,15 @@ function MediaBlock({ item }: { item: MediaItem }) {
   if (item.type === "image" && item.src) {
     return (
       <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
-        <Image src={item.src} alt={item.alt || ""} fill className="object-cover" sizes="100vw" />
+        <Image
+          src={item.src}
+          alt={item.alt || title}
+          fill
+          quality={75}
+          loading="lazy"
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 720px"
+        />
       </div>
     );
   }
@@ -45,6 +55,25 @@ function MediaBlock({ item }: { item: MediaItem }) {
   return null;
 }
 
+function CaseStudySection({
+  label,
+  children,
+  delay = 0,
+}: {
+  label: string;
+  children: ReactNode;
+  delay?: 0 | 1;
+}) {
+  return (
+    <div className="grid gap-8 border-b-2 border-[var(--line)] py-12 md:grid-cols-[180px_1fr] md:gap-14">
+      <Reveal>
+        <h2 className="text-sm font-semibold lowercase text-accent">{label}</h2>
+      </Reveal>
+      <Reveal delay={delay}>{children}</Reveal>
+    </div>
+  );
+}
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = await getProject(slug);
@@ -57,18 +86,29 @@ export default async function ProjectPage({ params }: Props) {
   const project = await getProject(slug);
   if (!project) notFound();
 
-  const brief = project.brief || project.problem;
-  const whatWeDid = project.whatWeDid || project.background;
+  const services = project.serviceTags?.length
+    ? project.serviceTags
+    : [project.category];
 
   return (
     <>
-      <section className="px-[var(--pad)] pb-12 pt-36">
+      <section className="page-top px-[var(--pad)] pb-12">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">{project.category}</span>
+            <Link
+              href="/work"
+              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
+            >
+              ← work
+            </Link>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(48px,11vw,150px)] font-bold">
+            <span className="eyebrow mt-8 block">
+              {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
+            </span>
+          </Reveal>
+          <Reveal delay={1}>
+            <h1 className="display mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
               {project.title}
             </h1>
           </Reveal>
@@ -83,9 +123,11 @@ export default async function ProjectPage({ params }: Props) {
                 src={project.thumbnailPath}
                 alt={project.title}
                 fill
+                quality={75}
                 className="object-cover"
                 priority
-                sizes="100vw"
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 1200px"
               />
             </div>
           </Reveal>
@@ -93,64 +135,87 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       <section className="section-pad pt-0">
-        <div className="wrap">
-          <div className="grid gap-14 border-b-2 border-[var(--line)] pb-10 md:grid-cols-[200px_1fr]">
-            <dl className="space-y-6">
-              <Reveal>
-                <dt className="text-[13px] font-semibold text-accent">client</dt>
-                <dd className="mt-1 text-base">{project.client || project.title}</dd>
-              </Reveal>
-              <Reveal delay={1}>
-                <dt className="text-[13px] font-semibold text-accent">services</dt>
-                <dd className="mt-1 text-base">
-                  {(project.serviceTags || [project.category]).join(", ")}
-                </dd>
-              </Reveal>
-            </dl>
-            {brief && (
-              <Reveal delay={1}>
-                <p className="display text-[clamp(20px,2.5vw,32px)] font-semibold leading-[1.18] tracking-[-0.02em]">
-                  {brief}
-                </p>
-              </Reveal>
-            )}
-          </div>
-
-          {whatWeDid && (
-            <div className="grid gap-14 border-b-2 border-[var(--line)] py-14 md:grid-cols-[200px_1fr]">
-              <Reveal>
-                <h3 className="text-sm font-semibold text-accent">what we did</h3>
-              </Reveal>
-              <Reveal delay={1}>
-                <p className="max-w-[620px] text-muted">{whatWeDid}</p>
-              </Reveal>
+        <div className="wrap max-w-[900px]">
+          <dl className="mb-4 flex flex-wrap gap-x-10 gap-y-4 border-b-2 border-[var(--line)] pb-10 text-sm">
+            <div>
+              <dt className="font-semibold text-accent">services</dt>
+              <dd className="mt-1 text-ink/90">{services.join(" · ")}</dd>
             </div>
+            {project.client && (
+              <div>
+                <dt className="font-semibold text-accent">client</dt>
+                <dd className="mt-1 text-ink/90">{project.client}</dd>
+              </div>
+            )}
+          </dl>
+
+          {project.context && (
+            <CaseStudySection label="context">
+              <p className="text-[17px] leading-relaxed text-ink/90">{project.context}</p>
+            </CaseStudySection>
           )}
 
-          {project.result && (
-            <div className="grid gap-14 border-b-2 border-[var(--line)] py-14 md:grid-cols-[200px_1fr]">
-              <Reveal>
-                <h3 className="text-sm font-semibold text-accent">the result</h3>
-              </Reveal>
-              <Reveal delay={1}>
-                <p className="max-w-[620px] text-muted">{project.result}</p>
-              </Reveal>
-            </div>
+          {project.challenge && (
+            <CaseStudySection label="the challenge" delay={1}>
+              <p className="text-[17px] leading-relaxed text-ink/90">{project.challenge}</p>
+            </CaseStudySection>
+          )}
+
+          {project.whatWeDid && (
+            <CaseStudySection label="what we did">
+              <p className="text-[17px] leading-relaxed text-ink/90">{project.whatWeDid}</p>
+            </CaseStudySection>
+          )}
+
+          {project.outcome && (
+            <CaseStudySection label="the outcome" delay={1}>
+              <p className="text-[17px] leading-relaxed text-ink/90">{project.outcome}</p>
+              {project.outcomeMetrics && project.outcomeMetrics.length > 0 && (
+                <ul className="mt-8 grid gap-6 sm:grid-cols-3">
+                  {project.outcomeMetrics.map((m) => (
+                    <li key={m.label} className="rounded-[var(--radius)] bg-ink/[0.04] p-5">
+                      <span className="display block text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-accent">
+                        {m.value}
+                      </span>
+                      <span className="mt-2 block text-sm text-muted">{m.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CaseStudySection>
+          )}
+
+          {project.testimonial?.quote && (
+            <Reveal>
+              <blockquote className="my-14 border-l-4 border-accent pl-8">
+                <p className="display text-[clamp(1.125rem,2.5vw,1.5rem)] font-medium leading-snug text-ink">
+                  &ldquo;{project.testimonial.quote}&rdquo;
+                </p>
+                {project.testimonial.attribution && (
+                  <footer className="mt-4 text-sm text-muted">
+                    {project.testimonial.attribution}
+                  </footer>
+                )}
+              </blockquote>
+            </Reveal>
           )}
 
           {project.media.length > 1 && (
-            <div className="mt-14 space-y-8">
+            <div className="mt-8 space-y-8 border-t-2 border-[var(--line)] pt-14">
               {project.media.slice(1).map((item, idx) => (
                 <Reveal key={idx}>
-                  <MediaBlock item={item} />
+                  <MediaBlock item={item} title={project.title} />
                 </Reveal>
               ))}
             </div>
           )}
 
-          <div className="mt-14 text-center">
+          <div className="mt-14 flex flex-wrap gap-4">
             <Link href="/work" className="btn-primary">
               all projects <ArrowIcon />
+            </Link>
+            <Link href="/contact" className="btn-secondary">
+              start a project
             </Link>
           </div>
         </div>

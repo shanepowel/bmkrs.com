@@ -4,6 +4,7 @@ import type { Project, SiteSettings } from "@/lib/types";
 
 const footerCompany = [
   { label: "home", href: "/" },
+  { label: "journal", href: "/journal" },
   { label: "about", href: "/about" },
   { label: "contact", href: "/contact" },
 ];
@@ -40,10 +41,13 @@ export function SiteFooter({
   const networkEmail = settings.networkEmail ?? "network@bmkrs.com";
 
   return (
-    <footer className="bg-ink px-[var(--pad)] pb-10 pt-[clamp(70px,9vw,120px)] text-bg">
+    <footer className="bg-ink px-[var(--pad)] pb-[max(2.5rem,var(--page-bottom))] pt-[clamp(70px,9vw,120px)] text-bg">
       <div className="wrap">
         <p className="mb-5 text-[clamp(44px,9vw,128px)] leading-[0.9]">
           <BMakersLine multiline className="text-[clamp(44px,9vw,128px)]" />
+        </p>
+        <p className="mb-4 font-display text-[clamp(18px,2vw,27px)] font-semibold text-bg">
+          your team, not just your agency.
         </p>
         <p className="mb-[72px] max-w-[34ch] text-base text-bg/55">
           they say no one reads the footer. you made it this far, so let&apos;s{" "}
