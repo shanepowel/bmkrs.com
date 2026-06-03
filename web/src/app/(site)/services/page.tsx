@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage, getServices } from "@/lib/content";
 
@@ -17,7 +18,7 @@ export default async function ServicesPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(48px,9vw,128px)] font-bold">
-              everything your brand <br />
+              everything your <BWordRotate /> <br />
               needs to <span className="text-accent">grow.</span>
             </h1>
           </Reveal>

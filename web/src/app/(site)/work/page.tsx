@@ -1,3 +1,4 @@
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { ProjectTile, ProjectTilePlaceholder } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage, getProjects } from "@/lib/content";
@@ -16,7 +17,7 @@ export default async function WorkPage() {
           </Reveal>
           <Reveal delay={1}>
             <h1 className="display mt-4 text-[clamp(52px,11vw,160px)] font-bold">
-              brands we&apos;ve <span className="text-accent">built.</span>
+              <BWordRotate />s we&apos;ve <span className="text-accent">built.</span>
             </h1>
           </Reveal>
           {page.heroSubtitle && (

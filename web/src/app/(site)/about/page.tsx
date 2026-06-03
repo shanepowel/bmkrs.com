@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { BMakersLine } from "@/components/bmkrs/BMakersLine";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage } from "@/lib/content";
 
 export const metadata = { title: "about" };
 
-const beliefs = [
-  { num: "01", title: "a brand is a promise.", body: "we make sure yours is worth keeping." },
+const beliefs: { num: string; title: string; body: string; rotate?: boolean }[] = [
+  { num: "01", title: "a promise.", body: "we make sure yours is worth keeping.", rotate: true },
   { num: "02", title: "design does a job.", body: "it isn't decoration. it earns its place." },
   { num: "03", title: "growth beats noise.", body: "we measure what actually matters." },
   { num: "04", title: "one team, all in.", body: "no churn, no hand-offs, no excuses." },
@@ -34,9 +36,8 @@ export default async function AboutPage() {
             <span className="eyebrow">{page.heroEyebrow}</span>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(48px,9vw,144px)] font-bold">
-              we are the <br />
-              <span className="text-accent">brandmakers.</span>
+            <h1 className="mt-4 text-[clamp(48px,9vw,144px)]">
+              <BMakersLine multiline className="text-[clamp(48px,9vw,144px)]" />
             </h1>
           </Reveal>
           {page.heroSubtitle && (
@@ -66,7 +67,9 @@ export default async function AboutPage() {
               {what && (
                 <div>
                   <dt className="text-[13px] font-semibold text-accent">what</dt>
-                  <dd className="mt-1 text-base">{what}</dd>
+                  <dd className="mt-1 text-base">
+                    a <BWordRotate /> company
+                  </dd>
                 </div>
               )}
             </dl>
@@ -109,7 +112,15 @@ export default async function AboutPage() {
                     {b.num}
                   </span>
                   <div className="col-span-2">
-                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">{b.title}</h3>
+                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">
+                      {"rotate" in b && b.rotate ? (
+                        <>
+                          a <BWordRotate /> is {b.title}
+                        </>
+                      ) : (
+                        b.title
+                      )}
+                    </h3>
                     <p className="text-base text-muted">{b.body}</p>
                   </div>
                 </div>

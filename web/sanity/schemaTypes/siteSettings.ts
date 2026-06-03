@@ -6,7 +6,7 @@ export const siteSettings = defineType({
   type: "document",
   fields: [
     defineField({ name: "siteName", type: "string", initialValue: "BMKRS" }),
-    defineField({ name: "tagline", type: "string", initialValue: "We are the Brandmakers." }),
+    defineField({ name: "tagline", type: "string", initialValue: "we are b makers." }),
     defineField({ name: "description", type: "text" }),
     defineField({ name: "email", type: "string" }),
     defineField({ name: "copyright", type: "string" }),

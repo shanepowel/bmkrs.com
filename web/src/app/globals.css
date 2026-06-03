@@ -134,3 +134,24 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+@keyframes b-word-spin {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.b-word-spin {
+  animation: b-word-spin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-word-spin {
+    animation: none;
+  }
+}

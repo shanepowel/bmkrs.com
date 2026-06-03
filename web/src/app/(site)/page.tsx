@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
@@ -20,12 +21,16 @@ export default async function HomePage() {
         />
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">a brand company</span>
+            <span className="eyebrow">
+              a <BWordRotate /> company
+            </span>
           </Reveal>
           <h1 className="display mt-2 text-[clamp(58px,13.5vw,210px)] font-bold">
-            <span className="block">{home.heroLines[0]}</span>
             <span className="block">
-              that <span className="text-accent">move.</span>
+              {home.heroLines[0]} <BWordRotate className="text-[1em]" />
+            </span>
+            <span className="block">
+              {home.heroLines[1]} <span className="text-accent">move.</span>
             </span>
           </h1>
           <p className="lead mt-8 max-w-[540px]">{home.heroSub}</p>
@@ -64,7 +69,8 @@ export default async function HomePage() {
           <div className="mb-16 flex flex-wrap items-end justify-between gap-10">
             <Reveal>
               <h2 className="display max-w-[820px] text-[clamp(38px,6vw,86px)]">
-                brand-led. <span className="text-accent">growth-built.</span>
+                <BWordRotate suffix="-led. " />
+                <span className="text-accent">growth-built.</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -136,7 +142,7 @@ export default async function HomePage() {
           <div className="mb-16 flex flex-wrap items-end justify-between gap-10">
             <Reveal>
               <h2 className="display text-[clamp(38px,6vw,86px)]">
-                the brands we <span className="text-accent">build for</span>
+                the <BWordRotate />s we <span className="text-accent">build for</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -172,7 +178,7 @@ export default async function HomePage() {
             <span className="eyebrow">how we work</span>
           </Reveal>
           <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            one team, built around your brand.{" "}
+            one team, built around your <BWordRotate />.{" "}
             <span className="text-accent">no churn, no hand-offs.</span>
           </h2>
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

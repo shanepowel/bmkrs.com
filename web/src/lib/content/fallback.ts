@@ -19,11 +19,11 @@ export const fallbackNavigation: NavItem[] = [
 
 export const fallbackSiteSettings: SiteSettings = {
   siteName: "bmkrs.",
-  tagline: "we are the brandmakers.",
+  tagline: "we are b makers.",
   description:
     "bmkrs. is a brand company. we shape identity, voice, messaging, pr, and the product and growth to back it up.",
   email: "office@bmkrs.com",
-  copyright: "© 2026 brandmakers (bmkrs). all rights reserved.",
+  copyright: "© 2026 b makers (bmkrs). all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
   offices: [{ name: "london" }, { name: "worldwide" }],
@@ -42,7 +42,7 @@ export const fallbackSiteSettings: SiteSettings = {
 };
 
 export const fallbackHome: HomeContent = {
-  heroLines: ["we make brands", "that move."],
+  heroLines: ["we make", "that"],
   heroSub:
     "we don't just help you build your product. we create its brand, give it a voice, get it heard, and grow it. everything from one team.",
   marqueeItems: [
@@ -60,7 +60,7 @@ export const fallbackHome: HomeContent = {
     lead: "anyone can ship a product. we make people care about it, with a brand, a voice, and a story that earns attention and keeps it.",
   },
   capabilitiesHead: {
-    title: "brand-led. growth-built.",
+    title: "growth-built.",
     subtitle:
       "four equally strong domains, one team. the best brands are built across all of them, not bolted together by five different agencies.",
   },
@@ -190,14 +190,16 @@ export const fallbackMotion: MotionContent = {
   },
   tiersHead: {
     title: "pick your pace.",
-    subtitle: "three rolling plans, scaled to how loud you want to be.",
+    subtitle:
+      "three rolling plans, scaled to how loud you want to be. pricing starts from a monthly threshold, revealed when you are ready to talk.",
   },
   tiers: [
     {
       id: "spark",
       name: "spark",
-      price: "£[2.5k]",
+      priceFrom: "£2.5k",
       priceNote: "/mo",
+      pricingCtaLabel: "see pricing from",
       description: "for brands finding their voice.",
       features: [
         "brand + messaging upkeep",
@@ -211,8 +213,9 @@ export const fallbackMotion: MotionContent = {
       id: "momentum",
       tag: "most popular",
       name: "momentum",
-      price: "£[5k]",
+      priceFrom: "£5k",
       priceNote: "/mo",
+      pricingCtaLabel: "see pricing from",
       description: "for brands building a profile.",
       features: [
         "everything in spark",
@@ -227,8 +230,9 @@ export const fallbackMotion: MotionContent = {
       id: "motion-plus",
       tag: "in-house to full-house",
       name: "motion plus",
-      price: "£[from 9k]",
+      priceFrom: "£9k",
       priceNote: "/mo",
+      pricingCtaLabel: "see pricing from",
       description: "for brands going all-in.",
       features: [
         "everything in momentum",
@@ -252,9 +256,9 @@ export const fallbackMotion: MotionContent = {
 export const fallbackPages: Record<string, CmsPage> = {
   home: {
     slug: "home",
-    title: "bmkrs. we are the brandmakers.",
+    title: "bmkrs. we are b makers.",
     metaDescription: fallbackSiteSettings.description,
-    heroEyebrow: "a brand company",
+    heroEyebrow: "a b company",
     heroTitle: "we make brands that move.",
     heroSubtitle: fallbackHome.heroSub,
     heroCtaLabel: "see our work",
@@ -306,15 +310,15 @@ export const fallbackPages: Record<string, CmsPage> = {
   about: {
     slug: "about",
     title: "about",
-    metaDescription: "we are the brandmakers. a brand company for people with big plans.",
+    metaDescription: "we are b makers. a brand company for people with big plans.",
     heroEyebrow: "about bmkrs",
-    heroTitle: "we are the brandmakers.",
+    heroTitle: "we are b makers.",
     heroSubtitle:
       "a brand company for people with big plans and the nerve to back them. building brands since 2013.",
     sections: [
       { key: "since", content: "2013" },
       { key: "where", content: "london + worldwide" },
-      { key: "what", content: "a brand company" },
+      { key: "what", content: "a b company" },
       {
         key: "intro",
         content:
@@ -337,7 +341,7 @@ export const fallbackPages: Record<string, CmsPage> = {
       },
       {
         key: "closing",
-        content: "we are the brandmakers. it's on the door for a reason.",
+        content: "we are b makers. it's on the door for a reason.",
       },
     ],
   },

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { TierPricingCta } from "@/components/bmkrs/TierPricingCta";
 import { getMotionContent, getPage } from "@/lib/content";
 
 export const metadata = { title: "motion" };
@@ -109,20 +110,17 @@ export default async function MotionPage() {
                     </span>
                   )}
                   <p className="display text-[27px] font-bold">{tier.name}</p>
-                  <p className="display mt-4 text-[42px] font-bold tracking-[-0.04em]">
-                    {tier.price}
-                    {tier.priceNote && (
-                      <small
-                        className={`ml-1 font-body text-sm font-normal ${
-                          tier.featured ? "text-bg/80" : "text-muted"
-                        }`}
-                      >
-                        {tier.priceNote}
-                      </small>
-                    )}
-                  </p>
+                  <div className="mt-4 mb-5">
+                    <TierPricingCta
+                      priceFrom={tier.priceFrom}
+                      priceNote={tier.priceNote}
+                      pricingCtaLabel={tier.pricingCtaLabel}
+                      featured={tier.featured}
+                      contactHref={`/contact?plan=${tier.id}`}
+                    />
+                  </div>
                   <p
-                    className={`mb-5 mt-1 text-sm ${
+                    className={`mb-5 text-sm ${
                       tier.featured ? "text-bg/85" : "text-muted"
                     }`}
                   >

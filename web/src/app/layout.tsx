@@ -19,19 +19,19 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return {
     title: {
-      default: "bmkrs. we are the brandmakers.",
+      default: "bmkrs. we are b makers.",
       template: "%s | bmkrs.",
     },
     description: settings.description,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com"),
     openGraph: {
-      title: "bmkrs. we are the brandmakers.",
+      title: "bmkrs. we are b makers.",
       description: settings.description,
       siteName: settings.siteName,
       images: [
         {
           url: "/images/bmkrs_white_instapic.png",
-          alt: "bmkrs. a brand company",
+          alt: "bmkrs. we are b makers.",
         },
       ],
     },

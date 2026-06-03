@@ -123,8 +123,10 @@ export type MotionTier = {
   id: string;
   tag?: string;
   name: string;
-  price: string;
+  /** Shown only after pricing CTA is activated */
+  priceFrom: string;
   priceNote?: string;
+  pricingCtaLabel?: string;
   description: string;
   features: string[];
   ctaLabel: string;
