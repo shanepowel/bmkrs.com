@@ -43,7 +43,7 @@ Pick **one** layout (do not mix):
 | **`web`** (recommended) | Default, or `npm ci --legacy-peer-deps` from `web/vercel.json` only |
 | **empty** (repo root) | Uses repo root `vercel.json`: `cd web && npm ci --legacy-peer-deps` |
 
-**ENOENT `.../bmkrs.com/web/package.json`:** Root Directory is wrongly set to **`bmkrs.com`** (legacy empty folder). Set it to **`web`**. See `web/VERCEL.md`.
+**ENOENT `.../bmkrs.com/web/package.json`:** Root Directory is wrongly set to **`bmkrs.com`** or **`archive/ftp-stub`** (not the app). Set it to **`web`**. See `web/VERCEL.md`.
 
 **Install exit 254:** Root Directory is `web` but Install Command still uses `--prefix web` (npm looks for `web/web/package.json`). Clear the custom Install Command in Build settings.
 

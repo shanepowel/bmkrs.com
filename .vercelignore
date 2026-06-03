@@ -4,7 +4,10 @@ node_modules
 .DS_Store
 *.log
 
-# Server-specific directories
+# Archived / legacy (not deployed)
+archive/
+
+# Server-specific directories (untracked hosting artifacts)
 ssl/
 repositories/
 tmp/
@@ -15,8 +18,3 @@ mail/
 perl/
 php/
 logs/
-
-# Other projects in the same directory
-amplified/
-benative/
-bmkrs.com/

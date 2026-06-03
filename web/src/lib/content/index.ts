@@ -1,5 +1,6 @@
 import {
   fallbackHome,
+  fallbackMotion,
   fallbackPages,
   fallbackProjects,
   fallbackServices,
@@ -14,7 +15,6 @@ import type {
   Service,
   SiteSettings,
 } from "@/lib/types";
-import { fallbackMotion } from "./fallback";
 import { sanityClient } from "@/lib/sanity/client";
 import {
   homePillarsQuery,
@@ -24,7 +24,6 @@ import {
   servicesQuery,
   siteSettingsQuery,
 } from "@/lib/sanity/queries";
-import { sanityConfigured } from "@/lib/sanity/env";
 
 async function fetchSanity<T>(query: string, params?: Record<string, unknown>): Promise<T | null> {
   if (!sanityClient) return null;
@@ -88,8 +87,4 @@ export async function getProject(slug: string): Promise<Project | null> {
   const data = await fetchSanity<Project>(projectBySlugQuery, { slug });
   if (data) return data;
   return fallbackProjects.find((p) => p.slug === slug) ?? null;
-}
-
-export function isUsingCms(): boolean {
-  return sanityConfigured;
 }

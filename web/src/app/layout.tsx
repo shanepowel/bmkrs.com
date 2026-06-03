@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
 import { getSiteSettings } from "@/lib/content";
 import "./globals.css";
 
@@ -38,19 +36,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
-
   return (
     <html lang="en-GB">
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}>
-        <SiteHeader navigation={settings.navigation} tagline={settings.tagline} />
-        <main className="pt-16">{children}</main>
-        <SiteFooter settings={settings} />
+        {children}
       </body>
     </html>
   );

@@ -85,5 +85,5 @@ commit.pub
 *.temp
 
 # WordPress tree and logs (local only; excluded from git)
-public_html/fdb/
+archive/legacy-public-site/public_html/fdb/
 **/error_log

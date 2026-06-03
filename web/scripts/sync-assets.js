@@ -2,8 +2,9 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.join(__dirname, "..", "..");
-const srcImages = path.join(root, "public_html", "images");
-const srcWorkImages = path.join(root, "public_html", "work", "images");
+const legacyPublic = path.join(root, "archive", "legacy-public-site", "public_html");
+const srcImages = path.join(legacyPublic, "images");
+const srcWorkImages = path.join(legacyPublic, "work", "images");
 const destImages = path.join(__dirname, "..", "public", "images");
 const destWorkImages = path.join(__dirname, "..", "public", "work", "images");
 
@@ -35,7 +36,7 @@ if (fs.existsSync(srcWorkImages)) {
 }
 if (!synced) {
   console.warn(
-    "public_html assets not found — using committed files in web/public if present."
+    "archive/legacy-public-site/public_html assets not found — using web/public if present."
   );
 }
 console.log("Asset sync step complete");
