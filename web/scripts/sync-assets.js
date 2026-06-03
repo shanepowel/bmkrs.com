@@ -42,18 +42,27 @@ for (const relPath of required) {
 function pruneDir(dirRel, allowedRelPaths) {
   const dir = path.join(publicRoot, dirRel);
   if (!fs.existsSync(dir)) return;
-  const allowedNames = new Set(
-    allowedRelPaths
-      .filter((p) => p.startsWith(`${dirRel}/`))
-      .map((p) => p.slice(dirRel.length + 1))
-  );
+
+  const prefix = `${dirRel}/`;
+  const allowedHere = allowedRelPaths.filter((p) => p.startsWith(prefix));
+
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
+    const childRel = `${dirRel}/${entry.name}`;
+    const full = path.join(publicRoot, childRel);
+
     if (entry.isDirectory()) {
-      fs.rmSync(full, { recursive: true, force: true });
+      const keepSubtree = allowedHere.some(
+        (p) => p === childRel || p.startsWith(`${childRel}/`)
+      );
+      if (keepSubtree) {
+        pruneDir(childRel, allowedRelPaths);
+      } else {
+        fs.rmSync(full, { recursive: true, force: true });
+      }
       continue;
     }
-    if (!allowedNames.has(entry.name)) {
+
+    if (!allowedRelPaths.includes(childRel)) {
       fs.unlinkSync(full);
     }
   }
