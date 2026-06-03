@@ -82,3 +82,7 @@ commit.pub
 # Temporary files
 *.tmp
 *.temp
+
+# WordPress tree and logs (local only; excluded from git)
+public_html/fdb/
+**/error_log
