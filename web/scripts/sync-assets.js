@@ -24,6 +24,18 @@ function copyDir(src, dest) {
   }
 }
 
-copyDir(srcImages, destImages);
-copyDir(srcWorkImages, destWorkImages);
-console.log("Assets synced to web/public");
+let synced = false;
+if (fs.existsSync(srcImages)) {
+  copyDir(srcImages, destImages);
+  synced = true;
+}
+if (fs.existsSync(srcWorkImages)) {
+  copyDir(srcWorkImages, destWorkImages);
+  synced = true;
+}
+if (!synced) {
+  console.warn(
+    "public_html assets not found — using committed files in web/public if present."
+  );
+}
+console.log("Asset sync step complete");
