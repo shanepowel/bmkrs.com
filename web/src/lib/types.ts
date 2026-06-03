@@ -18,12 +18,25 @@ export type SocialLink = {
   url: string;
 };
 
+export type Office = {
+  name: string;
+};
+
+export type DepartmentEmail = {
+  label: string;
+  email: string;
+};
+
 export type SiteSettings = {
   siteName: string;
   tagline: string;
   description: string;
   email: string;
   copyright: string;
+  footerQuip?: string;
+  offices?: Office[];
+  departments?: DepartmentEmail[];
+  networkEmail?: string;
   socialLinks: SocialLink[];
   navigation: NavItem[];
 };

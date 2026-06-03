@@ -23,11 +23,20 @@ export const fallbackSiteSettings: SiteSettings = {
   description:
     "bmkrs. is a brand company. we shape identity, voice, messaging, pr, and the product and growth to back it up.",
   email: "office@bmkrs.com",
-  copyright: "© brandmakers (bmkrs)",
+  copyright: "© 2026 brandmakers (bmkrs). all rights reserved.",
+  footerQuip:
+    "they say no one reads the footer. you made it this far, so let's make something.",
+  offices: [{ name: "london" }, { name: "worldwide" }],
+  departments: [
+    { label: "new business", email: "hello@bmkrs.com" },
+    { label: "pr & talks", email: "press@bmkrs.com" },
+    { label: "work inquiries", email: "work@bmkrs.com" },
+    { label: "say hi", email: "office@bmkrs.com" },
+  ],
+  networkEmail: "network@bmkrs.com",
   socialLinks: [
-    { platform: "Instagram", url: "https://instagram.com/bmkrs.global" },
-    { platform: "Facebook", url: "https://facebook.com/bmkrs.global" },
-    { platform: "YouTube", url: "https://youtube.com/bmkrs.global" },
+    { platform: "instagram", url: "https://instagram.com/bmkrs.global" },
+    { platform: "linkedin", url: "https://www.linkedin.com/company/bmkrs" },
   ],
   navigation: fallbackNavigation,
 };
@@ -297,25 +306,38 @@ export const fallbackPages: Record<string, CmsPage> = {
   about: {
     slug: "about",
     title: "about",
-    metaDescription: "we are the brandmakers. a brand company for brands with ambition.",
+    metaDescription: "we are the brandmakers. a brand company for people with big plans.",
     heroEyebrow: "about bmkrs",
     heroTitle: "we are the brandmakers.",
-    heroSubtitle: "a brand company for brands with ambition. everything from one team.",
+    heroSubtitle:
+      "a brand company for people with big plans and the nerve to back them. building brands since 2013.",
     sections: [
+      { key: "since", content: "2013" },
+      { key: "where", content: "london + worldwide" },
+      { key: "what", content: "a brand company" },
       {
-        key: "body1",
+        key: "intro",
         content:
-          "we build brands worth choosing. we shape your identity, your voice, and the messaging that makes people care, then build the product, content, and pr to back it up.",
+          "we started in 2013, not as a design studio, but as a team of builders.",
       },
       {
         key: "body2",
         content:
-          "we work as one dedicated team, not a revolving door. and when a brief calls for a skill we don't keep in-house, we bring in our extended network through motion plus. one relationship, an almost unlimited team.",
+          "we spent years inside big, complicated organisations, building the teams and the delivery that made ambitious things actually happen. public sector, regulated industries, the kind of work with real stakes. we got good at it. genuinely good.",
       },
       {
-        key: "est",
-        title: "est.",
-        content: "[2013]",
+        key: "body3",
+        content:
+          "but we kept seeing the same thing. brilliant products, built by brilliant people, that nobody outside the building had ever heard of. and every time, the better-told brand won. not the better product. the better-told one.",
+      },
+      {
+        key: "body4",
+        content:
+          "so we started building the other half. the identity, the voice, the story, the noise that makes people actually care. we kept the delivery rigour from the old days and pointed it at brand. more than a decade on, that is the whole job.",
+      },
+      {
+        key: "closing",
+        content: "we are the brandmakers. it's on the door for a reason.",
       },
     ],
   },

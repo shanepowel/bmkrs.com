@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getPage } from "@/lib/content";
 
@@ -12,11 +11,20 @@ const beliefs = [
   { num: "04", title: "one team, all in.", body: "no churn, no hand-offs, no excuses." },
 ];
 
+function sectionText(page: Awaited<ReturnType<typeof getPage>>, key: string) {
+  return page.sections?.find((s) => s.key === key)?.content;
+}
+
 export default async function AboutPage() {
   const page = await getPage("about");
-  const body1 = page.sections?.find((s) => s.key === "body1")?.content;
-  const body2 = page.sections?.find((s) => s.key === "body2")?.content;
-  const est = page.sections?.find((s) => s.key === "est")?.content;
+  const since = sectionText(page, "since");
+  const where = sectionText(page, "where");
+  const what = sectionText(page, "what");
+  const intro = sectionText(page, "intro");
+  const body2 = sectionText(page, "body2");
+  const body3 = sectionText(page, "body3");
+  const body4 = sectionText(page, "body4");
+  const closing = sectionText(page, "closing");
 
   return (
     <>
@@ -42,20 +50,46 @@ export default async function AboutPage() {
       <section className="section-pad pt-0">
         <div className="wrap grid gap-14 md:grid-cols-[200px_1fr]">
           <Reveal>
-            <p className="text-[13px] font-semibold text-accent">est.</p>
-            <p className="mt-1 text-base">{est || "[2013]"}</p>
+            <dl className="space-y-6">
+              {since && (
+                <div>
+                  <dt className="text-[13px] font-semibold text-accent">since</dt>
+                  <dd className="mt-1 text-base">{since}</dd>
+                </div>
+              )}
+              {where && (
+                <div>
+                  <dt className="text-[13px] font-semibold text-accent">where</dt>
+                  <dd className="mt-1 text-base">{where}</dd>
+                </div>
+              )}
+              {what && (
+                <div>
+                  <dt className="text-[13px] font-semibold text-accent">what</dt>
+                  <dd className="mt-1 text-base">{what}</dd>
+                </div>
+              )}
+            </dl>
           </Reveal>
-          <div className="space-y-6">
-            {body1 && (
+          <div className="space-y-5">
+            {intro && (
               <Reveal delay={1}>
-                <p className="display text-[clamp(20px,2.5vw,32px)] font-semibold leading-[1.18] tracking-[-0.02em]">
-                  {body1}
+                <p className="display text-[clamp(24px,3.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                  {intro}
                 </p>
               </Reveal>
             )}
-            {body2 && (
-              <Reveal delay={2}>
-                <p className="text-[clamp(18px,2vw,23px)] text-muted">{body2}</p>
+            {[body2, body3, body4].map(
+              (paragraph, i) =>
+                paragraph && (
+                  <Reveal key={paragraph.slice(0, 24)} delay={((i + 1) % 2) as 0 | 1}>
+                    <p className="text-[clamp(17px,1.6vw,19px)] text-muted">{paragraph}</p>
+                  </Reveal>
+                )
+            )}
+            {closing && (
+              <Reveal>
+                <p className="display text-[clamp(20px,2.2vw,28px)] font-semibold">{closing}</p>
               </Reveal>
             )}
           </div>
