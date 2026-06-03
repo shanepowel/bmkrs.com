@@ -18,6 +18,10 @@ You have **Root Directory = `bmkrs.com`** and an install command with **`--prefi
 **Fix:** Project → Settings → General → set **Root Directory** to `web`.  
 Then Project → Settings → Build → **clear** any custom Install Command that contains `--prefix web`. Redeploy.
 
+## Sanity Studio build deps
+
+If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `web/package.json` lists them as direct dependencies (required for `npm ci` on Vercel).
+
 ## Environment variables
 
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
