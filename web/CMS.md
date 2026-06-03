@@ -36,14 +36,22 @@ Legacy URLs (`/work/project1`, etc.) redirect to the new slugs.
 
 ## Vercel
 
-Either approach works:
+Pick **one** layout (do not mix):
 
-- **Recommended:** set **Root Directory** to `web` in Project → Settings → General (not valid in `vercel.json`).
-- **Or** leave Root Directory empty — the repo root `vercel.json` and `package.json` `build` script run the Next app from `web/`.
+| Root Directory | Install command |
+|----------------|-----------------|
+| **`web`** (recommended) | Default, or `npm ci --legacy-peer-deps` from `web/vercel.json` only |
+| **empty** (repo root) | Uses repo root `vercel.json`: `cd web && npm ci --legacy-peer-deps` |
+
+**ENOENT `.../bmkrs.com/web/package.json`:** Root Directory is wrongly set to **`bmkrs.com`** (legacy empty folder). Set it to **`web`**. See `web/VERCEL.md`.
+
+**Install exit 254:** Root Directory is `web` but Install Command still uses `--prefix web` (npm looks for `web/web/package.json`). Clear the custom Install Command in Build settings.
 
 Add env vars in Project → Settings → Environment Variables:
-3. Connect domain **bmkrs.com** in Project → Domains
-4. Optional: `CONTACT_WEBHOOK_URL` for form submissions
+
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SITE_URL`
+
+Connect domain **bmkrs.com** in Project → Domains. Optional: `CONTACT_WEBHOOK_URL` for form submissions.
 
 ## Without Sanity
 
