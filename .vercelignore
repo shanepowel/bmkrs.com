@@ -4,8 +4,11 @@ node_modules
 .DS_Store
 *.log
 
-# Archived / legacy (not deployed)
-archive/
+# Archived apps (not needed for web build; legacy images are committed under web/public)
+archive/amplified/
+archive/benative/
+archive/docs/
+archive/ftp-stub/
 
 # Server-specific directories (untracked hosting artifacts)
 ssl/
