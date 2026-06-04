@@ -1,7 +1,5 @@
 "use client";
 
-import { ImageStrip } from "@/components/bmkrs/ImageStrip";
-import { motionShowcaseImages } from "@/lib/content/image-fallbacks";
 import { useRef, useState } from "react";
 
 type Reason = "project" | "press" | "network" | "hi";
@@ -82,7 +80,6 @@ export function ContactExperience({ fallbackEmail }: { fallbackEmail: string }) 
               london
             </text>
           </svg>
-          <ImageStrip images={motionShowcaseImages} className="contact-image-strip" />
         </div>
       </section>
 

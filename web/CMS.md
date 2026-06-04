@@ -70,6 +70,8 @@ After import, link each **make** case study to its product via `productType`, an
 
 **Products** — nine documents in `products.ndjson` (start / make / grow). Grow-tier motion products power `/motion`. CTAs are always “let’s talk”; no prices on site.
 
+**Home hero reel** — in Site settings: upload `heroReel` (video file) or set `heroReelUrl`, plus optional `heroPoster`. When either is set, the homepage uses the full-bleed reel hero (respects `prefers-reduced-motion`). Until then, the collage + rotating headline layout is shown.
+
 Legacy URLs (`/work/project1`, etc.) redirect to the new slugs.
 
 ## Vercel

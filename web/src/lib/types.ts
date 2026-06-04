@@ -45,6 +45,8 @@ export type SiteSettings = {
   networkEmail?: string;
   socialLinks: SocialLink[];
   navigation: NavItem[];
+  heroReelUrl?: string;
+  heroPoster?: string;
 };
 
 export type TeamMember = {

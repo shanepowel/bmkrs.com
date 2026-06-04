@@ -64,6 +64,25 @@ export const siteSettings = defineType({
         { name: "ogImage", type: "image" },
       ],
     }),
+    defineField({
+      name: "heroReel",
+      title: "Home hero reel",
+      type: "file",
+      options: { accept: "video/*" },
+      description: "Short loop for the homepage hero. Respects prefers-reduced-motion.",
+    }),
+    defineField({
+      name: "heroReelUrl",
+      title: "Home hero reel URL",
+      type: "url",
+      description: "Optional external video URL if not using the file field above.",
+    }),
+    defineField({
+      name: "heroPoster",
+      title: "Home hero poster",
+      type: "image",
+      description: "Shown when the reel is off or reduced-motion is preferred.",
+    }),
   ],
   preview: { prepare: () => ({ title: "Site settings" }) },
 });

@@ -51,7 +51,6 @@
 .image-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bmkrs-space-2); margin-top: var(--bmkrs-space-4); }
 @media (min-width: 640px) { .image-strip { grid-template-columns: repeat(4, 1fr); } }
 .image-strip-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--bmkrs-radius); border: 1px solid var(--bmkrs-line); }
-.contact-page .image-strip-item { border-color: rgba(245,241,234,0.2); }
 .prose-with-media { display: grid; gap: var(--bmkrs-space-4); }
 @media (min-width: 900px) { .prose-with-media { grid-template-columns: 1fr 1fr; align-items: start; } }
 
@@ -220,6 +219,45 @@
   font-size: 0.875rem;
   color: var(--bmkrs-muted);
 }
+
+/* hero with brand reel */
+.hero--reel {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: var(--bmkrs-space-6);
+  max-width: none;
+  overflow: hidden;
+}
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-bg { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg--solid { background: var(--bmkrs-ink-80); }
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(24, 22, 19, 0.82) 0%, rgba(24, 22, 19, 0.5) 55%, rgba(24, 22, 19, 0.2) 100%);
+}
+.hero-content { position: relative; z-index: 1; width: 100%; }
+.hero--reel .hero-cta { margin-top: var(--bmkrs-space-4); }
+
+/* how we work (process steps) */
+.process {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--bmkrs-space-4);
+}
+.process-step { border-top: 1px solid rgba(24, 22, 19, 0.18); padding-top: var(--bmkrs-space-2); }
+.process-num { color: var(--bmkrs-accent); }
+.process-step h3 { font-family: var(--bmkrs-font-display); }
+
+/* testimonials: lead quote */
+.testimonial--lead { border-left: none; margin: 0; padding-left: 0; }
+.testimonial--lead blockquote { max-width: 28ch; }
+.testimonial--lead figcaption { margin-top: var(--bmkrs-space-2); }
 
 .team-photo { position: relative; }
 .journal-cover { position: relative; }

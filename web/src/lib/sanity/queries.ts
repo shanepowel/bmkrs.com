@@ -13,6 +13,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   socialLinks,
   socials[]{ platform, url },
   defaultSeo{ metaTitle, metaDescription, "ogImage": ogImage.asset->url },
+  "heroReelUrl": coalesce(heroReel.asset->url, heroReelUrl),
+  "heroPoster": heroPoster.asset->url,
   "navigation": navigation[]->{
     label,
     href,
