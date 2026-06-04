@@ -2,12 +2,29 @@
 
 ## Correct settings
 
+Use **one** of these setups (not both).
+
+### A — Root Directory = `web` (simplest)
+
 | Setting | Value |
 |---------|--------|
 | **Root Directory** | `web` |
-| **Framework** | Next.js |
-| **Install Command** | *(leave empty)* or `npm ci --legacy-peer-deps` |
-| **Build Command** | *(leave empty)* or `npm run build` |
+| **Framework** | Next.js (auto-detected) |
+| **Install Command** | *(empty)* or `npm ci --legacy-peer-deps` |
+| **Build Command** | *(empty)* or `npm run build` |
+
+Vercel reads `web/package.json` and `web/vercel.json`. Ignore the repo-root `vercel.json` for this project.
+
+### B — Root Directory blank (monorepo at repo root)
+
+| Setting | Value |
+|---------|--------|
+| **Root Directory** | *(empty)* |
+| **Framework** | Next.js (from root `vercel.json` `"framework": "nextjs"`) |
+| **Install / Build** | From root `vercel.json`: `npm run install:web`, `npm run build --prefix web` |
+| **Output** | `web/.next` |
+
+Root `vercel.json` **must** include `"framework": "nextjs"` or Vercel looks for `next` in the root `package.json` and fails.
 
 Do **not** set Root Directory to `bmkrs.com` — that folder has no `package.json`.
 
@@ -24,7 +41,7 @@ Usually means the **Install Command never ran in `web/`** before `npm run build 
 
 **Option A (recommended):** Root Directory = **`web`**, Install = `npm ci --legacy-peer-deps`, Build = `npm run build`.
 
-**Option B (repo root):** Use the root `vercel.json`: Install = `npm run install:web`, Build = `npm run build --prefix web`. Do not leave Install empty when building with `--prefix web`.
+**Option B (repo root):** Root Directory blank; root `vercel.json` with `"framework": "nextjs"`, Install = `npm run install:web`, Build = `npm run build --prefix web`, Output = `web/.next`.
 
 `react-is` is a direct dependency in `web/package.json`; it must be present under `web/node_modules` at build time.
 
