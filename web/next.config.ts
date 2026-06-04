@@ -1,6 +1,21 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 
+const projectDir = path.dirname(fileURLToPath(import.meta.url));
+
 const nextConfig: NextConfig = {
+  // Keep module resolution inside web/ (avoids picking up unrelated lockfiles above the repo).
+  turbopack: {
+    root: projectDir,
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "react-is": path.join(projectDir, "node_modules/react-is"),
+    };
+    return config;
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "npm run dev --prefix web",
-    "build": "cd web && npm run build",
-    "vercel-build": "cd web && npm run build",
+    "install:web": "npm ci --legacy-peer-deps --prefix web",
+    "build": "npm run install:web && npm run build --prefix web",
+    "vercel-build": "npm run build",
     "lint": "npm run lint --prefix web",
     "start": "npm run start --prefix web"
   },

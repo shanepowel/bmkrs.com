@@ -18,6 +18,16 @@ You have **Root Directory = `bmkrs.com`** and an install command with **`--prefi
 **Fix:** Project → Settings → General → set **Root Directory** to `web`.  
 Then Project → Settings → Build → **clear** any custom Install Command that contains `--prefix web`. Redeploy.
 
+## Error: `Can't resolve 'react-is'` (Sanity Studio)
+
+Usually means the **Install Command never ran in `web/`** before `npm run build --prefix web`.
+
+**Option A (recommended):** Root Directory = **`web`**, Install = `npm ci --legacy-peer-deps`, Build = `npm run build`.
+
+**Option B (repo root):** Use the root `vercel.json`: Install = `npm run install:web`, Build = `npm run build --prefix web`. Do not leave Install empty when building with `--prefix web`.
+
+`react-is` is a direct dependency in `web/package.json`; it must be present under `web/node_modules` at build time.
+
 ## Mobile
 
 - Layout uses `100dvh` / `100svh`, safe-area insets (notch/home indicator), and `viewport-fit: cover`.
