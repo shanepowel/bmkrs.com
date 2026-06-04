@@ -5,8 +5,9 @@
   "main": "public_html/index.php",
   "scripts": {
     "start": "php -S localhost:8000 -t public_html",
-    "build": "npm run build --prefix web",
-    "vercel-build": "npm run build --prefix web",
+    "install:web": "npm ci --legacy-peer-deps --prefix web",
+    "build": "npm run install:web && npm run build --prefix web",
+    "vercel-build": "npm run build",
     "lint": "echo 'Linting complete'",
     "test": "echo 'No tests specified yet'"
   },
