@@ -43,11 +43,11 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 **Seed import** (from `web/`, with Sanity CLI logged in):
 
+From `web/` (order matters: products reference case studies; case studies reference products):
+
 ```bash
-npx sanity dataset import sanity/seed/case-studies.ndjson production --replace
-npx sanity dataset import sanity/seed/products.ndjson production
-npx sanity dataset import sanity/seed/about.ndjson production
-npx sanity dataset import sanity/seed/posts.ndjson production
+chmod +x scripts/import-seeds.sh
+./scripts/import-seeds.sh production
 ```
 
 After import, link each **make** case study to its product via `productType`, and upload post cover images plus team photos (same pattern as BMK-3).
