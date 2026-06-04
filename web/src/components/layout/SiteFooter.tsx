@@ -1,75 +1,88 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { SiteSettings } from "@/lib/types";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
+  const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
+  const press = settings.pressEmail ?? "press@bmkrs.com";
+  const year = new Date().getFullYear();
+
+  const reg = [
+    settings.companyName,
+    settings.companyNumber ? `company no. ${settings.companyNumber}` : null,
+    settings.registeredAddress,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
   return (
-    <footer className="border-t border-white/10 bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-3">
-          <div>
-            <Image
-              src="/images/white.png"
-              alt="BMKRS — design and growth studio"
-              width={100}
-              height={28}
-              className="mb-4 h-7 w-auto"
-            />
-            <p className="text-lg font-medium text-white">{settings.tagline}</p>
-            <a
-              href={`mailto:${settings.email}`}
-              className="mt-2 inline-block text-sm text-brand hover:underline"
-            >
-              {settings.email}
-            </a>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted">
-              Explore
-            </h3>
-            <ul className="space-y-2">
-              {settings.navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-white/80 hover:text-brand"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted">
-              Connect
-            </h3>
-            <ul className="space-y-2">
-              {settings.socialLinks.map((link) => (
-                <li key={link.platform}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/80 hover:text-brand"
-                  >
-                    {link.platform}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <footer className="site-footer">
+      <div className="site-footer-top">
+        <div className="footer-brand">
+          <span className="wordmark">bmkrs.</span>
+          <p className="muted">a brand company run by builders.</p>
+          <p className="footer-thesis">the better-told brand wins. we make sure it&apos;s yours.</p>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>{settings.copyright}</p>
-          <div className="flex gap-6">
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
+        <div className="footer-cols">
+          <div>
+            <span className="eyebrow">work with us</span>
+            <ul role="list">
+              <li>
+                <Link href="/services">services</Link>
+              </li>
+              <li>
+                <Link href="/motion">motion</Link>
+              </li>
+              <li>
+                <Link href="/work">work</Link>
+              </li>
+              <li>
+                <Link href="/journal">journal</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <span className="eyebrow">studio</span>
+            <ul role="list">
+              <li>
+                <Link href="/about">about</Link>
+              </li>
+              <li>
+                <Link href="/contact">contact</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <span className="eyebrow">say hello</span>
+            <ul role="list">
+              <li>
+                <a href={`mailto:${general}`}>{general}</a>
+              </li>
+              <li>
+                <a href={`mailto:${press}`}>{press}</a> <span className="muted">(press)</span>
+              </li>
+            </ul>
+            {settings.socialLinks.length ? (
+              <ul role="list" className="footer-socials">
+                {settings.socialLinks.map((s) => (
+                  <li key={s.platform}>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">
+                      {s.platform}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
+      </div>
+
+      <div className="site-footer-bottom">
+        <p className="muted">london, and wherever you are.</p>
+        {reg ? <p className="muted footer-reg">{reg}</p> : null}
+        <p className="muted">
+          © {year} {settings.companyName ?? "b makers (bmkrs)"}. they say no one reads the footer. hi.
+        </p>
       </div>
     </footer>
   );

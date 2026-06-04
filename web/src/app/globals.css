@@ -1,27 +1,277 @@
+@import "../styles/tokens.css";
+@import "../styles/components.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #08080c;
-  --surface: #12121a;
-  --foreground: #f4f4f5;
-  --muted: #a1a1aa;
-  --brand: #e85d4c;
-  --brand-hover: #f07060;
+  --bg: var(--bmkrs-paper-bright, #fbf9f5);
+  --ink: var(--bmkrs-ink, #181613);
+  --muted: #7c766c;
+  --accent: var(--bmkrs-accent, #e4502a);
+  --line: rgba(24, 22, 19, 0.12);
+  --radius: 24px;
+  --maxw: 1320px;
+  --pad: clamp(16px, 4vw, 84px);
+  --page-top: max(0px, env(safe-area-inset-top, 0px));
+  --page-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -3rem;
+  background: var(--accent);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  z-index: 100;
+  transition: top 0.2s ease;
+  border-radius: 0 0 var(--bmkrs-radius, 2px) 0;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1320px];
+  }
+
+  .section-pad {
+    padding: clamp(48px, 10vw, 150px) var(--pad);
+  }
+
+  .page-top {
+    padding-top: var(--page-top);
+  }
+
+  .page-hero {
+    @apply page-top flex flex-col justify-center overflow-x-clip px-[var(--pad)];
+    min-height: 100dvh;
+    min-height: 100svh;
+    padding-bottom: calc(4rem + var(--page-bottom));
+  }
+
+  .btn-row {
+    @apply flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:w-auto sm:flex-row sm:flex-wrap;
+  }
+
+  .btn-row .btn-primary,
+  .btn-row .btn-ghost {
+    @apply w-full justify-center sm:w-auto;
+  }
+
+  .touch-target {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center;
+  }
+
+  .sec-head {
+    @apply mb-12 flex w-full flex-col items-start gap-6 sm:mb-16 sm:flex-row sm:items-end sm:justify-between sm:gap-10;
+  }
+
+  .sec-head > *:first-child {
+    @apply min-w-0 flex-1;
+  }
+
+  .sec-head > *:last-child:not(:only-child) {
+    @apply max-w-[340px] shrink-0;
+  }
+
+  .eyebrow {
+    @apply mb-6 inline-flex items-center gap-2.5 text-[11px] font-semibold text-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .section-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+  }
+
+  .meta-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-[3px] w-[22px] rounded-sm bg-accent;
+  }
+
+  .display {
+    font-family: var(--font-display), sans-serif;
+    @apply font-semibold tracking-[-0.04em] leading-[0.95];
+  }
+
+  .accent-text {
+    @apply text-accent;
+  }
+
+  .lead {
+    @apply text-[clamp(17px,2vw,21px)] text-muted max-w-[580px];
+  }
+
+  .block-peach {
+    background: linear-gradient(142deg, #ffe7d6 0%, #ffd0bc 55%, #ffc4de 115%);
+  }
+
+  .block-lilac {
+    background: linear-gradient(142deg, #ece5ff 0%, #d7c9ff 70%);
+  }
+
+  .block-mint {
+    background: linear-gradient(142deg, #d9f2e7 0%, #bee7dc 70%);
+  }
+
+  .block-sky {
+    background: linear-gradient(142deg, #deebff 0%, #c3dcff 70%);
+  }
+
+  .btn-bmkrs {
+    @apply inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full px-6 py-3.5 font-display text-base font-semibold transition touch-manipulation;
+  }
+
+  .btn-primary {
+    @apply btn-bmkrs bg-ink text-bg hover:bg-accent hover:text-white;
+  }
+
+  .btn-ghost {
+    @apply btn-bmkrs border-2 border-ink hover:bg-ink hover:text-bg;
+  }
+
+  .cap-card {
+    @apply grid grid-cols-[1fr_auto] gap-4 overflow-hidden rounded-[var(--radius)] border-2 border-ink bg-bg p-5 transition hover:-translate-y-1.5 hover:bg-ink hover:text-bg sm:p-7 lg:p-9;
+  }
+
+  .cap-card--visual {
+    @apply grid-cols-1 grid-rows-[auto_1fr_auto] p-0 sm:p-0 lg:p-0;
+  }
+
+  .cap-card-media {
+    @apply relative aspect-[16/10] w-full border-b-2 border-ink;
+  }
+
+  .cap-card-body {
+    @apply grid grid-cols-[1fr_auto] gap-4 p-5 sm:p-7 lg:col-span-1 lg:p-7;
+  }
+
+  .cap-card:hover p {
+    @apply text-bg/80;
+  }
+
+  .proj-tile .proj-media {
+    @apply relative aspect-[4/3] overflow-hidden rounded-[var(--radius)];
+  }
+
+  .proj-tile.featured .proj-media {
+    @apply aspect-[4/3] md:aspect-[21/9];
+  }
+
+  .field-label {
+    @apply mb-2 block text-[13px] font-semibold text-accent;
+  }
+
+  .field-input {
+    @apply w-full rounded-[14px] border-2 border-ink bg-bg px-4 py-3.5 text-base text-ink outline-none transition focus:border-accent md:text-[17px];
+  }
+
+  .nocase {
+    text-transform: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 24s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+@keyframes b-word-spin {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.b-word-spin {
+  animation: b-word-spin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-word-spin {
+    animation: none;
   }
 }

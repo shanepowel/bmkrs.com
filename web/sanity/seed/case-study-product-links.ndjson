@@ -1,0 +1,4 @@
+{"_id":"caseStudy-copa","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}
+{"_id":"caseStudy-fdb","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-storefront"}}
+{"_id":"caseStudy-smoothies","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}
+{"_id":"caseStudy-flipster","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}

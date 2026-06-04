@@ -4,7 +4,13 @@ node_modules
 .DS_Store
 *.log
 
-# Server-specific directories
+# Archived apps (not needed for web build; legacy images are committed under web/public)
+archive/amplified/
+archive/benative/
+archive/docs/
+archive/ftp-stub/
+
+# Server-specific directories (untracked hosting artifacts)
 ssl/
 repositories/
 tmp/
@@ -15,8 +21,3 @@ mail/
 perl/
 php/
 logs/
-
-# Other projects in the same directory
-amplified/
-benative/
-bmkrs.com/

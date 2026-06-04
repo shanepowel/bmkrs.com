@@ -1,53 +1,19 @@
 {
   "name": "bmkrs.com",
   "version": "2.0.0",
-  "description": "BMKRS - Digital Design Agency React Application",
-  "main": "public_html/index.php",
+  "description": "BMKRS — design and growth studio (Next.js)",
+  "private": true,
   "scripts": {
-    "start": "php -S localhost:8000 -t public_html",
-    "install:web": "npm ci --legacy-peer-deps --prefix web",
+    "dev": "npm run dev --prefix web",
+    "install:web": "cd web && npm ci --legacy-peer-deps",
     "build": "npm run install:web && npm run build --prefix web",
     "vercel-build": "npm run build",
-    "lint": "echo 'Linting complete'",
-    "test": "echo 'No tests specified yet'"
+    "lint": "npm run lint --prefix web",
+    "start": "npm run start --prefix web"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/bmkrs.com.git"
+    "url": "git+https://github.com/shanepowel/bmkrs.com.git"
   },
-  "keywords": [
-    "react",
-    "digital-agency",
-    "web-design",
-    "branding",
-    "marketing"
-  ],
-  "author": "BMKRS",
-  "license": "UNLICENSED",
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-motion": "^0.5.2"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "notes": {
-    "cdn": "This project uses CDN-hosted libraries (React, ReactDOM, Babel, React Motion) loaded directly in HTML files. Dependencies listed here are for reference only.",
-    "babel": "Using Babel Standalone 6.26.0 via CDN for in-browser JSX transpilation",
-    "architecture": "Hybrid React + legacy jQuery application with shared components and page-specific entry points"
-  }
+  "license": "UNLICENSED"
 }

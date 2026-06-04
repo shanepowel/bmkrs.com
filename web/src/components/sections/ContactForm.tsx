@@ -1,25 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 
 const serviceOptions = [
-  "Branding & Identity",
-  "Websites & Digital",
-  "eCommerce",
-  "Performance Marketing",
-  "Motion",
-  "Not sure yet",
+  "branding",
+  "voice + messaging",
+  "pr",
+  "product + web",
+  "motion",
+  "not sure yet",
 ];
 
 export function ContactForm({ email }: { email: string }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [service, setService] = useState(serviceOptions[0]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
+    data.service = service;
 
     try {
       const res = await fetch("/api/contact", {
@@ -29,80 +32,82 @@ export function ContactForm({ email }: { email: string }) {
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
-      setMessage("Thanks — we'll be in touch soon.");
+      setMessage("thanks. we'll be in touch within one working day.");
       form.reset();
+      setService(serviceOptions[0]);
     } catch {
       setStatus("error");
-      setMessage(`Something went wrong. Email us at ${email}`);
+      setMessage(`something went wrong. email us at ${email}`);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl bg-surface p-8 ring-1 ring-white/10">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <label className="block">
-          <span className="mb-2 block text-sm text-muted">Name</span>
-          <input
-            name="name"
-            required
-            className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
-          />
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="field">
+        <label className="field-label" htmlFor="name">
+          name
         </label>
-        <label className="block">
-          <span className="mb-2 block text-sm text-muted">Email</span>
-          <input
-            name="email"
-            type="email"
-            required
-            className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
-          />
-        </label>
+        <input id="name" name="name" required className="field-input" placeholder="your name" />
       </div>
-      <label className="block">
-        <span className="mb-2 block text-sm text-muted">Company</span>
+      <div className="field">
+        <label className="field-label" htmlFor="email">
+          email
+        </label>
         <input
-          name="company"
-          className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
-        />
-      </label>
-      <label className="block">
-        <span className="mb-2 block text-sm text-muted">What can we help with?</span>
-        <select
-          name="service"
-          className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
-        >
-          {serviceOptions.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="block">
-        <span className="mb-2 block text-sm text-muted">Tell us about your project</span>
-        <textarea
-          name="message"
-          rows={4}
+          id="email"
+          name="email"
+          type="email"
           required
-          className="w-full rounded-lg border border-white/10 bg-background px-4 py-3 text-white outline-none focus:border-brand"
+          className="field-input nocase"
+          placeholder="you@company.com"
         />
-      </label>
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="w-full rounded-full bg-brand py-3 font-medium text-white hover:bg-brand-hover disabled:opacity-50"
-      >
-        {status === "loading" ? "Sending…" : "Send it over"}
+      </div>
+      <div className="field">
+        <label className="field-label" htmlFor="company">
+          company
+        </label>
+        <input id="company" name="company" className="field-input" placeholder="company name" />
+      </div>
+      <fieldset className="field">
+        <legend className="field-label">what can we help with?</legend>
+        <div className="flex flex-wrap gap-2.5" role="group">
+          {serviceOptions.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              aria-pressed={service === opt}
+              className={`min-h-11 rounded-full border-2 border-ink px-4 py-2.5 text-sm font-medium transition touch-manipulation hover:-translate-y-0.5 hover:bg-ink hover:text-bg ${
+                service === opt ? "bg-ink text-bg" : ""
+              }`}
+              onClick={() => setService(opt)}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+        <input type="hidden" name="service" value={service} />
+      </fieldset>
+      <div className="field">
+        <label className="field-label" htmlFor="message">
+          tell us about your project
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={3}
+          className="field-input resize-y"
+          placeholder="a few lines is plenty."
+        />
+      </div>
+      <button type="submit" className="btn-primary" disabled={status === "loading"}>
+        {status === "loading" ? "sending…" : "send it over"} <ArrowIcon />
       </button>
       {message && (
-        <p className={status === "error" ? "text-red-400" : "text-brand"}>{message}</p>
+        <p className={`min-h-[22px] text-[15px] font-medium ${status === "error" ? "text-ink" : "text-accent"}`}>
+          {message}
+        </p>
       )}
-      <p className="text-center text-sm text-muted">
-        Or email{" "}
-        <a href={`mailto:${email}`} className="text-brand hover:underline">
-          {email}
-        </a>
-      </p>
     </form>
   );
 }

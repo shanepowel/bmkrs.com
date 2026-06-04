@@ -1,17 +1,21 @@
+"use client";
+
+import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { visionTool } from "@sanity/vision";
+import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schemaTypes } from "./sanity/schemaTypes";
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "xwgymvao";
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+import { structure } from "./sanity/structure";
 
 export default defineConfig({
   name: "bmkrs",
-  title: "BMKRS",
+  title: "bmkrs.",
+  basePath: "/studio",
   projectId,
   dataset,
-  basePath: "/studio",
-  plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
+  plugins: [
+    structureTool({ structure }),
+    visionTool({ defaultApiVersion: apiVersion }),
+  ],
 });

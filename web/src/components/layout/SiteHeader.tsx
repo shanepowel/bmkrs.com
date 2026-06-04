@@ -1,93 +1,83 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NavItem } from "@/lib/types";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
 
-type SiteHeaderProps = {
-  navigation: NavItem[];
-  tagline: string;
-};
+const DEFAULT_NAV: NavItem[] = [
+  { label: "work", href: "/work" },
+  { label: "services", href: "/services" },
+  { label: "motion", href: "/motion" },
+  { label: "journal", href: "/journal" },
+  { label: "about", href: "/about" },
+];
 
-export function SiteHeader({ navigation, tagline }: SiteHeaderProps) {
+function navItems(navigation?: NavItem[]) {
+  const fromCms = navigation?.filter(
+    (item) => item.href !== "/" && item.href !== "/contact" && !item.highlight,
+  );
+  return fromCms?.length ? fromCms : DEFAULT_NAV;
+}
+
+export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const items = navItems(navigation);
 
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
-  };
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/images/white.png"
-            alt="BMKRS — design and growth studio"
-            width={120}
-            height={32}
-            className="h-8 w-auto"
-            priority
-          />
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link href="/" className="wordmark" aria-label="bmkrs, home">
+          bmkrs.
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-full px-4 py-2 text-sm transition",
-                isActive(item.href)
-                  ? "bg-white/10 text-white"
-                  : "text-muted hover:text-white",
-                item.highlight && !isActive(item.href) && "text-brand"
-              )}
-            >
+        <nav className="site-nav" aria-label="primary">
+          {items.map((item) => (
+            <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" variant="primary" className="ml-2 !py-2 !text-xs">
-            Start a project
-          </Button>
+          <Link href="/contact" className="btn-primary nav-cta">
+            let&apos;s talk
+          </Link>
         </nav>
 
         <button
           type="button"
-          className="rounded-lg p-2 text-white md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? "Close menu" : "Open menu"}
+          className="nav-toggle"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "close menu" : "open menu"}
+          onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? "close" : "menu"}
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-white/10 bg-surface md:hidden">
-          <nav className="flex flex-col gap-1 px-4 py-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "rounded-lg px-4 py-3 text-base",
-                  isActive(item.href) ? "bg-white/10 text-white" : "text-muted"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <p className="mt-4 px-4 text-xs text-muted">{tagline}</p>
-          </nav>
-        </div>
-      )}
+      {open ? (
+        <nav id="mobile-nav" className="mobile-nav" aria-label="primary">
+          {items.map((item) => (
+            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/contact" className="btn-primary" onClick={() => setOpen(false)}>
+            let&apos;s talk
+          </Link>
+        </nav>
+      ) : null}
     </header>
   );
 }
