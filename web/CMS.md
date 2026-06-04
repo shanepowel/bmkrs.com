@@ -4,7 +4,7 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 ## Quick start
 
-1. Project ID: **xwgymvao** · dataset: **production** (see `web/.env.local`)
+1. Project ID: **xwgymvao** · dataset: **production** (see `web/.env.local`). If Studio shows **default** or will not connect, check `.env.local` is not pointing at the old **laqqhrou** project.
 2. Log in locally: `cd web && npx sanity login`
 3. Link / init (only if studio is not already set up):
    ```bash

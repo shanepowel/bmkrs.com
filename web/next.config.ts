@@ -29,14 +29,18 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    const securityHeaders = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+    ];
     return [
       {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        ],
+        source: "/((?!studio).*)",
+        headers: [...securityHeaders, { key: "X-Frame-Options", value: "SAMEORIGIN" }],
+      },
+      {
+        source: "/studio/:path*",
+        headers: securityHeaders,
       },
     ];
   },

@@ -57,3 +57,4 @@ Reload the affected page; the change is live. No deploy required.
 - The route maps each document type to the pages it affects (see the switch statement). Add cases there if you add new types.
 - `siteSettings` uses a cache tag (`settings`) rather than a path, because it feeds the shared layout/footer. Tag the settings fetch in your layout with `{ next: { tags: ['settings'] } }` for this to take effect.
 - If you serve the site from the apex and `www`, point the webhook at the canonical host you redirect to.
+

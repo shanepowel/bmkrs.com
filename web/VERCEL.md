@@ -50,6 +50,12 @@ After changing image paths in content, run `node web/scripts/sync-assets.js` and
 
 If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `web/package.json` lists them as direct dependencies (required for `npm ci` on Vercel).
 
+## Sanity Studio will not connect
+
+- **Project ID** must be `xwgymvao` (not the duplicate `laqqhrou` project). Match `web/.env.local` and Vercel env vars to `web/.env.example`.
+- **CORS** (sanity.io/manage → API): allow `http://localhost:3000`, `https://bmkrs.com`, and `https://www.bmkrs.com` with credentials. From `web/`: `npx sanity cors add <origin> --credentials --project xwgymvao`.
+- **Access:** your Sanity login must be invited to project **bmkrs** (`xwgymvao`).
+
 ## Environment variables
 
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
