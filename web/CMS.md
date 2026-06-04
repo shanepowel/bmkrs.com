@@ -41,14 +41,26 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 **Case studies** — slugs: `copa`, `fdb`, `carter`, `wanderlust`, `smoothies`, `flipster`. Narrative fields: `brief`, `challenge`, `whatWeDid`, `resultsNarrative`. Leave `results[]` and testimonial quotes empty until the founder adds real figures (placeholders with `{{` are hidden on the site).
 
-**Seed import** (from `web/`, with Sanity CLI logged in):
-
-From `web/` (order matters: products reference case studies; case studies reference products):
+**Seed import** (with Sanity CLI logged in). Run commands from **`web/`** — not the repo root unless you `cd web` first.
 
 ```bash
+cd web
 chmod +x scripts/import-seeds.sh
 ./scripts/import-seeds.sh production
+# or: npm run import:seeds -- production
 ```
+
+**Wrong path error** (`web/web/sanity/seed/... does not exist`): you used `web/sanity/seed/products.ndjson` while the shell was already in `web/`. From `web/`, use `sanity/seed/products.ndjson` (no leading `web/`). Example:
+
+```bash
+cd web
+npx sanity dataset import sanity/seed/products.ndjson production --replace
+# or: npm run import:products -- production
+```
+
+**Document already exists** (`aboutPage` etc.): add `--replace` to overwrite seed docs with the same `_id`, or use `--missing` to skip existing docs. The full seed script always passes `--replace`.
+
+Order matters: products reference case studies; disciplines reference products (see `scripts/import-seeds.sh`).
 
 After import, link each **make** case study to its product via `productType`, and upload post cover images plus team photos (same pattern as BMK-3).
 
