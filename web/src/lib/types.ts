@@ -32,6 +32,12 @@ export type SiteSettings = {
   tagline: string;
   description: string;
   email: string;
+  generalEmail?: string;
+  pressEmail?: string;
+  companyName?: string;
+  companyNumber?: string;
+  registeredAddress?: string;
+  londonAddress?: string;
   copyright: string;
   footerQuip?: string;
   offices?: Office[];
@@ -39,6 +45,13 @@ export type SiteSettings = {
   networkEmail?: string;
   socialLinks: SocialLink[];
   navigation: NavItem[];
+};
+
+export type TeamMember = {
+  name: string;
+  discipline?: string;
+  photoUrl: string;
+  photoAlt: string;
 };
 
 export type PageSection = {
@@ -83,26 +96,45 @@ export type CaseStudyMetric = {
 
 export type CaseStudyTestimonial = {
   quote: string;
-  attribution: string;
+  name?: string;
+  role?: string;
+  company?: string;
+  attribution?: string;
+};
+
+export type ProjectSeo = {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: string;
+};
+
+export type SanityImageRef = {
+  url?: string;
+  alt?: string;
 };
 
 export type Project = {
   slug: string;
   title: string;
   category: string;
+  positioning?: string;
   tagline?: string;
   excerpt?: string;
   sector?: string;
   year?: string;
+  brief?: string;
   context?: string;
   challenge?: string;
   whatWeDid?: string;
+  resultsNarrative?: string;
   outcome?: string;
+  results?: CaseStudyMetric[];
   outcomeMetrics?: CaseStudyMetric[];
   testimonial?: CaseStudyTestimonial;
-  /** @deprecated use challenge */
-  brief?: string;
-  /** @deprecated use outcome */
+  seo?: ProjectSeo;
+  heroImage?: SanityImageRef;
+  gallery?: SanityImageRef[];
+  /** @deprecated use resultsNarrative */
   result?: string;
   serviceTags?: string[];
   client?: string;
@@ -149,7 +181,10 @@ export type HomeStat = {
 
 export type Testimonial = {
   quote: string;
-  attribution: string;
+  name?: string;
+  role?: string;
+  company?: string;
+  attribution?: string;
 };
 
 export type MotionTier = {

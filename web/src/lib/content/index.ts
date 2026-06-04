@@ -7,6 +7,7 @@ import {
   fallbackSiteSettings,
 } from "./fallback";
 import { fallbackJournalArticles } from "./journal-fallback";
+import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   CmsPage,
   HomeContent,
@@ -16,10 +17,16 @@ import type {
   Project,
   Service,
   SiteSettings,
+  TeamMember,
+  Testimonial,
 } from "@/lib/types";
 import { sanityClient } from "@/lib/sanity/client";
 import {
+  caseStudiesQuery,
+  caseStudyBySlugQuery,
+  caseStudySlugsQuery,
   homePillarsQuery,
+  homeTestimonialsQuery,
   journalArticleBySlugQuery,
   journalArticlesQuery,
   pageBySlugQuery,
@@ -27,6 +34,7 @@ import {
   projectsQuery,
   servicesQuery,
   siteSettingsQuery,
+  teamQuery,
 } from "@/lib/sanity/queries";
 
 async function fetchSanity<T>(query: string, params?: Record<string, unknown>): Promise<T | null> {
@@ -39,19 +47,29 @@ async function fetchSanity<T>(query: string, params?: Record<string, unknown>): 
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
-  const data = await fetchSanity<SiteSettings>(siteSettingsQuery);
-  if (data?.navigation?.length) {
-    return {
-      ...fallbackSiteSettings,
-      ...data,
-      navigation: data.navigation.map((n) => ({
-        label: n.label,
-        href: n.href,
-        highlight: n.highlight,
-      })),
-    };
-  }
-  return fallbackSiteSettings;
+  const data = await fetchSanity<SiteSettings & { socials?: SiteSettings["socialLinks"] }>(
+    siteSettingsQuery,
+  );
+  if (!data) return fallbackSiteSettings;
+
+  const socialLinks =
+    data.socialLinks?.length ? data.socialLinks : (data.socials ?? fallbackSiteSettings.socialLinks);
+
+  return {
+    ...fallbackSiteSettings,
+    ...data,
+    email: data.generalEmail || data.email || fallbackSiteSettings.email,
+    generalEmail: data.generalEmail || data.email || fallbackSiteSettings.generalEmail,
+    pressEmail: data.pressEmail || fallbackSiteSettings.pressEmail,
+    socialLinks,
+    navigation: data.navigation?.length
+      ? data.navigation.map((n) => ({
+          label: n.label,
+          href: n.href,
+          highlight: n.highlight,
+        }))
+      : fallbackSiteSettings.navigation,
+  };
 }
 
 export async function getPage(slug: string): Promise<CmsPage> {
@@ -74,8 +92,12 @@ export async function getServices(): Promise<Service[]> {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const data = await fetchSanity<Project[]>(projectsQuery);
-  const list = data?.length ? data : fallbackProjects;
+  const caseStudies = await fetchSanity<Project[]>(caseStudiesQuery);
+  if (caseStudies?.length) {
+    return caseStudies.map(normalizeProject);
+  }
+  const legacy = await fetchSanity<Project[]>(projectsQuery);
+  const list = legacy?.length ? legacy : fallbackProjects;
   return list.map(normalizeProject);
 }
 
@@ -90,21 +112,103 @@ export async function getMotionContent(): Promise<MotionContent> {
 }
 
 export async function getProject(slug: string): Promise<Project | null> {
-  const data = await fetchSanity<Project>(projectBySlugQuery, { slug });
-  if (data) return normalizeProject(data);
+  const fromCaseStudy = await fetchSanity<Project>(caseStudyBySlugQuery, { slug });
+  if (fromCaseStudy) return normalizeProject(fromCaseStudy);
+
+  const legacy = await fetchSanity<Project>(projectBySlugQuery, { slug });
+  if (legacy) return normalizeProject(legacy);
+
   const fallback = fallbackProjects.find((p) => p.slug === slug);
   return fallback ? normalizeProject(fallback) : null;
 }
 
+export async function getCaseStudySlugs(): Promise<string[]> {
+  const slugs = await fetchSanity<string[]>(caseStudySlugsQuery);
+  if (slugs?.length) return slugs;
+  return fallbackProjects.map((p) => p.slug);
+}
+
+export async function getHomeTestimonials(): Promise<Testimonial[]> {
+  const data = await fetchSanity<Testimonial[]>(homeTestimonialsQuery);
+  if (!data?.length) return [];
+  return data.filter((t) => isFilled(t.quote));
+}
+
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  const data = await fetchSanity<
+    { name: string; discipline?: string; photo?: { url?: string; alt?: string } }[]
+  >(teamQuery);
+  if (!data?.length) return [];
+  return data
+    .filter((m) => m.photo?.url)
+    .map((m) => ({
+      name: m.name,
+      discipline: m.discipline,
+      photoUrl: m.photo!.url!,
+      photoAlt: m.photo?.alt || m.name,
+    }));
+}
+
 function normalizeProject(project: Project): Project {
+  const services = project.serviceTags?.length
+    ? project.serviceTags
+    : (project as Project & { services?: string[] }).services;
+
+  const category =
+    project.category ||
+    project.sector ||
+    (services?.[0] as string | undefined) ||
+    "work";
+
+  const testimonial = project.testimonial
+    ? {
+        ...project.testimonial,
+        attribution:
+          project.testimonial.attribution ||
+          [
+            project.testimonial.name,
+            project.testimonial.role,
+            project.testimonial.company,
+          ]
+            .filter(Boolean)
+            .join(", "),
+      }
+    : undefined;
+
+  const thumbnailPath =
+    project.thumbnailPath ||
+    project.heroImage?.url ||
+    "/images/blacklogo.png";
+
+  const media =
+    project.media?.length
+      ? project.media
+      : (project.gallery
+          ?.filter((g) => g.url)
+          .map((g) => ({
+            type: "image" as const,
+            src: g.url!,
+            alt: g.alt || project.title,
+          })) ?? [{ type: "image" as const, src: thumbnailPath, alt: project.title }]);
+
   return {
     ...project,
-    context: project.context || project.excerpt,
-    challenge: project.challenge || project.brief || project.problem,
+    positioning: project.positioning || project.tagline,
+    category,
+    serviceTags: services,
+    brief: project.brief || project.context,
+    challenge: project.challenge || project.problem,
     whatWeDid: project.whatWeDid || project.background,
-    outcome: project.outcome || project.result,
+    resultsNarrative: project.resultsNarrative || project.outcome || project.result,
+    results: project.results || project.outcomeMetrics,
+    outcome: project.resultsNarrative || project.outcome || project.result,
+    testimonial,
+    thumbnailPath,
+    media,
   };
 }
+
+export { isFilled, hasFilledMetrics };
 
 export async function getJournalArticles(): Promise<JournalArticle[]> {
   const data = await fetchSanity<JournalArticle[]>(journalArticlesQuery);

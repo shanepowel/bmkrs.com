@@ -10,10 +10,14 @@ import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { getFeaturedProjects, getHomeContent } from "@/lib/content";
+import { getFeaturedProjects, getHomeContent, getHomeTestimonials } from "@/lib/content";
 
 export default async function HomePage() {
-  const [home, featured] = await Promise.all([getHomeContent(), getFeaturedProjects()]);
+  const [home, featured, testimonials] = await Promise.all([
+    getHomeContent(),
+    getFeaturedProjects(),
+    getHomeTestimonials(),
+  ]);
   const { hero } = home;
   const collage =
     hero.collage ??
@@ -73,7 +77,7 @@ export default async function HomePage() {
           <Reveal>
             <span className="eyebrow">{home.positioning.eyebrow}</span>
           </Reveal>
-          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+          <h2 className="display  mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
             {home.positioning.statement.split("identity, voice + messaging.")[0]}
             <span className="text-accent">identity, voice + messaging.</span>
           </h2>
@@ -85,9 +89,9 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="sec-head">
             <Reveal>
-              <h2 className="display heading-case max-w-[820px] text-[clamp(2rem,6vw,5.375rem)]">
+              <h2 className="display  max-w-[820px] text-[clamp(2rem,6vw,5.375rem)]">
                 <BWordRotate words={CAPABILITY_LED_WORDS} suffix="-led. " />
-                <span className="text-accent">Growth-built.</span>
+                <span className="text-accent">growth-built.</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -102,7 +106,7 @@ export default async function HomePage() {
                     {tile.number}
                   </span>
                   <div>
-                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
+                    <h3 className="display  mb-2.5 text-[clamp(24px,3vw,36px)]">
                       {tile.title}
                     </h3>
                     <p className="max-w-[360px] text-base text-muted">{tile.description}</p>
@@ -148,7 +152,7 @@ export default async function HomePage() {
 
       <div className="pb-0 pt-12 text-center">
         <Reveal>
-          <span className="eyebrow justify-center">Trusted by ambitious brands</span>
+          <span className="eyebrow justify-center">trusted by ambitious brands</span>
         </Reveal>
       </div>
       <Marquee items={home.clientMarquee} dark duration="30s" />
@@ -192,11 +196,11 @@ export default async function HomePage() {
       <section className="section-pad">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">How we work</span>
+            <span className="eyebrow">how we work</span>
           </Reveal>
-          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            One team, built around your <BWordRotate words={TEAM_CENTER_WORDS} />.{" "}
-            <span className="text-accent">No churn, no hand-offs.</span>
+          <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+            one team, built around your <BWordRotate words={TEAM_CENTER_WORDS} />.{" "}
+            <span className="text-accent">no churn, no hand-offs.</span>
           </h2>
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {home.pillars.map((pillar, i) => (
@@ -205,7 +209,7 @@ export default async function HomePage() {
                   <p className="display text-[30px] font-bold text-accent">
                     {["i", "ii", "iii", "iv"][i]}
                   </p>
-                  <h3 className="display heading-case mt-4 text-[25px] capitalize">
+                  <h3 className="display mt-4 text-[25px]">
                     {pillar.title}
                   </h3>
                   <p className="mt-2.5 text-[15px] text-muted">{pillar.description}</p>
@@ -216,16 +220,28 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {home.testimonial && (
+      {testimonials.length > 0 && (
         <section className="section-pad block-peach">
           <div className="wrap">
             <Reveal>
               <span className="eyebrow">what clients say</span>
             </Reveal>
-            <blockquote className="display mt-6 max-w-[17ch] text-[clamp(30px,5.2vw,68px)] font-semibold leading-[1.04] tracking-[-0.03em]">
-              “{home.testimonial.quote}”
-            </blockquote>
-            <p className="mt-8 text-base text-ink/65">{home.testimonial.attribution}</p>
+            <div className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t, i) => (
+                <Reveal key={t.name} delay={(i % 2) as 0 | 1}>
+                  <figure className="case-testimonial border-l-0 pl-0">
+                    <blockquote className="text-[clamp(1.125rem,2vw,1.35rem)]">
+                      &ldquo;{t.quote}&rdquo;
+                    </blockquote>
+                    <figcaption>
+                      {t.name}
+                      {t.role ? `, ${t.role}` : ""}
+                      {t.company ? `, ${t.company}` : ""}
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       )}

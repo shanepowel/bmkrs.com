@@ -49,7 +49,7 @@ export default async function MotionPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="col-span-2">
-                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
+                    <h3 className="display  mb-2.5 text-[clamp(24px,3vw,36px)]">
                       {item.title}
                     </h3>
                     <p className="text-base text-muted">{item.body}</p>
@@ -66,7 +66,7 @@ export default async function MotionPage() {
           <Reveal>
             <span className="eyebrow">{motion.motionPlus.eyebrow}</span>
           </Reveal>
-          <h2 className="display heading-case mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+          <h2 className="display  mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
             From in-house <br />
             to <span className="text-accent">full-house.</span>
           </h2>
@@ -85,7 +85,7 @@ export default async function MotionPage() {
         <div className="wrap">
           <div className="sec-head">
             <Reveal>
-              <h2 className="display heading-case text-[clamp(2rem,6vw,5.375rem)]">
+              <h2 className="display  text-[clamp(2rem,6vw,5.375rem)]">
                 Pick your <span className="text-accent">pace.</span>
               </h2>
             </Reveal>

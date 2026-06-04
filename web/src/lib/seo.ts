@@ -1,4 +1,4 @@
-import type { SiteSettings } from "@/lib/types";
+import type { Project, SiteSettings } from "@/lib/types";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
 
@@ -13,5 +13,21 @@ export function organizationJsonLd(settings: SiteSettings) {
     description: settings.description,
     areaServed: ["London", "Worldwide"],
     sameAs: settings.socialLinks.map((link) => link.url),
+  };
+}
+
+export function creativeWorkJsonLd(project: Project, url: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    url,
+    description: project.positioning || project.tagline,
+    dateCreated: project.year,
+    creator: {
+      "@type": "Organization",
+      name: "bmkrs.",
+      url: siteUrl,
+    },
   };
 }

@@ -1,12 +1,14 @@
+@import "../styles/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #fbf9f5;
-  --ink: #181613;
+  --bg: var(--bmkrs-paper-bright, #fbf9f5);
+  --ink: var(--bmkrs-ink, #181613);
   --muted: #7c766c;
-  --accent: #ff5a36;
+  --accent: var(--bmkrs-accent, #e4502a);
   --line: rgba(24, 22, 19, 0.12);
   --radius: 24px;
   --maxw: 1320px;
@@ -87,22 +89,21 @@ body {
   }
 
   .eyebrow {
-    @apply mb-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide text-accent;
-    text-transform: none;
+    @apply mb-6 inline-flex items-center gap-2.5 text-[11px] font-semibold text-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
   .section-label {
-    text-transform: none;
-    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
   }
 
   .meta-label {
-    text-transform: none;
-    font-size: 13px;
-  }
-
-  .heading-case {
-    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
   }
 
   .eyebrow::before {

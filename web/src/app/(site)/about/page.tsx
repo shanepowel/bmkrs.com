@@ -5,15 +5,16 @@ import { BMakersLine } from "@/components/bmkrs/BMakersLine";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { ABOUT_IDENTITY_WORDS, HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { getPage } from "@/lib/content";
+import Image from "next/image";
+import { getPage, getTeamMembers } from "@/lib/content";
 
 export const metadata = { title: "about" };
 
 const beliefs: { num: string; title: string; body: string; rotate?: boolean }[] = [
-  { num: "01", title: "A brand is a promise.", body: "we make sure yours is worth keeping." },
-  { num: "02", title: "Design does a job.", body: "it isn't decoration. it earns its place." },
-  { num: "03", title: "Growth beats noise.", body: "we measure what actually matters." },
-  { num: "04", title: "One team, all in.", body: "no churn, no hand-offs, no excuses." },
+  { num: "01", title: "a brand is a promise.", body: "we make sure yours is worth keeping." },
+  { num: "02", title: "design does a job.", body: "it isn't decoration. it earns its place." },
+  { num: "03", title: "growth beats noise.", body: "we measure what actually matters." },
+  { num: "04", title: "one team, all in.", body: "no churn, no hand-offs, no excuses." },
 ];
 
 function sectionText(page: Awaited<ReturnType<typeof getPage>>, key: string) {
@@ -42,7 +43,7 @@ function SideBySideSection({
 }
 
 export default async function AboutPage() {
-  const page = await getPage("about");
+  const [page, team] = await Promise.all([getPage("about"), getTeamMembers()]);
   const since = sectionText(page, "since");
   const where = sectionText(page, "where");
   const what = sectionText(page, "what");
@@ -112,7 +113,7 @@ export default async function AboutPage() {
           <div className="space-y-5">
             {intro && (
               <Reveal delay={1}>
-                <p className="display heading-case text-[clamp(24px,3.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                <p className="display  text-[clamp(24px,3.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
                   {intro}
                 </p>
               </Reveal>
@@ -138,7 +139,7 @@ export default async function AboutPage() {
         <section className="section-pad pt-0">
           <div className="wrap space-y-16">
             {(whoWeAre1 || whoWeAre2) && (
-              <SideBySideSection label="Who we are">
+              <SideBySideSection label="who we are">
                 <div className="space-y-5">
                   {whoWeAre1 && (
                     <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whoWeAre1}</p>
@@ -152,7 +153,7 @@ export default async function AboutPage() {
               </SideBySideSection>
             )}
             {(whatWeLove1 || whatWeLove2) && (
-              <SideBySideSection label="What we love" delay={1}>
+              <SideBySideSection label="what we love" delay={1}>
                 <div className="space-y-5">
                   {whatWeLove1 && (
                     <p className="text-[clamp(18px,1.9vw,22px)] leading-relaxed">{whatWeLove1}</p>
@@ -169,14 +170,47 @@ export default async function AboutPage() {
         </section>
       )}
 
+      {team.length > 0 && (
+        <section className="section-pad pt-0">
+          <div className="wrap">
+            <Reveal>
+              <span className="eyebrow">the team</span>
+            </Reveal>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {team.map((member, i) => (
+                <Reveal key={member.name} delay={(i % 2) as 0 | 1}>
+                  <div>
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius)] bg-ink/5">
+                      <Image
+                        src={member.photoUrl}
+                        alt={member.photoAlt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 360px"
+                      />
+                    </div>
+                    <p className="display mt-4 text-[22px] font-semibold">
+                      {member.name.split(" ")[0]}
+                    </p>
+                    {member.discipline && (
+                      <p className="text-sm text-muted">{member.discipline}</p>
+                    )}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section-pad block-mint">
         <div className="wrap">
           <Reveal>
-            <span className="eyebrow">What we stand for</span>
+            <span className="eyebrow">what we stand for</span>
           </Reveal>
           {beliefsIntro && (
             <Reveal delay={1}>
-              <h2 className="display heading-case mt-2 max-w-[20ch] text-[clamp(28px,4vw,48px)] font-semibold leading-[1.05]">
+              <h2 className="display mt-2 max-w-[20ch] text-[clamp(28px,4vw,48px)] font-semibold leading-[1.05]">
                 {beliefsIntro}
               </h2>
             </Reveal>
@@ -189,7 +223,7 @@ export default async function AboutPage() {
                     {b.num}
                   </span>
                   <div className="col-span-2">
-                    <h3 className="display heading-case mb-2.5 text-[clamp(24px,3vw,36px)]">
+                    <h3 className="display mb-2.5 text-[clamp(24px,3vw,36px)]">
                       {"rotate" in b && b.rotate ? (
                         <>
                           a <BWordRotate words={HERO_BRAND_ADJECTIVES} /> {b.title}
@@ -213,7 +247,7 @@ export default async function AboutPage() {
             <SideBySideSection label="The long game">
               <div className="space-y-5">
                 {longGameLead && (
-                  <p className="display heading-case text-[clamp(24px,3.2vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
+                  <p className="display  text-[clamp(24px,3.2vw,44px)] font-semibold leading-[1.06] tracking-[-0.03em]">
                     {longGameLead}
                   </p>
                 )}
@@ -242,7 +276,7 @@ export default async function AboutPage() {
             <div className="mt-8 grid gap-1">
               {creedLines.map((line, i) => (
                 <Reveal key={line} delay={(i % 2) as 0 | 1}>
-                  <p className="display heading-case text-[clamp(26px,4.6vw,58px)] font-semibold leading-[1.05] tracking-[-0.035em]">
+                  <p className="display  text-[clamp(26px,4.6vw,58px)] font-semibold leading-[1.05] tracking-[-0.035em]">
                     <AccentLine content={line} />
                   </p>
                 </Reveal>

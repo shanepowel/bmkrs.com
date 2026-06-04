@@ -9,24 +9,12 @@ const footerCompany = [
   { label: "contact", href: "/contact" },
 ];
 
-const footerClients = [
-  { label: "established brands", href: "/contact" },
-  { label: "growing brands", href: "/contact" },
-  { label: "new brands", href: "/contact" },
-  { label: "all clients", href: "/work" },
-];
-
 const footerServices = [
   { label: "brand + identity", href: "/services#branding" },
   { label: "voice + messaging", href: "/services#voice" },
   { label: "pr + communications", href: "/services#pr" },
   { label: "product, web + growth", href: "/services#product" },
   { label: "launches + motion", href: "/motion" },
-];
-
-const footerNetwork = [
-  { label: "motion plus", href: "/motion" },
-  { label: "for companies", href: "/motion" },
 ];
 
 export function SiteFooter({
@@ -37,8 +25,12 @@ export function SiteFooter({
   caseStudies?: Project[];
 }) {
   const offices = settings.offices ?? [];
-  const departments = settings.departments ?? [];
+  const generalEmail = settings.generalEmail || settings.email || "hello@bmkrs.com";
+  const pressEmail = settings.pressEmail || "press@bmkrs.com";
   const networkEmail = settings.networkEmail ?? "network@bmkrs.com";
+  const companyLine = [settings.companyName, settings.companyNumber && `co. ${settings.companyNumber}`]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <footer className="bg-ink px-[var(--pad)] pb-[max(2.5rem,var(--page-bottom))] pt-[clamp(70px,9vw,120px)] text-bg">
@@ -60,9 +52,9 @@ export function SiteFooter({
           .
         </p>
 
-        <div className="mb-14 grid gap-9 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-14 grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h4 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-accent">company</h4>
+            <h4 className="eyebrow mb-4 text-bg/50">company</h4>
             {footerCompany.map((item) => (
               <Link
                 key={item.href}
@@ -74,14 +66,14 @@ export function SiteFooter({
             ))}
           </div>
           <div>
-            <h4 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-accent">work</h4>
+            <h4 className="eyebrow mb-4 text-bg/50">work</h4>
             {caseStudies.map((project) => (
               <Link
                 key={project.slug}
                 href={`/work/${project.slug}`}
                 className="mb-2.5 block text-sm opacity-80 transition hover:text-accent hover:opacity-100"
               >
-                case: {project.title.toLowerCase()}
+                case: {project.title}
               </Link>
             ))}
             <Link
@@ -92,19 +84,7 @@ export function SiteFooter({
             </Link>
           </div>
           <div>
-            <h4 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-accent">clients</h4>
-            {footerClients.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="mb-2.5 block text-sm opacity-80 transition hover:text-accent hover:opacity-100"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <div>
-            <h4 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-accent">services</h4>
+            <h4 className="eyebrow mb-4 text-bg/50">services</h4>
             {footerServices.map((item) => (
               <Link
                 key={item.label}
@@ -116,48 +96,36 @@ export function SiteFooter({
             ))}
           </div>
           <div>
-            <h4 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-accent">the network</h4>
-            {footerNetwork.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="mb-2.5 block text-sm opacity-80 transition hover:text-accent hover:opacity-100"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href={`mailto:${networkEmail}`}
-              className="nocase mb-2.5 block text-sm opacity-80 transition hover:text-accent hover:opacity-100"
-            >
-              for freelancers
-            </a>
-            <a
-              href={`mailto:${networkEmail}`}
-              className="nocase mb-2.5 block text-sm opacity-80 transition hover:text-accent hover:opacity-100"
-            >
-              {networkEmail}
-            </a>
-          </div>
-        </div>
-
-        {departments.length > 0 && (
-          <div className="mb-9 grid gap-7 border-y border-bg/20 py-10 sm:grid-cols-2 lg:grid-cols-4">
-            {departments.map((dept) => (
-              <div key={dept.label}>
-                <h5 className="mb-2 text-[12px] font-semibold tracking-[0.06em] text-bg/50">
-                  {dept.label}
-                </h5>
+            <h4 className="eyebrow mb-4 text-bg/50">contact</h4>
+            <div className="space-y-4">
+              <div>
+                <p className="mb-1 text-[11px] uppercase tracking-[0.12em] text-bg/45">general</p>
                 <a
-                  href={`mailto:${dept.email}`}
+                  href={`mailto:${generalEmail}`}
                   className="nocase font-display text-[clamp(16px,1.5vw,21px)] font-semibold hover:text-accent"
                 >
-                  {dept.email}
+                  {generalEmail}
                 </a>
               </div>
-            ))}
+              <div>
+                <p className="mb-1 text-[11px] uppercase tracking-[0.12em] text-bg/45">press</p>
+                <a
+                  href={`mailto:${pressEmail}`}
+                  className="nocase font-display text-[clamp(16px,1.5vw,21px)] font-semibold hover:text-accent"
+                >
+                  {pressEmail}
+                </a>
+              </div>
+            </div>
+            <p className="mt-6 text-sm text-bg/50">
+              work and other enquiries via the{" "}
+              <Link href="/contact" className="underline hover:text-accent">
+                contact form
+              </Link>
+              .
+            </p>
           </div>
-        )}
+        </div>
 
         <div className="mb-10 flex flex-wrap items-end gap-14">
           {offices.map((office) => (
@@ -165,6 +133,9 @@ export function SiteFooter({
               <h5 className="font-display text-[21px] font-semibold">{office.name}</h5>
             </div>
           ))}
+          {settings.registeredAddress && (
+            <p className="max-w-[32ch] text-sm text-bg/55">{settings.registeredAddress}</p>
+          )}
           <div className="ml-auto flex flex-wrap gap-5">
             {settings.socialLinks.map((link) => (
               <a
@@ -181,11 +152,21 @@ export function SiteFooter({
         </div>
 
         <div className="flex flex-wrap justify-between gap-4 border-t border-bg/20 pt-7 text-[13px] text-bg/55">
-          <span>{settings.copyright}</span>
-          <span className="nocase">
-            <span>privacy notice</span>
-            <span className="mx-2">·</span>
-            <span>terms of use</span>
+          <span>
+            {settings.copyright}
+            {companyLine ? ` · ${companyLine}` : ""}
+          </span>
+          <span className="flex flex-wrap items-center gap-3">
+            <a
+              href={`mailto:${networkEmail}`}
+              className="nocase text-sm opacity-70 hover:text-accent"
+            >
+              freelancer network
+            </a>
+            <span>·</span>
+            <span className="nocase">privacy notice</span>
+            <span>·</span>
+            <span className="nocase">terms of use</span>
           </span>
         </div>
       </div>

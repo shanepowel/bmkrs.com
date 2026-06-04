@@ -23,16 +23,19 @@ export const fallbackSiteSettings: SiteSettings = {
   tagline: "we are b makers.",
   description:
     "bmkrs. is a brand company. we shape identity, voice, messaging, pr, and the product and growth to back it up.",
-  email: "office@bmkrs.com",
+  email: "hello@bmkrs.com",
+  generalEmail: "hello@bmkrs.com",
+  pressEmail: "press@bmkrs.com",
+  companyName: "b makers ltd",
+  companyNumber: "",
+  registeredAddress: "registered in england and wales. full address in site settings.",
   copyright: "© 2026 b makers (bmkrs). all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
   offices: [{ name: "london" }, { name: "worldwide" }],
   departments: [
-    { label: "new business", email: "hello@bmkrs.com" },
-    { label: "pr & talks", email: "press@bmkrs.com" },
-    { label: "work inquiries", email: "work@bmkrs.com" },
-    { label: "say hi", email: "office@bmkrs.com" },
+    { label: "general", email: "hello@bmkrs.com" },
+    { label: "press", email: "press@bmkrs.com" },
   ],
   networkEmail: "network@bmkrs.com",
   socialLinks: [
@@ -66,15 +69,15 @@ export const fallbackHome: HomeContent = {
     "growth",
   ],
   positioning: {
-    eyebrow: "What we really do",
+    eyebrow: "what we really do",
     statement:
       "we don't just help you build apps. we build your product's identity, voice + messaging.",
     lead: "anyone can ship a product. we make people care about it, with a brand, a voice, and a story that earns attention and keeps it.",
   },
   capabilitiesHead: {
-    title: "Strategy-led. Growth-built.",
+    title: "strategy-led. growth-built.",
     subtitle:
-      "Four equally strong domains, one team. The best brands are built across all of them, not bolted together by five different agencies.",
+      "four equally strong domains, one team. the best brands are built across all of them, not bolted together by five different agencies.",
   },
   capabilityTiles: [
     {
@@ -112,7 +115,7 @@ export const fallbackHome: HomeContent = {
     { highlight: "1", value: "", label: "point of contact from brief to ship" },
   ],
   whoWeWorkWith: {
-    eyebrow: "Who we work with",
+    eyebrow: "who we work with",
     statement:
       "brands with big plans, bold visions, and the nerve to do something different.",
     lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
@@ -160,9 +163,9 @@ export const fallbackHome: HomeContent = {
     },
   ],
   selectedWork: {
-    eyebrow: "Selected work",
+    eyebrow: "selected work",
     title: "the brands we build for",
-    subtitle: "Selected projects across branding, ecommerce, and digital.",
+    subtitle: "selected projects across branding, ecommerce, and digital.",
   },
 };
 
@@ -464,50 +467,23 @@ export const fallbackServices: Service[] = [
 
 export const fallbackProjects: Project[] = [
   {
-    slug: "fdb",
-    title: "floare din banat",
-    category: "ecommerce",
-    sector: "food and drink",
-    year: "2025",
-    tagline:
-      "a regional food brand reimagined for a national digital audience.",
-    excerpt: "traditional romanian flowers and gifts, brought online nationwide.",
-    context:
-      "Floare Din Banat makes traditional Romanian flowers and gifts with a loyal regional following and a strong wholesale business. They came to us with a product people loved and a website and brand that did not do it justice.",
-    challenge:
-      "The product was good. The buying experience was not. An outdated storefront and a brand that looked homemade next to competitors meant people who would have loved the product never got far enough to try it.",
-    whatWeDid:
-      "We treated it as one job, not three. A refreshed identity that kept what customers already recognised, clearer product descriptions in a tone that matched the care in the product, and a rebuilt storefront focused on making the catalogue easy to browse and checkout easy to finish. We kept what people valued and fixed what was in their way.",
-    outcome:
-      "A storefront that finally looked as good as the product, fewer abandoned baskets, and a brand the team is proud to share.",
-    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
-    thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
-    media: [
-      { type: "image", src: "/work/images/fdb-2.png", alt: "floare din banat packaging" },
-      { type: "image", src: "/work/images/fdb-1.png", alt: "floare din banat storefront" },
-      { type: "image", src: "/work/images/fdb-3.png", alt: "floare din banat campaign" },
-      { type: "image", src: "/work/images/fdb-4.png", alt: "floare din banat product" },
-      { type: "image", src: "/work/images/fdb-5.png", alt: "floare din banat detail" },
-    ],
-    order: 1,
-    featured: true,
-  },
-  {
     slug: "copa",
     title: "copa, off the shore",
+    client: "copa",
     category: "branding",
     sector: "outdoor apparel",
     year: "2024",
+    positioning: "outdoor apparel with a clear point of view.",
     tagline: "outdoor apparel with a clear point of view.",
-    excerpt: "outdoor apparel brand from germany to worldwide.",
-    context:
-      "COPA, Off The Shore is an outdoor apparel brand built around life off the shore. They were expanding from Germany toward a wider audience and needed a brand that could travel without losing what made it distinct.",
+    brief:
+      "copa is an outdoor apparel brand built around life off the shore, expanding from a German base toward a wider European audience. it needed a brand that could travel without losing what made it distinct.",
     challenge:
-      "The product had a point of view, but the name, story, and visuals did not hang together yet. In a crowded outdoor category they risked looking like everyone else at exactly the moment they needed to stand apart.",
+      "the product had a point of view, but the name, story and visuals did not yet hang together. in a crowded outdoor category, copa risked looking like everyone else at the exact moment it needed to stand apart.",
     whatWeDid:
-      "Positioning and a full identity system: logo, typography, colour, and campaign-ready assets, plus verbal identity so the story read clearly in every channel. We leaned into the shore-line tension in the name rather than generic outdoor clichés.",
-    outcome:
-      "A clear, distinctive identity the team uses consistently, campaign assets ready for launch, and a brand that reads as COPA at a glance.",
+      "we built the positioning first, then a full identity system: logo, typography, colour and campaign-ready assets, plus a verbal identity so the story read clearly in every channel. we leaned into the shore-line tension in the name rather than reaching for generic outdoor cliches.",
+    resultsNarrative:
+      "a single, distinctive identity copa now uses consistently across every channel, and a campaign-ready asset kit that carried the brand from its German base toward a wider European audience without losing what made it copa.",
+    results: [],
     serviceTags: ["brand + identity", "voice + messaging"],
     thumbnailPath: "/images/optimized/copa-hero.jpg",
     media: [
@@ -523,25 +499,67 @@ export const fallbackProjects: Project[] = [
       { type: "image", src: "/images/copa-off-the-shore.jpg", alt: "copa apparel" },
       { type: "image", src: "/images/copa-off-the-shore (1).jpg", alt: "copa lifestyle" },
     ],
+    order: 1,
+    featured: true,
+    seo: {
+      metaTitle: "copa, off the shore | bmkrs.",
+      metaDescription:
+        "outdoor apparel with a clear point of view. brand and identity for copa, off the shore.",
+    },
+  },
+  {
+    slug: "fdb",
+    title: "floare din banat",
+    client: "floare din banat",
+    category: "ecommerce",
+    sector: "food and drink",
+    year: "2025",
+    positioning: "a regional food brand rebuilt for a national digital audience.",
+    tagline: "a regional food brand rebuilt for a national digital audience.",
+    brief:
+      "floare din banat makes traditional Romanian flowers and gifts, with a loyal regional following and a strong wholesale business. they came to us with a product people loved and a brand and storefront that did not do it justice.",
+    challenge:
+      "the product was good. the buying experience was not. an outdated storefront and a brand that looked homemade next to competitors meant people who would have loved the product never got far enough to try it.",
+    whatWeDid:
+      "we treated it as one job, not three. a refreshed identity that kept what customers already recognised, clearer product copy in a tone that matched the care in the product, and a rebuilt storefront focused on a catalogue that is easy to browse and a checkout that is easy to finish. we kept what people valued and fixed what was in their way.",
+    resultsNarrative:
+      "a storefront that finally looks as good as the product, a smoother path from browse to checkout, and a brand the team is proud to share.",
+    results: [],
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
+    media: [
+      { type: "image", src: "/work/images/fdb-2.png", alt: "floare din banat packaging" },
+      { type: "image", src: "/work/images/fdb-1.png", alt: "floare din banat storefront" },
+      { type: "image", src: "/work/images/fdb-3.png", alt: "floare din banat campaign" },
+      { type: "image", src: "/work/images/fdb-4.png", alt: "floare din banat product" },
+      { type: "image", src: "/work/images/fdb-5.png", alt: "floare din banat detail" },
+    ],
     order: 2,
     featured: true,
+    seo: {
+      metaTitle: "floare din banat | bmkrs.",
+      metaDescription:
+        "a regional food brand rebuilt for a national digital audience. identity, voice and storefront.",
+    },
   },
   {
     slug: "carter",
     title: "carter mcgreggor",
+    client: "carter mcgreggor",
     category: "photography",
     sector: "creative services",
     year: "2024",
-    tagline: "portrait and after-effects work for a photographer building his name.",
-    excerpt: "photography-led brand presence and portfolio.",
-    context:
-      "Carter McGreggor is a photographer and motion artist building a name for portrait work and after-effects craft. He needed a public presence that matched the quality of the work, not just a folder of files.",
+    positioning: "portrait and motion work, finally presented like the talent behind it.",
+    tagline: "portrait and motion work, finally presented like the talent behind it.",
+    brief:
+      "carter mcgreggor is a photographer and motion artist building a name for portrait work and after-effects craft. he needed a public presence that matched the quality of the work, not just a folder of files.",
     challenge:
-      "Strong individual pieces, but no consistent thread online. Prospective clients could not quickly see what he does best or why to book him over the next name in the list.",
+      "strong individual pieces, no consistent thread online. prospective clients could not quickly see what he does best, or why to book him over the next name on the list.",
     whatWeDid:
-      "Art direction and brand framing around his portrait and motion work, plus digital assets built for how people actually discover photographers: showreel, social presence, and a portfolio structure that leads with the craft.",
-    outcome:
-      "A consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations.",
+      "art direction and brand framing around his portrait and motion work, plus digital assets built for how people actually find photographers: a showreel, a social presence, and a portfolio that leads with the craft.",
+    resultsNarrative:
+      "a consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations.",
+    results: [],
     serviceTags: ["brand + identity", "photography / art direction"],
     thumbnailPath: "/images/optimized/carter-hero.jpg",
     media: [
@@ -559,17 +577,20 @@ export const fallbackProjects: Project[] = [
   {
     slug: "wanderlust",
     title: "wanderlust",
+    client: "hartmann design",
     category: "design",
-    tagline: "travel and lifestyle visuals for hartmann design.",
-    excerpt: "hartmann design travel and lifestyle visuals.",
-    context:
-      "Hartmann Design needed a distinctive travel and lifestyle language that could stretch across campaigns without feeling generic.",
+    sector: "design",
+    positioning: "a travel and lifestyle design language built to scale.",
+    tagline: "a travel and lifestyle design language built to scale.",
+    brief:
+      "hartmann design needed a distinctive travel and lifestyle visual language that could stretch across campaigns without feeling generic.",
     challenge:
-      "The work was strong in pieces but had no shared system. Every new brief started from scratch.",
+      "the work was strong in pieces but had no shared system. every new brief started from scratch.",
     whatWeDid:
-      "Visual identity exploration and campaign-ready design that gave the team a repeatable language for travel and lifestyle positioning.",
-    outcome:
-      "A coherent design system the studio could deploy across campaigns without losing personality.",
+      "visual identity exploration and campaign-ready design that gave the team a repeatable language for travel and lifestyle positioning.",
+    resultsNarrative:
+      "a coherent design system the studio can deploy across campaigns without losing personality, and far less time lost starting each brief from zero.",
+    results: [],
     serviceTags: ["brand + identity"],
     thumbnailPath: "/images/trip-of-my-life.png",
     media: [
@@ -588,16 +609,18 @@ export const fallbackProjects: Project[] = [
     slug: "smoothies",
     title: "smoothies",
     category: "websites & digital",
-    tagline: "a fresh web presence for a new smoothie brand.",
-    excerpt: "fresh, vibrant web design for a new smoothie brand.",
-    context:
-      "A new smoothie brand needed a first website that could introduce the range and make the products easy to understand.",
+    sector: "websites & digital",
+    positioning: "a fresh first website for a brand entering a crowded shelf.",
+    tagline: "a fresh first website for a brand entering a crowded shelf.",
+    brief:
+      "a new smoothie brand needed its first website, one that could introduce the range and make the products easy to understand.",
     challenge:
-      "No digital home yet, and a crowded health-drinks shelf where generic wellness design would disappear.",
+      "no digital home yet, and a crowded health-drinks category where generic wellness design simply disappears.",
     whatWeDid:
-      "Modern, vibrant web design that made the range legible and matched the freshness of the product.",
-    outcome:
-      "A launch-ready site that showcases the range clearly and gives the brand a credible first impression online.",
+      "a modern, vibrant site that made the range legible and matched the freshness of the product.",
+    resultsNarrative:
+      "a launch-ready site that shows the range clearly and gives the brand a credible first impression online.",
+    results: [],
     serviceTags: ["product, web + growth"],
     thumbnailPath: "/images/optimized/smoothies-hero.jpg",
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
@@ -607,17 +630,20 @@ export const fallbackProjects: Project[] = [
   {
     slug: "flipster",
     title: "flipster iptv",
+    client: "flipster",
     category: "branding",
-    tagline: "premium iptv identity in a competitive streaming market.",
-    excerpt: "premium iptv brand identity.",
-    context:
-      "Flipster needed to enter a crowded IPTV market with a brand that felt premium, not grey-market.",
+    sector: "branding",
+    positioning: "a premium identity in a category most brands get wrong.",
+    tagline: "a premium identity in a category most brands get wrong.",
+    brief:
+      "flipster needed to enter a crowded IPTV market with a brand that felt premium, not grey-market.",
     challenge:
-      "Trust is hard in the category. The identity had to feel sharp and credible to a technical audience without looking like every other streamer.",
+      "trust is hard in the category. the identity had to feel sharp and credible to a technical audience without looking like every other streamer.",
     whatWeDid:
-      "A complete brand identity that positioned Flipster as a premium IPTV service with a distinct visual and verbal edge.",
-    outcome:
-      "A launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
+      "a complete brand identity that positioned flipster as a premium IPTV service, with a distinct visual and verbal edge.",
+    resultsNarrative:
+      "a launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
+    results: [],
     serviceTags: ["brand + identity"],
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],

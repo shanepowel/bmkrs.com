@@ -23,7 +23,10 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 | `navigationItem` | Menu links (referenced from site settings) |
 | `page` | Per-route copy (`home`, `services`, `work`, `motion`, `contact`, `about`) |
 | `service` | Discover / Motion capability blocks |
-| `project` | Portfolio entries + case study (context, challenge, what we did, outcome, testimonial) |
+| `caseStudy` | Portfolio case studies (brief, challenge, what we did, results, testimonial ref, SEO) |
+| `testimonial` | Client quotes (reference from case studies and home) |
+| `teamMember` | About page team grid |
+| `project` | Legacy portfolio type (fallback if no `caseStudy` documents) |
 | `journalArticle` | SEO articles at `/journal/[slug]` (markdown body) |
 | `homePillar` | Home “Innovate / Design / Grow / Learn” blocks |
 
@@ -33,7 +36,15 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 **About page sections** (optional `sections[]` keys): `since`, `where`, `what`, `intro`, `body2`–`body4`, `closing`, `whoWeAre1`–`whoWeAre2`, `whatWeLove1`–`whatWeLove2`, `beliefsIntro`, `longGameLead`–`longGame2`, `creed1`–`creed5` (use `|word|` in creed copy for accent highlights). Keep `where` as `london + worldwide`, not street addresses.
 
-**Projects** — recommended slugs: `fdb`, `copa`, `carter`, `wanderlust`, `smoothies`, `flipster`. Use `context`, `challenge`, `whatWeDid`, `outcome` for case study copy; leave `outcomeMetrics` empty until you have signed-off figures.
+**Case studies** — slugs: `copa`, `fdb`, `carter`, `wanderlust`, `smoothies`, `flipster`. Narrative fields: `brief`, `challenge`, `whatWeDid`, `resultsNarrative`. Leave `results[]` and testimonial quotes empty until the founder adds real figures (placeholders with `{{` are hidden on the site).
+
+**Seed import** (from `web/`, with Sanity CLI logged in):
+
+```bash
+npx sanity dataset import sanity/seed/case-studies.ndjson production --replace
+```
+
+**Webhook** — point Sanity publish webhooks at `POST /api/revalidate` with header `Authorization: Bearer $SANITY_REVALIDATE_SECRET`.
 
 **Journal** — slugs: `brand-tone-of-voice`, `pr-for-startups`, `rebrand-or-refresh`, `agency-freelancer-in-house`. Body is markdown: `###` for section headings (lowercase on site), `-` for lists, `[label](/path)` for links.
 

@@ -1,18 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { getProject, getProjects } from "@/lib/content";
-import type { MediaItem } from "@/lib/types";
+import {
+  getCaseStudySlugs,
+  getProject,
+  hasFilledMetrics,
+  isFilled,
+} from "@/lib/content";
+import { creativeWorkJsonLd } from "@/lib/seo";
+import type { MediaItem, Project } from "@/lib/types";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const projects = await getProjects();
-  return projects.map((p) => ({ slug: p.slug }));
+  const slugs = await getCaseStudySlugs();
+  return slugs.map((slug) => ({ slug }));
 }
+
+export const revalidate = 3600;
 
 function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
   if (item.type === "iframe" && item.src) {
@@ -44,18 +55,10 @@ function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
       </div>
     );
   }
-  if (item.type === "html" && item.htmlContent) {
-    return (
-      <div
-        className="rounded-[var(--radius)] border-2 border-ink/10 bg-bg p-6"
-        dangerouslySetInnerHTML={{ __html: item.htmlContent }}
-      />
-    );
-  }
   return null;
 }
 
-function CaseStudySection({
+function NarrativeBlock({
   label,
   children,
   delay = 0,
@@ -67,21 +70,45 @@ function CaseStudySection({
   return (
     <div className="grid gap-8 border-b-2 border-[var(--line)] py-12 md:grid-cols-[180px_1fr] md:gap-14">
       <Reveal>
-        <h2 className="section-label text-sm font-semibold text-accent">{label}</h2>
+        <h2 className="eyebrow mb-0">{label}</h2>
       </Reveal>
       <Reveal delay={delay}>{children}</Reveal>
     </div>
   );
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProject(slug);
-  if (!project) return { title: "project" };
-  return { title: project.title, description: project.tagline || project.excerpt };
+  if (!project) return { title: "work" };
+
+  const title = project.seo?.metaTitle ?? `${project.title} | bmkrs.`;
+  const description =
+    project.seo?.metaDescription ?? project.positioning ?? project.tagline ?? "";
+  const ogImage =
+    project.seo?.ogImage ?? project.heroImage?.url ?? project.thumbnailPath;
+  const ogUrl = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `${siteUrl}/work/${slug}`,
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: project.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogUrl],
+    },
+  };
 }
 
-export default async function ProjectPage({ params }: Props) {
+export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
@@ -90,8 +117,27 @@ export default async function ProjectPage({ params }: Props) {
     ? project.serviceTags
     : [project.category];
 
+  const metrics = (project.results ?? project.outcomeMetrics ?? []).filter(
+    (m) => isFilled(m.value) && isFilled(m.label),
+  );
+  const showMetrics = hasFilledMetrics(metrics);
+  const showResultsNarrative = isFilled(project.resultsNarrative);
+  const showResults = showMetrics || showResultsNarrative;
+
+  const quote = project.testimonial;
+  const showQuote =
+    quote &&
+    isFilled(quote.quote) &&
+    (isFilled(quote.name) || isFilled(quote.attribution));
+
+  const jsonLd = creativeWorkJsonLd(project, `${siteUrl}/work/${slug}`);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="page-top px-[var(--pad)] pb-12">
         <div className="wrap">
           <Reveal>
@@ -103,25 +149,25 @@ export default async function ProjectPage({ params }: Props) {
             </Link>
           </Reveal>
           <Reveal delay={1}>
-            <span className="eyebrow mt-8 block">
+            <p className="eyebrow mt-8 block">
               {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
-            </span>
+            </p>
           </Reveal>
           <Reveal delay={1}>
-            <h1 className="display heading-case mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
+            <h1 className="display mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
               {project.title}
             </h1>
           </Reveal>
-          {project.tagline && (
+          {project.positioning && (
             <Reveal delay={2}>
-              <p className="lead mt-5 max-w-[540px]">{project.tagline}</p>
+              <p className="lead mt-5 max-w-[540px]">{project.positioning}</p>
             </Reveal>
           )}
           <Reveal delay={2}>
-            <div className="relative my-14 aspect-[16/8] overflow-hidden rounded-[var(--radius)] block-peach">
+            <div className="relative my-14 aspect-[16/8] overflow-hidden rounded-[var(--radius)] section--paper">
               <Image
                 src={project.thumbnailPath}
-                alt={project.title}
+                alt={project.heroImage?.alt || project.title}
                 fill
                 quality={75}
                 className="object-cover"
@@ -138,65 +184,70 @@ export default async function ProjectPage({ params }: Props) {
         <div className="wrap max-w-[900px]">
           <dl className="mb-4 flex flex-wrap gap-x-10 gap-y-4 border-b-2 border-[var(--line)] pb-10 text-sm">
             <div>
-              <dt className="meta-label font-semibold text-accent">Services</dt>
-              <dd className="nocase mt-1 text-ink/90">{services.join(" · ")}</dd>
+              <dt className="eyebrow mb-2 block text-[11px]">services</dt>
+              <dd className="nocase text-ink/90">{services.join(" · ")}</dd>
             </div>
             {project.client && (
               <div>
-                <dt className="meta-label font-semibold text-accent">Client</dt>
+                <dt className="eyebrow mb-2 block text-[11px]">client</dt>
                 <dd className="mt-1 text-ink/90">{project.client}</dd>
               </div>
             )}
           </dl>
 
-          {project.context && (
-            <CaseStudySection label="Context">
-              <p className="text-[17px] leading-relaxed text-ink/90">{project.context}</p>
-            </CaseStudySection>
+          {project.brief && (
+            <NarrativeBlock label="the brief">
+              <p className="text-[17px] leading-relaxed text-ink/90">{project.brief}</p>
+            </NarrativeBlock>
           )}
 
           {project.challenge && (
-            <CaseStudySection label="The challenge" delay={1}>
+            <NarrativeBlock label="the challenge" delay={1}>
               <p className="text-[17px] leading-relaxed text-ink/90">{project.challenge}</p>
-            </CaseStudySection>
+            </NarrativeBlock>
           )}
 
           {project.whatWeDid && (
-            <CaseStudySection label="What we did">
+            <NarrativeBlock label="what we did">
               <p className="text-[17px] leading-relaxed text-ink/90">{project.whatWeDid}</p>
-            </CaseStudySection>
+            </NarrativeBlock>
           )}
 
-          {project.outcome && (
-            <CaseStudySection label="The outcome" delay={1}>
-              <p className="text-[17px] leading-relaxed text-ink/90">{project.outcome}</p>
-              {project.outcomeMetrics && project.outcomeMetrics.length > 0 && (
-                <ul className="mt-8 grid gap-6 sm:grid-cols-3">
-                  {project.outcomeMetrics.map((m) => (
-                    <li key={m.label} className="rounded-[var(--radius)] bg-ink/[0.04] p-5">
-                      <span className="display block text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-accent">
-                        {m.value}
-                      </span>
-                      <span className="mt-2 block text-sm text-muted">{m.label}</span>
+          {showResults && (
+            <section className="results-block border-b-2 border-[var(--line)] py-12">
+              <Reveal>
+                <h2 className="eyebrow mb-8">the result</h2>
+              </Reveal>
+              {showMetrics && (
+                <ul className="metric-grid">
+                  {metrics.map((m) => (
+                    <li key={`${m.value}-${m.label}`} className="metric-card">
+                      <span className="metric-value">{m.value}</span>
+                      <span className="metric-label">{m.label}</span>
                     </li>
                   ))}
                 </ul>
               )}
-            </CaseStudySection>
+              {showResultsNarrative && (
+                <Reveal delay={1}>
+                  <p className="text-[17px] leading-relaxed text-ink/90">
+                    {project.resultsNarrative}
+                  </p>
+                </Reveal>
+              )}
+            </section>
           )}
 
-          {project.testimonial?.quote && (
+          {showQuote && quote && (
             <Reveal>
-              <blockquote className="my-14 border-l-4 border-accent pl-8">
-                <p className="display text-[clamp(1.125rem,2.5vw,1.5rem)] font-medium leading-snug text-ink">
-                  &ldquo;{project.testimonial.quote}&rdquo;
-                </p>
-                {project.testimonial.attribution && (
-                  <footer className="mt-4 text-sm text-muted">
-                    {project.testimonial.attribution}
-                  </footer>
-                )}
-              </blockquote>
+              <figure className="case-testimonial">
+                <blockquote>&ldquo;{quote.quote}&rdquo;</blockquote>
+                <figcaption>
+                  {quote.name}
+                  {quote.role ? `, ${quote.role}` : ""}
+                  {quote.company ? `, ${quote.company}` : ""}
+                </figcaption>
+              </figure>
             </Reveal>
           )}
 

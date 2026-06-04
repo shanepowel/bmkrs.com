@@ -44,7 +44,7 @@ export default async function ServicesPage() {
                 <p className="display text-2xl font-bold text-accent">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h2 className="display heading-case mt-3 text-[clamp(30px,4.5vw,62px)]">
+                <h2 className="display  mt-3 text-[clamp(30px,4.5vw,62px)]">
                   {service.title}
                 </h2>
                 {service.imagePath && (
