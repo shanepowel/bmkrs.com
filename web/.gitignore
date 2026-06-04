@@ -40,4 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Site images live in public/images and public/work (see scripts/required-assets.json)
+# Synced from ../public_html at dev/build (see scripts/sync-assets.js)
+/public/images/*
+!/public/images/marketing/
+/public/work
