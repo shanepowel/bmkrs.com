@@ -110,7 +110,7 @@ export const homeTestimonialsQuery = `*[_type == "testimonial" && defined(quote)
 }`;
 
 export const teamQuery = `*[_type == "teamMember"] | order(order asc){
-  name, discipline, "photo": photo{ "url": asset->url, "alt": alt }
+  name, discipline, bio, "photo": photo{ "url": asset->url, "alt": alt }
 }`;
 
 export const journalArticlesQuery = `*[_type == "journalArticle"] | order(publishedAt desc){
@@ -142,3 +142,47 @@ export const homePillarsQuery = `*[_type == "homePillar"] | order(order asc){
   description,
   order
 }`;
+
+export const allProductsQuery = `*[_type == "product"] | order(order asc){
+  name, "slug": slug.current, tier, tagline, forWho, included, shape, outcome,
+  cadence, commitment, monthlyDeliverables, priceNote,
+  "proof": relatedCaseStudies[]->{ title, "slug": slug.current }
+}`;
+
+export const motionTiersQuery = `*[_type == "product" && tier == "grow"] | order(order asc){
+  name, "slug": slug.current, tagline, forWho, cadence, commitment,
+  monthlyDeliverables, outcome, priceNote
+}`;
+
+export const aboutPageQuery = `*[_type == "aboutPage"][0]{
+  headline, intro, story, whoWeAre, whatWeLove, ethos,
+  beliefs[]{ title, body }, longGame, inOwnWords
+}`;
+
+export const featuredCaseStudiesQuery = `*[_type == "caseStudy" && featured == true] | order(order asc){
+  title, "slug": slug.current, positioning, sector, services,
+  "heroImage": heroImage{ "url": asset->url, "alt": alt }
+}`;
+
+export const journalIndexQuery = `{
+  "featured": *[_type == "post" && featured == true] | order(publishedAt desc)[0]{
+    title, "slug": slug.current, category, excerpt, readingTime, publishedAt,
+    "cover": coverImage{ "url": asset->url, alt }
+  },
+  "posts": *[_type == "post" && featured != true] | order(publishedAt desc){
+    title, "slug": slug.current, category, excerpt, readingTime, publishedAt,
+    "cover": coverImage{ "url": asset->url, alt }
+  }
+}`;
+
+export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
+  title, "slug": slug.current, category, excerpt, readingTime, publishedAt,
+  "cover": coverImage{ "url": asset->url, alt },
+  "author": author->{ name, discipline },
+  body,
+  "relatedProduct": relatedProduct->{ name, "slug": slug.current, tagline },
+  "relatedCaseStudy": relatedCaseStudy->{ title, "slug": slug.current },
+  seo{ metaTitle, metaDescription, "ogImage": ogImage.asset->url }
+}`;
+
+export const postSlugsQuery = `*[_type == "post" && defined(slug.current)].slug.current`;

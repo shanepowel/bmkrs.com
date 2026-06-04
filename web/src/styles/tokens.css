@@ -14,6 +14,12 @@
   --bmkrs-space-3: 1.5rem;
   --bmkrs-space-4: 2.5rem;
   --bmkrs-space-5: 4rem;
+  --bmkrs-space-6: 6.5rem;
+  --bmkrs-space-7: 10rem;
+  --bmkrs-maxw: 72rem;
+  --bmkrs-line: rgba(24, 22, 19, 0.12);
+  --bmkrs-muted: #7c766c;
+  --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .section--paper {

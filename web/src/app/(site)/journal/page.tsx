@@ -1,84 +1,105 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { BWordRotate } from "@/components/bmkrs/BWordRotate";
-import { Reveal } from "@/components/bmkrs/Reveal";
-import { JOURNAL_TOPIC_WORDS } from "@/lib/b-words";
-import { getJournalArticles } from "@/lib/content";
+import { JournalFilter } from "@/components/bmkrs/JournalFilter";
+import { getJournalIndex } from "@/lib/content";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "journal",
-  description:
-    "Practical guides on brand voice, PR, rebrands, and how to resource marketing work, written plainly, without jargon.",
+  description: "notes on building bold brands: identity, voice, pr, growth and how we work.",
+};
+
+const CATEGORY_LABEL: Record<string, string> = {
+  brand: "brand + identity",
+  voice: "voice + messaging",
+  pr: "pr + comms",
+  growth: "growth",
+  studio: "studio",
 };
 
 function formatDate(iso: string) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  return d
+  return new Date(iso)
     .toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
     .toLowerCase();
 }
 
-function excerpt(body: string) {
-  const block = body.trim().split(/\n\n+/)[0] ?? "";
-  return block.length > 200 ? `${block.slice(0, 197)}…` : block;
-}
-
 export default async function JournalPage() {
-  const articles = await getJournalArticles();
+  const { featured, posts } = await getJournalIndex();
 
   return (
-    <>
+    <main className="journal">
       <section className="page-hero min-h-[52vh]">
-        <div className="wrap">
-          <Reveal>
-            <span className="eyebrow">Journal</span>
-          </Reveal>
-          <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
-              notes on <BWordRotate words={JOURNAL_TOPIC_WORDS} />{" "}
-              <span className="text-accent">work.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={2}>
-            <p className="lead mt-7 max-w-[540px]">
-              Practical guides for founders and marketing leads. No inflated metrics, no
-              superlatives. just what we have seen work.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+        <div className="wrap section">
+          <div className="journal-head">
+            <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
+            <p className="muted mt-2">notes on building bold brands.</p>
+          </div>
 
-      <section className="section-pad pt-0">
-        <div className="wrap">
-          <ul className="divide-y-2 divide-[var(--line)] border-t-2 border-[var(--line)]">
-            {articles.map((article, i) => (
-              <li key={article.slug}>
-                <Reveal delay={(i % 2) as 0 | 1}>
-                  <Link
-                    href={`/journal/${article.slug}`}
-                    className="group block py-10 transition-colors hover:bg-ink/[0.02]"
-                  >
-                    <time
-                      dateTime={article.publishedAt}
-                      className="text-[13px] font-semibold text-accent"
-                    >
-                      {formatDate(article.publishedAt)}
-                    </time>
-                    <h2 className="display mt-3 text-[clamp(1.5rem,4vw,2.5rem)] font-semibold lowercase group-hover:text-accent">
-                      {article.h1}
-                    </h2>
-                    <p className="mt-4 max-w-[620px] text-muted">{excerpt(article.body)}</p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink group-hover:text-accent">
-                      read article <ArrowIcon />
-                    </span>
-                  </Link>
-                </Reveal>
-              </li>
+          {featured && (
+            <Link href={`/journal/${featured.slug}`} className="journal-hero mt-10 block">
+              <div className="journal-hero-cover relative">
+                {featured.cover?.url && (
+                  <Image
+                    src={featured.cover.url}
+                    alt={featured.cover.alt ?? featured.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    priority
+                  />
+                )}
+                <div className="journal-hero-overlay">
+                  <span className="eyebrow">
+                    featured · {CATEGORY_LABEL[featured.category] ?? featured.category}
+                  </span>
+                  <h2 className="display mt-2 text-[clamp(1.5rem,4vw,2.5rem)]">{featured.title}</h2>
+                </div>
+              </div>
+              <div className="journal-hero-meta flex items-center justify-between px-4 py-3">
+                <span className="muted text-sm">
+                  {formatDate(featured.publishedAt)}
+                  {featured.readingTime ? ` · ${featured.readingTime} min read` : ""}
+                </span>
+                <span className="accent-link">read →</span>
+              </div>
+            </Link>
+          )}
+
+          <JournalFilter />
+
+          <div className="journal-grid">
+            {posts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/journal/${post.slug}`}
+                className="journal-card"
+                data-category={post.category}
+              >
+                <div className="journal-cover relative">
+                  {post.cover?.url && (
+                    <Image
+                      src={post.cover.url}
+                      alt={post.cover.alt ?? post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  )}
+                </div>
+                <span className="eyebrow mt-4 block">
+                  {CATEGORY_LABEL[post.category] ?? post.category}
+                </span>
+                <h3 className="display mt-2 text-xl">{post.title}</h3>
+                <p className="excerpt mt-2">{post.excerpt}</p>
+                <span className="muted mt-2 block text-sm">
+                  {formatDate(post.publishedAt)}
+                  {post.readingTime ? ` · ${post.readingTime} min` : ""}
+                </span>
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

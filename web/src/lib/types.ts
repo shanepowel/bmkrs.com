@@ -50,8 +50,77 @@ export type SiteSettings = {
 export type TeamMember = {
   name: string;
   discipline?: string;
-  photoUrl: string;
+  bio?: string;
+  photoUrl?: string;
   photoAlt: string;
+};
+
+export type ProductTier = "start" | "make" | "grow";
+
+export type ProductProof = {
+  title: string;
+  slug: string;
+};
+
+export type Product = {
+  slug: string;
+  name: string;
+  tier: ProductTier;
+  tagline: string;
+  forWho?: string;
+  included?: string[];
+  shape?: string;
+  outcome?: string;
+  cadence?: string;
+  commitment?: string;
+  monthlyDeliverables?: string[];
+  priceNote?: string;
+  proof?: ProductProof[];
+  order?: number;
+  featured?: boolean;
+};
+
+export type AboutBelief = {
+  title: string;
+  body: string;
+};
+
+export type AboutPageContent = {
+  headline: string;
+  intro: string;
+  story: string[];
+  whoWeAre: string;
+  whatWeLove: string;
+  ethos: string;
+  beliefs: AboutBelief[];
+  longGame: string;
+  inOwnWords: string[];
+};
+
+export type PortableBlock =
+  | {
+      _type: "block";
+      children?: { text: string }[];
+    }
+  | {
+      _type: "pullQuote";
+      text: string;
+    };
+
+export type JournalPost = {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  publishedAt: string;
+  readingTime?: number;
+  featured?: boolean;
+  cover?: { url: string; alt: string };
+  author?: { name: string; discipline?: string };
+  body?: PortableBlock[];
+  relatedProduct?: { name: string; slug: string; tagline?: string };
+  relatedCaseStudy?: { title: string; slug: string };
+  seo?: { metaTitle?: string; metaDescription?: string; ogImage?: string };
 };
 
 export type PageSection = {

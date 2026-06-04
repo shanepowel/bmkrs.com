@@ -27,7 +27,10 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 | `testimonial` | Client quotes (reference from case studies and home) |
 | `teamMember` | About page team grid |
 | `project` | Legacy portfolio type (fallback if no `caseStudy` documents) |
-| `journalArticle` | SEO articles at `/journal/[slug]` (markdown body) |
+| `product` | Start / make / grow offerings (incl. motion tiers on grow) |
+| `post` | Journal posts at `/journal/[slug]` (portable text body) |
+| `aboutPage` | Singleton: ethos, beliefs, story (About page) |
+| `journalArticle` | Legacy journal type (markdown); site prefers `post` when present |
 | `homePillar` | Home “Innovate / Design / Grow / Learn” blocks |
 
 ## Slugs
@@ -42,11 +45,18 @@ The marketing site in `web/` loads content from **Sanity** when configured, with
 
 ```bash
 npx sanity dataset import sanity/seed/case-studies.ndjson production --replace
+npx sanity dataset import sanity/seed/products.ndjson production
+npx sanity dataset import sanity/seed/about.ndjson production
+npx sanity dataset import sanity/seed/posts.ndjson production
 ```
 
-**Webhook** — point Sanity publish webhooks at `POST /api/revalidate` with header `Authorization: Bearer $SANITY_REVALIDATE_SECRET`.
+After import, link each **make** case study to its product via `productType`, and upload post cover images plus team photos (same pattern as BMK-3).
 
-**Journal** — slugs: `brand-tone-of-voice`, `pr-for-startups`, `rebrand-or-refresh`, `agency-freelancer-in-house`. Body is markdown: `###` for section headings (lowercase on site), `-` for lists, `[label](/path)` for links.
+**Webhook** — see `web/sanity/webhook-config.md`. Point Sanity publish webhooks at `POST /api/revalidate` with header `Authorization: Bearer $SANITY_REVALIDATE_SECRET`. Set `SANITY_REVALIDATE_SECRET` in Vercel.
+
+**Journal (`post`)** — slugs: `brand-tone-of-voice`, `pr-for-startups`, `rebrand-or-refresh`, `agency-freelancer-in-house`. Portable text in Sanity; fallbacks in code when CMS is empty.
+
+**Products** — nine documents in `products.ndjson` (start / make / grow). Grow-tier motion products power `/motion`. CTAs are always “let’s talk”; no prices on site.
 
 Legacy URLs (`/work/project1`, etc.) redirect to the new slugs.
 

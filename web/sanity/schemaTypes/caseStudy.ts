@@ -44,6 +44,12 @@ export const caseStudy = defineType({
       },
     }),
     defineField({
+      name: "productType",
+      title: "Product this case proves",
+      type: "reference",
+      to: [{ type: "product" }],
+    }),
+    defineField({
       name: "order",
       title: "Display order",
       type: "number",

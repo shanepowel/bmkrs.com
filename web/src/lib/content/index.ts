@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import {
   fallbackHome,
   fallbackMotion,
@@ -7,13 +8,22 @@ import {
   fallbackSiteSettings,
 } from "./fallback";
 import { fallbackJournalArticles } from "./journal-fallback";
+import {
+  fallbackAboutPage,
+  fallbackPosts,
+  fallbackProducts,
+  fallbackTeam,
+} from "./offering-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
+  AboutPageContent,
   CmsPage,
   HomeContent,
   HomePillar,
   JournalArticle,
+  JournalPost,
   MotionContent,
+  Product,
   Project,
   Service,
   SiteSettings,
@@ -22,14 +32,21 @@ import type {
 } from "@/lib/types";
 import { sanityClient } from "@/lib/sanity/client";
 import {
+  aboutPageQuery,
+  allProductsQuery,
   caseStudiesQuery,
   caseStudyBySlugQuery,
   caseStudySlugsQuery,
+  featuredCaseStudiesQuery,
   homePillarsQuery,
   homeTestimonialsQuery,
   journalArticleBySlugQuery,
   journalArticlesQuery,
+  journalIndexQuery,
+  motionTiersQuery,
   pageBySlugQuery,
+  postBySlugQuery,
+  postSlugsQuery,
   projectBySlugQuery,
   projectsQuery,
   servicesQuery,
@@ -46,7 +63,7 @@ async function fetchSanity<T>(query: string, params?: Record<string, unknown>): 
   }
 }
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+async function loadSiteSettings(): Promise<SiteSettings> {
   const data = await fetchSanity<SiteSettings & { socials?: SiteSettings["socialLinks"] }>(
     siteSettingsQuery,
   );
@@ -71,6 +88,10 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       : fallbackSiteSettings.navigation,
   };
 }
+
+export const getSiteSettings = unstable_cache(loadSiteSettings, ["site-settings"], {
+  tags: ["settings"],
+});
 
 export async function getPage(slug: string): Promise<CmsPage> {
   const key = slug === "discover" ? "services" : slug;
@@ -102,9 +123,29 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
+  const featured = await fetchSanity<Project[]>(featuredCaseStudiesQuery);
+  if (featured?.length) {
+    return featured.map(normalizeProject);
+  }
   const projects = await getProjects();
-  const featured = projects.filter((p) => p.featured);
-  return featured.length > 0 ? featured : projects.slice(0, 3);
+  const picked = projects.filter((p) => p.featured);
+  return picked.length > 0 ? picked : projects.slice(0, 3);
+}
+
+export async function getProducts(): Promise<Product[]> {
+  const data = await fetchSanity<Product[]>(allProductsQuery);
+  return data?.length ? data : fallbackProducts;
+}
+
+export async function getMotionTiers(): Promise<Product[]> {
+  const data = await fetchSanity<Product[]>(motionTiersQuery);
+  if (data?.length) return data;
+  return fallbackProducts.filter((p) => p.tier === "grow");
+}
+
+export async function getAboutPage(): Promise<AboutPageContent> {
+  const data = await fetchSanity<AboutPageContent>(aboutPageQuery);
+  return data ?? fallbackAboutPage;
 }
 
 export async function getMotionContent(): Promise<MotionContent> {
@@ -136,17 +177,53 @@ export async function getHomeTestimonials(): Promise<Testimonial[]> {
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
   const data = await fetchSanity<
-    { name: string; discipline?: string; photo?: { url?: string; alt?: string } }[]
+    {
+      name: string;
+      discipline?: string;
+      bio?: string;
+      photo?: { url?: string; alt?: string };
+    }[]
   >(teamQuery);
-  if (!data?.length) return [];
-  return data
-    .filter((m) => m.photo?.url)
-    .map((m) => ({
+  if (data?.length) {
+    return data.map((m) => ({
       name: m.name,
       discipline: m.discipline,
-      photoUrl: m.photo!.url!,
+      bio: m.bio,
+      photoUrl: m.photo?.url,
       photoAlt: m.photo?.alt || m.name,
     }));
+  }
+  return fallbackTeam;
+}
+
+export async function getJournalIndex(): Promise<{
+  featured: JournalPost | null;
+  posts: JournalPost[];
+}> {
+  const data = await fetchSanity<{ featured: JournalPost | null; posts: JournalPost[] }>(
+    journalIndexQuery,
+  );
+  if (data?.posts?.length || data?.featured) {
+    return {
+      featured: data.featured,
+      posts: data.posts ?? [],
+    };
+  }
+  const featured = fallbackPosts.find((p) => p.featured) ?? null;
+  const posts = fallbackPosts.filter((p) => !p.featured);
+  return { featured, posts };
+}
+
+export async function getPost(slug: string): Promise<JournalPost | null> {
+  const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
+  if (data) return data;
+  return fallbackPosts.find((p) => p.slug === slug) ?? null;
+}
+
+export async function getPostSlugs(): Promise<string[]> {
+  const slugs = await fetchSanity<string[]>(postSlugsQuery);
+  if (slugs?.length) return slugs;
+  return fallbackPosts.map((p) => p.slug);
 }
 
 function normalizeProject(project: Project): Project {

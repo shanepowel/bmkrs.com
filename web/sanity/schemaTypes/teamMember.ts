@@ -12,6 +12,12 @@ export const teamMember = defineType({
       type: "string",
     }),
     defineField({
+      name: "bio",
+      title: "Bio",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
       name: "photo",
       title: "Photo",
       type: "image",

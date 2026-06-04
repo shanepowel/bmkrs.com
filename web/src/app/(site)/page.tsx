@@ -10,14 +10,30 @@ import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { getFeaturedProjects, getHomeContent, getHomeTestimonials } from "@/lib/content";
+import {
+  getFeaturedProjects,
+  getHomeContent,
+  getHomeTestimonials,
+  getProducts,
+} from "@/lib/content";
+import type { ProductTier } from "@/lib/types";
+
+const TIER_LABELS: Record<ProductTier, { label: string; blurb: string }> = {
+  start: { label: "start", blurb: "a fast, honest read before you commit to more." },
+  make: { label: "make", blurb: "fixed-scope sprints that build the brand and what carries it." },
+  grow: { label: "grow", blurb: "one team keeping it all moving, month after month." },
+};
+
+const TIERS: ProductTier[] = ["start", "make", "grow"];
 
 export default async function HomePage() {
-  const [home, featured, testimonials] = await Promise.all([
+  const [home, featured, testimonials, products] = await Promise.all([
     getHomeContent(),
     getFeaturedProjects(),
     getHomeTestimonials(),
+    getProducts(),
   ]);
+  const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
   const { hero } = home;
   const collage =
     hero.collage ??
@@ -116,6 +132,44 @@ export default async function HomePage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-pad section--paper">
+        <div className="wrap section">
+          <Reveal>
+            <span className="eyebrow">ways to work with us</span>
+          </Reveal>
+          <h2 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold">
+            start, make, <span className="text-accent">grow.</span>
+          </h2>
+          <p className="lead mt-6 max-w-[560px]">
+            one funnel, one team, bespoke work throughout. the packages shape how you start, not how the
+            creative gets made.
+          </p>
+          <div className="tier-grid mt-10">
+            {TIERS.map((tier) => (
+              <div key={tier} className="tier">
+                <h3 className="display preserve-case text-2xl text-accent">{TIER_LABELS[tier].label}</h3>
+                <p className="muted mt-2">{TIER_LABELS[tier].blurb}</p>
+                <ul className="mt-4">
+                  {byTier(tier).map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={tier === "grow" ? "/motion" : `/services#${p.slug}`}
+                        className="text-ink/80 transition-colors hover:text-accent"
+                      >
+                        {p.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <Link href="/services" className="btn-primary mt-10 inline-flex">
+            see the full offering <ArrowIcon />
+          </Link>
         </div>
       </section>
 
@@ -226,10 +280,10 @@ export default async function HomePage() {
             <Reveal>
               <span className="eyebrow">what clients say</span>
             </Reveal>
-            <div className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            <div className="quote-grid">
               {testimonials.map((t, i) => (
                 <Reveal key={t.name} delay={(i % 2) as 0 | 1}>
-                  <figure className="case-testimonial border-l-0 pl-0">
+                  <figure className="testimonial case-testimonial border-l-0 pl-0">
                     <blockquote className="text-[clamp(1.125rem,2vw,1.35rem)]">
                       &ldquo;{t.quote}&rdquo;
                     </blockquote>
@@ -264,6 +318,17 @@ export default async function HomePage() {
               {home.motionTeaser.ctaLabel} <ArrowIcon />
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section-pad closing text-center">
+        <div className="wrap section">
+          <h2 className="display text-[clamp(2rem,6vw,4rem)] font-bold">
+            let&apos;s make something worth choosing.
+          </h2>
+          <Link href="/contact" className="btn-primary mt-8 inline-flex">
+            start a project <ArrowIcon />
+          </Link>
         </div>
       </section>
     </>
