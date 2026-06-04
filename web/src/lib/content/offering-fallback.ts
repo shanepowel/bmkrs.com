@@ -1,4 +1,7 @@
-import type { AboutPageContent, Discipline, JournalPost, Product, TeamMember } from "@/lib/types";
+import type { AboutPageContent, Discipline, Product, TeamMember } from "@/lib/types";
+import { fallbackPosts } from "./journal-posts-fallback";
+
+export { fallbackPosts };
 
 export const fallbackDisciplines: Discipline[] = [
   {
@@ -252,7 +255,7 @@ export const fallbackProducts: Product[] = [
 export const fallbackAboutPage: AboutPageContent = {
   headline: "we are b makers.",
   intro:
-    "a brand company for people with big plans and the nerve to back them. building brands since 2013.",
+    "a brand company run by builders. for people with something good that deserves to be better known. since 2013.",
   story: [
     "we started in 2013, not as a design studio, but as a team of builders.",
     "we spent years inside big, complicated organisations, building the teams and the delivery that made ambitious things actually happen. public sector, regulated industries, the kind of work with real stakes. we got good at it. properly good.",
@@ -261,27 +264,25 @@ export const fallbackAboutPage: AboutPageContent = {
     "we are b makers. it is on the door for a reason.",
   ],
   whoWeAre:
-    "we are a small, senior team, and the people you meet are the people who do the work. no account managers passing your brand down a chain until it reaches whoever is free on friday. we are curious, a little obsessive about craft, and honest to a fault. we will tell you when an idea is not working, even when it is the one you walked in loving. that is what good partners are for.",
+    "we are a small, senior team. the people you brief are the people who do the work. no account manager in the middle relaying messages, no junior learning on your brand. we are exact about the details and honest to a fault: we will tell you when an idea is not working, even the one you walked in loving. that is what good partners are for.",
   whatWeLove:
-    "the blank page. the brief nobody else wants. the moment a muddled idea finally sounds like itself out loud. seeing a brand we shaped turn up in the wild and hold its own. we got into this because we like the work, and we think it shows in what we make.",
+    "the brief nobody else wants. the messy product that turns out to be brilliant once someone can finally explain it. the moment a muddled idea lands in one sentence. seeing something we built turn up in the wild and hold its own. we like the work. it shows in what we make.",
   ethos:
-    "we treat your brand like it is ours, because the only work we are proud of is work we would put our own name on. we move fast, say the hard thing, and stay long enough to see it through.",
+    "we put our own name on the work, so we treat your brand the way we treat ours: build it properly, ship it, and stay long enough to see it work.",
   beliefs: [
-    { title: "a brand is a promise.", body: "we make sure yours is worth keeping." },
-    { title: "design does a job.", body: "it is not decoration. it earns its place." },
-    { title: "growth beats noise.", body: "we measure what actually matters, then do more of it." },
+    { title: "brand is infrastructure, not decoration.", body: "we build it like something that has to hold weight." },
+    { title: "design earns its place.", body: "it is doing a job, or it is in the way." },
+    { title: "growth is a habit, not a campaign.", body: "we build the thing that keeps working after launch." },
     { title: "one team, all in.", body: "no churn, no hand-offs, no strangers on your account." },
-    { title: "the better-told brand wins.", body: "so we make sure the best-told one is yours." },
+    { title: "clarity is the whole job.", body: "if it needs a paragraph to explain, it is not finished." },
     { title: "we are in it for the long game.", body: "not the launch. the years after it." },
   ],
   longGame:
-    "we are not built for the one-off. the work we are proudest of came from clients we have known for years, the kind of trust where we can move fast, skip the posturing, and say the hard thing because we have earned the right to. most of our new work comes from people we have worked with before, or people they pointed our way. that is the only scoreboard we really watch.",
+    "we are not built for the one-off. the work we are proudest of came from clients we have known for years, the kind of trust where we can move fast, skip the posturing, and tell each other the truth because we have earned the right to. most of our new work comes from people we have worked with before, or people they pointed our way. that is the only scoreboard we really watch.",
   inOwnWords: [
     "we would rather be your team than your agency.",
-    "the better-told brand wins. we make sure it is yours.",
-    "no churn. no hand-offs. no strangers on your account.",
-    "we say the hard thing. that is the job.",
     "we are in it for the long game, not the launch.",
+    "no awards shelf. just clients who keep calling.",
   ],
 };
 
@@ -289,164 +290,37 @@ export const fallbackTeam: TeamMember[] = [
   {
     name: "shane",
     discipline: "delivery + strategy",
-    bio: "spent years making ambitious things actually ship inside complex organisations. keeps the work moving and everyone honest about what done really looks like.",
+    bio: "spent years making ambitious things actually ship inside complex, regulated organisations. keeps the work moving and the timelines honest, and is happiest when a messy programme finally clicks into a plan everyone believes.",
     photoAlt: "shane",
   },
   {
     name: "george",
     discipline: "pr + communications",
-    bio: "finds the angle and the right person to tell it to. would rather land one story that matters than a hundred that do not.",
+    bio: "finds the angle and the right person to tell it to. would rather land one story that matters than a hundred that do not, and usually knows the journalist's name already.",
     photoAlt: "george",
   },
   {
     name: "melissa",
     discipline: "product + engineering",
-    bio: "the one who makes the clever idea actually work. builds the sites, stores and tools that carry the brand once the design is done.",
+    bio: "the one who makes the clever idea actually work. builds the sites, stores and tools that carry the brand, and quietly fixes the thing nobody else noticed was broken.",
     photoAlt: "melissa",
   },
   {
     name: "sarah",
     discipline: "brand + identity",
-    bio: "turns a position into a world you can see. identity, campaigns and the visual instinct that makes a brand unmistakable.",
+    bio: "turns a position into a world you can see. lives in type, colour and the small decisions that make a brand feel like one thing, not ten.",
     photoAlt: "sarah",
   },
   {
     name: "marcus",
     discipline: "voice + messaging",
-    bio: "makes brands sound like themselves. tone, narrative and the knack for making a complicated product feel obvious.",
+    bio: "makes brands sound like themselves. obsessed with the one sentence that does the work of a whole paragraph.",
     photoAlt: "marcus",
   },
   {
     name: "the wider team",
     discipline: "engineers, consultants + specialists",
-    bio: "behind the named five is a trusted network we bring in when the work calls for it. same standard, no strangers.",
+    bio: "behind the named five is a trusted network of engineers, consultants and specialists we bring in when the work calls for it. same standard, no strangers.",
     photoAlt: "the wider team",
-  },
-];
-
-export const fallbackPosts: JournalPost[] = [
-  {
-    slug: "better-told-brand-wins",
-    title: "the better-told brand wins. here is how we tell them.",
-    category: "voice",
-    excerpt:
-      "the best product does not win by default. the best-told one does. our working method for finding a brand's real story.",
-    publishedAt: "2026-05-14",
-    readingTime: 6,
-    featured: true,
-    cover: { url: "/images/optimized/branding-dis.jpg", alt: "brand work" },
-    author: { name: "marcus", discipline: "voice + messaging" },
-    body: [
-      {
-        _type: "block",
-        children: [
-          {
-            text: "we have lost count of the brilliant products nobody ever heard of. the pattern is always the same: the team can build the thing, but cannot say what it is in a sentence. so the market never gets far enough to care.",
-          },
-        ],
-      },
-      {
-        _type: "pullQuote",
-        text: "not the better product. the better-told one.",
-      },
-      {
-        _type: "block",
-        children: [
-          {
-            text: "the work is not decoration. it is finding the one true thing a brand can say that its competitors cannot, then saying it the same way everywhere until people believe it.",
-          },
-        ],
-      },
-    ],
-    relatedProduct: { name: "story", slug: "story", tagline: "tone of voice, messaging and narrative." },
-    seo: {
-      metaDescription:
-        "the best-told brand wins, not the best product. our method for finding a brand's real story.",
-    },
-  },
-  {
-    slug: "naming-is-positioning",
-    title: "naming is a positioning problem, not a creative one.",
-    category: "brand",
-    excerpt:
-      "the best name is not the cleverest. it is the one that does the most positioning work with the least explaining.",
-    publishedAt: "2026-05-02",
-    readingTime: 4,
-    cover: { url: "/images/optimized/copa-hero.jpg", alt: "naming and identity" },
-    author: { name: "sarah", discipline: "brand + identity" },
-    body: [
-      {
-        _type: "block",
-        children: [
-          {
-            text: "teams agonise over names as if they were tattoos. the better question is not whether you love it, but what it makes people assume before they have read a word of copy.",
-          },
-        ],
-      },
-    ],
-    relatedProduct: { name: "launch kit", slug: "launch-kit", tagline: "everything a new brand needs to go live." },
-    seo: {
-      metaDescription:
-        "why the best brand name is a positioning decision, not a creative flourish.",
-    },
-  },
-  {
-    slug: "one-journalist",
-    title: "we would rather find one journalist than blast a hundred.",
-    category: "pr",
-    excerpt: "spray-and-pray pr is busywork. the angle and the right person beat volume every time.",
-    publishedAt: "2026-04-24",
-    readingTime: 5,
-    cover: { url: "/images/optimized/carter-hero.jpg", alt: "pr and communications" },
-    author: { name: "george", discipline: "pr + communications" },
-    body: [
-      {
-        _type: "block",
-        children: [
-          {
-            text: "most press releases are sent into a void because they answer a question no journalist asked. we spend the time the other way around: who would genuinely care, and what is the story that makes them care.",
-          },
-        ],
-      },
-    ],
-    relatedProduct: {
-      name: "press launch",
-      slug: "press-launch",
-      tagline: "a launch campaign and press push.",
-    },
-    seo: {
-      metaDescription:
-        "why targeted pr beats spray-and-pray: the angle and the right journalist over volume.",
-    },
-  },
-  {
-    slug: "same-team",
-    title: "why we keep the same team on your brand.",
-    category: "studio",
-    excerpt:
-      "churn is the quiet tax on most agency work. here is why we refuse to pass your brand down a chain.",
-    publishedAt: "2026-04-11",
-    readingTime: 3,
-    cover: { url: "/images/optimized/fdb-2-hero.jpg", alt: "team and delivery" },
-    author: { name: "shane", discipline: "delivery + strategy" },
-    body: [
-      {
-        _type: "block",
-        children: [
-          {
-            text: "every hand-off loses something. the context, the in-jokes, the reason you made that call six months ago. keeping the same team is not a perk, it is how the work stays good.",
-          },
-        ],
-      },
-    ],
-    relatedProduct: {
-      name: "motion",
-      slug: "motion",
-      tagline: "one team keeping your brand moving, month after month.",
-    },
-    seo: {
-      metaDescription:
-        "why bmkrs keeps the same senior team on your brand, and what churn quietly costs.",
-    },
   },
 ];

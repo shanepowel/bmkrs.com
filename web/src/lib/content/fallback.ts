@@ -9,20 +9,19 @@ import type {
 } from "@/lib/types";
 
 export const fallbackNavigation: NavItem[] = [
-  { label: "home", href: "/" },
-  { label: "services", href: "/services" },
   { label: "work", href: "/work" },
+  { label: "services", href: "/services" },
+  { label: "motion", href: "/motion" },
   { label: "journal", href: "/journal" },
-  { label: "motion", href: "/motion", highlight: true },
   { label: "about", href: "/about" },
-  { label: "contact", href: "/contact" },
+  { label: "contact", href: "/contact", highlight: true },
 ];
 
 export const fallbackSiteSettings: SiteSettings = {
   siteName: "bmkrs.",
-  tagline: "we are b makers.",
+  tagline: "a brand company run by builders.",
   description:
-    "bmkrs. is a brand company. we shape identity, voice, messaging, pr, and the product and growth to back it up.",
+    "the better-told brand wins. we make sure it is yours. brand, voice, pr and the product behind it, from one team.",
   email: "hello@bmkrs.com",
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
@@ -84,7 +83,7 @@ export const fallbackHome: HomeContent = {
       number: "01",
       title: "Brand + identity",
       description:
-        "strategy, positioning, naming, and the visual world that makes you unmistakable.",
+        "strategy, positioning, naming, and the visual world that makes you clear at a glance.",
       href: "/services#launch-kit",
       image: "/images/optimized/branding-dis.jpg",
     },
@@ -121,7 +120,7 @@ export const fallbackHome: HomeContent = {
   whoWeWorkWith: {
     eyebrow: "who we work with",
     statement:
-      "brands with big plans, bold visions, and the nerve to do something different.",
+      "brands with big plans and the nerve to do something different.",
     lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
   },
   clientMarquee: [

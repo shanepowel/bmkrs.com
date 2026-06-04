@@ -1,22 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Schibsted_Grotesk } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import { getSiteSettings } from "@/lib/content";
 import { organizationJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
 
-const display = Schibsted_Grotesk({
+const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const body = Figtree({
+const body = Hanken_Grotesk({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: "bmkrs. we are b makers.",
-      template: "%s | bmkrs.",
+      default: "bmkrs. a brand company run by builders.",
+      template: "%s",
     },
     description: settings.description,
     robots: { index: true, follow: true },
@@ -78,8 +78,8 @@ export default async function RootLayout({
   const jsonLd = organizationJsonLd(settings);
 
   return (
-    <html lang="en-GB">
-      <body className={`${display.variable} ${body.variable} min-h-screen`}>
+    <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
+      <body className="min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

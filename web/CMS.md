@@ -66,7 +66,7 @@ After import, link each **make** case study to its product via `productType`, an
 
 **Webhook** — see `web/sanity/webhook-config.md`. Point Sanity publish webhooks at `POST /api/revalidate` with header `Authorization: Bearer $SANITY_REVALIDATE_SECRET`. Set `SANITY_REVALIDATE_SECRET` in Vercel.
 
-**Journal (`post`)** — slugs: `brand-tone-of-voice`, `pr-for-startups`, `rebrand-or-refresh`, `agency-freelancer-in-house`. Portable text in Sanity; fallbacks in code when CMS is empty.
+**Journal (`post`)** — ten articles in `posts.ndjson` (see `docs/04-JOURNAL-ARTICLES.md`). Featured: `better-told-brand-isnt-fair`. Voice guide: `docs/03-VOICE.md`. Re-import with `--replace` after copy changes.
 
 **Products** — nine documents in `products.ndjson` (start / make / grow). Grow-tier motion products power `/motion`. CTAs are always “let’s talk”; no prices on site.
 

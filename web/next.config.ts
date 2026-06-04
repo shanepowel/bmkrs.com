@@ -66,6 +66,16 @@ const nextConfig: NextConfig = {
         destination: "/work/flipster",
         permanent: true,
       },
+      {
+        source: "/journal/better-told-brand-wins",
+        destination: "/journal/better-told-brand-isnt-fair",
+        permanent: true,
+      },
+      {
+        source: "/journal/same-team",
+        destination: "/journal/hand-off-brands-die",
+        permanent: true,
+      },
     ];
   },
 };

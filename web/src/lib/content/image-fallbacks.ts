@@ -27,7 +27,7 @@ export const disciplineImages = [
   {
     n: "01",
     name: "brand + identity",
-    body: "strategy, positioning, naming and the visual world that makes you unmistakable.",
+    body: "strategy, positioning, naming and the visual world that makes you clear at a glance.",
     href: "/services#launch-kit",
     image: "/images/optimized/branding-dis.jpg",
   },
@@ -169,13 +169,23 @@ const defaultJournalCover = {
   alt: "bmkrs brand work",
 };
 
+const postCoverByCategory: Record<string, { url: string; alt: string }> = {
+  brand: { url: "/images/optimized/branding-dis.jpg", alt: "brand" },
+  voice: { url: "/images/optimized/copa-campaign.jpg", alt: "voice" },
+  pr: { url: "/images/optimized/press-feature.jpg", alt: "pr" },
+  growth: { url: "/images/optimized/ecom-growth.jpg", alt: "growth" },
+  studio: { url: "/images/optimized/intelligent-brands.jpg", alt: "studio" },
+};
+
 export function mergePostCover(post: JournalPost): JournalPost {
   if (isUsableImage(post.cover?.url)) return post;
-  const cover = postCoverBySlug.get(post.slug) ?? {
-    ...defaultJournalCover,
-    alt: post.title,
-  };
-  return { ...post, cover };
+  const cover =
+    postCoverBySlug.get(post.slug) ??
+    postCoverByCategory[post.category] ?? {
+      ...defaultJournalCover,
+      alt: post.title,
+    };
+  return { ...post, cover: { ...cover, alt: post.title } };
 }
 
 export function mergeTeamPhoto(member: TeamMember): TeamMember {

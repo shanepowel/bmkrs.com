@@ -20,6 +20,17 @@
   --bmkrs-line: rgba(24, 22, 19, 0.12);
   --bmkrs-muted: #7c766c;
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bmkrs-radius: 2px;
+
+  --bmkrs-font-display: var(--font-display, Georgia, "Times New Roman", serif);
+  --bmkrs-font-body: var(--font-body, system-ui, -apple-system, sans-serif);
+
+  --bmkrs-step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --bmkrs-step-0: clamp(1rem, 0.95rem + 0.25vw, 1.13rem);
+  --bmkrs-step-1: clamp(1.4rem, 1.25rem + 0.7vw, 1.8rem);
+  --bmkrs-step-2: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --bmkrs-step-3: clamp(2.8rem, 2.2rem + 3vw, 5rem);
+  --bmkrs-step-4: clamp(3.6rem, 2.6rem + 5vw, 7rem);
 }
 
 .section--paper {

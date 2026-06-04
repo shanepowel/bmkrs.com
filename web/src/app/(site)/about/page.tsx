@@ -12,7 +12,7 @@ import { aboutBeliefsImage, aboutStoryImage, pageHeroImages } from "@/lib/conten
 export const metadata: Metadata = {
   title: "about",
   description:
-    "a brand company for people with big plans and the nerve to back them. a small, senior team, building brands since 2013.",
+    "a brand company run by builders. for people with something good that deserves to be better known. since 2013.",
 };
 
 export default async function AboutPage() {
