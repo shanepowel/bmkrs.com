@@ -88,7 +88,7 @@ export default async function MotionPage() {
             </p>
           </div>
           <SectionImage
-            src="/work/images/optimized/fdb-2-hero.jpg"
+            src={pageHeroImages.work.src}
             alt="brand work in market"
             aspect="wide"
           />

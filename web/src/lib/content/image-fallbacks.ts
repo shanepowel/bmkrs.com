@@ -1,5 +1,6 @@
 import { fallbackProjects } from "./fallback";
 import { fallbackPosts, fallbackTeam } from "./offering-fallback";
+import { marketingImages } from "@/lib/marketing-assets";
 import type { JournalPost, Project, TeamMember } from "@/lib/types";
 
 const PLACEHOLDER_LOGO = "/images/blacklogo.png";
@@ -29,84 +30,89 @@ export const disciplineImages = [
     name: "brand + identity",
     body: "strategy, positioning, naming and the visual world that makes you clear at a glance.",
     href: "/services#launch-kit",
-    image: "/images/optimized/branding-dis.jpg",
+    image: marketingImages.brandGuidelines,
   },
   {
     n: "02",
     name: "voice + messaging",
     body: "tone, narrative and messaging that makes people understand and care.",
     href: "/services#story",
-    image: "/images/optimized/copa-campaign.jpg",
+    image: marketingImages.designStudio,
   },
   {
     n: "03",
     name: "pr + communications",
     body: "launches, press and thought leadership that get your story heard.",
     href: "/services#press-launch",
-    image: "/images/optimized/marketing-dis.jpg",
+    image: marketingImages.socialStrategy,
   },
   {
     n: "04",
     name: "product, web + growth",
     body: "sites, apps and campaigns that turn attention into revenue.",
     href: "/services#storefront",
-    image: "/images/optimized/mobile-app.jpg",
+    image: marketingImages.digitalEcosystem,
   },
 ] as const;
 
 export const motionShowcaseImages = [
-  { src: "/images/optimized/copa-hero.jpg", alt: "copa brand identity" },
-  { src: "/work/images/optimized/fdb-2-hero.jpg", alt: "floare din banat storefront" },
-  { src: "/work/images/optimized/flipster-hero.jpg", alt: "flipster identity" },
-  { src: "/images/optimized/smoothies-hero.jpg", alt: "smoothies launch site" },
+  { src: marketingImages.filmProduction, alt: "film and campaign production" },
+  { src: marketingImages.videoEditing, alt: "video editing and content" },
+  { src: marketingImages.podcastStudio, alt: "studio and audio production" },
+  { src: marketingImages.contentPlatform, alt: "content across channels" },
 ] as const;
 
 export const pageHeroImages = {
   services: {
-    src: "/images/optimized/business-strategy.jpg",
-    alt: "brand strategy and delivery",
+    src: marketingImages.digitalMedia,
+    alt: "bmkrs digital media — brand, product, pr, disciplines",
   },
-  about: { src: "/images/aboutus_qyrbat.webp", alt: "bmkrs team and studio" },
-  work: { src: "/images/optimized/copa-hero.jpg", alt: "copa brand identity" },
-  motion: { src: "/images/optimized/copa-campaign.jpg", alt: "ongoing brand campaigns" },
-  journal: { src: "/images/optimized/press-feature.jpg", alt: "press and brand thinking" },
-  contact: { src: "/images/optimized/intelligent-brands.jpg", alt: "global brand work" },
+  about: { src: marketingImages.studioBrand, alt: "bmkrs creative studio" },
+  work: { src: marketingImages.filmProduction, alt: "campaign and film production" },
+  motion: { src: marketingImages.contentPlatform, alt: "content and platform work" },
+  journal: { src: marketingImages.brandArchitecture, alt: "brand strategy and thinking" },
+  contact: { src: marketingImages.creativeDesk, alt: "creative workspace" },
 } as const;
 
 export const aboutStoryImage = {
-  src: "/images/optimized/branding-dis.jpg",
-  alt: "brand identity work",
+  src: marketingImages.brandGuidelines,
+  alt: "brand identity and guidelines",
 };
 
 export const aboutBeliefsImage = {
-  src: "/images/optimized/ecom-growth.jpg",
-  alt: "growth and commerce",
+  src: marketingImages.brandEcosystem,
+  alt: "brand building ecosystem",
 };
 
 export const homePositioningImage = {
-  src: "/images/optimized/marketing-dis.jpg",
-  alt: "brand and marketing",
+  src: marketingImages.brandEcosystem,
+  alt: "strategy, creativity, experience, and growth",
 };
 
-export const homeMotionStrip = motionShowcaseImages;
+export const homeMotionStrip = [
+  { src: marketingImages.podcastStudio, alt: "studio production" },
+  { src: marketingImages.videoEditing, alt: "video editing" },
+  { src: marketingImages.filmProduction, alt: "film production" },
+  { src: marketingImages.socialStrategy, alt: "social and growth" },
+] as const;
 
 const disciplineImageByName: Record<string, string> = {
-  "brand + identity": "/images/optimized/branding-dis.jpg",
-  "voice + messaging": "/images/optimized/copa-campaign.jpg",
-  "pr + communications": "/images/optimized/marketing-dis.jpg",
-  "product, web + growth": "/images/optimized/mobile-app.jpg",
+  "brand + identity": marketingImages.brandGuidelines,
+  "voice + messaging": marketingImages.designStudio,
+  "pr + communications": marketingImages.socialStrategy,
+  "product, web + growth": marketingImages.digitalEcosystem,
 };
 
 export const productImageBySlug: Record<string, { src: string; alt: string }> = {
-  "brand-check": { src: "/images/optimized/intelligent-brands.jpg", alt: "brand check" },
-  "launch-kit": { src: "/images/optimized/copa-hero.jpg", alt: "launch kit" },
-  rebrand: { src: "/images/optimized/branding-dis.jpg", alt: "rebrand" },
-  storefront: { src: "/images/optimized/ecom-growth.jpg", alt: "storefront" },
-  story: { src: "/images/optimized/copa-campaign.jpg", alt: "story" },
-  "press-launch": { src: "/images/optimized/press-feature.jpg", alt: "press launch" },
-  motion: { src: "/images/optimized/smoothies-hero.jpg", alt: "motion" },
-  "motion-plus": { src: "/images/optimized/wanderlust-hero.jpg", alt: "motion plus" },
-  "motion-embedded": { src: "/images/optimized/business-strategy.jpg", alt: "motion embedded" },
+  "brand-check": { src: marketingImages.brandArchitecture, alt: "brand check" },
+  "launch-kit": { src: marketingImages.brandGuidelines, alt: "launch kit" },
+  rebrand: { src: marketingImages.designStudio, alt: "rebrand" },
+  storefront: { src: marketingImages.digitalEcosystem, alt: "storefront" },
+  story: { src: marketingImages.designStudio, alt: "story" },
+  "press-launch": { src: marketingImages.socialStrategy, alt: "press launch" },
+  motion: { src: marketingImages.contentPlatform, alt: "motion" },
+  "motion-plus": { src: marketingImages.filmProduction, alt: "motion plus" },
+  "motion-embedded": { src: marketingImages.creativeToolkit, alt: "motion embedded" },
 };
 
 export function mergeDisciplineImage<T extends { name: string; imageUrl?: string; imageAlt?: string }>(
@@ -170,11 +176,11 @@ const defaultJournalCover = {
 };
 
 const postCoverByCategory: Record<string, { url: string; alt: string }> = {
-  brand: { url: "/images/optimized/branding-dis.jpg", alt: "brand" },
-  voice: { url: "/images/optimized/copa-campaign.jpg", alt: "voice" },
-  pr: { url: "/images/optimized/press-feature.jpg", alt: "pr" },
-  growth: { url: "/images/optimized/ecom-growth.jpg", alt: "growth" },
-  studio: { url: "/images/optimized/intelligent-brands.jpg", alt: "studio" },
+  brand: { url: marketingImages.brandGuidelines, alt: "brand" },
+  voice: { url: marketingImages.designStudio, alt: "voice" },
+  pr: { url: marketingImages.socialStrategy, alt: "pr" },
+  growth: { url: marketingImages.digitalEcosystem, alt: "growth" },
+  studio: { url: marketingImages.creativeToolkit, alt: "studio" },
 };
 
 export function mergePostCover(post: JournalPost): JournalPost {

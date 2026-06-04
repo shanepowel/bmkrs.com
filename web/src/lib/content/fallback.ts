@@ -42,6 +42,8 @@ export const fallbackSiteSettings: SiteSettings = {
     { platform: "linkedin", url: "https://www.linkedin.com/company/bmkrs" },
   ],
   navigation: fallbackNavigation,
+  heroReelUrl: "/videos/hero-reel.mp4",
+  heroPoster: "/images/marketing/hero-sculpture.png",
 };
 
 export const fallbackHome: HomeContent = {
@@ -85,7 +87,7 @@ export const fallbackHome: HomeContent = {
       description:
         "strategy, positioning, naming, and the visual world that makes you clear at a glance.",
       href: "/services#launch-kit",
-      image: "/images/optimized/branding-dis.jpg",
+      image: "/images/marketing/brand-guidelines.png",
     },
     {
       number: "02",
@@ -93,7 +95,7 @@ export const fallbackHome: HomeContent = {
       description:
         "tone of voice, narrative, and messaging that makes people understand and care.",
       href: "/services#story",
-      image: "/images/optimized/copa-campaign.jpg",
+      image: "/images/marketing/design-studio.png",
     },
     {
       number: "03",
@@ -101,7 +103,7 @@ export const fallbackHome: HomeContent = {
       description:
         "launches, press, and thought leadership that get your story heard.",
       href: "/services#press-launch",
-      image: "/images/optimized/marketing-dis.jpg",
+      image: "/images/marketing/social-strategy.png",
     },
     {
       number: "04",
@@ -109,7 +111,7 @@ export const fallbackHome: HomeContent = {
       description:
         "websites, apps, and campaigns that turn attention into revenue.",
       href: "/services#storefront",
-      image: "/images/optimized/mobile-app.jpg",
+      image: "/images/marketing/digital-ecosystem.png",
     },
   ],
   stats: [
