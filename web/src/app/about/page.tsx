@@ -1,6 +1,8 @@
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageBanner, SideMedia } from "@/components/sections/PageMedia";
 import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getPage } from "@/lib/content";
+import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata = {
   title: "About",
@@ -22,11 +24,22 @@ export default async function AboutPage() {
         subtitle={page.heroSubtitle}
       />
 
-      <div className="max-w-3xl space-y-6">
-        <p className="text-lg text-muted leading-relaxed">
-          {body1?.content}
-        </p>
-        <p className="text-muted leading-relaxed">{body2?.content}</p>
+      <PageBanner
+        src={marketingImages.studioBrand}
+        alt="bmkrs creative studio"
+        priority
+      />
+
+      <div className="grid gap-12 lg:grid-cols-[1fr_minmax(280px,360px)] lg:items-start">
+        <div className="max-w-3xl space-y-6">
+          <p className="text-lg text-muted leading-relaxed">{body1?.content}</p>
+          <p className="text-muted leading-relaxed">{body2?.content}</p>
+        </div>
+        <SideMedia
+          src={marketingImages.brandEcosystem}
+          alt="Brand building ecosystem — strategy, creativity, experience, growth"
+          className="hidden lg:block"
+        />
       </div>
 
       {beliefs.length > 0 && (

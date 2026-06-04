@@ -41,5 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 # Synced from ../public_html at dev/build (see scripts/sync-assets.js)
-/public/images
+/public/images/*
+!/public/images/marketing/
 /public/work

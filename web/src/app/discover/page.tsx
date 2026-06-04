@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { PageBanner } from "@/components/sections/PageMedia";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getPage, getServices } from "@/lib/content";
+import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata = {
   title: "Services",
@@ -16,6 +18,12 @@ export default async function DiscoverPage() {
         eyebrow={page.heroEyebrow || "Services"}
         title={page.heroTitle || page.title}
         subtitle={page.heroSubtitle}
+      />
+
+      <PageBanner
+        src={marketingImages.digitalMedia}
+        alt="bmkrs digital media — branding, product, PR, disciplines"
+        priority
       />
 
       <div className="space-y-24">

@@ -140,7 +140,7 @@ export const fallbackPages: Record<string, CmsPage> = {
     heroCtaHref: "/discover",
     heroCta2Label: "See our work",
     heroCta2Href: "/work",
-    heroVideoUrl: "/images/headvid4.mp4",
+    heroVideoUrl: "/videos/hero-reel.mp4",
   },
   discover: {
     slug: "discover",
@@ -217,7 +217,7 @@ export const fallbackServices: Service[] = [
     title: "Branding & Identity",
     lead: "We build brands with a point of view — and the identity to match.",
     body: "From positioning and naming to a full visual system, we give purpose-driven brands a look and voice people remember and trust.",
-    imagePath: "/images/9c7ded037d751c42a0e92288c11998e8.jpg",
+    imagePath: "/images/marketing/brand-guidelines.png",
     bullets: [
       "Brand Strategy & Positioning",
       "Identity & Visual Systems",
@@ -231,7 +231,7 @@ export const fallbackServices: Service[] = [
     title: "Websites & Digital",
     lead: "Digital experiences that connect your brand with the people who matter.",
     body: "We design and build websites and platforms end to end — thoughtful UX, clean engineering, and SEO baked in from day one.",
-    imagePath: "/images/7abd2549110b63f83e49877e1d59adea.jpg",
+    imagePath: "/images/marketing/digital-ecosystem.png",
     bullets: ["UI / UX Design", "Web Development", "SEO", "Digital Strategy"],
     order: 2,
   },
@@ -240,7 +240,7 @@ export const fallbackServices: Service[] = [
     title: "eCommerce",
     lead: "Storefronts that turn visitors into customers.",
     body: "We build eCommerce experiences that are easy to shop and built to convert — backed by research and a clear design direction for your market.",
-    imagePath: "/images/165-1655864_e-commerce-px-shopping-cart.jpg",
+    imagePath: "/images/marketing/creative-desk.png",
     bullets: [
       "eCommerce Platforms",
       "Conversion & UX",
@@ -254,7 +254,7 @@ export const fallbackServices: Service[] = [
     title: "Performance Marketing",
     lead: "Campaigns measured in growth, not vanity metrics.",
     body: "Data-led marketing across social, search, and email — aligned to your funnel and tuned for sustainable, measurable growth.",
-    imagePath: "/images/business.jpeg",
+    imagePath: "/images/marketing/social-strategy.png",
     bullets: [
       "Social Media Marketing",
       "Growth Strategy",

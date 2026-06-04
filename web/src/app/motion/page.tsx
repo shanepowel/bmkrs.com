@@ -1,7 +1,9 @@
+import { MediaStrip, PageBanner } from "@/components/sections/PageMedia";
+import { ContactForm } from "@/components/sections/ContactForm";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ContactForm } from "@/components/sections/ContactForm";
 import { getMotionContent, getPage, getSiteSettings } from "@/lib/content";
+import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata = {
   title: "Motion",
@@ -22,10 +24,15 @@ export default async function MotionPage() {
         subtitle={page.heroSubtitle}
       />
       {page.heroCtaLabel && page.heroCtaHref && (
-        <div className="mb-16">
+        <div className="mb-8">
           <Button href={page.heroCtaHref}>{page.heroCtaLabel}</Button>
         </div>
       )}
+
+      <PageBanner
+        src={marketingImages.contentPlatform}
+        alt="Content and platform work across video, design, and social"
+      />
 
       <section className="mb-20">
         <SectionHeading eyebrow="Included" title="What Motion gives you" />
@@ -40,6 +47,14 @@ export default async function MotionPage() {
             </div>
           ))}
         </div>
+        <MediaStrip
+          items={[
+            { src: marketingImages.podcastStudio, alt: "Studio production" },
+            { src: marketingImages.videoEditing, alt: "Video editing" },
+            { src: marketingImages.filmProduction, alt: "Film and campaign production" },
+            { src: marketingImages.socialStrategy, alt: "Social and growth" },
+          ]}
+        />
       </section>
 
       <section className="mb-20 rounded-2xl bg-gradient-to-br from-brand/15 to-surface p-10 ring-1 ring-white/10">
