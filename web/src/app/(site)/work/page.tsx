@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
+import { Reveal } from "@/components/bmkrs/Reveal";
 import { WORK_BUILD_TARGETS } from "@/lib/b-words";
 import { getProjects } from "@/lib/content";
+import { pageHeroImages } from "@/lib/content/image-fallbacks";
 
 export const metadata: Metadata = {
   title: "work",
@@ -13,18 +16,28 @@ export const metadata: Metadata = {
 export default async function WorkPage() {
   const projects = await getProjects();
 
+  const heroImage =
+    projects.find((p) => p.featured)?.thumbnailPath ?? pageHeroImages.work.src;
+
   return (
     <main>
-      <section className="page-hero min-h-[58vh]">
-        <div className="wrap section">
+      <PageHeroSplit
+        image={{ src: heroImage, alt: pageHeroImages.work.alt }}
+        minHeight="min-h-[58vh]"
+      >
+        <Reveal>
           <p className="eyebrow">work</p>
+        </Reveal>
+        <Reveal delay={1}>
           <h1 className="display mt-4 text-[clamp(2.25rem,11vw,10rem)] font-bold">
             we build <BWordRotate words={WORK_BUILD_TARGETS} className="text-[1em]" />
             <span className="text-accent">.</span>
           </h1>
+        </Reveal>
+        <Reveal delay={2}>
           <p className="lead mt-7">selected projects across branding, ecommerce and digital.</p>
-        </div>
-      </section>
+        </Reveal>
+      </PageHeroSplit>
 
       <section className="section-pad pt-0">
         <div className="wrap">

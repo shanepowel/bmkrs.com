@@ -85,28 +85,32 @@ export const fallbackHome: HomeContent = {
       title: "Brand + identity",
       description:
         "strategy, positioning, naming, and the visual world that makes you unmistakable.",
-      href: "/services#branding",
+      href: "/services#launch-kit",
+      image: "/images/optimized/branding-dis.jpg",
     },
     {
       number: "02",
       title: "Voice + messaging",
       description:
         "tone of voice, narrative, and messaging that makes people understand and care.",
-      href: "/services#voice",
+      href: "/services#story",
+      image: "/images/optimized/copa-campaign.jpg",
     },
     {
       number: "03",
       title: "PR + communications",
       description:
         "launches, press, and thought leadership that get your story heard.",
-      href: "/services#pr",
+      href: "/services#press-launch",
+      image: "/images/optimized/marketing-dis.jpg",
     },
     {
       number: "04",
       title: "Product, web + growth",
       description:
         "websites, apps, and campaigns that turn attention into revenue.",
-      href: "/services#product",
+      href: "/services#storefront",
+      image: "/images/optimized/mobile-app.jpg",
     },
   ],
   stats: [

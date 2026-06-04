@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import type { Discipline } from "@/lib/types";
@@ -23,6 +24,17 @@ export function DisciplinesStack({ disciplines }: { disciplines: Discipline[] })
                 <p className="disc-prop">{d.proposition}</p>
                 {d.body && <p className="disc-body">{d.body}</p>}
               </div>
+              {d.imageUrl && (
+                <div className="disc-visual relative aspect-[4/3] overflow-hidden rounded-[var(--radius)] border-2 border-ink/15">
+                  <Image
+                    src={d.imageUrl}
+                    alt={d.imageAlt ?? d.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 360px"
+                  />
+                </div>
+              )}
               <div className="disc-detail">
                 {d.deliverables?.length ? (
                   <ul className="disc-deliverables">

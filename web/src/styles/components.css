@@ -36,14 +36,24 @@
 
 /* disciplines stack (services layer 1) */
 .disc-stack { margin-top: var(--bmkrs-space-4); }
-.disc-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bmkrs-space-4); padding: var(--bmkrs-space-4) 0; border-top: 1px solid rgba(24,22,19,0.15); }
+.disc-row { display: grid; grid-template-columns: 1fr; gap: var(--bmkrs-space-3); padding: var(--bmkrs-space-4) 0; border-top: 1px solid rgba(24,22,19,0.15); }
+@media (min-width: 900px) {
+  .disc-row { grid-template-columns: 1fr minmax(200px, 280px) 1fr; align-items: start; }
+  .disc-row:not(:has(.disc-visual)) { grid-template-columns: 1fr 1fr; }
+}
 .disc-head h3 { font-family: var(--bmkrs-font-display); font-size: var(--bmkrs-step-2); margin: var(--bmkrs-space-1) 0; }
 .disc-prop { font-size: var(--bmkrs-step-1); color: rgba(24,22,19,0.85); }
 .disc-body { color: rgba(24,22,19,0.65); margin-top: var(--bmkrs-space-2); max-width: 42ch; }
 .disc-deliverables { list-style: none; padding: 0; margin: 0; }
 .disc-deliverables li { padding: 0.4rem 0; border-bottom: 1px solid rgba(24,22,19,0.12); font-size: var(--bmkrs-step--1); }
 .disc-powers { margin-top: var(--bmkrs-space-2); font-size: var(--bmkrs-step--1); color: rgba(24,22,19,0.6); }
-@media (max-width: 640px) { .disc-row { grid-template-columns: 1fr; gap: var(--bmkrs-space-2); } }
+.product-card-media { position: relative; aspect-ratio: 16 / 10; margin: calc(var(--bmkrs-space-3) * -1) calc(var(--bmkrs-space-3) * -1) var(--bmkrs-space-2); border-radius: var(--bmkrs-radius) var(--bmkrs-radius) 0 0; overflow: hidden; }
+.image-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--bmkrs-space-2); margin-top: var(--bmkrs-space-4); }
+@media (min-width: 640px) { .image-strip { grid-template-columns: repeat(4, 1fr); } }
+.image-strip-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--bmkrs-radius); border: 1px solid var(--bmkrs-line); }
+.contact-page .image-strip-item { border-color: rgba(245,241,234,0.2); }
+.prose-with-media { display: grid; gap: var(--bmkrs-space-4); }
+@media (min-width: 900px) { .prose-with-media { grid-template-columns: 1fr 1fr; align-items: start; } }
 
 .motion-showcase {
   display: grid;

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { DisciplinesStack } from "@/components/bmkrs/DisciplinesStack";
+import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
+import { Reveal } from "@/components/bmkrs/Reveal";
 import { getDisciplines, getProducts } from "@/lib/content";
+import { pageHeroImages, productImageBySlug } from "@/lib/content/image-fallbacks";
 import type { Product, ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -30,21 +34,26 @@ function productCta(p: Product) {
 export default async function ServicesPage() {
   const [disciplines, products] = await Promise.all([getDisciplines(), getProducts()]);
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
+  const hero = pageHeroImages.services;
 
   return (
     <main>
-      <section className="page-hero min-h-[68vh]">
-        <div className="wrap section">
+      <PageHeroSplit image={hero} minHeight="min-h-[68vh]">
+        <Reveal>
           <p className="eyebrow">services</p>
+        </Reveal>
+        <Reveal delay={1}>
           <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
             everything your brand needs to <span className="text-accent">grow.</span>
           </h1>
+        </Reveal>
+        <Reveal delay={2}>
           <p className="lead mt-8 max-w-[560px]">
             four equally strong disciplines, one team. below them, simple ways to start. the work is
             bespoke, the way you begin it does not have to be.
           </p>
-        </div>
-      </section>
+        </Reveal>
+      </PageHeroSplit>
 
       <DisciplinesStack disciplines={disciplines} />
 
@@ -70,8 +79,20 @@ export default async function ServicesPage() {
           <div className="product-grid">
             {byTier(tier.key).map((p) => {
               const cta = productCta(p);
+              const thumb = productImageBySlug[p.slug];
               return (
                 <article key={p.slug} className="product-card" id={p.slug}>
+                  {thumb && (
+                    <div className="product-card-media relative">
+                      <Image
+                        src={thumb.src}
+                        alt={thumb.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 400px"
+                      />
+                    </div>
+                  )}
                   <h3 className="display text-[clamp(1.25rem,2.5vw,1.75rem)]">{p.name}</h3>
                   <p className="product-tagline">{p.tagline}</p>
 

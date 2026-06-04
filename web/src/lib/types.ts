@@ -69,6 +69,8 @@ export type Discipline = {
   body?: string;
   deliverables?: string[];
   powers?: DisciplinePower[];
+  imageUrl?: string;
+  imageAlt?: string;
 };
 
 export type ProductProof = {
@@ -254,6 +256,7 @@ export type CapabilityTile = {
   title: string;
   description: string;
   href: string;
+  image?: string;
 };
 
 export type HomeStat = {

@@ -154,7 +154,19 @@ body {
   }
 
   .cap-card {
-    @apply grid grid-cols-[1fr_auto] gap-4 rounded-[var(--radius)] border-2 border-ink bg-bg p-5 transition hover:-translate-y-1.5 hover:bg-ink hover:text-bg sm:p-7 lg:p-9;
+    @apply grid grid-cols-[1fr_auto] gap-4 overflow-hidden rounded-[var(--radius)] border-2 border-ink bg-bg p-5 transition hover:-translate-y-1.5 hover:bg-ink hover:text-bg sm:p-7 lg:p-9;
+  }
+
+  .cap-card--visual {
+    @apply grid-cols-1 grid-rows-[auto_1fr_auto] p-0 sm:p-0 lg:p-0;
+  }
+
+  .cap-card-media {
+    @apply relative aspect-[16/10] w-full border-b-2 border-ink;
+  }
+
+  .cap-card-body {
+    @apply grid grid-cols-[1fr_auto] gap-4 p-5 sm:p-7 lg:col-span-1 lg:p-7;
   }
 
   .cap-card:hover p {

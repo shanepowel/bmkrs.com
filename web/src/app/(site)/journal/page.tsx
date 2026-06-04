@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { JournalFilter } from "@/components/bmkrs/JournalFilter";
 import { JournalMap } from "@/components/bmkrs/JournalMap";
+import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
+import { Reveal } from "@/components/bmkrs/Reveal";
 import { getJournalIndex } from "@/lib/content";
+import { pageHeroImages } from "@/lib/content/image-fallbacks";
 
 export const metadata: Metadata = {
   title: "journal",
@@ -31,13 +34,17 @@ export default async function JournalPage() {
 
   return (
     <main className="journal">
-      <section className="page-hero min-h-[52vh]">
-        <div className="wrap section">
-          <div className="journal-head">
-            <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
-            <p className="muted mt-2">notes on building bold brands.</p>
-          </div>
+      <PageHeroSplit image={pageHeroImages.journal} minHeight="min-h-[52vh]">
+        <Reveal>
+          <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
+        </Reveal>
+        <Reveal delay={1}>
+          <p className="muted mt-2">notes on building bold brands.</p>
+        </Reveal>
+      </PageHeroSplit>
 
+      <section className="section-pad pt-0">
+        <div className="wrap section">
           {mapPosts.length > 0 && <JournalMap posts={mapPosts} />}
 
           {featured && (

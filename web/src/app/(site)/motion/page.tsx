@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
+import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
+import { Reveal } from "@/components/bmkrs/Reveal";
+import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { getMotionTiers } from "@/lib/content";
+import { pageHeroImages } from "@/lib/content/image-fallbacks";
 
 export const metadata: Metadata = {
   title: "motion",
@@ -40,17 +44,23 @@ export default async function MotionPage() {
 
   return (
     <main>
-      <section className="page-hero motion-hero min-h-[78vh]">
-        <div className="wrap section">
+      <PageHeroSplit image={pageHeroImages.motion} minHeight="min-h-[78vh]" className="motion-hero">
+        <Reveal>
           <p className="eyebrow">ongoing partnership</p>
+        </Reveal>
+        <Reveal delay={1}>
           <h1 className="display mt-4 text-[clamp(2.5rem,12vw,11.875rem)] font-bold">
             always <BWordRotate words={HERO_BRAND_ADJECTIVES} /> in{" "}
             <span className="text-accent">motion.</span>
           </h1>
+        </Reveal>
+        <Reveal delay={2}>
           <p className="lead mt-8 max-w-[640px]">
             brands do not stop talking, so neither do we. motion is a rolling monthly partnership:
             one senior team keeping your brand, voice, pr and growth moving, month after month.
           </p>
+        </Reveal>
+        <Reveal delay={3}>
           <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
             <Link href="/contact" className="btn-primary">
               start motion <ArrowIcon />
@@ -59,23 +69,32 @@ export default async function MotionPage() {
               see the tiers
             </a>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      </PageHeroSplit>
 
       <MotionShowcase />
 
       <section className="section-pad section--paper motion-why">
+        <div className="wrap section prose-with-media">
+          <div>
+            <p className="eyebrow">why it exists</p>
+            <h2 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold">
+              the project ends. the brand does not.
+            </h2>
+            <p className="lead mt-6 max-w-[560px]">
+              most agencies build the thing, hand it over, and disappear. then the brand drifts, the
+              voice slips, and momentum quietly dies. motion is the opposite: the team that built it
+              stays, and keeps it sharp.
+            </p>
+          </div>
+          <SectionImage
+            src="/work/images/optimized/fdb-2-hero.jpg"
+            alt="brand work in market"
+            aspect="wide"
+          />
+        </div>
         <div className="wrap section">
-          <p className="eyebrow">why it exists</p>
-          <h2 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold">
-            the project ends. the brand does not.
-          </h2>
-          <p className="lead mt-6 max-w-[560px]">
-            most agencies build the thing, hand it over, and disappear. then the brand drifts, the
-            voice slips, and momentum quietly dies. motion is the opposite: the team that built it
-            stays, and keeps it sharp.
-          </p>
-          <div className="motion-contrast mt-12">
+          <div className="motion-contrast mt-4">
             <div className="contrast-col">
               <span className="eyebrow">the usual way</span>
               <ul>

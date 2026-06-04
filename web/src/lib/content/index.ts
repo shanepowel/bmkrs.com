@@ -16,6 +16,7 @@ import {
   fallbackTeam,
 } from "./offering-fallback";
 import {
+  mergeDisciplineImage,
   mergePostCover,
   mergeProjectImages,
   mergeTeamPhoto,
@@ -147,7 +148,8 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getDisciplines(): Promise<Discipline[]> {
   const data = await fetchSanity<Discipline[]>(disciplinesQuery);
-  return data?.length ? data : fallbackDisciplines;
+  const list = data?.length ? data : fallbackDisciplines;
+  return list.map(mergeDisciplineImage);
 }
 
 export async function getMotionTiers(): Promise<Product[]> {

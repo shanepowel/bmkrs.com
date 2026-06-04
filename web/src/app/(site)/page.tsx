@@ -7,7 +7,9 @@ import {
   TEAM_CENTER_WORDS,
 } from "@/lib/b-words";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
+import { ImageStrip } from "@/components/bmkrs/ImageStrip";
 import { Marquee } from "@/components/bmkrs/Marquee";
+import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import {
@@ -16,7 +18,9 @@ import {
   getHomeTestimonials,
   getProducts,
 } from "@/lib/content";
+import { homeMotionStrip, homePositioningImage } from "@/lib/content/image-fallbacks";
 import type { ProductTier } from "@/lib/types";
+import Image from "next/image";
 
 const TIER_LABELS: Record<ProductTier, { label: string; blurb: string }> = {
   start: { label: "start", blurb: "a fast, honest read before you commit to more." },
@@ -89,15 +93,22 @@ export default async function HomePage() {
       <Marquee items={home.marqueeItems} />
 
       <section className="section-pad block-lilac">
-        <div className="wrap">
-          <Reveal>
-            <span className="eyebrow">{home.positioning.eyebrow}</span>
-          </Reveal>
-          <h2 className="display  mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            {home.positioning.statement.split("identity, voice + messaging.")[0]}
-            <span className="text-accent">identity, voice + messaging.</span>
-          </h2>
-          <p className="lead mt-8 text-ink/70">{home.positioning.lead}</p>
+        <div className="wrap prose-with-media items-center">
+          <div>
+            <Reveal>
+              <span className="eyebrow">{home.positioning.eyebrow}</span>
+            </Reveal>
+            <h2 className="display  mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+              {home.positioning.statement.split("identity, voice + messaging.")[0]}
+              <span className="text-accent">identity, voice + messaging.</span>
+            </h2>
+            <p className="lead mt-8 text-ink/70">{home.positioning.lead}</p>
+          </div>
+          <SectionImage
+            src={homePositioningImage.src}
+            alt={homePositioningImage.alt}
+            aspect="wide"
+          />
         </div>
       </section>
 
@@ -117,17 +128,33 @@ export default async function HomePage() {
           <div className="grid gap-4 md:grid-cols-2">
             {home.capabilityTiles.map((tile, i) => (
               <Reveal key={tile.title} delay={(i % 2) as 0 | 1}>
-                <Link href={tile.href} className="cap-card">
-                  <span className="col-span-2 font-display text-[15px] font-semibold text-accent">
-                    {tile.number}
-                  </span>
-                  <div>
-                    <h3 className="display  mb-2.5 text-[clamp(24px,3vw,36px)]">
-                      {tile.title}
-                    </h3>
-                    <p className="max-w-[360px] text-base text-muted">{tile.description}</p>
+                <Link
+                  href={tile.href}
+                  className={tile.image ? "cap-card cap-card--visual" : "cap-card"}
+                >
+                  {tile.image && (
+                    <div className="cap-card-media relative">
+                      <Image
+                        src={tile.image}
+                        alt={tile.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 480px"
+                      />
+                    </div>
+                  )}
+                  <div className={tile.image ? "cap-card-body" : "contents"}>
+                    <span className="col-span-2 font-display text-[15px] font-semibold text-accent">
+                      {tile.number}
+                    </span>
+                    <div>
+                      <h3 className="display  mb-2.5 text-[clamp(24px,3vw,36px)]">
+                        {tile.title}
+                      </h3>
+                      <p className="max-w-[360px] text-base text-muted">{tile.description}</p>
+                    </div>
+                    <span className="text-[22px] text-accent">↗</span>
                   </div>
-                  <span className="text-[22px] text-accent">↗</span>
                 </Link>
               </Reveal>
             ))}
@@ -192,15 +219,22 @@ export default async function HomePage() {
       </section>
 
       <section className="section-pad">
-        <div className="wrap">
-          <Reveal>
-            <span className="eyebrow">{home.whoWeWorkWith.eyebrow}</span>
-          </Reveal>
-          <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-            {home.whoWeWorkWith.statement.replace("different.", "")}
-            <span className="text-accent">different.</span>
-          </h2>
-          <p className="lead mt-8">{home.whoWeWorkWith.lead}</p>
+        <div className="wrap prose-with-media items-center">
+          <div>
+            <Reveal>
+              <span className="eyebrow">{home.whoWeWorkWith.eyebrow}</span>
+            </Reveal>
+            <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
+              {home.whoWeWorkWith.statement.replace("different.", "")}
+              <span className="text-accent">different.</span>
+            </h2>
+            <p className="lead mt-8">{home.whoWeWorkWith.lead}</p>
+          </div>
+          <SectionImage
+            src="/images/optimized/wanderlust-hero.jpg"
+            alt="ambitious brand work"
+            aspect="square"
+          />
         </div>
       </section>
 
@@ -311,10 +345,11 @@ export default async function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={2}>
-            <p className="lead mx-auto mb-10">{home.motionTeaser.body}</p>
+            <p className="lead mx-auto mb-10 max-w-[560px]">{home.motionTeaser.body}</p>
           </Reveal>
+          <ImageStrip images={homeMotionStrip} />
           <Reveal delay={3}>
-            <Link href={home.motionTeaser.href} className="btn-primary">
+            <Link href={home.motionTeaser.href} className="btn-primary mt-10 inline-flex">
               {home.motionTeaser.ctaLabel} <ArrowIcon />
             </Link>
           </Reveal>

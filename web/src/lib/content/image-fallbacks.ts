@@ -61,6 +61,66 @@ export const motionShowcaseImages = [
   { src: "/images/optimized/smoothies-hero.jpg", alt: "smoothies launch site" },
 ] as const;
 
+export const pageHeroImages = {
+  services: {
+    src: "/images/optimized/business-strategy.jpg",
+    alt: "brand strategy and delivery",
+  },
+  about: { src: "/images/aboutus_qyrbat.webp", alt: "bmkrs team and studio" },
+  work: { src: "/images/optimized/copa-hero.jpg", alt: "copa brand identity" },
+  motion: { src: "/images/optimized/copa-campaign.jpg", alt: "ongoing brand campaigns" },
+  journal: { src: "/images/optimized/press-feature.jpg", alt: "press and brand thinking" },
+  contact: { src: "/images/optimized/intelligent-brands.jpg", alt: "global brand work" },
+} as const;
+
+export const aboutStoryImage = {
+  src: "/images/optimized/branding-dis.jpg",
+  alt: "brand identity work",
+};
+
+export const aboutBeliefsImage = {
+  src: "/images/optimized/ecom-growth.jpg",
+  alt: "growth and commerce",
+};
+
+export const homePositioningImage = {
+  src: "/images/optimized/marketing-dis.jpg",
+  alt: "brand and marketing",
+};
+
+export const homeMotionStrip = motionShowcaseImages;
+
+const disciplineImageByName: Record<string, string> = {
+  "brand + identity": "/images/optimized/branding-dis.jpg",
+  "voice + messaging": "/images/optimized/copa-campaign.jpg",
+  "pr + communications": "/images/optimized/marketing-dis.jpg",
+  "product, web + growth": "/images/optimized/mobile-app.jpg",
+};
+
+export const productImageBySlug: Record<string, { src: string; alt: string }> = {
+  "brand-check": { src: "/images/optimized/intelligent-brands.jpg", alt: "brand check" },
+  "launch-kit": { src: "/images/optimized/copa-hero.jpg", alt: "launch kit" },
+  rebrand: { src: "/images/optimized/branding-dis.jpg", alt: "rebrand" },
+  storefront: { src: "/images/optimized/ecom-growth.jpg", alt: "storefront" },
+  story: { src: "/images/optimized/copa-campaign.jpg", alt: "story" },
+  "press-launch": { src: "/images/optimized/press-feature.jpg", alt: "press launch" },
+  motion: { src: "/images/optimized/smoothies-hero.jpg", alt: "motion" },
+  "motion-plus": { src: "/images/optimized/wanderlust-hero.jpg", alt: "motion plus" },
+  "motion-embedded": { src: "/images/optimized/business-strategy.jpg", alt: "motion embedded" },
+};
+
+export function mergeDisciplineImage<T extends { name: string; imageUrl?: string; imageAlt?: string }>(
+  discipline: T,
+): T {
+  const src = discipline.imageUrl ?? disciplineImageByName[discipline.name.toLowerCase()];
+  if (!src || !isUsableImage(src)) return discipline;
+  return {
+    ...discipline,
+    imageUrl: src,
+    imageAlt: discipline.imageAlt ?? discipline.name,
+  };
+}
+
 function isUsableImage(url?: string): url is string {
   return Boolean(url && url !== PLACEHOLDER_LOGO && !url.includes("blacklogo"));
 }
