@@ -85,7 +85,7 @@ export default async function ServicesPage() {
                 </div>
 
                 <Link className="product-cta" href="/contact">
-                  {p.priceNote ?? "let's talk"} →
+                  let&apos;s talk →
                 </Link>
               </article>
             ))}

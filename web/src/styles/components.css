@@ -112,6 +112,18 @@
   margin-top: var(--bmkrs-space-4);
 }
 
+.quote-grid .testimonial blockquote {
+  font-family: var(--bmkrs-font-display);
+  font-size: var(--bmkrs-step-1);
+  line-height: 1.35;
+}
+
+.quote-grid .testimonial figcaption {
+  margin-top: var(--bmkrs-space-2);
+  font-size: 0.875rem;
+  color: var(--bmkrs-muted);
+}
+
 .team-photo { position: relative; }
 .journal-cover { position: relative; }
 .journal-hero-cover { position: relative; }

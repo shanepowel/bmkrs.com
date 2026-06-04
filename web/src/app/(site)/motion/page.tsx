@@ -142,7 +142,7 @@ export default async function MotionPage() {
                 ) : null}
                 {tier.outcome && <p className="mt-3 text-sm text-muted">{tier.outcome}</p>}
                 <Link href="/contact" className="product-cta mt-auto pt-4">
-                  {tier.priceNote ?? "let's talk"} →
+                  let&apos;s talk →
                 </Link>
               </article>
             ))}

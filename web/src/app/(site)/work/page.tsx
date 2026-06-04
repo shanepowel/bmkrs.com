@@ -42,7 +42,9 @@ export default async function WorkPage() {
                 </div>
                 <div className="meta">
                   <span className="eyebrow mb-2 block">
-                    {project.sector ?? project.category}
+                    {project.serviceTags?.length
+                      ? project.serviceTags.join(" · ")
+                      : (project.sector ?? project.category)}
                   </span>
                   <h3 className="display text-xl">{project.title}</h3>
                   <p>{project.positioning ?? project.tagline}</p>

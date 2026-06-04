@@ -1,6 +1,6 @@
 # Sanity revalidation webhook config
 
-Drives on-demand revalidation so publishing content refreshes the live site without a redeploy. Pairs with `web/app/api/revalidate/route.ts`.
+Drives on-demand revalidation so publishing content refreshes the live site without a redeploy. Pairs with `web/src/app/api/revalidate/route.ts`.
 
 ## 1. Add the secret
 
