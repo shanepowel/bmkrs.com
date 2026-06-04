@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { JournalFilter } from "@/components/bmkrs/JournalFilter";
+import { JournalMap } from "@/components/bmkrs/JournalMap";
 import { getJournalIndex } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -25,6 +26,8 @@ function formatDate(iso: string) {
 
 export default async function JournalPage() {
   const { featured, posts } = await getJournalIndex();
+  const all = [featured, ...posts].filter(Boolean);
+  const mapPosts = all.map((p) => ({ slug: p!.slug, title: p!.title, category: p!.category }));
 
   return (
     <main className="journal">
@@ -34,6 +37,8 @@ export default async function JournalPage() {
             <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
             <p className="muted mt-2">notes on building bold brands.</p>
           </div>
+
+          {mapPosts.length > 0 && <JournalMap posts={mapPosts} />}
 
           {featured && (
             <Link href={`/journal/${featured.slug}`} className="journal-hero mt-10 block">

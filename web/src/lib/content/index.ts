@@ -10,6 +10,7 @@ import {
 import { fallbackJournalArticles } from "./journal-fallback";
 import {
   fallbackAboutPage,
+  fallbackDisciplines,
   fallbackPosts,
   fallbackProducts,
   fallbackTeam,
@@ -22,6 +23,7 @@ import {
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
+  Discipline,
   CmsPage,
   HomeContent,
   HomePillar,
@@ -39,6 +41,7 @@ import { sanityClient } from "@/lib/sanity/client";
 import {
   aboutPageQuery,
   allProductsQuery,
+  disciplinesQuery,
   caseStudiesQuery,
   caseStudyBySlugQuery,
   caseStudySlugsQuery,
@@ -140,6 +143,11 @@ export async function getFeaturedProjects(): Promise<Project[]> {
 export async function getProducts(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(allProductsQuery);
   return data?.length ? data : fallbackProducts;
+}
+
+export async function getDisciplines(): Promise<Discipline[]> {
+  const data = await fetchSanity<Discipline[]>(disciplinesQuery);
+  return data?.length ? data : fallbackDisciplines;
 }
 
 export async function getMotionTiers(): Promise<Product[]> {

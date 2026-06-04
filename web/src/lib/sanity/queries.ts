@@ -143,6 +143,11 @@ export const homePillarsQuery = `*[_type == "homePillar"] | order(order asc){
   order
 }`;
 
+export const disciplinesQuery = `*[_type == "discipline"] | order(order asc){
+  name, proposition, body, deliverables,
+  "powers": relatedProducts[]->{ name, "slug": slug.current, tier }
+}`;
+
 export const allProductsQuery = `*[_type == "product"] | order(order asc){
   name, "slug": slug.current, tier, tagline, forWho, included, shape, outcome,
   cadence, commitment, monthlyDeliverables, priceNote,

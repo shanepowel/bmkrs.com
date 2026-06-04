@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DisciplineVisuals } from "@/components/bmkrs/DisciplineVisuals";
-import { getProducts } from "@/lib/content";
+import { DisciplinesStack } from "@/components/bmkrs/DisciplinesStack";
+import { getDisciplines, getProducts } from "@/lib/content";
 import type { Product, ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "services",
   description:
-    "ways to work with us: a fast brand check to start, fixed-scope sprints to build, and motion to keep it growing. one team throughout.",
+    "four disciplines, one team: brand, voice, pr and product. start with a brand check, build with a sprint, grow with motion.",
 };
 
 const TIERS: { key: ProductTier; label: string; intro: string }[] = [
@@ -20,8 +20,15 @@ const TIERS: { key: ProductTier; label: string; intro: string }[] = [
   { key: "grow", label: "grow", intro: "one team keeping it all moving, month after month. this is motion." },
 ];
 
+function productCta(p: Product) {
+  if (p.tier === "grow") {
+    return { href: "/motion", label: "explore motion →" };
+  }
+  return { href: "/contact", label: `${p.priceNote ?? "let's talk"} →` };
+}
+
 export default async function ServicesPage() {
-  const products = await getProducts();
+  const [disciplines, products] = await Promise.all([getDisciplines(), getProducts()]);
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
 
   return (
@@ -33,65 +40,78 @@ export default async function ServicesPage() {
             everything your brand needs to <span className="text-accent">grow.</span>
           </h1>
           <p className="lead mt-8 max-w-[560px]">
-            brand, voice, pr and the product to back it up, packaged so you know exactly what you are
-            getting. the work is bespoke. the way you start it does not have to be.
+            four equally strong disciplines, one team. below them, simple ways to start. the work is
+            bespoke, the way you begin it does not have to be.
           </p>
         </div>
       </section>
 
-      <DisciplineVisuals />
+      <DisciplinesStack disciplines={disciplines} />
+
+      <section className="section-pad">
+        <div className="wrap section">
+          <p className="eyebrow">ways to work with us</p>
+          <h2 className="display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-bold">start, make, grow.</h2>
+          <p className="lead mt-6 max-w-[560px]">
+            the same four disciplines, packaged so you know exactly what you are getting.
+          </p>
+        </div>
+      </section>
 
       {TIERS.map((tier) => (
         <section key={tier.key} className="tier-section" id={tier.key}>
           <div className="tier-head">
-            <h2 className="display preserve-case text-[clamp(1.75rem,4vw,3rem)] text-accent">
+            <h3 className="display preserve-case text-[clamp(1.75rem,4vw,3rem)] text-accent">
               {tier.label}
-            </h2>
+            </h3>
             <p className="muted mt-2">{tier.intro}</p>
           </div>
 
           <div className="product-grid">
-            {byTier(tier.key).map((p) => (
-              <article key={p.slug} className="product-card" id={p.slug}>
-                <h3 className="display text-[clamp(1.25rem,2.5vw,1.75rem)]">{p.name}</h3>
-                <p className="product-tagline">{p.tagline}</p>
+            {byTier(tier.key).map((p) => {
+              const cta = productCta(p);
+              return (
+                <article key={p.slug} className="product-card" id={p.slug}>
+                  <h3 className="display text-[clamp(1.25rem,2.5vw,1.75rem)]">{p.name}</h3>
+                  <p className="product-tagline">{p.tagline}</p>
 
-                {p.forWho && (
-                  <p className="product-for">
-                    <span className="eyebrow mb-1 block">for</span> {p.forWho}
-                  </p>
-                )}
+                  {p.forWho && (
+                    <p className="product-for">
+                      <span className="eyebrow mb-1 block">for</span> {p.forWho}
+                    </p>
+                  )}
 
-                {p.included?.length ? (
-                  <ul className="product-included">
-                    {p.included.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ) : null}
-
-                <div className="product-foot">
-                  {p.shape && <span className="eyebrow">{p.shape}</span>}
-                  {p.proof?.length ? (
-                    <span className="product-proof">
-                      proof:{" "}
-                      {p.proof.map((c, i) => (
-                        <span key={c.slug}>
-                          <Link href={`/work/${c.slug}`} className="text-accent hover:underline">
-                            {c.title}
-                          </Link>
-                          {i < p.proof!.length - 1 ? ", " : ""}
-                        </span>
+                  {p.included?.length ? (
+                    <ul className="product-included">
+                      {p.included.map((item) => (
+                        <li key={item}>{item}</li>
                       ))}
-                    </span>
+                    </ul>
                   ) : null}
-                </div>
 
-                <Link className="product-cta" href="/contact">
-                  let&apos;s talk →
-                </Link>
-              </article>
-            ))}
+                  <div className="product-foot">
+                    {p.shape && <span className="eyebrow">{p.shape}</span>}
+                    {p.proof?.length ? (
+                      <span className="product-proof">
+                        proof:{" "}
+                        {p.proof.map((c, i) => (
+                          <span key={c.slug}>
+                            <Link href={`/work/${c.slug}`} className="text-accent hover:underline">
+                              {c.title}
+                            </Link>
+                            {i < p.proof!.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <Link className="product-cta" href={cta.href}>
+                    {cta.label}
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </section>
       ))}

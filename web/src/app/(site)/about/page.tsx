@@ -96,7 +96,8 @@ export default async function AboutPage() {
       <section className="section-pad section--paper">
         <div className="wrap section">
           <p className="eyebrow">the long game</p>
-          <p className="lead mt-4 max-w-[560px]">{about.longGame}</p>
+          <h2 className="display mt-4 text-[clamp(2rem,5vw,3rem)] font-bold">we are built to stick around.</h2>
+          <p className="lead mt-6 max-w-[560px]">{about.longGame}</p>
         </div>
       </section>
 
@@ -110,9 +111,22 @@ export default async function AboutPage() {
               </li>
             ))}
           </ul>
-          <Link href="/contact" className="btn-primary mt-12 inline-flex">
-            start a project
-          </Link>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="wrap section closing">
+          <h2 className="display text-[clamp(2rem,5vw,3.5rem)] font-bold">
+            let&apos;s make something worth choosing.
+          </h2>
+          <div className="hero-cta mt-8 flex flex-wrap items-center gap-6">
+            <Link href="/contact" className="btn-primary inline-flex">
+              work with us
+            </Link>
+            <Link href="/services" className="font-semibold text-accent hover:underline">
+              our services →
+            </Link>
+          </div>
         </div>
       </section>
     </main>

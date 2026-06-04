@@ -15,6 +15,9 @@ npx sanity dataset import /tmp/case-studies-phase1.ndjson "$DATASET" --replace
 echo "→ products"
 npx sanity dataset import sanity/seed/products.ndjson "$DATASET"
 
+echo "→ disciplines"
+npx sanity dataset import sanity/seed/disciplines.ndjson "$DATASET"
+
 echo "→ case studies (phase 2, with productType)"
 npx sanity dataset import sanity/seed/case-studies.ndjson "$DATASET" --replace
 

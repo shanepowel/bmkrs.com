@@ -57,6 +57,20 @@ export type TeamMember = {
 
 export type ProductTier = "start" | "make" | "grow";
 
+export type DisciplinePower = {
+  name: string;
+  slug: string;
+  tier: ProductTier;
+};
+
+export type Discipline = {
+  name: string;
+  proposition: string;
+  body?: string;
+  deliverables?: string[];
+  powers?: DisciplinePower[];
+};
+
 export type ProductProof = {
   title: string;
   slug: string;

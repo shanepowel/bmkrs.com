@@ -105,25 +105,34 @@ export default async function JournalArticlePage({ params }: Props) {
           <PortableBody blocks={post.body} />
 
           {(post.relatedProduct || post.relatedCaseStudy) && (
-            <nav className="mt-14 flex flex-wrap gap-4 border-t-2 border-[var(--line)] pt-10">
-              {post.relatedProduct && (
-                <Link
-                  href={`/services#${post.relatedProduct.slug}`}
-                  className="rounded-[var(--radius)] border-2 border-ink/15 px-5 py-4 text-sm font-semibold hover:border-accent hover:text-accent"
-                >
-                  related: {post.relatedProduct.name} →
-                </Link>
-              )}
-              {post.relatedCaseStudy && (
-                <Link
-                  href={`/work/${post.relatedCaseStudy.slug}`}
-                  className="rounded-[var(--radius)] border-2 border-ink/15 px-5 py-4 text-sm font-semibold hover:border-accent hover:text-accent"
-                >
-                  case study: {post.relatedCaseStudy.title} →
-                </Link>
-              )}
-            </nav>
+            <aside className="post-cta mt-14 border-t-2 border-[var(--line)] pt-10">
+              <span className="eyebrow block">where this shows up</span>
+              <div className="mt-4 flex flex-wrap gap-4">
+                {post.relatedProduct && (
+                  <Link href={`/services#${post.relatedProduct.slug}`} className="btn-primary inline-flex">
+                    {post.relatedProduct.name} →
+                  </Link>
+                )}
+                {post.relatedCaseStudy && (
+                  <Link
+                    href={`/work/${post.relatedCaseStudy.slug}`}
+                    className="font-semibold text-accent hover:underline"
+                  >
+                    see it in {post.relatedCaseStudy.title} →
+                  </Link>
+                )}
+              </div>
+            </aside>
           )}
+
+          <nav className="post-foot mt-12 flex flex-wrap gap-6 border-t border-[var(--line)] pt-8 text-sm font-semibold">
+            <Link href="/journal" className="text-muted hover:text-accent">
+              more from the journal
+            </Link>
+            <Link href="/contact" className="text-accent hover:underline">
+              start a project
+            </Link>
+          </nav>
         </div>
 
         {others.length > 0 && (
