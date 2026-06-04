@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
+import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { getMotionTiers } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -60,6 +61,8 @@ export default async function MotionPage() {
           </div>
         </div>
       </section>
+
+      <MotionShowcase />
 
       <section className="section-pad section--paper motion-why">
         <div className="wrap section">

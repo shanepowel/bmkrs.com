@@ -19,6 +19,38 @@
 .discipline:hover { border-top-color: var(--bmkrs-accent); }
 .discipline h3 { font-family: var(--bmkrs-font-display); font-size: var(--bmkrs-step-1); margin: var(--bmkrs-space-1) 0; }
 
+.discipline-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--bmkrs-space-4);
+}
+
+.discipline-visual { display: block; }
+.discipline-visual-media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--bmkrs-radius);
+  background: var(--bmkrs-ink-80);
+}
+.discipline-visual:hover h3 { color: var(--bmkrs-accent); }
+
+.motion-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--bmkrs-space-2);
+}
+
+@media (min-width: 768px) {
+  .motion-showcase { grid-template-columns: repeat(4, 1fr); }
+}
+
+.motion-showcase-item {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--bmkrs-radius);
+  background: var(--bmkrs-ink-80);
+}
+
 /* tiers (home + services teaser) */
 .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--bmkrs-space-4); margin: var(--bmkrs-space-4) 0; }
 .tier h3 { font-family: var(--bmkrs-font-display); font-size: var(--bmkrs-step-2); color: var(--bmkrs-accent); }

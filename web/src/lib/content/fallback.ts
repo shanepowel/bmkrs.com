@@ -592,7 +592,7 @@ export const fallbackProjects: Project[] = [
       "a coherent design system the studio can deploy across campaigns without losing personality, and far less time lost starting each brief from zero.",
     results: [],
     serviceTags: ["brand + identity"],
-    thumbnailPath: "/images/trip-of-my-life.png",
+    thumbnailPath: "/images/optimized/wanderlust-hero.jpg",
     media: [
       {
         type: "iframe",

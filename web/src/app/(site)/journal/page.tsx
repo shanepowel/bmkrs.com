@@ -38,16 +38,14 @@ export default async function JournalPage() {
           {featured && (
             <Link href={`/journal/${featured.slug}`} className="journal-hero mt-10 block">
               <div className="journal-hero-cover relative">
-                {featured.cover?.url && (
-                  <Image
-                    src={featured.cover.url}
-                    alt={featured.cover.alt ?? featured.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                    priority
-                  />
-                )}
+                <Image
+                  src={featured.cover!.url}
+                  alt={featured.cover!.alt ?? featured.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
                 <div className="journal-hero-overlay">
                   <span className="eyebrow">
                     featured · {CATEGORY_LABEL[featured.category] ?? featured.category}
@@ -76,15 +74,13 @@ export default async function JournalPage() {
                 data-category={post.category}
               >
                 <div className="journal-cover relative">
-                  {post.cover?.url && (
-                    <Image
-                      src={post.cover.url}
-                      alt={post.cover.alt ?? post.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 400px"
-                    />
-                  )}
+                  <Image
+                    src={post.cover!.url}
+                    alt={post.cover!.alt ?? post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
                 </div>
                 <span className="eyebrow mt-4 block">
                   {CATEGORY_LABEL[post.category] ?? post.category}

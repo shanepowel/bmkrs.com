@@ -17,6 +17,10 @@ const targets = [
   { src: "images/intelligent-brands-min.png", out: "images/optimized/intelligent-brands.jpg", max: 1000 },
   { src: "images/Mobile_app_design.jpeg", out: "images/optimized/mobile-app.jpg", max: 1000 },
   { src: "work/images/flipster-fff.png", out: "work/images/optimized/flipster-hero.jpg", max: 1200 },
+  { src: "images/trip-of-my-life.png", out: "images/optimized/wanderlust-hero.jpg", max: 1200 },
+  { src: "images/business.jpeg", out: "images/optimized/business-strategy.jpg", max: 1000 },
+  { src: "images/ecom-dis.png", out: "images/optimized/ecom-growth.jpg", max: 1000 },
+  { src: "images/7abd2549110b63f83e49877e1d59adea.jpg", out: "images/optimized/press-feature.jpg", max: 1000 },
 ];
 
 function hasSips() {

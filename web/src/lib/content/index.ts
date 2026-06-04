@@ -14,6 +14,11 @@ import {
   fallbackProducts,
   fallbackTeam,
 } from "./offering-fallback";
+import {
+  mergePostCover,
+  mergeProjectImages,
+  mergeTeamPhoto,
+} from "./image-fallbacks";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
@@ -185,15 +190,18 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     }[]
   >(teamQuery);
   if (data?.length) {
-    return data.map((m) => ({
-      name: m.name,
-      discipline: m.discipline,
-      bio: m.bio,
-      photoUrl: m.photo?.url,
-      photoAlt: m.photo?.alt || m.name,
-    }));
+    return data
+      .map((m) =>
+        mergeTeamPhoto({
+          name: m.name,
+          discipline: m.discipline,
+          bio: m.bio,
+          photoUrl: m.photo?.url,
+          photoAlt: m.photo?.alt || m.name,
+        }),
+      );
   }
-  return fallbackTeam;
+  return fallbackTeam.map(mergeTeamPhoto);
 }
 
 export async function getJournalIndex(): Promise<{
@@ -205,8 +213,8 @@ export async function getJournalIndex(): Promise<{
   );
   if (data?.posts?.length || data?.featured) {
     return {
-      featured: data.featured,
-      posts: data.posts ?? [],
+      featured: data.featured ? mergePostCover(data.featured) : null,
+      posts: (data.posts ?? []).map(mergePostCover),
     };
   }
   const featured = fallbackPosts.find((p) => p.featured) ?? null;
@@ -216,8 +224,9 @@ export async function getJournalIndex(): Promise<{
 
 export async function getPost(slug: string): Promise<JournalPost | null> {
   const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
-  if (data) return data;
-  return fallbackPosts.find((p) => p.slug === slug) ?? null;
+  if (data) return mergePostCover(data);
+  const fb = fallbackPosts.find((p) => p.slug === slug);
+  return fb ? mergePostCover(fb) : null;
 }
 
 export async function getPostSlugs(): Promise<string[]> {
@@ -252,23 +261,7 @@ function normalizeProject(project: Project): Project {
       }
     : undefined;
 
-  const thumbnailPath =
-    project.thumbnailPath ||
-    project.heroImage?.url ||
-    "/images/blacklogo.png";
-
-  const media =
-    project.media?.length
-      ? project.media
-      : (project.gallery
-          ?.filter((g) => g.url)
-          .map((g) => ({
-            type: "image" as const,
-            src: g.url!,
-            alt: g.alt || project.title,
-          })) ?? [{ type: "image" as const, src: thumbnailPath, alt: project.title }]);
-
-  return {
+  return mergeProjectImages({
     ...project,
     positioning: project.positioning || project.tagline,
     category,
@@ -280,9 +273,7 @@ function normalizeProject(project: Project): Project {
     results: project.results || project.outcomeMetrics,
     outcome: project.resultsNarrative || project.outcome || project.result,
     testimonial,
-    thumbnailPath,
-    media,
-  };
+  });
 }
 
 export { isFilled, hasFilledMetrics };

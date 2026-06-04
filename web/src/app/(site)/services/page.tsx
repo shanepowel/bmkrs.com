@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DisciplineVisuals } from "@/components/bmkrs/DisciplineVisuals";
 import { getProducts } from "@/lib/content";
 import type { Product, ProductTier } from "@/lib/types";
 
@@ -37,6 +38,8 @@ export default async function ServicesPage() {
           </p>
         </div>
       </section>
+
+      <DisciplineVisuals />
 
       {TIERS.map((tier) => (
         <section key={tier.key} className="tier-section" id={tier.key}>
