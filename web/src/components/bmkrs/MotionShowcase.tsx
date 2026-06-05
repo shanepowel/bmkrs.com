@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motionShowcaseImages } from "@/lib/content/image-fallbacks";
+import { motionStripImages } from "@/lib/marketing-assets";
 
 export function MotionShowcase() {
   return (
@@ -7,7 +7,7 @@ export function MotionShowcase() {
       <div className="wrap">
         <p className="eyebrow">work in motion</p>
         <div className="motion-showcase mt-6">
-          {motionShowcaseImages.map((img) => (
+          {motionStripImages.map((img) => (
             <div key={img.src} className="motion-showcase-item relative">
               <Image
                 src={img.src}

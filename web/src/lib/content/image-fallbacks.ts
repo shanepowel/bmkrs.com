@@ -1,6 +1,10 @@
 import { fallbackProjects } from "./fallback";
 import { fallbackPosts, fallbackTeam } from "./offering-fallback";
-import { marketingImages } from "@/lib/marketing-assets";
+import {
+  journalCoverByCategory,
+  marketingImages,
+  motionStripImages,
+} from "@/lib/marketing-assets";
 import type { JournalPost, Project, TeamMember } from "@/lib/types";
 
 const PLACEHOLDER_LOGO = "/images/blacklogo.png";
@@ -13,13 +17,13 @@ const postCoverBySlug = new Map(
 
 /** Discipline imagery used when Sanity has no team photo yet. */
 export const teamPhotoByName: Record<string, { url: string; alt: string }> = {
-  shane: { url: "/images/optimized/intelligent-brands.jpg", alt: "delivery and strategy" },
-  george: { url: "/images/optimized/marketing-dis.jpg", alt: "pr and communications" },
-  melissa: { url: "/images/optimized/mobile-app.jpg", alt: "product and engineering" },
-  sarah: { url: "/images/optimized/branding-dis.jpg", alt: "brand and identity" },
-  marcus: { url: "/images/optimized/copa-hero.jpg", alt: "voice and messaging" },
+  shane: { url: marketingImages.brandArchitecture, alt: "delivery and strategy" },
+  george: { url: marketingImages.socialStrategy, alt: "pr and communications" },
+  melissa: { url: marketingImages.digitalEcosystem, alt: "product and engineering" },
+  sarah: { url: marketingImages.brandGuidelines, alt: "brand and identity" },
+  marcus: { url: marketingImages.designStudio, alt: "voice and messaging" },
   "the wider team": {
-    url: "/images/optimized/business-strategy.jpg",
+    url: marketingImages.creativeToolkit,
     alt: "extended specialist network",
   },
 };
@@ -55,12 +59,11 @@ export const disciplineImages = [
   },
 ] as const;
 
-export const motionShowcaseImages = [
-  { src: marketingImages.filmProduction, alt: "film and campaign production" },
-  { src: marketingImages.videoEditing, alt: "video editing and content" },
-  { src: marketingImages.podcastStudio, alt: "studio and audio production" },
-  { src: marketingImages.contentPlatform, alt: "content across channels" },
-] as const;
+export const disciplineImageByName = Object.fromEntries(
+  disciplineImages.map((d) => [d.name, d.image]),
+) as Record<(typeof disciplineImages)[number]["name"], string>;
+
+export const homeMotionStrip = motionStripImages;
 
 export const pageHeroImages = {
   services: {
@@ -84,23 +87,11 @@ export const aboutBeliefsImage = {
   alt: "brand building ecosystem",
 };
 
-export const homePositioningImage = {
-  src: marketingImages.brandEcosystem,
-  alt: "strategy, creativity, experience, and growth",
-};
+export const homePositioningImage = aboutBeliefsImage;
 
-export const homeMotionStrip = [
-  { src: marketingImages.podcastStudio, alt: "studio production" },
-  { src: marketingImages.videoEditing, alt: "video editing" },
-  { src: marketingImages.filmProduction, alt: "film production" },
-  { src: marketingImages.socialStrategy, alt: "social and growth" },
-] as const;
-
-const disciplineImageByName: Record<string, string> = {
-  "brand + identity": marketingImages.brandGuidelines,
-  "voice + messaging": marketingImages.designStudio,
-  "pr + communications": marketingImages.socialStrategy,
-  "product, web + growth": marketingImages.digitalEcosystem,
+export const homeWhoWeWorkWithImage = {
+  src: marketingImages.filmProduction,
+  alt: "ambitious brand work",
 };
 
 export const productImageBySlug: Record<string, { src: string; alt: string }> = {
@@ -118,7 +109,7 @@ export const productImageBySlug: Record<string, { src: string; alt: string }> = 
 export function mergeDisciplineImage<T extends { name: string; imageUrl?: string; imageAlt?: string }>(
   discipline: T,
 ): T {
-  const src = discipline.imageUrl ?? disciplineImageByName[discipline.name.toLowerCase()];
+  const src = discipline.imageUrl ?? disciplineImageByName[discipline.name.toLowerCase() as keyof typeof disciplineImageByName];
   if (!src || !isUsableImage(src)) return discipline;
   return {
     ...discipline,
@@ -170,25 +161,12 @@ export function mergeProjectImages(project: Project): Project {
   };
 }
 
-const defaultJournalCover = {
-  url: "/images/optimized/branding-dis.jpg",
-  alt: "bmkrs brand work",
-};
-
-const postCoverByCategory: Record<string, { url: string; alt: string }> = {
-  brand: { url: marketingImages.brandGuidelines, alt: "brand" },
-  voice: { url: marketingImages.designStudio, alt: "voice" },
-  pr: { url: marketingImages.socialStrategy, alt: "pr" },
-  growth: { url: marketingImages.digitalEcosystem, alt: "growth" },
-  studio: { url: marketingImages.creativeToolkit, alt: "studio" },
-};
-
 export function mergePostCover(post: JournalPost): JournalPost {
   if (isUsableImage(post.cover?.url)) return post;
   const cover =
     postCoverBySlug.get(post.slug) ??
-    postCoverByCategory[post.category] ?? {
-      ...defaultJournalCover,
+    journalCoverByCategory[post.category as keyof typeof journalCoverByCategory] ?? {
+      ...journalCoverByCategory.brand,
       alt: post.title,
     };
   return { ...post, cover: { ...cover, alt: post.title } };

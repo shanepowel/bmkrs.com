@@ -21,7 +21,11 @@ import {
   getProducts,
   getSiteSettings,
 } from "@/lib/content";
-import { homeMotionStrip, homePositioningImage } from "@/lib/content/image-fallbacks";
+import {
+  homeMotionStrip,
+  homePositioningImage,
+  homeWhoWeWorkWithImage,
+} from "@/lib/content/image-fallbacks";
 import type { ProductTier } from "@/lib/types";
 import Image from "next/image";
 
@@ -253,8 +257,8 @@ export default async function HomePage() {
             <p className="lead mt-8">{home.whoWeWorkWith.lead}</p>
           </div>
           <SectionImage
-            src="/images/optimized/wanderlust-hero.jpg"
-            alt="ambitious brand work"
+            src={homeWhoWeWorkWithImage.src}
+            alt={homeWhoWeWorkWithImage.alt}
             aspect="square"
           />
         </div>
