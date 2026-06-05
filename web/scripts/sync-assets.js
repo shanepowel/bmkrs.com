@@ -39,6 +39,9 @@ for (const relPath of required) {
   }
 }
 
+/** Subdirs under public/images that are committed in git and must survive prune. */
+const PRESERVED_IMAGE_DIRS = new Set(["marketing"]);
+
 function pruneDir(dirRel, allowedRelPaths) {
   const dir = path.join(publicRoot, dirRel);
   if (!fs.existsSync(dir)) return;
@@ -49,6 +52,10 @@ function pruneDir(dirRel, allowedRelPaths) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const childRel = `${dirRel}/${entry.name}`;
     const full = path.join(publicRoot, childRel);
+
+    if (dirRel === "images" && PRESERVED_IMAGE_DIRS.has(entry.name)) {
+      continue;
+    }
 
     if (entry.isDirectory()) {
       const keepSubtree = allowedHere.some(

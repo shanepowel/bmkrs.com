@@ -1,16 +1,11 @@
 import type { JournalPost } from "@/lib/types";
+import { journalCoverByCategory, type JournalCoverCategory } from "@/lib/marketing-assets";
 
-const COVER: Record<string, { url: string; alt: string }> = {
-  voice: { url: "/images/optimized/copa-campaign.jpg", alt: "voice and messaging" },
-  brand: { url: "/images/optimized/branding-dis.jpg", alt: "brand and identity" },
-  pr: { url: "/images/optimized/press-feature.jpg", alt: "pr and communications" },
-  growth: { url: "/images/optimized/ecom-growth.jpg", alt: "growth" },
-  studio: { url: "/images/optimized/intelligent-brands.jpg", alt: "studio notes" },
-};
-
-function post(entry: Omit<JournalPost, "cover"> & { category: keyof typeof COVER }): JournalPost {
+function post(
+  entry: Omit<JournalPost, "cover"> & { category: JournalCoverCategory },
+): JournalPost {
   const { category, ...rest } = entry;
-  return { ...rest, category, cover: { ...COVER[category], alt: rest.title } };
+  return { ...rest, category, cover: { ...journalCoverByCategory[category], alt: rest.title } };
 }
 
 /** Mirrors sanity/seed/posts.ndjson when CMS is empty. */
