@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { NavItem } from "@/lib/types";
 
 const DEFAULT_NAV: NavItem[] = [
@@ -40,7 +41,7 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="wordmark" aria-label="bmkrs, home">
-          bmkrs.
+          <Wordmark />
         </Link>
 
         <nav className="site-nav" aria-label="primary">
