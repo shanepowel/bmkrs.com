@@ -1,3 +1,4 @@
+import { marketingImages, marketingVideos } from "@/lib/marketing-assets";
 import type {
   CmsPage,
   HomeContent,
@@ -6,6 +7,7 @@ import type {
   Project,
   Service,
   SiteSettings,
+  Testimonial,
 } from "@/lib/types";
 
 export const fallbackNavigation: NavItem[] = [
@@ -27,8 +29,8 @@ export const fallbackSiteSettings: SiteSettings = {
   pressEmail: "press@bmkrs.com",
   companyName: "b makers ltd",
   companyNumber: "",
-  registeredAddress: "registered in england and wales. full address in site settings.",
-  copyright: "© 2026 b makers (bmkrs). all rights reserved.",
+  registeredAddress: "",
+  copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
   offices: [{ name: "london" }, { name: "worldwide" }],
@@ -42,23 +44,26 @@ export const fallbackSiteSettings: SiteSettings = {
     { platform: "linkedin", url: "https://www.linkedin.com/company/bmkrs" },
   ],
   navigation: fallbackNavigation,
-  heroReelUrl: "/videos/hero-reel.mp4",
-  heroPoster: "/images/marketing/hero-sculpture.png",
+  heroReelUrl: marketingVideos.heroReel,
+  heroPoster: marketingImages.heroSculpture,
 };
 
 export const fallbackHome: HomeContent = {
   hero: {
-    eyebrow: "a brand company",
-    headlineLead: "we make",
+    eyebrow: "a brand company run by builders",
+    headline: "most studios stop at the logo. we ship the whole thing.",
+    headlineLead: "we build",
     headlineTail: "brands.",
-    sub: "we don't just help you build your product. we create its brand, give it a voice, get it heard, and grow it. everything from one team.",
+    sub: "brand, voice, pr, product, growth. one team that takes you from a name on a page to a brand people choose.",
     primaryCta: { label: "see our work", href: "/work" },
     secondaryCta: { label: "start a project", href: "/contact" },
     collage: [
       { src: "/work/images/optimized/fdb-2-hero.jpg", alt: "floare din banat" },
       { src: "/images/optimized/copa-hero.jpg", alt: "copa, off the shore" },
+      { src: "/images/optimized/carter-hero.jpg", alt: "carter mcgreggor" },
       { src: "/images/optimized/smoothies-hero.jpg", alt: "smoothies" },
-      { src: "/images/optimized/copa-campaign.jpg", alt: "copa campaign" },
+      { src: "/work/images/optimized/flipster-hero.jpg", alt: "flipster" },
+      { src: "/images/optimized/wanderlust-hero.jpg", alt: "wanderlust" },
     ],
   },
   marqueeItems: [
@@ -71,9 +76,8 @@ export const fallbackHome: HomeContent = {
   ],
   positioning: {
     eyebrow: "what we really do",
-    statement:
-      "we don't just help you build apps. we build your product's identity, voice + messaging.",
-    lead: "anyone can ship a product. we make people care about it, with a brand, a voice, and a story that earns attention and keeps it.",
+    statement: "we make people care about what you built.",
+    lead: "shipping the product is the easy part. the hard part is attention, and keeping it. we give your product a brand, a voice, and a story so the right people notice, understand, and choose it.",
   },
   capabilitiesHead: {
     title: "strategy-led. growth-built.",
@@ -87,7 +91,7 @@ export const fallbackHome: HomeContent = {
       description:
         "strategy, positioning, naming, and the visual world that makes you clear at a glance.",
       href: "/services#launch-kit",
-      image: "/images/marketing/brand-guidelines.png",
+      image: marketingImages.brandGuidelines,
     },
     {
       number: "02",
@@ -95,7 +99,7 @@ export const fallbackHome: HomeContent = {
       description:
         "tone of voice, narrative, and messaging that makes people understand and care.",
       href: "/services#story",
-      image: "/images/marketing/design-studio.png",
+      image: marketingImages.designStudio,
     },
     {
       number: "03",
@@ -103,7 +107,7 @@ export const fallbackHome: HomeContent = {
       description:
         "launches, press, and thought leadership that get your story heard.",
       href: "/services#press-launch",
-      image: "/images/marketing/social-strategy.png",
+      image: marketingImages.socialStrategy,
     },
     {
       number: "04",
@@ -111,29 +115,26 @@ export const fallbackHome: HomeContent = {
       description:
         "websites, apps, and campaigns that turn attention into revenue.",
       href: "/services#storefront",
-      image: "/images/marketing/digital-ecosystem.png",
+      image: marketingImages.digitalEcosystem,
     },
   ],
   stats: [
-    { highlight: "2013", value: "", label: "building brands with delivery rigour behind them" },
-    { highlight: "4", value: "", label: "core disciplines on one coordinated team" },
+    {
+      highlight: "2013",
+      value: "",
+      label: "building products and teams since. the studio came later, the rigour did not.",
+    },
+    { highlight: "4", value: "", label: "disciplines on one coordinated team" },
     { highlight: "1", value: "", label: "point of contact from brief to ship" },
   ],
   whoWeWorkWith: {
     eyebrow: "who we work with",
-    statement:
-      "brands with big plans and the nerve to do something different.",
-    lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
+    statement: "founders and product teams who need the whole journey.",
+    lead: "you are building something real and you need the brand, the story and the launch to match, without hiring four agencies and refereeing between them. that is the exact job we built bmkrs to do. established brands come to us for the same reason: one team, no gaps.",
   },
-  clientMarquee: [
-    "floare din banat",
-    "copa",
-    "carter mcgreggor",
-    "wanderlust",
-    "flipster",
-  ],
+  clientMarquee: ["floare din banat", "copa", "carter mcgreggor", "flipster"],
   motionTeaser: {
-    eyebrow: "Ongoing partnership",
+    eyebrow: "ongoing partnership",
     heading: "Always in motion.",
     body: "a rolling partnership for brands that never stop talking. one team keeping your brand, voice, and pr moving, month after month.",
     ctaLabel: "explore motion",
@@ -171,6 +172,10 @@ export const fallbackHome: HomeContent = {
     eyebrow: "selected work",
     title: "the brands we build for",
     subtitle: "selected projects across branding, ecommerce, and digital.",
+  },
+  closing: {
+    quote: "the storefront finally looks as good as the product. we are proud to share the brand now.",
+    attribution: "floare din banat",
   },
 };
 
@@ -506,6 +511,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 1,
     featured: true,
+    projectType: "client",
     seo: {
       metaTitle: "copa, off the shore | bmkrs.",
       metaDescription:
@@ -541,6 +547,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 2,
     featured: true,
+    projectType: "client",
     seo: {
       metaTitle: "floare din banat | bmkrs.",
       metaDescription:
@@ -578,6 +585,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 3,
     featured: true,
+    projectType: "client",
   },
   {
     slug: "wanderlust",
@@ -609,6 +617,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 4,
     featured: false,
+    projectType: "client",
   },
   {
     slug: "smoothies",
@@ -631,6 +640,7 @@ export const fallbackProjects: Project[] = [
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
     order: 5,
     featured: false,
+    projectType: "client",
   },
   {
     slug: "flipster",
@@ -653,6 +663,116 @@ export const fallbackProjects: Project[] = [
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],
     order: 6,
+    featured: true,
+    projectType: "client",
+  },
+  {
+    slug: "podcast-studio-london",
+    title: "podcast studio london",
+    client: "podcast studio london",
+    category: "brand + growth",
+    sector: "media",
+    year: "2025",
+    positioning: "a london podcast studio with a brand that finally matches the rooms.",
+    tagline: "a london podcast studio with a brand that finally matches the rooms.",
+    brief:
+      "podcast studio london runs premium recording spaces for founders, brands and broadcasters. they needed a brand and digital presence that matched the quality of the studios.",
+    challenge:
+      "strong physical product, weak digital first impression. prospective clients were booking on reputation and word of mouth alone.",
+    whatWeDid:
+      "brand positioning, visual identity, voice and a site built to convert browsing into booking conversations.",
+    resultsNarrative:
+      "a coherent brand across site, social and studio touchpoints, and a clearer path from discovery to enquiry.",
+    results: [],
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    thumbnailPath: marketingImages.socialStrategy,
+    media: [{ type: "image", src: marketingImages.socialStrategy, alt: "podcast studio london" }],
+    order: 7,
+    featured: true,
+    projectType: "client",
+    testimonial: {
+      quote:
+        "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
+      name: "founder",
+      role: "podcast studio london",
+      company: "podcast studio london",
+    },
+  },
+  {
+    slug: "david-wheeler-psychology",
+    title: "david wheeler psychology",
+    client: "david wheeler psychology",
+    category: "brand + identity",
+    sector: "healthcare",
+    year: "2025",
+    positioning: "a clinical practice brand that earns trust before the first session.",
+    tagline: "a clinical practice brand that earns trust before the first session.",
+    brief:
+      "david wheeler psychology is building a private practice with a clear specialism and a reputation to protect. the work needed a brand that felt credible to referrers and calm to prospective clients.",
+    thinking:
+      "clinical brands fail when they look like generic wellness templates. the practice needed warmth without vagueness, and authority without coldness.",
+    whatWeDid:
+      "positioning, identity and voice for a practice still in launch. full case study copy and imagery to follow once the practice is live.",
+    serviceTags: ["brand + identity", "voice + messaging"],
+    thumbnailPath: marketingImages.identityPackaging,
+    media: [{ type: "image", src: marketingImages.identityPackaging, alt: "david wheeler psychology" }],
+    order: 9,
     featured: false,
+    projectType: "client",
+  },
+  {
+    slug: "three18-media",
+    title: "three18 media",
+    client: "three18 media",
+    category: "brand + growth",
+    sector: "media",
+    year: "2025",
+    positioning: "a production company finding its voice in a crowded content market.",
+    tagline: "a production company finding its voice in a crowded content market.",
+    brief:
+      "three18 media produces branded content for founders and growing companies. they needed a sharper story and a presence that matched the quality of the work in the reel.",
+    thinking:
+      "production companies often lead with gear and process. three18's edge is judgement and taste. the brand had to signal that before anyone pressed play.",
+    whatWeDid:
+      "brand positioning and messaging framework. visual identity and site work in progress. case study to be completed when the new site ships.",
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    thumbnailPath: marketingImages.digitalMediaDevices,
+    media: [{ type: "image", src: marketingImages.digitalMediaDevices, alt: "three18 media" }],
+    order: 10,
+    featured: false,
+    projectType: "client",
+  },
+  {
+    slug: "freelance-near-me",
+    title: "freelance near me",
+    category: "product",
+    sector: "marketplace",
+    year: "2025",
+    positioning: "a local-first marketplace we built because the brief kept appearing in client work.",
+    tagline: "a local-first marketplace we built because the brief kept appearing in client work.",
+    brief:
+      "freelance near me connects local freelancers with nearby clients. it is a bmkrs studio product: we ship our own ideas to prove we live with the consequences of our advice.",
+    whatWeDid:
+      "positioning, brand, product design and build. one team from name to shipped product.",
+    resultsNarrative:
+      "a live product in market, built with the same rigour we bring to client launches.",
+    results: [],
+    serviceTags: ["brand + identity", "product, web + growth"],
+    thumbnailPath: marketingImages.digitalEcosystem,
+    media: [{ type: "image", src: marketingImages.digitalEcosystem, alt: "freelance near me" }],
+    order: 8,
+    featured: true,
+    projectType: "studio",
+    externalUrl: "https://freelancenearme.com",
+  },
+];
+
+export const fallbackHomeTestimonials: Testimonial[] = [
+  {
+    quote:
+      "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
+    name: "founder",
+    role: "podcast studio london",
+    company: "podcast studio london",
   },
 ];

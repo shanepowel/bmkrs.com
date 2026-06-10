@@ -61,6 +61,18 @@ export const caseStudy = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "projectType",
+      title: "Project type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Client work", value: "client" },
+          { title: "Built in the studio", value: "studio" },
+        ],
+      },
+      initialValue: "client",
+    }),
+    defineField({
       name: "heroImage",
       title: "Hero image",
       type: "image",
@@ -103,10 +115,16 @@ export const caseStudy = defineType({
     }),
     defineField({
       name: "challenge",
-      title: "The challenge",
+      title: "The challenge (legacy)",
+      description: "Deprecated. Use the thinking instead.",
       type: "text",
       rows: 3,
-      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "thinking",
+      title: "The thinking",
+      type: "text",
+      rows: 3,
     }),
     defineField({
       name: "whatWeDid",
@@ -117,10 +135,10 @@ export const caseStudy = defineType({
     }),
     defineField({
       name: "resultsNarrative",
-      title: "Result (narrative)",
+      title: "Outcome (narrative)",
+      description: "Leave empty if there is nothing real to say yet.",
       type: "text",
       rows: 3,
-      validation: (r) => r.required(),
     }),
     defineField({
       name: "results",

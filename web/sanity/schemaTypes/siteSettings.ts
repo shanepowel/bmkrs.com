@@ -16,6 +16,7 @@ export const siteSettings = defineType({
     }),
     defineField({ name: "generalEmail", title: "General enquiries", type: "string" }),
     defineField({ name: "pressEmail", title: "Press email", type: "string" }),
+    defineField({ name: "networkEmail", title: "Network / collaborators email", type: "string" }),
     defineField({ name: "companyName", title: "Registered company name", type: "string" }),
     defineField({ name: "companyNumber", title: "Company number", type: "string" }),
     defineField({ name: "registeredAddress", title: "Registered address", type: "text", rows: 2 }),

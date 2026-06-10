@@ -66,9 +66,17 @@ After import, link each **make** case study to its product via `productType`, an
 
 **Webhook** — see `web/sanity/webhook-config.md`. Point Sanity publish webhooks at `POST /api/revalidate` with header `Authorization: Bearer $SANITY_REVALIDATE_SECRET`. Set `SANITY_REVALIDATE_SECRET` in Vercel.
 
-**Journal (`post`)** — ten articles in `posts.ndjson` (see `docs/04-JOURNAL-ARTICLES.md`). Featured: `better-told-brand-isnt-fair`. Voice guide: `docs/03-VOICE.md`. Re-import with `--replace` after copy changes.
+**Regenerate seeds** — after editing `content/journal/*.md` or fallback copy:
 
-**Products** — nine documents in `products.ndjson` (start / make / grow). Grow-tier motion products power `/motion`. CTAs are always “let’s talk”; no prices on site.
+```bash
+cd web
+npm run generate:seeds    # writes sanity/seed/*.ndjson from markdown + copy
+npm run import:seeds      # imports to production (or pass dataset name)
+```
+
+**Journal (`post`)** — 19 articles generated from `content/journal/*.md` into `posts.ndjson`. Featured: `better-told-brand-wins`. Publish dates follow the staggered schedule in `scripts/compile-journal.js`. Re-run `generate:seeds` then `import:seeds` after copy changes.
+
+**Products** — nine documents in `products.ndjson` (start / make / grow) with `priceFrom` anchors. Grow-tier motion products power `/motion`.
 
 **Home hero reel** — in Site settings: upload `heroReel` (video file) or set `heroReelUrl`, plus optional `heroPoster`. When either is set, the homepage uses the full-bleed reel hero (respects `prefers-reduced-motion`). Until then, the collage + rotating headline layout is shown.
 

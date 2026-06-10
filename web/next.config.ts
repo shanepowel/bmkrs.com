@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "bmkrs.com" }],
+        destination: "https://www.bmkrs.com/:path*",
+        permanent: true,
+      },
       { source: "/discover", destination: "/services", permanent: true },
       { source: "/discover/:path*", destination: "/services/:path*", permanent: true },
       { source: "/work/project1", destination: "/work/copa", permanent: true },
@@ -66,13 +72,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/journal/better-told-brand-wins",
-        destination: "/journal/better-told-brand-isnt-fair",
+        source: "/journal/better-told-brand-isnt-fair",
+        destination: "/journal/better-told-brand-wins",
         permanent: true,
       },
       {
         source: "/journal/same-team",
-        destination: "/journal/hand-off-brands-die",
+        destination: "/journal/one-team-vs-five-agencies",
+        permanent: true,
+      },
+      {
+        source: "/journal/hand-off-brands-die",
+        destination: "/journal/one-team-vs-five-agencies",
         permanent: true,
       },
     ];

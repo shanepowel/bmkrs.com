@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import {
   fallbackHome,
+  fallbackHomeTestimonials,
   fallbackMotion,
   fallbackPages,
   fallbackProjects,
@@ -11,10 +12,22 @@ import { fallbackJournalArticles } from "./journal-fallback";
 import {
   fallbackAboutPage,
   fallbackDisciplines,
-  fallbackPosts,
+  fallbackNowBuilding,
+  fallbackPeople,
   fallbackProducts,
   fallbackTeam,
 } from "./offering-fallback";
+import {
+  categorySlugsWithMinPosts,
+  groupPostsByCategory,
+} from "../journal-categories";
+import {
+  filterPublishedPosts,
+  isJournalPublished,
+  journalSlugRedirects,
+} from "./journal-publish";
+import { getMarkdownJournalPosts } from "./journal-markdown";
+import { fallbackPosts as legacyJournalPosts } from "./journal-posts-fallback";
 import {
   mergeDisciplineImage,
   mergePostCover,
@@ -31,6 +44,8 @@ import type {
   JournalArticle,
   JournalPost,
   MotionContent,
+  NowBuildingContent,
+  Person,
   Product,
   Project,
   Service,
@@ -41,6 +56,8 @@ import type {
 import { sanityClient } from "@/lib/sanity/client";
 import {
   aboutPageQuery,
+  nowBuildingQuery,
+  peopleQuery,
   allProductsQuery,
   disciplinesQuery,
   caseStudiesQuery,
@@ -123,27 +140,47 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getProjects(): Promise<Project[]> {
   const caseStudies = await fetchSanity<Project[]>(caseStudiesQuery);
-  if (caseStudies?.length) {
-    return caseStudies.map(normalizeProject);
-  }
   const legacy = await fetchSanity<Project[]>(projectsQuery);
-  const list = legacy?.length ? legacy : fallbackProjects;
-  return list.map(normalizeProject);
+  const sanityList = caseStudies?.length ? caseStudies : (legacy ?? []);
+  const bySlug = new Map(fallbackProjects.map((p) => [p.slug, normalizeProject(p)]));
+  for (const p of sanityList) {
+    bySlug.set(p.slug, normalizeProject(p));
+  }
+  return [...bySlug.values()].sort((a, b) => a.order - b.order);
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   const featured = await fetchSanity<Project[]>(featuredCaseStudiesQuery);
   if (featured?.length) {
-    return featured.map(normalizeProject);
+    return featured.map(normalizeProject).slice(0, 4);
   }
   const projects = await getProjects();
-  const picked = projects.filter((p) => p.featured);
-  return picked.length > 0 ? picked : projects.slice(0, 3);
+  const client = projects.filter((p) => p.projectType !== "studio" && p.featured);
+  const studio = projects.filter((p) => p.projectType === "studio");
+  const picked = [...client.slice(0, 2), ...studio.slice(0, 2)];
+  if (picked.length >= 4) return picked.slice(0, 4);
+  const rest = projects.filter((p) => !picked.includes(p));
+  return [...picked, ...rest].slice(0, 4);
+}
+
+function mergeProducts(sanity: Product[] | null | undefined): Product[] {
+  const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
+  for (const p of sanity ?? []) {
+    const fb = bySlug.get(p.slug);
+    bySlug.set(p.slug, {
+      ...fb,
+      ...p,
+      priceFrom: p.priceFrom ?? fb?.priceFrom,
+      shape: p.shape ?? fb?.shape,
+      priceNote: p.priceNote ?? fb?.priceNote,
+    });
+  }
+  return [...bySlug.values()].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
 
 export async function getProducts(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(allProductsQuery);
-  return data?.length ? data : fallbackProducts;
+  return mergeProducts(data);
 }
 
 export async function getDisciplines(): Promise<Discipline[]> {
@@ -154,13 +191,78 @@ export async function getDisciplines(): Promise<Discipline[]> {
 
 export async function getMotionTiers(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(motionTiersQuery);
-  if (data?.length) return data;
-  return fallbackProducts.filter((p) => p.tier === "grow");
+  const products = mergeProducts(data);
+  return products.filter((p) => p.tier === "grow");
+}
+
+function formatNowBuildingLabel(iso: string): string {
+  if (!iso) return "";
+  return new Date(iso)
+    .toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+    .toLowerCase();
 }
 
 export async function getAboutPage(): Promise<AboutPageContent> {
-  const data = await fetchSanity<AboutPageContent>(aboutPageQuery);
-  return data ?? fallbackAboutPage;
+  const data = await fetchSanity<Partial<AboutPageContent>>(aboutPageQuery);
+  return {
+    ...fallbackAboutPage,
+    ...(data ?? {}),
+    founder: fallbackAboutPage.founder,
+    beliefs: data?.beliefs?.length ? data.beliefs : fallbackAboutPage.beliefs,
+    founderStory: data?.founderStory?.length ? data.founderStory : fallbackAboutPage.founderStory,
+    studioProductCount: data?.studioProductCount ?? fallbackAboutPage.studioProductCount,
+  };
+}
+
+export async function getPeople(): Promise<Person[]> {
+  const data = await fetchSanity<
+    {
+      slug: string;
+      name: string;
+      role?: string;
+      discipline?: string;
+      shortBio?: string;
+      longBio?: string;
+      linkedinUrl?: string;
+      order?: number;
+      quickfire?: Person["quickfire"];
+      portrait?: { url?: string; alt?: string };
+    }[]
+  >(peopleQuery);
+
+  if (data?.length) {
+    return data
+      .map((person) => ({
+        slug: person.slug,
+        name: person.name,
+        role: person.role,
+        discipline: person.discipline,
+        shortBio: person.shortBio,
+        longBio: person.longBio,
+        linkedinUrl: person.linkedinUrl,
+        order: person.order,
+        quickfire: person.quickfire,
+        portraitUrl: person.portrait?.url,
+        portraitAlt:
+          person.portrait?.alt ??
+          `illustrated portrait of ${person.name}, ${person.discipline ?? person.role ?? ""} at bmkrs`,
+      }))
+      .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+  }
+
+  return fallbackPeople;
+}
+
+export async function getNowBuilding(): Promise<NowBuildingContent> {
+  const data = await fetchSanity<{ lines?: string[]; updatedAt?: string }>(nowBuildingQuery);
+  if (data?.lines?.length) {
+    return {
+      lines: data.lines,
+      updatedAt: data.updatedAt ?? fallbackNowBuilding.updatedAt,
+      updatedLabel: formatNowBuildingLabel(data.updatedAt ?? fallbackNowBuilding.updatedAt),
+    };
+  }
+  return fallbackNowBuilding;
 }
 
 export async function getMotionContent(): Promise<MotionContent> {
@@ -178,16 +280,22 @@ export async function getProject(slug: string): Promise<Project | null> {
   return fallback ? normalizeProject(fallback) : null;
 }
 
+export async function getNextProject(slug: string): Promise<Project | null> {
+  const projects = await getProjects();
+  const index = projects.findIndex((p) => p.slug === slug);
+  if (index === -1 || projects.length < 2) return null;
+  return projects[(index + 1) % projects.length] ?? null;
+}
+
 export async function getCaseStudySlugs(): Promise<string[]> {
-  const slugs = await fetchSanity<string[]>(caseStudySlugsQuery);
-  if (slugs?.length) return slugs;
-  return fallbackProjects.map((p) => p.slug);
+  const projects = await getProjects();
+  return projects.map((p) => p.slug);
 }
 
 export async function getHomeTestimonials(): Promise<Testimonial[]> {
   const data = await fetchSanity<Testimonial[]>(homeTestimonialsQuery);
-  if (!data?.length) return [];
-  return data.filter((t) => isFilled(t.quote));
+  if (data?.length) return data.filter((t) => isFilled(t.quote));
+  return fallbackHomeTestimonials.filter((t) => isFilled(t.quote));
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
@@ -214,6 +322,46 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   return fallbackTeam.map(mergeTeamPhoto);
 }
 
+function allFallbackJournalPosts(): JournalPost[] {
+  const fromMarkdown = getMarkdownJournalPosts();
+  if (fromMarkdown.length > 0) {
+    return fromMarkdown.map(mergePostCover);
+  }
+  const mdSlugs = new Set(fromMarkdown.map((p) => p.slug));
+  const legacy = legacyJournalPosts.filter(
+    (p) => !mdSlugs.has(p.slug) && !journalSlugRedirects[p.slug],
+  );
+  return [...fromMarkdown, ...legacy].map(mergePostCover);
+}
+
+function buildJournalIndex(
+  sanityFeatured: JournalPost | null,
+  sanityPosts: JournalPost[],
+): { featured: JournalPost | null; posts: JournalPost[] } {
+  const bySlug = new Map<string, JournalPost>();
+  const markdownPack = getMarkdownJournalPosts();
+
+  if (markdownPack.length === 0) {
+    if (sanityFeatured) {
+      bySlug.set(sanityFeatured.slug, mergePostCover(sanityFeatured));
+    }
+    for (const p of sanityPosts) {
+      bySlug.set(p.slug, mergePostCover(p));
+    }
+  }
+  for (const p of allFallbackJournalPosts()) {
+    bySlug.set(p.slug, p);
+  }
+
+  const published = filterPublishedPosts([...bySlug.values()]).sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt),
+  );
+
+  const featured = published.find((p) => p.featured) ?? published[0] ?? null;
+  const posts = published.filter((p) => p.slug !== featured?.slug);
+  return { featured, posts };
+}
+
 export async function getJournalIndex(): Promise<{
   featured: JournalPost | null;
   posts: JournalPost[];
@@ -221,28 +369,58 @@ export async function getJournalIndex(): Promise<{
   const data = await fetchSanity<{ featured: JournalPost | null; posts: JournalPost[] }>(
     journalIndexQuery,
   );
-  if (data?.posts?.length || data?.featured) {
-    return {
-      featured: data.featured ? mergePostCover(data.featured) : null,
-      posts: (data.posts ?? []).map(mergePostCover),
-    };
-  }
-  const featured = fallbackPosts.find((p) => p.featured) ?? null;
-  const posts = fallbackPosts.filter((p) => !p.featured);
-  return { featured, posts };
+  return buildJournalIndex(data?.featured ?? null, data?.posts ?? []);
+}
+
+export async function getAllPublishedJournalPosts(): Promise<JournalPost[]> {
+  const { featured, posts } = await getJournalIndex();
+  return featured ? [featured, ...posts] : posts;
+}
+
+export async function getJournalCategorySlugs(): Promise<string[]> {
+  const all = await getAllPublishedJournalPosts();
+  return categorySlugsWithMinPosts(all);
+}
+
+export async function getJournalPostsByCategory(category: string): Promise<JournalPost[]> {
+  const all = await getAllPublishedJournalPosts();
+  const grouped = groupPostsByCategory(all);
+  return grouped.get(category) ?? [];
+}
+
+export async function getJournalCategoryPostCount(category: string): Promise<number> {
+  return (await getJournalPostsByCategory(category)).length;
 }
 
 export async function getPost(slug: string): Promise<JournalPost | null> {
+  const redirect = journalSlugRedirects[slug];
+  if (redirect) {
+    return getPost(redirect);
+  }
+
+  const fb = allFallbackJournalPosts().find((p) => p.slug === slug);
+  if (fb && isJournalPublished(fb.publishedAt)) {
+    return mergePostCover(fb);
+  }
+
   const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
-  if (data) return mergePostCover(data);
-  const fb = fallbackPosts.find((p) => p.slug === slug);
-  return fb ? mergePostCover(fb) : null;
+  if (data) {
+    const merged = mergePostCover(data);
+    return isJournalPublished(merged.publishedAt) ? merged : null;
+  }
+
+  return null;
 }
 
 export async function getPostSlugs(): Promise<string[]> {
-  const slugs = await fetchSanity<string[]>(postSlugsQuery);
-  if (slugs?.length) return slugs;
-  return fallbackPosts.map((p) => p.slug);
+  const { featured, posts } = await getJournalIndex();
+  const slugs = new Set<string>();
+  if (featured) slugs.add(featured.slug);
+  for (const p of posts) slugs.add(p.slug);
+  for (const p of allFallbackJournalPosts()) {
+    if (isJournalPublished(p.publishedAt)) slugs.add(p.slug);
+  }
+  return [...slugs];
 }
 
 function normalizeProject(project: Project): Project {
@@ -278,6 +456,7 @@ function normalizeProject(project: Project): Project {
     serviceTags: services,
     brief: project.brief || project.context,
     challenge: project.challenge || project.problem,
+    thinking: project.thinking || project.challenge || project.problem,
     whatWeDid: project.whatWeDid || project.background,
     resultsNarrative: project.resultsNarrative || project.outcome || project.result,
     results: project.results || project.outcomeMetrics,

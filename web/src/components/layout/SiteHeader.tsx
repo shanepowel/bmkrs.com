@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Wordmark } from "@/components/bmkrs/Wordmark";
+import type { Theme } from "@/components/bmkrs/surfaces";
 import type { NavItem } from "@/lib/types";
 
 const DEFAULT_NAV: NavItem[] = [
@@ -20,13 +22,36 @@ function navItems(navigation?: NavItem[]) {
   return fromCms?.length ? fromCms : DEFAULT_NAV;
 }
 
+function readPageSurface(): Theme {
+  if (typeof document === "undefined") return "ink";
+  const el = document.querySelector("main [data-surface]");
+  return (el?.getAttribute("data-surface") as Theme) ?? "ink";
+}
+
 export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [surface, setSurface] = useState<Theme>("ink");
   const items = navItems(navigation);
+  const lightLogo = surface === "paper" || surface === "orange";
 
   useEffect(() => {
     setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const sync = () => {
+      const theme = readPageSurface();
+      setSurface(theme);
+      document.documentElement.dataset.headerSurface =
+        theme === "paper" || theme === "orange" ? "paper" : "ink";
+    };
+    sync();
+    const main = document.querySelector("main");
+    if (!main) return;
+    const observer = new MutationObserver(sync);
+    observer.observe(main, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-surface"] });
+    return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -40,7 +65,7 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="wordmark" aria-label="bmkrs, home">
-          bmkrs.
+          <Wordmark variant={lightLogo ? "primary-light" : "primary-dark"} />
         </Link>
 
         <nav className="site-nav" aria-label="primary">

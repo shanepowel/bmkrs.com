@@ -1,24 +1,22 @@
 import Link from "next/link";
+import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { SiteSettings } from "@/lib/types";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
   const press = settings.pressEmail ?? "press@bmkrs.com";
+  const network = settings.networkEmail;
   const year = new Date().getFullYear();
 
-  const reg = [
-    settings.companyName,
-    settings.companyNumber ? `company no. ${settings.companyNumber}` : null,
-    settings.registeredAddress,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  const reg = settings.companyNumber
+    ? `${settings.companyName ?? "b makers ltd"} · company no. ${settings.companyNumber} · registered in england and wales.`
+    : "b makers ltd · registered in england and wales.";
 
   return (
     <footer className="site-footer">
       <div className="site-footer-top">
         <div className="footer-brand">
-          <span className="wordmark">bmkrs.</span>
+          <Wordmark className="wordmark wordmark--footer" variant="primary-light" />
           <p className="muted">a brand company run by builders.</p>
           <p className="footer-thesis">the better-told brand wins. we make sure it&apos;s yours.</p>
         </div>
@@ -54,13 +52,26 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           </div>
           <div>
             <span className="eyebrow">say hello</span>
-            <ul role="list">
+            <ul role="list" className="footer-emails">
               <li>
-                <a href={`mailto:${general}`}>{general}</a>
+                <a className="mono" href={`mailto:${general}`}>
+                  {general}
+                </a>
               </li>
               <li>
-                <a href={`mailto:${press}`}>{press}</a> <span className="muted">(press)</span>
+                <a className="mono" href={`mailto:${press}`}>
+                  {press}
+                </a>{" "}
+                <span className="muted">(press)</span>
               </li>
+              {network ? (
+                <li>
+                  <a className="mono" href={`mailto:${network}`}>
+                    {network}
+                  </a>{" "}
+                  <span className="muted">(network)</span>
+                </li>
+              ) : null}
             </ul>
             {settings.socialLinks.length ? (
               <ul role="list" className="footer-socials">
@@ -79,9 +90,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
       <div className="site-footer-bottom">
         <p className="muted">london, and wherever you are.</p>
-        {reg ? <p className="muted footer-reg">{reg}</p> : null}
+        <p className="mono muted footer-reg text-meta">{reg}</p>
         <p className="muted">
-          © {year} {settings.companyName ?? "b makers (bmkrs)"}. they say no one reads the footer. hi.
+          © {year} {settings.companyName ?? "b makers ltd"}. they say no one reads the footer. hi.
         </p>
       </div>
     </footer>

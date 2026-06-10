@@ -4,17 +4,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { SectionRule } from "@/components/bmkrs/SectionRule";
+import { Section } from "@/components/bmkrs/surfaces";
+import { ServiceTags } from "@/components/bmkrs/ServiceTags";
 import {
+  getNextProject,
   getCaseStudySlugs,
   getProject,
   hasFilledMetrics,
   isFilled,
 } from "@/lib/content";
-import { creativeWorkJsonLd } from "@/lib/seo";
-import type { MediaItem, Project } from "@/lib/types";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
+import { creativeWorkJsonLd, metadataWithImage, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/structured-data";
+import type { MediaItem } from "@/lib/types";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -58,22 +62,25 @@ function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
   return null;
 }
 
-function NarrativeBlock({
-  label,
+function CaseSection({
+  kicker,
   children,
   delay = 0,
 }: {
-  label: string;
+  kicker: string;
   children: ReactNode;
   delay?: 0 | 1;
 }) {
   return (
-    <div className="grid gap-8 border-b-2 border-[var(--line)] py-12 md:grid-cols-[180px_1fr] md:gap-14">
-      <Reveal>
-        <h2 className="eyebrow mb-0">{label}</h2>
-      </Reveal>
-      <Reveal delay={delay}>{children}</Reveal>
-    </div>
+    <section className="case-section">
+      <SectionRule />
+      <div className="case-section__inner">
+        <Kicker className="mt-[var(--space-tight)]">{kicker}</Kicker>
+        <Reveal delay={delay}>
+          <div className="case-section__body measure mt-[var(--space-tight)]">{children}</div>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -85,32 +92,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = project.seo?.metaTitle ?? `${project.title} | bmkrs.`;
   const description =
     project.seo?.metaDescription ?? project.positioning ?? project.tagline ?? "";
-  const ogImage =
-    project.seo?.ogImage ?? project.heroImage?.url ?? project.thumbnailPath;
-  const ogUrl = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
-
-  return {
+  const base: Metadata = {
     title,
     description,
+    alternates: { canonical: `${siteUrl}/work/${slug}` },
     openGraph: {
       title,
       description,
       type: "article",
       url: `${siteUrl}/work/${slug}`,
-      images: [{ url: ogUrl, width: 1200, height: 630, alt: project.title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [ogUrl],
     },
   };
+
+  if (project.seo?.ogImage) {
+    return metadataWithImage(base, project.seo.ogImage);
+  }
+
+  return base;
 }
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const project = await getProject(slug);
+  const [project, nextProject] = await Promise.all([getProject(slug), getNextProject(slug)]);
   if (!project) notFound();
 
   const services = project.serviceTags?.length
@@ -120,9 +128,8 @@ export default async function CaseStudyPage({ params }: Props) {
   const metrics = (project.results ?? project.outcomeMetrics ?? []).filter(
     (m) => isFilled(m.value) && isFilled(m.label),
   );
-  const showMetrics = hasFilledMetrics(metrics);
-  const showResultsNarrative = isFilled(project.resultsNarrative);
-  const showResults = showMetrics || showResultsNarrative;
+  const outcomeNarrative = project.resultsNarrative || project.outcome;
+  const showOutcome = isFilled(outcomeNarrative) || hasFilledMetrics(metrics);
 
   const quote = project.testimonial;
   const showQuote =
@@ -130,129 +137,140 @@ export default async function CaseStudyPage({ params }: Props) {
     isFilled(quote.quote) &&
     (isFilled(quote.name) || isFilled(quote.attribution));
 
-  const jsonLd = creativeWorkJsonLd(project, `${siteUrl}/work/${slug}`);
+  const thinking = project.thinking || project.challenge;
+
+  const jsonLd = [
+    creativeWorkJsonLd(project, `${siteUrl}/work/${slug}`),
+    breadcrumbSchema([
+      { name: "home", path: "/" },
+      { name: "work", path: "/work" },
+      { name: project.title, path: `/work/${slug}` },
+    ]),
+  ];
 
   return (
-    <>
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="page-top px-[var(--pad)] pb-12">
-        <div className="wrap">
-          <Reveal>
-            <Link
-              href="/work"
-              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
-            >
-              ← work
-            </Link>
-          </Reveal>
-          <Reveal delay={1}>
-            <p className="eyebrow mt-8 block">
-              {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
-            </p>
-          </Reveal>
-          <Reveal delay={1}>
-            <h1 className="display mt-4 text-[clamp(2.25rem,11vw,9.375rem)] font-bold">
-              {project.title}
-            </h1>
-          </Reveal>
-          {project.positioning && (
-            <Reveal delay={2}>
-              <p className="lead mt-5 max-w-[540px]">{project.positioning}</p>
-            </Reveal>
-          )}
-          <Reveal delay={2}>
-            <div className="relative my-14 aspect-[16/8] overflow-hidden rounded-[var(--radius)] section--paper">
-              <Image
-                src={project.thumbnailPath}
-                alt={project.heroImage?.alt || project.title}
-                fill
-                quality={75}
-                className="object-cover"
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      <section className="section-pad pt-0">
-        <div className="wrap max-w-[900px]">
-          <dl className="mb-4 flex flex-wrap gap-x-10 gap-y-4 border-b-2 border-[var(--line)] pb-10 text-sm">
+      <Section theme="ink" className="!pb-0">
+        <Reveal>
+          <Link
+            href="/work"
+            className="mono text-meta text-muted transition-colors hover:text-accent"
+          >
+            ← work
+          </Link>
+        </Reveal>
+        <Reveal delay={1}>
+          <p className="mono mt-8 text-meta text-muted">
+            {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
+          </p>
+        </Reveal>
+        <Reveal delay={1}>
+          <h1 className="display text-hero mt-[var(--space-tight)] font-medium">{project.title}</h1>
+        </Reveal>
+        {project.positioning && (
+          <Reveal delay={2}>
+            <p className="lead mt-[var(--space-tight)]">{project.positioning}</p>
+          </Reveal>
+        )}
+        <Reveal delay={2}>
+          <div className="relative mt-[var(--space-block)] aspect-[21/9] overflow-hidden rounded-[var(--radius)] bg-ink/5">
+            <Image
+              src={project.thumbnailPath}
+              alt={project.heroImage?.alt || project.title}
+              fill
+              quality={75}
+              className="object-cover"
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 1200px"
+            />
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section theme="paper" className="!pt-8">
+        <div className="max-w-[900px]">
+          <div className="case-meta">
             <div>
-              <dt className="eyebrow mb-2 block text-[11px]">services</dt>
-              <dd className="nocase text-ink/90">{services.join(" · ")}</dd>
+              <p className="mono text-meta text-muted">services</p>
+              <ServiceTags tags={services} />
             </div>
             {project.client && (
               <div>
-                <dt className="eyebrow mb-2 block text-[11px]">client</dt>
-                <dd className="mt-1 text-ink/90">{project.client}</dd>
+                <p className="mono text-meta text-muted">client</p>
+                <p className="mt-2 text-body-lg">{project.client}</p>
               </div>
             )}
-          </dl>
+          </div>
 
           {project.brief && (
-            <NarrativeBlock label="the brief">
-              <p className="text-[17px] leading-relaxed text-ink/90">{project.brief}</p>
-            </NarrativeBlock>
-          )}
-
-          {project.challenge && (
-            <NarrativeBlock label="the challenge" delay={1}>
-              <p className="text-[17px] leading-relaxed text-ink/90">{project.challenge}</p>
-            </NarrativeBlock>
+            <CaseSection kicker="the brief">
+              <p>{project.brief}</p>
+            </CaseSection>
           )}
 
           {project.whatWeDid && (
-            <NarrativeBlock label="what we did">
-              <p className="text-[17px] leading-relaxed text-ink/90">{project.whatWeDid}</p>
-            </NarrativeBlock>
+            <CaseSection kicker="what we did" delay={1}>
+              <p>{project.whatWeDid}</p>
+            </CaseSection>
           )}
 
-          {showResults && (
-            <section className="results-block border-b-2 border-[var(--line)] py-12">
-              <Reveal>
-                <h2 className="eyebrow mb-8">the result</h2>
-              </Reveal>
-              {showMetrics && (
-                <ul className="metric-grid">
-                  {metrics.map((m) => (
-                    <li key={`${m.value}-${m.label}`} className="metric-card">
-                      <span className="metric-value">{m.value}</span>
-                      <span className="metric-label">{m.label}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {showResultsNarrative && (
-                <Reveal delay={1}>
-                  <p className="text-[17px] leading-relaxed text-ink/90">
-                    {project.resultsNarrative}
-                  </p>
-                </Reveal>
-              )}
+          {thinking && (
+            <CaseSection kicker="the thinking">
+              <p>{thinking}</p>
+            </CaseSection>
+          )}
+
+          {showOutcome && (
+            <section className="case-section">
+              <SectionRule />
+              <div className="case-section__inner">
+                <Kicker className="mt-[var(--space-tight)]">outcome</Kicker>
+                {hasFilledMetrics(metrics) && (
+                  <ul className="metric-grid mt-[var(--space-tight)]">
+                    {metrics.map((m) => (
+                      <li key={`${m.value}-${m.label}`} className="metric-card">
+                        <span className="metric-value mono">{m.value}</span>
+                        <span className="metric-label mono">{m.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {isFilled(outcomeNarrative) && (
+                  <Reveal delay={1}>
+                    <p className="measure mt-[var(--space-tight)] text-body-lg">{outcomeNarrative}</p>
+                  </Reveal>
+                )}
+              </div>
             </section>
           )}
 
-          {showQuote && quote && (
-            <Reveal>
-              <figure className="case-testimonial">
-                <blockquote>&ldquo;{quote.quote}&rdquo;</blockquote>
-                <figcaption>
-                  {quote.name}
-                  {quote.role ? `, ${quote.role}` : ""}
-                  {quote.company ? `, ${quote.company}` : ""}
-                </figcaption>
-              </figure>
-            </Reveal>
-          )}
+        </div>
+      </Section>
 
+      {showQuote && quote ? (
+        <Section theme="orange">
+          <figure className="case-testimonial max-w-[900px]">
+            <blockquote className="text-h3 font-medium leading-snug">&ldquo;{quote.quote}&rdquo;</blockquote>
+            <figcaption className="mono mt-4 text-meta">
+              {quote.name}
+              {quote.role ? `, ${quote.role}` : ""}
+              {quote.company ? `, ${quote.company}` : ""}
+            </figcaption>
+          </figure>
+        </Section>
+      ) : null}
+
+      <Section theme="ink">
+        <div className="max-w-[900px]">
           {project.media.length > 1 && (
-            <div className="mt-8 space-y-8 border-t-2 border-[var(--line)] pt-14">
+            <div className="space-y-8">
+              <SectionRule />
               {project.media.slice(1).map((item, idx) => (
                 <Reveal key={idx}>
                   <MediaBlock item={item} title={project.title} />
@@ -261,16 +279,31 @@ export default async function CaseStudyPage({ params }: Props) {
             </div>
           )}
 
-          <div className="mt-14 flex flex-wrap gap-4">
-            <Link href="/work" className="btn-primary">
-              all projects <ArrowIcon />
-            </Link>
-            <Link href="/contact" className="btn-secondary">
-              start a project
-            </Link>
+          <div className="case-footer mt-[var(--space-block)]">
+            <SectionRule />
+            <div className="mt-[var(--space-tight)] flex flex-wrap items-center justify-between gap-6">
+              {nextProject ? (
+                <Link
+                  href={`/work/${nextProject.slug}`}
+                  className="group inline-flex flex-col gap-1"
+                >
+                  <span className="mono text-meta text-muted">next project</span>
+                  <span className="text-h3 font-medium transition-colors group-hover:text-accent">
+                    {nextProject.title} →
+                  </span>
+                </Link>
+              ) : (
+                <Link href="/work" className="btn-primary">
+                  all projects <ArrowIcon />
+                </Link>
+              )}
+              <Link href="/contact" className="btn-ghost">
+                start a project
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
-    </>
+      </Section>
+    </main>
   );
 }

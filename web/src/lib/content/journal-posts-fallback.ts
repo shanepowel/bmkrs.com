@@ -1,16 +1,16 @@
+import {
+  bannedWordsBody,
+  rebrandBusinessDecisionBody,
+  weakBrandPaidGrowthBody,
+} from "./journal-article-bodies";
 import type { JournalPost } from "@/lib/types";
+import { journalCoverByCategory, type JournalCoverCategory } from "@/lib/marketing-assets";
 
-const COVER: Record<string, { url: string; alt: string }> = {
-  voice: { url: "/images/optimized/copa-campaign.jpg", alt: "voice and messaging" },
-  brand: { url: "/images/optimized/branding-dis.jpg", alt: "brand and identity" },
-  pr: { url: "/images/optimized/press-feature.jpg", alt: "pr and communications" },
-  growth: { url: "/images/optimized/ecom-growth.jpg", alt: "growth" },
-  studio: { url: "/images/optimized/intelligent-brands.jpg", alt: "studio notes" },
-};
-
-function post(entry: Omit<JournalPost, "cover"> & { category: keyof typeof COVER }): JournalPost {
+function post(
+  entry: Omit<JournalPost, "cover"> & { category: JournalCoverCategory },
+): JournalPost {
   const { category, ...rest } = entry;
-  return { ...rest, category, cover: { ...COVER[category], alt: rest.title } };
+  return { ...rest, category, cover: { ...journalCoverByCategory[category], alt: rest.title } };
 }
 
 /** Mirrors sanity/seed/posts.ndjson when CMS is empty. */
@@ -39,6 +39,58 @@ export const fallbackPosts: JournalPost[] = [
     relatedProduct: { name: "story", slug: "story", tagline: "tone of voice, messaging and narrative." },
     seo: {
       metaDescription: "the best product does not win, the best-told one does. why that is a solvable problem.",
+    },
+  }),
+  post({
+    slug: "weak-brand-paid-growth",
+    title: "you cannot performance-market your way out of a weak brand.",
+    category: "growth",
+    excerpt:
+      "paid acquisition gets more expensive every year. a brand people already trust is the only cost that goes down. growth starts with the brand, not the channel.",
+    publishedAt: "2026-06-03",
+    readingTime: 5,
+    author: { name: "shane", discipline: "delivery + strategy" },
+    body: weakBrandPaidGrowthBody,
+    relatedProduct: {
+      name: "motion plus",
+      slug: "motion-plus",
+      tagline: "growth and an always-on pr engine for brands actively scaling.",
+    },
+    seo: {
+      metaDescription:
+        "paid acquisition gets more expensive every year. a brand people already trust is the only cost that goes down.",
+    },
+  }),
+  post({
+    slug: "rebrand-business-decision",
+    title: "a rebrand is a business decision, not a paint job.",
+    category: "brand",
+    excerpt:
+      "most rebrands fail because they change the look and nothing else. a real rebrand changes what the business can charge, sell, and say no to.",
+    publishedAt: "2026-05-27",
+    readingTime: 4,
+    author: { name: "sarah", discipline: "brand + identity" },
+    body: rebrandBusinessDecisionBody,
+    relatedProduct: { name: "rebrand", slug: "rebrand", tagline: "a sharper position and a fresh identity." },
+    seo: {
+      metaDescription:
+        "most rebrands fail because they change the look and nothing else. a real rebrand changes what the business can charge, sell, and say no to.",
+    },
+  }),
+  post({
+    slug: "banned-words",
+    title: "the words we will not let your brand say.",
+    category: "voice",
+    excerpt:
+      "every brand has a banned list, whether it writes one down or not. ours exists so your product never sounds like everyone else's.",
+    publishedAt: "2026-05-21",
+    readingTime: 4,
+    author: { name: "marcus", discipline: "voice + messaging" },
+    body: bannedWordsBody,
+    relatedProduct: { name: "story", slug: "story", tagline: "tone of voice, messaging and narrative." },
+    seo: {
+      metaDescription:
+        "every brand has a banned list. ours exists so your product never sounds like everyone else's.",
     },
   }),
   post({

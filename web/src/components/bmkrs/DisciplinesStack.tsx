@@ -1,21 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { disciplineAnchorId, productHref } from "@/lib/service-anchors";
 import type { Discipline } from "@/lib/types";
 
 function powerHref(slug: string, tier: string) {
-  return tier === "grow" ? "/motion" : `/services#${slug}`;
+  return tier === "grow" ? "/motion" : productHref(slug);
 }
 
 export function DisciplinesStack({ disciplines }: { disciplines: Discipline[] }) {
   return (
-    <section className="section-pad section--paper">
-      <div className="wrap section">
-        <p className="eyebrow">what we do</p>
-        <h2 className="display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-bold">four disciplines, one team.</h2>
+    <Section theme="paper">
+      <div className="section">
+        <Kicker theme="paper">what we do</Kicker>
+        <H2 theme="paper">four disciplines, one team.</H2>
         <div className="disc-stack">
           {disciplines.map((d, i) => (
-            <article key={d.name} className="disc-row reveal">
+            <article
+              key={d.name}
+              id={disciplineAnchorId(d.name) ?? undefined}
+              className="disc-row reveal scroll-mt-24"
+            >
               <div className="disc-head">
                 <Reveal>
                   <span className="eyebrow">{String(i + 1).padStart(2, "0")}</span>
@@ -61,6 +67,6 @@ export function DisciplinesStack({ disciplines }: { disciplines: Discipline[] })
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

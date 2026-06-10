@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
-import { fallbackJournalArticles } from "@/lib/content/journal-fallback";
-import { fallbackProjects } from "@/lib/content/fallback";
+import { getJournalCategorySlugs, getJournalIndex, getProjects } from "@/lib/content";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.bmkrs.com";
 
 const staticRoutes = [
   "",
@@ -14,8 +13,10 @@ const staticRoutes = [
   "/contact",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const [projects, journalIndex] = await Promise.all([getProjects(), getJournalIndex()]);
+
   const pages: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
@@ -23,19 +24,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const projects: MetadataRoute.Sitemap = fallbackProjects.map((project) => ({
+  const work: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `${siteUrl}/work/${project.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  const journal: MetadataRoute.Sitemap = fallbackJournalArticles.map((article) => ({
-    url: `${siteUrl}/journal/${article.slug}`,
-    lastModified: article.publishedAt ? new Date(article.publishedAt) : now,
+  const journalPosts = [journalIndex.featured, ...journalIndex.posts].filter(Boolean);
+  const journal: MetadataRoute.Sitemap = journalPosts.map((article) => ({
+    url: `${siteUrl}/journal/${article!.slug}`,
+    lastModified: article!.publishedAt ? new Date(article!.publishedAt) : now,
     changeFrequency: "monthly",
     priority: 0.65,
   }));
 
-  return [...pages, ...projects, ...journal];
+  const categorySlugs = await getJournalCategorySlugs();
+  const journalCategories: MetadataRoute.Sitemap = categorySlugs.map((slug) => ({
+    url: `${siteUrl}/journal/category/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [...pages, ...work, ...journal, ...journalCategories];
 }

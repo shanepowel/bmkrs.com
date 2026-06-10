@@ -51,10 +51,12 @@ export type SiteSettings = {
 
 export type TeamMember = {
   name: string;
+  slug?: string;
   discipline?: string;
   bio?: string;
   photoUrl?: string;
   photoAlt: string;
+  linkedinUrl?: string;
 };
 
 export type ProductTier = "start" | "make" | "grow";
@@ -92,6 +94,7 @@ export type Product = {
   cadence?: string;
   commitment?: string;
   monthlyDeliverables?: string[];
+  priceFrom?: string;
   priceNote?: string;
   proof?: ProductProof[];
   order?: number;
@@ -103,22 +106,62 @@ export type AboutBelief = {
   body: string;
 };
 
+export type QuickfireItem = {
+  label: string;
+  value: string;
+  href?: string;
+};
+
+export type Person = {
+  slug: string;
+  name: string;
+  role?: string;
+  discipline?: string;
+  shortBio?: string;
+  longBio?: string;
+  portraitUrl?: string;
+  portraitAlt?: string;
+  linkedinUrl?: string;
+  order?: number;
+  quickfire?: QuickfireItem[];
+};
+
+export type AboutFounder = {
+  name: string;
+  linkedinUrl: string;
+  portraitAlt: string;
+};
+
 export type AboutPageContent = {
   headline: string;
   intro: string;
-  story: string[];
-  whoWeAre: string;
-  whatWeLove: string;
-  ethos: string;
+  founder?: AboutFounder;
+  founderStoryTitle: string;
+  founderStory: string[];
+  founderPullQuote: string;
+  teamIntro: string;
+  teamClosing: string;
+  beliefsHeadline: string;
   beliefs: AboutBelief[];
+  studioProductCount: number;
+  longGameTitle: string;
   longGame: string;
-  inOwnWords: string[];
+};
+
+export type NowBuildingContent = {
+  lines: string[];
+  updatedAt: string;
+  updatedLabel: string;
 };
 
 export type PortableBlock =
   | {
       _type: "block";
       children?: { text: string }[];
+    }
+  | {
+      _type: "heading";
+      text: string;
     }
   | {
       _type: "pullQuote";
@@ -212,6 +255,7 @@ export type Project = {
   brief?: string;
   context?: string;
   challenge?: string;
+  thinking?: string;
   whatWeDid?: string;
   resultsNarrative?: string;
   outcome?: string;
@@ -233,6 +277,8 @@ export type Project = {
   media: MediaItem[];
   order: number;
   featured?: boolean;
+  projectType?: "client" | "studio";
+  externalUrl?: string;
 };
 
 export type JournalArticle = {
@@ -297,6 +343,8 @@ export type MotionBenefit = {
 
 export type HomeHero = {
   eyebrow: string;
+  /** Full headline when set; otherwise headlineLead + rotate + headlineTail */
+  headline?: string;
   /** e.g. "we make" */
   headlineLead: string;
   /** e.g. "brands." */
@@ -329,6 +377,7 @@ export type HomeContent = {
     lead: string;
   };
   clientMarquee: string[];
+  studioVentures?: { name: string; descriptor: string; href: string }[];
   motionTeaser: {
     eyebrow: string;
     heading: string;
@@ -343,6 +392,10 @@ export type HomeContent = {
     eyebrow: string;
     title: string;
     subtitle: string;
+  };
+  closing?: {
+    quote: string;
+    attribution: string;
   };
 };
 

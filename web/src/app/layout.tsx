@@ -1,24 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import { cabinet, fragment } from "@/app/fonts";
 import { getSiteSettings } from "@/lib/content";
-import { organizationJsonLd } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, OG_SIZE, SITE_URL } from "@/lib/og-image";
+import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
-
-const display = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const body = Hanken_Grotesk({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -29,35 +14,36 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
+  const isPreview = process.env.VERCEL_ENV === "preview";
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: "bmkrs. a brand company run by builders.",
       template: "%s",
     },
     description: settings.description,
-    robots: { index: true, follow: true },
+    robots: isPreview ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
       type: "website",
       locale: "en_GB",
-      url: siteUrl,
-      title: "bmkrs. we are b makers.",
+      url: SITE_URL,
+      title: "bmkrs. a brand company run by builders.",
       description: settings.description,
       siteName: settings.siteName,
       images: [
         {
-          url: "/images/bmkrs_white_instapic.png",
-          width: 512,
-          height: 512,
-          alt: "bmkrs. we are b makers.",
+          url: DEFAULT_OG_IMAGE,
+          width: OG_SIZE.width,
+          height: OG_SIZE.height,
+          alt: "bmkrs. a brand company run by builders.",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "bmkrs. we are b makers.",
+      title: "bmkrs. a brand company run by builders.",
       description: settings.description,
-      images: ["/images/bmkrs_white_instapic.png"],
+      images: [DEFAULT_OG_IMAGE],
     },
     icons: {
       icon: [
@@ -74,12 +60,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
-  const jsonLd = organizationJsonLd(settings);
+  const jsonLd = organizationSchema();
 
   return (
-    <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
-      <body className="min-h-screen">
+    <html lang="en-GB" className={`${cabinet.variable} ${fragment.variable}`}>
+      <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

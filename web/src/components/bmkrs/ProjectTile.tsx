@@ -35,6 +35,11 @@ export function ProjectTile({
         className={cn("proj-tile group block", featured && "featured")}
       >
         <div className={cn("proj-media", grad)}>
+          {project.projectType ? (
+            <span className="absolute left-4 top-4 z-10 rounded-full bg-bg/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink">
+              {project.projectType === "studio" ? "built in the studio" : "client work"}
+            </span>
+          ) : null}
           <Image
             src={project.thumbnailPath}
             alt={project.title}

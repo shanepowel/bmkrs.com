@@ -6,12 +6,13 @@
     "node": ">=20.9"
   },
   "scripts": {
-    "dev": "node scripts/sync-assets.js && next dev",
-    "prebuild": "node scripts/sync-assets.js && node scripts/optimize-images.js",
+    "dev": "node scripts/sync-assets.js && node scripts/compile-journal.js && next dev",
+    "prebuild": "node scripts/sync-assets.js && node scripts/generate-brand-icons.js && node scripts/optimize-images.js && node scripts/compile-journal.js",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "studio": "sanity dev",
+    "generate:seeds": "node scripts/generate-sanity-seeds.js",
     "import:seeds": "bash scripts/import-seeds.sh",
     "import:products": "sanity dataset import sanity/seed/products.ndjson --replace"
   },
