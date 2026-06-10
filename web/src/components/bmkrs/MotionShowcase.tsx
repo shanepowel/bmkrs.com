@@ -3,7 +3,7 @@ import { motionStripImages } from "@/lib/marketing-assets";
 
 export function MotionShowcase() {
   return (
-    <section className="section-pad">
+    <section className="section-pad" data-surface="ink">
       <div className="wrap">
         <p className="eyebrow">work in motion</p>
         <div className="motion-showcase mt-6">

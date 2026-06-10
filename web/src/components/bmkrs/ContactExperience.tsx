@@ -116,7 +116,7 @@ export function ContactExperience({
 
   return (
     <main className="contact-shell">
-      <section className="section-pad contact-split-section">
+      <section className="section-pad contact-split-section" data-surface="ink">
         <div className="wrap contact-split">
           <div className="contact-intro">
             <Kicker>start a project</Kicker>
@@ -133,7 +133,7 @@ export function ContactExperience({
             />
           </div>
 
-          <div className="contact-form-col">
+          <div className="contact-form-col contact-form-panel">
             {status === "sent" ? (
               <div className="contact-thanks">
                 <h2 className="text-h3 font-medium">got it. a real person reads this today. talk soon.</h2>
@@ -216,16 +216,19 @@ export function ContactExperience({
             className="contact-emails contact-emails--mobile"
           />
         </div>
+      </section>
 
-        <div className="wrap contact-secondary">
+      <section className="contact-secondary-ink" data-surface="ink">
+        <div className="wrap">
           <SectionRule dark />
           <p className="contact-secondary-lead mt-[var(--space-tight)]">
             not ready for a project?{" "}
             <span className="text-[var(--bmkrs-muted)]">join the fortnightly instead.</span>
           </p>
-          <EmailCapture variant="dark" className="contact-capture" />
         </div>
       </section>
+
+      <EmailCapture surface="orange" />
     </main>
   );
 }

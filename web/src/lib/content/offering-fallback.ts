@@ -321,6 +321,7 @@ export const fallbackPeople: Person[] = [
     quickfire: [
       { label: "now building", value: "freelance near me", href: "/work/freelance-near-me" },
       { label: "banned word", value: "leverage", href: "/journal/banned-words" },
+      { label: "off the clock", value: "rugby and sci-fi" },
     ],
   },
   {
@@ -363,9 +364,9 @@ export const fallbackPeople: Person[] = [
 
 export const fallbackNowBuilding: NowBuildingContent = {
   lines: [
-    "[client project or sector, as specific as confidentiality allows]",
+    "a content and positioning overhaul for a recording studio with broadcast standards",
     "shipping seo landing pages for freelance near me",
-    "writing: why you cannot performance-market your way out of a weak brand",
+    "writing: you cannot performance-market your way out of a weak brand",
   ],
   updatedAt: "2026-06-01",
   updatedLabel: "june 2026",

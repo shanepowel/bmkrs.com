@@ -304,6 +304,7 @@ function generateAbout() {
       quickfire: [
         { _key: "q1", label: "now building", value: "freelance near me", href: "/work/freelance-near-me" },
         { _key: "q2", label: "banned word", value: "leverage", href: "/journal/banned-words" },
+        { _key: "q3", label: "off the clock", value: "rugby and sci-fi" },
       ],
     },
     {
@@ -357,9 +358,9 @@ function generateNowBuilding() {
       _id: "nowBuilding",
       _type: "nowBuilding",
       lines: [
-        "[client project or sector, as specific as confidentiality allows]",
+        "a content and positioning overhaul for a recording studio with broadcast standards",
         "shipping seo landing pages for freelance near me",
-        "writing: why you cannot performance-market your way out of a weak brand",
+        "writing: you cannot performance-market your way out of a weak brand",
       ],
       updatedAt: "2026-06-01",
     },

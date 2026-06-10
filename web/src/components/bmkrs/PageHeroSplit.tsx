@@ -36,7 +36,7 @@ export function PageHeroSplit({
   );
 
   return (
-    <section className={cn("page-hero", minHeight, className)}>
+    <section className={cn("page-hero", minHeight, className)} data-surface="ink">
       <div className="wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div>{children}</div>
         {media}

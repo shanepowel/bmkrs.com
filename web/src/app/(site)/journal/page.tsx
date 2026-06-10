@@ -6,6 +6,7 @@ import { JournalFilter } from "@/components/bmkrs/JournalFilter";
 import { JournalMap } from "@/components/bmkrs/JournalMap";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { Kicker, Section } from "@/components/bmkrs/surfaces";
 import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
@@ -50,8 +51,8 @@ export default async function JournalPage() {
         </Reveal>
       </PageHeroSplit>
 
-      <section className="section-pad pt-0">
-        <div className="wrap section">
+      <Section theme="paper" className="!pt-0">
+        <div className="section">
           {featured && (
             <Link href={`/journal/${featured.slug}`} className="journal-hero block">
               <div className="journal-hero-cover relative">
@@ -130,17 +131,18 @@ export default async function JournalPage() {
             ))}
           </div>
 
-          {mapPosts.length > 0 ? (
-            <div className="mt-16">
-              <p className="eyebrow">wander</p>
-              <p className="muted mb-6 text-sm">optional: explore posts by connection, not chronology.</p>
-              <JournalMap posts={mapPosts} />
-            </div>
-          ) : null}
         </div>
-      </section>
+      </Section>
 
-      <EmailCapture />
+      {mapPosts.length > 0 ? (
+        <Section theme="ink">
+          <Kicker theme="ink">wander</Kicker>
+          <p className="muted mb-6 text-sm">optional: explore posts by connection, not chronology.</p>
+          <JournalMap posts={mapPosts} />
+        </Section>
+      ) : null}
+
+      <EmailCapture surface="orange" />
     </main>
   );
 }

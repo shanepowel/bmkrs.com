@@ -13,8 +13,9 @@ export function Marquee({
 
   return (
     <div
+      data-surface="ink"
       className={cn(
-        "overflow-hidden whitespace-nowrap border-y-2 border-ink py-5",
+        "overflow-hidden whitespace-nowrap border-y border-[var(--surface-rule,rgba(241,239,232,0.16))] py-5",
         dark && "border-0 bg-ink text-bg"
       )}
     >

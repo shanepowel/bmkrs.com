@@ -40,7 +40,7 @@ export function HeroReel({
   const showVideo = Boolean(reelUrl) && motionOk;
 
   return (
-    <section className="hero hero--reel">
+    <section className="hero hero--reel" data-surface="ink">
       <div className="hero-media" aria-hidden="true">
         {showVideo ? (
           <video className="hero-bg" src={reelUrl} poster={poster} autoPlay muted loop playsInline />

@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
-import { Kicker } from "@/components/bmkrs/Kicker";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { RuledGrid, RuledGridItem } from "@/components/bmkrs/RuledGrid";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import { Testimonials } from "@/components/bmkrs/Testimonials";
+import { H2, Kicker, Section, themeBodyStyle } from "@/components/bmkrs/surfaces";
 import {
   getFeaturedProjects,
   getHomeContent,
@@ -50,8 +49,7 @@ export default async function HomePage() {
   const selectedProjects = featured.slice(0, 4);
 
   return (
-    <>
-      {/* 1. hero */}
+    <main>
       {useReelHero ? (
         <HeroReel
           reelUrl={settings.heroReelUrl}
@@ -63,10 +61,10 @@ export default async function HomePage() {
           secondaryCta={hero.secondaryCta}
         />
       ) : (
-        <section className="page-hero relative pb-0">
-          <div className="wrap site-grid items-end">
+        <section className="page-hero relative pb-0" data-surface="ink">
+          <div className="wrap site-grid items-end py-[clamp(4.5rem,9vw,8.5rem)]">
             <div className="site-span-9 cluster-tight">
-              <Kicker>{hero.eyebrow}</Kicker>
+              <Kicker theme="ink">{hero.eyebrow}</Kicker>
               <h1 className="display text-hero font-medium">{heroHeadline}</h1>
               <p className="lead">{hero.sub}</p>
             </div>
@@ -85,152 +83,140 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* 2. ticker */}
       <Marquee items={home.marqueeItems} />
 
-      {/* 3. what we really do + disciplines */}
-      <section className="section-pad">
-        <div className="wrap">
-          <SectionRule />
-          <div className="cluster-tight mt-[var(--space-tight)] max-w-[65ch]">
-            <Kicker>{home.positioning.eyebrow}</Kicker>
-            <h2 className="display text-h2 font-medium">{home.positioning.statement}</h2>
-            <p className="lead">{home.positioning.lead}</p>
-          </div>
-
-          <RuledGrid className="mt-[var(--space-block)]" columns={4}>
-            {home.capabilityTiles.map((tile) => (
-              <RuledGridItem key={tile.title}>
-                <Link href={tile.href} className="group block">
-                  <p className="mono text-meta text-accent">{tile.number}</p>
-                  <h3 className="display mt-2 text-h3 font-medium group-hover:text-accent">
-                    {tile.title}
-                  </h3>
-                  <p className="mt-2 text-muted">{tile.description}</p>
-                </Link>
-              </RuledGridItem>
-            ))}
-          </RuledGrid>
+      <Section theme="paper">
+        <SectionRule />
+        <div className="cluster-tight mt-[var(--space-tight)] max-w-[65ch]">
+          <Kicker theme="paper">{home.positioning.eyebrow}</Kicker>
+          <H2 theme="paper">{home.positioning.statement}</H2>
+          <p className="lead">{home.positioning.lead}</p>
         </div>
-      </section>
 
-      {/* 4. start / make / grow + stats */}
-      <section className="section-pad section--paper">
-        <div className="wrap">
-          <SectionRule />
-          <div className="cluster-tight mt-[var(--space-tight)]">
-            <Kicker>ways to work with us</Kicker>
-            <h2 className="display text-h2 font-medium">
-              start, make, <span className="text-accent">grow.</span>
-            </h2>
-            <p className="lead">
-              one funnel, one team, bespoke work throughout. the packages shape how you start, not
-              how the creative gets made.
-            </p>
-          </div>
+        <RuledGrid className="mt-[var(--space-block)]" columns={4}>
+          {home.capabilityTiles.map((tile) => (
+            <RuledGridItem key={tile.title}>
+              <Link href={tile.href} className="group block">
+                <p className="mono text-meta text-accent">{tile.number}</p>
+                <h3 className="display mt-2 text-h3 font-medium group-hover:text-accent">
+                  {tile.title}
+                </h3>
+                <p className="mt-2 text-muted">{tile.description}</p>
+              </Link>
+            </RuledGridItem>
+          ))}
+        </RuledGrid>
+      </Section>
 
-          <RuledGrid className="mt-[var(--space-block)]" columns={3}>
-            {TIERS.map((tier) => (
-              <RuledGridItem key={tier}>
-                <h3 className="display text-h3 font-medium text-accent">{TIER_LABELS[tier].label}</h3>
-                <p className="mt-2 text-muted">{TIER_LABELS[tier].blurb}</p>
-                <ul className="mt-4 list-none space-y-2 p-0">
-                  {byTier(tier).map((p) => (
-                    <li key={p.slug} className="border-t border-line pt-2">
-                      <Link
-                        href={tier === "grow" ? "/motion" : `/services#${p.slug}`}
-                        className="text-ink/80 transition-colors hover:text-accent"
-                      >
-                        {p.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </RuledGridItem>
-            ))}
-          </RuledGrid>
-
-          <RuledGrid className="mt-[var(--space-block)]" columns={3}>
-            {home.stats.map((stat) => (
-              <RuledGridItem key={stat.label}>
-                <p className="mono text-hero font-normal leading-none text-accent">
-                  {stat.highlight}
-                  {stat.value}
-                </p>
-                <p className="nocase mt-3 max-w-[28ch] text-meta text-muted">{stat.label}</p>
-              </RuledGridItem>
-            ))}
-          </RuledGrid>
-
-          <Link href="/services" className="btn-primary mt-[var(--space-block)] inline-flex">
-            see the full offering <ArrowIcon />
-          </Link>
+      <Section theme="ink">
+        <SectionRule />
+        <div className="cluster-tight mt-[var(--space-tight)]">
+          <Kicker theme="ink">ways to work with us</Kicker>
+          <H2 theme="ink">
+            start, make, <span className="text-accent">grow.</span>
+          </H2>
+          <p className="lead">
+            one funnel, one team, bespoke work throughout. the packages shape how you start, not how
+            the creative gets made.
+          </p>
         </div>
-      </section>
 
-      {/* 5. selected work */}
-      <section className="section-pad">
-        <div className="wrap">
-          <SectionRule />
-          <div className="sec-head mt-[var(--space-tight)]">
-            <h2 className="display text-h2 font-medium">
-              the brands we <span className="text-accent">build for</span>
-            </h2>
-            <p className="text-muted">{home.selectedWork.subtitle}</p>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {selectedProjects.map((project, i) => (
-              <ProjectTile
-                key={project.slug}
-                project={project}
-                featured={false}
-                delay={(i as 0 | 1 | 2 | 3) || 0}
-                gradientIndex={i}
-              />
-            ))}
-          </div>
-          <Link href="/work" className="btn-primary mt-[var(--space-block)] inline-flex">
-            all projects <ArrowIcon />
-          </Link>
+        <RuledGrid className="mt-[var(--space-block)]" columns={3}>
+          {TIERS.map((tier) => (
+            <RuledGridItem key={tier}>
+              <h3 className="display text-h3 font-medium text-accent">{TIER_LABELS[tier].label}</h3>
+              <p className="mt-2 text-muted">{TIER_LABELS[tier].blurb}</p>
+              <ul className="mt-4 list-none space-y-2 p-0">
+                {byTier(tier).map((p) => (
+                  <li key={p.slug} className="border-t border-line pt-2">
+                    <Link
+                      href={tier === "grow" ? "/motion" : `/services#${p.slug}`}
+                      className="transition-colors hover:text-accent"
+                      style={themeBodyStyle("ink")}
+                    >
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </RuledGridItem>
+          ))}
+        </RuledGrid>
+
+        <RuledGrid className="mt-[var(--space-block)]" columns={3}>
+          {home.stats.map((stat) => (
+            <RuledGridItem key={stat.label}>
+              <p className="mono text-hero font-normal leading-none text-accent">
+                {stat.highlight}
+                {stat.value}
+              </p>
+              <p className="nocase mt-3 max-w-[28ch] text-meta text-muted">{stat.label}</p>
+            </RuledGridItem>
+          ))}
+        </RuledGrid>
+
+        <Link href="/services" className="btn-primary mt-[var(--space-block)] inline-flex">
+          see the full offering <ArrowIcon />
+        </Link>
+      </Section>
+
+      <Section theme="ink">
+        <SectionRule />
+        <div className="sec-head mt-[var(--space-tight)]">
+          <H2 theme="ink">
+            the brands we <span className="text-accent">build for</span>
+          </H2>
+          <p className="text-muted">{home.selectedWork.subtitle}</p>
         </div>
-      </section>
+        <div className="mt-[var(--space-block)] grid gap-5 md:grid-cols-2">
+          {selectedProjects.map((project, i) => (
+            <ProjectTile
+              key={project.slug}
+              project={project}
+              featured={false}
+              delay={(i as 0 | 1 | 2 | 3) || 0}
+              gradientIndex={i}
+            />
+          ))}
+        </div>
+        <Link href="/work" className="btn-primary mt-[var(--space-block)] inline-flex">
+          all projects <ArrowIcon />
+        </Link>
+      </Section>
 
-      {/* 6. testimonial + motion teaser */}
-      <section className="section-pad section--paper">
-        <div className="wrap grid gap-[var(--space-block)] lg:grid-cols-2 lg:items-start">
+      <Section theme="orange">
+        <div className="grid gap-[var(--space-block)] lg:grid-cols-2 lg:items-start">
           <div>
-            <Kicker>in their words</Kicker>
+            <Kicker theme="orange">in their words</Kicker>
             <Testimonials items={testimonials} />
           </div>
           <div>
-            <Kicker>{home.motionTeaser.eyebrow}</Kicker>
+            <Kicker theme="orange">{home.motionTeaser.eyebrow}</Kicker>
             <Reveal>
-              <h2 className="display text-h2 font-medium">
-                always in <span className="text-accent">motion.</span>
-              </h2>
+              <H2 theme="orange">
+                always in <span style={{ color: "#181613" }}>motion.</span>
+              </H2>
             </Reveal>
             <p className="lead mt-[var(--space-tight)]">{home.motionTeaser.body}</p>
             <Link
               href={home.motionTeaser.href}
-              className="btn-primary mt-[var(--space-tight)] inline-flex"
+              className="mt-[var(--space-tight)] inline-flex rounded-full px-8 py-4 text-base font-medium transition-transform hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none"
+              style={{ background: "#181613", color: "#F1EFE8" }}
             >
               {home.motionTeaser.ctaLabel} <ArrowIcon />
             </Link>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* 7. final cta */}
-      <section className="section-pad closing text-center">
-        <div className="wrap">
-          <h2 className="display text-h2 font-medium">let&apos;s make something worth choosing.</h2>
+      <Section theme="ink">
+        <div className="text-center">
+          <H2 theme="ink">let&apos;s make something worth choosing.</H2>
           <Link href="/contact" className="btn-primary mt-[var(--space-block)] inline-flex">
             start a project <ArrowIcon />
           </Link>
         </div>
-      </section>
-
-      <EmailCapture className="section-pad pt-0" />
-    </>
+      </Section>
+    </main>
   );
 }

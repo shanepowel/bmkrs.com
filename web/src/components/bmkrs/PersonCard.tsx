@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Person, QuickfireItem } from "@/lib/types";
-
-function quickfireIsReady(item: QuickfireItem): boolean {
-  return Boolean(item.label && item.value && !item.value.includes("["));
-}
-
-function visibleQuickfire(items?: QuickfireItem[]): QuickfireItem[] {
-  return (items ?? []).filter(quickfireIsReady);
-}
+import { visibleQuickfire } from "@/lib/quickfire";
+import type { Person } from "@/lib/types";
 
 type PersonCardProps = {
   person: Person;

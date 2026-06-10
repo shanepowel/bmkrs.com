@@ -8,6 +8,7 @@ import { PortableBody } from "@/components/bmkrs/PortableBody";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { AuthorBio } from "@/components/bmkrs/AuthorBio";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
+import { Section } from "@/components/bmkrs/surfaces";
 import {
   getJournalArticle,
   getJournalArticles,
@@ -92,111 +93,125 @@ export default async function JournalArticlePage({ params }: Props) {
     ];
 
     return (
-      <article className="page-top px-[var(--pad)] pb-16">
+      <main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div className="wrap max-w-[900px]">
-          <Link
-            href="/journal"
-            className="text-sm font-semibold text-muted transition-colors hover:text-accent"
-          >
-            ← journal
-          </Link>
-          <p className="eyebrow mt-8 block">
-            {categoryHref ? (
-              <Link href={categoryHref} className="hover:text-accent">
-                {categoryLabel}
-              </Link>
-            ) : (
-              categoryLabel
-            )}{" "}
-            · {formatDate(post.publishedAt)}
-            {post.readingTime ? ` · ${post.readingTime} min read` : ""}
-          </p>
-          <h1 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold leading-[1.05]">
-            {post.title}
-          </h1>
-          {post.author && (
-            <p className="mt-4 text-sm text-muted">
-              {post.author.name}
-              {post.author.discipline ? ` · ${post.author.discipline}` : ""}
+
+        <Section theme="ink" className="!pb-0">
+          <div className="max-w-[900px]">
+            <Link
+              href="/journal"
+              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
+            >
+              ← journal
+            </Link>
+            <p className="eyebrow mt-8 block">
+              {categoryHref ? (
+                <Link href={categoryHref} className="hover:text-accent">
+                  {categoryLabel}
+                </Link>
+              ) : (
+                categoryLabel
+              )}{" "}
+              · {formatDate(post.publishedAt)}
+              {post.readingTime ? ` · ${post.readingTime} min read` : ""}
             </p>
-          )}
-          {post.cover?.url && (
-            <div className="relative my-10 aspect-[16/9] overflow-hidden rounded-[var(--radius)]">
-              <Image
-                src={post.cover.url}
-                alt={post.cover.alt ?? post.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="900px"
-              />
-            </div>
-          )}
-          <PortableBody blocks={post.body} />
-
-          {post.author?.name ? <AuthorBio name={post.author.name} /> : null}
-
-          {(post.relatedProduct || post.relatedCaseStudy) && (
-            <aside className="post-cta mt-14 border-t-2 border-[var(--line)] pt-10">
-              <span className="eyebrow block">where this shows up</span>
-              <p className="muted mt-3 max-w-[52ch] text-[15px]">
-                this thinking shows up in how we deliver{" "}
-                {post.relatedProduct?.name ?? post.relatedCaseStudy?.title ?? "the work"} for clients.
+            <h1 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold leading-[1.05]">
+              {post.title}
+            </h1>
+            {post.author && (
+              <p className="mt-4 text-sm text-muted">
+                {post.author.name}
+                {post.author.discipline ? ` · ${post.author.discipline}` : ""}
               </p>
-              <div className="mt-4 flex flex-wrap gap-4">
-                {post.relatedProduct && (
-                  <Link href={`/services#${post.relatedProduct.slug}`} className="btn-primary inline-flex">
-                    {post.relatedProduct.name} →
-                  </Link>
-                )}
-                {post.relatedCaseStudy && (
-                  <Link
-                    href={`/work/${post.relatedCaseStudy.slug}`}
-                    className="font-semibold text-accent hover:underline"
-                  >
-                    see it in {post.relatedCaseStudy.title} →
-                  </Link>
-                )}
+            )}
+            {post.cover?.url && (
+              <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[var(--radius)]">
+                <Image
+                  src={post.cover.url}
+                  alt={post.cover.alt ?? post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="900px"
+                />
               </div>
-            </aside>
-          )}
+            )}
+          </div>
+        </Section>
 
-          <nav className="post-foot mt-12 flex flex-wrap gap-6 border-t border-[var(--line)] pt-8 text-sm font-semibold">
-            <Link href="/journal" className="text-muted hover:text-accent">
-              more from the journal
-            </Link>
-            <Link href="/contact" className="text-accent hover:underline">
-              start a project
-            </Link>
-          </nav>
-        </div>
+        <Section theme="paper" className="!pt-8">
+          <div className="max-w-[900px]">
+            <PortableBody blocks={post.body} />
+          </div>
+        </Section>
 
-        {others.length > 0 && (
-          <section className="section-pad border-t-2 border-[var(--line)] bg-ink/[0.02]">
-            <div className="wrap">
-              <h2 className="eyebrow">related posts</h2>
-              <ul className="mt-8 space-y-8">
-                {others.map((other) => (
-                  <li key={other.slug}>
-                    <Link href={`/journal/${other.slug}`} className="group block">
-                      <h3 className="display text-[clamp(1.25rem,3vw,2rem)] font-semibold group-hover:text-accent">
-                        {other.title} <ArrowIcon />
-                      </h3>
-                      <p className="excerpt mt-2">{other.excerpt}</p>
+        <Section theme="ink">
+          <div className="max-w-[900px]">
+            {post.author?.name ? <AuthorBio name={post.author.name} /> : null}
+
+            {(post.relatedProduct || post.relatedCaseStudy) && (
+              <aside className="post-cta mt-14 border-t border-[var(--line)] pt-10">
+                <span className="eyebrow block">where this shows up</span>
+                <p className="muted mt-3 max-w-[52ch] text-[15px]">
+                  this thinking shows up in how we deliver{" "}
+                  {post.relatedProduct?.name ?? post.relatedCaseStudy?.title ?? "the work"} for
+                  clients.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-4">
+                  {post.relatedProduct && (
+                    <Link
+                      href={`/services#${post.relatedProduct.slug}`}
+                      className="btn-primary inline-flex"
+                    >
+                      {post.relatedProduct.name} →
                     </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
+                  )}
+                  {post.relatedCaseStudy && (
+                    <Link
+                      href={`/work/${post.relatedCaseStudy.slug}`}
+                      className="font-semibold text-accent hover:underline"
+                    >
+                      see it in {post.relatedCaseStudy.title} →
+                    </Link>
+                  )}
+                </div>
+              </aside>
+            )}
 
-        <EmailCapture className="section-pad pt-0" />
-      </article>
+            {others.length > 0 && (
+              <div className="mt-14 border-t border-[var(--line)] pt-10">
+                <h2 className="eyebrow">related posts</h2>
+                <ul className="mt-8 space-y-8">
+                  {others.map((other) => (
+                    <li key={other.slug}>
+                      <Link href={`/journal/${other.slug}`} className="group block">
+                        <h3 className="display text-[clamp(1.25rem,3vw,2rem)] font-semibold group-hover:text-accent">
+                          {other.title} <ArrowIcon />
+                        </h3>
+                        <p className="excerpt mt-2">{other.excerpt}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <nav className="post-foot mt-12 flex flex-wrap gap-6 border-t border-[var(--line)] pt-8 text-sm font-semibold">
+              <Link href="/journal" className="text-muted hover:text-accent">
+                more from the journal
+              </Link>
+              <Link href="/contact" className="text-accent hover:underline">
+                start a project
+              </Link>
+            </nav>
+          </div>
+        </Section>
+
+        <EmailCapture surface="orange" />
+      </main>
     );
   }
 

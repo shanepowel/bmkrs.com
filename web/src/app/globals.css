@@ -107,6 +107,71 @@ body {
     letter-spacing: var(--tracking-kicker);
   }
 
+  @keyframes bmkrs-ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .about-ticker {
+    animation: bmkrs-ticker 40s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-ticker {
+      animation: none;
+    }
+  }
+
+  .about-page a:focus-visible,
+  [data-surface] a:focus-visible {
+    outline: 2px solid var(--bmkrs-orange);
+    outline-offset: 4px;
+  }
+
+  [data-surface="ink"] {
+    --surface-text: #f1efe8;
+    --surface-body: #d3d1c7;
+    --surface-muted: #b4b2a9;
+    --surface-rule: rgba(241, 239, 232, 0.16);
+    --line: rgba(241, 239, 232, 0.16);
+    --ink: #f1efe8;
+  }
+
+  [data-surface="paper"] {
+    --surface-text: #181613;
+    --surface-body: #444441;
+    --surface-muted: #5f5e5a;
+    --surface-rule: rgba(24, 22, 19, 0.15);
+    --line: rgba(24, 22, 19, 0.15);
+    --ink: #181613;
+  }
+
+  [data-surface="orange"] {
+    --surface-text: #181613;
+    --surface-body: #2c1005;
+    --surface-muted: #4a1b0c;
+    --surface-rule: rgba(24, 22, 19, 0.25);
+    --line: rgba(24, 22, 19, 0.25);
+    --ink: #181613;
+  }
+
+  [data-surface] .text-muted,
+  [data-surface] .muted {
+    color: var(--surface-muted);
+  }
+
+  [data-surface] .lead {
+    color: var(--surface-body);
+  }
+
+  [data-surface] .border-line {
+    border-color: var(--surface-rule);
+  }
+
   .section-rule {
     border: 0;
     border-top: 1px solid var(--line);
@@ -271,6 +336,25 @@ body {
 
   .btn-primary {
     @apply btn-bmkrs bg-ink text-bg hover:bg-accent hover:text-white;
+  }
+
+  .btn-ink {
+    @apply btn-bmkrs bg-ink text-bg hover:opacity-90;
+  }
+
+  .field-input--on-orange {
+    background: #181613;
+    border-color: rgba(24, 22, 19, 0.25);
+    color: #f1efe8;
+  }
+
+  .field-input--on-orange::placeholder {
+    color: #4a1b0c;
+  }
+
+  .field-input--on-orange:focus {
+    border-color: #181613;
+    box-shadow: 0 0 0 3px rgba(24, 22, 19, 0.25);
   }
 
   .btn-ghost {

@@ -7,6 +7,7 @@ import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
+import { Section } from "@/components/bmkrs/surfaces";
 import { ServiceTags } from "@/components/bmkrs/ServiceTags";
 import {
   getNextProject,
@@ -148,55 +149,52 @@ export default async function CaseStudyPage({ params }: Props) {
   ];
 
   return (
-    <>
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="page-top px-[var(--pad)] pb-8">
-        <div className="wrap">
-          <Reveal>
-            <Link
-              href="/work"
-              className="mono text-meta text-muted transition-colors hover:text-accent"
-            >
-              ← work
-            </Link>
-          </Reveal>
-          <Reveal delay={1}>
-            <p className="mono mt-8 text-meta text-muted">
-              {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
-            </p>
-          </Reveal>
-          <Reveal delay={1}>
-            <h1 className="display text-hero mt-[var(--space-tight)] font-medium">
-              {project.title}
-            </h1>
-          </Reveal>
-          {project.positioning && (
-            <Reveal delay={2}>
-              <p className="lead mt-[var(--space-tight)]">{project.positioning}</p>
-            </Reveal>
-          )}
-          <Reveal delay={2}>
-            <div className="relative my-[var(--space-block)] aspect-[21/9] overflow-hidden rounded-[var(--radius)] bg-ink/5">
-              <Image
-                src={project.thumbnailPath}
-                alt={project.heroImage?.alt || project.title}
-                fill
-                quality={75}
-                className="object-cover"
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      <section className="section-pad pt-0">
-        <div className="wrap max-w-[900px]">
+      <Section theme="ink" className="!pb-0">
+        <Reveal>
+          <Link
+            href="/work"
+            className="mono text-meta text-muted transition-colors hover:text-accent"
+          >
+            ← work
+          </Link>
+        </Reveal>
+        <Reveal delay={1}>
+          <p className="mono mt-8 text-meta text-muted">
+            {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
+          </p>
+        </Reveal>
+        <Reveal delay={1}>
+          <h1 className="display text-hero mt-[var(--space-tight)] font-medium">{project.title}</h1>
+        </Reveal>
+        {project.positioning && (
+          <Reveal delay={2}>
+            <p className="lead mt-[var(--space-tight)]">{project.positioning}</p>
+          </Reveal>
+        )}
+        <Reveal delay={2}>
+          <div className="relative mt-[var(--space-block)] aspect-[21/9] overflow-hidden rounded-[var(--radius)] bg-ink/5">
+            <Image
+              src={project.thumbnailPath}
+              alt={project.heroImage?.alt || project.title}
+              fill
+              quality={75}
+              className="object-cover"
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 1200px"
+            />
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section theme="paper" className="!pt-8">
+        <div className="max-w-[900px]">
           <div className="case-meta">
             <div>
               <p className="mono text-meta text-muted">services</p>
@@ -252,23 +250,26 @@ export default async function CaseStudyPage({ params }: Props) {
             </section>
           )}
 
-          {showQuote && quote && (
-            <Reveal>
-              <figure className="case-testimonial mt-[var(--space-block)]">
-                <blockquote className="text-h3 font-medium leading-snug">
-                  &ldquo;{quote.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mono mt-4 text-meta text-muted">
-                  {quote.name}
-                  {quote.role ? `, ${quote.role}` : ""}
-                  {quote.company ? `, ${quote.company}` : ""}
-                </figcaption>
-              </figure>
-            </Reveal>
-          )}
+        </div>
+      </Section>
 
+      {showQuote && quote ? (
+        <Section theme="orange">
+          <figure className="case-testimonial max-w-[900px]">
+            <blockquote className="text-h3 font-medium leading-snug">&ldquo;{quote.quote}&rdquo;</blockquote>
+            <figcaption className="mono mt-4 text-meta">
+              {quote.name}
+              {quote.role ? `, ${quote.role}` : ""}
+              {quote.company ? `, ${quote.company}` : ""}
+            </figcaption>
+          </figure>
+        </Section>
+      ) : null}
+
+      <Section theme="ink">
+        <div className="max-w-[900px]">
           {project.media.length > 1 && (
-            <div className="mt-[var(--space-block)] space-y-8">
+            <div className="space-y-8">
               <SectionRule />
               {project.media.slice(1).map((item, idx) => (
                 <Reveal key={idx}>
@@ -302,7 +303,7 @@ export default async function CaseStudyPage({ params }: Props) {
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </Section>
+    </main>
   );
 }

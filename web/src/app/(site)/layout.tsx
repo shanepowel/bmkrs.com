@@ -14,7 +14,7 @@ export default async function SiteLayout({
     <>
       <SkipLink />
       <SiteHeader navigation={settings.navigation} />
-      <main id="main">{children}</main>
+      {children}
       <SiteFooter settings={settings} />
     </>
   );

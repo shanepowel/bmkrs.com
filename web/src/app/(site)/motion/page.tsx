@@ -5,6 +5,7 @@ import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
+import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
 import { getMotionTiers } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
@@ -72,55 +73,43 @@ export default async function MotionPage() {
 
       <MotionShowcase />
 
-      <section className="section-pad section--paper motion-why">
-        <div className="wrap section prose-with-media">
+      <Section theme="ink">
+        <div className="prose-with-media grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
-            <p className="eyebrow">why it exists</p>
-            <h2 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold">
-              the project ends. the brand does not.
-            </h2>
+            <Kicker theme="ink">why it exists</Kicker>
+            <H2 theme="ink">the project ends. the brand does not.</H2>
             <p className="lead mt-6 max-w-[560px]">
               most agencies build the thing, hand it over, and disappear. then the brand drifts, the
               voice slips, and momentum quietly dies. motion is the opposite: the team that built it
               stays, and keeps it sharp.
             </p>
           </div>
-          <SectionImage
-            src={pageHeroImages.work.src}
-            alt="brand work in market"
-            aspect="wide"
-          />
+          <SectionImage src={pageHeroImages.work.src} alt="brand work in market" aspect="wide" />
         </div>
-        <div className="wrap section">
-          <div className="motion-contrast mt-4">
-            <div className="contrast-col">
-              <span className="eyebrow">the usual way</span>
-              <ul>
-                <li>a burst of work, then silence</li>
-                <li>a new team each time, relearning your brand</li>
-                <li>momentum lost between projects</li>
-                <li>hand-offs that drop the detail</li>
-              </ul>
-            </div>
-            <div className="contrast-col contrast-col--ours">
-              <span className="eyebrow">motion</span>
-              <ul>
-                <li>continuous, every month</li>
-                <li>the same team, compounding knowledge</li>
-                <li>momentum that builds, not resets</li>
-                <li>no hand-offs, no strangers</li>
-              </ul>
-            </div>
+        <div className="motion-contrast mt-12">
+          <div className="contrast-col">
+            <span className="eyebrow">the usual way</span>
+            <ul>
+              <li>a burst of work, then silence</li>
+              <li>a new team each time, relearning your brand</li>
+              <li>momentum lost between projects</li>
+              <li>hand-offs that drop the detail</li>
+            </ul>
+          </div>
+          <div className="contrast-col contrast-col--ours">
+            <span className="eyebrow">motion</span>
+            <ul>
+              <li>continuous, every month</li>
+              <li>the same team, compounding knowledge</li>
+              <li>momentum that builds, not resets</li>
+              <li>no hand-offs, no strangers</li>
+            </ul>
           </div>
         </div>
-      </section>
 
-      <section className="section-pad">
-        <div className="wrap section">
-          <p className="eyebrow">how it works</p>
-          <h2 className="display mt-4 text-[clamp(2rem,5vw,3.25rem)] font-bold">
-            plan, ship, measure, compound.
-          </h2>
+        <div className="mt-[var(--space-block)]">
+          <Kicker theme="ink">how it works</Kicker>
+          <H2 theme="ink">plan, ship, measure, compound.</H2>
           <div className="howit-grid mt-10">
             {HOW_IT_WORKS.map((step) => (
               <div key={step.n} className="howit">
@@ -131,53 +120,54 @@ export default async function MotionPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-pad section--paper" id="tiers">
-        <div className="wrap section">
-          <p className="eyebrow">the tiers</p>
-          <h2 className="display mt-4 text-[clamp(2rem,5vw,3.25rem)] font-bold">grow with us.</h2>
-          <div className="motion-tier-grid mt-10">
-            {tiers.map((tier) => (
-              <article key={tier.slug} className="motion-tier-card">
-                <h3 className="display">{tier.name}</h3>
-                <p className="mt-2">{tier.tagline}</p>
-                {tier.forWho && <p className="motion-meta mt-3">{tier.forWho}</p>}
-                {tier.cadence && (
-                  <p className="motion-meta">
-                    <span className="eyebrow mb-1 block">cadence</span> {tier.cadence}
-                  </p>
-                )}
-                {tier.commitment && (
-                  <p className="motion-meta">
-                    <span className="eyebrow mb-1 block">commitment</span> {tier.commitment}
-                  </p>
-                )}
-                {tier.priceFrom && (
-                  <p className="display mt-4 text-2xl font-bold tracking-[-0.04em]">
-                    from {tier.priceFrom}
-                    {tier.priceNote ?? "/month"}
-                  </p>
-                )}
-                {tier.monthlyDeliverables?.length ? (
-                  <ul className="product-included mt-3">
-                    {tier.monthlyDeliverables.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ) : null}
-                {tier.outcome && <p className="mt-3 text-sm text-muted">{tier.outcome}</p>}
-                <Link href="/contact" className="product-cta mt-auto pt-4">
-                  let&apos;s talk →
-                </Link>
-              </article>
-            ))}
-          </div>
-          <p className="lede mt-12 max-w-[48ch]">
-            rolling, monthly, thirty days&apos; notice, no lock-in. you stay because it works.
-          </p>
+      <Section theme="paper" className="scroll-mt-24" id="tiers">
+        <Kicker theme="paper">the tiers</Kicker>
+        <H2 theme="paper">grow with us.</H2>
+        <div className="motion-tier-grid mt-10">
+          {tiers.map((tier) => (
+            <article key={tier.slug} className="motion-tier-card">
+              <h3 className="display">{tier.name}</h3>
+              <p className="mt-2">{tier.tagline}</p>
+              {tier.forWho && <p className="motion-meta mt-3">{tier.forWho}</p>}
+              {tier.cadence && (
+                <p className="motion-meta">
+                  <span className="eyebrow mb-1 block">cadence</span> {tier.cadence}
+                </p>
+              )}
+              {tier.commitment && (
+                <p className="motion-meta">
+                  <span className="eyebrow mb-1 block">commitment</span> {tier.commitment}
+                </p>
+              )}
+              {tier.priceFrom && (
+                <p className="display mt-4 text-2xl font-bold tracking-[-0.04em]">
+                  from {tier.priceFrom}
+                  {tier.priceNote ?? "/month"}
+                </p>
+              )}
+              {tier.monthlyDeliverables?.length ? (
+                <ul className="product-included mt-3">
+                  {tier.monthlyDeliverables.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {tier.outcome && <p className="mt-3 text-sm text-muted">{tier.outcome}</p>}
+              <Link href="/contact" className="product-cta mt-auto pt-4">
+                let&apos;s talk →
+              </Link>
+            </article>
+          ))}
         </div>
-      </section>
+      </Section>
+
+      <Section theme="ink" tight>
+        <p className="lede max-w-[48ch]">
+          rolling, monthly, thirty days&apos; notice, no lock-in. you stay because it works.
+        </p>
+      </Section>
     </main>
   );
 }
