@@ -106,26 +106,52 @@ export type AboutBelief = {
   body: string;
 };
 
+export type QuickfireItem = {
+  label: string;
+  value: string;
+  href?: string;
+};
+
+export type Person = {
+  slug: string;
+  name: string;
+  role?: string;
+  discipline?: string;
+  shortBio?: string;
+  longBio?: string;
+  portraitUrl?: string;
+  portraitAlt?: string;
+  linkedinUrl?: string;
+  order?: number;
+  quickfire?: QuickfireItem[];
+};
+
 export type AboutFounder = {
   name: string;
   linkedinUrl: string;
-  bio: string[];
   portraitAlt: string;
 };
 
 export type AboutPageContent = {
   headline: string;
   intro: string;
-  story?: string[];
   founder?: AboutFounder;
-  whoWeAre: string;
-  teamIntro?: string;
-  teamClosing?: string;
-  whatWeLove?: string;
-  ethos: string;
+  founderStoryTitle: string;
+  founderStory: string[];
+  founderPullQuote: string;
+  teamIntro: string;
+  teamClosing: string;
+  beliefsHeadline: string;
   beliefs: AboutBelief[];
+  studioProductCount: number;
+  longGameTitle: string;
   longGame: string;
-  inOwnWords?: string[];
+};
+
+export type NowBuildingContent = {
+  lines: string[];
+  updatedAt: string;
+  updatedLabel: string;
 };
 
 export type PortableBlock =

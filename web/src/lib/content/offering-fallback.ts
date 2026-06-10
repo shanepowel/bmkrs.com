@@ -1,4 +1,4 @@
-import type { AboutPageContent, Discipline, Product, TeamMember } from "@/lib/types";
+import type { AboutPageContent, Discipline, NowBuildingContent, Person, Product, TeamMember } from "@/lib/types";
 import { authorBios } from "./author-bios";
 import { fallbackPosts } from "./journal-posts-fallback";
 
@@ -263,36 +263,112 @@ export const fallbackProducts: Product[] = [
 ];
 
 export const fallbackAboutPage: AboutPageContent = {
-  headline: "built by a builder.",
+  headline: "built, not branded.",
   intro:
-    "bmkrs is a brand company founded by someone who spent years shipping real products inside complex organisations. the rigour came first. the brand work is where we point it.",
+    "bmkrs is a brand company founded by a builder. seventeen years shipping real products inside organisations where failure is expensive, now pointed at the thing most good products never get: a brand that does them justice.",
   founder: {
     name: "shane powell",
     linkedinUrl: "https://www.linkedin.com/in/shanepowell",
     portraitAlt: "illustrated portrait of shane powell, founder at bmkrs",
-    bio: [
-      "i have spent seventeen years building products and delivery teams inside organisations where failure is expensive: public sector, utilities, infrastructure, regulated industries. director-level consulting, the kind of work where things have to ship, work, and stand up to scrutiny.",
-      "and across all of it i kept watching the same thing happen. brilliant products, built by brilliant people, losing to worse products with a clearer story. the better-told brand won. every time.",
-      "bmkrs exists to fight on that front. i build brands the way i build products: strategy before execution, one accountable team, shipped and measured rather than presented and abandoned. and because i still build products of my own, the studio practices what it sells. some of the work on our shelves is ours.",
+  },
+  founderStoryTitle: "the short version of a long story.",
+  founderStory: [
+    "i have spent seventeen years building products and delivery teams inside organisations where things have to actually work: public sector, utilities, infrastructure, regulated industries. real stakes, real scrutiny, no marks for decks.",
+    "and the whole time, one pattern kept ruining my week. brilliant products, built by brilliant people, losing. not to better products. to better-told ones. a sharper name, a clearer story, a tighter site, and the worse thing wins. i watched it happen so many times i stopped calling it unfair and started calling it a gap in the market.",
+    "bmkrs is me closing that gap. brands built the way good products get built: strategy before pixels, one accountable team, shipped and measured instead of presented and abandoned. and because i never stopped building products of my own, some of the work on these shelves is ours. we live with the consequences of our own advice, which keeps the advice honest.",
+  ],
+  founderPullQuote:
+    "the better-told brand wins. i got tired of watching it happen to the wrong side.",
+  teamIntro:
+    "around the studio is a small group of partner collaborators. all of them are multiskilled. each of them leads the thing they are scary-good at. you meet the people who do the work, because there is no one else to meet.",
+  teamClosing: "no account managers. no chain. just us.",
+  beliefsHeadline: "four things we refuse to budge on.",
+  beliefs: [
+    {
+      title: "a brand is a promise.",
+      body: "so we will not design one your business cannot keep. if the work and the words disagree, we fix the work or change the words.",
+    },
+    {
+      title: "design does a job.",
+      body: "if we cannot say what a thing is for, it does not ship. beautiful and pointless is still pointless.",
+    },
+    {
+      title: "proof beats noise.",
+      body: "we would rather show one number that moved than ten adjectives that did not. we measure, and we tell you what we find, even when it stings.",
+    },
+    {
+      title: "one team, all in.",
+      body: "no handoffs, no account managers, no whoever-is-free-on-friday. the people in the first meeting are the people doing the work, because they are the only people there are.",
+    },
+  ],
+  studioProductCount: 1,
+  longGameTitle: "built to stick around.",
+  longGame:
+    "the work we are proudest of comes from relationships, not transactions. the longer we know a brand, the better the work gets: we move faster, skip the posturing, and say the hard thing because we have earned the right to.\n\nwe keep the same team on your brand. we learn it, look after it, and treat it like ours. the only scoreboard we really watch is who comes back, and who they bring with them.",
+};
+
+export const fallbackPeople: Person[] = [
+  {
+    slug: "shane-powell",
+    name: "shane",
+    role: "founder + product",
+    discipline: "delivery + strategy",
+    shortBio:
+      "seventeen years shipping inside complex organisations. builds the products that carry the brands, including ours.",
+    portraitAlt: "illustrated portrait of shane powell, founder at bmkrs",
+    linkedinUrl: "https://www.linkedin.com/in/shanepowell",
+    order: 0,
+    quickfire: [
+      { label: "now building", value: "freelance near me", href: "/work/freelance-near-me" },
+      { label: "banned word", value: "leverage", href: "/journal/banned-words" },
     ],
   },
-  whoWeAre:
-    "around the studio is a small group of partner collaborators. all of them are multiskilled, each of them leads the discipline they are best at. you meet the people who do the work, because they are the only people there are. we'd rather be your team than your agency.",
-  teamIntro:
-    "around the studio is a small group of partner collaborators. all of them are multiskilled, each of them leads the discipline they are best at. you meet the people who do the work, because they are the only people there are.",
-  teamClosing: "no account managers. no chain. no whoever-is-free-on-friday.",
-  ethos:
-    "we put our own name on the work, so we treat your brand the way we treat ours: build it properly, ship it, and stay long enough to see it work.",
-  beliefs: [
-    { title: "brand is infrastructure, not decoration.", body: "we build it like something that has to hold weight." },
-    { title: "design earns its place.", body: "it is doing a job, or it is in the way." },
-    { title: "growth is a habit, not a campaign.", body: "we build the thing that keeps working after launch." },
-    { title: "one team, all in.", body: "no churn, no hand-offs, no strangers on your account." },
-    { title: "clarity is the whole job.", body: "if it needs a paragraph to explain, it is not finished." },
-    { title: "we are in it for the long game.", body: "not the launch. the years after it." },
+  {
+    slug: "marcus",
+    name: "marcus",
+    role: "voice + messaging",
+    shortBio:
+      "came up through broadcast, where nobody owes you their attention. every line he writes has to survive being said out loud.",
+    portraitAlt: "illustrated portrait of marcus, voice + messaging at bmkrs",
+    order: 1,
+  },
+  {
+    slug: "sarah",
+    name: "sarah",
+    role: "brand + identity",
+    shortBio:
+      "builds visual worlds from positioning outwards, never the other way round. will tell you when you do not need a rebrand.",
+    portraitAlt: "illustrated portrait of sarah, brand + identity at bmkrs",
+    order: 2,
+  },
+  {
+    slug: "george",
+    name: "george",
+    role: "pr + communications",
+    shortBio:
+      "would rather find the one right journalist than blast a hundred wrong ones. angle first, always.",
+    portraitAlt: "illustrated portrait of george, pr + communications at bmkrs",
+    order: 3,
+  },
+  {
+    slug: "melissa",
+    name: "melissa",
+    role: "product + growth",
+    shortBio:
+      "ships the sites, apps and campaigns that turn brand work into revenue. one primary metric per campaign, no exceptions.",
+    portraitAlt: "illustrated portrait of melissa, product + growth at bmkrs",
+    order: 4,
+  },
+];
+
+export const fallbackNowBuilding: NowBuildingContent = {
+  lines: [
+    "[client project or sector, as specific as confidentiality allows]",
+    "shipping seo landing pages for freelance near me",
+    "writing: why you cannot performance-market your way out of a weak brand",
   ],
-  longGame:
-    "we are not built for the one-off. the work we are proudest of comes from relationships, not transactions. the longer we know a brand, the better the work gets. most of our new work comes from people we have worked with before, or people they pointed our way. that is the only scoreboard we really watch.",
+  updatedAt: "2026-06-01",
+  updatedLabel: "june 2026",
 };
 
 export const fallbackTeam: TeamMember[] = authorBios.map((a) => ({

@@ -165,8 +165,36 @@ export const motionTiersQuery = `*[_type == "product" && tier == "grow"] | order
 }`;
 
 export const aboutPageQuery = `*[_type == "aboutPage"][0]{
-  headline, intro, story, whoWeAre, whatWeLove, ethos,
-  beliefs[]{ title, body }, longGame, inOwnWords
+  headline,
+  intro,
+  founderStoryTitle,
+  founderStory,
+  founderPullQuote,
+  teamIntro,
+  teamClosing,
+  beliefsHeadline,
+  beliefs[]{ title, body },
+  studioProductCount,
+  longGameTitle,
+  longGame
+}`;
+
+export const peopleQuery = `*[_type == "person"] | order(order asc){
+  "slug": slug.current,
+  name,
+  role,
+  discipline,
+  shortBio,
+  longBio,
+  linkedinUrl,
+  order,
+  quickfire[]{ label, value, href },
+  "portrait": portrait{ "url": asset->url, "alt": alt }
+}`;
+
+export const nowBuildingQuery = `*[_type == "nowBuilding"][0]{
+  lines,
+  updatedAt
 }`;
 
 export const featuredCaseStudiesQuery = `*[_type == "caseStudy" && featured == true] | order(order asc){

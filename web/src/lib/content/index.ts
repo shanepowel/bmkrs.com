@@ -12,6 +12,8 @@ import { fallbackJournalArticles } from "./journal-fallback";
 import {
   fallbackAboutPage,
   fallbackDisciplines,
+  fallbackNowBuilding,
+  fallbackPeople,
   fallbackProducts,
   fallbackTeam,
 } from "./offering-fallback";
@@ -42,6 +44,8 @@ import type {
   JournalArticle,
   JournalPost,
   MotionContent,
+  NowBuildingContent,
+  Person,
   Product,
   Project,
   Service,
@@ -52,6 +56,8 @@ import type {
 import { sanityClient } from "@/lib/sanity/client";
 import {
   aboutPageQuery,
+  nowBuildingQuery,
+  peopleQuery,
   allProductsQuery,
   disciplinesQuery,
   caseStudiesQuery,
@@ -189,20 +195,74 @@ export async function getMotionTiers(): Promise<Product[]> {
   return products.filter((p) => p.tier === "grow");
 }
 
+function formatNowBuildingLabel(iso: string): string {
+  if (!iso) return "";
+  return new Date(iso)
+    .toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+    .toLowerCase();
+}
+
 export async function getAboutPage(): Promise<AboutPageContent> {
-  const data = await fetchSanity<AboutPageContent>(aboutPageQuery);
+  const data = await fetchSanity<Partial<AboutPageContent>>(aboutPageQuery);
   return {
     ...fallbackAboutPage,
     ...(data ?? {}),
     founder: fallbackAboutPage.founder,
-    teamIntro: fallbackAboutPage.teamIntro,
-    teamClosing: fallbackAboutPage.teamClosing,
-    headline: fallbackAboutPage.headline,
-    intro: fallbackAboutPage.intro,
-    longGame: fallbackAboutPage.longGame,
-    ethos: fallbackAboutPage.ethos,
     beliefs: data?.beliefs?.length ? data.beliefs : fallbackAboutPage.beliefs,
+    founderStory: data?.founderStory?.length ? data.founderStory : fallbackAboutPage.founderStory,
+    studioProductCount: data?.studioProductCount ?? fallbackAboutPage.studioProductCount,
   };
+}
+
+export async function getPeople(): Promise<Person[]> {
+  const data = await fetchSanity<
+    {
+      slug: string;
+      name: string;
+      role?: string;
+      discipline?: string;
+      shortBio?: string;
+      longBio?: string;
+      linkedinUrl?: string;
+      order?: number;
+      quickfire?: Person["quickfire"];
+      portrait?: { url?: string; alt?: string };
+    }[]
+  >(peopleQuery);
+
+  if (data?.length) {
+    return data
+      .map((person) => ({
+        slug: person.slug,
+        name: person.name,
+        role: person.role,
+        discipline: person.discipline,
+        shortBio: person.shortBio,
+        longBio: person.longBio,
+        linkedinUrl: person.linkedinUrl,
+        order: person.order,
+        quickfire: person.quickfire,
+        portraitUrl: person.portrait?.url,
+        portraitAlt:
+          person.portrait?.alt ??
+          `illustrated portrait of ${person.name}, ${person.discipline ?? person.role ?? ""} at bmkrs`,
+      }))
+      .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+  }
+
+  return fallbackPeople;
+}
+
+export async function getNowBuilding(): Promise<NowBuildingContent> {
+  const data = await fetchSanity<{ lines?: string[]; updatedAt?: string }>(nowBuildingQuery);
+  if (data?.lines?.length) {
+    return {
+      lines: data.lines,
+      updatedAt: data.updatedAt ?? fallbackNowBuilding.updatedAt,
+      updatedLabel: formatNowBuildingLabel(data.updatedAt ?? fallbackNowBuilding.updatedAt),
+    };
+  }
+  return fallbackNowBuilding;
 }
 
 export async function getMotionContent(): Promise<MotionContent> {

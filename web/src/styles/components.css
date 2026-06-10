@@ -86,7 +86,12 @@
 .work-card--cta { display: flex; align-items: center; justify-content: center; min-height: 220px; border: 1px solid var(--bmkrs-line); border-radius: var(--bmkrs-radius); }
 
 /* team */
-.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--bmkrs-space-4); margin-top: var(--bmkrs-space-4); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--bmkrs-space-4);
+  margin-top: var(--bmkrs-space-4);
+}
 .team-photo { aspect-ratio: 4 / 5; background: var(--bmkrs-ink-80); border-radius: var(--bmkrs-radius); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .team-photo img { width: 100%; height: 100%; object-fit: cover; }
 .team-initial { font-family: var(--bmkrs-font-display); font-size: var(--bmkrs-step-3); color: var(--bmkrs-muted); text-transform: uppercase; }
