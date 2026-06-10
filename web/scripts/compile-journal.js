@@ -98,6 +98,21 @@ function categoryKey(category) {
   return CATEGORY_MAP[category.toLowerCase()] ?? "studio";
 }
 
+function wordCountFromBlocks(blocks) {
+  const text = blocks
+    .map((b) => {
+      if (b.children) return b.children.map((c) => c.text).join(" ");
+      return b.text ?? "";
+    })
+    .join(" ");
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+function readingTimeFromBlocks(blocks) {
+  const words = wordCountFromBlocks(blocks);
+  return Math.max(1, Math.ceil(words / 200));
+}
+
 function compile() {
   if (!fs.existsSync(contentDir)) {
     fs.writeFileSync(outFile, "export const markdownJournalPosts = [] as const;\n");
@@ -114,16 +129,17 @@ function compile() {
     const cat = categoryKey(data.category);
     const publishedAt = PUBLISH_SCHEDULE[data.slug] ?? data.date;
 
+    const bodyBlocks = markdownToBlocks(body);
     posts.push({
       slug: data.slug,
       title: data.title,
       category: cat,
       excerpt: data.excerpt,
       publishedAt,
-      readingTime: data.readingTime ? parseInt(data.readingTime, 10) : undefined,
+      readingTime: readingTimeFromBlocks(bodyBlocks),
       featured: String(data.featured) === "true",
       author: { name: authorSlug, discipline: AUTHOR_DISCIPLINE[authorSlug] },
-      body: markdownToBlocks(body),
+      body: bodyBlocks,
       seo: { metaDescription: data.excerpt },
     });
   }

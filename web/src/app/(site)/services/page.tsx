@@ -116,7 +116,7 @@ export default async function ServicesPage() {
       </section>
 
       {TIERS.map((tier) => (
-        <section key={tier.key} className="tier-section" id={tier.key}>
+        <section key={tier.key} className="tier-section scroll-mt-24" id={tier.key}>
           <div className="tier-head">
             <h3 className="display preserve-case text-[clamp(1.75rem,4vw,3rem)] text-accent">
               {tier.label}
@@ -129,7 +129,7 @@ export default async function ServicesPage() {
               const cta = productCta(p);
               const thumb = productImageBySlug[p.slug];
               return (
-                <article key={p.slug} className="product-card" id={p.slug}>
+                <article key={p.slug} className="product-card scroll-mt-24" id={p.slug}>
                   {thumb && (
                     <div className="product-card-media relative">
                       <Image

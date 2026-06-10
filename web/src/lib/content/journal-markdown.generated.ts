@@ -8,7 +8,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "small teams either have no design system or one borrowed from a company a hundred times their size. the right answer is smaller and more boring than you think.",
     "publishedAt": "2026-07-22",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "melissa",
@@ -106,7 +106,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "studio",
     "excerpt": "a branding agency, a web agency, a pr agency, a marketing agency, and you in the middle translating. the handoffs are where the brand quietly dies.",
     "publishedAt": "2026-07-22",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -208,7 +208,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "growth",
     "excerpt": "most landing pages lose the visitor before the first scroll. the fixes are unglamorous: hierarchy, speed, one job per page.",
     "publishedAt": "2026-07-15",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "melissa",
@@ -310,7 +310,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "growth",
     "excerpt": "new brands burn months blogging about everything and ranking for nothing. the faster route: build authority around the exact problem you solve.",
     "publishedAt": "2026-07-15",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "melissa",
@@ -408,7 +408,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "pr",
     "excerpt": "the phrase is embarrassing but the asset is real: a founder with a known point of view makes every other channel cheaper. here is how to do it without becoming a linkedin caricature.",
     "publishedAt": "2026-07-08",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "george",
@@ -506,7 +506,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "voice",
     "excerpt": "buttons, error messages, empty states: the smallest words in your product carry the brand more often than your homepage ever will.",
     "publishedAt": "2026-07-08",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "marcus",
@@ -596,7 +596,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "pr",
     "excerpt": "launch coverage is won in the six weeks before launch day, not on it. here is the working checklist, week by week.",
     "publishedAt": "2026-07-01",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "george",
@@ -812,7 +812,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "the 80-page brand book is where consistency goes to die. here is how to build brand guidelines that people actually open, use and obey.",
     "publishedAt": "2026-06-24",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -918,7 +918,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "voice",
     "excerpt": "a messaging framework is the difference between a company that says one thing and a company that says everything. here is the structure that works.",
     "publishedAt": "2026-06-24",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "marcus",
@@ -1036,7 +1036,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "early-stage budgets are finite. here is the honest order to buy brand identity in, and the expensive things you can safely skip until later.",
     "publishedAt": "2026-06-17",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -1150,7 +1150,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "voice",
     "excerpt": "companies spend fortunes on how they look and almost nothing on how they sound. that gap is the cheapest competitive advantage left.",
     "publishedAt": "2026-06-17",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "marcus",
@@ -1256,7 +1256,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "a rebrand is a business decision with a creative output. here are the questions that separate agencies who understand that from agencies selling you a new logo.",
     "publishedAt": "2026-06-10",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -1460,7 +1460,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "voice",
     "excerpt": "the best product does not win. the best-told one does. that is unfair, and it is also completely solvable. here is how.",
     "publishedAt": "2026-06-03",
-    "readingTime": 6,
+    "readingTime": 3,
     "featured": true,
     "author": {
       "name": "marcus",
@@ -1610,7 +1610,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "growth",
     "excerpt": "paid acquisition gets more expensive every year. a brand people already trust is the only cost that goes down. growth starts with the brand, not the channel.",
     "publishedAt": "2026-06-03",
-    "readingTime": 5,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "shane",
@@ -1728,7 +1728,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "brand strategy is the most misused phrase in the industry. here is what a brand strategy agency should actually deliver, and the signs you are ready for one.",
     "publishedAt": "2026-06-03",
-    "readingTime": 2,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -1830,7 +1830,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "brand",
     "excerpt": "most rebrands fail because they change the look and nothing else. a real rebrand changes what the business can charge, sell, and say no to.",
     "publishedAt": "2026-05-27",
-    "readingTime": 4,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "sarah",
@@ -1940,7 +1940,7 @@ export const markdownJournalPosts: JournalPost[] = [
     "category": "voice",
     "excerpt": "every brand has a banned list, whether it writes one down or not. ours exists so your product never sounds like everyone else's.",
     "publishedAt": "2026-05-21",
-    "readingTime": 4,
+    "readingTime": 3,
     "featured": false,
     "author": {
       "name": "marcus",

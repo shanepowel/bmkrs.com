@@ -11,23 +11,16 @@ import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import {
   getJournalArticle,
   getJournalArticles,
+  getJournalCategorySlugs,
   getJournalIndex,
   getPost,
   getPostSlugs,
 } from "@/lib/content";
+import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
+import { metadataWithImage, siteUrl } from "@/lib/seo";
 import { articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
-
 type Props = { params: Promise<{ slug: string }> };
-
-const CATEGORY_LABEL: Record<string, string> = {
-  brand: "brand + identity",
-  voice: "voice + messaging",
-  pr: "pr + comms",
-  growth: "growth",
-  studio: "studio",
-};
 
 function formatDate(iso: string) {
   if (!iso) return "";
@@ -48,10 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (post) {
     const title = post.seo?.metaTitle ?? `${post.title} | bmkrs.`;
     const description = post.seo?.metaDescription ?? post.excerpt;
-    const ogImage = post.seo?.ogImage ?? post.cover?.url;
-    const ogUrl = ogImage?.startsWith("http") ? ogImage : ogImage ? `${siteUrl}${ogImage}` : undefined;
-    const images = ogUrl ? [{ url: ogUrl, width: 1200, height: 630, alt: post.title }] : undefined;
-    return {
+    const base: Metadata = {
       title,
       description,
       alternates: { canonical: `${siteUrl}/journal/${post.slug}` },
@@ -59,15 +49,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description,
         type: "article",
-        images,
+        url: `${siteUrl}/journal/${post.slug}`,
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images: ogUrl ? [ogUrl] : undefined,
       },
     };
+    if (post.seo?.ogImage) {
+      return metadataWithImage(base, post.seo.ogImage);
+    }
+    return base;
   }
   const article = await getJournalArticle(slug);
   if (!article) return { title: "journal" };
@@ -79,8 +72,15 @@ export default async function JournalArticlePage({ params }: Props) {
   const post = await getPost(slug);
 
   if (post) {
-    const { posts } = await getJournalIndex();
+    const [{ posts }, routableCategories] = await Promise.all([
+      getJournalIndex(),
+      getJournalCategorySlugs(),
+    ]);
     const others = posts.filter((p) => p.slug !== slug).slice(0, 2);
+    const categoryLabel = JOURNAL_CATEGORY_LABEL[post.category] ?? post.category;
+    const categoryHref = routableCategories.includes(post.category)
+      ? `/journal/category/${post.category}`
+      : null;
 
     const jsonLd = [
       articleSchemaFromPost(post),
@@ -105,7 +105,14 @@ export default async function JournalArticlePage({ params }: Props) {
             ← journal
           </Link>
           <p className="eyebrow mt-8 block">
-            {CATEGORY_LABEL[post.category] ?? post.category} · {formatDate(post.publishedAt)}
+            {categoryHref ? (
+              <Link href={categoryHref} className="hover:text-accent">
+                {categoryLabel}
+              </Link>
+            ) : (
+              categoryLabel
+            )}{" "}
+            · {formatDate(post.publishedAt)}
             {post.readingTime ? ` · ${post.readingTime} min read` : ""}
           </p>
           <h1 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold leading-[1.05]">

@@ -16,6 +16,10 @@ import {
   fallbackTeam,
 } from "./offering-fallback";
 import {
+  categorySlugsWithMinPosts,
+  groupPostsByCategory,
+} from "../journal-categories";
+import {
   filterPublishedPosts,
   isJournalPublished,
   journalSlugRedirects,
@@ -216,6 +220,13 @@ export async function getProject(slug: string): Promise<Project | null> {
   return fallback ? normalizeProject(fallback) : null;
 }
 
+export async function getNextProject(slug: string): Promise<Project | null> {
+  const projects = await getProjects();
+  const index = projects.findIndex((p) => p.slug === slug);
+  if (index === -1 || projects.length < 2) return null;
+  return projects[(index + 1) % projects.length] ?? null;
+}
+
 export async function getCaseStudySlugs(): Promise<string[]> {
   const projects = await getProjects();
   return projects.map((p) => p.slug);
@@ -301,6 +312,26 @@ export async function getJournalIndex(): Promise<{
   return buildJournalIndex(data?.featured ?? null, data?.posts ?? []);
 }
 
+export async function getAllPublishedJournalPosts(): Promise<JournalPost[]> {
+  const { featured, posts } = await getJournalIndex();
+  return featured ? [featured, ...posts] : posts;
+}
+
+export async function getJournalCategorySlugs(): Promise<string[]> {
+  const all = await getAllPublishedJournalPosts();
+  return categorySlugsWithMinPosts(all);
+}
+
+export async function getJournalPostsByCategory(category: string): Promise<JournalPost[]> {
+  const all = await getAllPublishedJournalPosts();
+  const grouped = groupPostsByCategory(all);
+  return grouped.get(category) ?? [];
+}
+
+export async function getJournalCategoryPostCount(category: string): Promise<number> {
+  return (await getJournalPostsByCategory(category)).length;
+}
+
 export async function getPost(slug: string): Promise<JournalPost | null> {
   const redirect = journalSlugRedirects[slug];
   if (redirect) {
@@ -365,6 +396,7 @@ function normalizeProject(project: Project): Project {
     serviceTags: services,
     brief: project.brief || project.context,
     challenge: project.challenge || project.problem,
+    thinking: project.thinking || project.challenge || project.problem,
     whatWeDid: project.whatWeDid || project.background,
     resultsNarrative: project.resultsNarrative || project.outcome || project.result,
     results: project.results || project.outcomeMetrics,

@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "bmkrs.com" }],
+        destination: "https://www.bmkrs.com/:path*",
+        permanent: true,
+      },
       { source: "/discover", destination: "/services", permanent: true },
       { source: "/discover/:path*", destination: "/services/:path*", permanent: true },
       { source: "/work/project1", destination: "/work/copa", permanent: true },

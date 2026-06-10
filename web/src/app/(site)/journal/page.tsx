@@ -6,22 +6,23 @@ import { JournalFilter } from "@/components/bmkrs/JournalFilter";
 import { JournalMap } from "@/components/bmkrs/JournalMap";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { getJournalIndex } from "@/lib/content";
+import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
-import { pageMetadata } from "@/lib/seo";
+import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
+import { pageMetadata, siteUrl } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata(
-  "journal",
-  "notes on building brands: identity, voice, pr, growth and how we work.",
-  "/journal",
-);
-
-const CATEGORY_LABEL: Record<string, string> = {
-  brand: "brand + identity",
-  voice: "voice + messaging",
-  pr: "pr + comms",
-  growth: "growth",
-  studio: "studio",
+export const metadata: Metadata = {
+  ...pageMetadata(
+    "journal",
+    "notes on building brands: identity, voice, pr, growth and how we work.",
+    "/journal",
+  ),
+  alternates: {
+    canonical: `${siteUrl}/journal`,
+    types: {
+      "application/rss+xml": `${siteUrl}/journal/feed.xml`,
+    },
+  },
 };
 
 function formatDate(iso: string) {
@@ -31,7 +32,10 @@ function formatDate(iso: string) {
 }
 
 export default async function JournalPage() {
-  const { featured, posts } = await getJournalIndex();
+  const [{ featured, posts }, categorySlugs] = await Promise.all([
+    getJournalIndex(),
+    getJournalCategorySlugs(),
+  ]);
   const all = [featured, ...posts].filter(Boolean);
   const mapPosts = all.map((p) => ({ slug: p!.slug, title: p!.title, category: p!.category }));
 
@@ -61,7 +65,7 @@ export default async function JournalPage() {
                 />
                 <div className="journal-hero-overlay">
                   <span className="eyebrow">
-                    featured · {CATEGORY_LABEL[featured.category] ?? featured.category}
+                    featured · {JOURNAL_CATEGORY_LABEL[featured.category] ?? featured.category}
                   </span>
                   <h2 className="display mt-2 text-[clamp(1.5rem,4vw,2.5rem)]">{featured.title}</h2>
                 </div>
@@ -81,6 +85,21 @@ export default async function JournalPage() {
 
           <JournalFilter />
 
+          {categorySlugs.length > 0 ? (
+            <nav className="mt-10 flex flex-wrap items-center gap-3" aria-label="journal topics">
+              <span className="eyebrow w-full sm:w-auto">browse by topic</span>
+              {categorySlugs.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/journal/category/${slug}`}
+                  className="chip hover:border-accent hover:text-accent"
+                >
+                  {JOURNAL_CATEGORY_LABEL[slug] ?? slug}
+                </Link>
+              ))}
+            </nav>
+          ) : null}
+
           <div className="journal-grid">
             {posts.map((post) => (
               <Link
@@ -99,7 +118,7 @@ export default async function JournalPage() {
                   />
                 </div>
                 <span className="eyebrow mt-4 block">
-                  {CATEGORY_LABEL[post.category] ?? post.category}
+                  {JOURNAL_CATEGORY_LABEL[post.category] ?? post.category}
                 </span>
                 <h3 className="display mt-2 text-xl">{post.title}</h3>
                 <p className="excerpt mt-2">{post.excerpt}</p>

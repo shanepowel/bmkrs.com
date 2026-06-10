@@ -59,6 +59,7 @@ const caseStudyFields = `
   "gallery": gallery[]{ "url": asset->url, "alt": alt },
   brief,
   challenge,
+  thinking,
   whatWeDid,
   resultsNarrative,
   results[]{ value, label },

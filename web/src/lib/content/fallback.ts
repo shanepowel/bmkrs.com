@@ -690,6 +690,57 @@ export const fallbackProjects: Project[] = [
     order: 7,
     featured: true,
     projectType: "client",
+    testimonial: {
+      quote:
+        "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
+      name: "founder",
+      role: "podcast studio london",
+      company: "podcast studio london",
+    },
+  },
+  {
+    slug: "david-wheeler-psychology",
+    title: "david wheeler psychology",
+    client: "david wheeler psychology",
+    category: "brand + identity",
+    sector: "healthcare",
+    year: "2025",
+    positioning: "a clinical practice brand that earns trust before the first session.",
+    tagline: "a clinical practice brand that earns trust before the first session.",
+    brief:
+      "david wheeler psychology is building a private practice with a clear specialism and a reputation to protect. the work needed a brand that felt credible to referrers and calm to prospective clients.",
+    thinking:
+      "clinical brands fail when they look like generic wellness templates. the practice needed warmth without vagueness, and authority without coldness.",
+    whatWeDid:
+      "positioning, identity and voice for a practice still in launch. full case study copy and imagery to follow once the practice is live.",
+    serviceTags: ["brand + identity", "voice + messaging"],
+    thumbnailPath: marketingImages.identityPackaging,
+    media: [{ type: "image", src: marketingImages.identityPackaging, alt: "david wheeler psychology" }],
+    order: 9,
+    featured: false,
+    projectType: "client",
+  },
+  {
+    slug: "three18-media",
+    title: "three18 media",
+    client: "three18 media",
+    category: "brand + growth",
+    sector: "media",
+    year: "2025",
+    positioning: "a production company finding its voice in a crowded content market.",
+    tagline: "a production company finding its voice in a crowded content market.",
+    brief:
+      "three18 media produces branded content for founders and growing companies. they needed a sharper story and a presence that matched the quality of the work in the reel.",
+    thinking:
+      "production companies often lead with gear and process. three18's edge is judgement and taste. the brand had to signal that before anyone pressed play.",
+    whatWeDid:
+      "brand positioning and messaging framework. visual identity and site work in progress. case study to be completed when the new site ships.",
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    thumbnailPath: marketingImages.digitalMediaDevices,
+    media: [{ type: "image", src: marketingImages.digitalMediaDevices, alt: "three18 media" }],
+    order: 10,
+    featured: false,
+    projectType: "client",
   },
   {
     slug: "freelance-near-me",

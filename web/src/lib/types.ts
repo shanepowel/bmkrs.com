@@ -229,6 +229,7 @@ export type Project = {
   brief?: string;
   context?: string;
   challenge?: string;
+  thinking?: string;
   whatWeDid?: string;
   resultsNarrative?: string;
   outcome?: string;
