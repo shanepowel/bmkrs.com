@@ -1,4 +1,5 @@
 import { CookieBanner } from "@/components/bmkrs/CookieBanner";
+import { GoogleAnalytics } from "@/components/bmkrs/GoogleAnalytics";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -20,6 +21,7 @@ export default async function SiteLayout({
       </div>
       <SiteFooter settings={settings} />
       <CookieBanner />
+      <GoogleAnalytics />
     </>
   );
 }

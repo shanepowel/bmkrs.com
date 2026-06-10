@@ -35,6 +35,7 @@ import {
   mergeTeamPhoto,
 } from "./image-fallbacks";
 import { disciplineExpansion, outcomeLineForSlug } from "./expansion-v2";
+import { fallbackPressKit } from "./press-kit-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
@@ -46,6 +47,7 @@ import type {
   JournalPost,
   MotionContent,
   NowBuildingContent,
+  PressKitContent,
   Person,
   Product,
   Project,
@@ -58,6 +60,7 @@ import { sanityClient } from "@/lib/sanity/client";
 import {
   aboutPageQuery,
   nowBuildingQuery,
+  pressKitQuery,
   peopleQuery,
   allProductsQuery,
   disciplinesQuery,
@@ -273,6 +276,20 @@ export async function getNowBuilding(): Promise<NowBuildingContent> {
     };
   }
   return fallbackNowBuilding;
+}
+
+export async function getPressKit(): Promise<PressKitContent> {
+  const data = await fetchSanity<Partial<PressKitContent>>(pressKitQuery);
+  if (!data?.headline) return fallbackPressKit;
+  return {
+    ...fallbackPressKit,
+    ...data,
+    colors: data.colors?.length ? data.colors : fallbackPressKit.colors,
+    typefaces: data.typefaces?.length ? data.typefaces : fallbackPressKit.typefaces,
+    logoAssets: data.logoAssets?.length ? data.logoAssets : fallbackPressKit.logoAssets,
+    usageRules: data.usageRules?.length ? data.usageRules : fallbackPressKit.usageRules,
+    updatedAt: data.updatedAt ?? fallbackPressKit.updatedAt,
+  };
 }
 
 export async function getMotionContent(): Promise<MotionContent> {

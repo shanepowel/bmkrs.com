@@ -56,7 +56,7 @@ export function privacyNotice(
         items: [
           "the contact form: your name, email, company, what you tell us about your project, and an optional budget range. we use it to reply to you and, if we work together, to run the engagement. legal basis: legitimate interests (responding to your enquiry) and, later, contract.",
           "the newsletter: your email address, because you asked for the emails. legal basis: consent. every email has an unsubscribe link and it works first time.",
-          "analytics: if you consent via the cookie banner, anonymous-as-possible usage data (pages visited, rough location, device type) so we can see what is working. legal basis: consent. say no and the site works identically.",
+          "analytics: if you consent via the cookie banner, google analytics (G-4GXGNXYMVL) collects anonymous-as-possible usage data (pages visited, rough location, device type) so we can see what is working. legal basis: consent. say no and the site works identically.",
           "email: if you email us, we have the email. we keep correspondence for as long as the relationship is live plus 6 years (limitation periods), then delete it.",
         ],
       },
@@ -111,7 +111,7 @@ export const cookiesNotice: LegalDocument = {
     {
       title: "analytics (only if you accept)",
       paragraphs: [
-        "if you click \"fine by me\" on the cookie banner, we may load analytics to see how pages perform. nothing sold, nothing shared with advertisers. if we use vercel analytics in cookieless mode, it may run without storing cookies; we still ask because some analytics tools do use cookies.",
+        "if you click \"fine by me\" on the cookie banner, we load google analytics (measurement id G-4GXGNXYMVL) to see how pages perform: pages visited, rough location, device type. nothing sold, nothing shared with advertisers. say no and it never loads.",
       ],
     },
     {

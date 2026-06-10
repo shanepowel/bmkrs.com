@@ -820,6 +820,23 @@
   font-size: 0.875rem;
   color: #b4b2a9;
 }
+.press-copy-btn {
+  border: 1px solid rgba(24, 22, 19, 0.15);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+.press-copy-btn:hover {
+  border-color: var(--bmkrs-accent);
+  color: var(--bmkrs-accent);
+}
+.press-copy-btn:focus-visible {
+  outline: 2px solid var(--bmkrs-accent);
+  outline-offset: 4px;
+}
+
 .site-footer a:focus-visible,
 .site-footer button:focus-visible,
 .cookie-banner__btn:focus-visible,

@@ -14,6 +14,7 @@ import { journalArticle } from "./journalArticle";
 import { discipline } from "./discipline";
 import { person } from "./person";
 import { nowBuilding } from "./nowBuilding";
+import { pressKit } from "./pressKit";
 
 export const schemaTypes = [
   siteSettings,
@@ -32,4 +33,5 @@ export const schemaTypes = [
   discipline,
   person,
   nowBuilding,
+  pressKit,
 ];

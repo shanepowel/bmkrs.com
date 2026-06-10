@@ -199,6 +199,22 @@ export const nowBuildingQuery = `*[_type == "nowBuilding"][0]{
   updatedAt
 }`;
 
+export const pressKitQuery = `*[_type == "pressKit"][0]{
+  headline,
+  intro,
+  shortBoilerplate,
+  longBoilerplate,
+  founderBio,
+  legalName,
+  location,
+  founded,
+  colors[]{ name, hex, role },
+  typefaces[]{ name, role, source, weights },
+  logoAssets[]{ name, fileUrl, format, usage },
+  usageRules,
+  updatedAt
+}`;
+
 export const featuredCaseStudiesQuery = `*[_type == "caseStudy" && featured == true] | order(order asc){
   title, "slug": slug.current, positioning, sector, services,
   "heroImage": heroImage{ "url": asset->url, "alt": alt }

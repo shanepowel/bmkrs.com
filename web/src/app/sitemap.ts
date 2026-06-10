@@ -10,6 +10,7 @@ const staticRoutes = [
   "/motion",
   "/about",
   "/contact",
+  "/press",
   "/legal/privacy",
   "/legal/cookies",
 ];

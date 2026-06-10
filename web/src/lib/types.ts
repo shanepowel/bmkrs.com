@@ -160,6 +160,42 @@ export type NowBuildingContent = {
   updatedLabel: string;
 };
 
+export type PressKitColor = {
+  name: string;
+  hex: string;
+  role: string;
+};
+
+export type PressKitTypeface = {
+  name: string;
+  role: string;
+  source: string;
+  weights?: string;
+};
+
+export type PressKitAsset = {
+  name: string;
+  fileUrl: string;
+  format: string;
+  usage: string;
+};
+
+export type PressKitContent = {
+  headline: string;
+  intro: string;
+  shortBoilerplate: string;
+  longBoilerplate: string;
+  founderBio: string;
+  legalName: string;
+  location: string;
+  founded: string;
+  colors: PressKitColor[];
+  typefaces: PressKitTypeface[];
+  logoAssets: PressKitAsset[];
+  usageRules: string[];
+  updatedAt: string;
+};
+
 export type PortableBlock =
   | {
       _type: "block";

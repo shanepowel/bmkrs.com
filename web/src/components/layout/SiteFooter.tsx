@@ -14,6 +14,7 @@ const MAKE_LINKS = [
 const STUDIO_LINKS = [
   { href: "/about", label: "about" },
   { href: "/journal", label: "journal" },
+  { href: "/press", label: "press" },
   { href: "/contact", label: "contact" },
 ] as const;
 
