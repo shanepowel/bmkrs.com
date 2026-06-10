@@ -49,6 +49,14 @@ this also resolves the accent rule in the website spec (9.4): the site accent IS
 
 ## site integration notes
 
-- replace the current og image (`bmkrs_white_instapic.png`) with the new avatar export.
-- favicon set regenerates from icon-dark.
-- the header logo swaps to primary-dark; footer can use mono-white at reduced opacity if the orange dot competes with footer links.
+| asset | site use |
+|---|---|
+| `bmkrs-primary-dark.svg` | header on ink, footer wordmark (off-white + orange dot on `#181613`) |
+| `bmkrs-primary-light.svg` | header on paper/orange surfaces |
+| `bmkrs-mono-white.svg` | busy photography only; optional footer if the orange dot competes with links |
+| `bmkrs-icon-dark.svg` | `icon.png` (32), `apple-icon.png` (180) via `scripts/generate-brand-icons.js` |
+| `bmkrs-avatar-512.svg` | `images/bmkrs-avatar-512.png`, default og/social image (`BRAND_AVATAR`) |
+
+- wired in `web/src/lib/brand.ts` (`wordmarkSrc`, `BRAND_AVATAR`, `BRAND_ICON`).
+- `bmkrs_white_instapic.png` is retired; do not reintroduce.
+- svgs still use live archivo text; outline before treating as final production files (see finalisation above).

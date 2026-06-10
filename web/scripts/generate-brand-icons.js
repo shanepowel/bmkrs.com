@@ -23,8 +23,12 @@ function resvg(input, output, width) {
 
 fs.mkdirSync(path.join(publicRoot, "images"), { recursive: true });
 
-resvg(iconSvg, path.join(publicRoot, "icon.png"), 32);
+const icon32 = path.join(publicRoot, "icon.png");
+const faviconIco = path.join(publicRoot, "favicon.ico");
+resvg(iconSvg, icon32, 32);
 resvg(iconSvg, path.join(publicRoot, "apple-icon.png"), 180);
+// browsers accept png favicons; keep favicon.ico in sync with icon-dark
+fs.copyFileSync(icon32, faviconIco);
 resvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-512.png"), 512);
 resvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-1024.png"), 1024);
 

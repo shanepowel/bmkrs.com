@@ -78,14 +78,13 @@ function pruneDir(dirRel, allowedRelPaths) {
 pruneDir("images", required);
 pruneDir("work/images", required);
 
+const brandIconSvg = path.join(publicRoot, "brand", "bmkrs-icon-dark.svg");
 const faviconSrc = path.join(legacyPublic, "favicon.ico");
 const faviconDest = path.join(publicRoot, "favicon.ico");
-if (fs.existsSync(faviconSrc)) {
+if (!fs.existsSync(brandIconSvg) && fs.existsSync(faviconSrc)) {
   fs.copyFileSync(faviconSrc, faviconDest);
   copied += 1;
 }
-
-const brandIconSvg = path.join(publicRoot, "brand", "bmkrs-icon-dark.svg");
 const logoSrc = path.join(publicRoot, "images", "blacklogo.png");
 const iconDest = path.join(publicRoot, "icon.png");
 const appleDest = path.join(publicRoot, "apple-icon.png");
