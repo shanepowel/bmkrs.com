@@ -9,10 +9,12 @@ import { pageHeroImages, productImageBySlug } from "@/lib/content/image-fallback
 import type { Product, ProductTier } from "@/lib/types";
 
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = pageMetadata(
   "services",
   "brand and identity, voice and messaging, pr, and product and growth. four disciplines, one team, built to work together.",
+  "/services",
 );
 
 const TIERS: { key: ProductTier; label: string; intro: string }[] = [
@@ -37,8 +39,15 @@ export default async function ServicesPage() {
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
   const hero = pageHeroImages.services;
 
+  const jsonLd = breadcrumbSchema([
+    { name: "home", path: "/" },
+    { name: "services", path: "/services" },
+  ]);
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <PageHeroSplit image={hero} minHeight="min-h-[68vh]">
         <Reveal>
           <p className="eyebrow">services</p>
@@ -57,6 +66,44 @@ export default async function ServicesPage() {
       </PageHeroSplit>
 
       <DisciplinesStack disciplines={disciplines} />
+
+      <section className="section-pad section--paper">
+        <div className="wrap section">
+          <h3 className="display text-[clamp(1.35rem,3vw,2rem)] font-bold">not sure where to start?</h3>
+          <ul className="service-router mt-6 flex flex-col gap-3 text-[15px]">
+            <li>
+              <Link href="/services#launch-kit" className="accent-link">
+                launching something new → launch kit
+              </Link>
+            </li>
+            <li>
+              <Link href="/services#brand-check" className="accent-link">
+                brand feels stale or wrong → brand check, then rebrand
+              </Link>
+            </li>
+            <li>
+              <Link href="/services#story" className="accent-link">
+                story is muddled → story
+              </Link>
+            </li>
+            <li>
+              <Link href="/services#storefront" className="accent-link">
+                site is not converting → storefront
+              </Link>
+            </li>
+            <li>
+              <Link href="/services#press-launch" className="accent-link">
+                launching and need coverage → press launch
+              </Link>
+            </li>
+            <li>
+              <Link href="/motion" className="accent-link">
+                already live, need momentum → motion
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <section className="section-pad">
         <div className="wrap section">
@@ -95,6 +142,9 @@ export default async function ServicesPage() {
                     </div>
                   )}
                   <h3 className="display text-[clamp(1.25rem,2.5vw,1.75rem)]">{p.name}</h3>
+                  {p.priceFrom && p.tier !== "grow" ? (
+                    <p className="eyebrow mt-2">from {p.priceFrom} · {p.shape}</p>
+                  ) : null}
                   <p className="product-tagline">{p.tagline}</p>
 
                   {p.forWho && (

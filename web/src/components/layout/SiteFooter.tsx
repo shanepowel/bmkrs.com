@@ -8,13 +8,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const network = settings.networkEmail;
   const year = new Date().getFullYear();
 
-  const reg = [
-    settings.companyName,
-    settings.companyNumber ? `company no. ${settings.companyNumber}` : null,
-    settings.registeredAddress,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  const reg = settings.companyNumber
+    ? `${settings.companyName ?? "b makers ltd"} · company no. ${settings.companyNumber} · registered in england and wales.`
+    : "b makers ltd · registered in england and wales.";
 
   return (
     <footer className="site-footer">
@@ -87,7 +83,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
       <div className="site-footer-bottom">
         <p className="muted">london, and wherever you are.</p>
-        {reg ? <p className="muted footer-reg">{reg}</p> : null}
+        <p className="muted footer-reg">{reg}</p>
         <p className="muted">
           © {year} {settings.companyName ?? "b makers ltd"}. they say no one reads the footer. hi.
         </p>

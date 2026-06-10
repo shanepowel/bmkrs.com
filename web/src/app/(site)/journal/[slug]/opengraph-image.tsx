@@ -37,7 +37,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   const heroUrl = post?.seo?.ogImage ?? post?.cover?.url;
   const title = post?.title ?? "the journal";
-  const excerpt = post?.excerpt ?? "notes on building bold brands.";
+  const excerpt = post?.excerpt ?? "notes on building brands.";
 
   return new ImageResponse(
     (

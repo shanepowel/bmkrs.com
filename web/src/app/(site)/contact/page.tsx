@@ -13,7 +13,11 @@ export default async function ContactPage() {
 
   return (
     <div className="contact-page bg-[var(--bmkrs-ink)] text-[var(--bmkrs-paper)]">
-      <ContactExperience fallbackEmail={email} />
+      <ContactExperience
+        fallbackEmail={email}
+        pressEmail={settings.pressEmail}
+        networkEmail={settings.networkEmail}
+      />
     </div>
   );
 }

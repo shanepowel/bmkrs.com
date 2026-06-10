@@ -61,6 +61,18 @@ export const caseStudy = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "projectType",
+      title: "Project type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Client work", value: "client" },
+          { title: "Built in the studio", value: "studio" },
+        ],
+      },
+      initialValue: "client",
+    }),
+    defineField({
       name: "heroImage",
       title: "Hero image",
       type: "image",

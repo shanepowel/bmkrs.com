@@ -6,7 +6,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
   const real = (items ?? []).filter((t) => isFilled(t.quote));
   if (real.length === 0) return null;
 
-  const [lead, ...rest] = real;
+  const lead = real[0];
 
   return (
     <section className="section-pad section--paper testimonials">
@@ -25,25 +25,6 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
             {lead.company ? `, ${lead.company}` : ""}
           </figcaption>
         </figure>
-
-        {rest.length > 0 && (
-          <div className="quote-grid mt-10">
-            {rest.map((t, i) => (
-              <Reveal key={`${t.name}-${i}`} delay={(i % 2) as 0 | 1}>
-                <figure className="testimonial case-testimonial border-l-0 pl-0">
-                  <blockquote className="text-[clamp(1.125rem,2vw,1.35rem)]">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption>
-                    {t.name}
-                    {t.role ? `, ${t.role}` : ""}
-                    {t.company ? `, ${t.company}` : ""}
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );

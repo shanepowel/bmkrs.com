@@ -12,6 +12,7 @@ import { teamMember } from "./teamMember";
 import { homePillar } from "./homePillar";
 import { journalArticle } from "./journalArticle";
 import { discipline } from "./discipline";
+import { person } from "./person";
 
 export const schemaTypes = [
   siteSettings,
@@ -28,4 +29,5 @@ export const schemaTypes = [
   journalArticle,
   homePillar,
   discipline,
+  person,
 ];

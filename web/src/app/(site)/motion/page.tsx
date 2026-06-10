@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionImage } from "@/components/bmkrs/SectionImage";
-import { HERO_BRAND_ADJECTIVES } from "@/lib/b-words";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { getMotionTiers } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "motion",
-  description:
-    "a rolling monthly partnership for brands that never stop talking. one senior team keeping your brand, voice, pr and growth moving, month after month. no lock-in.",
-};
+export const metadata: Metadata = pageMetadata(
+  "motion",
+  "a rolling monthly partnership for brands that never stop talking. one senior team keeping your brand, voice, pr and growth moving, month after month. no lock-in.",
+  "/motion",
+);
 
 const HOW_IT_WORKS = [
   {
@@ -50,8 +49,7 @@ export default async function MotionPage() {
         </Reveal>
         <Reveal delay={1}>
           <h1 className="display mt-4 text-[clamp(2.5rem,12vw,11.875rem)] font-bold">
-            always <BWordRotate words={HERO_BRAND_ADJECTIVES} /> in{" "}
-            <span className="text-accent">motion.</span>
+            always in <span className="text-accent">motion.</span>
           </h1>
         </Reveal>
         <Reveal delay={2}>
@@ -153,6 +151,12 @@ export default async function MotionPage() {
                 {tier.commitment && (
                   <p className="motion-meta">
                     <span className="eyebrow mb-1 block">commitment</span> {tier.commitment}
+                  </p>
+                )}
+                {tier.priceFrom && (
+                  <p className="display mt-4 text-2xl font-bold tracking-[-0.04em]">
+                    from {tier.priceFrom}
+                    {tier.priceNote ?? "/month"}
                   </p>
                 )}
                 {tier.monthlyDeliverables?.length ? (

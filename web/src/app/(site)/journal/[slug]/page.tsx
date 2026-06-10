@@ -7,6 +7,7 @@ import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { PortableBody } from "@/components/bmkrs/PortableBody";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { AuthorBio } from "@/components/bmkrs/AuthorBio";
+import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import {
   getJournalArticle,
   getJournalArticles,
@@ -135,6 +136,10 @@ export default async function JournalArticlePage({ params }: Props) {
           {(post.relatedProduct || post.relatedCaseStudy) && (
             <aside className="post-cta mt-14 border-t-2 border-[var(--line)] pt-10">
               <span className="eyebrow block">where this shows up</span>
+              <p className="muted mt-3 max-w-[52ch] text-[15px]">
+                this thinking shows up in how we deliver{" "}
+                {post.relatedProduct?.name ?? post.relatedCaseStudy?.title ?? "the work"} for clients.
+              </p>
               <div className="mt-4 flex flex-wrap gap-4">
                 {post.relatedProduct && (
                   <Link href={`/services#${post.relatedProduct.slug}`} className="btn-primary inline-flex">
@@ -166,15 +171,15 @@ export default async function JournalArticlePage({ params }: Props) {
         {others.length > 0 && (
           <section className="section-pad border-t-2 border-[var(--line)] bg-ink/[0.02]">
             <div className="wrap">
-              <h2 className="eyebrow">more from the journal</h2>
-              <ul className="mt-8 space-y-6">
+              <h2 className="eyebrow">related posts</h2>
+              <ul className="mt-8 space-y-8">
                 {others.map((other) => (
                   <li key={other.slug}>
-                    <Link
-                      href={`/journal/${other.slug}`}
-                      className="group display text-[clamp(1.25rem,3vw,2rem)] font-semibold hover:text-accent"
-                    >
-                      {other.title} <ArrowIcon />
+                    <Link href={`/journal/${other.slug}`} className="group block">
+                      <h3 className="display text-[clamp(1.25rem,3vw,2rem)] font-semibold group-hover:text-accent">
+                        {other.title} <ArrowIcon />
+                      </h3>
+                      <p className="excerpt mt-2">{other.excerpt}</p>
                     </Link>
                   </li>
                 ))}
@@ -182,6 +187,8 @@ export default async function JournalArticlePage({ params }: Props) {
             </div>
           </section>
         )}
+
+        <EmailCapture className="section-pad pt-0" />
       </article>
     );
   }

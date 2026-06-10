@@ -10,6 +10,7 @@ import { ProcessSection } from "@/components/bmkrs/ProcessSection";
 import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import { Testimonials } from "@/components/bmkrs/Testimonials";
 import {
   getFeaturedProjects,
@@ -247,8 +248,7 @@ export default async function HomePage() {
               <span className="eyebrow">{home.whoWeWorkWith.eyebrow}</span>
             </Reveal>
             <h2 className="display mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-              {home.whoWeWorkWith.statement.replace("different.", "")}
-              <span className="text-accent">different.</span>
+              {home.whoWeWorkWith.statement}
             </h2>
             <p className="lead mt-8">{home.whoWeWorkWith.lead}</p>
           </div>
@@ -266,34 +266,6 @@ export default async function HomePage() {
         </Reveal>
       </div>
       <Marquee items={home.clientMarquee} dark duration="30s" />
-
-      {home.studioVentures?.length ? (
-        <section className="section-pad pt-0">
-          <div className="wrap">
-            <Reveal>
-              <span className="eyebrow">built in the studio</span>
-            </Reveal>
-            <p className="muted mt-3 max-w-[52ch] text-[15px]">
-              our own ventures, proof that we ship products as well as brands for clients.
-            </p>
-            <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              {home.studioVentures.map((v) => (
-                <li key={v.href}>
-                  <a
-                    href={v.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex flex-col rounded-[var(--radius)] border-2 border-ink px-5 py-4 transition-colors hover:border-accent"
-                  >
-                    <span className="font-display text-lg font-semibold">{v.name}</span>
-                    <span className="text-sm text-muted">{v.descriptor}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
 
       <section className="section-pad block-mint">
         <div className="wrap">
@@ -332,8 +304,6 @@ export default async function HomePage() {
 
       <ProcessSection />
 
-      <Testimonials items={testimonials} />
-
       <section className="section-pad text-center">
         <div className="wrap">
           <Reveal>
@@ -356,6 +326,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <Testimonials items={testimonials} />
+
       <section className="section-pad closing text-center">
         <div className="wrap section">
           {home.closing ? (
@@ -374,6 +346,8 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      <EmailCapture className="section-pad pt-0" />
     </>
   );
 }

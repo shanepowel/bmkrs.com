@@ -51,10 +51,12 @@ export type SiteSettings = {
 
 export type TeamMember = {
   name: string;
+  slug?: string;
   discipline?: string;
   bio?: string;
   photoUrl?: string;
   photoAlt: string;
+  linkedinUrl?: string;
 };
 
 export type ProductTier = "start" | "make" | "grow";
@@ -92,6 +94,7 @@ export type Product = {
   cadence?: string;
   commitment?: string;
   monthlyDeliverables?: string[];
+  priceFrom?: string;
   priceNote?: string;
   proof?: ProductProof[];
   order?: number;
@@ -103,16 +106,26 @@ export type AboutBelief = {
   body: string;
 };
 
+export type AboutFounder = {
+  name: string;
+  linkedinUrl: string;
+  bio: string[];
+  portraitAlt: string;
+};
+
 export type AboutPageContent = {
   headline: string;
   intro: string;
-  story: string[];
+  story?: string[];
+  founder?: AboutFounder;
   whoWeAre: string;
-  whatWeLove: string;
+  teamIntro?: string;
+  teamClosing?: string;
+  whatWeLove?: string;
   ethos: string;
   beliefs: AboutBelief[];
   longGame: string;
-  inOwnWords: string[];
+  inOwnWords?: string[];
 };
 
 export type PortableBlock =
@@ -237,6 +250,8 @@ export type Project = {
   media: MediaItem[];
   order: number;
   featured?: boolean;
+  projectType?: "client" | "studio";
+  externalUrl?: string;
 };
 
 export type JournalArticle = {

@@ -1,28 +1,84 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BWordRotate } from "@/components/bmkrs/BWordRotate";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { WORK_BUILD_TARGETS } from "@/lib/b-words";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
-
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = pageMetadata(
   "work",
-  "selected brand, ecommerce and digital projects. see how brand-led work turns into a product people choose.",
+  "selected brand, product and digital projects, including the products we build ourselves. proof, not promises.",
+  "/work",
 );
+
+function ProjectGrid({
+  projects,
+  label,
+}: {
+  projects: Awaited<ReturnType<typeof getProjects>>;
+  label?: string;
+}) {
+  if (!projects.length) return null;
+
+  return (
+    <>
+      {label ? (
+        <div className="mb-8 mt-14 first:mt-0">
+          <h2 className="display text-[clamp(1.5rem,4vw,2.5rem)] font-bold">{label}</h2>
+        </div>
+      ) : null}
+      <div className="work-grid work-grid--index">
+        {projects.map((project) => (
+          <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className="work-card group block overflow-hidden rounded-[var(--radius)]"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={project.thumbnailPath}
+                alt={project.title}
+                fill
+                className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+            </div>
+            <div className="meta">
+              <span className="eyebrow mb-2 block">
+                {project.serviceTags?.length
+                  ? project.serviceTags.join(" · ")
+                  : (project.sector ?? project.category)}
+              </span>
+              <h3 className="display text-xl">{project.title}</h3>
+              <p>{project.positioning ?? project.tagline}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
+  );
+}
 
 export default async function WorkPage() {
   const projects = await getProjects();
+  const clientWork = projects.filter((p) => p.projectType !== "studio");
+  const studioWork = projects.filter((p) => p.projectType === "studio");
 
   const heroImage =
     projects.find((p) => p.featured)?.thumbnailPath ?? pageHeroImages.work.src;
 
+  const jsonLd = breadcrumbSchema([
+    { name: "home", path: "/" },
+    { name: "work", path: "/work" },
+  ]);
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <PageHeroSplit
         image={{ src: heroImage, alt: pageHeroImages.work.alt }}
         minHeight="min-h-[58vh]"
@@ -32,41 +88,31 @@ export default async function WorkPage() {
         </Reveal>
         <Reveal delay={1}>
           <h1 className="display mt-4 text-[clamp(2.25rem,11vw,10rem)] font-bold">
-            we build <BWordRotate words={WORK_BUILD_TARGETS} className="text-[1em]" />
-            <span className="text-accent">.</span>
+            we build <span className="text-accent">brands.</span>
           </h1>
         </Reveal>
         <Reveal delay={2}>
-          <p className="lead mt-7">selected projects across branding, ecommerce and digital.</p>
+          <p className="lead mt-7">
+            selected projects across branding, product and digital, including the products we build
+            ourselves.
+          </p>
         </Reveal>
       </PageHeroSplit>
 
       <section className="section-pad pt-0">
         <div className="wrap">
-          <div className="work-grid work-grid--index">
-            {projects.map((project) => (
-              <Link key={project.slug} href={`/work/${project.slug}`} className="work-card group block overflow-hidden rounded-[var(--radius)]">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={project.thumbnailPath}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                </div>
-                <div className="meta">
-                  <span className="eyebrow mb-2 block">
-                    {project.serviceTags?.length
-                      ? project.serviceTags.join(" · ")
-                      : (project.sector ?? project.category)}
-                  </span>
-                  <h3 className="display text-xl">{project.title}</h3>
-                  <p>{project.positioning ?? project.tagline}</p>
-                </div>
-              </Link>
-            ))}
+          <ProjectGrid projects={clientWork} label="client work" />
 
+          <div className="mb-8 mt-14">
+            <h2 className="display text-[clamp(1.5rem,4vw,2.5rem)] font-bold">built in the studio</h2>
+            <p className="muted mt-3 max-w-[52ch] text-[15px]">
+              we are builders, so we build our own. these are bmkrs products: proof we live with the
+              consequences of our own advice.
+            </p>
+          </div>
+          <ProjectGrid projects={studioWork} />
+
+          <div className="work-grid work-grid--index mt-8">
             <Link href="/contact" className="work-card work-card--cta">
               <div className="meta meta--static">
                 <span className="eyebrow">+ your brand next</span>

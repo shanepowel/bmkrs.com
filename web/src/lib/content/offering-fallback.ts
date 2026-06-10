@@ -1,4 +1,5 @@
 import type { AboutPageContent, Discipline, Product, TeamMember } from "@/lib/types";
+import { authorBios } from "./author-bios";
 import { fallbackPosts } from "./journal-posts-fallback";
 
 export { fallbackPosts };
@@ -86,6 +87,7 @@ export const fallbackProducts: Product[] = [
       "a sixty-minute readout with your team",
     ],
     shape: "one week, fixed scope.",
+    priceFrom: "£2,500",
     outcome: "you leave knowing exactly what is working, what is not, and what to fix first. no fluff, no eighty-page deck.",
     priceNote: "let's talk",
     order: 1,
@@ -104,7 +106,8 @@ export const fallbackProducts: Product[] = [
       "launch-ready website",
       "brand guidelines",
     ],
-    shape: "six to eight weeks.",
+    shape: "six to eight weeks, fixed scope.",
+    priceFrom: "£18,000",
     outcome:
       "a brand that hangs together from the name to the homepage, ready to launch and easy to keep consistent.",
     priceNote: "let's talk",
@@ -120,35 +123,36 @@ export const fallbackProducts: Product[] = [
     slug: "rebrand",
     name: "rebrand",
     tier: "make",
-    tagline: "a sharper position and a fresh identity for a brand that has outgrown its old one.",
-    forWho: "established brands that look homemade next to where they are heading.",
+    tagline: "for brands that have outgrown their look, their story, or both.",
+    forWho:
+      "established brands whose product has moved on but whose identity has not, or teams who inherited a brand that never quite worked.",
     included: [
-      "repositioning",
-      "identity refresh or rebuild",
-      "messaging realignment",
-      "rollout assets and guidelines",
+      "brand audit and repositioning",
+      "refreshed or rebuilt identity",
+      "updated voice and messaging",
+      "rollout plan and guidelines",
     ],
-    shape: "six to ten weeks.",
-    outcome:
-      "a brand that matches the ambition, without throwing away the equity you have already built.",
+    shape: "six to ten weeks, fixed scope.",
+    priceFrom: "£15,000",
+    outcome: "a brand that fits where you are now, with a system your team can actually use.",
     priceNote: "let's talk",
-    proof: [{ title: "floare din banat", slug: "fdb" }],
     order: 3,
   },
   {
     slug: "storefront",
     name: "storefront",
     tier: "make",
-    tagline: "an identity-led ecommerce build that makes the buying easy and the brand obvious.",
-    forWho: "product brands whose storefront is losing them sales they should be winning.",
+    tagline: "a site or store built to convert, not just to look good.",
+    forWho: "brands with a product worth buying and a digital shopfront that is not doing it justice.",
     included: [
-      "identity applied to commerce",
-      "product copy and structure",
-      "storefront build",
-      "checkout and conversion basics",
+      "ux and conversion audit",
+      "site or store design and build",
+      "product copy and merchandising",
+      "analytics and launch support",
     ],
-    shape: "six to ten weeks.",
-    outcome: "a store that looks as good as the product and gets out of the customer's way.",
+    shape: "six to ten weeks, fixed scope.",
+    priceFrom: "£12,000",
+    outcome: "a storefront that looks like the brand and makes buying easy.",
     priceNote: "let's talk",
     proof: [{ title: "floare din banat", slug: "fdb" }],
     order: 4,
@@ -157,16 +161,18 @@ export const fallbackProducts: Product[] = [
     slug: "story",
     name: "story",
     tier: "make",
-    tagline: "tone of voice, messaging and narrative, so the brand sounds like itself everywhere.",
+    tagline: "the narrative, messaging and copy that make people understand and care.",
     forWho:
-      "teams whose product is strong but hard to explain, or who sound different in every channel.",
+      "teams with a good product and a muddled story, or brands launching something complicated that needs explaining clearly.",
     included: [
+      "messaging framework",
       "tone of voice",
       "messaging framework",
       "brand and product narrative",
       "launch and campaign copy",
     ],
-    shape: "three to five weeks.",
+    shape: "three to five weeks, fixed scope.",
+    priceFrom: "£6,000",
     outcome: "one clear story, told the same way by everyone, from the homepage to the sales call.",
     priceNote: "let's talk",
     order: 5,
@@ -179,6 +185,7 @@ export const fallbackProducts: Product[] = [
     forWho: "brands with a moment worth making noise about: a launch, a raise, a milestone.",
     included: ["pr and media strategy", "press materials", "targeted outreach", "launch campaign support"],
     shape: "a fixed launch window.",
+    priceFrom: "£5,000",
     outcome:
       "coverage that lands with the audiences that matter, not a press release sent into the void.",
     priceNote: "let's talk",
@@ -193,6 +200,7 @@ export const fallbackProducts: Product[] = [
       "brands that have launched and need consistent momentum without rebuilding a team for every job.",
     cadence: "monthly planning, continuous shipping.",
     commitment: "rolling, monthly. thirty days' notice, no lock-in.",
+    priceFrom: "£3,500",
     monthlyDeliverables: [
       "brand stewardship and new assets",
       "content and campaigns",
@@ -202,7 +210,7 @@ export const fallbackProducts: Product[] = [
     ],
     shape: "rolling, monthly.",
     outcome: "a brand that never goes quiet, looked after by the same team that built it.",
-    priceNote: "let's talk",
+    priceNote: "/month",
     order: 7,
     featured: true,
   },
@@ -216,6 +224,7 @@ export const fallbackProducts: Product[] = [
       "brands in a growth phase that want brand, content, pr and performance pulling together.",
     cadence: "monthly planning, continuous shipping, fortnightly check-ins.",
     commitment: "rolling, monthly. thirty days' notice.",
+    priceFrom: "£6,500",
     monthlyDeliverables: [
       "everything in motion",
       "performance and growth marketing",
@@ -225,7 +234,7 @@ export const fallbackProducts: Product[] = [
     ],
     shape: "rolling, monthly.",
     outcome: "brand, story and growth handled by one team, compounding every month.",
-    priceNote: "let's talk",
+    priceNote: "/month",
     order: 8,
   },
   {
@@ -238,6 +247,7 @@ export const fallbackProducts: Product[] = [
       "scale-ups and companies who need brand and delivery firepower embedded alongside their own people.",
     cadence: "embedded, agreed weekly capacity.",
     commitment: "rolling, by agreement.",
+    priceFrom: "£9,000",
     monthlyDeliverables: [
       "a named, senior team working as part of yours",
       "brand, voice, pr and delivery on tap",
@@ -247,26 +257,30 @@ export const fallbackProducts: Product[] = [
     shape: "embedded, ongoing.",
     outcome:
       "the capability of an in-house brand team, without the cost and time of building one.",
-    priceNote: "let's talk",
+    priceNote: "/month",
     order: 9,
   },
 ];
 
 export const fallbackAboutPage: AboutPageContent = {
-  headline: "we are b makers.",
+  headline: "built by a builder.",
   intro:
-    "a brand company run by builders. for people with something good that deserves to be better known. since 2013.",
-  story: [
-    "we started in 2013, not as a design studio, but as a team of builders.",
-    "we spent years inside big, complicated organisations, building the teams and the delivery that made ambitious things actually happen. public sector, regulated industries, the kind of work with real stakes. we got good at it. properly good.",
-    "but we kept seeing the same thing. brilliant products, built by brilliant people, that nobody outside the building had ever heard of. and every time, the better-told brand won. not the better product. the better-told one.",
-    "so we started building the other half. the identity, the voice, the story, the noise that makes people actually care. we kept the delivery rigour from the old days and pointed it at brand. more than a decade on, that is the whole job.",
-    "we are b makers. it is on the door for a reason.",
-  ],
+    "bmkrs is a brand company founded by someone who spent years shipping real products inside complex organisations. the rigour came first. the brand work is where we point it.",
+  founder: {
+    name: "shane powell",
+    linkedinUrl: "https://www.linkedin.com/in/shanepowell",
+    portraitAlt: "illustrated portrait of shane powell, founder at bmkrs",
+    bio: [
+      "i have spent seventeen years building products and delivery teams inside organisations where failure is expensive: public sector, utilities, infrastructure, regulated industries. director-level consulting, the kind of work where things have to ship, work, and stand up to scrutiny.",
+      "and across all of it i kept watching the same thing happen. brilliant products, built by brilliant people, losing to worse products with a clearer story. the better-told brand won. every time.",
+      "bmkrs exists to fight on that front. i build brands the way i build products: strategy before execution, one accountable team, shipped and measured rather than presented and abandoned. and because i still build products of my own, the studio practices what it sells. some of the work on our shelves is ours.",
+    ],
+  },
   whoWeAre:
-    "we are a small, senior team. the people you brief are the people who do the work. no account manager in the middle relaying messages, no junior learning on your brand. we are exact about the details and honest to a fault: we will tell you when an idea is not working, even the one you walked in loving. that is what good partners are for.",
-  whatWeLove:
-    "the brief nobody else wants. the messy product that turns out to be brilliant once someone can finally explain it. the moment a muddled idea lands in one sentence. seeing something we built turn up in the wild and hold its own. we like the work. it shows in what we make.",
+    "around the studio is a small group of partner collaborators. all of them are multiskilled, each of them leads the discipline they are best at. you meet the people who do the work, because they are the only people there are. we'd rather be your team than your agency.",
+  teamIntro:
+    "around the studio is a small group of partner collaborators. all of them are multiskilled, each of them leads the discipline they are best at. you meet the people who do the work, because they are the only people there are.",
+  teamClosing: "no account managers. no chain. no whoever-is-free-on-friday.",
   ethos:
     "we put our own name on the work, so we treat your brand the way we treat ours: build it properly, ship it, and stay long enough to see it work.",
   beliefs: [
@@ -278,49 +292,13 @@ export const fallbackAboutPage: AboutPageContent = {
     { title: "we are in it for the long game.", body: "not the launch. the years after it." },
   ],
   longGame:
-    "we are not built for the one-off. the work we are proudest of came from clients we have known for years, the kind of trust where we can move fast, skip the posturing, and tell each other the truth because we have earned the right to. most of our new work comes from people we have worked with before, or people they pointed our way. that is the only scoreboard we really watch.",
-  inOwnWords: [
-    "we would rather be your team than your agency.",
-    "we are in it for the long game, not the launch.",
-    "no awards shelf. just clients who keep calling.",
-  ],
+    "we are not built for the one-off. the work we are proudest of comes from relationships, not transactions. the longer we know a brand, the better the work gets. most of our new work comes from people we have worked with before, or people they pointed our way. that is the only scoreboard we really watch.",
 };
 
-export const fallbackTeam: TeamMember[] = [
-  {
-    name: "shane",
-    discipline: "delivery + strategy",
-    bio: "spent years making ambitious things actually ship inside complex, regulated organisations. keeps the work moving and the timelines honest, and is happiest when a messy programme finally clicks into a plan everyone believes.",
-    photoAlt: "shane",
-  },
-  {
-    name: "george",
-    discipline: "pr + communications",
-    bio: "finds the angle and the right person to tell it to. would rather land one story that matters than a hundred that do not, and usually knows the journalist's name already.",
-    photoAlt: "george",
-  },
-  {
-    name: "melissa",
-    discipline: "product + engineering",
-    bio: "the one who makes the clever idea actually work. builds the sites, stores and tools that carry the brand, and quietly fixes the thing nobody else noticed was broken.",
-    photoAlt: "melissa",
-  },
-  {
-    name: "sarah",
-    discipline: "brand + identity",
-    bio: "turns a position into a world you can see. lives in type, colour and the small decisions that make a brand feel like one thing, not ten.",
-    photoAlt: "sarah",
-  },
-  {
-    name: "marcus",
-    discipline: "voice + messaging",
-    bio: "makes brands sound like themselves. obsessed with the one sentence that does the work of a whole paragraph.",
-    photoAlt: "marcus",
-  },
-  {
-    name: "the wider team",
-    discipline: "engineers, consultants + specialists",
-    bio: "behind the named five is a trusted network of engineers, consultants and specialists we bring in when the work calls for it. same standard, no strangers.",
-    photoAlt: "the wider team",
-  },
-];
+export const fallbackTeam: TeamMember[] = authorBios.map((a) => ({
+  name: a.name,
+  discipline: a.discipline,
+  bio: a.footer,
+  photoAlt: `illustrated portrait of ${a.name}, ${a.discipline} at bmkrs`,
+  slug: a.slug,
+}));

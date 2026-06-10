@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import {
   fallbackHome,
+  fallbackHomeTestimonials,
   fallbackMotion,
   fallbackPages,
   fallbackProjects,
@@ -140,11 +141,15 @@ export async function getProjects(): Promise<Project[]> {
 export async function getFeaturedProjects(): Promise<Project[]> {
   const featured = await fetchSanity<Project[]>(featuredCaseStudiesQuery);
   if (featured?.length) {
-    return featured.map(normalizeProject);
+    return featured.map(normalizeProject).slice(0, 4);
   }
   const projects = await getProjects();
-  const picked = projects.filter((p) => p.featured);
-  return (picked.length > 0 ? picked : projects.slice(0, 4)).slice(0, 4);
+  const client = projects.filter((p) => p.projectType !== "studio" && p.featured);
+  const studio = projects.filter((p) => p.projectType === "studio");
+  const picked = [...client.slice(0, 2), ...studio.slice(0, 2)];
+  if (picked.length >= 4) return picked.slice(0, 4);
+  const rest = projects.filter((p) => !picked.includes(p));
+  return [...picked, ...rest].slice(0, 4);
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -192,8 +197,8 @@ export async function getCaseStudySlugs(): Promise<string[]> {
 
 export async function getHomeTestimonials(): Promise<Testimonial[]> {
   const data = await fetchSanity<Testimonial[]>(homeTestimonialsQuery);
-  if (!data?.length) return [];
-  return data.filter((t) => isFilled(t.quote));
+  if (data?.length) return data.filter((t) => isFilled(t.quote));
+  return fallbackHomeTestimonials.filter((t) => isFilled(t.quote));
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {

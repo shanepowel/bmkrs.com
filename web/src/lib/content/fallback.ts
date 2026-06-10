@@ -7,6 +7,7 @@ import type {
   Project,
   Service,
   SiteSettings,
+  Testimonial,
 } from "@/lib/types";
 
 export const fallbackNavigation: NavItem[] = [
@@ -28,7 +29,7 @@ export const fallbackSiteSettings: SiteSettings = {
   pressEmail: "press@bmkrs.com",
   companyName: "b makers ltd",
   companyNumber: "",
-  registeredAddress: "registered in england and wales. full address in site settings.",
+  registeredAddress: "",
   copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
@@ -118,29 +119,20 @@ export const fallbackHome: HomeContent = {
     },
   ],
   stats: [
-    { highlight: "10+", value: "", label: "years of combined experience building brands that ship" },
-    { highlight: "4", value: "", label: "core disciplines on one coordinated team" },
+    {
+      highlight: "2013",
+      value: "",
+      label: "building products and teams since. the studio came later, the rigour did not.",
+    },
+    { highlight: "4", value: "", label: "disciplines on one coordinated team" },
     { highlight: "1", value: "", label: "point of contact from brief to ship" },
   ],
   whoWeWorkWith: {
     eyebrow: "who we work with",
-    statement:
-      "brands with big plans and the nerve to do something different.",
-    lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
+    statement: "founders and product teams who need the whole journey.",
+    lead: "you are building something real and you need the brand, the story and the launch to match, without hiring four agencies and refereeing between them. that is the exact job we built bmkrs to do. established brands come to us for the same reason: one team, no gaps.",
   },
   clientMarquee: ["floare din banat", "copa", "carter mcgreggor", "flipster"],
-  studioVentures: [
-    {
-      name: "podcast studio london",
-      descriptor: "content and editorial",
-      href: "https://podcaststudiolondon.co.uk",
-    },
-    {
-      name: "freelance near me",
-      descriptor: "local-first marketplace",
-      href: "https://freelancenearme.com",
-    },
-  ],
   motionTeaser: {
     eyebrow: "ongoing partnership",
     heading: "Always in motion.",
@@ -519,6 +511,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 1,
     featured: true,
+    projectType: "client",
     seo: {
       metaTitle: "copa, off the shore | bmkrs.",
       metaDescription:
@@ -554,6 +547,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 2,
     featured: true,
+    projectType: "client",
     seo: {
       metaTitle: "floare din banat | bmkrs.",
       metaDescription:
@@ -591,6 +585,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 3,
     featured: true,
+    projectType: "client",
   },
   {
     slug: "wanderlust",
@@ -622,6 +617,7 @@ export const fallbackProjects: Project[] = [
     ],
     order: 4,
     featured: false,
+    projectType: "client",
   },
   {
     slug: "smoothies",
@@ -644,6 +640,7 @@ export const fallbackProjects: Project[] = [
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
     order: 5,
     featured: false,
+    projectType: "client",
   },
   {
     slug: "flipster",
@@ -667,5 +664,64 @@ export const fallbackProjects: Project[] = [
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],
     order: 6,
     featured: true,
+    projectType: "client",
+  },
+  {
+    slug: "podcast-studio-london",
+    title: "podcast studio london",
+    client: "podcast studio london",
+    category: "brand + growth",
+    sector: "media",
+    year: "2025",
+    positioning: "a london podcast studio with a brand that finally matches the rooms.",
+    tagline: "a london podcast studio with a brand that finally matches the rooms.",
+    brief:
+      "podcast studio london runs premium recording spaces for founders, brands and broadcasters. they needed a brand and digital presence that matched the quality of the studios.",
+    challenge:
+      "strong physical product, weak digital first impression. prospective clients were booking on reputation and word of mouth alone.",
+    whatWeDid:
+      "brand positioning, visual identity, voice and a site built to convert browsing into booking conversations.",
+    resultsNarrative:
+      "a coherent brand across site, social and studio touchpoints, and a clearer path from discovery to enquiry.",
+    results: [],
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    thumbnailPath: marketingImages.socialStrategy,
+    media: [{ type: "image", src: marketingImages.socialStrategy, alt: "podcast studio london" }],
+    order: 7,
+    featured: true,
+    projectType: "client",
+  },
+  {
+    slug: "freelance-near-me",
+    title: "freelance near me",
+    category: "product",
+    sector: "marketplace",
+    year: "2025",
+    positioning: "a local-first marketplace we built because the brief kept appearing in client work.",
+    tagline: "a local-first marketplace we built because the brief kept appearing in client work.",
+    brief:
+      "freelance near me connects local freelancers with nearby clients. it is a bmkrs studio product: we ship our own ideas to prove we live with the consequences of our advice.",
+    whatWeDid:
+      "positioning, brand, product design and build. one team from name to shipped product.",
+    resultsNarrative:
+      "a live product in market, built with the same rigour we bring to client launches.",
+    results: [],
+    serviceTags: ["brand + identity", "product, web + growth"],
+    thumbnailPath: marketingImages.digitalEcosystem,
+    media: [{ type: "image", src: marketingImages.digitalEcosystem, alt: "freelance near me" }],
+    order: 8,
+    featured: true,
+    projectType: "studio",
+    externalUrl: "https://freelancenearme.com",
+  },
+];
+
+export const fallbackHomeTestimonials: Testimonial[] = [
+  {
+    quote:
+      "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
+    name: "founder",
+    role: "podcast studio london",
+    company: "podcast studio london",
   },
 ];

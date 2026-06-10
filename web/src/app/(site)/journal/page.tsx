@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import { JournalFilter } from "@/components/bmkrs/JournalFilter";
 import { JournalMap } from "@/components/bmkrs/JournalMap";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
-
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
   "journal",
   "notes on building brands: identity, voice, pr, growth and how we work.",
+  "/journal",
 );
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -41,16 +42,14 @@ export default async function JournalPage() {
           <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
         </Reveal>
         <Reveal delay={1}>
-          <p className="muted mt-2">notes on building bold brands.</p>
+          <p className="muted mt-2">notes on building brands.</p>
         </Reveal>
       </PageHeroSplit>
 
       <section className="section-pad pt-0">
         <div className="wrap section">
-          {mapPosts.length > 0 && <JournalMap posts={mapPosts} />}
-
           {featured && (
-            <Link href={`/journal/${featured.slug}`} className="journal-hero mt-10 block">
+            <Link href={`/journal/${featured.slug}`} className="journal-hero block">
               <div className="journal-hero-cover relative">
                 <Image
                   src={featured.cover!.url}
@@ -67,12 +66,15 @@ export default async function JournalPage() {
                   <h2 className="display mt-2 text-[clamp(1.5rem,4vw,2.5rem)]">{featured.title}</h2>
                 </div>
               </div>
-              <div className="journal-hero-meta flex items-center justify-between px-4 py-3">
-                <span className="muted text-sm">
-                  {formatDate(featured.publishedAt)}
-                  {featured.readingTime ? ` · ${featured.readingTime} min read` : ""}
-                </span>
-                <span className="accent-link">read →</span>
+              <div className="journal-hero-meta px-4 py-3">
+                <p className="excerpt">{featured.excerpt}</p>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="muted text-sm">
+                    {formatDate(featured.publishedAt)}
+                    {featured.readingTime ? ` · ${featured.readingTime} min read` : ""}
+                  </span>
+                  <span className="accent-link">read →</span>
+                </div>
               </div>
             </Link>
           )}
@@ -108,8 +110,18 @@ export default async function JournalPage() {
               </Link>
             ))}
           </div>
+
+          {mapPosts.length > 0 ? (
+            <div className="mt-16">
+              <p className="eyebrow">wander</p>
+              <p className="muted mb-6 text-sm">optional: explore posts by connection, not chronology.</p>
+              <JournalMap posts={mapPosts} />
+            </div>
+          ) : null}
         </div>
       </section>
+
+      <EmailCapture />
     </main>
   );
 }

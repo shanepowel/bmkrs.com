@@ -86,3 +86,22 @@ export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
     })),
   };
 }
+
+export function personSchema(person: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  linkedinUrl?: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.jobTitle,
+    description: person.description,
+    worksFor: { "@id": ORG_ID },
+    ...(person.linkedinUrl ? { sameAs: [person.linkedinUrl] } : {}),
+    ...(person.image ? { image: person.image } : {}),
+  };
+}
