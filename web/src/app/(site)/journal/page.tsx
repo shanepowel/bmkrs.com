@@ -8,10 +8,12 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 
-export const metadata: Metadata = {
-  title: "journal",
-  description: "notes on building bold brands: identity, voice, pr, growth and how we work.",
-};
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata(
+  "journal",
+  "notes on building brands: identity, voice, pr, growth and how we work.",
+);
 
 const CATEGORY_LABEL: Record<string, string> = {
   brand: "brand + identity",

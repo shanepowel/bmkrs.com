@@ -5,6 +5,7 @@ import type { SiteSettings } from "@/lib/types";
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
   const press = settings.pressEmail ?? "press@bmkrs.com";
+  const network = settings.networkEmail;
   const year = new Date().getFullYear();
 
   const reg = [
@@ -62,6 +63,12 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
               <li>
                 <a href={`mailto:${press}`}>{press}</a> <span className="muted">(press)</span>
               </li>
+              {network ? (
+                <li>
+                  <a href={`mailto:${network}`}>{network}</a>{" "}
+                  <span className="muted">(network)</span>
+                </li>
+              ) : null}
             </ul>
             {settings.socialLinks.length ? (
               <ul role="list" className="footer-socials">
@@ -82,7 +89,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         <p className="muted">london, and wherever you are.</p>
         {reg ? <p className="muted footer-reg">{reg}</p> : null}
         <p className="muted">
-          © {year} {settings.companyName ?? "b makers (bmkrs)"}. they say no one reads the footer. hi.
+          © {year} {settings.companyName ?? "b makers ltd"}. they say no one reads the footer. hi.
         </p>
       </div>
     </footer>

@@ -6,6 +6,13 @@ export function PortableBody({ blocks }: { blocks?: PortableBlock[] }) {
   return (
     <div className="prose max-w-none">
       {blocks.map((block, i) => {
+        if (block._type === "heading" && block.text) {
+          return (
+            <h2 key={i} className="display mt-10 mb-4 text-[clamp(1.35rem,3vw,2rem)] font-bold">
+              {block.text}
+            </h2>
+          );
+        }
         if (block._type === "pullQuote" && block.text) {
           return (
             <blockquote

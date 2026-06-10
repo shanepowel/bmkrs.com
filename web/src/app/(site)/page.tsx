@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { BWordRotate } from "@/components/bmkrs/BWordRotate";
-import {
-  CAPABILITY_LED_WORDS,
-  HERO_BRAND_ADJECTIVES,
-} from "@/lib/b-words";
+import { CAPABILITY_LED_WORDS } from "@/lib/b-words";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
 import { ImageStrip } from "@/components/bmkrs/ImageStrip";
@@ -52,12 +49,12 @@ export default async function HomePage() {
     featured.slice(0, 4).map((p) => ({ src: p.thumbnailPath, alt: p.title }));
   const useReelHero = Boolean(settings.heroReelUrl || settings.heroPoster);
 
-  const heroHeadline = (
+  const heroHeadline = hero.headline ?? (
     <>
-      {hero.headlineLead}{" "}
-      <BWordRotate words={HERO_BRAND_ADJECTIVES} className="text-[1em]" /> {hero.headlineTail}
+      {hero.headlineLead} {hero.headlineTail}
     </>
   );
+  const selectedProjects = featured.slice(0, 4);
 
   return (
     <>
@@ -85,7 +82,7 @@ export default async function HomePage() {
               <Reveal>
                 <span className="eyebrow">{hero.eyebrow}</span>
               </Reveal>
-              <h1 className="display mt-2 text-[clamp(2.5rem,11vw,10.5rem)] font-bold leading-[0.92]">
+              <h1 className="display mt-2 max-w-[22ch] text-[clamp(2.25rem,9vw,5.75rem)] font-bold leading-[0.95]">
                 {heroHeadline}
               </h1>
               <Reveal delay={1}>
@@ -124,9 +121,8 @@ export default async function HomePage() {
             <Reveal>
               <span className="eyebrow">{home.positioning.eyebrow}</span>
             </Reveal>
-            <h2 className="display  mt-4 max-w-[16ch] text-[clamp(36px,7vw,98px)] font-bold">
-              {home.positioning.statement.split("identity, voice + messaging.")[0]}
-              <span className="text-accent">identity, voice + messaging.</span>
+            <h2 className="display mt-4 max-w-[22ch] text-[clamp(36px,7vw,98px)] font-bold">
+              {home.positioning.statement}
             </h2>
             <p className="lead mt-8 text-ink/70">{home.positioning.lead}</p>
           </div>
@@ -276,8 +272,7 @@ export default async function HomePage() {
           <div className="sec-head">
             <Reveal>
               <h2 className="display text-[clamp(2rem,6vw,5.375rem)]">
-                the <BWordRotate words={HERO_BRAND_ADJECTIVES} /> brands we{" "}
-                <span className="text-accent">build for</span>
+                the brands we <span className="text-accent">build for</span>
               </h2>
             </Reveal>
             <Reveal delay={1}>
@@ -285,7 +280,7 @@ export default async function HomePage() {
             </Reveal>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            {featured.map((project, i) => (
+            {selectedProjects.map((project, i) => (
               <div
                 key={project.slug}
                 className={i === 0 ? "md:col-span-2" : undefined}
@@ -335,6 +330,14 @@ export default async function HomePage() {
 
       <section className="section-pad closing text-center">
         <div className="wrap section">
+          {home.closing ? (
+            <figure className="mx-auto mb-10 max-w-[640px]">
+              <blockquote className="display text-[clamp(1.35rem,3vw,2rem)] font-semibold leading-snug">
+                &ldquo;{home.closing.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-sm text-muted">{home.closing.attribution}</figcaption>
+            </figure>
+          ) : null}
           <h2 className="display text-[clamp(2rem,6vw,4rem)] font-bold">
             let&apos;s make something worth choosing.
           </h2>

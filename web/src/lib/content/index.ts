@@ -138,7 +138,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
   }
   const projects = await getProjects();
   const picked = projects.filter((p) => p.featured);
-  return picked.length > 0 ? picked : projects.slice(0, 3);
+  return (picked.length > 0 ? picked : projects.slice(0, 4)).slice(0, 4);
 }
 
 export async function getProducts(): Promise<Product[]> {

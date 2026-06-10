@@ -8,10 +8,12 @@ import { WORK_BUILD_TARGETS } from "@/lib/b-words";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 
-export const metadata: Metadata = {
-  title: "work",
-  description: "selected projects across branding, ecommerce and digital. the bold brands we build for.",
-};
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata(
+  "work",
+  "selected brand, ecommerce and digital projects. see how brand-led work turns into a product people choose.",
+);
 
 export default async function WorkPage() {
   const projects = await getProjects();

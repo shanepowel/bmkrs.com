@@ -29,7 +29,7 @@ export const fallbackSiteSettings: SiteSettings = {
   companyName: "b makers ltd",
   companyNumber: "",
   registeredAddress: "registered in england and wales. full address in site settings.",
-  copyright: "© 2026 b makers (bmkrs). all rights reserved.",
+  copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
   offices: [{ name: "london" }, { name: "worldwide" }],
@@ -49,17 +49,20 @@ export const fallbackSiteSettings: SiteSettings = {
 
 export const fallbackHome: HomeContent = {
   hero: {
-    eyebrow: "a brand company",
-    headlineLead: "we make",
+    eyebrow: "a brand company run by builders",
+    headline: "most studios stop at the logo. we ship the whole thing.",
+    headlineLead: "we build",
     headlineTail: "brands.",
-    sub: "we don't just help you build your product. we create its brand, give it a voice, get it heard, and grow it. everything from one team.",
+    sub: "brand, voice, pr, product, growth. one team that takes you from a name on a page to a brand people choose.",
     primaryCta: { label: "see our work", href: "/work" },
     secondaryCta: { label: "start a project", href: "/contact" },
     collage: [
       { src: "/work/images/optimized/fdb-2-hero.jpg", alt: "floare din banat" },
       { src: "/images/optimized/copa-hero.jpg", alt: "copa, off the shore" },
+      { src: "/images/optimized/carter-hero.jpg", alt: "carter mcgreggor" },
       { src: "/images/optimized/smoothies-hero.jpg", alt: "smoothies" },
-      { src: "/images/optimized/copa-campaign.jpg", alt: "copa campaign" },
+      { src: "/work/images/optimized/flipster-hero.jpg", alt: "flipster" },
+      { src: "/images/optimized/wanderlust-hero.jpg", alt: "wanderlust" },
     ],
   },
   marqueeItems: [
@@ -72,9 +75,8 @@ export const fallbackHome: HomeContent = {
   ],
   positioning: {
     eyebrow: "what we really do",
-    statement:
-      "we don't just help you build apps. we build your product's identity, voice + messaging.",
-    lead: "anyone can ship a product. we make people care about it, with a brand, a voice, and a story that earns attention and keeps it.",
+    statement: "we make people care about what you built.",
+    lead: "shipping the product is the easy part. the hard part is attention, and keeping it. we give your product a brand, a voice, and a story so the right people notice, understand, and choose it.",
   },
   capabilitiesHead: {
     title: "strategy-led. growth-built.",
@@ -116,7 +118,7 @@ export const fallbackHome: HomeContent = {
     },
   ],
   stats: [
-    { highlight: "2013", value: "", label: "building brands with delivery rigour behind them" },
+    { highlight: "10+", value: "", label: "years of combined experience building brands that ship" },
     { highlight: "4", value: "", label: "core disciplines on one coordinated team" },
     { highlight: "1", value: "", label: "point of contact from brief to ship" },
   ],
@@ -126,15 +128,9 @@ export const fallbackHome: HomeContent = {
       "brands with big plans and the nerve to do something different.",
     lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
   },
-  clientMarquee: [
-    "floare din banat",
-    "copa",
-    "carter mcgreggor",
-    "wanderlust",
-    "flipster",
-  ],
+  clientMarquee: ["floare din banat", "copa", "carter mcgreggor", "flipster"],
   motionTeaser: {
-    eyebrow: "Ongoing partnership",
+    eyebrow: "ongoing partnership",
     heading: "Always in motion.",
     body: "a rolling partnership for brands that never stop talking. one team keeping your brand, voice, and pr moving, month after month.",
     ctaLabel: "explore motion",
@@ -172,6 +168,10 @@ export const fallbackHome: HomeContent = {
     eyebrow: "selected work",
     title: "the brands we build for",
     subtitle: "selected projects across branding, ecommerce, and digital.",
+  },
+  closing: {
+    quote: "the storefront finally looks as good as the product. we are proud to share the brand now.",
+    attribution: "floare din banat",
   },
 };
 
@@ -654,6 +654,6 @@ export const fallbackProjects: Project[] = [
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],
     order: 6,
-    featured: false,
+    featured: true,
   },
 ];

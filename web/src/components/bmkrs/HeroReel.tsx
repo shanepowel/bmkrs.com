@@ -56,7 +56,7 @@ export function HeroReel({
           <p className="eyebrow text-[var(--bmkrs-paper)]">{eyebrow}</p>
         </Reveal>
         <Reveal delay={1}>
-          <h1 className="display mt-4 max-w-[16ch] text-[clamp(2.5rem,11vw,6.5rem)] font-bold leading-[0.95] text-[var(--bmkrs-paper)]">
+          <h1 className="display mt-4 max-w-[22ch] text-[clamp(2.25rem,9vw,5.75rem)] font-bold leading-[0.95] text-[var(--bmkrs-paper)]">
             {headline}
           </h1>
         </Reveal>

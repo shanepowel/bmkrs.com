@@ -121,6 +121,10 @@ export type PortableBlock =
       children?: { text: string }[];
     }
   | {
+      _type: "heading";
+      text: string;
+    }
+  | {
       _type: "pullQuote";
       text: string;
     };
@@ -297,6 +301,8 @@ export type MotionBenefit = {
 
 export type HomeHero = {
   eyebrow: string;
+  /** Full headline when set; otherwise headlineLead + rotate + headlineTail */
+  headline?: string;
   /** e.g. "we make" */
   headlineLead: string;
   /** e.g. "brands." */
@@ -343,6 +349,10 @@ export type HomeContent = {
     eyebrow: string;
     title: string;
     subtitle: string;
+  };
+  closing?: {
+    quote: string;
+    attribution: string;
   };
 };
 

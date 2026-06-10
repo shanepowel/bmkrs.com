@@ -8,11 +8,12 @@ import { getDisciplines, getProducts } from "@/lib/content";
 import { pageHeroImages, productImageBySlug } from "@/lib/content/image-fallbacks";
 import type { Product, ProductTier } from "@/lib/types";
 
-export const metadata: Metadata = {
-  title: "services",
-  description:
-    "four disciplines, one team: brand, voice, pr and product. start with a brand check, build with a sprint, grow with motion.",
-};
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata(
+  "services",
+  "brand and identity, voice and messaging, pr, and product and growth. four disciplines, one team, built to work together.",
+);
 
 const TIERS: { key: ProductTier; label: string; intro: string }[] = [
   { key: "start", label: "start", intro: "a fast, honest read before you commit to anything bigger." },
