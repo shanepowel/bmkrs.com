@@ -2,6 +2,7 @@
 export const journalPublishSchedule: Record<string, string> = {
   "better-told-brand-wins": "2026-06-03",
   "what-a-brand-strategy-agency-does": "2026-06-03",
+  "weak-brand-paid-growth": "2026-06-03",
   "choosing-a-rebrand-agency-uk": "2026-06-10",
   "startup-pr-without-retainer": "2026-06-10",
   "brand-identity-for-startups": "2026-06-17",

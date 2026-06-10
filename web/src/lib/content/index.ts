@@ -130,12 +130,13 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getProjects(): Promise<Project[]> {
   const caseStudies = await fetchSanity<Project[]>(caseStudiesQuery);
-  if (caseStudies?.length) {
-    return caseStudies.map(normalizeProject);
-  }
   const legacy = await fetchSanity<Project[]>(projectsQuery);
-  const list = legacy?.length ? legacy : fallbackProjects;
-  return list.map(normalizeProject);
+  const sanityList = caseStudies?.length ? caseStudies : (legacy ?? []);
+  const bySlug = new Map(fallbackProjects.map((p) => [p.slug, normalizeProject(p)]));
+  for (const p of sanityList) {
+    bySlug.set(p.slug, normalizeProject(p));
+  }
+  return [...bySlug.values()].sort((a, b) => a.order - b.order);
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
@@ -152,9 +153,24 @@ export async function getFeaturedProjects(): Promise<Project[]> {
   return [...picked, ...rest].slice(0, 4);
 }
 
+function mergeProducts(sanity: Product[] | null | undefined): Product[] {
+  const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
+  for (const p of sanity ?? []) {
+    const fb = bySlug.get(p.slug);
+    bySlug.set(p.slug, {
+      ...fb,
+      ...p,
+      priceFrom: p.priceFrom ?? fb?.priceFrom,
+      shape: p.shape ?? fb?.shape,
+      priceNote: p.priceNote ?? fb?.priceNote,
+    });
+  }
+  return [...bySlug.values()].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
 export async function getProducts(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(allProductsQuery);
-  return data?.length ? data : fallbackProducts;
+  return mergeProducts(data);
 }
 
 export async function getDisciplines(): Promise<Discipline[]> {
@@ -165,13 +181,24 @@ export async function getDisciplines(): Promise<Discipline[]> {
 
 export async function getMotionTiers(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(motionTiersQuery);
-  if (data?.length) return data;
-  return fallbackProducts.filter((p) => p.tier === "grow");
+  const products = mergeProducts(data);
+  return products.filter((p) => p.tier === "grow");
 }
 
 export async function getAboutPage(): Promise<AboutPageContent> {
   const data = await fetchSanity<AboutPageContent>(aboutPageQuery);
-  return data ?? fallbackAboutPage;
+  return {
+    ...fallbackAboutPage,
+    ...(data ?? {}),
+    founder: fallbackAboutPage.founder,
+    teamIntro: fallbackAboutPage.teamIntro,
+    teamClosing: fallbackAboutPage.teamClosing,
+    headline: fallbackAboutPage.headline,
+    intro: fallbackAboutPage.intro,
+    longGame: fallbackAboutPage.longGame,
+    ethos: fallbackAboutPage.ethos,
+    beliefs: data?.beliefs?.length ? data.beliefs : fallbackAboutPage.beliefs,
+  };
 }
 
 export async function getMotionContent(): Promise<MotionContent> {
@@ -190,9 +217,8 @@ export async function getProject(slug: string): Promise<Project | null> {
 }
 
 export async function getCaseStudySlugs(): Promise<string[]> {
-  const slugs = await fetchSanity<string[]>(caseStudySlugsQuery);
-  if (slugs?.length) return slugs;
-  return fallbackProjects.map((p) => p.slug);
+  const projects = await getProjects();
+  return projects.map((p) => p.slug);
 }
 
 export async function getHomeTestimonials(): Promise<Testimonial[]> {
@@ -227,6 +253,9 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 
 function allFallbackJournalPosts(): JournalPost[] {
   const fromMarkdown = getMarkdownJournalPosts();
+  if (fromMarkdown.length > 0) {
+    return fromMarkdown.map(mergePostCover);
+  }
   const mdSlugs = new Set(fromMarkdown.map((p) => p.slug));
   const legacy = legacyJournalPosts.filter(
     (p) => !mdSlugs.has(p.slug) && !journalSlugRedirects[p.slug],
@@ -234,8 +263,32 @@ function allFallbackJournalPosts(): JournalPost[] {
   return [...fromMarkdown, ...legacy].map(mergePostCover);
 }
 
-function publishedJournalPosts(): JournalPost[] {
-  return filterPublishedPosts(allFallbackJournalPosts());
+function buildJournalIndex(
+  sanityFeatured: JournalPost | null,
+  sanityPosts: JournalPost[],
+): { featured: JournalPost | null; posts: JournalPost[] } {
+  const bySlug = new Map<string, JournalPost>();
+  const markdownPack = getMarkdownJournalPosts();
+
+  if (markdownPack.length === 0) {
+    if (sanityFeatured) {
+      bySlug.set(sanityFeatured.slug, mergePostCover(sanityFeatured));
+    }
+    for (const p of sanityPosts) {
+      bySlug.set(p.slug, mergePostCover(p));
+    }
+  }
+  for (const p of allFallbackJournalPosts()) {
+    bySlug.set(p.slug, p);
+  }
+
+  const published = filterPublishedPosts([...bySlug.values()]).sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt),
+  );
+
+  const featured = published.find((p) => p.featured) ?? published[0] ?? null;
+  const posts = published.filter((p) => p.slug !== featured?.slug);
+  return { featured, posts };
 }
 
 export async function getJournalIndex(): Promise<{
@@ -245,18 +298,7 @@ export async function getJournalIndex(): Promise<{
   const data = await fetchSanity<{ featured: JournalPost | null; posts: JournalPost[] }>(
     journalIndexQuery,
   );
-  if (data?.posts?.length || data?.featured) {
-    const featured = data.featured ? mergePostCover(data.featured) : null;
-    const posts = (data.posts ?? []).map(mergePostCover);
-    return {
-      featured: featured && isJournalPublished(featured.publishedAt) ? featured : null,
-      posts: filterPublishedPosts(posts),
-    };
-  }
-  const published = publishedJournalPosts();
-  const featured = published.find((p) => p.featured) ?? null;
-  const posts = published.filter((p) => !p.featured);
-  return { featured, posts };
+  return buildJournalIndex(data?.featured ?? null, data?.posts ?? []);
 }
 
 export async function getPost(slug: string): Promise<JournalPost | null> {
@@ -265,21 +307,29 @@ export async function getPost(slug: string): Promise<JournalPost | null> {
     return getPost(redirect);
   }
 
+  const fb = allFallbackJournalPosts().find((p) => p.slug === slug);
+  if (fb && isJournalPublished(fb.publishedAt)) {
+    return mergePostCover(fb);
+  }
+
   const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
   if (data) {
     const merged = mergePostCover(data);
     return isJournalPublished(merged.publishedAt) ? merged : null;
   }
 
-  const fb = allFallbackJournalPosts().find((p) => p.slug === slug);
-  if (!fb || !isJournalPublished(fb.publishedAt)) return null;
-  return mergePostCover(fb);
+  return null;
 }
 
 export async function getPostSlugs(): Promise<string[]> {
-  const slugs = await fetchSanity<string[]>(postSlugsQuery);
-  if (slugs?.length) return slugs;
-  return publishedJournalPosts().map((p) => p.slug);
+  const { featured, posts } = await getJournalIndex();
+  const slugs = new Set<string>();
+  if (featured) slugs.add(featured.slug);
+  for (const p of posts) slugs.add(p.slug);
+  for (const p of allFallbackJournalPosts()) {
+    if (isJournalPublished(p.publishedAt)) slugs.add(p.slug);
+  }
+  return [...slugs];
 }
 
 function normalizeProject(project: Project): Project {

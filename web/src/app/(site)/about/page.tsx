@@ -5,7 +5,7 @@ import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { getAboutPage, getTeamMembers } from "@/lib/content";
-import { aboutBeliefsImage, pageHeroImages } from "@/lib/content/image-fallbacks";
+import { aboutBeliefsImage, aboutTeamImage, pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
 import { personSchema } from "@/lib/structured-data";
 
@@ -82,13 +82,18 @@ export default async function AboutPage() {
       ) : null}
 
       <section className="section-pad">
+        <div className="wrap section prose-with-media items-start">
+          <div>
+            <p className="eyebrow">the team</p>
+            <h2 className="display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-bold">
+              a partner team, not a payroll.
+            </h2>
+            <p className="lead mt-6 max-w-[560px]">{about.teamIntro ?? about.whoWeAre}</p>
+          </div>
+          <SectionImage src={aboutTeamImage.src} alt={aboutTeamImage.alt} aspect="wide" />
+        </div>
         <div className="wrap section">
-          <p className="eyebrow">the team</p>
-          <h2 className="display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-bold">
-            a partner team, not a payroll.
-          </h2>
-          <p className="lead mt-6 max-w-[560px]">{about.teamIntro ?? about.whoWeAre}</p>
-          <div className="team-grid mt-12">
+          <div className="team-grid mt-4">
             {team.map((member) => (
               <div key={member.name} className="team-card" id={member.slug}>
                 <div className="team-photo">

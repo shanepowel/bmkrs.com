@@ -1,6 +1,9 @@
 /** Static marketing imagery (committed under /public/images/marketing). */
 export const marketingImages = {
   heroSculpture: "/images/marketing/hero-sculpture.png",
+  teamCollaboration: "/images/marketing/team-collaboration.png",
+  digitalMediaDevices: "/images/marketing/digital-media-devices.png",
+  identityPackaging: "/images/marketing/identity-packaging.png",
   studioBrand: "/images/marketing/studio-brand.png",
   brandEcosystem: "/images/marketing/brand-ecosystem.png",
   digitalMedia: "/images/marketing/digital-media.png",

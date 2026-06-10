@@ -67,31 +67,39 @@ export const homeMotionStrip = motionStripImages;
 
 export const pageHeroImages = {
   services: {
-    src: marketingImages.digitalMedia,
-    alt: "bmkrs digital media — brand, product, pr, disciplines",
+    src: marketingImages.digitalMediaDevices,
+    alt: "bmkrs across desktop, tablet and mobile",
   },
-  about: { src: marketingImages.studioBrand, alt: "bmkrs creative studio" },
-  work: { src: marketingImages.filmProduction, alt: "campaign and film production" },
+  about: { src: marketingImages.teamCollaboration, alt: "bmkrs team collaborating in the studio" },
+  work: { src: marketingImages.identityPackaging, alt: "brand identity and packaging" },
   motion: { src: marketingImages.contentPlatform, alt: "content and platform work" },
   journal: { src: marketingImages.brandArchitecture, alt: "brand strategy and thinking" },
   contact: { src: marketingImages.creativeDesk, alt: "creative workspace" },
 } as const;
 
 export const aboutStoryImage = {
-  src: marketingImages.brandGuidelines,
-  alt: "brand identity and guidelines",
+  src: marketingImages.studioBrand,
+  alt: "bmkrs creative studio",
 };
 
 export const aboutBeliefsImage = {
+  src: marketingImages.identityPackaging,
+  alt: "brand identity across touchpoints",
+};
+
+export const aboutTeamImage = {
+  src: marketingImages.teamCollaboration,
+  alt: "partner collaborators at work in the studio",
+};
+
+export const homePositioningImage = {
   src: marketingImages.brandEcosystem,
   alt: "brand building ecosystem",
 };
 
-export const homePositioningImage = aboutBeliefsImage;
-
 export const homeWhoWeWorkWithImage = {
-  src: marketingImages.filmProduction,
-  alt: "ambitious brand work",
+  src: marketingImages.teamCollaboration,
+  alt: "founders and product teams in the studio",
 };
 
 export const productImageBySlug: Record<string, { src: string; alt: string }> = {
