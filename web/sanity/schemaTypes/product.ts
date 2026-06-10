@@ -62,10 +62,17 @@ export const product = defineType({
       hidden: ({ document }) => document?.tier !== "grow",
     }),
     defineField({
+      name: "priceFrom",
+      title: "Price from",
+      description: "e.g. £2,500 or £3,500",
+      type: "string",
+    }),
+    defineField({
       name: "priceNote",
       title: "Price note",
       type: "string",
       initialValue: "let's talk",
+      description: "Suffix e.g. /month, or CTA when no priceFrom",
     }),
     defineField({
       name: "relatedCaseStudies",

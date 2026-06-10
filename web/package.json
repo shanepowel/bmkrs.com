@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "eslint .",
     "studio": "sanity dev",
+    "generate:seeds": "node scripts/generate-sanity-seeds.js",
     "import:seeds": "bash scripts/import-seeds.sh",
     "import:products": "sanity dataset import sanity/seed/products.ndjson --replace"
   },

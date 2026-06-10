@@ -5,6 +5,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   email,
   generalEmail,
   pressEmail,
+  networkEmail,
   companyName,
   companyNumber,
   registeredAddress,
@@ -63,6 +64,7 @@ const caseStudyFields = `
   results[]{ value, label },
   "testimonial": testimonial->{ quote, name, role, company },
   featured,
+  projectType,
   order,
   seo{
     metaTitle,
@@ -152,13 +154,13 @@ export const disciplinesQuery = `*[_type == "discipline"] | order(order asc){
 
 export const allProductsQuery = `*[_type == "product"] | order(order asc){
   name, "slug": slug.current, tier, tagline, forWho, included, shape, outcome,
-  cadence, commitment, monthlyDeliverables, priceNote,
+  cadence, commitment, monthlyDeliverables, priceFrom, priceNote,
   "proof": relatedCaseStudies[]->{ title, "slug": slug.current }
 }`;
 
 export const motionTiersQuery = `*[_type == "product" && tier == "grow"] | order(order asc){
   name, "slug": slug.current, tagline, forWho, cadence, commitment,
-  monthlyDeliverables, outcome, priceNote
+  monthlyDeliverables, outcome, priceFrom, priceNote
 }`;
 
 export const aboutPageQuery = `*[_type == "aboutPage"][0]{
