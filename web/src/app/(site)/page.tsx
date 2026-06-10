@@ -8,7 +8,13 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { RuledGrid, RuledGridItem } from "@/components/bmkrs/RuledGrid";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import { Testimonials } from "@/components/bmkrs/Testimonials";
-import { H2, Kicker, Section, themeBodyStyle } from "@/components/bmkrs/surfaces";
+import { H2, Kicker, Section, themeBodyStyle, themeFaintStyle } from "@/components/bmkrs/surfaces";
+import {
+  captionForProject,
+  homeManifesto,
+  homePainPoints,
+  homeProcessStrip,
+} from "@/lib/content/expansion-v2";
 import {
   getFeaturedProjects,
   getHomeContent,
@@ -38,7 +44,11 @@ export default async function HomePage() {
   const { hero } = home;
   const collage =
     hero.collage ??
-    featured.slice(0, 6).map((p) => ({ src: p.thumbnailPath, alt: p.title }));
+    featured.slice(0, 6).map((p) => ({
+      src: p.thumbnailPath,
+      alt: p.title,
+      caption: p.imageCaption ?? captionForProject(p.slug, p.title),
+    }));
   const useReelHero = Boolean(settings.heroReelUrl || settings.heroPoster);
 
   const heroHeadline = hero.headline ?? (
@@ -83,6 +93,22 @@ export default async function HomePage() {
         </section>
       )}
 
+      <Section theme="ink">
+        <Kicker theme="ink">why people call us</Kicker>
+        <H2 theme="ink">you usually arrive with one of these.</H2>
+        <RuledGrid className="mt-[var(--space-block)]" columns={2}>
+          {homePainPoints.map((point) => (
+            <RuledGridItem key={point.number}>
+              <p className="mono text-meta text-accent">{point.number}</p>
+              <h3 className="mt-3 text-h3 font-medium leading-snug">{point.headline}</h3>
+              <p className="mt-3 max-w-[52ch] leading-relaxed" style={themeBodyStyle("ink")}>
+                {point.body}
+              </p>
+            </RuledGridItem>
+          ))}
+        </RuledGrid>
+      </Section>
+
       <Marquee items={home.marqueeItems} />
 
       <Section theme="paper">
@@ -106,6 +132,11 @@ export default async function HomePage() {
             </RuledGridItem>
           ))}
         </RuledGrid>
+
+        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)] max-w-[65ch]">
+          <Kicker theme="paper">why we exist</Kicker>
+          <div className="lead mt-6 whitespace-pre-line">{homeManifesto}</div>
+        </div>
       </Section>
 
       <Section theme="ink">
@@ -207,6 +238,15 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
+      </Section>
+
+      <Section theme="ink" tight>
+        <Kicker theme="ink">how it runs</Kicker>
+        <p className="mono mt-4 text-lg text-accent">{homeProcessStrip.steps}</p>
+        <p className="lead mt-4 max-w-[65ch]">{homeProcessStrip.body}</p>
+        <p className="mono mt-4 text-meta" style={themeFaintStyle("ink")}>
+          {homeProcessStrip.footnote}
+        </p>
       </Section>
 
       <Section theme="ink">

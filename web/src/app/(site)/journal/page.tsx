@@ -9,6 +9,7 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { Kicker, Section } from "@/components/bmkrs/surfaces";
 import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
+import { journalMastheadIntro, journalCategoryDescriptions } from "@/lib/content/expansion-v2";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 
@@ -47,7 +48,7 @@ export default async function JournalPage() {
           <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
         </Reveal>
         <Reveal delay={1}>
-          <p className="muted mt-2">notes on building brands.</p>
+          <p className="lead mt-6 max-w-[65ch]">{journalMastheadIntro}</p>
         </Reveal>
       </PageHeroSplit>
 
@@ -99,6 +100,19 @@ export default async function JournalPage() {
                 </Link>
               ))}
             </nav>
+          ) : null}
+
+          {categorySlugs.length > 0 ? (
+            <ul className="mt-6 space-y-2 text-sm text-muted">
+              {categorySlugs.map((slug) => (
+                <li key={`desc-${slug}`}>
+                  <span className="mono text-meta text-accent">
+                    {JOURNAL_CATEGORY_LABEL[slug] ?? slug}
+                  </span>{" "}
+                  → {journalCategoryDescriptions[slug] ?? ""}
+                </li>
+              ))}
+            </ul>
           ) : null}
 
           <div className="journal-grid">

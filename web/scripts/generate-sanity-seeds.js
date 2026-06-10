@@ -524,6 +524,133 @@ function generateProducts() {
   console.log(`  products.ndjson (${docs.length} products)`);
 }
 
+const OUTCOME_LINES = {
+  "caseStudy-fdb": "22% lift in store conversion after the rebuild",
+  "caseStudy-copa": "a bar people now describe the way it wanted to be described",
+  "caseStudy-podcast-studio-london": "expertise you can read before you book a session",
+  "caseStudy-freelance-near-me": "the marketplace we built to prove the point",
+  "caseStudy-carter": "a portfolio that finally reads like the work behind it",
+  "caseStudy-flipster": "a premium identity in a category most brands get wrong",
+  "caseStudy-smoothies": "a first site that made the range legible on day one",
+  "caseStudy-wanderlust": "a design language the studio can deploy without starting from scratch",
+  "caseStudy-david-wheeler-psychology":
+    "a practice brand built for trust before the first session",
+  "caseStudy-three18-media": "a sharper story for a production company with the reel to back it",
+};
+
+const IMAGE_CAPTIONS = {
+  "caseStudy-copa":
+    "copa, off the shore · brand + identity · a beach bar that needed to feel like a place, not a logo",
+  "caseStudy-fdb":
+    "floare din banat · ecommerce · romanian craft, told properly for a uk audience",
+  "caseStudy-freelance-near-me":
+    "freelance near me · built in the studio · our own marketplace, our own medicine",
+};
+
+function generateDisciplines() {
+  const docs = [
+    {
+      _id: "discipline-brand",
+      _type: "discipline",
+      name: "brand + identity",
+      proposition: "the foundation everything else is built on.",
+      symptom:
+        "people meet the product before they get it. the name needs explaining. the pitch changes depending on who is giving it. you are about to raise, launch, or enter a market and the current brand will not stretch.",
+      craft:
+        "we decide who you are before we make anything visible. positioning, naming, the visual world, in that order, because design that starts before the thinking is decoration. sarah leads it, and she will tell you on the first call if you do not need it.",
+      outcome:
+        "you stop explaining and start being recognised. the pitch is one sentence everyone gives the same way. price conversations get easier, because brands people believe in do not compete on cost.",
+      deliverables: [
+        "brand strategy and positioning",
+        "naming",
+        "logo and identity system",
+        "typography and colour",
+        "brand guidelines",
+      ],
+      relatedProducts: [
+        { _type: "reference", _ref: "product-launch-kit", _key: "p1" },
+        { _type: "reference", _ref: "product-rebrand", _key: "p2" },
+        { _type: "reference", _ref: "product-brand-check", _key: "p3" },
+      ],
+      order: 1,
+    },
+    {
+      _id: "discipline-voice",
+      _type: "discipline",
+      name: "voice + messaging",
+      proposition: "how the brand sounds, everywhere.",
+      symptom:
+        "you look fine and sound like everyone. the website, the deck and the founder all describe the company differently. your copy is technically accurate and nobody remembers a word of it.",
+      craft:
+        "we define how you talk. the words you own, the words you ban, the messaging hierarchy that decides what leads and what supports. marcus runs it; everything he writes has to survive being said out loud.",
+      outcome:
+        "every page, post and pitch starts reinforcing the same idea instead of reinventing it. content gets faster and cheaper to make because nobody is guessing anymore. and you become quotable, which is where pr starts working.",
+      deliverables: [
+        "tone of voice",
+        "messaging framework",
+        "brand and product narrative",
+        "campaign and website copy",
+      ],
+      relatedProducts: [
+        { _type: "reference", _ref: "product-story", _key: "p1" },
+        { _type: "reference", _ref: "product-launch-kit", _key: "p2" },
+      ],
+      order: 2,
+    },
+    {
+      _id: "discipline-pr",
+      _type: "discipline",
+      name: "pr + communications",
+      proposition: "getting the right people to care.",
+      symptom:
+        'you are launching into silence. competitors with worse products get the coverage. the founder has real opinions and zero footprint. "we should do pr" has been in the meeting notes for a year.',
+      craft:
+        "angle first, always. we find the story a journalist actually wants, identify the handful of writers who cover your space, and pitch like humans. george leads it. one right journalist beats a hundred wrong ones, and we have the inbox receipts.",
+      outcome:
+        "coverage that moves the business, not mentions that decorate a slide. a founder people quote. and a launch that lands on a warmed audience instead of a cold one.",
+      deliverables: [
+        "pr and media strategy",
+        "press materials",
+        "targeted outreach",
+        "thought leadership",
+        "launch campaigns",
+      ],
+      relatedProducts: [
+        { _type: "reference", _ref: "product-press-launch", _key: "p1" },
+        { _type: "reference", _ref: "product-motion-plus", _key: "p2" },
+      ],
+      order: 3,
+    },
+    {
+      _id: "discipline-product",
+      _type: "discipline",
+      name: "product, web + growth",
+      proposition: "turning attention into revenue.",
+      symptom:
+        'the brand work stops at a pdf and the website undoes it. traffic arrives and does not convert. you are paying for clicks a stronger brand would get free. agencies keep reporting activity instead of outcomes.',
+      craft:
+        'we build the thing. sites, stores, products, landing pages, and the campaigns that fill them, every campaign with one primary metric so "did it work" has an answer. melissa ships it. this is the part most brand studios cannot do, and the reason the rest of our work survives contact with reality.',
+      outcome:
+        "the site converts because the message and the design were made together. acquisition gets cheaper as the brand compounds. and you get one accountable answer, monthly, on what moved.",
+      deliverables: [
+        "websites and storefronts",
+        "product and ux",
+        "growth and performance marketing",
+        "seo and email",
+        "analytics and reporting",
+      ],
+      relatedProducts: [
+        { _type: "reference", _ref: "product-storefront", _key: "p1" },
+        { _type: "reference", _ref: "product-launch-kit", _key: "p2" },
+        { _type: "reference", _ref: "product-motion", _key: "p3" },
+      ],
+      order: 4,
+    },
+  ];
+  writeNdjson("disciplines.ndjson", docs);
+  console.log(`  disciplines.ndjson (${docs.length} disciplines)`);
+}
+
 function generateCaseStudies() {
   const existing = fs
     .readFileSync(path.join(seedDir, "case-studies.ndjson"), "utf8")
@@ -535,6 +662,8 @@ function generateCaseStudies() {
     ...cs,
     projectType: cs.projectType ?? "client",
     thinking: cs.thinking ?? cs.challenge,
+    outcomeLine: cs.outcomeLine ?? OUTCOME_LINES[cs._id],
+    imageCaption: cs.imageCaption ?? IMAGE_CAPTIONS[cs._id],
   }));
 
   if (withType.find((c) => c._id === "caseStudy-flipster")) {
@@ -708,6 +837,7 @@ function main() {
   generateAbout();
   generateNowBuilding();
   generateProducts();
+  generateDisciplines();
   generateCaseStudies();
   generatePosts();
   generateTestimonials();

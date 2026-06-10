@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H2, Section } from "@/components/bmkrs/surfaces";
+import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
@@ -46,7 +47,11 @@ function ProjectGrid({
                 : (project.sector ?? project.category)}
             </span>
             <h3 className="display text-xl">{project.title}</h3>
-            <p>{project.positioning ?? project.tagline}</p>
+            {project.outcomeLine ? (
+              <p className="mono mt-2 text-meta text-muted">{project.outcomeLine}</p>
+            ) : (
+              <p>{project.positioning ?? project.tagline}</p>
+            )}
           </div>
         </Link>
       ))}
@@ -84,10 +89,7 @@ export default async function WorkPage() {
           </h1>
         </Reveal>
         <Reveal delay={2}>
-          <p className="lead mt-7">
-            selected projects across branding, product and digital, including the products we build
-            ourselves.
-          </p>
+          <p className="lead mt-7 max-w-[60ch]">{workPageIntro}</p>
         </Reveal>
       </PageHeroSplit>
 
@@ -99,13 +101,28 @@ export default async function WorkPage() {
       </Section>
 
       <Section theme="paper">
-        <H2 theme="paper">built in the studio</H2>
-        <p className="lead mt-3 max-w-[52ch]">
-          we are builders, so we build our own. these are bmkrs products: proof we live with the
-          consequences of our own advice.
+        <Kicker theme="paper">{workHowProjectRuns.kicker}</Kicker>
+        <H2 theme="paper">{workHowProjectRuns.headline}</H2>
+        <div className="mt-8 max-w-[65ch] space-y-6 text-lg leading-relaxed">
+          {workHowProjectRuns.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+          ))}
+        </div>
+        <p className="mono mt-8 text-meta">
+          <Link href="/services" className="underline decoration-1 underline-offset-4">
+            {workHowProjectRuns.footnote}
+          </Link>
         </p>
-        <div className="mt-8">
-          <ProjectGrid projects={studioWork} />
+
+        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
+          <H2 theme="paper">built in the studio</H2>
+          <p className="lead mt-3 max-w-[52ch]">
+            we are builders, so we build our own. these are bmkrs products: proof we live with the
+            consequences of our own advice.
+          </p>
+          <div className="mt-8">
+            <ProjectGrid projects={studioWork} />
+          </div>
         </div>
       </Section>
 

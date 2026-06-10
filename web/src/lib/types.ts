@@ -71,6 +71,12 @@ export type Discipline = {
   name: string;
   proposition: string;
   body?: string;
+  /** v2: symptom register */
+  symptom?: string;
+  /** v2: craft register */
+  craft?: string;
+  /** v2: outcome register */
+  outcome?: string;
   deliverables?: string[];
   powers?: DisciplinePower[];
   imageUrl?: string;
@@ -278,6 +284,8 @@ export type Project = {
   order: number;
   featured?: boolean;
   projectType?: "client" | "studio";
+  outcomeLine?: string;
+  imageCaption?: string;
   externalUrl?: string;
 };
 
@@ -353,7 +361,7 @@ export type HomeHero = {
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   /** Optional stills for the hero collage (falls back to featured work) */
-  collage?: { src: string; alt: string }[];
+  collage?: { src: string; alt: string; caption?: string }[];
 };
 
 export type HomeContent = {

@@ -58,8 +58,17 @@ export const fallbackHome: HomeContent = {
     primaryCta: { label: "see our work", href: "/work" },
     secondaryCta: { label: "start a project", href: "/contact" },
     collage: [
-      { src: "/work/images/optimized/fdb-2-hero.jpg", alt: "floare din banat" },
-      { src: "/images/optimized/copa-hero.jpg", alt: "copa, off the shore" },
+      {
+        src: "/images/optimized/copa-hero.jpg",
+        alt: "copa, off the shore",
+        caption:
+          "copa, off the shore · brand + identity · a beach bar that needed to feel like a place, not a logo",
+      },
+      {
+        src: "/work/images/optimized/fdb-2-hero.jpg",
+        alt: "floare din banat",
+        caption: "floare din banat · ecommerce · romanian craft, told properly for a uk audience",
+      },
       { src: "/images/optimized/carter-hero.jpg", alt: "carter mcgreggor" },
       { src: "/images/optimized/smoothies-hero.jpg", alt: "smoothies" },
       { src: "/work/images/optimized/flipster-hero.jpg", alt: "flipster" },

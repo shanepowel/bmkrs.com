@@ -9,6 +9,7 @@ import { getDisciplines, getProducts } from "@/lib/content";
 import { pageHeroImages, productImageBySlug } from "@/lib/content/image-fallbacks";
 import type { Product, ProductTier } from "@/lib/types";
 import { pageMetadata } from "@/lib/seo";
+import { servicesFaq } from "@/lib/content/expansion-v2";
 import { breadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = pageMetadata(
@@ -148,6 +149,19 @@ export default async function ServicesPage() {
             </div>
           </div>
         ))}
+      </Section>
+
+      <Section theme="ink" tight>
+        <Kicker theme="ink">questions</Kicker>
+        <H2 theme="ink">before you start.</H2>
+        <dl className="mt-8 max-w-[65ch] space-y-8">
+          {servicesFaq.map((item) => (
+            <div key={item.question} className="border-t border-line pt-6">
+              <dt className="text-h3 font-medium">{item.question}</dt>
+              <dd className="lead mt-3">{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
       </Section>
 
       <Section theme="orange">

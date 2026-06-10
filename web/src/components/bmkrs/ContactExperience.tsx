@@ -4,6 +4,10 @@ import { useState } from "react";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
 import { Kicker } from "@/components/bmkrs/Kicker";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
+import {
+  contactBudgetReassurance,
+  contactWhatHappensNext,
+} from "@/lib/content/expansion-v2";
 
 const SERVICE_OPTIONS = [
   { value: "branding", label: "branding" },
@@ -131,6 +135,18 @@ export function ContactExperience({
               pressEmail={pressEmail}
               className="contact-emails contact-emails--desktop"
             />
+
+            <div className="mt-[var(--space-block)]">
+              <Kicker>what happens next</Kicker>
+              <ul className="mt-4 list-none space-y-0 p-0">
+                {contactWhatHappensNext.map((step) => (
+                  <li key={step.number} className="contact-email-row">
+                    <p className="mono text-meta text-accent">{step.number} →</p>
+                    <p className="mt-2 max-w-[48ch] text-[var(--bmkrs-off-white)]/90">{step.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div className="contact-form-col contact-form-panel">
@@ -178,6 +194,7 @@ export function ContactExperience({
 
                 <label className="cx-field cx-full">
                   <span className="contact-field-label">budget, roughly (optional)</span>
+                  <p className="mono text-meta text-[#5f5e5a]">{contactBudgetReassurance}</p>
                   <select name="budget" className="cx-input cx-select" defaultValue="">
                     <option value="">select a range</option>
                     {BUDGET_OPTIONS.map((o) => (
