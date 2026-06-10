@@ -129,6 +129,18 @@ export const fallbackHome: HomeContent = {
     lead: "new or established, niche or mainstream. we work with brands from launch to scale. if you're building something worth talking about, we make sure people talk about it.",
   },
   clientMarquee: ["floare din banat", "copa", "carter mcgreggor", "flipster"],
+  studioVentures: [
+    {
+      name: "podcast studio london",
+      descriptor: "content and editorial",
+      href: "https://podcaststudiolondon.co.uk",
+    },
+    {
+      name: "freelance near me",
+      descriptor: "local-first marketplace",
+      href: "https://freelancenearme.com",
+    },
+  ],
   motionTeaser: {
     eyebrow: "ongoing partnership",
     heading: "Always in motion.",

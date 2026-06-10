@@ -335,6 +335,7 @@ export type HomeContent = {
     lead: string;
   };
   clientMarquee: string[];
+  studioVentures?: { name: string; descriptor: string; href: string }[];
   motionTeaser: {
     eyebrow: string;
     heading: string;

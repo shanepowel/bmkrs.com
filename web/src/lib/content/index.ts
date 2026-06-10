@@ -11,10 +11,16 @@ import { fallbackJournalArticles } from "./journal-fallback";
 import {
   fallbackAboutPage,
   fallbackDisciplines,
-  fallbackPosts,
   fallbackProducts,
   fallbackTeam,
 } from "./offering-fallback";
+import {
+  filterPublishedPosts,
+  isJournalPublished,
+  journalSlugRedirects,
+} from "./journal-publish";
+import { getMarkdownJournalPosts } from "./journal-markdown";
+import { fallbackPosts as legacyJournalPosts } from "./journal-posts-fallback";
 import {
   mergeDisciplineImage,
   mergePostCover,
@@ -214,6 +220,19 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   return fallbackTeam.map(mergeTeamPhoto);
 }
 
+function allFallbackJournalPosts(): JournalPost[] {
+  const fromMarkdown = getMarkdownJournalPosts();
+  const mdSlugs = new Set(fromMarkdown.map((p) => p.slug));
+  const legacy = legacyJournalPosts.filter(
+    (p) => !mdSlugs.has(p.slug) && !journalSlugRedirects[p.slug],
+  );
+  return [...fromMarkdown, ...legacy].map(mergePostCover);
+}
+
+function publishedJournalPosts(): JournalPost[] {
+  return filterPublishedPosts(allFallbackJournalPosts());
+}
+
 export async function getJournalIndex(): Promise<{
   featured: JournalPost | null;
   posts: JournalPost[];
@@ -222,27 +241,40 @@ export async function getJournalIndex(): Promise<{
     journalIndexQuery,
   );
   if (data?.posts?.length || data?.featured) {
+    const featured = data.featured ? mergePostCover(data.featured) : null;
+    const posts = (data.posts ?? []).map(mergePostCover);
     return {
-      featured: data.featured ? mergePostCover(data.featured) : null,
-      posts: (data.posts ?? []).map(mergePostCover),
+      featured: featured && isJournalPublished(featured.publishedAt) ? featured : null,
+      posts: filterPublishedPosts(posts),
     };
   }
-  const featured = fallbackPosts.find((p) => p.featured) ?? null;
-  const posts = fallbackPosts.filter((p) => !p.featured);
+  const published = publishedJournalPosts();
+  const featured = published.find((p) => p.featured) ?? null;
+  const posts = published.filter((p) => !p.featured);
   return { featured, posts };
 }
 
 export async function getPost(slug: string): Promise<JournalPost | null> {
+  const redirect = journalSlugRedirects[slug];
+  if (redirect) {
+    return getPost(redirect);
+  }
+
   const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
-  if (data) return mergePostCover(data);
-  const fb = fallbackPosts.find((p) => p.slug === slug);
-  return fb ? mergePostCover(fb) : null;
+  if (data) {
+    const merged = mergePostCover(data);
+    return isJournalPublished(merged.publishedAt) ? merged : null;
+  }
+
+  const fb = allFallbackJournalPosts().find((p) => p.slug === slug);
+  if (!fb || !isJournalPublished(fb.publishedAt)) return null;
+  return mergePostCover(fb);
 }
 
 export async function getPostSlugs(): Promise<string[]> {
   const slugs = await fetchSanity<string[]>(postSlugsQuery);
   if (slugs?.length) return slugs;
-  return fallbackPosts.map((p) => p.slug);
+  return publishedJournalPosts().map((p) => p.slug);
 }
 
 function normalizeProject(project: Project): Project {

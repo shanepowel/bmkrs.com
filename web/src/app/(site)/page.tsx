@@ -267,6 +267,34 @@ export default async function HomePage() {
       </div>
       <Marquee items={home.clientMarquee} dark duration="30s" />
 
+      {home.studioVentures?.length ? (
+        <section className="section-pad pt-0">
+          <div className="wrap">
+            <Reveal>
+              <span className="eyebrow">built in the studio</span>
+            </Reveal>
+            <p className="muted mt-3 max-w-[52ch] text-[15px]">
+              our own ventures, proof that we ship products as well as brands for clients.
+            </p>
+            <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {home.studioVentures.map((v) => (
+                <li key={v.href}>
+                  <a
+                    href={v.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-col rounded-[var(--radius)] border-2 border-ink px-5 py-4 transition-colors hover:border-accent"
+                  >
+                    <span className="font-display text-lg font-semibold">{v.name}</span>
+                    <span className="text-sm text-muted">{v.descriptor}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       <section className="section-pad block-mint">
         <div className="wrap">
           <div className="sec-head">

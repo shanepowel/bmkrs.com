@@ -6,8 +6,8 @@
     "node": ">=20.9"
   },
   "scripts": {
-    "dev": "node scripts/sync-assets.js && next dev",
-    "prebuild": "node scripts/sync-assets.js && node scripts/optimize-images.js",
+    "dev": "node scripts/sync-assets.js && node scripts/compile-journal.js && next dev",
+    "prebuild": "node scripts/sync-assets.js && node scripts/optimize-images.js && node scripts/compile-journal.js",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",

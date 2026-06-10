@@ -6,6 +6,7 @@ import { ArticleBody } from "@/components/bmkrs/ArticleBody";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { PortableBody } from "@/components/bmkrs/PortableBody";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { AuthorBio } from "@/components/bmkrs/AuthorBio";
 import {
   getJournalArticle,
   getJournalArticles,
@@ -13,6 +14,7 @@ import {
   getPost,
   getPostSlugs,
 } from "@/lib/content";
+import { articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
 
@@ -47,12 +49,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const description = post.seo?.metaDescription ?? post.excerpt;
     const ogImage = post.seo?.ogImage ?? post.cover?.url;
     const ogUrl = ogImage?.startsWith("http") ? ogImage : ogImage ? `${siteUrl}${ogImage}` : undefined;
+    const images = ogUrl ? [{ url: ogUrl, width: 1200, height: 630, alt: post.title }] : undefined;
     return {
       title,
       description,
-      openGraph: ogUrl
-        ? { title, description, images: [{ url: ogUrl, width: 1200, height: 630, alt: post.title }] }
-        : { title, description },
+      alternates: { canonical: `${siteUrl}/journal/${post.slug}` },
+      openGraph: {
+        title,
+        description,
+        type: "article",
+        images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: ogUrl ? [ogUrl] : undefined,
+      },
     };
   }
   const article = await getJournalArticle(slug);
@@ -68,8 +81,21 @@ export default async function JournalArticlePage({ params }: Props) {
     const { posts } = await getJournalIndex();
     const others = posts.filter((p) => p.slug !== slug).slice(0, 2);
 
+    const jsonLd = [
+      articleSchemaFromPost(post),
+      breadcrumbSchema([
+        { name: "home", path: "/" },
+        { name: "journal", path: "/journal" },
+        { name: post.title, path: `/journal/${post.slug}` },
+      ]),
+    ];
+
     return (
       <article className="page-top px-[var(--pad)] pb-16">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="wrap max-w-[900px]">
           <Link
             href="/journal"
@@ -103,6 +129,8 @@ export default async function JournalArticlePage({ params }: Props) {
             </div>
           )}
           <PortableBody blocks={post.body} />
+
+          {post.author?.name ? <AuthorBio name={post.author.name} /> : null}
 
           {(post.relatedProduct || post.relatedCaseStudy) && (
             <aside className="post-cta mt-14 border-t-2 border-[var(--line)] pt-10">

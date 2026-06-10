@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import { getSiteSettings } from "@/lib/content";
-import { organizationJsonLd } from "@/lib/seo";
+import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
@@ -74,8 +74,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
-  const jsonLd = organizationJsonLd(settings);
+  const jsonLd = organizationSchema();
 
   return (
     <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
