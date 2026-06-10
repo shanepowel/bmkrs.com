@@ -449,11 +449,18 @@ function generateCaseStudies() {
   const withType = existing.map((cs) => ({
     ...cs,
     projectType: cs.projectType ?? "client",
+    thinking: cs.thinking ?? cs.challenge,
   }));
 
   if (withType.find((c) => c._id === "caseStudy-flipster")) {
     const flip = withType.find((c) => c._id === "caseStudy-flipster");
     flip.featured = true;
+  }
+
+  const psl = withType.find((c) => c._id === "caseStudy-podcast-studio-london");
+  if (psl) {
+    psl.thinking = psl.thinking ?? psl.challenge;
+    psl.testimonial = { _type: "reference", _ref: "testimonial-psl" };
   }
 
   const extra = [
@@ -472,16 +479,67 @@ function generateCaseStudies() {
       featured: true,
       brief:
         "podcast studio london runs premium recording spaces for founders, brands and broadcasters. they needed a brand and digital presence that matched the quality of the studios.",
-      challenge:
+      thinking:
         "strong physical product, weak digital first impression. prospective clients were booking on reputation and word of mouth alone.",
       whatWeDid:
         "brand positioning, visual identity, voice and a site built to convert browsing into booking conversations.",
       resultsNarrative:
         "a coherent brand across site, social and studio touchpoints, and a clearer path from discovery to enquiry.",
       results: [],
+      testimonial: { _type: "reference", _ref: "testimonial-psl" },
       seo: {
         metaTitle: "podcast studio london | bmkrs.",
         metaDescription: "brand, voice and site for a london podcast studio.",
+      },
+    },
+    {
+      _id: "caseStudy-david-wheeler-psychology",
+      _type: "caseStudy",
+      title: "david wheeler psychology",
+      slug: { _type: "slug", current: "david-wheeler-psychology" },
+      client: "david wheeler psychology",
+      positioning: "a clinical practice brand that earns trust before the first session.",
+      sector: "healthcare",
+      year: "2025",
+      services: ["brand + identity", "voice + messaging"],
+      projectType: "client",
+      order: 9,
+      featured: false,
+      brief:
+        "david wheeler psychology is building a private practice with a clear specialism and a reputation to protect. the work needed a brand that felt credible to referrers and calm to prospective clients.",
+      thinking:
+        "clinical brands fail when they look like generic wellness templates. the practice needed warmth without vagueness, and authority without coldness.",
+      whatWeDid:
+        "positioning, identity and voice for a practice still in launch. full case study copy and imagery to follow once the practice is live.",
+      results: [],
+      seo: {
+        metaTitle: "david wheeler psychology | bmkrs.",
+        metaDescription: "a clinical practice brand that earns trust before the first session.",
+      },
+    },
+    {
+      _id: "caseStudy-three18-media",
+      _type: "caseStudy",
+      title: "three18 media",
+      slug: { _type: "slug", current: "three18-media" },
+      client: "three18 media",
+      positioning: "a production company finding its voice in a crowded content market.",
+      sector: "media",
+      year: "2025",
+      services: ["brand + identity", "voice + messaging", "product, web + growth"],
+      projectType: "client",
+      order: 10,
+      featured: false,
+      brief:
+        "three18 media produces branded content for founders and growing companies. they needed a sharper story and a presence that matched the quality of the work in the reel.",
+      thinking:
+        "production companies often lead with gear and process. three18's edge is judgement and taste. the brand had to signal that before anyone pressed play.",
+      whatWeDid:
+        "brand positioning and messaging framework. visual identity and site work in progress. case study to be completed when the new site ships.",
+      results: [],
+      seo: {
+        metaTitle: "three18 media | bmkrs.",
+        metaDescription: "a production company finding its voice in a crowded content market.",
       },
     },
     {
