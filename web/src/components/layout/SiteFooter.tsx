@@ -29,7 +29,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
     <footer className="site-footer" data-surface="ink">
       <div className="site-footer__inner">
         <div className="site-footer__wordmark">
-          <Wordmark className="wordmark wordmark--footer-display" variant="primary-light" />
+          <Wordmark className="wordmark wordmark--footer-display" variant="primary-dark" />
         </div>
 
         <div className="site-footer__grid">
