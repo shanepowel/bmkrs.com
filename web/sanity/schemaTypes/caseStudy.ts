@@ -26,6 +26,18 @@ export const caseStudy = defineType({
       type: "string",
       validation: (r) => r.required().max(120),
     }),
+    defineField({
+      name: "outcomeLine",
+      title: "Card outcome line",
+      description: "One line under the title on the work index. A real change or number, never a deliverable list.",
+      type: "string",
+    }),
+    defineField({
+      name: "imageCaption",
+      title: "Image caption",
+      description: "Mono caption: name · discipline · one human line",
+      type: "string",
+    }),
     defineField({ name: "sector", title: "Sector", type: "string" }),
     defineField({ name: "year", title: "Year", type: "string" }),
     defineField({

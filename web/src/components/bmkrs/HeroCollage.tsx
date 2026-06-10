@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { FullBleed } from "@/components/bmkrs/FullBleed";
+import { ImageCaption } from "@/components/bmkrs/ImageCaption";
 
 type HeroCollageProps = {
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; caption?: string }[];
 };
 
 export function HeroCollage({ images }: HeroCollageProps) {
@@ -31,6 +32,7 @@ export function HeroCollage({ images }: HeroCollageProps) {
               fetchPriority={i === 0 ? "high" : "auto"}
               loading={i < 2 ? "eager" : "lazy"}
             />
+            {item.caption ? <ImageCaption>{item.caption}</ImageCaption> : null}
           </div>
         ))}
       </div>

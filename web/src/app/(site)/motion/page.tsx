@@ -6,6 +6,7 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { motionMonthInMotion, motionSignals } from "@/lib/content/expansion-v2";
 import { getMotionTiers } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
@@ -71,6 +72,17 @@ export default async function MotionPage() {
         </Reveal>
       </PageHeroSplit>
 
+      <Section theme="ink" tight>
+        <Kicker theme="ink">you might need this if</Kicker>
+        <ul className="mt-6 list-none space-y-0 p-0">
+          {motionSignals.map((signal) => (
+            <li key={signal} className="border-t border-line py-4">
+              <p className="mono text-meta leading-relaxed">· {signal}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
       <MotionShowcase />
 
       <Section theme="ink">
@@ -123,8 +135,18 @@ export default async function MotionPage() {
       </Section>
 
       <Section theme="paper" className="scroll-mt-24" id="tiers">
-        <Kicker theme="paper">the tiers</Kicker>
-        <H2 theme="paper">grow with us.</H2>
+        <Kicker theme="paper">{motionMonthInMotion.kicker}</Kicker>
+        <H2 theme="paper">{motionMonthInMotion.headline}</H2>
+        <div className="mt-8 max-w-[65ch] space-y-5 text-lg leading-relaxed">
+          {motionMonthInMotion.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 28)}>{paragraph}</p>
+          ))}
+        </div>
+
+        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
+          <Kicker theme="paper">the tiers</Kicker>
+          <H2 theme="paper">grow with us.</H2>
+        </div>
         <div className="motion-tier-grid mt-10">
           {tiers.map((tier) => (
             <article key={tier.slug} className="motion-tier-card">

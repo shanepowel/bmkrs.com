@@ -52,6 +52,8 @@ const caseStudyFields = `
   title,
   client,
   positioning,
+  outcomeLine,
+  imageCaption,
   sector,
   year,
   services,
@@ -149,7 +151,7 @@ export const homePillarsQuery = `*[_type == "homePillar"] | order(order asc){
 }`;
 
 export const disciplinesQuery = `*[_type == "discipline"] | order(order asc){
-  name, proposition, body, deliverables,
+  name, proposition, body, symptom, craft, outcome, deliverables,
   "powers": relatedProducts[]->{ name, "slug": slug.current, tier }
 }`;
 

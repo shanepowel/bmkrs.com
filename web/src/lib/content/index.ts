@@ -34,6 +34,7 @@ import {
   mergeProjectImages,
   mergeTeamPhoto,
 } from "./image-fallbacks";
+import { disciplineExpansion, outcomeLineForSlug } from "./expansion-v2";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
@@ -186,7 +187,16 @@ export async function getProducts(): Promise<Product[]> {
 export async function getDisciplines(): Promise<Discipline[]> {
   const data = await fetchSanity<Discipline[]>(disciplinesQuery);
   const list = data?.length ? data : fallbackDisciplines;
-  return list.map(mergeDisciplineImage);
+  return list.map((d) => {
+    const expansion = disciplineExpansion[d.name];
+    const merged = {
+      ...d,
+      symptom: d.symptom ?? expansion?.symptom,
+      craft: d.craft ?? expansion?.craft,
+      outcome: d.outcome ?? expansion?.outcome,
+    };
+    return mergeDisciplineImage(merged);
+  });
 }
 
 export async function getMotionTiers(): Promise<Product[]> {
@@ -452,6 +462,7 @@ function normalizeProject(project: Project): Project {
   return mergeProjectImages({
     ...project,
     positioning: project.positioning || project.tagline,
+    outcomeLine: outcomeLineForSlug(project.slug, project.outcomeLine),
     category,
     serviceTags: services,
     brief: project.brief || project.context,

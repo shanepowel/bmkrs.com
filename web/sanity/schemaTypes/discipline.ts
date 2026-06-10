@@ -15,6 +15,24 @@ export const discipline = defineType({
     }),
     defineField({ name: "body", title: "Body", type: "text", rows: 3 }),
     defineField({
+      name: "symptom",
+      title: "You might need this if",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "craft",
+      title: "What we do about it",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "outcome",
+      title: "What changes",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
       name: "deliverables",
       title: "Deliverables",
       type: "array",
