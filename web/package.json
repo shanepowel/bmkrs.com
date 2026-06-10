@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "node scripts/sync-assets.js && node scripts/compile-journal.js && next dev",
-    "prebuild": "node scripts/sync-assets.js && node scripts/optimize-images.js && node scripts/compile-journal.js",
+    "prebuild": "node scripts/sync-assets.js && node scripts/generate-brand-icons.js && node scripts/optimize-images.js && node scripts/compile-journal.js",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",

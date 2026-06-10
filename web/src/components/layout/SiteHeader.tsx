@@ -41,7 +41,7 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="wordmark" aria-label="bmkrs, home">
-          <Wordmark />
+          <Wordmark variant="primary-dark" />
         </Link>
 
         <nav className="site-nav" aria-label="primary">

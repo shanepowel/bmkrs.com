@@ -1,3 +1,4 @@
+import { BRAND_AVATAR } from "@/lib/brand";
 import type { JournalPost } from "@/lib/types";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
@@ -11,7 +12,7 @@ export function organizationSchema() {
     name: "bmkrs.",
     legalName: "b makers ltd",
     url: SITE,
-    logo: `${SITE}/images/bmkrs_white_instapic.png`,
+    logo: `${SITE}${BRAND_AVATAR}`,
     description:
       "bmkrs. is a brand company run by builders. brand and identity, voice and messaging, pr and communications, and the product and growth to back it up.",
     address: {
@@ -41,7 +42,7 @@ export function articleSchema(post: {
   image?: string;
 }) {
   const date = post.publishedAt.slice(0, 10);
-  const image = post.image?.startsWith("http") ? post.image : post.image ? `${SITE}${post.image}` : `${SITE}/images/bmkrs_white_instapic.png`;
+  const image = post.image?.startsWith("http") ? post.image : post.image ? `${SITE}${post.image}` : `${SITE}${BRAND_AVATAR}`;
 
   return {
     "@context": "https://schema.org",

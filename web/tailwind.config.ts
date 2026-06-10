@@ -11,7 +11,7 @@ const config: Config = {
         bg: "#FBF9F5",
         ink: "#181613",
         muted: "rgb(180 178 169)",
-        accent: "#e4502a",
+        accent: "#FF4D00",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

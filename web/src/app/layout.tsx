@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { cabinet, fragment } from "@/app/fonts";
+import { BRAND_AVATAR } from "@/lib/brand";
 import { getSiteSettings } from "@/lib/content";
 import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
@@ -32,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: settings.siteName,
       images: [
         {
-          url: "/images/bmkrs_white_instapic.png",
+          url: BRAND_AVATAR,
           width: 512,
           height: 512,
           alt: "bmkrs. a brand company run by builders.",
@@ -43,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "bmkrs. a brand company run by builders.",
       description: settings.description,
-      images: ["/images/bmkrs_white_instapic.png"],
+      images: [BRAND_AVATAR],
     },
     icons: {
       icon: [

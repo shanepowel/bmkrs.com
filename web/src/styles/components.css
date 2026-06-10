@@ -286,11 +286,14 @@
   padding: 0.85rem var(--bmkrs-space-4);
 }
 .site-header .wordmark {
-  font-family: var(--bmkrs-font-display);
-  font-size: var(--bmkrs-step-1);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--bmkrs-paper);
+  display: inline-flex;
+  align-items: center;
+}
+.site-header .wordmark-img {
+  display: block;
+  height: clamp(1.25rem, 3vw, 1.65rem);
+  width: auto;
+  min-width: 6rem;
 }
 .site-nav {
   display: flex;
@@ -356,9 +359,14 @@
   gap: var(--bmkrs-space-5);
 }
 .footer-brand .wordmark {
-  font-family: var(--bmkrs-font-display);
-  font-size: var(--bmkrs-step-2);
+  display: inline-flex;
+}
+.footer-brand .wordmark-img,
+.wordmark--footer {
   display: block;
+  height: clamp(1.5rem, 4vw, 2rem);
+  width: auto;
+  min-width: 6rem;
 }
 .footer-thesis {
   font-family: var(--bmkrs-font-display);

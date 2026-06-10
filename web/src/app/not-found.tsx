@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <main className="grid min-h-[70vh] place-items-center px-6 py-20 text-center">
       <div className="max-w-[480px]">
-        <Wordmark className="wordmark mx-auto" />
+        <Wordmark className="wordmark mx-auto" variant="primary-light" />
         <p className="eyebrow mt-8 justify-center">404</p>
         <h1 className="display mt-4 text-[clamp(2rem,6vw,3.5rem)] font-bold">
           this page did not ship.

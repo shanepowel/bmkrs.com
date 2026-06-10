@@ -85,10 +85,11 @@ if (fs.existsSync(faviconSrc)) {
   copied += 1;
 }
 
+const brandIconSvg = path.join(publicRoot, "brand", "bmkrs-icon-dark.svg");
 const logoSrc = path.join(publicRoot, "images", "blacklogo.png");
 const iconDest = path.join(publicRoot, "icon.png");
 const appleDest = path.join(publicRoot, "apple-icon.png");
-if (fs.existsSync(logoSrc)) {
+if (!fs.existsSync(brandIconSvg) && fs.existsSync(logoSrc)) {
   try {
     execSync(`sips -z 32 32 "${logoSrc}" --out "${iconDest}"`, { stdio: "ignore" });
     execSync(`sips -z 180 180 "${logoSrc}" --out "${appleDest}"`, { stdio: "ignore" });

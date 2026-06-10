@@ -9,7 +9,7 @@
   --bg: var(--bmkrs-paper-bright, #fbf9f5);
   --ink: var(--bmkrs-ink, #181613);
   --muted: var(--bmkrs-muted, rgb(180 178 169));
-  --accent: var(--bmkrs-accent, #e4502a);
+  --accent: var(--bmkrs-accent, #ff4d00);
   --line: rgba(24, 22, 19, 0.12);
   --radius: 24px;
   --maxw: 90rem;

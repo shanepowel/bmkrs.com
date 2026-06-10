@@ -16,7 +16,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
     <footer className="site-footer">
       <div className="site-footer-top">
         <div className="footer-brand">
-          <Wordmark className="wordmark" />
+          <Wordmark className="wordmark wordmark--footer" variant="primary-light" />
           <p className="muted">a brand company run by builders.</p>
           <p className="footer-thesis">the better-told brand wins. we make sure it&apos;s yours.</p>
         </div>
