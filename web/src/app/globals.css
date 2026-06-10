@@ -8,12 +8,12 @@
 :root {
   --bg: var(--bmkrs-paper-bright, #fbf9f5);
   --ink: var(--bmkrs-ink, #181613);
-  --muted: #7c766c;
+  --muted: var(--bmkrs-muted, rgb(180 178 169));
   --accent: var(--bmkrs-accent, #e4502a);
   --line: rgba(24, 22, 19, 0.12);
   --radius: 24px;
-  --maxw: 1320px;
-  --pad: clamp(16px, 4vw, 84px);
+  --maxw: 90rem;
+  --pad: clamp(1rem, 4vw, var(--bmkrs-gutter, 1.5rem));
   --page-top: max(0px, env(safe-area-inset-top, 0px));
   --page-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
 }
@@ -44,8 +44,8 @@ html {
 body {
   color: var(--ink);
   background: var(--bg);
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 17px;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, var(--text-body));
   line-height: 1.5;
   letter-spacing: -0.005em;
   text-transform: lowercase;
@@ -62,11 +62,119 @@ body {
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-[1320px];
+    @apply mx-auto w-full max-w-site;
   }
 
   .section-pad {
-    padding: clamp(48px, 10vw, 150px) var(--pad);
+    padding-block: var(--space-section);
+    padding-inline: var(--pad);
+  }
+
+  .site-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--bmkrs-gutter);
+  }
+
+  .site-span-9 {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1024px) {
+    .site-span-9 {
+      grid-column: 1 / 10;
+    }
+
+    .site-span-cta {
+      grid-column: 10 / -1;
+      align-self: end;
+      justify-self: end;
+    }
+  }
+
+  .kicker,
+  .eyebrow {
+    @apply mb-0 font-mono text-meta font-normal text-accent;
+    text-transform: lowercase;
+    letter-spacing: var(--tracking-kicker);
+  }
+
+  .section-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  .section-rule--dark {
+    border-top-color: var(--bmkrs-rule-on-ink);
+  }
+
+  .full-bleed {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
+
+  .full-bleed--21-9 {
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+  }
+
+  .full-bleed--4-3 {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .ruled-grid {
+    display: grid;
+    gap: var(--bmkrs-gutter);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ruled-grid--2 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .ruled-grid--3 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .ruled-grid--4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .ruled-grid__item {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+  }
+
+  .ruled-grid--dark .ruled-grid__item {
+    border-top-color: var(--bmkrs-rule-on-ink);
+  }
+
+  .mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+
+  .text-hero {
+    font-size: var(--text-hero);
+    line-height: var(--leading-hero);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .text-h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .cluster-tight > * + * {
+    margin-top: var(--space-tight);
+  }
+
+  .measure {
+    max-width: 65ch;
   }
 
   .page-top {
@@ -105,11 +213,6 @@ body {
     @apply max-w-[340px] shrink-0;
   }
 
-  .eyebrow {
-    @apply mb-6 inline-flex items-center gap-2.5 text-[11px] font-semibold text-accent;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
 
   .section-label {
     text-transform: uppercase;
@@ -123,14 +226,10 @@ body {
     font-size: 11px;
   }
 
-  .eyebrow::before {
-    content: "";
-    @apply h-[3px] w-[22px] rounded-sm bg-accent;
-  }
-
   .display {
-    font-family: var(--font-display), sans-serif;
-    @apply font-semibold tracking-[-0.04em] leading-[0.95];
+    font-family: var(--font-sans), system-ui, sans-serif;
+    @apply font-medium;
+    letter-spacing: var(--tracking-display);
   }
 
   .accent-text {
@@ -138,7 +237,8 @@ body {
   }
 
   .lead {
-    @apply text-[clamp(17px,2vw,21px)] text-muted max-w-[580px];
+    font-size: var(--text-body-lg);
+    @apply text-muted max-w-[65ch];
   }
 
   .block-peach {
@@ -158,7 +258,7 @@ body {
   }
 
   .btn-bmkrs {
-    @apply inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full px-6 py-3.5 font-display text-base font-semibold transition touch-manipulation;
+    @apply inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full px-6 py-3.5 font-sans text-base font-medium transition touch-manipulation;
   }
 
   .btn-primary {

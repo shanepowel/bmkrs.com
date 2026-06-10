@@ -52,16 +52,23 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           </div>
           <div>
             <span className="eyebrow">say hello</span>
-            <ul role="list">
+            <ul role="list" className="footer-emails">
               <li>
-                <a href={`mailto:${general}`}>{general}</a>
+                <a className="mono" href={`mailto:${general}`}>
+                  {general}
+                </a>
               </li>
               <li>
-                <a href={`mailto:${press}`}>{press}</a> <span className="muted">(press)</span>
+                <a className="mono" href={`mailto:${press}`}>
+                  {press}
+                </a>{" "}
+                <span className="muted">(press)</span>
               </li>
               {network ? (
                 <li>
-                  <a href={`mailto:${network}`}>{network}</a>{" "}
+                  <a className="mono" href={`mailto:${network}`}>
+                    {network}
+                  </a>{" "}
                   <span className="muted">(network)</span>
                 </li>
               ) : null}
@@ -83,7 +90,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
       <div className="site-footer-bottom">
         <p className="muted">london, and wherever you are.</p>
-        <p className="muted footer-reg">{reg}</p>
+        <p className="mono muted footer-reg text-meta">{reg}</p>
         <p className="muted">
           © {year} {settings.companyName ?? "b makers ltd"}. they say no one reads the footer. hi.
         </p>

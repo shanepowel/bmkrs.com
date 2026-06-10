@@ -1,24 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import { cabinet, fragment } from "@/app/fonts";
 import { getSiteSettings } from "@/lib/content";
 import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
-
-const display = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const body = Hanken_Grotesk({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -77,8 +63,8 @@ export default async function RootLayout({
   const jsonLd = organizationSchema();
 
   return (
-    <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
-      <body className="min-h-screen">
+    <html lang="en-GB" className={`${cabinet.variable} ${fragment.variable}`}>
+      <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

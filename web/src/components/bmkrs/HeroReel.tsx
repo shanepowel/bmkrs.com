@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
 
 export type HeroReelProps = {
@@ -52,30 +53,34 @@ export function HeroReel({
       </div>
 
       <div className="hero-content wrap">
-        <Reveal>
-          <p className="eyebrow text-[var(--bmkrs-paper)]">{eyebrow}</p>
-        </Reveal>
-        <Reveal delay={1}>
-          <h1 className="display mt-4 max-w-[22ch] text-[clamp(2.25rem,9vw,5.75rem)] font-bold leading-[0.95] text-[var(--bmkrs-paper)]">
-            {headline}
-          </h1>
-        </Reveal>
-        <Reveal delay={2}>
-          <p className="lead mt-6 max-w-[520px] text-[var(--bmkrs-paper)]/85">{sub}</p>
-        </Reveal>
-        <Reveal delay={3}>
-          <div className="hero-cta flex flex-wrap items-center gap-4">
-            <Link href={primaryCta.href} className="btn-primary">
-              {primaryCta.label} <ArrowIcon />
-            </Link>
-            <Link
-              href={secondaryCta.href}
-              className="font-semibold text-[var(--bmkrs-paper)] hover:text-accent"
-            >
-              {secondaryCta.label}
-            </Link>
+        <div className="site-grid items-end">
+          <div className="site-span-9 cluster-tight">
+            <Reveal>
+              <Kicker className="text-[var(--bmkrs-off-white)]">{eyebrow}</Kicker>
+            </Reveal>
+            <Reveal delay={1}>
+              <h1 className="display text-hero font-medium text-[var(--bmkrs-off-white)]">
+                {headline}
+              </h1>
+            </Reveal>
+            <Reveal delay={2}>
+              <p className="lead text-[var(--bmkrs-off-white)]/90">{sub}</p>
+            </Reveal>
           </div>
-        </Reveal>
+          <Reveal delay={3} className="site-span-cta mt-[var(--space-tight)] lg:mt-0">
+            <div className="hero-cta flex flex-wrap items-center gap-4 lg:justify-end">
+              <Link href={primaryCta.href} className="btn-primary">
+                {primaryCta.label} <ArrowIcon />
+              </Link>
+              <Link
+                href={secondaryCta.href}
+                className="font-medium text-[var(--bmkrs-off-white)] transition-colors hover:text-accent"
+              >
+                {secondaryCta.label}
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

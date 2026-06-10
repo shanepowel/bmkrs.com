@@ -255,8 +255,12 @@
 .process-step h3 { font-family: var(--bmkrs-font-display); }
 
 /* testimonials: lead quote */
-.testimonial--lead { border-left: none; margin: 0; padding-left: 0; }
-.testimonial--lead blockquote { max-width: 28ch; }
+.testimonial--lead {
+  border-left: 3px solid var(--bmkrs-accent);
+  margin: var(--space-tight) 0 0;
+  padding-left: var(--bmkrs-space-3);
+}
+.testimonial--lead blockquote { max-width: 42ch; }
 .testimonial--lead figcaption { margin-top: var(--bmkrs-space-2); }
 
 .team-photo { position: relative; }

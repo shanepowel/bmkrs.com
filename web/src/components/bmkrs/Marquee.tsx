@@ -25,7 +25,7 @@ export function Marquee({
         {track.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="inline-flex items-center gap-8 font-display text-[clamp(1.375rem,5vw,3.5rem)] font-semibold after:content-['✺'] after:text-[0.65em] after:text-accent sm:gap-12"
+            className="inline-flex items-center gap-8 font-mono text-[clamp(1.125rem,4vw,2.5rem)] font-normal after:content-['✺'] after:text-[0.65em] after:text-accent sm:gap-12"
           >
             {item}
           </span>

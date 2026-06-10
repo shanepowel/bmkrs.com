@@ -1,3 +1,4 @@
+import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { isFilled } from "@/lib/content/placeholders";
 import type { Testimonial } from "@/lib/types";
@@ -9,23 +10,17 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
   const lead = real[0];
 
   return (
-    <section className="section-pad section--paper testimonials">
-      <div className="wrap section">
-        <Reveal>
-          <p className="eyebrow">in their words</p>
-        </Reveal>
-
-        <figure className="testimonial testimonial--lead mt-8">
-          <blockquote className="display text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-[1.15]">
-            &ldquo;{lead.quote}&rdquo;
-          </blockquote>
-          <figcaption className="mt-4 text-sm text-muted">
-            {lead.name}
-            {lead.role ? `, ${lead.role}` : ""}
-            {lead.company ? `, ${lead.company}` : ""}
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+    <Reveal>
+      <figure className="testimonial testimonial--lead">
+        <blockquote className="text-h3 font-medium leading-[1.15]">
+          &ldquo;{lead.quote}&rdquo;
+        </blockquote>
+        <figcaption className="mono mt-4 text-meta font-normal normal-case text-muted">
+          {lead.name}
+          {lead.role ? `, ${lead.role}` : ""}
+          {lead.company ? `, ${lead.company}` : ""}
+        </figcaption>
+      </figure>
+    </Reveal>
   );
 }

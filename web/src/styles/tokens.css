@@ -4,10 +4,12 @@
   --bmkrs-ink: #181613;
   --bmkrs-paper: #f5f1ea;
   --bmkrs-paper-bright: #fbf9f5;
+  --bmkrs-off-white: #f1efe8;
   --bmkrs-accent: #e4502a;
   --bmkrs-accent-ink: #c8431f;
   --bmkrs-muted-on-ink: rgba(245, 241, 234, 0.82);
-  --bmkrs-line-on-ink: rgba(245, 241, 234, 0.14);
+  --bmkrs-line-on-ink: rgb(241 239 232 / 0.12);
+  --bmkrs-rule-on-ink: rgb(241 239 232 / 0.12);
 
   --bmkrs-space-1: 0.5rem;
   --bmkrs-space-2: 1rem;
@@ -16,21 +18,40 @@
   --bmkrs-space-5: 4rem;
   --bmkrs-space-6: 6.5rem;
   --bmkrs-space-7: 10rem;
-  --bmkrs-maxw: 72rem;
+  --bmkrs-maxw: 90rem;
+  --bmkrs-gutter: 1.5rem;
   --bmkrs-line: rgba(24, 22, 19, 0.12);
-  --bmkrs-muted: #7c766c;
+  --bmkrs-muted: rgb(180 178 169);
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --bmkrs-radius: 2px;
 
-  --bmkrs-font-display: var(--font-display, Georgia, "Times New Roman", serif);
-  --bmkrs-font-body: var(--font-body, system-ui, -apple-system, sans-serif);
+  --bmkrs-font-display: var(--font-sans, system-ui, sans-serif);
+  --bmkrs-font-body: var(--font-sans, system-ui, sans-serif);
+  --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
-  --bmkrs-step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
-  --bmkrs-step-0: clamp(1rem, 0.95rem + 0.25vw, 1.13rem);
-  --bmkrs-step-1: clamp(1.4rem, 1.25rem + 0.7vw, 1.8rem);
-  --bmkrs-step-2: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-  --bmkrs-step-3: clamp(2.8rem, 2.2rem + 3vw, 5rem);
-  --bmkrs-step-4: clamp(3.6rem, 2.6rem + 5vw, 7rem);
+  /* display scale */
+  --text-hero: clamp(3rem, 8vw, 8.75rem);
+  --text-h2: clamp(2.25rem, 4.5vw, 4rem);
+  --text-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --text-body-lg: clamp(1.125rem, 1.4vw, 1.375rem);
+  --text-body: 1.125rem;
+  --text-meta: 0.8125rem;
+
+  --leading-hero: 0.98;
+  --leading-h2: 1.05;
+  --tracking-display: -0.02em;
+  --tracking-kicker: 0.08em;
+
+  --space-section: clamp(5rem, 10vw, 10rem);
+  --space-block: clamp(2.5rem, 5vw, 5rem);
+  --space-tight: 1.25rem;
+
+  --bmkrs-step--1: var(--text-meta);
+  --bmkrs-step-0: var(--text-body);
+  --bmkrs-step-1: var(--text-h3);
+  --bmkrs-step-2: var(--text-h2);
+  --bmkrs-step-3: var(--text-hero);
+  --bmkrs-step-4: var(--text-hero);
 }
 
 .section--paper {
