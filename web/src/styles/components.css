@@ -694,6 +694,17 @@
     grid-column: span 2;
   }
 }
+.footer-capture__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+.footer-capture__label-text {
+  font-size: var(--text-meta, 0.8125rem);
+  letter-spacing: 0.08em;
+  color: #b4b2a9;
+}
 .footer-capture__form {
   display: flex;
   flex-direction: column;
@@ -792,7 +803,7 @@
 }
 .site-footer__legal a,
 .site-footer__manage-cookies {
-  color: #b4b2a9;
+  color: #d3d1c7;
   text-decoration: none;
   background: none;
   border: none;
@@ -808,4 +819,11 @@
   margin-top: 1.5rem;
   font-size: 0.875rem;
   color: #b4b2a9;
+}
+.site-footer a:focus-visible,
+.site-footer button:focus-visible,
+.cookie-banner__btn:focus-visible,
+.cookie-banner a:focus-visible {
+  outline: 2px solid var(--bmkrs-accent);
+  outline-offset: 4px;
 }

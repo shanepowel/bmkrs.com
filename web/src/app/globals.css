@@ -37,8 +37,15 @@ html {
   border-radius: 0 0 var(--bmkrs-radius, 2px) 0;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: 0;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+#main:focus {
+  outline: none;
 }
 
 body {

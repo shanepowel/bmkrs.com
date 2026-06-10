@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
+import { SITE_URL } from "@/lib/og-image";
 
 export default function robots(): MetadataRoute.Robots {
   const isPreview = process.env.VERCEL_ENV === "preview";
@@ -15,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/studio/", "/api/"],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

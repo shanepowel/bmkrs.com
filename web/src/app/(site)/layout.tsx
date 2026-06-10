@@ -15,7 +15,9 @@ export default async function SiteLayout({
     <>
       <SkipLink />
       <SiteHeader navigation={settings.navigation} />
-      {children}
+      <div id="main" tabIndex={-1} className="outline-none">
+        {children}
+      </div>
       <SiteFooter settings={settings} />
       <CookieBanner />
     </>

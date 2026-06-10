@@ -1,7 +1,8 @@
 import { BRAND_AVATAR } from "@/lib/brand";
+import { SITE_URL } from "@/lib/og-image";
 import type { JournalPost } from "@/lib/types";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bmkrs.com";
+const SITE = SITE_URL;
 const ORG_ID = `${SITE}/#organization`;
 
 export function organizationSchema() {

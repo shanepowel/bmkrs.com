@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { SURFACE } from "@/lib/surfaces";
 
 const KEY = "bmkrs-consent";
@@ -30,6 +30,8 @@ export function reopenConsent() {
 export function CookieBanner() {
   const [open, setOpen] = useState(false);
   const ink = SURFACE.ink;
+  const descId = useId();
+  const rejectRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setOpen(getConsent() === null);
@@ -37,6 +39,10 @@ export function CookieBanner() {
     window.addEventListener("bmkrs-consent-reopen", reopen);
     return () => window.removeEventListener("bmkrs-consent-reopen", reopen);
   }, []);
+
+  useEffect(() => {
+    if (open) rejectRef.current?.focus();
+  }, [open]);
 
   function decide(analytics: boolean) {
     localStorage.setItem(KEY, JSON.stringify({ analytics, at: Date.now() } satisfies Consent));
@@ -49,13 +55,14 @@ export function CookieBanner() {
   return (
     <div
       role="dialog"
+      aria-modal="true"
       aria-label="cookie consent"
-      aria-live="polite"
-      className="fixed inset-x-0 bottom-0 z-50"
+      aria-describedby={descId}
+      className="cookie-banner fixed inset-x-0 bottom-0 z-50"
       style={{ background: ink.bg, borderTop: `1px solid ${ink.rule}` }}
     >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between md:px-12">
-        <p className="max-w-[60ch] text-sm leading-relaxed" style={{ color: ink.body }}>
+        <p id={descId} className="max-w-[60ch] text-base leading-relaxed" style={{ color: ink.body }}>
           we use one or two cookies to see how the site is doing. nothing creepy, nothing sold, and
           saying no changes nothing about your visit.{" "}
           <Link
@@ -68,9 +75,10 @@ export function CookieBanner() {
         </p>
         <div className="flex shrink-0 items-center gap-3">
           <button
+            ref={rejectRef}
             type="button"
             onClick={() => decide(false)}
-            className="rounded-full border px-6 py-3 text-sm font-medium transition-transform hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none"
+            className="cookie-banner__btn rounded-full border px-6 py-3 text-base font-medium transition-transform hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none"
             style={{
               borderColor: "rgba(241,239,232,0.4)",
               color: ink.text,
@@ -82,7 +90,7 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => decide(true)}
-            className="rounded-full px-6 py-3 text-sm font-medium transition-transform hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none"
+            className="cookie-banner__btn rounded-full px-6 py-3 text-base font-medium transition-transform hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none"
             style={{ background: ink.accent, color: ink.bg }}
           >
             fine by me

@@ -28,23 +28,23 @@ export function FooterEmailCapture() {
       <h3 className="display text-h3 font-medium" style={{ color: ink.text }}>
         one idea a fortnight.
       </h3>
-      <p className="mt-3 max-w-[42ch] text-sm leading-relaxed" style={{ color: ink.body }}>
+      <p className="mt-3 max-w-[42ch] text-base leading-relaxed" style={{ color: ink.body }}>
         the thinking we use on real brands, written down. no filler, no funnels.
       </p>
       {status === "sent" ? (
-        <p className="mt-5 text-sm" style={{ color: ink.accent }}>
+        <p className="mt-5 text-base" style={{ color: ink.accent }}>
           got it. the next one is on its way.
         </p>
       ) : (
         <form className="footer-capture__form mt-5" onSubmit={onSubmit}>
           <label className="footer-capture__label">
-            <span className="sr-only">email</span>
+            <span className="footer-capture__label-text mono">email</span>
             <input
               name="email"
               type="email"
               required
               autoComplete="email"
-              placeholder="your email"
+              placeholder="you@company.com"
               className="footer-capture__input"
             />
           </label>
@@ -58,7 +58,7 @@ export function FooterEmailCapture() {
         </form>
       )}
       {status === "error" ? (
-        <p className="mt-2 text-sm" style={{ color: ink.accent }}>
+        <p className="mt-2 text-base" role="alert" style={{ color: ink.accent }}>
           something went wrong. try again.
         </p>
       ) : null}
