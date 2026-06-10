@@ -1,98 +1,86 @@
 import Link from "next/link";
+import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
+import { ManageCookiesLink } from "@/components/bmkrs/ManageCookiesLink";
 import { Wordmark } from "@/components/bmkrs/Wordmark";
+import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
+
+const MAKE_LINKS = [
+  { href: "/services", label: "services" },
+  { href: "/motion", label: "motion" },
+  { href: "/work", label: "work" },
+] as const;
+
+const STUDIO_LINKS = [
+  { href: "/about", label: "about" },
+  { href: "/journal", label: "journal" },
+  { href: "/contact", label: "contact" },
+] as const;
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
   const press = settings.pressEmail ?? "press@bmkrs.com";
-  const network = settings.networkEmail;
   const year = new Date().getFullYear();
-
-  const reg = settings.companyNumber
-    ? `${settings.companyName ?? "b makers ltd"} · company no. ${settings.companyNumber} · registered in england and wales.`
-    : "b makers ltd · registered in england and wales.";
+  const quip =
+    settings.footerQuip ?? "they say no one reads the footer. you made it this far, so let's make something.";
+  const reg = companyLine(settings.companyNumber, settings.registeredAddress);
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer-top">
-        <div className="footer-brand">
-          <Wordmark className="wordmark wordmark--footer" variant="primary-light" />
-          <p className="muted">a brand company run by builders.</p>
-          <p className="footer-thesis">the better-told brand wins. we make sure it&apos;s yours.</p>
+    <footer className="site-footer" data-surface="ink">
+      <div className="site-footer__inner">
+        <div className="site-footer__wordmark">
+          <Wordmark className="wordmark wordmark--footer-display" variant="primary-light" />
         </div>
 
-        <div className="footer-cols">
-          <div>
-            <span className="eyebrow">work with us</span>
-            <ul role="list">
-              <li>
-                <Link href="/services">services</Link>
-              </li>
-              <li>
-                <Link href="/motion">motion</Link>
-              </li>
-              <li>
-                <Link href="/work">work</Link>
-              </li>
-              <li>
-                <Link href="/journal">journal</Link>
-              </li>
-            </ul>
+        <div className="site-footer__grid">
+          <div className="site-footer__capture">
+            <FooterEmailCapture />
           </div>
-          <div>
-            <span className="eyebrow">studio</span>
+          <nav className="site-footer__nav" aria-label="make">
+            <span className="site-footer__nav-label">make</span>
             <ul role="list">
-              <li>
-                <Link href="/about">about</Link>
-              </li>
-              <li>
-                <Link href="/contact">contact</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <span className="eyebrow">say hello</span>
-            <ul role="list" className="footer-emails">
-              <li>
-                <a className="mono" href={`mailto:${general}`}>
-                  {general}
-                </a>
-              </li>
-              <li>
-                <a className="mono" href={`mailto:${press}`}>
-                  {press}
-                </a>{" "}
-                <span className="muted">(press)</span>
-              </li>
-              {network ? (
-                <li>
-                  <a className="mono" href={`mailto:${network}`}>
-                    {network}
-                  </a>{" "}
-                  <span className="muted">(network)</span>
+              {MAKE_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
                 </li>
-              ) : null}
+              ))}
             </ul>
-            {settings.socialLinks.length ? (
-              <ul role="list" className="footer-socials">
-                {settings.socialLinks.map((s) => (
-                  <li key={s.platform}>
-                    <a href={s.url} target="_blank" rel="noopener noreferrer">
-                      {s.platform}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
+          </nav>
+          <nav className="site-footer__nav" aria-label="studio">
+            <span className="site-footer__nav-label">studio</span>
+            <ul role="list">
+              {STUDIO_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-      </div>
 
-      <div className="site-footer-bottom">
-        <p className="muted">london, and wherever you are.</p>
-        <p className="mono muted footer-reg text-meta">{reg}</p>
-        <p className="muted">
-          © {year} {settings.companyName ?? "b makers ltd"}. they say no one reads the footer. hi.
+        <p className="site-footer__contact mono">
+          <a href={`mailto:${general}`}>{general}</a>
+          <span aria-hidden="true"> · </span>
+          <a href={`mailto:${press}`}>{press}</a>
+          <span aria-hidden="true"> · </span>
+          london, and wherever you are
+        </p>
+
+        <div className="site-footer__legal mono">
+          <p>{reg}</p>
+          <p className="site-footer__legal-links">
+            <Link href="/legal/privacy">privacy notice</Link>
+            <span aria-hidden="true"> · </span>
+            <Link href="/legal/cookies">cookies notice</Link>
+            <span aria-hidden="true"> · </span>
+            <Link href="/legal/terms">terms of business</Link>
+            <span aria-hidden="true"> · </span>
+            <ManageCookiesLink className="site-footer__manage-cookies" />
+          </p>
+        </div>
+
+        <p className="site-footer__quip">
+          © {year} {settings.companyName ?? "b makers ltd"}. {quip}
         </p>
       </div>
     </footer>

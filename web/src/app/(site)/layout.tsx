@@ -1,3 +1,4 @@
+import { CookieBanner } from "@/components/bmkrs/CookieBanner";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -16,6 +17,7 @@ export default async function SiteLayout({
       <SiteHeader navigation={settings.navigation} />
       {children}
       <SiteFooter settings={settings} />
+      <CookieBanner />
     </>
   );
 }

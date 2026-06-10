@@ -11,6 +11,8 @@ const staticRoutes = [
   "/motion",
   "/about",
   "/contact",
+  "/legal/privacy",
+  "/legal/cookies",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
