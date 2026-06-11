@@ -10,12 +10,8 @@ import {
   themeBodyStyle,
   themeFaintStyle,
 } from "@/components/bmkrs/surfaces";
-import { getAboutPage, getNowBuilding, getPeople, getSiteSettings } from "@/lib/content";
+import { getAboutPage, getNowBuilding, getPeople } from "@/lib/content";
 import { BMKRS_ORANGE } from "@/lib/brand";
-import {
-  networkPortalLabel,
-  resolveNetworkPortalUrl,
-} from "@/lib/urls";
 import { visibleQuickfire } from "@/lib/quickfire";
 import { SURFACE } from "@/lib/surfaces";
 import { pageMetadata } from "@/lib/seo";
@@ -36,14 +32,11 @@ const ABOUT_TICKER = [
 ];
 
 export default async function AboutPage() {
-  const [about, people, nowBuilding, settings] = await Promise.all([
+  const [about, people, nowBuilding] = await Promise.all([
     getAboutPage(),
     getPeople(),
     getNowBuilding(),
-    getSiteSettings(),
   ]);
-  const networkPortalUrl = resolveNetworkPortalUrl(settings);
-  const networkPortalHost = networkPortalLabel(networkPortalUrl);
   const founder = about.founder;
   const founderPerson = people.find((p) => p.slug === "shane-powell") ?? people[0];
   const longGameParagraphs = about.longGame.split(/\n\n+/).filter(Boolean);
@@ -226,15 +219,13 @@ export default async function AboutPage() {
         </p>
         <p className="mono mt-6 text-meta" style={themeFaintStyle("paper")}>
           collaborators:{" "}
-          <a
-            href={networkPortalUrl}
+          <Link
+            href="/network"
             className="underline decoration-1 underline-offset-4"
             style={{ color: paper.text }}
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            {networkPortalHost}
-          </a>
+            the network
+          </Link>
         </p>
       </Section>
 

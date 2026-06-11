@@ -11,6 +11,7 @@ const DEFAULT_NAV: NavItem[] = [
   { label: "work", href: "/work" },
   { label: "services", href: "/services" },
   { label: "motion", href: "/motion" },
+  { label: "network", href: "/network" },
   { label: "journal", href: "/journal" },
   { label: "about", href: "/about" },
 ];
@@ -28,11 +29,18 @@ function readPageSurface(): Theme {
   return (el?.getAttribute("data-surface") as Theme) ?? "ink";
 }
 
-export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
+export function SiteHeader({
+  navigation,
+  loginUrl,
+}: {
+  navigation?: NavItem[];
+  loginUrl?: string;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [surface, setSurface] = useState<Theme>("ink");
   const items = navItems(navigation);
+  const login = loginUrl ?? "https://app.bmkrs.com/login";
   const lightLogo = surface === "paper" || surface === "orange";
 
   useEffect(() => {
@@ -74,6 +82,9 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
               {item.label}
             </Link>
           ))}
+          <a href={login} className="nav-login" rel="noopener noreferrer" target="_blank">
+            log in <span aria-hidden="true">↗</span>
+          </a>
           <Link href="/contact" className="btn-primary nav-cta">
             let&apos;s talk
           </Link>
@@ -98,6 +109,9 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
               {item.label}
             </Link>
           ))}
+          <a href={login} rel="noopener noreferrer" target="_blank" onClick={() => setOpen(false)}>
+            log in ↗
+          </a>
           <Link href="/contact" className="btn-primary" onClick={() => setOpen(false)}>
             let&apos;s talk
           </Link>

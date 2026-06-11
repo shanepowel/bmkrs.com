@@ -13,8 +13,12 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .title("Press kit")
         .child(S.document().schemaType("pressKit").documentId("pressKit")),
+      S.listItem()
+        .title("Network page")
+        .child(S.document().schemaType("networkPage").documentId("networkPage")),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => !["siteSettings", "aboutPage", "pressKit"].includes(item.getId() ?? ""),
+        (item) =>
+          !["siteSettings", "aboutPage", "pressKit", "networkPage"].includes(item.getId() ?? ""),
       ),
     ]);

@@ -44,6 +44,9 @@ export type SiteSettings = {
   departments?: DepartmentEmail[];
   networkEmail?: string;
   networkPortalUrl?: string;
+  networkHireUrl?: string;
+  networkJoinUrl?: string;
+  memberLoginUrl?: string;
   socialLinks: SocialLink[];
   navigation: NavItem[];
   heroReelUrl?: string;
@@ -195,6 +198,25 @@ export type PressKitContent = {
   logoAssets: PressKitAsset[];
   usageRules: string[];
   updatedAt: string;
+};
+
+export type NetworkAudienceBlock = {
+  heading: string;
+  body: string;
+  cta?: string;
+};
+
+export type NetworkPageContent = {
+  headline: string;
+  intro: string;
+  whatItIs?: string;
+  forCompanies?: NetworkAudienceBlock;
+  forSpecialists?: NetworkAudienceBlock;
+  connects?: string;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+  };
 };
 
 export type PortableBlock =

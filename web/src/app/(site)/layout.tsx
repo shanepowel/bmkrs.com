@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { getSiteSettings } from "@/lib/content";
+import { resolveMemberLoginUrl } from "@/lib/urls";
 
 export default async function SiteLayout({
   children,
@@ -15,7 +16,10 @@ export default async function SiteLayout({
   return (
     <>
       <SkipLink />
-      <SiteHeader navigation={settings.navigation} />
+      <SiteHeader
+        navigation={settings.navigation}
+        loginUrl={resolveMemberLoginUrl(settings)}
+      />
       <div id="main" tabIndex={-1} className="outline-none">
         {children}
       </div>

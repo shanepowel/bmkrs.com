@@ -36,6 +36,7 @@ import {
 } from "./image-fallbacks";
 import { disciplineExpansion, outcomeLineForSlug } from "./expansion-v2";
 import { fallbackPressKit } from "./press-kit-fallback";
+import { fallbackNetworkPage } from "./network-page-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
@@ -48,6 +49,7 @@ import type {
   MotionContent,
   NowBuildingContent,
   PressKitContent,
+  NetworkPageContent,
   Person,
   Product,
   Project,
@@ -61,6 +63,7 @@ import {
   aboutPageQuery,
   nowBuildingQuery,
   pressKitQuery,
+  networkPageQuery,
   peopleQuery,
   allProductsQuery,
   disciplinesQuery,
@@ -109,6 +112,9 @@ async function loadSiteSettings(): Promise<SiteSettings> {
     generalEmail: data.generalEmail || data.email || fallbackSiteSettings.generalEmail,
     pressEmail: data.pressEmail || fallbackSiteSettings.pressEmail,
     networkPortalUrl: data.networkPortalUrl || fallbackSiteSettings.networkPortalUrl,
+    networkHireUrl: data.networkHireUrl || fallbackSiteSettings.networkHireUrl,
+    networkJoinUrl: data.networkJoinUrl || fallbackSiteSettings.networkJoinUrl,
+    memberLoginUrl: data.memberLoginUrl || fallbackSiteSettings.memberLoginUrl,
     socialLinks,
     navigation: data.navigation?.length
       ? data.navigation.map((n) => ({
@@ -290,6 +296,18 @@ export async function getPressKit(): Promise<PressKitContent> {
     logoAssets: data.logoAssets?.length ? data.logoAssets : fallbackPressKit.logoAssets,
     usageRules: data.usageRules?.length ? data.usageRules : fallbackPressKit.usageRules,
     updatedAt: data.updatedAt ?? fallbackPressKit.updatedAt,
+  };
+}
+
+export async function getNetworkPage(): Promise<NetworkPageContent> {
+  const data = await fetchSanity<Partial<NetworkPageContent>>(networkPageQuery);
+  if (!data?.headline) return fallbackNetworkPage;
+  return {
+    ...fallbackNetworkPage,
+    ...data,
+    forCompanies: data.forCompanies ?? fallbackNetworkPage.forCompanies,
+    forSpecialists: data.forSpecialists ?? fallbackNetworkPage.forSpecialists,
+    seo: { ...fallbackNetworkPage.seo, ...data.seo },
   };
 }
 

@@ -7,6 +7,9 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   pressEmail,
   networkEmail,
   networkPortalUrl,
+  networkHireUrl,
+  networkJoinUrl,
+  memberLoginUrl,
   companyName,
   companyNumber,
   registeredAddress,
@@ -198,6 +201,16 @@ export const peopleQuery = `*[_type == "person"] | order(order asc){
 export const nowBuildingQuery = `*[_type == "nowBuilding"][0]{
   lines,
   updatedAt
+}`;
+
+export const networkPageQuery = `*[_type == "networkPage"][0]{
+  headline,
+  intro,
+  whatItIs,
+  forCompanies{ heading, body, cta },
+  forSpecialists{ heading, body, cta },
+  connects,
+  seo{ metaTitle, metaDescription }
 }`;
 
 export const pressKitQuery = `*[_type == "pressKit"][0]{

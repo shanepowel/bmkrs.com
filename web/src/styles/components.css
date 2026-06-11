@@ -612,6 +612,19 @@
 .site-nav a:not(.btn-primary):hover {
   color: var(--bmkrs-paper);
 }
+.nav-login {
+  font-size: var(--bmkrs-step--1);
+  color: var(--bmkrs-muted-on-ink);
+}
+.nav-login:hover {
+  color: var(--bmkrs-paper);
+}
+:root[data-header-surface="paper"] .nav-login {
+  color: #5f5e5a;
+}
+:root[data-header-surface="paper"] .nav-login:hover {
+  color: #181613;
+}
 .nav-cta {
   padding: 0.5rem 1rem;
 }
@@ -843,4 +856,43 @@
 .cookie-banner a:focus-visible {
   outline: 2px solid var(--bmkrs-accent);
   outline-offset: 4px;
+}
+
+/* network page */
+.network-hero {
+  padding-block: var(--bmkrs-space-6) var(--bmkrs-space-4);
+}
+.network-login a {
+  color: var(--bmkrs-accent);
+}
+.app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--bmkrs-step--1);
+  font-weight: 600;
+  color: var(--bmkrs-muted-on-ink);
+}
+.app-link:hover {
+  color: var(--bmkrs-accent);
+}
+.network-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--bmkrs-space-4);
+}
+.network-card {
+  border: 1px solid var(--bmkrs-line-on-ink);
+  border-radius: var(--bmkrs-radius);
+  padding: var(--bmkrs-space-4);
+  display: flex;
+  flex-direction: column;
+}
+.network-card .network-body {
+  flex: 1;
+}
+@media (max-width: 720px) {
+  .network-split {
+    grid-template-columns: 1fr;
+  }
 }

@@ -15,6 +15,7 @@ import { discipline } from "./discipline";
 import { person } from "./person";
 import { nowBuilding } from "./nowBuilding";
 import { pressKit } from "./pressKit";
+import { networkPage } from "./networkPage";
 
 export const schemaTypes = [
   siteSettings,
@@ -34,4 +35,5 @@ export const schemaTypes = [
   person,
   nowBuilding,
   pressKit,
+  networkPage,
 ];

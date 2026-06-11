@@ -942,6 +942,38 @@ function generatePressKit() {
   console.log("  press-kit.ndjson");
 }
 
+function generateNetworkPage() {
+  writeNdjson("network.ndjson", [
+    {
+      _id: "networkPage",
+      _type: "networkPage",
+      headline: "the people behind the work.",
+      intro:
+        "every bmkrs project is delivered by a network of senior builders, designers, writers and specialists. now you can tap it directly: hire them, or join them.",
+      whatItIs:
+        "we built the network to staff our own client work. we only let people in if we would put them on it, and that bar is the whole point. it is not a job board. it is the bench we actually use, opened up.",
+      forCompanies: {
+        heading: "for companies",
+        body: "need more than a project? bring senior bmkrs people in to build alongside your team. brand, voice, pr, product, on tap, with no recruitment and no ramp-up. the same people who do our client work, working as part of yours.",
+        cta: "find talent",
+      },
+      forSpecialists: {
+        heading: "for specialists",
+        body: "we work with people we would stake our name on. if that is you, the work is good and the company is better. apply to join, and we will only call when something fits.",
+        cta: "join the network",
+      },
+      connects:
+        "already a client? the network is what powers motion embedded, our most hands-on tier. it is the same bench, whether we run the work or you do.",
+      seo: {
+        metaTitle: "the network | bmkrs.",
+        metaDescription:
+          "the senior builders, designers and specialists behind every bmkrs project. hire them, or join them.",
+      },
+    },
+  ]);
+  console.log("  network.ndjson");
+}
+
 function generateSiteSettings() {
   writeNdjson("site-settings.ndjson", [
     {
@@ -955,6 +987,9 @@ function generateSiteSettings() {
       pressEmail: "press@bmkrs.com",
       networkEmail: "network@bmkrs.com",
       networkPortalUrl: "https://app.bmkrs.com",
+      networkHireUrl: "https://app.bmkrs.com/hire",
+      networkJoinUrl: "https://app.bmkrs.com/join",
+      memberLoginUrl: "https://app.bmkrs.com/login",
       companyName: "b makers ltd",
       registeredAddress: "",
       copyright: "© 2026 b makers ltd. all rights reserved.",
@@ -989,6 +1024,7 @@ function main() {
   generateAbout();
   generateNowBuilding();
   generatePressKit();
+  generateNetworkPage();
   generateProducts();
   generateDisciplines();
   generateCaseStudies();

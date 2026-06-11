@@ -49,6 +49,9 @@ npx sanity dataset import sanity/seed/now-building.ndjson "$DATASET" "${REPLACE[
 echo "→ press kit"
 npx sanity dataset import sanity/seed/press-kit.ndjson "$DATASET" "${REPLACE[@]}"
 
+echo "→ network page"
+npx sanity dataset import sanity/seed/network.ndjson "$DATASET" "${REPLACE[@]}"
+
 echo "→ site settings"
 npx sanity dataset import sanity/seed/site-settings.ndjson "$DATASET" "${REPLACE[@]}"
 

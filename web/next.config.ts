@@ -51,16 +51,6 @@ const nextConfig: NextConfig = {
         destination: "https://www.bmkrs.com/:path*",
         permanent: true,
       },
-      {
-        source: "/network",
-        destination: "https://app.bmkrs.com",
-        permanent: true,
-      },
-      {
-        source: "/network/:path*",
-        destination: "https://app.bmkrs.com/:path*",
-        permanent: true,
-      },
       { source: "/discover", destination: "/services", permanent: true },
       { source: "/discover/:path*", destination: "/services/:path*", permanent: true },
       { source: "/work/project1", destination: "/work/copa", permanent: true },

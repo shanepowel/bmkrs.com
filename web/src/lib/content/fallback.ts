@@ -14,6 +14,7 @@ export const fallbackNavigation: NavItem[] = [
   { label: "work", href: "/work" },
   { label: "services", href: "/services" },
   { label: "motion", href: "/motion" },
+  { label: "network", href: "/network" },
   { label: "journal", href: "/journal" },
   { label: "about", href: "/about" },
   { label: "contact", href: "/contact", highlight: true },
@@ -40,6 +41,9 @@ export const fallbackSiteSettings: SiteSettings = {
   ],
   networkEmail: "network@bmkrs.com",
   networkPortalUrl: "https://app.bmkrs.com",
+  networkHireUrl: "https://app.bmkrs.com/hire",
+  networkJoinUrl: "https://app.bmkrs.com/join",
+  memberLoginUrl: "https://app.bmkrs.com/login",
   socialLinks: [
     { platform: "instagram", url: "https://instagram.com/bmkrs.global" },
     { platform: "linkedin", url: "https://www.linkedin.com/company/bmkrs" },
