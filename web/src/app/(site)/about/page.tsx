@@ -12,6 +12,10 @@ import {
 } from "@/components/bmkrs/surfaces";
 import { getAboutPage, getNowBuilding, getPeople, getSiteSettings } from "@/lib/content";
 import { BMKRS_ORANGE } from "@/lib/brand";
+import {
+  networkPortalLabel,
+  resolveNetworkPortalUrl,
+} from "@/lib/urls";
 import { visibleQuickfire } from "@/lib/quickfire";
 import { SURFACE } from "@/lib/surfaces";
 import { pageMetadata } from "@/lib/seo";
@@ -38,7 +42,8 @@ export default async function AboutPage() {
     getNowBuilding(),
     getSiteSettings(),
   ]);
-  const networkEmail = settings.networkEmail;
+  const networkPortalUrl = resolveNetworkPortalUrl(settings);
+  const networkPortalHost = networkPortalLabel(networkPortalUrl);
   const founder = about.founder;
   const founderPerson = people.find((p) => p.slug === "shane-powell") ?? people[0];
   const longGameParagraphs = about.longGame.split(/\n\n+/).filter(Boolean);
@@ -219,18 +224,18 @@ export default async function AboutPage() {
         <p className="mt-14 text-lg" style={themeBodyStyle("paper")}>
           {about.teamClosing}
         </p>
-        {networkEmail ? (
-          <p className="mono mt-6 text-meta" style={themeFaintStyle("paper")}>
-            collaborators:{" "}
-            <a
-              href={`mailto:${networkEmail}`}
-              className="underline decoration-1 underline-offset-4"
-              style={{ color: paper.text }}
-            >
-              {networkEmail}
-            </a>
-          </p>
-        ) : null}
+        <p className="mono mt-6 text-meta" style={themeFaintStyle("paper")}>
+          collaborators:{" "}
+          <a
+            href={networkPortalUrl}
+            className="underline decoration-1 underline-offset-4"
+            style={{ color: paper.text }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {networkPortalHost}
+          </a>
+        </p>
       </Section>
 
       <Section theme="ink">

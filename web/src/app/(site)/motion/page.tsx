@@ -7,7 +7,11 @@ import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
 import { motionMonthInMotion, motionSignals } from "@/lib/content/expansion-v2";
-import { getMotionTiers } from "@/lib/content";
+import { getMotionTiers, getSiteSettings } from "@/lib/content";
+import {
+  networkPortalLabel,
+  resolveNetworkPortalUrl,
+} from "@/lib/urls";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
 
@@ -41,7 +45,9 @@ const HOW_IT_WORKS = [
 ];
 
 export default async function MotionPage() {
-  const tiers = await getMotionTiers();
+  const [tiers, settings] = await Promise.all([getMotionTiers(), getSiteSettings()]);
+  const networkPortalUrl = resolveNetworkPortalUrl(settings);
+  const networkPortalHost = networkPortalLabel(networkPortalUrl);
 
   return (
     <main>
@@ -180,6 +186,19 @@ export default async function MotionPage() {
               <Link href="/contact" className="product-cta mt-auto pt-4">
                 let&apos;s talk →
               </Link>
+              {tier.slug === "motion-plus" ? (
+                <p className="motion-meta mt-3">
+                  extended network via{" "}
+                  <a
+                    href={networkPortalUrl}
+                    className="underline decoration-1 underline-offset-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {networkPortalHost}
+                  </a>
+                </p>
+              ) : null}
             </article>
           ))}
         </div>

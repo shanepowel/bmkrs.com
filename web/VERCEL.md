@@ -78,4 +78,5 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
 - `NEXT_PUBLIC_SANITY_DATASET` = `production`
 - `NEXT_PUBLIC_SITE_URL` = `https://www.bmkrs.com` (must match the canonical www host; non-www redirects here)
+- `NEXT_PUBLIC_NETWORK_PORTAL_URL` = `https://app.bmkrs.com` (collaborator network portal; linked from about and `/network` redirect)
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads only after cookie consent)

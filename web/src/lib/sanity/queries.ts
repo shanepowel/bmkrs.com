@@ -6,6 +6,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   generalEmail,
   pressEmail,
   networkEmail,
+  networkPortalUrl,
   companyName,
   companyNumber,
   registeredAddress,

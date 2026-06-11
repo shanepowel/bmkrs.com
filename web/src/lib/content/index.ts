@@ -108,6 +108,7 @@ async function loadSiteSettings(): Promise<SiteSettings> {
     email: data.generalEmail || data.email || fallbackSiteSettings.email,
     generalEmail: data.generalEmail || data.email || fallbackSiteSettings.generalEmail,
     pressEmail: data.pressEmail || fallbackSiteSettings.pressEmail,
+    networkPortalUrl: data.networkPortalUrl || fallbackSiteSettings.networkPortalUrl,
     socialLinks,
     navigation: data.navigation?.length
       ? data.navigation.map((n) => ({

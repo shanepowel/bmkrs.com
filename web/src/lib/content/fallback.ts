@@ -39,6 +39,7 @@ export const fallbackSiteSettings: SiteSettings = {
     { label: "press", email: "press@bmkrs.com" },
   ],
   networkEmail: "network@bmkrs.com",
+  networkPortalUrl: "https://app.bmkrs.com",
   socialLinks: [
     { platform: "instagram", url: "https://instagram.com/bmkrs.global" },
     { platform: "linkedin", url: "https://www.linkedin.com/company/bmkrs" },

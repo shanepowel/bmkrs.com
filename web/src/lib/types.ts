@@ -43,6 +43,7 @@ export type SiteSettings = {
   offices?: Office[];
   departments?: DepartmentEmail[];
   networkEmail?: string;
+  networkPortalUrl?: string;
   socialLinks: SocialLink[];
   navigation: NavItem[];
   heroReelUrl?: string;

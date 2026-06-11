@@ -954,6 +954,7 @@ function generateSiteSettings() {
       generalEmail: "hello@bmkrs.com",
       pressEmail: "press@bmkrs.com",
       networkEmail: "network@bmkrs.com",
+      networkPortalUrl: "https://app.bmkrs.com",
       companyName: "b makers ltd",
       registeredAddress: "",
       copyright: "© 2026 b makers ltd. all rights reserved.",
