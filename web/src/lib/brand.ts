@@ -23,3 +23,4 @@ export function wordmarkSrc(variant: WordmarkVariant = "primary-dark"): string {
 
 export const BRAND_AVATAR = "/images/bmkrs-avatar-512.png";
 export const BRAND_ICON = "/icon.png";
+export const BRAND_ICON_LIGHT = "/icon-light.png";

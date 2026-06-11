@@ -47,6 +47,18 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [
+        {
+          url: "/icon-light.png",
+          type: "image/png",
+          sizes: "32x32",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/icon.png",
+          type: "image/png",
+          sizes: "32x32",
+          media: "(prefers-color-scheme: light)",
+        },
         { url: "/favicon.ico", sizes: "any" },
         { url: "/icon.png", type: "image/png", sizes: "32x32" },
       ],

@@ -54,7 +54,8 @@ this also resolves the accent rule in the website spec (9.4): the site accent IS
 | `bmkrs-primary-dark.svg` | header on ink, footer wordmark (off-white + orange dot on `#181613`) |
 | `bmkrs-primary-light.svg` | header on paper/orange surfaces |
 | `bmkrs-mono-white.svg` | busy photography only; optional footer if the orange dot competes with links |
-| `bmkrs-icon-dark.svg` | `icon.png` (32), `apple-icon.png` (180) via `scripts/generate-brand-icons.js` |
+| `bmkrs-icon-dark.png` | favicon on light browser chrome: `icon.png` (32), `apple-icon.png` (180), `favicon.ico` |
+| `bmkrs-icon-light.png` | favicon on dark browser chrome: `icon-light.png` (32) |
 | `bmkrs-avatar-512.svg` | `images/bmkrs-avatar-512.png`, default og/social image (`BRAND_AVATAR`) |
 
 - wired in `web/src/lib/brand.ts` (`wordmarkSrc`, `BRAND_AVATAR`, `BRAND_ICON`).
