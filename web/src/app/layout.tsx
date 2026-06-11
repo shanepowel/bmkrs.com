@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { cabinet, fragment } from "@/app/fonts";
 import { getSiteSettings } from "@/lib/content";
 import { DEFAULT_OG_IMAGE, OG_SIZE, SITE_URL } from "@/lib/og-image";
@@ -70,6 +71,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
