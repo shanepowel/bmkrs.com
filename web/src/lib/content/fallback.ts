@@ -1,4 +1,9 @@
 import { marketingImages, marketingVideos } from "@/lib/marketing-assets";
+import {
+  placeholderCompany,
+  placeholderHomeTestimonials,
+  placeholderResultsBySlug,
+} from "@/lib/content/case-study-placeholders";
 import type {
   CmsPage,
   HomeContent,
@@ -29,8 +34,9 @@ export const fallbackSiteSettings: SiteSettings = {
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
   companyName: "b makers ltd",
-  companyNumber: "",
-  registeredAddress: "",
+  companyNumber: placeholderCompany.companyNumber,
+  registeredAddress: placeholderCompany.registeredAddress,
+  londonAddress: placeholderCompany.londonAddress,
   copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's make something.",
@@ -489,7 +495,7 @@ export const fallbackServices: Service[] = [
   },
 ];
 
-export const fallbackProjects: Project[] = [
+const fallbackProjectsRaw: Project[] = [
   {
     slug: "copa",
     title: "copa, off the shore",
@@ -781,12 +787,11 @@ export const fallbackProjects: Project[] = [
   },
 ];
 
-export const fallbackHomeTestimonials: Testimonial[] = [
-  {
-    quote:
-      "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
-    name: "founder",
-    role: "podcast studio london",
-    company: "podcast studio london",
-  },
-];
+export const fallbackProjects: Project[] = fallbackProjectsRaw.map((project) => ({
+  ...project,
+  results: project.results?.length
+    ? project.results
+    : (placeholderResultsBySlug[project.slug] ?? []),
+}));
+
+export const fallbackHomeTestimonials: Testimonial[] = placeholderHomeTestimonials;

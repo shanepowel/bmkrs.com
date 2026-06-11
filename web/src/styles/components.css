@@ -82,6 +82,28 @@
 .work-grid--index { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .work-card .meta h3 { font-family: var(--bmkrs-font-display); font-size: var(--bmkrs-step-1); color: var(--bmkrs-paper); }
 .work-card .meta p { color: var(--bmkrs-muted); font-size: var(--bmkrs-step--1); }
+.work-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--bmkrs-space-3);
+  background: linear-gradient(transparent 20%, rgba(24, 22, 19, 0.88));
+  color: var(--bmkrs-paper);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.work-card:hover .work-card__overlay,
+.work-card:focus-within .work-card__overlay {
+  opacity: 1;
+}
+@media (hover: none) {
+  .work-card__overlay {
+    opacity: 1;
+    background: linear-gradient(transparent 40%, rgba(24, 22, 19, 0.75));
+  }
+}
 .meta--static { position: static; opacity: 1; transform: none; background: none; padding: var(--bmkrs-space-3) 0; }
 .work-card--cta { display: flex; align-items: center; justify-content: center; min-height: 220px; border: 1px solid var(--bmkrs-line); border-radius: var(--bmkrs-radius); }
 

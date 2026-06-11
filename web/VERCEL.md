@@ -4,7 +4,7 @@
 
 Use **one** of these setups (not both).
 
-### A — Root Directory = `web` (simplest)
+### A — Root Directory = `web` (recommended)
 
 | Setting | Value |
 |---------|--------|
@@ -16,6 +16,8 @@ Use **one** of these setups (not both).
 Vercel reads `web/package.json` and `web/vercel.json`. Ignore the repo-root `vercel.json` for this project.
 
 ### B — Root Directory blank (monorepo at repo root)
+
+Root `package.json` lists `next`, `react`, and `react-dom` so Vercel framework detection succeeds before `npm run install:web` runs. Keep versions aligned with `web/package.json`.
 
 | Setting | Value |
 |---------|--------|
@@ -78,5 +80,8 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
 - `NEXT_PUBLIC_SANITY_DATASET` = `production`
 - `NEXT_PUBLIC_SITE_URL` = `https://www.bmkrs.com` (must match the canonical www host; non-www redirects here)
-- `NEXT_PUBLIC_NETWORK_PORTAL_URL` = `https://app.bmkrs.com` (network app base; hire/join/login deep links default from this)
+- `NEXT_PUBLIC_NETWORK_PORTAL_URL` = `https://app.bmkrs.com`
+- `NEXT_PUBLIC_NETWORK_HIRE_URL` = `https://app.bmkrs.com/hire`
+- `NEXT_PUBLIC_NETWORK_JOIN_URL` = `https://app.bmkrs.com/join`
+- `NEXT_PUBLIC_MEMBER_LOGIN_URL` = `https://app.bmkrs.com/login`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads only after cookie consent)

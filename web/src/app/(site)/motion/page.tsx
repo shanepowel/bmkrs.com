@@ -7,7 +7,9 @@ import { SectionImage } from "@/components/bmkrs/SectionImage";
 import { MotionShowcase } from "@/components/bmkrs/MotionShowcase";
 import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
 import { motionMonthInMotion, motionSignals } from "@/lib/content/expansion-v2";
-import { getMotionTiers } from "@/lib/content";
+import { AppLink } from "@/components/bmkrs/AppLink";
+import { getMotionContent, getMotionTiers, getSiteSettings } from "@/lib/content";
+import { resolveNetworkJoinUrl } from "@/lib/urls";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
 
@@ -41,7 +43,13 @@ const HOW_IT_WORKS = [
 ];
 
 export default async function MotionPage() {
-  const tiers = await getMotionTiers();
+  const [tiers, motion, settings] = await Promise.all([
+    getMotionTiers(),
+    getMotionContent(),
+    getSiteSettings(),
+  ]);
+  const networkJoin = resolveNetworkJoinUrl(settings);
+  const motionPlus = motion.motionPlus;
 
   return (
     <main>
@@ -191,6 +199,25 @@ export default async function MotionPage() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section theme="ink">
+        <Kicker theme="ink">{motionPlus.eyebrow}</Kicker>
+        <H2 theme="ink">{motionPlus.statement}</H2>
+        <div className="mt-8 max-w-[65ch] space-y-5 text-lg leading-relaxed text-muted">
+          {motionPlus.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
+          <Link href="/network" className="btn-primary">
+            explore the network
+          </Link>
+          <AppLink href={networkJoin}>join as a specialist</AppLink>
+        </div>
+        {motionPlus.poweredBy ? (
+          <p className="mono mt-6 text-meta text-muted">{motionPlus.poweredBy}</p>
+        ) : null}
       </Section>
 
       <Section theme="ink" tight>

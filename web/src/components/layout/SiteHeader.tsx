@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { Theme } from "@/components/bmkrs/surfaces";
 import type { NavItem } from "@/lib/types";
+import { MEMBER_LOGIN_URL } from "@/lib/urls";
 
 const DEFAULT_NAV: NavItem[] = [
   { label: "work", href: "/work" },
@@ -40,7 +41,7 @@ export function SiteHeader({
   const [open, setOpen] = useState(false);
   const [surface, setSurface] = useState<Theme>("ink");
   const items = navItems(navigation);
-  const login = loginUrl ?? "https://app.bmkrs.com/login";
+  const login = loginUrl ?? MEMBER_LOGIN_URL;
   const lightLogo = surface === "paper" || surface === "orange";
 
   useEffect(() => {

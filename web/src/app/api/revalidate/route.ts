@@ -57,6 +57,19 @@ export async function POST(req: NextRequest) {
         revalidated.push("tag:settings");
         touch("/");
         break;
+      case "networkPage":
+        touch("/network");
+        break;
+      case "pressKit":
+        touch("/press");
+        break;
+      case "discipline":
+        touch("/services");
+        touch("/");
+        break;
+      case "nowBuilding":
+        touch("/about");
+        break;
       default:
         touch("/");
     }

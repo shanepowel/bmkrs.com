@@ -8,6 +8,25 @@ const path = require("path");
 const webRoot = path.join(__dirname, "..");
 const seedDir = path.join(webRoot, "sanity", "seed");
 const journalDir = path.join(webRoot, "content", "journal");
+const placeholders = JSON.parse(
+  fs.readFileSync(path.join(webRoot, "content", "case-study-placeholders.json"), "utf8"),
+);
+
+function withResultKeys(results) {
+  return (results ?? []).map((r, i) => ({ _key: `r${i}`, ...r }));
+}
+
+function applyCaseStudyPlaceholders(cs) {
+  const results = placeholders.resultsByCaseId[cs._id];
+  if (results?.length) {
+    cs.results = withResultKeys(results);
+  }
+  const testimonialId = placeholders.testimonialRefsByCaseId[cs._id];
+  if (testimonialId) {
+    cs.testimonial = { _type: "reference", _ref: testimonialId };
+  }
+  return cs;
+}
 
 const CATEGORY_MAP = {
   "brand + identity": "brand",
@@ -787,8 +806,9 @@ function generateCaseStudies() {
     if (!ids.has(cs._id)) withType.push(cs);
   }
 
-  writeNdjson("case-studies.ndjson", withType);
-  console.log(`  case-studies.ndjson (${withType.length} case studies)`);
+  const enriched = withType.map(applyCaseStudyPlaceholders);
+  writeNdjson("case-studies.ndjson", enriched);
+  console.log(`  case-studies.ndjson (${enriched.length} case studies)`);
 }
 
 function generatePressKit() {
@@ -991,7 +1011,9 @@ function generateSiteSettings() {
       networkJoinUrl: "https://app.bmkrs.com/join",
       memberLoginUrl: "https://app.bmkrs.com/login",
       companyName: "b makers ltd",
-      registeredAddress: "",
+      companyNumber: placeholders.company.companyNumber,
+      registeredAddress: placeholders.company.registeredAddress,
+      londonAddress: placeholders.company.londonAddress,
       copyright: "© 2026 b makers ltd. all rights reserved.",
       heroReelUrl: "/videos/hero-reel.mp4",
       socialLinks: [
@@ -1004,19 +1026,17 @@ function generateSiteSettings() {
 }
 
 function generateTestimonials() {
-  writeNdjson("testimonials.ndjson", [
-    {
-      _id: "testimonial-psl",
-      _type: "testimonial",
-      quote:
-        "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
-      name: "founder",
-      role: "podcast studio london",
-      company: "podcast studio london",
-      caseStudy: { _type: "reference", _ref: "caseStudy-podcast-studio-london" },
-    },
-  ]);
-  console.log("  testimonials.ndjson");
+  const docs = placeholders.testimonials.map((t) => ({
+    _id: t._id,
+    _type: "testimonial",
+    quote: t.quote,
+    name: t.name,
+    role: t.role,
+    company: t.company,
+    caseStudy: { _type: "reference", _ref: t.caseStudy },
+  }));
+  writeNdjson("testimonials.ndjson", docs);
+  console.log(`  testimonials.ndjson (${docs.length} testimonials)`);
 }
 
 function main() {

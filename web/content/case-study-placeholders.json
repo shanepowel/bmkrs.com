@@ -1,0 +1,102 @@
+{
+  "company": {
+    "companyNumber": "12345678",
+    "registeredAddress": "placeholder registered office, london, uk (replace before launch)",
+    "londonAddress": "london, uk"
+  },
+  "resultsByCaseId": {
+    "caseStudy-copa": [
+      { "value": "4", "label": "placeholder: new markets entered (replace)" },
+      { "value": "1", "label": "placeholder: identity system shipped (replace)" }
+    ],
+    "caseStudy-fdb": [
+      { "value": "22%", "label": "placeholder: conversion lift (replace)" },
+      { "value": "6w", "label": "placeholder: brief to relaunch (replace)" }
+    ],
+    "caseStudy-carter": [
+      { "value": "3x", "label": "placeholder: booking enquiries (replace)" },
+      { "value": "1", "label": "placeholder: showreel shipped (replace)" }
+    ],
+    "caseStudy-wanderlust": [
+      { "value": "12", "label": "placeholder: campaign templates (replace)" },
+      { "value": "50%", "label": "placeholder: faster brief turnaround (replace)" }
+    ],
+    "caseStudy-smoothies": [
+      { "value": "1", "label": "placeholder: launch site live (replace)" },
+      { "value": "5", "label": "placeholder: sku pages built (replace)" }
+    ],
+    "caseStudy-flipster": [
+      { "value": "1", "label": "placeholder: premium identity shipped (replace)" },
+      { "value": "8w", "label": "placeholder: name to market (replace)" }
+    ],
+    "caseStudy-podcast-studio-london": [
+      { "value": "2x", "label": "placeholder: enquiry rate (replace)" },
+      { "value": "1", "label": "placeholder: site relaunch (replace)" }
+    ],
+    "caseStudy-freelance-near-me": [
+      { "value": "1", "label": "placeholder: studio product shipped (replace)" },
+      { "value": "live", "label": "placeholder: in market (replace)" }
+    ],
+    "caseStudy-david-wheeler-psychology": [
+      { "value": "TBC", "label": "placeholder: practice launch metric (replace)" }
+    ],
+    "caseStudy-three18-media": [
+      { "value": "TBC", "label": "placeholder: site launch metric (replace)" }
+    ]
+  },
+  "testimonialRefsByCaseId": {
+    "caseStudy-copa": "testimonial-copa",
+    "caseStudy-fdb": "testimonial-fdb",
+    "caseStudy-carter": "testimonial-carter",
+    "caseStudy-podcast-studio-london": "testimonial-psl",
+    "caseStudy-freelance-near-me": "testimonial-fnm"
+  },
+  "testimonials": [
+    {
+      "_id": "testimonial-psl",
+      "quote": "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
+      "name": "founder",
+      "role": "studio lead",
+      "company": "podcast studio london",
+      "caseStudy": "caseStudy-podcast-studio-london"
+    },
+    {
+      "_id": "testimonial-copa",
+      "quote": "placeholder quote: replace with a real client line about copa identity and european rollout.",
+      "name": "client lead",
+      "role": "placeholder role",
+      "company": "copa",
+      "caseStudy": "caseStudy-copa"
+    },
+    {
+      "_id": "testimonial-fdb",
+      "quote": "placeholder quote: replace with a real floare din banat line about the storefront and brand refresh.",
+      "name": "founder",
+      "role": "placeholder role",
+      "company": "floare din banat",
+      "caseStudy": "caseStudy-fdb"
+    },
+    {
+      "_id": "testimonial-carter",
+      "quote": "placeholder quote: replace with carter on portfolio and booking conversations.",
+      "name": "carter",
+      "role": "photographer",
+      "company": "carter mcgreggor",
+      "caseStudy": "caseStudy-carter"
+    },
+    {
+      "_id": "testimonial-fnm",
+      "quote": "placeholder quote: replace with a line on shipping our own marketplace product.",
+      "name": "shane powell",
+      "role": "founder",
+      "company": "bmkrs",
+      "caseStudy": "caseStudy-freelance-near-me"
+    }
+  ],
+  "journalCoversBySlug": {
+    "better-told-brand-wins": "/images/optimized/copa-hero.jpg",
+    "choosing-a-rebrand-agency-uk": "/work/images/optimized/fdb-2-hero.jpg",
+    "startup-pr-without-retainer": "/images/optimized/carter-hero.jpg",
+    "one-team-vs-five-agencies": "/work/images/optimized/flipster-hero.jpg"
+  }
+}

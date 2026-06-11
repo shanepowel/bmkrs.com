@@ -39,6 +39,14 @@ function ProjectGrid({
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
               sizes="(max-width: 768px) 100vw, 400px"
             />
+            <div className="work-card__overlay" aria-hidden="true">
+              <span className="eyebrow mb-2 block">
+                {project.serviceTags?.length
+                  ? project.serviceTags.join(" · ")
+                  : (project.sector ?? project.category)}
+              </span>
+              <span className="display text-xl">{project.title}</span>
+            </div>
           </div>
           <div className="meta">
             <span className="eyebrow mb-2 block">

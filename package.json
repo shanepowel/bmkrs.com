@@ -15,5 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/shanepowel/bmkrs.com.git"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "next": "^16.2.7",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
 }
