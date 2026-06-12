@@ -7,3 +7,4 @@ export { MotionFlowDiagram } from "./MotionFlowDiagram";
 export { HowItWorks } from "./HowItWorks";
 export { Testimonials } from "./Testimonials";
 export { MotionCTA } from "./MotionCTA";
+export { MotionPageViewReworked } from "./MotionPageViewReworked";
