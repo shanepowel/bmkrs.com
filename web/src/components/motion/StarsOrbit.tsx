@@ -151,7 +151,7 @@ export function StarsOrbit() {
             }}
           />
         </p>
-        <p style={{ ...mono, color: "#888780" }} className="mt-2.5 text-[11px]">
+        <p style={{ ...mono, color: ink.faint }} className="mt-2.5 text-[11px]">
           the brand, kept moving
         </p>
       </div>

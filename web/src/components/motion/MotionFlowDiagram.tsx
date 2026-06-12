@@ -7,7 +7,10 @@ import { flowItems } from "./constants";
 
 export function MotionFlowDiagram() {
   return (
-    <section className="section-pad overflow-hidden bg-[var(--ink)] text-white" data-surface="ink">
+    <section
+      className="section-pad overflow-hidden bg-[var(--surface-bg)] text-[var(--surface-text)]"
+      data-surface="ink"
+    >
       <div className="wrap">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +42,7 @@ export function MotionFlowDiagram() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.25 }}
-                  className="text-white/40"
+                  className="text-[var(--surface-muted)]"
                 >
                   <MoveRight className="h-6 w-6" />
                 </motion.div>

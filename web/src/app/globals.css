@@ -140,6 +140,7 @@ body {
   }
 
   [data-surface="ink"] {
+    --surface-bg: #181613;
     --surface-text: #f1efe8;
     --surface-body: #d3d1c7;
     --surface-muted: #b4b2a9;
@@ -149,6 +150,7 @@ body {
   }
 
   [data-surface="paper"] {
+    --surface-bg: var(--bg);
     --surface-text: #181613;
     --surface-body: #444441;
     --surface-muted: #5f5e5a;
@@ -158,12 +160,18 @@ body {
   }
 
   [data-surface="orange"] {
+    --surface-bg: var(--accent);
     --surface-text: #181613;
     --surface-body: #2c1005;
     --surface-muted: #4a1b0c;
     --surface-rule: rgba(24, 22, 19, 0.25);
     --line: rgba(24, 22, 19, 0.25);
     --ink: #181613;
+  }
+
+  [data-surface="paper"] .eyebrow,
+  [data-surface="paper"] .kicker {
+    color: var(--bmkrs-accent-ink);
   }
 
   [data-surface] .text-muted,

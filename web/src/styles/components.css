@@ -142,7 +142,7 @@
 .product-included li { padding: 0.3rem 0; border-bottom: 1px solid var(--bmkrs-line); font-size: var(--bmkrs-step--1); }
 .product-foot { display: flex; flex-direction: column; gap: 0.4rem; margin-top: auto; }
 .product-proof { font-size: var(--bmkrs-step--1); color: var(--bmkrs-muted); }
-.product-cta { color: var(--bmkrs-accent); font-size: var(--bmkrs-step--1); }
+.product-cta { color: var(--bmkrs-accent-ink); font-size: var(--bmkrs-step--1); }
 
 /* motion */
 .motion-hero { padding-block: var(--bmkrs-space-7) var(--bmkrs-space-5); }

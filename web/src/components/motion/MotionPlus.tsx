@@ -14,13 +14,16 @@ export function MotionPlus({
   networkJoin: string;
 }) {
   return (
-    <section className="section-pad bg-[var(--ink)] text-white" data-surface="ink">
+    <section
+      className="section-pad bg-[var(--surface-bg)] text-[var(--surface-text)]"
+      data-surface="ink"
+    >
       <div className="wrap">
-        <p className="eyebrow text-white/60">{motionPlus.eyebrow}</p>
+        <p className="eyebrow text-[var(--surface-muted)]">{motionPlus.eyebrow}</p>
         <h2 className="display mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
           {motionPlus.statement}
         </h2>
-        <div className="mt-8 max-w-[65ch] space-y-5 text-lg leading-relaxed text-white/75">
+        <div className="mt-8 max-w-[65ch] space-y-5 text-lg leading-relaxed text-[var(--surface-body)]">
           {motionPlus.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
@@ -38,7 +41,7 @@ export function MotionPlus({
           <AppLink href={networkJoin}>join as a specialist</AppLink>
         </motion.div>
         {motionPlus.poweredBy ? (
-          <p className="mono mt-6 text-meta text-white/55">{motionPlus.poweredBy}</p>
+          <p className="mono mt-6 text-meta text-[var(--surface-muted)]">{motionPlus.poweredBy}</p>
         ) : null}
       </div>
     </section>

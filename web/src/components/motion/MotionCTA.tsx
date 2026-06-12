@@ -12,12 +12,13 @@ export function MotionCTA() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.65, ease: "easeOut" }}
-        className="wrap overflow-hidden rounded-[2rem] bg-[var(--ink)] px-6 py-20 text-center text-white sm:px-12 lg:py-28"
+        className="wrap overflow-hidden rounded-[2rem] bg-[var(--bmkrs-ink)] px-6 py-20 text-center text-[var(--bmkrs-off-white)] sm:px-12 lg:py-28"
+        data-surface="ink"
       >
         <h2 className="display mx-auto max-w-4xl text-5xl font-bold tracking-tight sm:text-7xl">
           your launch was the beginning.
         </h2>
-        <p className="lead mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[var(--surface-body)]">
           keep moving with a team that understands your brand and helps drive it forward every month.
         </p>
         <div className="hero-cta mt-10">
