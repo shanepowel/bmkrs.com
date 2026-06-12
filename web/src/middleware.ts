@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   const override = parseMotionAbOverride(request.nextUrl.searchParams.get("motion"));
   const existing = request.cookies.get(MOTION_AB_COOKIE)?.value;
 
-  let variant = override ?? (isMotionAbVariant(existing) ? existing : randomMotionAbVariant());
+  const variant = override ?? (isMotionAbVariant(existing) ? existing : randomMotionAbVariant());
 
   if (override || !isMotionAbVariant(existing)) {
     response.cookies.set(MOTION_AB_COOKIE, variant, {

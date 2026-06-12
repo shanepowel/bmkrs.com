@@ -71,41 +71,32 @@ export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
       <MotionHeroSection>
-        <motion.div variants={stagger} initial="hidden" animate="visible">
-          <motion.div variants={fadeUp}>
-            <Kicker surface="ink">keep moving</Kicker>
-          </motion.div>
-          <motion.h1
-            variants={fadeUp}
-            className="max-w-[12ch] font-medium"
-            style={{
-              fontSize: "clamp(2.75rem,6.5vw,6rem)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.02em",
-            }}
+        <Kicker surface="ink">keep moving</Kicker>
+        <h1
+          className="max-w-[12ch] font-medium"
+          style={{
+            fontSize: "clamp(2.75rem,6.5vw,6rem)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          always in motion.
+        </h1>
+        <p style={{ color: C.inkBody }} className="mt-7 max-w-[55ch] text-lg leading-relaxed">
+          launches are exciting. momentum is hard. motion is the team that keeps your brand moving
+          month after month: senior strategy, creative and delivery, without hiring an internal team
+          or re-briefing a new supplier every quarter.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center gap-6">
+          <PrimaryButton href="#tiers">see the tiers + prices</PrimaryButton>
+          <a
+            href="#month"
+            style={{ ...mono, color: C.inkBody }}
+            className="text-[13px] underline-offset-4 hover:underline"
           >
-            always in motion.
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            style={{ color: C.inkBody }}
-            className="mt-7 max-w-[55ch] text-lg leading-relaxed"
-          >
-            launches are exciting. momentum is hard. motion is the team that keeps your brand
-            moving month after month: senior strategy, creative and delivery, without hiring an
-            internal team or re-briefing a new supplier every quarter.
-          </motion.p>
-          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-6">
-            <PrimaryButton href="#tiers">see the tiers + prices</PrimaryButton>
-            <a
-              href="#month"
-              style={{ ...mono, color: C.inkBody }}
-              className="text-[13px] underline-offset-4 hover:underline"
-            >
-              what a month looks like →
-            </a>
-          </motion.div>
-        </motion.div>
+            what a month looks like →
+          </a>
+        </div>
       </MotionHeroSection>
 
       <section style={{ background: C.paper, color: C.paperText }}>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { Kicker } from "@/components/bmkrs/Kicker";
+import { Kicker } from "@/components/bmkrs/surfaces";
 import { Reveal } from "@/components/bmkrs/Reveal";
 
 export type HeroReelProps = {
@@ -56,7 +56,7 @@ export function HeroReel({
         <div className="site-grid items-end">
           <div className="site-span-9 cluster-tight">
             <Reveal>
-              <Kicker className="text-[var(--bmkrs-off-white)]">{eyebrow}</Kicker>
+              <Kicker theme="ink">{eyebrow}</Kicker>
             </Reveal>
             <Reveal delay={1}>
               <h1 className="display text-hero font-medium text-[var(--bmkrs-off-white)]">

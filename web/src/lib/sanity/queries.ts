@@ -28,29 +28,6 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   } | order(order asc)
 }`;
 
-export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{
-  "slug": slug.current,
-  title,
-  metaDescription,
-  heroEyebrow,
-  heroTitle,
-  heroSubtitle,
-  heroCtaLabel,
-  heroCtaHref,
-  heroVideoUrl,
-  sections
-}`;
-
-export const servicesQuery = `*[_type == "service"] | order(order asc){
-  "slug": slug.current,
-  title,
-  summary,
-  body,
-  imagePath,
-  bullets,
-  order
-}`;
-
 const caseStudyFields = `
   "slug": slug.current,
   title,
@@ -120,10 +97,6 @@ export const homeTestimonialsQuery = `*[_type == "testimonial" && defined(quote)
   quote, name, role, company
 }`;
 
-export const teamQuery = `*[_type == "teamMember"] | order(order asc){
-  name, discipline, bio, "photo": photo{ "url": asset->url, "alt": alt }
-}`;
-
 export const journalArticlesQuery = `*[_type == "journalArticle"] | order(publishedAt desc){
   "slug": slug.current,
   title,
@@ -152,11 +125,6 @@ export const homePillarsQuery = `*[_type == "homePillar"] | order(order asc){
   title,
   description,
   order
-}`;
-
-export const disciplinesQuery = `*[_type == "discipline"] | order(order asc){
-  name, proposition, body, symptom, craft, outcome, deliverables,
-  "powers": relatedProducts[]->{ name, "slug": slug.current, tier }
 }`;
 
 export const allProductsQuery = `*[_type == "product"] | order(order asc){

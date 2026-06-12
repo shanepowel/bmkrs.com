@@ -4,10 +4,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
-import { Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@/components/bmkrs/surfaces";
 import { ServiceTags } from "@/components/bmkrs/ServiceTags";
 import {
   getNextProject,
@@ -75,7 +74,7 @@ function CaseSection({
     <section className="case-section">
       <SectionRule />
       <div className="case-section__inner">
-        <Kicker className="mt-[var(--space-tight)]">{kicker}</Kicker>
+        <Kicker theme="paper">{kicker}</Kicker>
         <Reveal delay={delay}>
           <div className="case-section__body measure mt-[var(--space-tight)]">{children}</div>
         </Reveal>
@@ -230,7 +229,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <section className="case-section">
               <SectionRule />
               <div className="case-section__inner">
-                <Kicker className="mt-[var(--space-tight)]">outcome</Kicker>
+                <Kicker theme="paper">outcome</Kicker>
                 {hasFilledMetrics(metrics) && (
                   <ul className="metric-grid mt-[var(--space-tight)]">
                     {metrics.map((m) => (

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Kicker } from "@/components/bmkrs/Kicker";
+import { Kicker } from "@/components/bmkrs/surfaces";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import {
   contactBudgetReassurance,
@@ -123,7 +123,7 @@ export function ContactExperience({
       <section className="section-pad contact-split-section" data-surface="ink">
         <div className="wrap contact-split">
           <div className="contact-intro">
-            <Kicker>start a project</Kicker>
+            <Kicker theme="paper">start a project</Kicker>
             <h1 className="display text-h2 mt-[var(--space-tight)] font-medium">
               tell us what you&apos;re building.
             </h1>
@@ -137,7 +137,7 @@ export function ContactExperience({
             />
 
             <div className="mt-[var(--space-block)]">
-              <Kicker>what happens next</Kicker>
+              <Kicker theme="paper">what happens next</Kicker>
               <ul className="mt-4 list-none space-y-0 p-0">
                 {contactWhatHappensNext.map((step) => (
                   <li key={step.number} className="contact-email-row">

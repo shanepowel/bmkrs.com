@@ -214,6 +214,6 @@ export function outcomeLineForSlug(slug: string, cmsLine?: string): string | und
   return cmsLine || projectOutcomeLines[slug];
 }
 
-export function captionForProject(slug: string, title: string): string | undefined {
+export function captionForProject(slug: string, _title: string): string | undefined {
   return heroImageCaptions[slug];
 }

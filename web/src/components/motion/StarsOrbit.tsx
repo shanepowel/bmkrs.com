@@ -4,17 +4,20 @@ const ink = SURFACE.ink;
 const mono = { fontFamily: "var(--font-mono, ui-monospace, monospace)" } as const;
 
 type Star = {
+  /** starting angle on the ring, degrees */
   at: number;
+  /** px diameter */
   size: number;
   tone: "paper" | "dim" | "orange";
+  /** dimmer static opacity for depth */
   twinkle?: boolean;
   label?: string;
 };
 
 type Ring = {
+  /** ring diameter as % of the container */
   d: number;
-  period: number;
-  reverse?: boolean;
+  /** hairline ring opacity */
   line: number;
   stars: Star[];
 };
@@ -22,7 +25,6 @@ type Ring = {
 const RINGS: Ring[] = [
   {
     d: 46,
-    period: 14,
     line: 0.18,
     stars: [
       { at: 0, size: 7, tone: "orange" },
@@ -31,8 +33,6 @@ const RINGS: Ring[] = [
   },
   {
     d: 70,
-    period: 26,
-    reverse: true,
     line: 0.14,
     stars: [
       { at: 0, size: 5, tone: "paper", twinkle: true, label: "content" },
@@ -42,7 +42,6 @@ const RINGS: Ring[] = [
   },
   {
     d: 94,
-    period: 44,
     line: 0.1,
     stars: [
       { at: 0, size: 5, tone: "paper", label: "strategy" },
@@ -72,8 +71,6 @@ export function StarsOrbit() {
     <div className="orbit-wrap relative mx-auto aspect-square w-full max-w-[480px]" aria-hidden>
       {RINGS.map((ring) => {
         const inset = `${(100 - ring.d) / 2}%`;
-        const spin = ring.reverse ? "orbit-spin-rev" : "orbit-spin";
-        const counter = ring.reverse ? "orbit-spin" : "orbit-spin-rev";
         return (
           <div key={ring.d} className="absolute" style={{ inset }}>
             <div
@@ -83,19 +80,17 @@ export function StarsOrbit() {
             {ring.stars.map((star) => (
               <div
                 key={`${ring.d}-${star.at}`}
-                className={`orbit-carrier absolute inset-0 ${spin}`}
-                style={{
-                  rotate: `${star.at}deg`,
-                  animationDuration: `${ring.period}s`,
-                }}
+                className="absolute inset-0"
+                style={{ rotate: `${star.at}deg` }}
               >
                 <span
-                  className={`absolute left-1/2 top-0 rounded-full ${star.twinkle ? "orbit-twinkle" : ""}`}
+                  className="absolute left-1/2 top-0 rounded-full"
                   style={{
                     width: star.size,
                     height: star.size,
                     marginLeft: -star.size / 2,
                     marginTop: -star.size / 2,
+                    opacity: star.twinkle ? 0.65 : 1,
                     ...TONE[star.tone],
                   }}
                 />
@@ -105,10 +100,9 @@ export function StarsOrbit() {
                     style={{ transform: "translate(-50%, -50%)", marginTop: -16 }}
                   >
                     <span
-                      className={`orbit-carrier inline-block ${counter}`}
+                      className="inline-block"
                       style={{
                         rotate: `${-star.at}deg`,
-                        animationDuration: `${ring.period}s`,
                         ...mono,
                         fontSize: 11,
                         color: ink.faint,
@@ -161,18 +155,6 @@ export function StarsOrbit() {
           the brand, kept moving
         </p>
       </div>
-
-      <style>{`
-        @keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes orbit-spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-        @keyframes orbit-twinkle { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-        .orbit-spin { animation-name: orbit-spin; animation-timing-function: linear; animation-iteration-count: infinite; }
-        .orbit-spin-rev { animation-name: orbit-spin-rev; animation-timing-function: linear; animation-iteration-count: infinite; }
-        .orbit-twinkle { animation: orbit-twinkle 4.5s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .orbit-carrier, .orbit-twinkle { animation: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

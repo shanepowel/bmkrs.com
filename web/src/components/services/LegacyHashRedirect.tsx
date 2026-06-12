@@ -1,17 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-
-const MAP: Record<string, string> = {
-  "#branding": "#launch-kit",
-  "#voice": "#story",
-  "#pr": "#press-launch",
-  "#product": "#storefront",
-};
+import { LEGACY_DISCIPLINE_HASH_MAP } from "@/lib/service-anchors";
 
 export function LegacyHashRedirect() {
   useEffect(() => {
-    const next = MAP[window.location.hash];
+    const next = LEGACY_DISCIPLINE_HASH_MAP[window.location.hash];
     if (next) window.location.replace(next);
   }, []);
 

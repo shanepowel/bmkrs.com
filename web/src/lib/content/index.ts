@@ -3,19 +3,15 @@ import {
   fallbackHome,
   fallbackHomeTestimonials,
   fallbackMotion,
-  fallbackPages,
   fallbackProjects,
-  fallbackServices,
   fallbackSiteSettings,
 } from "./fallback";
 import { fallbackJournalArticles } from "./journal-fallback";
 import {
   fallbackAboutPage,
-  fallbackDisciplines,
   fallbackNowBuilding,
   fallbackPeople,
   fallbackProducts,
-  fallbackTeam,
 } from "./offering-fallback";
 import {
   categorySlugsWithMinPosts,
@@ -28,20 +24,13 @@ import {
 } from "./journal-publish";
 import { getMarkdownJournalPosts } from "./journal-markdown";
 import { fallbackPosts as legacyJournalPosts } from "./journal-posts-fallback";
-import {
-  mergeDisciplineImage,
-  mergePostCover,
-  mergeProjectImages,
-  mergeTeamPhoto,
-} from "./image-fallbacks";
-import { disciplineExpansion, outcomeLineForSlug } from "./expansion-v2";
+import { mergePostCover, mergeProjectImages } from "./image-fallbacks";
+import { outcomeLineForSlug } from "./expansion-v2";
 import { fallbackPressKit } from "./press-kit-fallback";
 import { fallbackNetworkPage } from "./network-page-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
 import type {
   AboutPageContent,
-  Discipline,
-  CmsPage,
   HomeContent,
   HomePillar,
   JournalArticle,
@@ -53,9 +42,7 @@ import type {
   Person,
   Product,
   Project,
-  Service,
   SiteSettings,
-  TeamMember,
   Testimonial,
 } from "@/lib/types";
 import { sanityClient } from "@/lib/sanity/client";
@@ -66,10 +53,8 @@ import {
   networkPageQuery,
   peopleQuery,
   allProductsQuery,
-  disciplinesQuery,
   caseStudiesQuery,
   caseStudyBySlugQuery,
-  caseStudySlugsQuery,
   featuredCaseStudiesQuery,
   homePillarsQuery,
   homeTestimonialsQuery,
@@ -77,14 +62,10 @@ import {
   journalArticlesQuery,
   journalIndexQuery,
   motionTiersQuery,
-  pageBySlugQuery,
   postBySlugQuery,
-  postSlugsQuery,
   projectBySlugQuery,
   projectsQuery,
-  servicesQuery,
   siteSettingsQuery,
-  teamQuery,
 } from "@/lib/sanity/queries";
 
 async function fetchSanity<T>(query: string, params?: Record<string, unknown>): Promise<T | null> {
@@ -130,23 +111,12 @@ export const getSiteSettings = unstable_cache(loadSiteSettings, ["site-settings"
   tags: ["settings"],
 });
 
-export async function getPage(slug: string): Promise<CmsPage> {
-  const key = slug === "discover" ? "services" : slug;
-  const data = await fetchSanity<CmsPage>(pageBySlugQuery, { slug: key });
-  return data ?? fallbackPages[key] ?? fallbackPages.home;
-}
-
 export async function getHomeContent(): Promise<HomeContent> {
   const pillars = await fetchSanity<HomePillar[]>(homePillarsQuery);
   if (pillars?.length) {
     return { ...fallbackHome, pillars };
   }
   return fallbackHome;
-}
-
-export async function getServices(): Promise<Service[]> {
-  const data = await fetchSanity<Service[]>(servicesQuery);
-  return data?.length ? data : fallbackServices;
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -192,21 +162,6 @@ function mergeProducts(sanity: Product[] | null | undefined): Product[] {
 export async function getProducts(): Promise<Product[]> {
   const data = await fetchSanity<Product[]>(allProductsQuery);
   return mergeProducts(data);
-}
-
-export async function getDisciplines(): Promise<Discipline[]> {
-  const data = await fetchSanity<Discipline[]>(disciplinesQuery);
-  const list = data?.length ? data : fallbackDisciplines;
-  return list.map((d) => {
-    const expansion = disciplineExpansion[d.name];
-    const merged = {
-      ...d,
-      symptom: d.symptom ?? expansion?.symptom,
-      craft: d.craft ?? expansion?.craft,
-      outcome: d.outcome ?? expansion?.outcome,
-    };
-    return mergeDisciplineImage(merged);
-  });
 }
 
 export async function getMotionTiers(): Promise<Product[]> {
@@ -346,30 +301,6 @@ export async function getHomeTestimonials(): Promise<Testimonial[]> {
   const data = await fetchSanity<Testimonial[]>(homeTestimonialsQuery);
   if (data?.length) return data.filter((t) => isFilled(t.quote));
   return fallbackHomeTestimonials.filter((t) => isFilled(t.quote));
-}
-
-export async function getTeamMembers(): Promise<TeamMember[]> {
-  const data = await fetchSanity<
-    {
-      name: string;
-      discipline?: string;
-      bio?: string;
-      photo?: { url?: string; alt?: string };
-    }[]
-  >(teamQuery);
-  if (data?.length) {
-    return data
-      .map((m) =>
-        mergeTeamPhoto({
-          name: m.name,
-          discipline: m.discipline,
-          bio: m.bio,
-          photoUrl: m.photo?.url,
-          photoAlt: m.photo?.alt || m.name,
-        }),
-      );
-  }
-  return fallbackTeam.map(mergeTeamPhoto);
 }
 
 function allFallbackJournalPosts(): JournalPost[] {

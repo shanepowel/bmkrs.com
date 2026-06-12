@@ -1,4 +1,3 @@
-import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { isFilled } from "@/lib/content/placeholders";
 import type { Testimonial } from "@/lib/types";

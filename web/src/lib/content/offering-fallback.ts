@@ -1,76 +1,8 @@
-import type { AboutPageContent, Discipline, NowBuildingContent, Person, Product, TeamMember } from "@/lib/types";
+import type { AboutPageContent, NowBuildingContent, Person, Product, TeamMember } from "@/lib/types";
 import { authorBios } from "./author-bios";
 import { fallbackPosts } from "./journal-posts-fallback";
 
 export { fallbackPosts };
-
-export const fallbackDisciplines: Discipline[] = [
-  {
-    name: "brand + identity",
-    proposition: "the foundation everything else is built on.",
-    body: "strategy, positioning, naming and a complete visual identity. we make sure the brand says the right thing before it says anything at all.",
-    deliverables: [
-      "brand strategy and positioning",
-      "naming",
-      "logo and identity system",
-      "typography and colour",
-      "brand guidelines",
-    ],
-    powers: [
-      { name: "launch kit", slug: "launch-kit", tier: "make" },
-      { name: "rebrand", slug: "rebrand", tier: "make" },
-      { name: "brand check", slug: "brand-check", tier: "start" },
-    ],
-  },
-  {
-    name: "voice + messaging",
-    proposition: "how the brand sounds, everywhere.",
-    body: "tone of voice, messaging and narrative, so a complicated product feels obvious and every channel sounds like the same brand.",
-    deliverables: [
-      "tone of voice",
-      "messaging framework",
-      "brand and product narrative",
-      "campaign and website copy",
-    ],
-    powers: [
-      { name: "story", slug: "story", tier: "make" },
-      { name: "launch kit", slug: "launch-kit", tier: "make" },
-    ],
-  },
-  {
-    name: "pr + communications",
-    proposition: "getting the right people to care.",
-    body: "we spend more time finding the right journalist and the right angle than blasting out press releases. launches, press and thought leadership that actually land.",
-    deliverables: [
-      "pr and media strategy",
-      "press materials",
-      "targeted outreach",
-      "thought leadership",
-      "launch campaigns",
-    ],
-    powers: [
-      { name: "press launch", slug: "press-launch", tier: "make" },
-      { name: "motion plus", slug: "motion-plus", tier: "grow" },
-    ],
-  },
-  {
-    name: "product, web + growth",
-    proposition: "turning attention into revenue.",
-    body: "the sites, stores and campaigns that carry the brand and make it work commercially. we measure what matters, then do more of it.",
-    deliverables: [
-      "websites and storefronts",
-      "product and ux",
-      "growth and performance marketing",
-      "seo and email",
-      "analytics and reporting",
-    ],
-    powers: [
-      { name: "storefront", slug: "storefront", tier: "make" },
-      { name: "launch kit", slug: "launch-kit", tier: "make" },
-      { name: "motion", slug: "motion", tier: "grow" },
-    ],
-  },
-];
 
 export const fallbackProducts: Product[] = [
   {

@@ -28,41 +28,6 @@ export const teamPhotoByName: Record<string, { url: string; alt: string }> = {
   },
 };
 
-export const disciplineImages = [
-  {
-    n: "01",
-    name: "brand + identity",
-    body: "strategy, positioning, naming and the visual world that makes you clear at a glance.",
-    href: "/services#launch-kit",
-    image: marketingImages.brandGuidelines,
-  },
-  {
-    n: "02",
-    name: "voice + messaging",
-    body: "tone, narrative and messaging that makes people understand and care.",
-    href: "/services#story",
-    image: marketingImages.designStudio,
-  },
-  {
-    n: "03",
-    name: "pr + communications",
-    body: "launches, press and thought leadership that get your story heard.",
-    href: "/services#press-launch",
-    image: marketingImages.socialStrategy,
-  },
-  {
-    n: "04",
-    name: "product, web + growth",
-    body: "sites, apps and campaigns that turn attention into revenue.",
-    href: "/services#storefront",
-    image: marketingImages.digitalEcosystem,
-  },
-] as const;
-
-export const disciplineImageByName = Object.fromEntries(
-  disciplineImages.map((d) => [d.name, d.image]),
-) as Record<(typeof disciplineImages)[number]["name"], string>;
-
 export const homeMotionStrip = motionStripImages;
 
 export const pageHeroImages = {
@@ -113,18 +78,6 @@ export const productImageBySlug: Record<string, { src: string; alt: string }> = 
   "motion-plus": { src: marketingImages.filmProduction, alt: "motion plus" },
   "motion-embedded": { src: marketingImages.creativeToolkit, alt: "motion embedded" },
 };
-
-export function mergeDisciplineImage<T extends { name: string; imageUrl?: string; imageAlt?: string }>(
-  discipline: T,
-): T {
-  const src = discipline.imageUrl ?? disciplineImageByName[discipline.name.toLowerCase() as keyof typeof disciplineImageByName];
-  if (!src || !isUsableImage(src)) return discipline;
-  return {
-    ...discipline,
-    imageUrl: src,
-    imageAlt: discipline.imageAlt ?? discipline.name,
-  };
-}
 
 function isUsableImage(url?: string): url is string {
   return Boolean(url && url !== PLACEHOLDER_LOGO && !url.includes("blacklogo"));
