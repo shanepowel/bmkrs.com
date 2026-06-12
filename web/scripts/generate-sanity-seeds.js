@@ -1047,8 +1047,12 @@ function generateSiteSettings() {
       networkJoinUrl: "https://app.bmkrs.com/join",
       memberLoginUrl: "https://app.bmkrs.com/login",
       companyName: "b makers ltd",
-      companyNumber: placeholders.company.companyNumber,
-      registeredAddress: placeholders.company.registeredAddress,
+      ...(placeholders.company.companyNumber
+        ? { companyNumber: placeholders.company.companyNumber }
+        : {}),
+      ...(placeholders.company.registeredAddress
+        ? { registeredAddress: placeholders.company.registeredAddress }
+        : {}),
       londonAddress: placeholders.company.londonAddress,
       copyright: "© 2026 b makers ltd. all rights reserved.",
       heroReelUrl: "/videos/hero-reel.mp4",

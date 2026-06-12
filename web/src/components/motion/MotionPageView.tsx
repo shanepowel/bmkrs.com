@@ -6,12 +6,9 @@ import { MotionFeatures } from "./MotionFeatures";
 import { MotionFlowDiagram } from "./MotionFlowDiagram";
 import { MotionHero } from "./MotionHero";
 import { MotionPlus } from "./MotionPlus";
-import { MotionPricing } from "./MotionPricing";
 import { MotionSolution } from "./MotionSolution";
 import { MotionTiers } from "./MotionTiers";
-import { HowItWorks } from "./HowItWorks";
 import { PainPoints } from "./PainPoints";
-import { Testimonials } from "./Testimonials";
 import type { MotionContent, Product } from "@/lib/types";
 
 export type MotionPageViewProps = {
@@ -41,11 +38,8 @@ export function MotionPageView({
       <MotionSolution />
       <MotionFeatures />
       <MotionFlowDiagram />
-      <HowItWorks />
       <MotionTiers monthInMotion={monthInMotion} tiers={tiers} />
       <MotionPlus motionPlus={motionPlus} networkJoin={networkJoin} />
-      <Testimonials />
-      <MotionPricing />
       <MotionCTA />
     </>
   );

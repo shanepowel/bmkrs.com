@@ -25,7 +25,7 @@ export function MotionCTA() {
             href="/contact"
             className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-[var(--ink)] transition hover:bg-white/90"
           >
-            start a conversation
+            let&apos;s talk
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>

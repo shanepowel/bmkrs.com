@@ -1,7 +1,7 @@
 {
   "company": {
-    "companyNumber": "12345678",
-    "registeredAddress": "placeholder registered office, london, uk (replace before launch)",
+    "companyNumber": "",
+    "registeredAddress": "",
     "londonAddress": "london, uk"
   },
   "resultsByCaseId": {

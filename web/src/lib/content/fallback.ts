@@ -34,8 +34,8 @@ export const fallbackSiteSettings: SiteSettings = {
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
   companyName: "b makers ltd",
-  companyNumber: placeholderCompany.companyNumber,
-  registeredAddress: placeholderCompany.registeredAddress,
+  companyNumber: placeholderCompany.companyNumber || undefined,
+  registeredAddress: placeholderCompany.registeredAddress || undefined,
   londonAddress: placeholderCompany.londonAddress,
   copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:

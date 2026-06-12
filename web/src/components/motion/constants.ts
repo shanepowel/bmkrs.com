@@ -1,13 +1,3 @@
-import {
-  Blocks,
-  Compass,
-  Layers3,
-  PenTool,
-  Repeat2,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
-
 export const orbitCards = [
   "strategy",
   "content",
@@ -44,68 +34,23 @@ export const checklist = [
   "strategic direction",
 ];
 
-export const features: { icon: LucideIcon; title: string; body: string }[] = [
+export const motionOutcomes = [
   {
-    icon: Compass,
-    title: "strategic thinking",
-    body: "senior direction that connects every decision to the next stage of growth.",
+    title: "one bet per month.",
+    body: "a single primary objective, agreed together and written down, so the team ships toward one outcome instead of a scattered backlog.",
   },
   {
-    icon: Blocks,
-    title: "embedded partnership",
-    body: "a close working rhythm that feels like the team behind the team.",
+    title: "work lands when it is ready.",
+    body: "design, copy, campaigns and pages go out as they finish, not in a quarterly reveal that stalls momentum.",
   },
   {
-    icon: PenTool,
-    title: "creative delivery",
-    body: "concepts, campaigns, content and assets shaped with taste and intent.",
+    title: "a report you can forward.",
+    body: "what shipped, what moved, and what we would do differently, in plain language with numbers, every month.",
   },
   {
-    icon: Zap,
-    title: "faster execution",
-    body: "a retained capability that removes friction from priority work.",
-  },
-  {
-    icon: Layers3,
-    title: "brand consistency",
-    body: "sharper standards across every customer touchpoint, month after month.",
-  },
-  {
-    icon: Repeat2,
-    title: "flexible support",
-    body: "the right mix of thinking, making and momentum as priorities shift.",
-  },
-];
-
-export const steps = [
-  {
-    number: "01",
-    title: "discover",
-    body: "understand business goals.",
-  },
-  {
-    number: "02",
-    title: "embed",
-    body: "become an extension of the team.",
-  },
-  {
-    number: "03",
-    title: "accelerate",
-    body: "deliver consistent strategic output.",
+    title: "the same team compounds.",
+    body: "no re-briefing strangers. the people who know your brand stay on it, and every month the work gets sharper.",
   },
 ];
 
 export const flowItems = ["brand", "content", "campaigns", "customers", "growth"];
-
-export const testimonials = [
-  {
-    quote: "working with bmkrs feels like adding a leadership team to the business.",
-    name: "founder",
-    role: "technology company",
-  },
-  {
-    quote: "momentum became predictable instead of reactive.",
-    name: "managing director",
-    role: "professional services",
-  },
-];

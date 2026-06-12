@@ -426,7 +426,7 @@ export function MotionPageViewReworked() {
             that you do not need motion yet. both answers are free.
           </p>
           <div className="mt-8">
-            <PrimaryButton href="/contact">start a project</PrimaryButton>
+            <PrimaryButton href="/contact">let&apos;s talk</PrimaryButton>
           </div>
         </div>
       </section>

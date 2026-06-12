@@ -1,3 +1,8 @@
+import {
+  publicCompanyNumber,
+  publicRegisteredAddress,
+} from "@/lib/content/company-registration";
+
 export type LegalSection = {
   title: string;
   paragraphs?: string[];
@@ -15,19 +20,14 @@ const PLACEHOLDER_DATE = "[DATE]";
 const PLACEHOLDER_COMPANY = "[COMPANY NUMBER]";
 const PLACEHOLDER_ADDRESS = "[ADDRESS]";
 
+/** Footer / public-facing registration line — never publishes placeholder values. */
 export function companyLine(companyNumber?: string, registeredAddress?: string): string {
   const name = "b makers ltd";
   const parts = [`${name} · registered in england and wales`];
-  if (companyNumber) {
-    parts.push(`company no. ${companyNumber}`);
-  } else {
-    parts.push(`company no. ${PLACEHOLDER_COMPANY}`);
-  }
-  if (registeredAddress) {
-    parts.push(`registered office: ${registeredAddress}`);
-  } else {
-    parts.push(`registered office: ${PLACEHOLDER_ADDRESS}`);
-  }
+  const number = publicCompanyNumber(companyNumber);
+  const office = publicRegisteredAddress(registeredAddress);
+  if (number) parts.push(`company no. ${number}`);
+  if (office) parts.push(`registered office: ${office}`);
   return parts.join(" · ");
 }
 
@@ -35,10 +35,12 @@ export function privacyNotice(
   companyNumber?: string,
   registeredAddress?: string,
 ): LegalDocument {
-  const companyRef = companyNumber
-    ? `company no. ${companyNumber}`
-    : `company no. ${PLACEHOLDER_COMPANY}`;
-  const officeRef = registeredAddress ?? PLACEHOLDER_ADDRESS;
+  const number = publicCompanyNumber(companyNumber);
+  const office = publicRegisteredAddress(registeredAddress);
+  const companyRef = number
+    ? `company no. ${number}`
+    : "registered in england and wales (company number to be added)";
+  const officeRef = office ?? "registered office to be added before publication";
 
   return {
     title: "privacy notice",
