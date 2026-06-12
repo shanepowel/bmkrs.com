@@ -3,17 +3,50 @@ import type { NetworkPageContent } from "@/lib/types";
 export const fallbackNetworkPage: NetworkPageContent = {
   headline: "the people behind the work.",
   intro:
-    "every bmkrs project is delivered by a network of senior builders, designers, writers and specialists. now you can tap it directly: hire them, or join them.",
-  whatItIs:
-    "we built the network to staff our own client work. we only let people in if we would put them on it, and that bar is the whole point. it is not a job board. it is the bench we actually use, opened up.",
+    "every bmkrs project is staffed from a vetted bench of senior builders, designers, writers and specialists. now the bench is open: hire from it, or earn a place on it.",
+  members: [],
+  disciplineTiles: [
+    { title: "brand + identity", sub: "designers" },
+    { title: "voice + copy", sub: "writers" },
+    { title: "pr + comms", sub: "specialists" },
+    { title: "web + product", sub: "engineers" },
+    { title: "growth + seo", sub: "marketers" },
+    { title: "delivery", sub: "leads" },
+  ],
+  stats: [],
+  barHeadline: "one question decides it: would we put you on our own client work?",
+  barSteps: [
+    {
+      title: "referred or apply",
+      body: "most of the bench came recommended by people already on it. the rest applied and stood out.",
+    },
+    {
+      title: "vetted on shipped work",
+      body: "we review work that went live, not portfolios polished for interviews.",
+    },
+    {
+      title: "proven on ours first",
+      body: "new members work on bmkrs projects before we ever put them in yours.",
+    },
+  ],
   forCompanies: {
-    heading: "for companies",
-    body: "need more than a project? bring senior bmkrs people in to build alongside your team. brand, voice, pr, product, on tap, with no recruitment and no ramp-up. the same people who do our client work, working as part of yours.",
+    heading: "hire from the bench.",
+    body: "bring senior people in to build alongside your team. brand, voice, pr, product, with no recruitment and no ramp-up. the same people who deliver our client work, working as part of yours.",
+    steps: [
+      "tell us what you need",
+      "we match from people we have already worked with",
+      "they start in days, inside your team",
+    ],
     cta: "find talent",
   },
   forSpecialists: {
-    heading: "for specialists",
-    body: "we work with people we would stake our name on. if that is you, the work is good and the company is better. apply to join, and we will only call when something fits.",
+    heading: "earn a place on it.",
+    body: "we work with people we would stake our name on. if that is you, the work is good and the company is better.",
+    steps: [
+      "apply with work that shipped",
+      "we vet like we are hiring for ourselves",
+      "we only call when something genuinely fits",
+    ],
     cta: "join the network",
   },
   connects:
@@ -21,6 +54,6 @@ export const fallbackNetworkPage: NetworkPageContent = {
   seo: {
     metaTitle: "the network | bmkrs.",
     metaDescription:
-      "the senior builders, designers and specialists behind every bmkrs project. hire them, or join them.",
+      "the vetted bench of senior builders, designers and specialists behind every bmkrs project. hire from it, or earn a place on it.",
   },
 };

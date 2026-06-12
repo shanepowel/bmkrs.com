@@ -203,13 +203,39 @@ export type PressKitContent = {
 export type NetworkAudienceBlock = {
   heading: string;
   body: string;
+  steps?: string[];
   cta?: string;
+};
+
+export type NetworkMember = {
+  name: string;
+  discipline?: string;
+  photo?: { url: string; alt?: string };
+};
+
+export type NetworkTile = {
+  title: string;
+  sub?: string;
+};
+
+export type NetworkStat = {
+  value: string;
+  label: string;
+};
+
+export type NetworkBarStep = {
+  title: string;
+  body: string;
 };
 
 export type NetworkPageContent = {
   headline: string;
   intro: string;
-  whatItIs?: string;
+  members?: NetworkMember[];
+  disciplineTiles?: NetworkTile[];
+  stats?: NetworkStat[];
+  barHeadline?: string;
+  barSteps?: NetworkBarStep[];
   forCompanies?: NetworkAudienceBlock;
   forSpecialists?: NetworkAudienceBlock;
   connects?: string;

@@ -898,6 +898,88 @@
 .app-link:hover {
   color: var(--bmkrs-accent);
 }
+.network-hero--split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--bmkrs-space-5);
+  align-items: center;
+}
+.bench-wall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.bench-tile {
+  background: var(--bmkrs-ink-80);
+  border: 1px solid var(--bmkrs-line-on-ink);
+  border-radius: var(--bmkrs-radius);
+  padding: var(--bmkrs-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  aspect-ratio: 1 / 1;
+  justify-content: flex-end;
+}
+.bench-tile-title {
+  font-family: var(--bmkrs-font-display);
+  font-size: var(--bmkrs-step-0);
+  color: var(--bmkrs-paper);
+  line-height: 1.15;
+}
+.bench-tile .muted,
+.bench-tile span:not(.bench-tile-title) {
+  font-size: var(--bmkrs-step--1);
+}
+.bench-tile--member {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  justify-content: stretch;
+}
+.bench-tile--member img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bench-tile--member figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem;
+  background: linear-gradient(transparent, rgba(24, 22, 19, 0.85));
+  display: flex;
+  flex-direction: column;
+}
+.bench-tile--cta {
+  border-color: var(--bmkrs-accent);
+  text-decoration: none;
+}
+.bench-tile--cta .bench-tile-title {
+  color: var(--bmkrs-accent);
+}
+.bench-tile--cta span:last-child {
+  color: var(--bmkrs-muted-on-ink);
+  font-size: var(--bmkrs-step--1);
+}
+.bench-tile--cta:hover {
+  background: rgba(228, 80, 42, 0.08);
+}
+.network-stats {
+  padding-block: 0 var(--bmkrs-space-4);
+}
+.network-door-heading {
+  font-family: var(--bmkrs-font-display);
+}
+.door-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.door-steps li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--bmkrs-line-on-ink);
+  font-size: var(--bmkrs-step--1);
+  color: rgba(245, 241, 234, 0.8);
+}
 .network-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -912,6 +994,12 @@
 }
 .network-card .network-body {
   flex: 1;
+}
+@media (max-width: 820px) {
+  .network-hero--split {
+    grid-template-columns: 1fr;
+    gap: var(--bmkrs-space-4);
+  }
 }
 @media (max-width: 720px) {
   .network-split {

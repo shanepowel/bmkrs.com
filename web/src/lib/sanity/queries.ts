@@ -206,9 +206,13 @@ export const nowBuildingQuery = `*[_type == "nowBuilding"][0]{
 export const networkPageQuery = `*[_type == "networkPage"][0]{
   headline,
   intro,
-  whatItIs,
-  forCompanies{ heading, body, cta },
-  forSpecialists{ heading, body, cta },
+  "members": members[]{ name, discipline, "photo": photo{ "url": asset->url, "alt": alt } },
+  disciplineTiles[]{ title, sub },
+  stats[]{ value, label },
+  barHeadline,
+  barSteps[]{ title, body },
+  forCompanies{ heading, body, steps, cta },
+  forSpecialists{ heading, body, steps, cta },
   connects,
   seo{ metaTitle, metaDescription }
 }`;

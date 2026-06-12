@@ -305,6 +305,10 @@ export async function getNetworkPage(): Promise<NetworkPageContent> {
   return {
     ...fallbackNetworkPage,
     ...data,
+    disciplineTiles: data.disciplineTiles?.length
+      ? data.disciplineTiles
+      : fallbackNetworkPage.disciplineTiles,
+    barSteps: data.barSteps?.length ? data.barSteps : fallbackNetworkPage.barSteps,
     forCompanies: data.forCompanies ?? fallbackNetworkPage.forCompanies,
     forSpecialists: data.forSpecialists ?? fallbackNetworkPage.forSpecialists,
     seo: { ...fallbackNetworkPage.seo, ...data.seo },
