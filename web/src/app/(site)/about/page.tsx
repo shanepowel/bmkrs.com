@@ -11,6 +11,7 @@ import {
   themeFaintStyle,
 } from "@/components/bmkrs/surfaces";
 import { getAboutPage, getNowBuilding, getPeople } from "@/lib/content";
+import { fetchBenchPublic } from "@/lib/bench-public";
 import { BMKRS_ORANGE } from "@/lib/brand";
 import { visibleQuickfire } from "@/lib/quickfire";
 import { SURFACE } from "@/lib/surfaces";
@@ -32,11 +33,16 @@ const ABOUT_TICKER = [
 ];
 
 export default async function AboutPage() {
-  const [about, people, nowBuilding] = await Promise.all([
+  const [about, people, nowBuilding, bench] = await Promise.all([
     getAboutPage(),
     getPeople(),
     getNowBuilding(),
+    fetchBenchPublic(),
   ]);
+  const benchPulse = bench?.pulse;
+  const benchLines = benchPulse ? [benchPulse.line] : [];
+  const nowLines = [...benchLines, ...nowBuilding.lines];
+  const nowUpdated = benchPulse?.updated ?? nowBuilding.updatedLabel;
   const founder = about.founder;
   const founderPerson = people.find((p) => p.slug === "shane-powell") ?? people[0];
   const longGameParagraphs = about.longGame.split(/\n\n+/).filter(Boolean);
@@ -252,7 +258,7 @@ export default async function AboutPage() {
         <Kicker theme="orange">now</Kicker>
         <H2 theme="orange">what is on the bench this month.</H2>
         <ul className="mt-10 max-w-[70ch]">
-          {nowBuilding.lines.map((line) => (
+          {nowLines.map((line) => (
             <li
               key={line}
               style={{ borderTop: `1px solid ${orange.rule}`, color: orange.body }}
@@ -263,7 +269,7 @@ export default async function AboutPage() {
           ))}
         </ul>
         <p className="mt-8 text-meta" style={themeFaintStyle("orange")}>
-          updated {nowBuilding.updatedLabel}. if this is stale, tell us off:{" "}
+          updated {nowUpdated}. if this is stale, tell us off:{" "}
           <a
             href="mailto:hello@bmkrs.com"
             style={{ color: orange.text }}

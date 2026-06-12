@@ -4,6 +4,11 @@ import { AppLink } from "@/components/bmkrs/AppLink";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { H1, H2, Kicker, Section } from "@/components/bmkrs/surfaces";
 import { getNetworkPage, getSiteSettings } from "@/lib/content";
+import {
+  benchRowsToTiles,
+  benchTotalsToStats,
+  fetchBenchPublic,
+} from "@/lib/bench-public";
 import { pageMetadata } from "@/lib/seo";
 import {
   resolveMemberLoginUrl,
@@ -24,14 +29,26 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NetworkPage() {
-  const [page, settings] = await Promise.all([getNetworkPage(), getSiteSettings()]);
+  const [page, settings, bench] = await Promise.all([
+    getNetworkPage(),
+    getSiteSettings(),
+    fetchBenchPublic(),
+  ]);
   const hire = resolveNetworkHireUrl(settings);
   const join = resolveNetworkJoinUrl(settings);
   const login = resolveMemberLoginUrl(settings);
 
   const members = (page.members ?? []).filter((m) => m.photo?.url);
-  const tiles = page.disciplineTiles ?? [];
-  const stats = (page.stats ?? []).filter((s) => isReal(s.value));
+  const tiles =
+    members.length > 0
+      ? (page.disciplineTiles ?? [])
+      : bench?.rows?.length
+        ? benchRowsToTiles(bench.rows)
+        : (page.disciplineTiles ?? []);
+  const statsFromBench = bench?.totals ? benchTotalsToStats(bench.totals) : [];
+  const stats = statsFromBench.length
+    ? statsFromBench
+    : (page.stats ?? []).filter((s) => isReal(s.value));
 
   return (
     <main>
