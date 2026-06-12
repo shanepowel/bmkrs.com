@@ -1,44 +1,29 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { DisciplinesStack } from "@/components/bmkrs/DisciplinesStack";
-import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
+import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
+import { ProcessBand } from "@/components/bmkrs/ProcessBand";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
-import { getDisciplines, getProducts } from "@/lib/content";
-import { pageHeroImages, productImageBySlug } from "@/lib/content/image-fallbacks";
-import type { Product, ProductTier } from "@/lib/types";
+import { H1, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { LadderIntro } from "@/components/services/LadderIntro";
+import { LegacyHashRedirect } from "@/components/services/LegacyHashRedirect";
+import { PackageSection } from "@/components/services/PackageSection";
+import { WhichOne } from "@/components/services/WhichOne";
+import { getProducts } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { servicesFaq } from "@/lib/content/expansion-v2";
 import { breadcrumbSchema } from "@/lib/structured-data";
+import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
-  "services",
-  "brand and identity, voice and messaging, pr, and product and growth. four disciplines, one team, built to work together.",
+  "services | bmkrs.",
+  "start small, make properly, grow on purpose. fixed-scope packages with prices, from brand check to motion.",
   "/services",
 );
 
-const TIERS: { key: ProductTier; label: string; intro: string }[] = [
-  { key: "start", label: "start", intro: "a fast, honest read before you commit to anything bigger." },
-  {
-    key: "make",
-    label: "make",
-    intro: "fixed-scope sprints that build the brand and everything that carries it.",
-  },
-  { key: "grow", label: "grow", intro: "one team keeping it all moving, month after month. this is motion." },
-];
-
-function productCta(p: Product) {
-  if (p.tier === "grow") {
-    return { href: "/motion", label: "explore motion →" };
-  }
-  return { href: "/contact", label: `${p.priceNote ?? "let's talk"} →` };
-}
+const TIERS: ProductTier[] = ["start", "make", "grow"];
 
 export default async function ServicesPage() {
-  const [disciplines, products] = await Promise.all([getDisciplines(), getProducts()]);
+  const products = await getProducts();
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
-  const hero = pageHeroImages.services;
 
   const jsonLd = breadcrumbSchema([
     { name: "home", path: "/" },
@@ -47,168 +32,45 @@ export default async function ServicesPage() {
 
   return (
     <main>
+      <LegacyHashRedirect />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <PageHeroSplit image={hero} minHeight="min-h-[68vh]">
+      <Section theme="ink">
         <Reveal>
-          <p className="eyebrow">services</p>
+          <Kicker theme="ink">services</Kicker>
         </Reveal>
         <Reveal delay={1}>
-          <h1 className="display mt-4 text-[clamp(2.25rem,9vw,8rem)] font-bold">
-            everything your brand needs to <span className="text-accent">grow.</span>
-          </h1>
+          <H1 theme="ink" className="mt-4 max-w-[16ch]">
+            start small, make properly, grow on purpose.
+          </H1>
         </Reveal>
         <Reveal delay={2}>
-          <p className="lead mt-8 max-w-[560px]">
-            four equally strong disciplines, one team. below them, simple ways to start. the work is
-            bespoke, the way you begin it does not have to be.
+          <p className="lead mt-8 max-w-[65ch]">
+            every engagement is bespoke. the packages below shape how we begin, what you get, and what
+            it costs — not how the creative gets made. fixed scope, fixed timeline, one point of
+            contact.
           </p>
         </Reveal>
-      </PageHeroSplit>
-
-      <DisciplinesStack disciplines={disciplines} />
-
-      <Section theme="ink">
-        <Kicker theme="ink">ways to work with us</Kicker>
-        <H2 theme="ink">start, make, grow.</H2>
-        <p className="lead mt-6 max-w-[560px]">
-          the same four disciplines, packaged so you know exactly what you are getting.
-        </p>
-
-        {TIERS.map((tier) => (
-          <div key={tier.key} className="tier-section scroll-mt-24 mt-[var(--space-block)]" id={tier.key}>
-            <div className="tier-head">
-              <h3 className="display preserve-case text-[clamp(1.75rem,4vw,3rem)] text-accent">
-                {tier.label}
-              </h3>
-              <p className="muted mt-2">{tier.intro}</p>
-            </div>
-
-            <div className="product-grid">
-              {byTier(tier.key).map((p) => {
-                const cta = productCta(p);
-                const thumb = productImageBySlug[p.slug];
-                return (
-                  <article key={p.slug} className="product-card scroll-mt-24" id={p.slug}>
-                    {thumb && (
-                      <div className="product-card-media relative">
-                        <Image
-                          src={thumb.src}
-                          alt={thumb.alt}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 400px"
-                        />
-                      </div>
-                    )}
-                    <h3 className="display text-[clamp(1.25rem,2.5vw,1.75rem)]">{p.name}</h3>
-                    {p.priceFrom && p.tier !== "grow" ? (
-                      <p className="eyebrow mt-2">
-                        from {p.priceFrom} · {p.shape}
-                      </p>
-                    ) : null}
-                    <p className="product-tagline">{p.tagline}</p>
-
-                    {p.forWho && (
-                      <p className="product-for">
-                        <span className="eyebrow mb-1 block">for</span> {p.forWho}
-                      </p>
-                    )}
-
-                    {p.included?.length ? (
-                      <ul className="product-included">
-                        {p.included.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-
-                    <div className="product-foot">
-                      {p.shape && <span className="eyebrow">{p.shape}</span>}
-                      {p.proof?.length ? (
-                        <span className="product-proof">
-                          proof:{" "}
-                          {p.proof.map((c, i) => (
-                            <span key={c.slug}>
-                              <Link href={`/work/${c.slug}`} className="text-accent hover:underline">
-                                {c.title}
-                              </Link>
-                              {i < p.proof!.length - 1 ? ", " : ""}
-                            </span>
-                          ))}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <Link className="product-cta" href={cta.href}>
-                      {cta.label}
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        ))}
       </Section>
 
-      <Section theme="ink" tight>
-        <Kicker theme="ink">questions</Kicker>
-        <H2 theme="ink">before you start.</H2>
-        <dl className="mt-8 max-w-[65ch] space-y-8">
-          {servicesFaq.map((item) => (
-            <div key={item.question} className="border-t border-line pt-6">
-              <dt className="text-h3 font-medium">{item.question}</dt>
-              <dd className="lead mt-3">{item.answer}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
+      <LadderIntro />
+
+      {TIERS.map((tier) => (
+        <PackageSection key={tier} tier={tier} products={byTier(tier)} />
+      ))}
+
+      <WhichOne />
+      <ProcessBand />
 
       <Section theme="orange">
-        <h3 className="display text-[clamp(1.35rem,3vw,2rem)] font-bold">not sure where to start?</h3>
-        <ul className="service-router mt-6 flex flex-col gap-3 text-[15px]">
-          <li>
-            <Link href="/services#launch-kit" className="underline decoration-1 underline-offset-4">
-              launching something new → launch kit
-            </Link>
-          </li>
-          <li>
-            <Link href="/services#brand-check" className="underline decoration-1 underline-offset-4">
-              brand feels stale or wrong → brand check, then rebrand
-            </Link>
-          </li>
-          <li>
-            <Link href="/services#story" className="underline decoration-1 underline-offset-4">
-              story is muddled → story
-            </Link>
-          </li>
-          <li>
-            <Link href="/services#storefront" className="underline decoration-1 underline-offset-4">
-              site is not converting → storefront
-            </Link>
-          </li>
-          <li>
-            <Link href="/services#press-launch" className="underline decoration-1 underline-offset-4">
-              launching and need coverage → press launch
-            </Link>
-          </li>
-          <li>
-            <Link href="/motion" className="underline decoration-1 underline-offset-4">
-              already live, need momentum → motion
-            </Link>
-          </li>
-        </ul>
-      </Section>
-
-      <Section theme="ink">
-        <Kicker theme="ink">bigger than a package?</Kicker>
-        <H2 theme="ink">some work does not fit a box. that is fine.</H2>
-        <p className="lead mt-6 max-w-[520px]">
-          if you need something broader, or you are not sure where it sits, start with a conversation
-          and we will shape it together.
+        <h2 className="display text-h2 font-medium">let&apos;s make something worth choosing.</h2>
+        <p className="lead mt-6 max-w-[65ch]">
+          every package starts with a conversation, not a contract. tell us what you&apos;re building
+          and we&apos;ll tell you honestly which of these fits — including &quot;none of them
+          yet.&quot;
         </p>
         <Link href="/contact" className="btn-primary mt-10 inline-flex">
-          start a project
+          start a project <ArrowIcon />
         </Link>
       </Section>
     </main>

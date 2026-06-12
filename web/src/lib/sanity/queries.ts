@@ -161,13 +161,14 @@ export const disciplinesQuery = `*[_type == "discipline"] | order(order asc){
 
 export const allProductsQuery = `*[_type == "product"] | order(order asc){
   name, "slug": slug.current, tier, tagline, forWho, included, shape, outcome,
-  cadence, commitment, monthlyDeliverables, priceFrom, priceNote,
+  cadence, commitment, monthlyDeliverables,
+  price, priceQualifier, creditNote, priceFrom, priceNote,
   "proof": relatedCaseStudies[]->{ title, "slug": slug.current }
 }`;
 
 export const motionTiersQuery = `*[_type == "product" && tier == "grow"] | order(order asc){
   name, "slug": slug.current, tagline, forWho, cadence, commitment,
-  monthlyDeliverables, outcome, priceFrom, priceNote
+  monthlyDeliverables, outcome, price, priceQualifier, priceFrom, priceNote
 }`;
 
 export const aboutPageQuery = `*[_type == "aboutPage"][0]{

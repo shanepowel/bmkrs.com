@@ -8,13 +8,9 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { RuledGrid, RuledGridItem } from "@/components/bmkrs/RuledGrid";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import { Testimonials } from "@/components/bmkrs/Testimonials";
-import { H2, Kicker, Section, themeBodyStyle, themeFaintStyle } from "@/components/bmkrs/surfaces";
-import {
-  captionForProject,
-  homeManifesto,
-  homePainPoints,
-  homeProcessStrip,
-} from "@/lib/content/expansion-v2";
+import { ProcessBand } from "@/components/bmkrs/ProcessBand";
+import { H2, Kicker, Section, themeBodyStyle } from "@/components/bmkrs/surfaces";
+import { captionForProject, homeManifesto, homePainPoints } from "@/lib/content/expansion-v2";
 import {
   getFeaturedProjects,
   getHomeContent,
@@ -240,14 +236,7 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section theme="ink" tight>
-        <Kicker theme="ink">how it runs</Kicker>
-        <p className="mono mt-4 text-lg text-accent">{homeProcessStrip.steps}</p>
-        <p className="lead mt-4 max-w-[65ch]">{homeProcessStrip.body}</p>
-        <p className="mono mt-4 text-meta" style={themeFaintStyle("ink")}>
-          {homeProcessStrip.footnote}
-        </p>
-      </Section>
+      <ProcessBand />
 
       <Section theme="ink">
         <div className="text-center">

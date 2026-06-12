@@ -11,7 +11,7 @@ export const fallbackJournalArticles: JournalArticle[] = [
     targetKeyword: "brand tone of voice",
     publishedAt: "2025-01-15",
     relatedLinks: [
-      { label: "voice + messaging", href: "/services#voice" },
+      { label: "voice + messaging", href: "/services#story" },
       { label: "rebrand or refresh", href: "/journal/rebrand-or-refresh" },
       { label: "contact", href: "/contact" },
     ],
@@ -51,7 +51,7 @@ The real test of a voice guide is whether a new writer can pick it up and produc
 
 A tone of voice is not a launch event. It drifts. Review it once or twice a year, fold in the new things you have written well, and cut the rules nobody uses. The goal is not a perfect document. It is a brand that sounds like one company across every email, page, and post.
 
-If you want a second pair of hands on this, defining tone of voice and the messaging that sits underneath it is part of what we do. You can read more on our [voice and messaging work](/services#voice) or [get in touch](/contact).`,
+If you want a second pair of hands on this, defining tone of voice and the messaging that sits underneath it is part of what we do. You can read more on our [voice and messaging work](/services#story) or [get in touch](/contact).`,
   },
   {
     slug: "pr-for-startups",
@@ -63,7 +63,7 @@ If you want a second pair of hands on this, defining tone of voice and the messa
     targetKeyword: "pr for startups",
     publishedAt: "2025-02-01",
     relatedLinks: [
-      { label: "pr + communications", href: "/services#pr" },
+      { label: "pr + communications", href: "/services#press-launch" },
       { label: "motion partnership", href: "/motion" },
       { label: "contact", href: "/contact" },
     ],
@@ -106,7 +106,7 @@ Reactive PR, commenting on a breaking story in your area, is one of the most rel
 
 Coverage is a means, not an end. Track whether it drives the things you care about: relevant traffic, inbound enquiries, credibility in sales conversations. A single article in the right place that your prospects mention on calls is worth more than a folder of clippings nobody saw.
 
-Earning steady coverage is less about one big hit and more about a consistent drumbeat, which is why we run PR as part of an ongoing partnership rather than a one-off. More on [how we approach PR](/services#pr), or [start a conversation](/contact).`,
+Earning steady coverage is less about one big hit and more about a consistent drumbeat, which is why we run PR as part of an ongoing partnership rather than a one-off. More on [how we approach PR](/services#press-launch), or [start a conversation](/contact).`,
   },
   {
     slug: "rebrand-or-refresh",
@@ -118,7 +118,7 @@ Earning steady coverage is less about one big hit and more about a consistent dr
     targetKeyword: "rebrand vs refresh",
     publishedAt: "2025-02-15",
     relatedLinks: [
-      { label: "brand + identity", href: "/services#branding" },
+      { label: "brand + identity", href: "/services#launch-kit" },
       { label: "our work", href: "/work" },
       { label: "contact", href: "/contact" },
     ],
@@ -160,7 +160,7 @@ The honest test is whether your problem is about perception or substance. Percep
 
 Both paths should begin with the same question: what does this business stand for, and for whom? A refresh answers it quickly and then focuses on craft. A rebrand answers it slowly and lets the answer reshape everything. Skip the question, and you are just redecorating.
 
-We do both, and we will tell you honestly which one you need, even when it is the smaller job. See our [brand and identity work](/services#branding) or [get in touch](/contact).`,
+We do both, and we will tell you honestly which one you need, even when it is the smaller job. See our [brand and identity work](/services#launch-kit) or [get in touch](/contact).`,
   },
   {
     slug: "agency-freelancer-in-house",

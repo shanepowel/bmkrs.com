@@ -92,6 +92,8 @@ export type ProductProof = {
   slug: string;
 };
 
+export type PriceQualifier = "fixed" | "from" | "per-month" | "lets-talk";
+
 export type Product = {
   slug: string;
   name: string;
@@ -104,7 +106,12 @@ export type Product = {
   cadence?: string;
   commitment?: string;
   monthlyDeliverables?: string[];
+  price?: string;
+  priceQualifier?: PriceQualifier;
+  creditNote?: string;
+  /** @deprecated use price */
   priceFrom?: string;
+  /** @deprecated use priceQualifier */
   priceNote?: string;
   proof?: ProductProof[];
   order?: number;

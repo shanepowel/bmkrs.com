@@ -62,17 +62,45 @@ export const product = defineType({
       hidden: ({ document }) => document?.tier !== "grow",
     }),
     defineField({
+      name: "price",
+      title: "Price",
+      description:
+        'Display string, e.g. "£2,500" or "£24,000". Leave empty only if priceQualifier is "lets-talk".',
+      type: "string",
+    }),
+    defineField({
+      name: "priceQualifier",
+      title: "Price qualifier",
+      type: "string",
+      options: {
+        list: [
+          { title: "Fixed", value: "fixed" },
+          { title: "From", value: "from" },
+          { title: "Per month", value: "per-month" },
+          { title: "Let's talk", value: "lets-talk" },
+        ],
+      },
+      initialValue: "from",
+    }),
+    defineField({
+      name: "creditNote",
+      title: "Credit note",
+      description:
+        "e.g. brand check fee credited against a make package within 90 days.",
+      type: "string",
+    }),
+    defineField({
       name: "priceFrom",
-      title: "Price from",
-      description: "e.g. £2,500 or £3,500",
+      title: "Price from (legacy)",
+      description: "Deprecated: use price. Kept for older documents.",
       type: "string",
     }),
     defineField({
       name: "priceNote",
-      title: "Price note",
+      title: "Price note (legacy)",
       type: "string",
       initialValue: "let's talk",
-      description: "Suffix e.g. /month, or CTA when no priceFrom",
+      description: "Deprecated: use priceQualifier.",
     }),
     defineField({
       name: "relatedCaseStudies",
