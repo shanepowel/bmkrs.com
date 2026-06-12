@@ -30,6 +30,11 @@ function readPageSurface(): Theme {
   return (el?.getAttribute("data-surface") as Theme) ?? "ink";
 }
 
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader({
   navigation,
   loginUrl,
@@ -71,7 +76,7 @@ export function SiteHeader({
   }, [open]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${open ? " site-header--open" : ""}`}>
       <div className="site-header-inner">
         <Link href="/" className="wordmark" aria-label="bmkrs, home">
           <Wordmark variant={lightLogo ? "primary-light" : "primary-dark"} />
@@ -79,7 +84,11 @@ export function SiteHeader({
 
         <nav className="site-nav" aria-label="primary">
           {items.map((item) => (
-            <Link key={item.href} href={item.href}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isNavActive(pathname, item.href) ? "page" : undefined}
+            >
               {item.label}
             </Link>
           ))}
@@ -91,32 +100,61 @@ export function SiteHeader({
           </Link>
         </nav>
 
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "close menu" : "open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "close" : "menu"}
-        </button>
+        <div className="site-header-mobile">
+          <Link href="/contact" className="btn-primary site-header-mobile-cta">
+            let&apos;s talk
+          </Link>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "close menu" : "open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "close" : "menu"}
+          </button>
+        </div>
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="mobile-nav" aria-label="primary">
-          {items.map((item) => (
-            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
-          <a href={login} rel="noopener noreferrer" target="_blank" onClick={() => setOpen(false)}>
-            log in ↗
-          </a>
-          <Link href="/contact" className="btn-primary" onClick={() => setOpen(false)}>
-            let&apos;s talk
-          </Link>
-        </nav>
+        <>
+          <button
+            type="button"
+            className="mobile-nav-backdrop"
+            aria-label="close menu"
+            onClick={() => setOpen(false)}
+          />
+          <nav id="mobile-nav" className="mobile-nav" aria-label="primary">
+            <div className="mobile-nav__links">
+              {items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`mobile-nav__link${isNavActive(pathname, item.href) ? " mobile-nav__link--active" : ""}`}
+                  aria-current={isNavActive(pathname, item.href) ? "page" : undefined}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mobile-nav__footer">
+              <a
+                href={login}
+                className="mobile-nav__secondary"
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => setOpen(false)}
+              >
+                log in <span aria-hidden="true">↗</span>
+              </a>
+              <Link href="/contact" className="btn-primary mobile-nav__cta" onClick={() => setOpen(false)}>
+                let&apos;s talk
+              </Link>
+            </div>
+          </nav>
+        </>
       ) : null}
     </header>
   );
