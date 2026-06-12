@@ -2,88 +2,8 @@
 
 import { motion, MotionConfig } from "framer-motion";
 import { C, Kicker, mono, PrimaryButton } from "@/lib/bench-ui";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
-};
-const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
-
-const ORBIT = ["strategy", "content", "campaigns", "websites", "creative", "messaging", "growth"];
-
-export function MotionOrbitVisualReworked() {
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-[480px]" aria-hidden>
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-10 rounded-full"
-        style={{ border: `1px solid ${C.inkRule}` }}
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 62, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-24 rounded-full"
-        style={{ border: "1px solid rgba(241,239,232,0.08)" }}
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute left-1/2 top-1/2 w-44 -translate-x-1/2 -translate-y-1/2 rounded-xl p-5 text-center"
-        style={{ background: "#221F1B", border: `1px solid ${C.inkRule}` }}
-      >
-        <p className="text-sm font-medium" style={{ color: C.inkText }}>
-          motion
-          <span
-            className="ml-[1px] inline-block h-[0.13em] w-[0.13em] rounded-full align-baseline"
-            style={{ background: C.orange }}
-          />
-        </p>
-        <p style={{ ...mono, color: C.inkFaint }} className="mt-2 text-[11px] leading-relaxed">
-          the brand, kept moving
-        </p>
-      </motion.div>
-      {ORBIT.map((item, index) => {
-        const angle = (index / ORBIT.length) * Math.PI * 2;
-        const r = 180;
-        const x = Math.cos(angle) * r;
-        const y = Math.sin(angle) * r;
-        return (
-          <motion.div
-            key={item}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              x: [x, x + Math.cos(angle + 1.4) * 10, x],
-              y: [y, y + Math.sin(angle + 1.4) * 10, y],
-            }}
-            transition={{
-              opacity: { duration: 0.5, delay: index * 0.07 },
-              scale: { duration: 0.5, delay: index * 0.07 },
-              x: { duration: 6 + index, repeat: Infinity, ease: "easeInOut" },
-              y: { duration: 6 + index, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className="absolute left-1/2 top-1/2 rounded-full px-4 py-2"
-            style={{
-              left: `calc(50% + ${x}px)`,
-              top: `calc(50% + ${y}px)`,
-              translate: "-50% -50%",
-              ...mono,
-              fontSize: 12,
-              color: C.inkBody,
-              background: "#221F1B",
-              border: `1px solid ${C.inkRule}`,
-            }}
-          >
-            {item}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
+import { fadeUp, stagger } from "./animations";
+import { MotionHeroSection } from "./MotionHeroSection";
 
 const SYMPTOMS = [
   {
@@ -150,46 +70,43 @@ const TIERS = [
 export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
-      <section style={{ background: C.ink, color: C.inkText }}>
-        <div className="mx-auto grid max-w-[1240px] items-center gap-12 px-6 py-20 md:px-10 lg:grid-cols-[1fr_0.85fr]">
-          <motion.div variants={stagger} initial="hidden" animate="visible">
-            <motion.div variants={fadeUp}>
-              <Kicker surface="ink">keep moving</Kicker>
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="max-w-[12ch] font-medium"
-              style={{
-                fontSize: "clamp(2.75rem,6.5vw,6rem)",
-                lineHeight: 0.98,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              always in motion.
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              style={{ color: C.inkBody }}
-              className="mt-7 max-w-[55ch] text-lg leading-relaxed"
-            >
-              launches are exciting. momentum is hard. motion is the team that keeps your brand
-              moving month after month: senior strategy, creative and delivery, without hiring an
-              internal team or re-briefing a new supplier every quarter.
-            </motion.p>
-            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-6">
-              <PrimaryButton href="#tiers">see the tiers + prices</PrimaryButton>
-              <a
-                href="#month"
-                style={{ ...mono, color: C.inkBody }}
-                className="text-[13px] underline-offset-4 hover:underline"
-              >
-                what a month looks like →
-              </a>
-            </motion.div>
+      <MotionHeroSection>
+        <motion.div variants={stagger} initial="hidden" animate="visible">
+          <motion.div variants={fadeUp}>
+            <Kicker surface="ink">keep moving</Kicker>
           </motion.div>
-          <MotionOrbitVisualReworked />
-        </div>
-      </section>
+          <motion.h1
+            variants={fadeUp}
+            className="max-w-[12ch] font-medium"
+            style={{
+              fontSize: "clamp(2.75rem,6.5vw,6rem)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            always in motion.
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            style={{ color: C.inkBody }}
+            className="mt-7 max-w-[55ch] text-lg leading-relaxed"
+          >
+            launches are exciting. momentum is hard. motion is the team that keeps your brand
+            moving month after month: senior strategy, creative and delivery, without hiring an
+            internal team or re-briefing a new supplier every quarter.
+          </motion.p>
+          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-6">
+            <PrimaryButton href="#tiers">see the tiers + prices</PrimaryButton>
+            <a
+              href="#month"
+              style={{ ...mono, color: C.inkBody }}
+              className="text-[13px] underline-offset-4 hover:underline"
+            >
+              what a month looks like →
+            </a>
+          </motion.div>
+        </motion.div>
+      </MotionHeroSection>
 
       <section style={{ background: C.paper, color: C.paperText }}>
         <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">

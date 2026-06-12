@@ -1,13 +1,3 @@
-export const orbitCards = [
-  "strategy",
-  "content",
-  "campaigns",
-  "websites",
-  "creative",
-  "messaging",
-  "growth",
-];
-
 export const painPoints = [
   {
     title: "founder bottleneck",
