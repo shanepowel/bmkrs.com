@@ -17,14 +17,16 @@ Vercel reads `web/package.json` and `web/vercel.json`. Ignore the repo-root `ver
 
 ### B — Root Directory blank (monorepo at repo root)
 
-Root `package.json` lists `next`, `react`, and `react-dom` so Vercel framework detection succeeds before `npm run install:web` runs. Keep versions aligned with `web/package.json`.
+Root `package.json` lists `next`, `react`, and `react-dom`, and the install command runs `npm install` at the repo root before `install:web`, so Vercel framework detection finds `next` in `node_modules`. Keep versions aligned with `web/package.json`.
 
 | Setting | Value |
 |---------|--------|
 | **Root Directory** | *(empty)* |
 | **Framework** | Next.js (from root `vercel.json` `"framework": "nextjs"`) |
-| **Install / Build** | From root `vercel.json`: `npm run install:web`, `npm run build --prefix web` |
+| **Install / Build** | From root `vercel.json`: `npm install --legacy-peer-deps && npm run install:web`, `npm run build --prefix web` |
 | **Output** | `web/.next` |
+
+The install step runs `npm install` at the repo root first (so `next` lands in root `node_modules` for framework detection), then `npm run install:web` for the app under `web/`.
 
 Root `vercel.json` **must** include `"framework": "nextjs"` or Vercel looks for `next` in the root `package.json` and fails.
 
