@@ -87,3 +87,4 @@ commit.pub
 # WordPress tree and logs (local only; excluded from git)
 archive/legacy-public-site/public_html/fdb/
 **/error_log
+.vercel
