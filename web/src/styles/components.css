@@ -668,6 +668,15 @@
   outline-offset: 3px;
 }
 
+/* full-screen mobile menu — portaled to body so header backdrop-filter cannot clip it */
+.mobile-nav-panel {
+  background: #181613;
+  color: #f1efe8;
+}
+.mobile-nav-panel a {
+  color: inherit;
+}
+
 /* shared shell: footer (always ink) */
 .site-footer {
   background: #181613;
