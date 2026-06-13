@@ -1,16 +1,14 @@
 "use client";
 
-import { H2, Kicker, Section, themeBodyStyle } from "@/components/bmkrs/surfaces";
+import { SwipeRow, Surface, Kicker, H2, themeBodyStyle, tokens } from "@bmkrs/ui";
 import type { PainPoint } from "@/lib/content/expansion-v2";
-import { SwipeRow } from "./SwipeRow";
-import { bmkrs, mono } from "./tokens";
 
 export function PainPointsSwipe({ points }: { points: PainPoint[] }) {
   return (
-    <Section theme="ink">
+    <Surface theme="ink">
       <Kicker theme="ink">why people call us</Kicker>
       <H2 theme="ink">you usually arrive with one of these.</H2>
-      <div className="mt-[var(--space-block)]">
+      <div className="mt-[var(--bmkrs-space-block)]">
         <SwipeRow
           ariaLabel="common problems"
           desktopGridClass="md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-2"
@@ -19,12 +17,21 @@ export function PainPointsSwipe({ points }: { points: PainPoint[] }) {
             <article
               key={point.number}
               className="h-full rounded-xl p-5"
-              style={{ background: bmkrs.inkRaised, border: `1px solid ${bmkrs.rule}` }}
+              style={{
+                background: tokens.color.inkRaised,
+                border: `1px solid ${tokens.color.rule}`,
+              }}
             >
-              <p className="mb-2 text-[12px] text-accent" style={mono}>
+              <p
+                className="mb-2 text-meta text-accent"
+                style={{ fontFamily: tokens.font.mono, color: tokens.color.orange }}
+              >
                 {point.number}
               </p>
-              <h3 className="mb-2 text-lg font-medium leading-snug" style={{ color: bmkrs.paper }}>
+              <h3
+                className="mb-2 text-lg font-medium leading-snug"
+                style={{ color: tokens.color.paper }}
+              >
                 {point.headline}
               </h3>
               <p className="text-[14px] leading-relaxed" style={themeBodyStyle("ink")}>
@@ -34,6 +41,9 @@ export function PainPointsSwipe({ points }: { points: PainPoint[] }) {
           ))}
         </SwipeRow>
       </div>
-    </Section>
+    </Surface>
   );
 }
+
+// re-export for consumers that import from mobile/
+export { SwipeRow } from "@bmkrs/ui";

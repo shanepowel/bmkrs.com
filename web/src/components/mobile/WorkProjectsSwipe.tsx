@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
-import { H2, Section } from "@/components/bmkrs/surfaces";
+import { Button, H2, Surface, SwipeRow } from "@bmkrs/ui";
 import type { Project } from "@/lib/types";
-import { SwipeRow } from "./SwipeRow";
 
 export function WorkProjectsSwipe({
   projects,
@@ -15,14 +13,14 @@ export function WorkProjectsSwipe({
   subtitle: string;
 }) {
   return (
-    <Section theme="ink">
+    <Surface theme="ink">
       <div className="sec-head">
         <H2 theme="ink">
           the brands we <span className="text-accent">build for</span>
         </H2>
         <p className="text-muted">{subtitle}</p>
       </div>
-      <div className="mt-[var(--space-block)]">
+      <div className="mt-[var(--bmkrs-space-block)]">
         <SwipeRow ariaLabel="selected work" desktopGridClass="md:grid md:grid-cols-2 md:overflow-visible">
           {projects.map((project, i) => (
             <ProjectTile
@@ -35,9 +33,9 @@ export function WorkProjectsSwipe({
           ))}
         </SwipeRow>
       </div>
-      <Link href="/work" className="btn-primary mt-[var(--space-block)] inline-flex">
+      <Button href="/work" className="mt-[var(--bmkrs-space-block)]">
         all projects <ArrowIcon />
-      </Link>
-    </Section>
+      </Button>
+    </Surface>
   );
 }

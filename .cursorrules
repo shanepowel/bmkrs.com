@@ -1,0 +1,41 @@
+# bmkrs engineering rules (applies to bmkrs.com and app.bmkrs.com)
+
+These rules are binding. When a request conflicts with them, follow the rules and say so.
+
+## 1. The component library is mandatory
+
+All UI is built from `@bmkrs/ui` (local package at `packages/ui`, imported as `@bmkrs/ui`).
+
+- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`.
+- If a needed component does NOT exist in `@bmkrs/ui`, STOP. Add it to the library first (in `packages/ui/src`), export it, THEN use it. Do not inline a one-off. A second use must never require a second implementation.
+- Before building any UI, scan `packages/ui/src/index.ts` for what already exists. Prefer composing existing primitives over creating new ones.
+
+## 2. No hardcoded design values, ever
+
+- NEVER hardcode a colour hex, font family, radius, or spacing value in a page or feature component. All of them come from tokens: `import { tokens } from "@bmkrs/ui"` (or the CSS variables / Tailwind preset the library exposes).
+- The brand palette is exactly: ink #181613, paper #F1EFE8, orange #FF4D00, plus the derived body/meta/rule values in `tokens`. No other colours. No second accent. If a design seems to need one, that is a signal to re-read the surface system, not to add a colour.
+- Type: Cabinet Grotesk (sans, via `--font-sans`) and Fragment Mono (`--font-mono`) only. Archivo is reserved for the logo and never imported as a UI font. Two weights, 400 and 500. Never 600/700.
+
+## 3. The surface system is the layout primitive
+
+- Every section is a `<Surface theme="ink|paper|orange">`. Colours derive from the surface; child components read it via context. Never set text colour manually on a surface.
+- Rules: reading-heavy content goes on `paper`; identity/arrival/imagery on `ink`; max one `orange` block per page (the act moment). Never two `paper` blocks adjacent; `orange` never touches `paper`; pages open and close on `ink`.
+
+## 4. The orange dot is the icon system
+
+- The brand mark's full stop is the status/accent device. Use `<StatusDot>` for it. Do not introduce an icon library (lucide, heroicons, etc.) without explicit human approval; most "icons" should be the dot, a mono label, or a rule.
+
+## 5. Voice and content rules (copy written in components)
+
+- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("send the brief", never "submit"). Errors name the fix.
+- Never ship fabricated testimonials, fake metrics, or placeholder names that could read as real. Leave the slot empty or use a clearly-marked TODO.
+
+## 6. Accessibility and mobile are not optional
+
+- Tap targets >= 44px. All interactive components from `@bmkrs/ui` already meet this; do not override smaller.
+- Respect `prefers-reduced-motion` in anything animated (the library components already do).
+- Forms: real labels, focus rings (orange), 16px input text minimum (prevents iOS zoom).
+
+## 7. When unsure
+
+State which library component you're using and why. If you cannot do it within these rules, say what's missing rather than working around them. A rule worked around silently is the failure mode this file exists to prevent.

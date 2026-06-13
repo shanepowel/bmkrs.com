@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "description": "BMKRS — design and growth studio (Next.js)",
   "private": true,
+  "workspaces": [
+    "web",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "npm run dev --prefix web",
     "install:web": "cd web && npm ci --legacy-peer-deps",

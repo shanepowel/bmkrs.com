@@ -5,6 +5,7 @@ import type { NextConfig } from "next";
 const projectDir = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@bmkrs/ui"],
   turbopack: {
     root: projectDir,
   },

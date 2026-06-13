@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@bmkrs/ui": [
+        "../packages/ui/src/index.ts"
       ]
     }
   },
