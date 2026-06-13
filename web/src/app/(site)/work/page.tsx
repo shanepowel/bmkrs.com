@@ -72,8 +72,7 @@ export default async function WorkPage() {
   const clientWork = projects.filter((p) => p.projectType !== "studio");
   const studioWork = projects.filter((p) => p.projectType === "studio");
 
-  const heroImage =
-    projects.find((p) => p.featured)?.thumbnailPath ?? pageHeroImages.work.src;
+  const heroImage = pageHeroImages.work.src;
 
   const jsonLd = breadcrumbSchema([
     { name: "home", path: "/" },

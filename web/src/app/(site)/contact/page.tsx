@@ -1,5 +1,7 @@
 import { ContactExperience } from "@/components/bmkrs/ContactExperience";
+import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { getSiteSettings } from "@/lib/content";
+import { marketingImages } from "@/lib/marketing-assets";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
@@ -14,6 +16,11 @@ export default async function ContactPage() {
 
   return (
     <div className="contact-page">
+      <MarketingBanner
+        src={marketingImages.teamCollaboration}
+        alt="start a project with the bmkrs team"
+        aspect="4/3"
+      />
       <ContactExperience fallbackEmail={email} pressEmail={settings.pressEmail} />
     </div>
   );

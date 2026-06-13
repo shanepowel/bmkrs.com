@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AboutTicker } from "@/components/bmkrs/AboutTicker";
+import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { PortraitTile } from "@/components/bmkrs/PortraitTile";
 import {
   H2,
@@ -17,6 +18,7 @@ import { visibleQuickfire } from "@/lib/quickfire";
 import { SURFACE } from "@/lib/surfaces";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, personSchema } from "@/lib/structured-data";
+import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
   "about",
@@ -99,6 +101,12 @@ export default async function AboutPage() {
         </div>
       </Section>
 
+      <MarketingBanner
+        src={marketingImages.studioTeam}
+        alt="the bmkrs team at work in the studio"
+        priority
+      />
+
       <AboutTicker items={ABOUT_TICKER} />
 
       {founder && founderPerson ? (
@@ -142,6 +150,12 @@ export default async function AboutPage() {
           </div>
         </Section>
       ) : null}
+
+      <MarketingBanner
+        src={marketingImages.brandStrategy}
+        alt="brand strategy, frameworks and deliverables"
+        aspect="4/3"
+      />
 
       <Section theme="ink">
             <H2 theme="ink">{about.beliefsHeadline}</H2>

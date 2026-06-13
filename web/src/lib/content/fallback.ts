@@ -54,7 +54,7 @@ export const fallbackSiteSettings: SiteSettings = {
   ],
   navigation: fallbackNavigation,
   heroReelUrl: marketingVideos.heroReel,
-  heroPoster: marketingImages.heroSculpture,
+  heroPoster: marketingImages.heroPoster,
 };
 
 export const fallbackHome: HomeContent = {

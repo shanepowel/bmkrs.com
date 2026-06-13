@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Wordmark } from "@/components/bmkrs/Wordmark";
+import { MobileNav } from "@/components/mobile/MobileNav";
 import type { Theme } from "@/components/bmkrs/surfaces";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
@@ -38,20 +39,16 @@ function isNavActive(pathname: string, href: string) {
 export function SiteHeader({
   navigation,
   loginUrl,
+  contactEmail,
 }: {
   navigation?: NavItem[];
   loginUrl?: string;
+  contactEmail?: string;
 }) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [surface, setSurface] = useState<Theme>("ink");
   const items = navItems(navigation);
   const login = loginUrl ?? MEMBER_LOGIN_URL;
-  const lightLogo = surface === "paper" || surface === "orange";
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     const sync = () => {
@@ -68,21 +65,16 @@ export function SiteHeader({
     return () => observer.disconnect();
   }, [pathname]);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  const lightLogo = surface === "paper" || surface === "orange";
 
   return (
-    <header className={`site-header${open ? " site-header--open" : ""}`}>
+    <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="wordmark" aria-label="bmkrs, home">
           <Wordmark variant={lightLogo ? "primary-light" : "primary-dark"} />
         </Link>
 
-        <nav className="site-nav" aria-label="primary">
+        <nav className="site-nav hidden md:flex" aria-label="primary">
           {items.map((item) => (
             <Link
               key={item.href}
@@ -100,62 +92,8 @@ export function SiteHeader({
           </Link>
         </nav>
 
-        <div className="site-header-mobile">
-          <Link href="/contact" className="btn-primary site-header-mobile-cta">
-            let&apos;s talk
-          </Link>
-          <button
-            type="button"
-            className="nav-toggle"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "close menu" : "open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? "close" : "menu"}
-          </button>
-        </div>
+        <MobileNav items={items} loginUrl={login} contactEmail={contactEmail} />
       </div>
-
-      {open ? (
-        <>
-          <button
-            type="button"
-            className="mobile-nav-backdrop"
-            aria-label="close menu"
-            onClick={() => setOpen(false)}
-          />
-          <nav id="mobile-nav" className="mobile-nav" aria-label="primary">
-            <div className="mobile-nav__links">
-              {items.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`mobile-nav__link${isNavActive(pathname, item.href) ? " mobile-nav__link--active" : ""}`}
-                  aria-current={isNavActive(pathname, item.href) ? "page" : undefined}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-            <div className="mobile-nav__footer">
-              <a
-                href={login}
-                className="mobile-nav__secondary"
-                rel="noopener noreferrer"
-                target="_blank"
-                onClick={() => setOpen(false)}
-              >
-                log in <span aria-hidden="true">↗</span>
-              </a>
-              <Link href="/contact" className="btn-primary mobile-nav__cta" onClick={() => setOpen(false)}>
-                let&apos;s talk
-              </Link>
-            </div>
-          </nav>
-        </>
-      ) : null}
     </header>
   );
 }

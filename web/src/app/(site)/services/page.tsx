@@ -6,11 +6,13 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { H1, Kicker, Section } from "@/components/bmkrs/surfaces";
 import { LadderIntro } from "@/components/services/LadderIntro";
 import { LegacyHashRedirect } from "@/components/services/LegacyHashRedirect";
+import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { PackageSection } from "@/components/services/PackageSection";
 import { WhichOne } from "@/components/services/WhichOne";
 import { getProducts } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structured-data";
+import { marketingImages } from "@/lib/marketing-assets";
 import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
@@ -52,6 +54,12 @@ export default async function ServicesPage() {
           </p>
         </Reveal>
       </Section>
+
+      <MarketingBanner
+        src={marketingImages.disciplineIcons}
+        alt="branding, messaging, communications and digital product"
+        aspect="4/3"
+      />
 
       <LadderIntro />
 

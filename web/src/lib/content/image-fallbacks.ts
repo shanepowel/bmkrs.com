@@ -32,34 +32,34 @@ export const homeMotionStrip = motionStripImages;
 
 export const pageHeroImages = {
   services: {
-    src: marketingImages.digitalMediaDevices,
-    alt: "bmkrs across desktop, tablet and mobile",
+    src: marketingImages.disciplinePillars,
+    alt: "brand identity, voice, pr and product — four disciplines, one team",
   },
-  about: { src: marketingImages.teamCollaboration, alt: "bmkrs team collaborating in the studio" },
-  work: { src: marketingImages.identityPackaging, alt: "brand identity and packaging" },
-  motion: { src: marketingImages.contentPlatform, alt: "content and platform work" },
-  journal: { src: marketingImages.brandArchitecture, alt: "brand strategy and thinking" },
-  contact: { src: marketingImages.creativeDesk, alt: "creative workspace" },
+  about: { src: marketingImages.studioTeam, alt: "bmkrs team collaborating in the studio" },
+  work: { src: marketingImages.portfolioCaseStudy, alt: "brand and digital experience work" },
+  motion: { src: marketingImages.studioTeam, alt: "ongoing brand and creative partnership" },
+  journal: { src: marketingImages.brandStrategy, alt: "brand strategy and thinking" },
+  contact: { src: marketingImages.teamCollaboration, alt: "start a project with bmkrs" },
 } as const;
 
 export const aboutStoryImage = {
-  src: marketingImages.studioBrand,
-  alt: "bmkrs creative studio",
+  src: marketingImages.teamCollaboration,
+  alt: "strategy session in the studio",
 };
 
 export const aboutBeliefsImage = {
-  src: marketingImages.identityPackaging,
-  alt: "brand identity across touchpoints",
+  src: marketingImages.architectureConcrete,
+  alt: "built to last — brand as infrastructure",
 };
 
 export const aboutTeamImage = {
-  src: marketingImages.teamCollaboration,
+  src: marketingImages.studioTeam,
   alt: "partner collaborators at work in the studio",
 };
 
 export const homePositioningImage = {
-  src: marketingImages.brandEcosystem,
-  alt: "brand building ecosystem",
+  src: marketingImages.disciplinePillars,
+  alt: "four disciplines on one coordinated team",
 };
 
 export const homeWhoWeWorkWithImage = {

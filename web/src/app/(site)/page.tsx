@@ -3,12 +3,14 @@ import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
 import { Marquee } from "@/components/bmkrs/Marquee";
-import { ProjectTile } from "@/components/bmkrs/ProjectTile";
+import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { RuledGrid, RuledGridItem } from "@/components/bmkrs/RuledGrid";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import { Testimonials } from "@/components/bmkrs/Testimonials";
 import { ProcessBand } from "@/components/bmkrs/ProcessBand";
+import { PainPointsSwipe } from "@/components/mobile/PainPointsSwipe";
+import { WorkProjectsSwipe } from "@/components/mobile/WorkProjectsSwipe";
 import { H2, Kicker, Section, themeBodyStyle } from "@/components/bmkrs/surfaces";
 import { captionForProject, homeManifesto, homePainPoints } from "@/lib/content/expansion-v2";
 import {
@@ -19,6 +21,7 @@ import {
   getSiteSettings,
 } from "@/lib/content";
 import type { ProductTier } from "@/lib/types";
+import { marketingImages } from "@/lib/marketing-assets";
 
 const TIER_LABELS: Record<ProductTier, { label: string; blurb: string }> = {
   start: { label: "start", blurb: "a fast, honest read before you commit to more." },
@@ -89,23 +92,15 @@ export default async function HomePage() {
         </section>
       )}
 
-      <Section theme="ink">
-        <Kicker theme="ink">why people call us</Kicker>
-        <H2 theme="ink">you usually arrive with one of these.</H2>
-        <RuledGrid className="mt-[var(--space-block)]" columns={2}>
-          {homePainPoints.map((point) => (
-            <RuledGridItem key={point.number}>
-              <p className="mono text-meta text-accent">{point.number}</p>
-              <h3 className="mt-3 text-h3 font-medium leading-snug">{point.headline}</h3>
-              <p className="mt-3 max-w-[52ch] leading-relaxed" style={themeBodyStyle("ink")}>
-                {point.body}
-              </p>
-            </RuledGridItem>
-          ))}
-        </RuledGrid>
-      </Section>
+      <PainPointsSwipe points={homePainPoints} />
 
       <Marquee items={home.marqueeItems} />
+
+      <MarketingBanner
+        src={marketingImages.disciplinePillars}
+        alt="brand identity, voice and messaging, pr and communications, product and growth"
+        aspect="4/3"
+      />
 
       <Section theme="paper">
         <SectionRule />
@@ -187,29 +182,7 @@ export default async function HomePage() {
         </Link>
       </Section>
 
-      <Section theme="ink">
-        <SectionRule />
-        <div className="sec-head mt-[var(--space-tight)]">
-          <H2 theme="ink">
-            the brands we <span className="text-accent">build for</span>
-          </H2>
-          <p className="text-muted">{home.selectedWork.subtitle}</p>
-        </div>
-        <div className="mt-[var(--space-block)] grid gap-5 md:grid-cols-2">
-          {selectedProjects.map((project, i) => (
-            <ProjectTile
-              key={project.slug}
-              project={project}
-              featured={false}
-              delay={(i as 0 | 1 | 2 | 3) || 0}
-              gradientIndex={i}
-            />
-          ))}
-        </div>
-        <Link href="/work" className="btn-primary mt-[var(--space-block)] inline-flex">
-          all projects <ArrowIcon />
-        </Link>
-      </Section>
+      <WorkProjectsSwipe projects={selectedProjects} subtitle={home.selectedWork.subtitle} />
 
       <Section theme="orange">
         <div className="grid gap-[var(--space-block)] lg:grid-cols-2 lg:items-start">
