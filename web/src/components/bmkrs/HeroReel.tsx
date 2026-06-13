@@ -54,27 +54,25 @@ export function HeroReel({
 
       <div className="hero-content wrap">
         <div className="site-grid items-end">
-          <div className="site-span-9 cluster-tight">
+          <div className="site-span-9 heading-group">
             <Reveal>
               <Kicker theme="ink">{eyebrow}</Kicker>
             </Reveal>
             <Reveal delay={1}>
-              <h1 className="display text-hero font-medium text-[var(--bmkrs-off-white)]">
-                {headline}
-              </h1>
+              <h1 className="display text-hero font-medium text-[var(--bmkrs-off-white)]">{headline}</h1>
             </Reveal>
             <Reveal delay={2}>
-              <p className="lead text-[var(--bmkrs-off-white)]/90">{sub}</p>
+              <p className="hero-lead text-[var(--bmkrs-off-white)]/90">{sub}</p>
             </Reveal>
           </div>
-          <Reveal delay={3} className="site-span-cta mt-[var(--space-tight)] lg:mt-0">
-            <div className="hero-cta flex flex-wrap items-center gap-4 lg:justify-end">
-              <Link href={primaryCta.href} className="btn-primary">
+          <Reveal delay={3} className="site-span-cta lg:mt-0">
+            <div className="hero-cta flex flex-wrap items-center lg:justify-end">
+              <Link href={primaryCta.href} className="btn-primary min-h-12 px-7">
                 {primaryCta.label} <ArrowIcon />
               </Link>
               <Link
                 href={secondaryCta.href}
-                className="font-medium text-[var(--bmkrs-off-white)] transition-colors hover:text-accent"
+                className="inline-flex min-h-12 items-center font-medium text-[var(--bmkrs-off-white)] transition-colors hover:text-accent"
               >
                 {secondaryCta.label}
               </Link>

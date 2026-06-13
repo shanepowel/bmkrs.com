@@ -1,6 +1,7 @@
 /* @bmkrs/ui design tokens — import once in app globals */
 
 :root {
+  /* colour */
   --bmkrs-ink: #181613;
   --bmkrs-ink-raised: #211f1b;
   --bmkrs-paper: #f1efe8;
@@ -16,32 +17,55 @@
   --bmkrs-font-sans: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
-  --bmkrs-text-hero: clamp(3rem, 8vw, 8.75rem);
-  --bmkrs-text-h2: clamp(2.25rem, 4.5vw, 4rem);
-  --bmkrs-text-h3: clamp(1.5rem, 2.5vw, 2rem);
-  --bmkrs-text-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --bmkrs-text-body-lg: clamp(1.125rem, 1.4vw, 1.375rem);
-  --bmkrs-text-meta: 0.8125rem;
-  --bmkrs-text-input: 1rem;
+  /* type scale (source of truth) */
+  --text-hero: clamp(2.5rem, 7vw, 6rem);
+  --text-h2: clamp(1.875rem, 4vw, 3.5rem);
+  --text-h3: clamp(1.125rem, 1.6vw, 1.375rem);
+  --text-lead: clamp(1.125rem, 1.4vw, 1.375rem);
+  --text-body: 1.0625rem;
+  --text-body-sm: 0.9375rem;
+  --text-meta: 0.8125rem;
+  --lh-display: 1.02;
+  --lh-heading: 1.08;
+  --lh-body: 1.6;
+  --tracking-display: -0.02em;
+  --tracking-kicker: 0.08em;
 
-  --bmkrs-leading-hero: 0.98;
-  --bmkrs-leading-h2: 1.05;
+  /* space scale */
+  --section-y: clamp(4.5rem, 9vw, 9rem);
+  --section-y-sm: clamp(3rem, 6vw, 5rem);
+  --block-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --cluster-gap: 1.25rem;
+  --grid-gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --maxw: 75rem;
+
+  /* aliases for existing bmkrs consumers */
+  --bmkrs-text-hero: var(--text-hero);
+  --bmkrs-text-h2: var(--text-h2);
+  --bmkrs-text-h3: var(--text-h3);
+  --bmkrs-text-body: var(--text-body);
+  --bmkrs-text-body-lg: var(--text-lead);
+  --bmkrs-text-meta: var(--text-meta);
+  --bmkrs-text-input: 1rem;
+  --bmkrs-leading-hero: var(--lh-display);
+  --bmkrs-leading-h2: var(--lh-heading);
   --bmkrs-leading-h3: 1.15;
-  --bmkrs-tracking-display: -0.02em;
-  --bmkrs-tracking-kicker: 0.08em;
+  --bmkrs-tracking-display: var(--tracking-display);
+  --bmkrs-tracking-kicker: var(--tracking-kicker);
+  --bmkrs-space-section: var(--section-y);
+  --bmkrs-space-block: var(--block-gap);
+  --bmkrs-space-tight: var(--cluster-gap);
+  --bmkrs-gutter: var(--gutter);
+  --bmkrs-maxw: var(--maxw);
 
   --bmkrs-space-1: 0.5rem;
   --bmkrs-space-2: 1rem;
   --bmkrs-space-3: 1.5rem;
-  --bmkrs-space-4: 2.5rem;
+  --bmkrs-space-4: 2rem;
   --bmkrs-space-5: 4rem;
   --bmkrs-space-6: 6.5rem;
   --bmkrs-space-7: 10rem;
-  --bmkrs-space-section: clamp(4.5rem, 9vw, 8.5rem);
-  --bmkrs-space-block: clamp(2.5rem, 5vw, 5rem);
-  --bmkrs-space-tight: 1.25rem;
-  --bmkrs-maxw: 90rem;
-  --bmkrs-gutter: 1.5rem;
 
   --bmkrs-radius-pill: 999px;
   --bmkrs-radius-card: 24px;

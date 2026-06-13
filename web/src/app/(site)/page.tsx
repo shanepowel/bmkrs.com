@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
+import LivingProof from "@/components/LivingProof";
 import { Marquee } from "@/components/bmkrs/Marquee";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { Reveal } from "@/components/bmkrs/Reveal";
@@ -82,15 +83,17 @@ export default async function HomePage() {
         />
       ) : (
         <section className="page-hero relative pb-0" data-surface="ink">
-          <div className="wrap site-grid items-end py-[clamp(4.5rem,9vw,8.5rem)]">
-            <div className="site-span-9 cluster-tight">
+          <div className="wrap site-grid items-end">
+            <div className="site-span-9 heading-group">
               <Kicker theme="ink">{hero.eyebrow}</Kicker>
-              <H1 theme="ink">{heroHeadline}</H1>
-              <Body theme="ink" lead className="lead">
+              <H1 theme="ink" className="max-w-[16ch]">
+                {heroHeadline}
+              </H1>
+              <Body theme="ink" lead className="lead max-w-[60ch]">
                 {hero.sub}
               </Body>
             </div>
-            <div className="site-span-cta mt-[var(--bmkrs-space-tight)] lg:mt-0">
+            <div className="site-span-cta lg:mt-0">
               <div className="btn-row lg:justify-end">
                 <Button href={hero.primaryCta.href}>
                   {hero.primaryCta.label} <ArrowIcon />
@@ -115,58 +118,61 @@ export default async function HomePage() {
 
       <Surface theme="paper">
         <SectionRule />
-        <div className="cluster-tight mt-[var(--bmkrs-space-tight)] max-w-[65ch]">
+        <div className="heading-group mt-[var(--cluster-gap)] max-w-[65ch]">
           <Kicker theme="paper">{home.positioning.eyebrow}</Kicker>
           <H2 theme="paper">{home.positioning.statement}</H2>
-          <Body theme="paper" lead className="lead">
+          <Body theme="paper" lead>
             {home.positioning.lead}
           </Body>
         </div>
 
-        <RuledGrid className="mt-[var(--bmkrs-space-block)]" columns={4}>
+        <RuledGrid className="block-gap" columns={2}>
           {home.capabilityTiles.map((tile) => (
             <RuledGridItem key={tile.title}>
-              <Link href={tile.href} className="group block">
+              <Link href={tile.href} className="group grid grid-cols-[auto_1fr] gap-x-4">
                 <p className="mono text-meta text-accent">{tile.number}</p>
-                <h3 className="display mt-2 text-h3 font-medium group-hover:text-accent">
-                  {tile.title}
-                </h3>
-                <p className="mt-2 text-muted">{tile.description}</p>
+                <span>
+                  <h3 className="text-h3 font-medium group-hover:text-accent">{tile.title}</h3>
+                  <p className="mt-2 text-body-sm text-muted">{tile.description}</p>
+                </span>
               </Link>
             </RuledGridItem>
           ))}
         </RuledGrid>
 
-        <div className="mt-[var(--bmkrs-space-block)] border-t border-line pt-[var(--bmkrs-space-block)] max-w-[65ch]">
+        <div className="block-gap border-t border-line pt-[var(--block-gap)] max-w-[65ch]">
           <Kicker theme="paper">why we exist</Kicker>
-          <div className="lead mt-6 whitespace-pre-line">{homeManifesto}</div>
+          <div className="heading-group mt-[var(--cluster-gap)] whitespace-pre-line">
+            <p className="text-lead">{homeManifesto.split("\n\n")[0]}</p>
+            <p className="text-body">{homeManifesto.split("\n\n").slice(1).join("\n\n")}</p>
+          </div>
         </div>
       </Surface>
 
       <Surface theme="ink">
         <SectionRule />
-        <div className="cluster-tight mt-[var(--bmkrs-space-tight)]">
+        <div className="heading-group mt-[var(--cluster-gap)]">
           <Kicker theme="ink">ways to work with us</Kicker>
           <H2 theme="ink">
             start, make, <span className="text-accent">grow.</span>
           </H2>
-          <Body theme="ink" lead className="lead">
+          <Body theme="ink" lead>
             one funnel, one team, bespoke work throughout. the packages shape how you start, not how
             the creative gets made.
           </Body>
         </div>
 
-        <RuledGrid className="mt-[var(--bmkrs-space-block)]" columns={3}>
+        <RuledGrid className="block-gap" columns={3}>
           {TIERS.map((tier) => (
             <RuledGridItem key={tier}>
-              <h3 className="display text-h3 font-medium text-accent">{TIER_LABELS[tier].label}</h3>
-              <p className="mt-2 text-muted">{TIER_LABELS[tier].blurb}</p>
-              <ul className="mt-4 list-none space-y-2 p-0">
+              <h3 className="text-h3 font-medium text-accent">{TIER_LABELS[tier].label}</h3>
+              <p className="mt-2 text-body-sm text-muted">{TIER_LABELS[tier].blurb}</p>
+              <ul className="mt-4 list-none space-y-3 p-0">
                 {byTier(tier).map((p) => (
                   <li key={p.slug} className="border-t border-line pt-2">
                     <Link
                       href={tier === "grow" ? "/motion" : `/services#${p.slug}`}
-                      className="transition-colors hover:text-accent"
+                      className="inline-flex min-h-11 items-center transition-colors hover:text-accent"
                       style={themeBodyStyle("ink")}
                     >
                       {p.name}
@@ -178,46 +184,35 @@ export default async function HomePage() {
           ))}
         </RuledGrid>
 
-        <RuledGrid className="mt-[var(--bmkrs-space-block)]" columns={3}>
-          {home.stats.map((stat) => (
-            <RuledGridItem key={stat.label}>
-              <p className="mono text-hero font-normal leading-none text-accent">
-                {stat.highlight}
-                {stat.value}
-              </p>
-              <p className="nocase mt-3 max-w-[28ch] text-meta text-muted">{stat.label}</p>
-            </RuledGridItem>
-          ))}
-        </RuledGrid>
-
-        <Button href="/services" className="mt-[var(--bmkrs-space-block)]">
+        <Button href="/services" className="block-gap">
           see the full offering <ArrowIcon />
         </Button>
       </Surface>
 
+      <Surface theme="ink" tight>
+        <LivingProof />
+      </Surface>
+
       <WorkProjectsSwipe projects={selectedProjects} subtitle={home.selectedWork.subtitle} />
 
-      <Surface theme="orange">
-        <div className="grid gap-[var(--bmkrs-space-block)] lg:grid-cols-2 lg:items-start">
-          <div>
-            <Kicker theme="orange">in their words</Kicker>
-            <Testimonials items={testimonials} />
-          </div>
-          <div>
-            <Kicker theme="orange">{home.motionTeaser.eyebrow}</Kicker>
-            <Reveal>
-              <H2 theme="orange">
-                always in <span style={{ color: tokens.color.ink }}>motion.</span>
-              </H2>
-            </Reveal>
-            <Body theme="orange" lead className="lead mt-[var(--bmkrs-space-tight)]">
-              {home.motionTeaser.body}
-            </Body>
-            <InkButton href={home.motionTeaser.href} className="mt-[var(--bmkrs-space-tight)]">
-              {home.motionTeaser.ctaLabel} <ArrowIcon />
-            </InkButton>
-          </div>
-        </div>
+      <Surface theme="orange" tight>
+        <Kicker theme="orange">in their words</Kicker>
+        <Testimonials items={testimonials} />
+      </Surface>
+
+      <Surface theme="ink" tight>
+        <Kicker theme="ink">{home.motionTeaser.eyebrow}</Kicker>
+        <Reveal>
+          <H2 theme="ink">
+            always in <span style={{ color: tokens.color.orange }}>motion.</span>
+          </H2>
+        </Reveal>
+        <Body theme="ink" lead className="mt-[var(--cluster-gap)]">
+          {home.motionTeaser.body}
+        </Body>
+        <InkButton href={home.motionTeaser.href} className="mt-[var(--cluster-gap)]">
+          {home.motionTeaser.ctaLabel} <ArrowIcon />
+        </InkButton>
       </Surface>
 
       <ProcessBand />
@@ -225,7 +220,7 @@ export default async function HomePage() {
       <Surface theme="ink">
         <div className="text-center">
           <H2 theme="ink">let&apos;s make something worth choosing.</H2>
-          <Button href="/contact" className="mt-[var(--bmkrs-space-block)]">
+          <Button href="/contact" className="block-gap">
             start a project <ArrowIcon />
           </Button>
         </div>

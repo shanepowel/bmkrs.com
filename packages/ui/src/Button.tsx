@@ -20,7 +20,7 @@ export type ButtonProps = {
 };
 
 const baseClass =
-  "inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full px-6 py-3.5 font-sans text-base font-medium transition touch-manipulation";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 font-sans text-[var(--text-body)] font-medium transition touch-manipulation";
 
 const variantClass: Record<Variant, string> = {
   primary: "bg-bmkrs-ink text-bmkrs-paper hover:bg-bmkrs-orange hover:text-bmkrs-paper",

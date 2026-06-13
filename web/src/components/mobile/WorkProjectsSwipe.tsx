@@ -2,7 +2,7 @@
 
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { ProjectTile } from "@/components/bmkrs/ProjectTile";
-import { Button, H2, Surface, SwipeRow } from "@bmkrs/ui";
+import { Button, H2, Kicker, Surface, SwipeRow } from "@bmkrs/ui";
 import type { Project } from "@/lib/types";
 
 export function WorkProjectsSwipe({
@@ -14,13 +14,14 @@ export function WorkProjectsSwipe({
 }) {
   return (
     <Surface theme="ink">
-      <div className="sec-head">
+      <div className="heading-group">
+        <Kicker theme="ink">selected work</Kicker>
         <H2 theme="ink">
           the brands we <span className="text-accent">build for</span>
         </H2>
-        <p className="text-muted">{subtitle}</p>
+        <p className="text-body-sm text-muted max-w-[65ch]">{subtitle}</p>
       </div>
-      <div className="mt-[var(--bmkrs-space-block)]">
+      <div className="block-gap">
         <SwipeRow ariaLabel="selected work" desktopGridClass="md:grid md:grid-cols-2 md:overflow-visible">
           {projects.map((project, i) => (
             <ProjectTile
@@ -33,7 +34,7 @@ export function WorkProjectsSwipe({
           ))}
         </SwipeRow>
       </div>
-      <Button href="/work" className="mt-[var(--bmkrs-space-block)]">
+      <Button href="/work" className="block-gap">
         all projects <ArrowIcon />
       </Button>
     </Surface>

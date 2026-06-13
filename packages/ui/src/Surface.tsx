@@ -41,8 +41,8 @@ export function Surface({
         data-surface={theme}
       >
         <div
-          className={`mx-auto max-w-[1440px] px-6 md:px-12 ${
-            tight ? "py-6" : "py-[var(--bmkrs-space-section)]"
+          className={`mx-auto max-w-[var(--maxw)] px-[var(--gutter)] ${
+            tight ? "py-[var(--section-y-sm)]" : "py-[var(--section-y)]"
           }`}
         >
           {children}
@@ -63,7 +63,7 @@ export function Kicker({ theme, children }: { theme: SurfaceTheme; children: Rea
         color: SURFACE[theme].accent,
         letterSpacing: "var(--bmkrs-tracking-kicker)",
       }}
-      className="mb-5 text-meta"
+      className="mb-0 text-meta"
     >
       {children}
     </p>
@@ -83,8 +83,8 @@ export function H1({
     <h1
       className={`display text-hero font-medium ${className}`}
       style={{
-        lineHeight: "var(--bmkrs-leading-hero)",
-        letterSpacing: "var(--bmkrs-tracking-display)",
+        lineHeight: "var(--lh-display)",
+        letterSpacing: "var(--tracking-display)",
         color: SURFACE[theme].text,
       }}
     >
@@ -106,8 +106,8 @@ export function H2({
     <h2
       className={`display text-h2 font-medium ${className}`}
       style={{
-        lineHeight: "var(--bmkrs-leading-h2)",
-        letterSpacing: "var(--bmkrs-tracking-display)",
+        lineHeight: "var(--lh-heading)",
+        letterSpacing: "var(--tracking-display)",
         color: SURFACE[theme].text,
       }}
     >
@@ -133,8 +133,8 @@ export function Body({
 }) {
   return (
     <div
-      style={{ color: SURFACE[theme].body }}
-      className={`max-w-[65ch] leading-relaxed ${lead ? "text-lg md:text-[1.375rem]" : "text-lg"} ${className}`}
+      style={{ color: SURFACE[theme].body, lineHeight: "var(--lh-body)" }}
+      className={`max-w-[65ch] ${lead ? "text-lead" : "text-body"} ${className}`}
     >
       {children}
     </div>

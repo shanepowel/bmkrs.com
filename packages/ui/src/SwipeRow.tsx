@@ -32,7 +32,7 @@ export function SwipeRow({
         ref={ref}
         onScroll={onScroll}
         aria-label={ariaLabel}
-        className={`swipe-row flex gap-3 overflow-x-auto pb-1 ${desktopGridClass}`}
+        className={`swipe-row flex gap-[var(--grid-gap)] overflow-x-auto pb-1 ${desktopGridClass}`}
         style={{
           scrollSnapType: "x mandatory",
           scrollbarWidth: "none",
@@ -61,7 +61,7 @@ export function SwipeRow({
 
       <style>{`
         .swipe-row::-webkit-scrollbar { display: none; }
-        .swipe-row > .snap-card { width: 78%; max-width: 300px; }
+        .swipe-row > .snap-card { width: 78vw; max-width: 320px; }
         @media (min-width: 768px) {
           .swipe-row.md\\:grid > .snap-card { width: auto; max-width: none; }
         }

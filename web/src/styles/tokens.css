@@ -23,8 +23,8 @@
   --bmkrs-space-5: 4rem;
   --bmkrs-space-6: 6.5rem;
   --bmkrs-space-7: 10rem;
-  --bmkrs-maxw: 90rem;
-  --bmkrs-gutter: 1.5rem;
+  --bmkrs-maxw: var(--maxw, 75rem);
+  --bmkrs-gutter: var(--gutter, clamp(1.25rem, 5vw, 3.5rem));
   --bmkrs-line: rgba(24, 22, 19, 0.12);
   --bmkrs-muted: rgb(180 178 169);
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -34,22 +34,13 @@
   --bmkrs-font-body: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
-  /* display scale */
-  --text-hero: clamp(3rem, 8vw, 8.75rem);
-  --text-h2: clamp(2.25rem, 4.5vw, 4rem);
-  --text-h3: clamp(1.5rem, 2.5vw, 2rem);
-  --text-body-lg: clamp(1.125rem, 1.4vw, 1.375rem);
-  --text-body: 1.125rem;
-  --text-meta: 0.8125rem;
-
-  --leading-hero: 0.98;
-  --leading-h2: 1.05;
-  --tracking-display: -0.02em;
-  --tracking-kicker: 0.08em;
-
-  --space-section: clamp(5rem, 10vw, 10rem);
-  --space-block: clamp(2.5rem, 5vw, 5rem);
-  --space-tight: 1.25rem;
+  /* display scale aliases (defined in packages/ui tokens.css) */
+  --space-section: var(--section-y);
+  --space-section-sm: var(--section-y-sm);
+  --space-block: var(--block-gap);
+  --space-tight: var(--cluster-gap);
+  --leading-hero: var(--lh-display);
+  --leading-h2: var(--lh-heading);
 
   --bmkrs-step--1: var(--text-meta);
   --bmkrs-step-0: var(--text-body);
