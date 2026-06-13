@@ -7,8 +7,6 @@ export {
   Body,
   Rule,
   useSurface,
-  themeBodyStyle,
-  themeFaintStyle,
   type Theme,
 } from "./Surface";
 
@@ -17,6 +15,8 @@ export {
   bmkrs,
   mono,
   SURFACE,
+  themeBodyStyle,
+  themeFaintStyle,
   type SurfaceTheme,
   type SurfaceTokens,
 } from "./tokens";

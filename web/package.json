@@ -17,7 +17,7 @@
     "import:products": "sanity dataset import sanity/seed/products.ndjson --replace"
   },
   "dependencies": {
-    "@bmkrs/ui": "*",
+    "@bmkrs/ui": "file:../packages/ui",
     "@sanity/client": "^7.22.1",
     "@sanity/schema": "^4.22.0",
     "@sanity/vision": "^4.22.0",

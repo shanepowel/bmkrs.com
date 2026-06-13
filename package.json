@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "dev": "npm run dev --prefix web",
-    "install:web": "cd web && npm ci --legacy-peer-deps",
-    "build": "npm run install:web && npm run build --prefix web",
+    "install:web": "npm ci --legacy-peer-deps",
+    "build": "npm run build --prefix web",
     "vercel-build": "npm run build",
     "lint": "npm run lint --prefix web",
     "start": "npm run start --prefix web"

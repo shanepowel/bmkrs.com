@@ -1,4 +1,4 @@
-@import "@bmkrs/ui/tokens.css";
+@import "../../../packages/ui/src/tokens.css";
 @import "../styles/tokens.css";
 @import "../styles/components.css";
 

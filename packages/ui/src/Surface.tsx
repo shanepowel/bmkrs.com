@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  type CSSProperties,
   type ReactNode,
 } from "react";
 import { SURFACE, type SurfaceTheme } from "./tokens";
@@ -140,15 +139,4 @@ export function Body({
       {children}
     </div>
   );
-}
-
-export function themeBodyStyle(theme: SurfaceTheme): CSSProperties {
-  return { color: SURFACE[theme].body };
-}
-
-export function themeFaintStyle(theme: SurfaceTheme): CSSProperties {
-  return {
-    fontFamily: "var(--bmkrs-font-mono)",
-    color: SURFACE[theme].faint,
-  };
 }
