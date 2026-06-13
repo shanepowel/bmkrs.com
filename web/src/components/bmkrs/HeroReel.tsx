@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Kicker } from "@/components/bmkrs/Kicker";
 import { Reveal } from "@/components/bmkrs/Reveal";
@@ -18,6 +18,14 @@ export type HeroReelProps = {
   secondaryCta: { label: string; href: string };
 };
 
+const MOTION_QUERY = "(prefers-reduced-motion: no-preference)";
+
+function subscribeMotion(onChange: () => void) {
+  const mq = window.matchMedia(MOTION_QUERY);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
 export function HeroReel({
   reelUrl,
   poster,
@@ -27,15 +35,13 @@ export function HeroReel({
   primaryCta,
   secondaryCta,
 }: HeroReelProps) {
-  const [motionOk, setMotionOk] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    setMotionOk(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setMotionOk(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  // Subscribe to the reduced-motion media query without a setState-in-effect.
+  // The server snapshot is `false`, so the static poster renders until hydration.
+  const motionOk = useSyncExternalStore(
+    subscribeMotion,
+    () => window.matchMedia(MOTION_QUERY).matches,
+    () => false,
+  );
 
   const showVideo = Boolean(reelUrl) && motionOk;
 

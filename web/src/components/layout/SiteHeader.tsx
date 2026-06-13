@@ -35,9 +35,14 @@ export function SiteHeader({ navigation }: { navigation?: NavItem[] }) {
   const items = navItems(navigation);
   const lightLogo = surface === "paper" || surface === "orange";
 
-  useEffect(() => {
+  // Close the mobile menu when the route changes. Adjusting state during render
+  // (instead of in an effect) avoids an extra render pass — see
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     const sync = () => {
