@@ -10,7 +10,7 @@ import {
   mono as monoStyle,
   themeBodyStyle,
   themeFaintStyle,
-} from "@/components/bmkrs/surfaces";
+} from "@bmkrs/ui";
 import { getAboutPage, getNowBuilding, getPeople } from "@/lib/content";
 import { fetchBenchPublic } from "@/lib/bench-public";
 import { BMKRS_ORANGE } from "@/lib/brand";

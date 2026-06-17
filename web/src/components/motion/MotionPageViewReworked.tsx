@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, MotionConfig } from "framer-motion";
-import { C, Kicker, mono, PrimaryButton } from "@/lib/bench-ui";
+import { C, BenchKicker, mono, PrimaryButton } from "@/lib/bench-ui";
 import { fadeUp, stagger } from "./animations";
 import { MotionHeroSection } from "./MotionHeroSection";
 
@@ -71,7 +71,7 @@ export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
       <MotionHeroSection>
-        <Kicker surface="ink">keep moving</Kicker>
+        <BenchKicker surface="ink">keep moving</BenchKicker>
         <h1
           className="max-w-[12ch] font-medium"
           style={{
@@ -101,7 +101,7 @@ export function MotionPageViewReworked() {
 
       <section style={{ background: C.paper, color: C.paperText }}>
         <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <Kicker>you might need this if</Kicker>
+          <BenchKicker>you might need this if</BenchKicker>
           <h2
             className="font-medium"
             style={{
@@ -145,7 +145,7 @@ export function MotionPageViewReworked() {
       >
         <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-[0.9fr_1fr]">
           <div>
-            <Kicker>what&apos;s included</Kicker>
+            <BenchKicker>what&apos;s included</BenchKicker>
             <h2
               className="font-medium"
               style={{
@@ -236,7 +236,7 @@ export function MotionPageViewReworked() {
 
       <section id="month" style={{ background: C.paper, color: C.paperText }}>
         <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <Kicker>what it actually looks like</Kicker>
+          <BenchKicker>what it actually looks like</BenchKicker>
           <h2
             className="font-medium"
             style={{
@@ -277,7 +277,7 @@ export function MotionPageViewReworked() {
 
       <section id="tiers" style={{ background: C.ink, color: C.inkText }}>
         <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <Kicker surface="ink">tiers</Kicker>
+          <BenchKicker surface="ink">tiers</BenchKicker>
           <h2
             className="font-medium"
             style={{

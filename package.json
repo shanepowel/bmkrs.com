@@ -5,12 +5,16 @@
   "private": true,
   "workspaces": [
     "web",
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
     "dev": "npm run dev --prefix web",
+    "dev:portal": "npm run dev --prefix apps/portal",
     "install:web": "npm ci --legacy-peer-deps",
+    "install:portal": "npm ci --legacy-peer-deps --prefix apps/portal",
     "build": "npm run build --prefix web",
+    "build:portal": "npm run build --prefix apps/portal",
     "vercel-build": "npm run build",
     "lint": "npm run lint --prefix web",
     "start": "npm run start --prefix web"

@@ -8,7 +8,7 @@ import { PortableBody } from "@/components/bmkrs/PortableBody";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { AuthorBio } from "@/components/bmkrs/AuthorBio";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Section } from "@/components/bmkrs/surfaces";
+import { Section } from "@bmkrs/ui";
 import {
   getJournalArticle,
   getJournalArticles,

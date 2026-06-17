@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 
 const COLUMNS = [
   {

@@ -9,7 +9,7 @@ import {
   mono as monoStyle,
   themeBodyStyle,
   themeFaintStyle,
-} from "@/components/bmkrs/surfaces";
+} from "@bmkrs/ui";
 import { getPressKit, getSiteSettings } from "@/lib/content";
 import { SURFACE } from "@/lib/surfaces";
 import { pageMetadata } from "@/lib/seo";

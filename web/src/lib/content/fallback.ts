@@ -4,6 +4,7 @@ import {
   placeholderHomeTestimonials,
   placeholderResultsBySlug,
 } from "@/lib/content/case-study-placeholders";
+import { companyFromEnv, publicCompanyNumber, publicRegisteredAddress } from "@/lib/content/company-registration";
 import type {
   HomeContent,
   MotionContent,
@@ -32,8 +33,13 @@ export const fallbackSiteSettings: SiteSettings = {
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
   companyName: "b makers ltd",
-  companyNumber: placeholderCompany.companyNumber || undefined,
-  registeredAddress: placeholderCompany.registeredAddress || undefined,
+  companyNumber:
+    companyFromEnv().companyNumber ??
+    publicCompanyNumber(placeholderCompany.companyNumber),
+  registeredAddress:
+    companyFromEnv().registeredAddress ??
+    publicRegisteredAddress(placeholderCompany.registeredAddress),
+  contactPhone: companyFromEnv().contactPhone,
   londonAddress: placeholderCompany.londonAddress,
   copyright: "© 2026 b makers ltd. all rights reserved.",
   footerQuip:

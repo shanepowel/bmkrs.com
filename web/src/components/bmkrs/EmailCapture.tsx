@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Section } from "@/components/bmkrs/surfaces";
+import { Section } from "@bmkrs/ui";
 import { cn } from "@/lib/utils";
 
 type EmailCaptureProps = {

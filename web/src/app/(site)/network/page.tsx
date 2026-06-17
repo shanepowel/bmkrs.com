@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AppLink } from "@/components/bmkrs/AppLink";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H1, H2, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { H1, H2, Kicker, Section } from "@bmkrs/ui";
 import { getNetworkPage, getSiteSettings } from "@/lib/content";
 import {
   benchRowsToTiles,

@@ -1,58 +1,35 @@
-import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
-import { SURFACE } from "@/lib/surfaces";
+import type { ReactNode } from "react";
+import { Button, Kicker, mono, tokens } from "@bmkrs/ui";
 
-/** Bench / network-page palette aliases for marketing experiments. */
+/** Bench / network-page palette aliases (motion page). */
 export const C = {
-  ink: SURFACE.ink.bg,
-  inkText: SURFACE.ink.text,
-  inkBody: SURFACE.ink.body,
-  inkFaint: SURFACE.ink.faint,
-  inkRule: SURFACE.ink.rule,
-  paper: SURFACE.paper.bg,
-  paperText: SURFACE.paper.text,
-  paperBody: SURFACE.paper.body,
-  orange: SURFACE.orange.bg,
+  ink: tokens.color.ink,
+  inkText: tokens.color.paper,
+  inkBody: tokens.color.body,
+  inkFaint: tokens.color.faint,
+  inkRule: tokens.color.ruleInk,
+  paper: tokens.color.paper,
+  paperText: tokens.color.ink,
+  paperBody: tokens.color.paperBody,
+  orange: tokens.color.orange,
 } as const;
 
-export const mono: CSSProperties = {
-  fontFamily: "var(--font-mono, ui-monospace, monospace)",
-};
+export { mono };
 
-export function Kicker({
+export function BenchKicker({
   surface,
   children,
 }: {
   surface?: "ink";
   children: ReactNode;
 }) {
-  const tokens = surface === "ink" ? SURFACE.ink : SURFACE.paper;
-  return (
-    <p
-      style={{ ...mono, color: tokens.accent, letterSpacing: "0.08em" }}
-      className="mb-5 text-[12px] uppercase"
-    >
-      {children}
-    </p>
-  );
+  return <Kicker theme={surface === "ink" ? "ink" : "paper"}>{children}</Kicker>;
 }
 
 export function PrimaryButton({ href, children }: { href: string; children: ReactNode }) {
-  const className =
-    "inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold transition hover:opacity-90";
-  const style = { background: C.orange, color: "#181613" };
-
-  if (href.startsWith("/")) {
-    return (
-      <Link href={href} className={className} style={style}>
-        {children}
-      </Link>
-    );
-  }
-
   return (
-    <a href={href} className={className} style={style}>
+    <Button href={href} variant="primary" className="!bg-bmkrs-orange !text-bmkrs-ink hover:!opacity-90">
       {children}
-    </a>
+    </Button>
   );
 }

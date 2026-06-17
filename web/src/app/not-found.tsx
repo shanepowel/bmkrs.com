@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { H1, Section } from "@/components/bmkrs/surfaces";
+import { H1, Section } from "@bmkrs/ui";
 import { Wordmark } from "@/components/bmkrs/Wordmark";
 
 const LINKS = [

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Kicker } from "@/components/bmkrs/surfaces";
+import { Kicker } from "@bmkrs/ui";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import {
   contactBudgetReassurance,

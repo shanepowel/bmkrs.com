@@ -37,6 +37,7 @@ export type SiteSettings = {
   companyName?: string;
   companyNumber?: string;
   registeredAddress?: string;
+  contactPhone?: string;
   londonAddress?: string;
   copyright: string;
   footerQuip?: string;

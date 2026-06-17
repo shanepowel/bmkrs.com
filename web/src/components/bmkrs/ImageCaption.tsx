@@ -1,4 +1,4 @@
-import { mono as monoStyle } from "@/components/bmkrs/surfaces";
+import { mono as monoStyle } from "@bmkrs/ui";
 
 export function ImageCaption({
   children,

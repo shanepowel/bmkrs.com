@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { Kicker } from "@/components/bmkrs/surfaces";
+import { Kicker } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
 
 export type HeroReelProps = {

@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 import { ServiceTags } from "@/components/bmkrs/ServiceTags";
 import {
   getNextProject,

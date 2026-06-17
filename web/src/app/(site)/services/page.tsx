@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { ProcessBand } from "@/components/bmkrs/ProcessBand";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H1, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { H1, Kicker, Section } from "@bmkrs/ui";
 import { LadderIntro } from "@/components/services/LadderIntro";
 import { LegacyHashRedirect } from "@/components/services/LegacyHashRedirect";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";

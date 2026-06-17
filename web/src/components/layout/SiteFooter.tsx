@@ -63,6 +63,12 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           <a href={`mailto:${general}`}>{general}</a>
           <span aria-hidden="true"> · </span>
           <a href={`mailto:${press}`}>{press}</a>
+          {settings.contactPhone ? (
+            <>
+              <span aria-hidden="true"> · </span>
+              <a href={`tel:${settings.contactPhone.replace(/\s/g, "")}`}>{settings.contactPhone}</a>
+            </>
+          ) : null}
           <span aria-hidden="true"> · </span>
           london, and wherever you are
         </p>

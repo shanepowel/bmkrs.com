@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H2, Kicker, Section } from "@/components/bmkrs/surfaces";
+import { H2, Kicker, Section } from "@bmkrs/ui";
 import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";

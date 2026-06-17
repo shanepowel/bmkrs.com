@@ -1,5 +1,5 @@
 import type { LegalDocument as LegalDocumentType } from "@/lib/content/legal";
-import { H1, Section, themeBodyStyle, themeFaintStyle } from "@/components/bmkrs/surfaces";
+import { H1, Section, themeBodyStyle, themeFaintStyle } from "@bmkrs/ui";
 
 export function LegalDocument({ doc }: { doc: LegalDocumentType }) {
   return (

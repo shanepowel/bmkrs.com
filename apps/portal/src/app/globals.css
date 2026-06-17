@@ -1,0 +1,16 @@
+@import "@bmkrs/ui/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  background: var(--bmkrs-paper, #f1efe8);
+  color: var(--bmkrs-ink, #181613);
+}

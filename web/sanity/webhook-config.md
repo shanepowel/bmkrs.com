@@ -32,7 +32,7 @@ Set the fields:
 - **Trigger on:** Create, Update, Delete
 - **Filter (GROQ):**
   ```
-  _type in ["caseStudy","product","post","teamMember","aboutPage","testimonial","siteSettings"]
+  _type in ["caseStudy","product","post","teamMember","aboutPage","testimonial","siteSettings","networkPage","pressKit","discipline","nowBuilding"]
   ```
 - **Projection (GROQ):** keeps the payload small and gives the route what it needs
   ```

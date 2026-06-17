@@ -18,3 +18,15 @@ export function publicCompanyNumber(companyNumber?: string | null): string | und
 export function publicRegisteredAddress(address?: string | null): string | undefined {
   return isPlaceholderRegisteredAddress(address) ? undefined : address!.trim();
 }
+
+export function companyFromEnv(): {
+  companyNumber?: string;
+  registeredAddress?: string;
+  contactPhone?: string;
+} {
+  return {
+    companyNumber: publicCompanyNumber(process.env.NEXT_PUBLIC_COMPANY_NUMBER),
+    registeredAddress: publicRegisteredAddress(process.env.NEXT_PUBLIC_REGISTERED_ADDRESS),
+    contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE?.trim() || undefined,
+  };
+}

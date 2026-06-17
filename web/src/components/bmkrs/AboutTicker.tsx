@@ -1,6 +1,6 @@
 import { BMKRS_ORANGE } from "@/lib/brand";
 import { SURFACE } from "@/lib/surfaces";
-import { mono as monoStyle } from "@/components/bmkrs/surfaces";
+import { mono as monoStyle } from "@bmkrs/ui";
 
 const ink = SURFACE.ink;
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 
 const ROUTES = [
   { situation: "not sure what's wrong, just that something is", target: "brand check", href: "#brand-check" },

@@ -79,6 +79,8 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 
 ## Environment variables
 
+See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal + Digiteq).
+
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
 - `NEXT_PUBLIC_SANITY_DATASET` = `production`
 - `NEXT_PUBLIC_SITE_URL` = `https://www.bmkrs.com` (must match the canonical www host; non-www redirects here)
@@ -87,3 +89,14 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 - `NEXT_PUBLIC_NETWORK_JOIN_URL` = `https://app.bmkrs.com/join`
 - `NEXT_PUBLIC_MEMBER_LOGIN_URL` = `https://app.bmkrs.com/login`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads only after cookie consent)
+- `NEXT_PUBLIC_COMPANY_NUMBER`, `NEXT_PUBLIC_REGISTERED_ADDRESS`, `NEXT_PUBLIC_CONTACT_PHONE` (optional; shown when set)
+
+## app.bmkrs.com (portal)
+
+Separate Vercel project with **Root Directory** = `apps/portal`.
+
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` for member login
+- `NEXT_PUBLIC_MARKETING_URL` = `https://www.bmkrs.com` (CORS for `/api/bench-public`)
+- `NEXT_PUBLIC_PORTAL_URL` = `https://app.bmkrs.com`
+
+The marketing `/network` page fetches `GET /api/bench-public` from the portal host.

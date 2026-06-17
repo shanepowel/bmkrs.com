@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatProductPrice } from "@/lib/format-product-price";
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 import type { Product } from "@/lib/types";
 
 export function GrowBand({ motionPrice }: { motionPrice?: Product }) {

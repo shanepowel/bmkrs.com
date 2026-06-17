@@ -1,4 +1,4 @@
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 import type { Product, ProductTier } from "@/lib/types";
 import { GrowBand } from "./GrowBand";
 import { PackageCard } from "./PackageCard";

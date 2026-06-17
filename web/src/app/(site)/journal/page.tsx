@@ -6,7 +6,7 @@ import { JournalFilter } from "@/components/bmkrs/JournalFilter";
 import { JournalMap } from "@/components/bmkrs/JournalMap";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { Kicker, Section } from "@/components/bmkrs/surfaces";
+import { Kicker, Section } from "@bmkrs/ui";
 import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { journalMastheadIntro, journalCategoryDescriptions } from "@/lib/content/expansion-v2";

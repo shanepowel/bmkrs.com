@@ -1,5 +1,5 @@
 import { homeProcessStrip } from "@/lib/content/expansion-v2";
-import { Kicker, Section, themeFaintStyle } from "@/components/bmkrs/surfaces";
+import { Kicker, Section, themeFaintStyle } from "@bmkrs/ui";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { marketingImages } from "@/lib/marketing-assets";
 
