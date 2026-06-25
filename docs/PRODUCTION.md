@@ -41,10 +41,6 @@ Separate Vercel project: root directory **`apps/portal`**.
 
 **Routes:** `/login`, `/hire`, `/join`, `/api/bench-public`.
 
-## Digiteq (`digiteq.io`)
-
-Separate repo: [github.com/shanepowel/digiteq](https://github.com/shanepowel/digiteq). Production checklist lives in that repo at `docs/PRODUCTION.md`.
-
 ## Content still needing real copy
 
 These are intentionally hidden until filled (not fabricated):

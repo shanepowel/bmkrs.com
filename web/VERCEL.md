@@ -79,7 +79,7 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 
 ## Environment variables
 
-See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal + Digiteq).
+See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal).
 
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
 - `NEXT_PUBLIC_SANITY_DATASET` = `production`
