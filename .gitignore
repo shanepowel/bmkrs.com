@@ -86,3 +86,6 @@ commit.pub
 archive/legacy-public-site/public_html/fdb/
 **/error_log
 .vercel
+
+# Nested clone of the Digiteq repo (separate GitHub project)
+digiteq/

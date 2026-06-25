@@ -43,23 +43,7 @@ Separate Vercel project: root directory **`apps/portal`**.
 
 ## Digiteq (`digiteq.io`)
 
-Separate repo: `github.com/shanepowel/digiteq`.
-
-| Variable | Purpose |
-|----------|---------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `fr7gld8d` |
-| `NEXT_PUBLIC_SANITY_DATASET` | `production` |
-| `SANITY_API_TOKEN` | Server + Studio |
-| `SANITY_REVALIDATE_SECRET` | Webhook |
-| `HUBSPOT_ACCESS_TOKEN` | CRM |
-| `RESEND_API_KEY` | Transactional email |
-| `CONTACT_FROM_EMAIL` | `Digiteq <hello@digiteq.io>` |
-| `CONTACT_TO_EMAIL` | Inbox |
-| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | `digiteq.io` |
-
-**Sanity webhook:** `POST https://digiteq.io/api/revalidate` with the same secret pattern as BMKRS.
-
-**Resend:** verify `digiteq.io` domain before go-live.
+Separate repo: [github.com/shanepowel/digiteq](https://github.com/shanepowel/digiteq). Production checklist lives in that repo at `docs/PRODUCTION.md`.
 
 ## Content still needing real copy
 
@@ -68,6 +52,5 @@ These are intentionally hidden until filled (not fabricated):
 - Client testimonials in Sanity (`testimonial-*` seeds still hold placeholder quotes)
 - Case study metric labels marked `placeholder:` in seeds
 - Company number and registered address until env vars or Sanity `siteSettings` are set
-- Digiteq footer phone (`+44 … XXXX`)
 
 Set env vars or edit Sanity; do not ship invented quotes or metrics.
