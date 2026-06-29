@@ -77,7 +77,7 @@ export function HeroReel({
               <h1 className="display text-hero font-medium text-[var(--bmkrs-off-white)]">{headline}</h1>
             </Reveal>
             <Reveal delay={2}>
-              <p className="hero-lead text-[var(--bmkrs-off-white)]/90">{sub}</p>
+              <p className="hero-lead">{sub}</p>
             </Reveal>
           </div>
           <Reveal delay={3} className="site-span-cta lg:mt-0">

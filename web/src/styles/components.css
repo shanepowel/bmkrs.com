@@ -547,6 +547,9 @@
   background: linear-gradient(90deg, rgba(24, 22, 19, 0.82) 0%, rgba(24, 22, 19, 0.5) 55%, rgba(24, 22, 19, 0.2) 100%);
 }
 .hero-content { position: relative; z-index: 1; width: 100%; }
+.hero--reel .hero-content {
+  color: var(--bmkrs-off-white);
+}
 .hero--reel .hero-cta {
   margin-top: 2.25rem;
   gap: 1rem;
@@ -556,6 +559,8 @@
   max-width: 60ch;
   font-size: var(--text-lead);
   line-height: var(--lh-body);
+  color: var(--bmkrs-off-white);
+  text-shadow: 0 1px 24px rgba(24, 22, 19, 0.45);
 }
 .hero--reel .text-hero {
   max-width: 16ch;
