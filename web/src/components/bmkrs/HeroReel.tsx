@@ -50,7 +50,16 @@ export function HeroReel({
     <section className="hero hero--reel" data-surface="ink">
       <div className="hero-media" aria-hidden="true">
         {showVideo ? (
-          <video className="hero-bg" src={reelUrl} poster={poster} autoPlay muted loop playsInline />
+          <video
+            className="hero-bg"
+            src={reelUrl}
+            poster={poster}
+            preload="auto"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
         ) : poster ? (
           <Image src={poster} alt="" fill priority sizes="100vw" className="object-cover" />
         ) : (

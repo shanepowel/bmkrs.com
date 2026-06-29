@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { preload } from "react-dom";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
@@ -47,6 +48,9 @@ export default async function HomePage() {
     getProducts(),
     getSiteSettings(),
   ]);
+  if (settings.heroReelUrl) {
+    preload(settings.heroReelUrl, { as: "video", fetchPriority: "high" });
+  }
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
   const { hero } = home;
   const collage =
