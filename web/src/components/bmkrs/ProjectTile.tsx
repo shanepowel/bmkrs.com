@@ -56,9 +56,14 @@ export function ProjectTile({
             ↗
           </span>
         </div>
-        <div className="mt-4 flex items-baseline justify-between gap-4">
-          <h3 className="display text-[clamp(22px,2.6vw,32px)]">{project.title}</h3>
-          <span className="text-[13px] font-medium text-accent">{project.category}</span>
+        <div className="mt-4">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="display text-[clamp(22px,2.6vw,32px)]">{project.title}</h3>
+            <span className="text-[13px] font-medium text-accent">{project.category}</span>
+          </div>
+          {project.outcomeLine ? (
+            <p className="mono mt-2 text-meta text-muted">{project.outcomeLine}</p>
+          ) : null}
         </div>
       </Link>
     </Reveal>

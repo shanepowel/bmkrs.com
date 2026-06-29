@@ -3,12 +3,10 @@ import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { HeroCollage } from "@/components/bmkrs/HeroCollage";
 import { HeroReel } from "@/components/bmkrs/HeroReel";
 import LivingProof from "@/components/LivingProof";
-import { Marquee } from "@/components/bmkrs/Marquee";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { RuledGrid, RuledGridItem } from "@/components/bmkrs/RuledGrid";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
-import { Testimonials } from "@/components/bmkrs/Testimonials";
 import { ProcessBand } from "@/components/bmkrs/ProcessBand";
 import { PainPointsSwipe } from "@/components/mobile/PainPointsSwipe";
 import { WorkProjectsSwipe } from "@/components/mobile/WorkProjectsSwipe";
@@ -24,11 +22,10 @@ import {
   themeBodyStyle,
   tokens,
 } from "@bmkrs/ui";
-import { captionForProject, homeManifesto, homePainPoints } from "@/lib/content/expansion-v2";
+import { captionForProject, heroClientVoice, homeManifesto, homePainPoints } from "@/lib/content/expansion-v2";
 import {
   getFeaturedProjects,
   getHomeContent,
-  getHomeTestimonials,
   getProducts,
   getSiteSettings,
 } from "@/lib/content";
@@ -44,10 +41,9 @@ const TIER_LABELS: Record<ProductTier, { label: string; blurb: string }> = {
 const TIERS: ProductTier[] = ["start", "make", "grow"];
 
 export default async function HomePage() {
-  const [home, featured, testimonials, products, settings] = await Promise.all([
+  const [home, featured, products, settings] = await Promise.all([
     getHomeContent(),
     getFeaturedProjects(),
-    getHomeTestimonials(),
     getProducts(),
     getSiteSettings(),
   ]);
@@ -100,6 +96,9 @@ export default async function HomePage() {
                 </Button>
                 <GhostButton href={hero.secondaryCta.href}>{hero.secondaryCta.label}</GhostButton>
               </div>
+              <blockquote className="hero-proof mt-6 max-w-[48ch] lg:ml-auto lg:text-right">
+                {heroClientVoice}
+              </blockquote>
             </div>
           </div>
           <HeroCollage images={collage} />
@@ -107,8 +106,6 @@ export default async function HomePage() {
       )}
 
       <PainPointsSwipe points={homePainPoints} />
-
-      <Marquee items={home.marqueeItems} />
 
       <MarketingBanner
         src={marketingImages.disciplinePillars}
@@ -190,15 +187,17 @@ export default async function HomePage() {
       </Surface>
 
       <Surface theme="ink" tight>
+        {/* TODO: replace text-based team assembly diagram with actual SVG/illustration showing squad composition. Current text arrows don't communicate the model. */}
         <LivingProof />
       </Surface>
 
       <WorkProjectsSwipe projects={selectedProjects} subtitle={home.selectedWork.subtitle} />
 
-      <Surface theme="orange" tight>
+      {/* TODO: reinstate when we have 3+ named testimonials */}
+      {/* <Surface theme="orange" tight>
         <Kicker theme="orange">in their words</Kicker>
         <Testimonials items={testimonials} />
-      </Surface>
+      </Surface> */}
 
       <Surface theme="ink" tight>
         <Kicker theme="ink">{home.motionTeaser.eyebrow}</Kicker>
@@ -219,7 +218,7 @@ export default async function HomePage() {
 
       <Surface theme="ink">
         <div className="text-center">
-          <H2 theme="ink">let&apos;s make something worth choosing.</H2>
+          <H2 theme="ink">your product deserves a better story. let&apos;s build it.</H2>
           <Button href="/contact" className="block-gap">
             start a project <ArrowIcon />
           </Button>

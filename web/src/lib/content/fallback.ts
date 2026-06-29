@@ -69,7 +69,7 @@ export const fallbackHome: HomeContent = {
     headline: "most studios stop at the logo. we ship the whole thing.",
     headlineLead: "we build",
     headlineTail: "brands.",
-    sub: "brand, voice, pr, product, growth. one team that takes you from a name on a page to a brand people choose.",
+    sub: "the better-told brand wins. every time. we make sure it is yours.",
     primaryCta: { label: "see our work", href: "/work" },
     secondaryCta: { label: "start a project", href: "/contact" },
     collage: [

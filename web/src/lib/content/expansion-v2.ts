@@ -43,9 +43,43 @@ export const homeManifesto = `the best product does not win. the best-told one d
 
 it is not fair. it is also fixable, and fixing it is the entire job. so we build the story and the thing that carries it: the brand and the product, the launch and what comes after. one team, all the way through, because the gaps between agencies are where good brands go quiet.`;
 
+export const heroClientVoice =
+  '"the product is better than the numbers." — that is always the first call.';
+
+export type ProcessStep = {
+  name: string;
+  description: string;
+};
+
+export const homeProcessSteps: ProcessStep[] = [
+  {
+    name: "listen",
+    description:
+      "a half-day deep-dive into the business, not a brief form. we talk to your team, your customers, and your competitors before we touch a canvas.",
+  },
+  {
+    name: "decide",
+    description:
+      "positioning, audience, and the one-line answer. every creative decision obeys these. signed off before anything gets made.",
+  },
+  {
+    name: "make",
+    description:
+      'fixed-scope sprints, same people end to end. no handoffs, no "the designer will get back to you."',
+  },
+  {
+    name: "ship",
+    description:
+      "we launch it like a product: staged rollout, assets delivered production-ready, not as a pdf of ideas.",
+  },
+  {
+    name: "stay",
+    description:
+      "motion. a rolling partnership so the brand keeps moving after launch day.",
+  },
+];
+
 export const homeProcessStrip = {
-  steps: "listen → decide → make → ship → stay",
-  body: "we start with the business, not the brief. then the decisions everything else obeys: positioning, audience, the one-line answer. then we build, properly, the same people end to end. then we launch it like we mean it. then, if you want us, we stay in motion.",
   footnote:
     "fixed scope. fixed timeline. one point of contact. prices on the services page.",
 };
@@ -61,12 +95,12 @@ export const workPageIntro = `every project on this shelf shipped. some are clie
 
 /** Card outcome lines keyed by project slug. */
 export const projectOutcomeLines: Record<string, string> = {
-  fdb: "22% lift in store conversion after the rebuild",
-  copa: "a bar people now describe the way it wanted to be described",
-  "podcast-studio-london": "expertise you can read before you book a session",
+  copa: "brand identity, ecommerce site, campaign creative",
+  fdb: "naming, packaging, brand world",
+  flipster: "identity system, app ui, launch assets",
+  "podcast-studio-london": "rebrand, website, ongoing voice",
   "freelance-near-me": "the marketplace we built to prove the point",
   carter: "a portfolio that finally reads like the work behind it",
-  flipster: "a premium identity in a category most brands get wrong",
   smoothies: "a first site that made the range legible on day one",
   wanderlust: "a design language the studio can deploy without starting from scratch",
   "david-wheeler-psychology": "a practice brand built for trust before the first session",

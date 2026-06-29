@@ -37,9 +37,10 @@ export function FooterEmailCapture() {
         </p>
       ) : (
         <form className="footer-capture__form mt-5" onSubmit={onSubmit}>
-          <label className="footer-capture__label">
+          <label className="footer-capture__label" htmlFor="newsletter-email">
             <span className="footer-capture__label-text mono">email</span>
             <input
+              id="newsletter-email"
               name="email"
               type="email"
               required

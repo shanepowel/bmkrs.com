@@ -7,6 +7,7 @@ import { useSyncExternalStore } from "react";
 import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Kicker } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
+import { heroClientVoice } from "@/lib/content/expansion-v2";
 
 export type HeroReelProps = {
   reelUrl?: string;
@@ -83,6 +84,9 @@ export function HeroReel({
                 {secondaryCta.label}
               </Link>
             </div>
+            <blockquote className="hero-proof mt-6 max-w-[48ch] lg:ml-auto lg:text-right">
+              {heroClientVoice}
+            </blockquote>
           </Reveal>
         </div>
       </div>
