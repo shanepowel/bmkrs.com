@@ -1,6 +1,7 @@
 @import "../../../packages/ui/src/tokens.css";
 @import "../styles/tokens.css";
 @import "../styles/components.css";
+@import "../styles/home.css";
 
 @tailwind base;
 @tailwind components;
@@ -69,8 +70,19 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--bmkrs-orange, #ff4d00);
+  color: var(--bmkrs-ink, #181613);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid var(--bmkrs-orange, #ff4d00);
+  outline-offset: 3px;
 }
 
 @layer components {

@@ -9,6 +9,8 @@
   --bmkrs-meta: #b4b2a9;
   --bmkrs-faint: #7d7b74;
   --bmkrs-orange: #ff4d00;
+  --bmkrs-orange-soft: rgba(255, 77, 0, 0.32);
+  --bmkrs-orange-glow: rgba(255, 77, 0, 0.32);
   --bmkrs-rule: rgba(241, 239, 232, 0.14);
   --bmkrs-rule-ink: rgba(241, 239, 232, 0.16);
   --bmkrs-rule-paper: rgba(24, 22, 19, 0.15);
@@ -33,7 +35,9 @@
 
   /* space scale */
   --section-y: clamp(4.5rem, 9vw, 9rem);
+  --section-y-home: clamp(72px, 10vh, 130px);
   --section-y-sm: clamp(3rem, 6vw, 5rem);
+  --section-header-gap: clamp(36px, 6vh, 64px);
   --block-gap: clamp(2.5rem, 5vw, 4.5rem);
   --cluster-gap: 1.25rem;
   --grid-gap: clamp(1.5rem, 2.5vw, 2.5rem);

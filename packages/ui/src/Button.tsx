@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
 import { tokens } from "./tokens";
 
-type Variant = "primary" | "ghost" | "ink";
+type Variant = "primary" | "ghost" | "ink" | "orange";
 
 export type ButtonProps = {
   children: ReactNode;
@@ -24,8 +24,10 @@ const baseClass =
 
 const variantClass: Record<Variant, string> = {
   primary: "bg-bmkrs-ink text-bmkrs-paper hover:bg-bmkrs-orange hover:text-bmkrs-paper",
-  ghost: "border-2 border-bmkrs-ink hover:bg-bmkrs-ink hover:text-bmkrs-paper",
+  ghost: "border border-bmkrs-paper text-bmkrs-paper hover:bg-bmkrs-paper hover:text-bmkrs-ink",
   ink: "bg-bmkrs-ink text-bmkrs-paper hover:opacity-90",
+  orange:
+    "border border-bmkrs-orange bg-bmkrs-orange text-bmkrs-paper hover:bg-transparent hover:text-bmkrs-orange",
 };
 
 export function Button({
@@ -75,6 +77,10 @@ export function Button({
 
 export function GhostButton(props: Omit<ButtonProps, "variant">) {
   return <Button variant="ghost" {...props} />;
+}
+
+export function OrangeButton(props: Omit<ButtonProps, "variant">) {
+  return <Button variant="orange" {...props} />;
 }
 
 /** Orange-on-ink CTA used on orange surfaces (e.g. motion teaser). */

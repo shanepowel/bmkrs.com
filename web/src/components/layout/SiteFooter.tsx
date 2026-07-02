@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
 import { ManageCookiesLink } from "@/components/bmkrs/ManageCookiesLink";
-import { Wordmark } from "@/components/bmkrs/Wordmark";
 import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
 
@@ -20,7 +19,6 @@ const STUDIO_LINKS = [
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
-  const press = settings.pressEmail ?? "press@bmkrs.com";
   const year = new Date().getFullYear();
   const quip =
     settings.footerQuip ?? "they say no one reads the footer. you made it this far, so let's make something.";
@@ -29,10 +27,6 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="site-footer" data-surface="ink">
       <div className="site-footer__inner">
-        <div className="site-footer__wordmark">
-          <Wordmark className="wordmark wordmark--footer-display" variant="primary-dark" />
-        </div>
-
         <div className="site-footer__grid">
           <div className="site-footer__capture">
             <FooterEmailCapture />
@@ -59,19 +53,16 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           </nav>
         </div>
 
-        <p className="site-footer__contact mono">
-          <a href={`mailto:${general}`}>{general}</a>
-          <span aria-hidden="true"> · </span>
-          <a href={`mailto:${press}`}>{press}</a>
-          {settings.contactPhone ? (
-            <>
-              <span aria-hidden="true"> · </span>
-              <a href={`tel:${settings.contactPhone.replace(/\s/g, "")}`}>{settings.contactPhone}</a>
-            </>
-          ) : null}
-          <span aria-hidden="true"> · </span>
-          london, and wherever you are
-        </p>
+        <div className="site-footer__legal-row">
+          <span className="mono site-footer__legal-contact">
+            <a href={`mailto:${general}`}>{general}</a>
+            <span aria-hidden="true"> · </span>
+            london, and wherever you are
+          </span>
+          <span className="mono site-footer__legal-quip">
+            © {year} {settings.companyName ?? "b makers ltd"} · {quip}
+          </span>
+        </div>
 
         <div className="site-footer__legal mono">
           <p>{reg}</p>
@@ -85,10 +76,6 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <ManageCookiesLink className="site-footer__manage-cookies" />
           </p>
         </div>
-
-        <p className="site-footer__quip">
-          © {year} {settings.companyName ?? "b makers ltd"}. {quip}
-        </p>
       </div>
     </footer>
   );

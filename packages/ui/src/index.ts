@@ -21,7 +21,8 @@ export {
   type SurfaceTokens,
 } from "./tokens";
 
-export { Button, GhostButton, InkButton, type ButtonProps } from "./Button";
+export { Button, GhostButton, InkButton, OrangeButton, type ButtonProps } from "./Button";
+export { SnapLine, type SnapLineProps } from "./SnapLine";
 export { StatusDot, Status, type StatusDotVariant } from "./StatusDot";
 export { Field, TextArea, PillSelect, SelectField, Label, type PillOption } from "./forms";
 export { SwipeRow, type SwipeRowProps } from "./SwipeRow";

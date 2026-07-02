@@ -12,6 +12,8 @@ const preset: Partial<Config> = {
         "bmkrs-meta": tokens.color.meta,
         "bmkrs-faint": tokens.color.faint,
         "bmkrs-orange": tokens.color.orange,
+        "bmkrs-orange-soft": tokens.color.orangeSoft,
+        "ink-raised": tokens.color.inkRaised,
         ink: tokens.color.ink,
         paper: tokens.color.paper,
         accent: tokens.color.orange,

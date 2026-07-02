@@ -25,7 +25,7 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -36,7 +36,7 @@ export function Reveal({
       ref={ref}
       className={cn(
         "transition duration-700 ease-out",
-        visible ? "translate-y-0 opacity-100" : "translate-y-7 opacity-0",
+        visible ? "translate-y-0 opacity-100" : "translate-y-[18px] opacity-0",
         delay === 1 && "delay-100",
         delay === 2 && "delay-200",
         delay === 3 && "delay-300",

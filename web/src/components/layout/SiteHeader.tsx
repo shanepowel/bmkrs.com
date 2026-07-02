@@ -1,17 +1,15 @@
 "use client";
 
 import { SiteHeader as UISiteHeader } from "@bmkrs/ui";
-import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
 
 const DEFAULT_NAV: NavItem[] = [
-  { label: "work", href: "/work" },
   { label: "services", href: "/services" },
+  { label: "work", href: "/work" },
   { label: "motion", href: "/motion" },
-  { label: "network", href: "/network" },
-  { label: "journal", href: "/journal" },
   { label: "about", href: "/about" },
+  { label: "journal", href: "/journal" },
 ];
 
 function navItems(navigation?: NavItem[]) {
@@ -19,6 +17,17 @@ function navItems(navigation?: NavItem[]) {
     (item) => item.href !== "/" && item.href !== "/contact" && !item.highlight,
   );
   return fromCms?.length ? fromCms : DEFAULT_NAV;
+}
+
+function TextWordmark({ light }: { light?: boolean }) {
+  return (
+    <span
+      className="text-logo font-medium tracking-[-0.02em]"
+      style={{ color: light ? "var(--bmkrs-ink)" : "var(--bmkrs-paper)" }}
+    >
+      bmkrs<span className="text-bmkrs-orange">.</span>
+    </span>
+  );
 }
 
 export function SiteHeader({
@@ -38,9 +47,9 @@ export function SiteHeader({
       items={items}
       loginUrl={login}
       contactEmail={contactEmail}
-      renderLogo={(variant) => (
-        <Wordmark variant={variant === "light" ? "primary-light" : "primary-dark"} />
-      )}
+      ctaLabel="start a project"
+      ctaHref="/contact"
+      renderLogo={(variant) => <TextWordmark light={variant === "light"} />}
     />
   );
 }

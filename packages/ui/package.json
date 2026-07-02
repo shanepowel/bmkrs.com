@@ -17,7 +17,8 @@
     "react-dom": "^19"
   },
   "dependencies": {
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.40.0"
   },
   "devDependencies": {
     "@types/react": "^19",

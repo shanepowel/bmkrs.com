@@ -25,10 +25,10 @@ export function FooterEmailCapture() {
 
   return (
     <div className="footer-capture">
-      <h3 className="display text-h3 font-medium" style={{ color: ink.text }}>
+      <h3 className="text-[1.1rem] font-medium" style={{ color: ink.text }}>
         one idea a fortnight.
       </h3>
-      <p className="mt-3 max-w-[42ch] text-base leading-relaxed" style={{ color: ink.body }}>
+      <p className="newsp mt-2 max-w-[34ch] text-[0.92rem]" style={{ color: ink.faint }}>
         the thinking we use on real brands, written down. no filler, no funnels.
       </p>
       {status === "sent" ? (
@@ -37,23 +37,21 @@ export function FooterEmailCapture() {
         </p>
       ) : (
         <form className="footer-capture__form mt-5" onSubmit={onSubmit}>
-          <label className="footer-capture__label">
-            <span className="footer-capture__label-text mono">email</span>
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              placeholder="you@company.com"
-              className="footer-capture__input"
-            />
-          </label>
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="email"
+            aria-label="email"
+            className="footer-capture__input"
+          />
           <button
             type="submit"
             className="footer-capture__btn"
             disabled={status === "sending"}
           >
-            {status === "sending" ? "sending..." : "send me the next one"}
+            {status === "sending" ? "sending..." : "send the next one"}
           </button>
         </form>
       )}

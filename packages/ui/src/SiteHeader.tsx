@@ -33,7 +33,7 @@ export function SiteHeader({
   loginUrl,
   contactEmail,
   homeHref = "/",
-  ctaLabel = "let's talk",
+  ctaLabel = "start a project",
   ctaHref = "/contact",
   renderLogo,
 }: SiteHeaderProps) {
@@ -61,6 +61,10 @@ export function SiteHeader({
   }, [pathname]);
 
   const lightLogo = surface === "paper" || surface === "orange";
+  const desktopItems = items.filter((item) =>
+    ["/services", "/work", "/motion"].includes(item.href),
+  );
+  const navItems = desktopItems.length ? desktopItems : items.slice(0, 3);
 
   return (
     <header className="site-header">
@@ -70,19 +74,20 @@ export function SiteHeader({
         </Link>
 
         <nav className="site-nav hidden md:flex" aria-label="primary">
-          {items.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              className="site-nav-link"
               aria-current={isNavActive(pathname, item.href) ? "page" : undefined}
             >
               {item.label}
             </Link>
           ))}
-          <a href={loginUrl} className="nav-login" rel="noopener noreferrer" target="_blank">
+          <a href={loginUrl} className="nav-login hidden lg:inline" rel="noopener noreferrer" target="_blank">
             log in <span aria-hidden="true">↗</span>
           </a>
-          <Link href={ctaHref} className="btn-primary nav-cta">
+          <Link href={ctaHref} className="btn-nav-cta">
             {ctaLabel}
           </Link>
         </nav>
