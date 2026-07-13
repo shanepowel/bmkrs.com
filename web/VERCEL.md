@@ -88,7 +88,7 @@ See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal
 - `NEXT_PUBLIC_NETWORK_HIRE_URL` = `https://app.bmkrs.com/hire`
 - `NEXT_PUBLIC_NETWORK_JOIN_URL` = `https://app.bmkrs.com/join`
 - `NEXT_PUBLIC_MEMBER_LOGIN_URL` = `https://app.bmkrs.com/login`
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads only after cookie consent)
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads in production only)
 - `NEXT_PUBLIC_COMPANY_NUMBER`, `NEXT_PUBLIC_REGISTERED_ADDRESS`, `NEXT_PUBLIC_CONTACT_PHONE` (optional; shown when set)
 
 ## app.bmkrs.com (portal)

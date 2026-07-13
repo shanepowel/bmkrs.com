@@ -58,7 +58,7 @@ export function privacyNotice(
         items: [
           "the contact form: your name, email, company, what you tell us about your project, and an optional budget range. we use it to reply to you and, if we work together, to run the engagement. legal basis: legitimate interests (responding to your enquiry) and, later, contract.",
           "the newsletter: your email address, because you asked for the emails. legal basis: consent. every email has an unsubscribe link and it works first time.",
-          "analytics: if you consent via the cookie banner, google analytics (G-4GXGNXYMVL) collects anonymous-as-possible usage data (pages visited, rough location, device type) so we can see what is working. legal basis: consent. say no and the site works identically.",
+          "analytics: google analytics (G-4GXGNXYMVL) collects anonymous-as-possible usage data (pages visited, rough location, device type) so we can see what is working. legal basis: legitimate interests.",
           "email: if you email us, we have the email. we keep correspondence for as long as the relationship is live plus 6 years (limitation periods), then delete it.",
         ],
       },
@@ -105,21 +105,9 @@ export const cookiesNotice: LegalDocument = {
     "we keep cookies and similar storage to a minimum. this page lists what runs on bmkrs.com and why.",
   sections: [
     {
-      title: "strictly necessary",
-      items: [
-        "preference storage: we remember your analytics choice in your browser (local storage, key bmkrs-consent) so we do not ask every visit. kept 12 months, then we ask again. no consent needed for this; it only stores your yes or no.",
-      ],
-    },
-    {
-      title: "analytics (only if you accept)",
+      title: "analytics",
       paragraphs: [
-        "if you click \"fine by me\" on the cookie banner, we load google analytics (measurement id G-4GXGNXYMVL) to see how pages perform: pages visited, rough location, device type. nothing sold, nothing shared with advertisers. say no and it never loads.",
-      ],
-    },
-    {
-      title: "your choice",
-      paragraphs: [
-        "say no and the site works the same. change your mind any time via \"manage cookies\" in the footer.",
+        "we load google analytics (measurement id G-4GXGNXYMVL) to see how pages perform: pages visited, rough location, device type. nothing sold, nothing shared with advertisers. legal basis: legitimate interests.",
       ],
     },
   ],

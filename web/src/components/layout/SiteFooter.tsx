@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
-import { ManageCookiesLink } from "@/components/bmkrs/ManageCookiesLink";
 import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
 
@@ -72,8 +71,6 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <Link href="/legal/cookies">cookies notice</Link>
             <span aria-hidden="true"> · </span>
             <Link href="/legal/terms">terms of business</Link>
-            <span aria-hidden="true"> · </span>
-            <ManageCookiesLink className="site-footer__manage-cookies" />
           </p>
         </div>
       </div>

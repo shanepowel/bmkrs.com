@@ -966,18 +966,11 @@
 .site-footer__legal-links {
   margin-top: 0.35rem;
 }
-.site-footer__legal a,
-.site-footer__manage-cookies {
+.site-footer__legal a {
   color: #d3d1c7;
   text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
 }
-.site-footer__legal a:hover,
-.site-footer__manage-cookies:hover {
+.site-footer__legal a:hover {
   color: var(--bmkrs-accent);
 }
 .site-footer__quip {
@@ -1003,9 +996,7 @@
 }
 
 .site-footer a:focus-visible,
-.site-footer button:focus-visible,
-.cookie-banner__btn:focus-visible,
-.cookie-banner a:focus-visible {
+.site-footer button:focus-visible {
   outline: 2px solid var(--bmkrs-accent);
   outline-offset: 4px;
 }
