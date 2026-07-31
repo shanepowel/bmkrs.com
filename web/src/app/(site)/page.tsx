@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
@@ -14,6 +15,7 @@ import {
   getHomeContent,
   getHomeTestimonials,
   getProducts,
+  getSiteSettings,
 } from "@/lib/content";
 import type { Testimonial } from "@/lib/types";
 
@@ -27,19 +29,28 @@ function pickWorkTestimonial(testimonials: Testimonial[]) {
 }
 
 export default async function HomePage() {
-  const [home, featured, testimonials, products] = await Promise.all([
+  const [home, featured, testimonials, products, settings] = await Promise.all([
     getHomeContent(),
     getFeaturedProjects(),
     getHomeTestimonials(),
     getProducts(),
+    getSiteSettings(),
   ]);
+
+  if (settings.heroReelUrl) {
+    preload(settings.heroReelUrl, { as: "video", fetchPriority: "high" });
+  }
 
   const selectedProjects = featured.slice(0, 4);
   const workTestimonial = pickWorkTestimonial(testimonials);
 
   return (
     <main data-surface="ink">
-      <HomeHero hero={home.hero} />
+      <HomeHero
+        hero={home.hero}
+        reelUrl={settings.heroReelUrl}
+        poster={settings.heroPoster}
+      />
 
       <HomeMarquee items={home.marqueeItems} />
 
