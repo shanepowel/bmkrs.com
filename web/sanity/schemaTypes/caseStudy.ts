@@ -73,6 +73,14 @@ export const caseStudy = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "published",
+      title: "On the public shelf",
+      description:
+        "Turn off until the case study is finished. Incomplete copy ('to be completed', 'to follow') is also withheld automatically.",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "projectType",
       title: "Project type",
       type: "string",

@@ -738,6 +738,7 @@ function generateCaseStudies() {
       projectType: "client",
       order: 9,
       featured: false,
+      published: false,
       brief:
         "david wheeler psychology is building a private practice with a clear specialism and a reputation to protect. the work needed a brand that felt credible to referrers and calm to prospective clients.",
       thinking:
@@ -763,6 +764,7 @@ function generateCaseStudies() {
       projectType: "client",
       order: 10,
       featured: false,
+      published: false,
       brief:
         "three18 media produces branded content for founders and growing companies. they needed a sharper story and a presence that matched the quality of the work in the reel.",
       thinking:

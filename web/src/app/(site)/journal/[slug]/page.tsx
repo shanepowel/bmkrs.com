@@ -177,6 +177,17 @@ export default async function JournalArticlePage({ params }: Props) {
                       see it in {post.relatedCaseStudy.title} →
                     </Link>
                   )}
+                  {(post.relatedCaseStudies ?? [])
+                    .filter((c) => c.slug !== post.relatedCaseStudy?.slug)
+                    .map((c) => (
+                      <Link
+                        key={c.slug}
+                        href={`/work/${c.slug}`}
+                        className="font-semibold text-accent hover:underline"
+                      >
+                        {c.title} →
+                      </Link>
+                    ))}
                 </div>
               </aside>
             )}

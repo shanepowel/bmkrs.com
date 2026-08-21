@@ -13,7 +13,7 @@ const ROUTES = [
 
 export function WhichOne() {
   return (
-    <Section theme="paper">
+    <Section theme="paper" id="which-one">
       <Kicker theme="paper">which one is mine?</Kicker>
       <ul className="mt-8 max-w-[65ch] space-y-4">
         {ROUTES.map((item) => (

@@ -42,7 +42,7 @@ export const fallbackProducts: Product[] = [
       "brand guidelines",
     ],
     shape: "six to eight weeks.",
-    price: "£24,000",
+    price: "£18,000",
     priceQualifier: "from",
     outcome:
       "a brand that hangs together from the name to the homepage, ready to launch and easy to keep consistent without us.",
@@ -69,7 +69,7 @@ export const fallbackProducts: Product[] = [
       "rollout guidelines",
     ],
     shape: "eight to ten weeks.",
-    price: "£32,000",
+    price: "£15,000",
     priceQualifier: "from",
     outcome:
       "a brand that matches where the business is going, and a plan for switching everything over without confusing the people who already buy from you.",
@@ -90,7 +90,7 @@ export const fallbackProducts: Product[] = [
       "handover your team can actually run",
     ],
     shape: "six to eight weeks.",
-    price: "£18,000",
+    price: "£12,000",
     priceQualifier: "from",
     outcome: "a site that says the right thing in five seconds, measured so you know it's working.",
     proof: [{ title: "floare din banat", slug: "fdb" }],
@@ -111,7 +111,7 @@ export const fallbackProducts: Product[] = [
       "a verbal identity guide your team can write from",
     ],
     shape: "four to five weeks.",
-    price: "£9,500",
+    price: "£6,000",
     priceQualifier: "from",
     outcome: "a company that's easy to repeat. your team writes like the brand without asking us first.",
     order: 5,
@@ -130,7 +130,7 @@ export const fallbackProducts: Product[] = [
       "launch-day runbook",
     ],
     shape: "six weeks, working back from your date.",
-    price: "£12,000",
+    price: "£5,000",
     priceQualifier: "from",
     outcome:
       "a launch that lands somewhere other than your own linkedin, and materials you can reuse for the next one.",
@@ -145,7 +145,7 @@ export const fallbackProducts: Product[] = [
       "brands that have launched and need consistent momentum without rebuilding a team for every job.",
     cadence: "monthly planning, continuous shipping.",
     commitment: "rolling, monthly. thirty days' notice, no lock-in.",
-    price: "£4,500",
+    price: "£3,500",
     priceQualifier: "per-month",
     monthlyDeliverables: [
       "brand stewardship and new assets",

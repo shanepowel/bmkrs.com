@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Product, ProductTier } from "@/lib/types";
+import { formatProductPrice } from "@/lib/format-product-price";
 import { SectionHeader } from "./SectionHeader";
 
 const TIER_LABELS: Record<
@@ -20,9 +21,9 @@ const TIERS: ProductTier[] = ["start", "make", "grow"];
 
 const STATS = [
   { value: "17+", label: "years building" },
-  { value: "4", label: "disciplines per team" },
+  { value: "4", label: "disciplines, one team" },
   { value: "days", label: "to assemble, not months" },
-  { value: "7+", label: "partners on the bench, growing" },
+  { value: "7+", label: "partners on the bench" },
 ] as const;
 
 export function PackagesSection({ products }: { products: Product[] }) {
@@ -30,7 +31,10 @@ export function PackagesSection({ products }: { products: Product[] }) {
 
   return (
     <>
-      <SectionHeader title="start, make, grow." eyebrow="ways to work with us" />
+      <SectionHeader
+        title='start. make. grow. — real prices, not "get in touch"'
+        eyebrow="ways to work with us"
+      />
       <div className="home-packages">
         {TIERS.map((tier) => {
           const meta = TIER_LABELS[tier];
@@ -49,7 +53,12 @@ export function PackagesSection({ products }: { products: Product[] }) {
                       href={tier === "grow" ? "/motion" : `/services#${product.slug}`}
                       className="home-packages__link"
                     >
-                      {product.name.toLowerCase()}
+                      <span>
+                        {product.name.toLowerCase()}
+                        {formatProductPrice(product) ? (
+                          <em className="home-packages__price">{formatProductPrice(product)}</em>
+                        ) : null}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -58,6 +67,9 @@ export function PackagesSection({ products }: { products: Product[] }) {
           );
         })}
       </div>
+      <p className="home-packages__more">
+        <Link href="/services">see what&apos;s included in each →</Link>
+      </p>
       <div className="home-stats">
         {STATS.map((stat) => (
           <div key={stat.label} className="home-stats__cell">

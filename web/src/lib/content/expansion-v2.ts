@@ -4,6 +4,7 @@ export type PainPoint = {
   number: string;
   headline: string;
   body: string;
+  href: string;
 };
 
 export type FaqItem = {
@@ -19,35 +20,38 @@ export type WhatHappensNextStep = {
 export const homePainPoints: PainPoint[] = [
   {
     number: "01",
-    headline: '"the product is better than the numbers."',
-    body: "you built something genuinely good and the market shrugged. the gap is almost never the product. it is the story, the name, the site, the way nobody can repeat what you do in one sentence.",
+    headline: "the product is better than the numbers.",
+    body: "you built something genuinely good and the market shrugged. the gap is almost never the product. it's the story, the name, the site — the one sentence nobody can repeat.",
+    href: "/services#story",
   },
   {
     number: "02",
-    headline: '"we have five suppliers and no accountability."',
-    body: "a brand agency, a web agency, a copywriter, a pr freelancer, and you in the middle translating. when results disappoint, everyone blames the brief. one team ends that conversation.",
+    headline: "five suppliers, no accountability.",
+    body: "a brand agency, a web agency, a copywriter, a pr freelancer, and you in the middle translating. one team ends that conversation.",
+    href: "/services",
   },
   {
     number: "03",
-    headline: '"we are launching and we have no story."',
-    body: "the build is on track, the announcement is a blank page, and the date is not moving. launches are won in the six weeks before launch day. that window is our home ground.",
+    headline: "we're launching and we have no story.",
+    body: "the build's on track, the announcement is a blank page, and the date isn't moving. launches are won in the six weeks before launch day. that's our home ground.",
+    href: "/services#press-launch",
   },
   {
     number: "04",
-    headline: '"we look fine and sound like everyone."',
-    body: "the identity is passable, but the website reads like the competitor's, the deck reads like the website, and nothing is ownable. that is a voice problem, and it is the cheapest big problem you can fix.",
+    headline: "we look fine and sound like everyone.",
+    body: "the identity's passable, but the site reads like the competitor's. that's a voice problem — the cheapest big problem you can fix.",
+    href: "/services#story",
   },
 ];
 
-export const homeManifesto = `the best product does not win. the best-told one does. we spent seventeen years building products inside organisations where failure is expensive, and watched it happen on repeat: brilliant things losing to clearer stories, sharper names, tighter sites.
+export const homeManifesto = `the best product doesn't win. the best-told one does.
 
-it is not fair. it is also fixable, and fixing it is the entire job. so we build the story and the thing that carries it: the brand and the product, the launch and what comes after. one team, all the way through, because the gaps between agencies are where good brands go quiet.`;
+seventeen years building products inside organisations where failure is expensive — watching brilliant things lose to clearer stories, sharper names, tighter sites. not fair. fixable. that's the job.`;
 
 export const homeProcessStrip = {
   steps: "listen → decide → make → ship → stay",
-  body: "we start with the business, not the brief. then the decisions everything else obeys: positioning, audience, the one-line answer. then we build, properly, the same people end to end. then we launch it like we mean it. then, if you want us, we stay in motion.",
-  footnote:
-    "fixed scope. fixed timeline. one point of contact. prices on the services page.",
+  body: "we start with the business, not the brief. then the decisions everything else obeys — positioning, audience, the one-line answer. then we build, properly, the same people end to end. then we launch it like we mean it. then, if you want us, we stay in motion.",
+  footnote: "fixed scope. fixed timeline. one point of contact.",
 };
 
 export const heroImageCaptions: Record<string, string> = {
@@ -61,16 +65,16 @@ export const workPageIntro = `every project on this shelf shipped. some are clie
 
 /** Card outcome lines keyed by project slug. */
 export const projectOutcomeLines: Record<string, string> = {
-  fdb: "22% lift in store conversion after the rebuild",
-  copa: "a bar people now describe the way it wanted to be described",
-  "podcast-studio-london": "expertise you can read before you book a session",
-  "freelance-near-me": "the marketplace we built to prove the point",
+  fdb: "a storefront that finally matched the product",
+  copa: "a brand that could travel without looking like everyone else",
+  "podcast-studio-london": "from a booth to a production partner, with Disney+ and Twitch proof",
+  "freelance-near-me": "a live marketplace pulling roughly 15,000 visitors a week",
   carter: "a portfolio that finally reads like the work behind it",
-  flipster: "a premium identity in a category most brands get wrong",
+  flipster: "premium, not grey-market",
   smoothies: "a first site that made the range legible on day one",
-  wanderlust: "a design language the studio can deploy without starting from scratch",
-  "david-wheeler-psychology": "a practice brand built for trust before the first session",
-  "three18-media": "a sharper story for a production company with the reel to back it",
+  wanderlust: "a design language hartmann design can deploy without starting from scratch",
+  konduit: "sourcing infrastructure for Southern Africa, built in the studio",
+  viralyz: "Grammarly for viral content — a studio product",
 };
 
 export const workHowProjectRuns = {

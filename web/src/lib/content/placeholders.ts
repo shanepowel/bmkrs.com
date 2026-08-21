@@ -5,6 +5,7 @@ export function isFilled(value?: string | null): boolean {
   if (v.includes("{{")) return false;
   if (/^placeholder\b/i.test(v)) return false;
   if (/replace before launch/i.test(v)) return false;
+  if (/to be completed|to follow once|imagery to follow/i.test(v)) return false;
   if (/\[(company number|address)\]/i.test(v)) return false;
   return true;
 }

@@ -48,6 +48,7 @@ const caseStudyFields = `
   results[]{ value, label },
   "testimonial": testimonial->{ quote, name, role, company },
   featured,
+  published,
   projectType,
   order,
   seo{
@@ -83,7 +84,7 @@ const legacyProjectFields = `
   order
 `;
 
-export const caseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){${caseStudyFields}}`;
+export const caseStudiesQuery = `*[_type == "caseStudy" && published != false] | order(order asc){${caseStudyFields}}`;
 
 export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $slug][0]{${caseStudyFields}}`;
 
@@ -202,7 +203,7 @@ export const pressKitQuery = `*[_type == "pressKit"][0]{
   updatedAt
 }`;
 
-export const featuredCaseStudiesQuery = `*[_type == "caseStudy" && featured == true] | order(order asc){
+export const featuredCaseStudiesQuery = `*[_type == "caseStudy" && featured == true && published != false] | order(order asc){
   title, "slug": slug.current, positioning, sector, services,
   "heroImage": heroImage{ "url": asset->url, "alt": alt }
 }`;

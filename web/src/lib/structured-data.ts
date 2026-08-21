@@ -1,6 +1,7 @@
 import { BRAND_AVATAR } from "@/lib/brand";
 import { SITE_URL } from "@/lib/og-image";
-import type { JournalPost } from "@/lib/types";
+import type { FaqItem } from "@/lib/content/expansion-v2";
+import type { JournalPost, Product } from "@/lib/types";
 
 const SITE = SITE_URL;
 const ORG_ID = `${SITE}/#organization`;
@@ -10,15 +11,18 @@ export function organizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": ORG_ID,
-    name: "bmkrs.",
+    name: "b makers ltd",
     legalName: "b makers ltd",
+    alternateName: ["bmkrs", "bmkrs."],
     url: SITE,
+    foundingDate: "2013",
+    founder: { "@type": "Person", name: "Shane Powell" },
     logo: `${SITE}${BRAND_AVATAR}`,
     description:
       "bmkrs. is a brand company run by builders. brand and identity, voice and messaging, pr and communications, and the product and growth to back it up.",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "london",
+      addressLocality: "London",
       addressCountry: "GB",
     },
     sameAs: [
@@ -28,8 +32,48 @@ export function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@bmkrs.com",
-      contactType: "new business",
+      contactType: "sales",
     },
+  };
+}
+
+function gbpAmount(price?: string): string | undefined {
+  if (!price) return undefined;
+  const n = price.replace(/[^0-9.]/g, "");
+  return n || undefined;
+}
+
+export function serviceOfferSchema(product: Product) {
+  const amount = gbpAmount(product.price ?? product.priceFrom);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: product.name,
+    description: product.tagline,
+    url: product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`,
+    provider: { "@id": ORG_ID },
+    ...(amount
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "GBP",
+            price: amount,
+            url: product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`,
+          },
+        }
+      : {}),
+  };
+}
+
+export function faqPageSchema(faqs: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   };
 }
 

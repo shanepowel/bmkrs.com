@@ -2,7 +2,6 @@ import { marketingImages, marketingVideos } from "@/lib/marketing-assets";
 import {
   placeholderCompany,
   placeholderHomeTestimonials,
-  placeholderResultsBySlug,
 } from "@/lib/content/case-study-placeholders";
 import { companyFromEnv, publicCompanyNumber, publicRegisteredAddress } from "@/lib/content/company-registration";
 import type {
@@ -15,12 +14,12 @@ import type {
 } from "@/lib/types";
 
 export const fallbackNavigation: NavItem[] = [
-  { label: "work", href: "/work" },
   { label: "services", href: "/services" },
+  { label: "work", href: "/work" },
   { label: "motion", href: "/motion" },
-  { label: "network", href: "/network" },
   { label: "journal", href: "/journal" },
   { label: "about", href: "/about" },
+  { label: "network", href: "/network" },
   { label: "contact", href: "/contact", highlight: true },
 ];
 
@@ -69,7 +68,7 @@ export const fallbackHome: HomeContent = {
     headline: "most studios stop at the logo. we ship the whole thing.",
     headlineLead: "we build",
     headlineTail: "brands.",
-    sub: "brand, voice, pr, product, growth. one team that takes you from a name on a page to a brand people choose.",
+    sub: "brand, voice, pr, product, growth — one team, one point of contact, from name on a page to brand people choose.",
     primaryCta: { label: "see our work", href: "/work" },
     secondaryCta: { label: "start a project", href: "/contact" },
     collage: [
@@ -106,12 +105,12 @@ export const fallbackHome: HomeContent = {
   capabilitiesHead: {
     title: "strategy-led. growth-built.",
     subtitle:
-      "four equally strong domains, one team. the best brands are built across all of them, not bolted together by five different agencies.",
+      "four disciplines, one team. the best brands are built across all of them, not bolted together by five agencies.",
   },
   capabilityTiles: [
     {
       number: "01",
-      title: "Brand + identity",
+      title: "brand + identity",
       description:
         "strategy, positioning, naming, and the visual world that makes you clear at a glance.",
       href: "/services#launch-kit",
@@ -119,7 +118,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "02",
-      title: "Voice + messaging",
+      title: "voice + messaging",
       description:
         "tone of voice, narrative, and messaging that makes people understand and care.",
       href: "/services#story",
@@ -127,7 +126,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "03",
-      title: "PR + communications",
+      title: "pr + communications",
       description:
         "launches, press, and thought leadership that get your story heard.",
       href: "/services#press-launch",
@@ -135,7 +134,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "04",
-      title: "Product, web + growth",
+      title: "product, web + growth",
       description:
         "websites, apps, and campaigns that turn attention into revenue.",
       href: "/services#storefront",
@@ -194,8 +193,8 @@ export const fallbackHome: HomeContent = {
   ],
   selectedWork: {
     eyebrow: "selected work",
-    title: "the brands we build for",
-    subtitle: "selected projects across branding, ecommerce, and digital.",
+    title: "proof, not just claims",
+    subtitle: "real client names, real work that shipped.",
   },
   closing: {
     quote: "the storefront finally looks as good as the product. we are proud to share the brand now.",
@@ -229,7 +228,7 @@ export const fallbackMotion: MotionContent = {
       "motion gives you one dedicated team. motion plus opens our extended network: a curated bench of specialist freelancers and studios, on call for whatever your brief needs. a new market, a niche skill, a sudden surge of work.",
       "you still get one point of contact. you just get an almost unlimited team behind them. the ideal team for your brand probably doesn't all sit at one agency. with motion plus, it doesn't have to.",
     ],
-    poweredBy: "powered by amplifiedteams",
+    poweredBy: "powered by the bmkrs network",
   },
   tiersHead: {
     title: "Pick your pace.",
@@ -299,7 +298,7 @@ export const fallbackMotion: MotionContent = {
 const fallbackProjectsRaw: Project[] = [
   {
     slug: "copa",
-    title: "copa, off the shore",
+    title: "copa, off the shore: a brand that could travel",
     client: "copa",
     category: "branding",
     sector: "outdoor apparel",
@@ -307,13 +306,18 @@ const fallbackProjectsRaw: Project[] = [
     positioning: "outdoor apparel with a clear point of view.",
     tagline: "outdoor apparel with a clear point of view.",
     brief:
-      "copa is an outdoor apparel brand built around life off the shore, expanding from a German base toward a wider European audience. it needed a brand that could travel without losing what made it distinct.",
+      "copa, off the shore is an outdoor apparel brand built around life off the shore, expanding from Germany toward a wider audience. the product had a clear point of view — the name, story, and visuals didn't hang together yet. in a crowded outdoor category, that's exactly the moment you risk looking like everyone else.",
     challenge:
       "the product had a point of view, but the name, story and visuals did not yet hang together. in a crowded outdoor category, copa risked looking like everyone else at the exact moment it needed to stand apart.",
     whatWeDid:
-      "we built the positioning first, then a full identity system: logo, typography, colour and campaign-ready assets, plus a verbal identity so the story read clearly in every channel. we leaned into the shore-line tension in the name rather than reaching for generic outdoor cliches.",
+      "we built the positioning first, then a full identity system, plus a verbal identity so the story read clearly in every channel. we leaned into the shore-line tension in the name rather than reaching for generic outdoor clichés.",
+    whatWeDidItems: [
+      "positioning built around the shore-line tension already in the name, instead of generic outdoor clichés",
+      "full identity system: logo, typography, colour, campaign-ready assets",
+      "verbal identity so the story read clearly across every channel",
+    ],
     resultsNarrative:
-      "a single, distinctive identity copa now uses consistently across every channel, and a campaign-ready asset kit that carried the brand from its German base toward a wider European audience without losing what made it copa.",
+      "a distinctive identity the team uses consistently, campaign assets ready for launch, and a brand that reads as COPA at a glance.",
     results: [],
     serviceTags: ["brand + identity", "voice + messaging"],
     thumbnailPath: "/images/optimized/copa-hero.jpg",
@@ -341,21 +345,27 @@ const fallbackProjectsRaw: Project[] = [
   },
   {
     slug: "fdb",
-    title: "floare din banat",
+    title: "floare din banat: a storefront that finally matched the product",
     client: "floare din banat",
     category: "ecommerce",
     sector: "food and drink",
     year: "2025",
-    positioning: "a regional food brand rebuilt for a national digital audience.",
-    tagline: "a regional food brand rebuilt for a national digital audience.",
+    positioning: "a storefront that finally matched the product.",
+    tagline: "a storefront that finally matched the product.",
     brief:
-      "floare din banat makes traditional Romanian flowers and gifts, with a loyal regional following and a strong wholesale business. they came to us with a product people loved and a brand and storefront that did not do it justice.",
+      "floare din banat makes traditional Romanian flowers and gifts, with a loyal regional following and a strong wholesale business. the product was good — the buying experience wasn't. an outdated storefront and a homemade-looking brand next to sharper competitors meant people who'd have loved the product never got far enough to try it.",
     challenge:
       "the product was good. the buying experience was not. an outdated storefront and a brand that looked homemade next to competitors meant people who would have loved the product never got far enough to try it.",
     whatWeDid:
-      "we treated it as one job, not three. a refreshed identity that kept what customers already recognised, clearer product copy in a tone that matched the care in the product, and a rebuilt storefront focused on a catalogue that is easy to browse and a checkout that is easy to finish. we kept what people valued and fixed what was in their way.",
+      "we treated it as one job, not three: identity, copy, and storefront together. we kept what customers already recognised, fixed what was in their way, and rebuilt the catalogue around browse and checkout.",
+    whatWeDidItems: [
+      "treated it as one job, not three: identity, copy, and storefront together",
+      "kept what customers already recognised in the brand, fixed what was in their way",
+      "clearer product descriptions in a tone matching the care in the product",
+      "rebuilt storefront focused on making the catalogue easy to browse and checkout easy to finish",
+    ],
     resultsNarrative:
-      "a storefront that finally looks as good as the product, a smoother path from browse to checkout, and a brand the team is proud to share.",
+      "a storefront that finally looks as good as the product, fewer abandoned baskets, and a brand the team is proud to share.",
     results: [],
     serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
     thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
@@ -405,19 +415,20 @@ const fallbackProjectsRaw: Project[] = [
       { type: "image", src: "/images/carter-instagram.png", alt: "carter mcgreggor" },
     ],
     order: 3,
-    featured: true,
+    featured: false,
     projectType: "client",
   },
   {
     slug: "wanderlust",
-    title: "wanderlust",
+    title: "hartmann design: wanderlust",
     client: "hartmann design",
     category: "design",
     sector: "design",
-    positioning: "a travel and lifestyle design language built to scale.",
-    tagline: "a travel and lifestyle design language built to scale.",
+    year: "2024",
+    positioning: "wanderlust — a travel and lifestyle design language built to scale.",
+    tagline: "wanderlust — a travel and lifestyle design language built to scale.",
     brief:
-      "hartmann design needed a distinctive travel and lifestyle visual language that could stretch across campaigns without feeling generic.",
+      "hartmann design needed a distinctive travel and lifestyle visual language — wanderlust — that could stretch across campaigns without feeling generic.",
     challenge:
       "the work was strong in pieces but had no shared system. every new brief started from scratch.",
     whatWeDid:
@@ -465,20 +476,24 @@ const fallbackProjectsRaw: Project[] = [
   },
   {
     slug: "flipster",
-    title: "flipster iptv",
+    title: "flipster iptv: premium, not grey-market",
     client: "flipster",
     category: "branding",
     sector: "branding",
     positioning: "a premium identity in a category most brands get wrong.",
     tagline: "a premium identity in a category most brands get wrong.",
     brief:
-      "flipster needed to enter a crowded IPTV market with a brand that felt premium, not grey-market.",
+      "flipster needed to enter a crowded IPTV market with a brand that felt premium rather than grey-market. trust is hard to establish in this category — the identity had to feel sharp and credible to a technical audience without blending into every other streamer.",
     challenge:
       "trust is hard in the category. the identity had to feel sharp and credible to a technical audience without looking like every other streamer.",
     whatWeDid:
-      "a complete brand identity that positioned flipster as a premium IPTV service, with a distinct visual and verbal edge.",
+      "a complete brand identity positioning flipster as a premium IPTV service, with a distinct visual and verbal edge built to survive a noisy, trust-poor category.",
+    whatWeDidItems: [
+      "a complete brand identity positioning flipster as a premium IPTV service",
+      "distinct visual and verbal edge built to survive a noisy, trust-poor category",
+    ],
     resultsNarrative:
-      "a launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
+      "a launch-ready identity that reads clearly in a noisy category, with assets the team can use across product and marketing.",
     results: [],
     serviceTags: ["brand + identity"],
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
@@ -489,7 +504,7 @@ const fallbackProjectsRaw: Project[] = [
   },
   {
     slug: "podcast-studio-london",
-    title: "podcast studio london",
+    title: "podcast studio london: from a booth to a production partner",
     client: "podcast studio london",
     category: "brand + growth",
     sector: "media",
@@ -497,20 +512,30 @@ const fallbackProjectsRaw: Project[] = [
     positioning: "a london podcast studio with a brand that finally matches the rooms.",
     tagline: "a london podcast studio with a brand that finally matches the rooms.",
     brief:
-      "podcast studio london runs premium recording spaces for founders, brands and broadcasters. they needed a brand and digital presence that matched the quality of the studios.",
+      "podcast studio london had the credibility — a British Podcast Award-winning founder, a client list that included Disney+, Twitch, PlayStation, and Xbox — and a site that read like every other hourly-rental studio in the city. the brand didn't carry the weight of the work.",
     challenge:
       "strong physical product, weak digital first impression. prospective clients were booking on reputation and word of mouth alone.",
     whatWeDid:
-      "brand positioning, visual identity, voice and a site built to convert browsing into booking conversations.",
+      "repositioned from studio hire to production partner, rewrote the site around named proof, and made the method visible so prospective clients could see the process, not just the room.",
+    whatWeDidItems: [
+      "repositioned from \"studio hire\" to production partner, built around the founder's broadcast background",
+      "rewrote the site around proof: named case studies instead of a generic client-logo wall",
+      "restructured the work into a clear method so prospective clients could see the process, not just the room",
+    ],
     resultsNarrative:
-      "a coherent brand across site, social and studio touchpoints, and a clearer path from discovery to enquiry.",
-    results: [],
+      "the Disney+ campaign shot at the studio drew 20,000 views and 86,000 podcast downloads, with a named endorsement from Disney+'s EMEA comms lead. the Twitch production hit 3 million concurrent viewers across a 60-hour stream and was featured on Twitch's own front page.",
+    results: [
+      { value: "20k", label: "views on the Disney+ campaign" },
+      { value: "86k", label: "podcast downloads from that campaign" },
+      { value: "3m", label: "concurrent viewers on the Twitch production" },
+    ],
     serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
-    thumbnailPath: marketingImages.socialStrategy,
-    media: [{ type: "image", src: marketingImages.socialStrategy, alt: "podcast studio london" }],
+    thumbnailPath: marketingImages.podcastStudio,
+    media: [{ type: "image", src: marketingImages.podcastStudio, alt: "podcast studio london" }],
     order: 7,
     featured: true,
     projectType: "client",
+    externalUrl: "https://podcaststudiolondon.com",
     testimonial: {
       quote:
         "they gave us a brand we could actually use week to week, not a deck that sat in a folder. the site finally sounds like the studios.",
@@ -539,6 +564,7 @@ const fallbackProjectsRaw: Project[] = [
     media: [{ type: "image", src: marketingImages.identityPackaging, alt: "david wheeler psychology" }],
     order: 9,
     featured: false,
+    published: false,
     projectType: "client",
   },
   {
@@ -561,38 +587,95 @@ const fallbackProjectsRaw: Project[] = [
     media: [{ type: "image", src: marketingImages.digitalMediaDevices, alt: "three18 media" }],
     order: 10,
     featured: false,
+    published: false,
     projectType: "client",
   },
   {
     slug: "freelance-near-me",
-    title: "freelance near me",
+    title: "freelance near me: the marketplace we built to prove the point",
     category: "product",
     sector: "marketplace",
     year: "2025",
     positioning: "a local-first marketplace we built because the brief kept appearing in client work.",
     tagline: "a local-first marketplace we built because the brief kept appearing in client work.",
     brief:
-      "freelance near me connects local freelancers with nearby clients. it is a bmkrs studio product: we ship our own ideas to prove we live with the consequences of our advice.",
+      "freelance near me connects local freelancers with nearby clients. it's a bmkrs studio product — we ship our own ideas because a brand company should live with the consequences of its own advice.",
     whatWeDid:
       "positioning, brand, product design and build. one team from name to shipped product.",
+    whatWeDidItems: [
+      "positioning and brand",
+      "product design and build, one team from name to shipped product",
+    ],
     resultsNarrative:
-      "a live product in market, built with the same rigour we bring to client launches.",
-    results: [],
+      "a live marketplace pulling roughly 15,000 visitors a week — built and run the same way we build for clients.",
+    results: [{ value: "15k", label: "visitors a week" }],
     serviceTags: ["brand + identity", "product, web + growth"],
     thumbnailPath: marketingImages.digitalEcosystem,
     media: [{ type: "image", src: marketingImages.digitalEcosystem, alt: "freelance near me" }],
     order: 8,
-    featured: true,
+    featured: false,
     projectType: "studio",
-    externalUrl: "https://freelancenearme.com",
+    externalUrl: "https://freelancenearme.co.uk",
+  },
+  {
+    slug: "konduit",
+    title: "konduit: sourcing infrastructure for Southern Africa",
+    client: "konduit",
+    category: "product",
+    sector: "b2b / marketplace",
+    year: "2026",
+    positioning: "a Zimbabwe-first marketplace we built to carry hardware, telecoms and imported goods.",
+    tagline: "a Zimbabwe-first marketplace we built to carry hardware, telecoms and imported goods.",
+    brief:
+      "konduit supplies technology hardware into Zimbabwe and the wider Southern African region — UK, USA, and China suppliers, cleared through Zimbabwe, Zambia, Botswana, Mozambique, and South Africa. it started as a quote-based B2B reseller and needed to become a proper marketplace: telecoms and imported goods alongside hardware, real-time stock, and a brand that could carry a Zimbabwe-first ambition.",
+    whatWeDid:
+      "brand identity and a marketplace product build, one studio team from name to stock listing.",
+    whatWeDidItems: [
+      "brand identity: a warm cream-and-sand system (terracotta and sage, Caprasimo display over Figtree body)",
+      "product build: marketplace direction with real-time stock listing and ordering, pricing in both ZWG and USD",
+    ],
+    resultsNarrative:
+      "a live studio product, built the same way we build for clients. delivery turnaround is the metric that will matter once the marketplace has volume.",
+    results: [],
+    serviceTags: ["brand + identity", "product, web + growth"],
+    thumbnailPath: marketingImages.architectureConcrete,
+    media: [{ type: "image", src: marketingImages.architectureConcrete, alt: "konduit" }],
+    order: 11,
+    featured: false,
+    projectType: "studio",
+    externalUrl: "https://konduit.co.zw",
+  },
+  {
+    slug: "viralyz",
+    title: "viralyz: Grammarly for viral content",
+    client: "viralyz",
+    category: "product",
+    sector: "product",
+    year: "2026",
+    positioning: "a creator tools app repositioned around a single clear idea: Viral Score.",
+    tagline: "a creator tools app repositioned around a single clear idea: Viral Score.",
+    brief:
+      "viralyz is a creator tools app competing directly with viralyz.ai. the earlier version of the marketing site was unfinished — thin menus, half-built pages — undercutting a product built to help creators look polished. it's a bmkrs studio product, shipped the same way we ship for clients.",
+    whatWeDid:
+      "repositioning, a warmer design direction, and a full site rebuild with every page media-rich and content-managed.",
+    whatWeDidItems: [
+      "repositioning around a single clear idea: Grammarly for viral content, anchored by a Viral Score",
+      "a warm, human marketplace design direction replacing an earlier dark SaaS look",
+      "full site rebuild, every page media-rich, content managed through Sanity",
+    ],
+    resultsNarrative:
+      "a rebuilt marketing site that finally matches the product. usage data on Viral Score is the next number to publish.",
+    results: [],
+    serviceTags: ["brand + identity", "product, web + growth"],
+    thumbnailPath: marketingImages.contentPlatform,
+    media: [{ type: "image", src: marketingImages.contentPlatform, alt: "viralyz" }],
+    order: 12,
+    featured: false,
+    projectType: "studio",
+    externalUrl: "https://viralyz.com",
   },
 ];
 
-export const fallbackProjects: Project[] = fallbackProjectsRaw.map((project) => ({
-  ...project,
-  results: project.results?.length
-    ? project.results
-    : (placeholderResultsBySlug[project.slug] ?? []),
-}));
+export const fallbackProjects: Project[] = fallbackProjectsRaw;
 
 export const fallbackHomeTestimonials: Testimonial[] = placeholderHomeTestimonials;

@@ -4,6 +4,8 @@ import { motion, MotionConfig } from "framer-motion";
 import { C, BenchKicker, mono, PrimaryButton } from "@/lib/bench-ui";
 import { fadeUp, stagger } from "./animations";
 import { MotionHeroSection } from "./MotionHeroSection";
+import { formatProductPrice } from "@/lib/format-product-price";
+import type { Product } from "@/lib/types";
 
 const SYMPTOMS = [
   {
@@ -49,25 +51,33 @@ const MONTH = [
   },
 ];
 
-const TIERS = [
+const FALLBACK_TIERS = [
   {
-    name: "motion one",
-    price: "from £1,500/month",
-    b: "the brand kept alive: monthly plan, production, site updates, governance, priority line.",
+    name: "motion",
+    price: "from £3,500/month",
+    b: "one team keeping your brand, voice, and pr moving, month after month.",
   },
   {
-    name: "motion two",
-    price: "from £3,000/month",
-    b: "the brand kept growing: everything in one, plus campaigns, the content programme, and the quarterly review with numbers.",
+    name: "motion plus",
+    price: "from £6,500/month",
+    b: "everything in motion, plus growth and an always-on pr engine.",
   },
   {
-    name: "motion partner",
-    price: "custom",
-    b: "embedded strategic and creative partner, for businesses where brand is a growth lever, not a maintenance task.",
+    name: "motion embedded",
+    price: "from £9,000/month",
+    b: "a senior brand team that plugs straight into yours.",
   },
 ];
 
-export function MotionPageViewReworked() {
+export function MotionPageViewReworked({ tiers }: { tiers?: Product[] }) {
+  const displayTiers =
+    tiers?.length
+      ? tiers.map((t) => ({
+          name: t.name,
+          price: formatProductPrice(t),
+          b: t.tagline,
+        }))
+      : FALLBACK_TIERS;
   return (
     <MotionConfig reducedMotion="user">
       <MotionHeroSection>
@@ -289,7 +299,7 @@ export function MotionPageViewReworked() {
             three speeds. prices on the page, like grown-ups.
           </h2>
           <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
-            {TIERS.map((t) => (
+            {displayTiers.map((t) => (
               <motion.div
                 key={t.name}
                 variants={fadeUp}

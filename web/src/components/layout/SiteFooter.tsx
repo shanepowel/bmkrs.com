@@ -12,6 +12,7 @@ const MAKE_LINKS = [
 const STUDIO_LINKS = [
   { href: "/about", label: "about" },
   { href: "/journal", label: "journal" },
+  { href: "/network", label: "network" },
   { href: "/press", label: "press" },
   { href: "/contact", label: "contact" },
 ] as const;
@@ -64,7 +65,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="site-footer__legal mono">
-          <p>{reg}</p>
+          {reg ? <p>{reg}</p> : null}
           <p className="site-footer__legal-links">
             <Link href="/legal/privacy">privacy notice</Link>
             <span aria-hidden="true"> · </span>

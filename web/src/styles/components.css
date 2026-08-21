@@ -680,7 +680,7 @@
 }
 
 :root[data-header-surface="paper"] .site-nav-link:hover {
-  color: var(--bmkrs-ink);
+  color: var(--bmkrs-orange);
 }
 
 :root[data-header-surface="paper"] .nav-toggle-mobile {
@@ -726,7 +726,7 @@
 }
 
 .site-nav-link:hover {
-  color: var(--bmkrs-paper);
+  color: var(--bmkrs-orange);
 }
 
 :root[data-header-surface="paper"] .site-nav-link {
@@ -734,7 +734,7 @@
 }
 
 :root[data-header-surface="paper"] .site-nav-link:hover {
-  color: var(--bmkrs-ink);
+  color: var(--bmkrs-orange);
 }
 
 .nav-login {

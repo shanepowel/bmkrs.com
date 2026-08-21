@@ -61,10 +61,13 @@ export function SiteHeader({
   }, [pathname]);
 
   const lightLogo = surface === "paper" || surface === "orange";
-  const desktopItems = items.filter((item) =>
-    ["/services", "/work", "/motion"].includes(item.href),
+  const desktopItems = items.filter(
+    (item) =>
+      !item.highlight &&
+      item.href !== "/contact" &&
+      ["/services", "/work", "/motion", "/journal", "/about", "/network"].includes(item.href),
   );
-  const navItems = desktopItems.length ? desktopItems : items.slice(0, 3);
+  const navItems = desktopItems.length ? desktopItems.slice(0, 5) : items.slice(0, 5);
 
   return (
     <header className="site-header">

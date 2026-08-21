@@ -3,6 +3,7 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { HomeHero } from "@/components/home/HomeHero";
+import { HomeJournal } from "@/components/home/HomeJournal";
 import { HomeMarquee } from "@/components/home/HomeMarquee";
 import { PackagesSection } from "@/components/home/PackagesSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
@@ -11,6 +12,7 @@ import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
 import { homePainPoints } from "@/lib/content/expansion-v2";
 import {
+  getAllPublishedJournalPosts,
   getFeaturedProjects,
   getHomeContent,
   getHomeTestimonials,
@@ -29,12 +31,13 @@ function pickWorkTestimonial(testimonials: Testimonial[]) {
 }
 
 export default async function HomePage() {
-  const [home, featured, testimonials, products, settings] = await Promise.all([
+  const [home, featured, testimonials, products, settings, journal] = await Promise.all([
     getHomeContent(),
     getFeaturedProjects(),
     getHomeTestimonials(),
     getProducts(),
     getSiteSettings(),
+    getAllPublishedJournalPosts(),
   ]);
 
   if (settings.heroReelUrl) {
@@ -64,6 +67,9 @@ export default async function HomePage() {
               <span className="mono shrink-0">why people call us</span>
             </div>
             <ArriveGrid points={homePainPoints} />
+            <p className="home-arrive__which">
+              <a href="/services#which-one">which one&apos;s you? →</a>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -104,6 +110,10 @@ export default async function HomePage() {
 
       <Reveal>
         <ProcessSection />
+      </Reveal>
+
+      <Reveal>
+        <HomeJournal latest={journal[0] ?? null} />
       </Reveal>
 
       <Reveal>
