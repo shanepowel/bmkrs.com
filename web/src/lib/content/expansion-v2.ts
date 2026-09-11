@@ -4,6 +4,7 @@ export type PainPoint = {
   number: string;
   headline: string;
   body: string;
+  href: string;
 };
 
 export type FaqItem = {
@@ -16,38 +17,64 @@ export type WhatHappensNextStep = {
   body: string;
 };
 
-export const homePainPoints: PainPoint[] = [
+export const homeArriveFaqs: FaqItem[] = [
   {
-    number: "01",
-    headline: '"the product is better than the numbers."',
-    body: "you built something genuinely good and the market shrugged. the gap is almost never the product. it is the story, the name, the site, the way nobody can repeat what you do in one sentence.",
+    question: "my product is good but sales are slow. is that a branding problem?",
+    answer:
+      "usually, yes. if the product is genuinely good and the market has shrugged, the gap is rarely the product itself. it's the story, the name, or the site: the one sentence nobody can repeat back to you.",
   },
   {
-    number: "02",
-    headline: '"we have five suppliers and no accountability."',
-    body: "a brand agency, a web agency, a copywriter, a pr freelancer, and you in the middle translating. when results disappoint, everyone blames the brief. one team ends that conversation.",
+    question: "i'm working with a brand agency, a web agency, a copywriter and a pr freelancer separately. is that normal?",
+    answer:
+      "it's common, but it creates accountability gaps. you end up translating between five suppliers. a single team covering brand, voice, pr and product removes that translation layer entirely.",
   },
   {
-    number: "03",
-    headline: '"we are launching and we have no story."',
-    body: "the build is on track, the announcement is a blank page, and the date is not moving. launches are won in the six weeks before launch day. that window is our home ground.",
+    question: "we're launching soon and don't have a story yet. is it too late?",
+    answer:
+      "no. launches are typically won or lost in the six weeks before launch day, not months earlier. that window is where a focused studio can still make the biggest difference.",
   },
   {
-    number: "04",
-    headline: '"we look fine and sound like everyone."',
-    body: "the identity is passable, but the website reads like the competitor's, the deck reads like the website, and nothing is ownable. that is a voice problem, and it is the cheapest big problem you can fix.",
+    question: "our identity is fine but we sound like every competitor. what's wrong?",
+    answer:
+      "that's a voice problem, not a visual one, and it's usually the cheapest big problem to fix: tone of voice and messaging, not a full rebrand.",
   },
 ];
 
-export const homeManifesto = `the best product does not win. the best-told one does. we spent seventeen years building products inside organisations where failure is expensive, and watched it happen on repeat: brilliant things losing to clearer stories, sharper names, tighter sites.
+export const homePainPoints: PainPoint[] = [
+  {
+    number: "01",
+    headline: "the product is better than the numbers.",
+    body: "you built something genuinely good and the market shrugged. the gap is almost never the product. it's the story, the name, the site — the one sentence nobody can repeat.",
+    href: "/services#story",
+  },
+  {
+    number: "02",
+    headline: "five suppliers, no accountability.",
+    body: "a brand agency, a web agency, a copywriter, a pr freelancer, and you in the middle translating. one team ends that conversation.",
+    href: "/services",
+  },
+  {
+    number: "03",
+    headline: "we're launching and we have no story.",
+    body: "the build's on track, the announcement is a blank page, and the date isn't moving. launches are won in the six weeks before launch day. that's our home ground.",
+    href: "/services#press-launch",
+  },
+  {
+    number: "04",
+    headline: "we look fine and sound like everyone.",
+    body: "the identity's passable, but the site reads like the competitor's. that's a voice problem — the cheapest big problem you can fix.",
+    href: "/services#story",
+  },
+];
 
-it is not fair. it is also fixable, and fixing it is the entire job. so we build the story and the thing that carries it: the brand and the product, the launch and what comes after. one team, all the way through, because the gaps between agencies are where good brands go quiet.`;
+export const homeManifesto = `the best product doesn't win. the best-told one does.
+
+seventeen years building products inside organisations where failure is expensive — watching brilliant things lose to clearer stories, sharper names, tighter sites. not fair. fixable. that's the job.`;
 
 export const homeProcessStrip = {
   steps: "listen → decide → make → ship → stay",
-  body: "we start with the business, not the brief. then the decisions everything else obeys: positioning, audience, the one-line answer. then we build, properly, the same people end to end. then we launch it like we mean it. then, if you want us, we stay in motion.",
-  footnote:
-    "fixed scope. fixed timeline. one point of contact. prices on the services page.",
+  body: "we start with the business, not the brief. then the decisions everything else obeys — positioning, audience, the one-line answer. then we build, properly, the same people end to end. then we launch it like we mean it. then, if you want us, we stay in motion.",
+  footnote: "fixed scope. fixed timeline. one point of contact.",
 };
 
 export const heroImageCaptions: Record<string, string> = {
@@ -59,19 +86,54 @@ export const heroImageCaptions: Record<string, string> = {
 
 export const workPageIntro = `every project on this shelf shipped. some are client work, some are products we built and run ourselves, and we show both, because a brand company run by builders should have its own things to point at. no spec work, no concepts, no coming soon. what you see is what went out the door.`;
 
-/** Card outcome lines keyed by project slug. */
+/** Card outcome lines keyed by project slug. Scope/speed when there is no confirmed number. */
 export const projectOutcomeLines: Record<string, string> = {
-  fdb: "22% lift in store conversion after the rebuild",
-  copa: "a bar people now describe the way it wanted to be described",
-  "podcast-studio-london": "expertise you can read before you book a session",
-  "freelance-near-me": "the marketplace we built to prove the point",
-  carter: "a portfolio that finally reads like the work behind it",
-  flipster: "a premium identity in a category most brands get wrong",
-  smoothies: "a first site that made the range legible on day one",
-  wanderlust: "a design language the studio can deploy without starting from scratch",
-  "david-wheeler-psychology": "a practice brand built for trust before the first session",
-  "three18-media": "a sharper story for a production company with the reel to back it",
+  copa: "identity system, shipped end to end",
+  fdb: "identity, copy and storefront as one job",
+  carter: "portrait, motion, one visual thread",
+  wanderlust: "a campaign language that repeats",
+  smoothies: "first site, launch-ready",
+  flipster: "one team, one identity, launch-ready",
+  "podcast-studio-london": "20k views and 86k downloads from the Disney+ campaign",
+  "freelance-near-me": "15k visitors a week",
+  konduit: "studio product, live",
+  viralyz: "studio product, live",
 };
+
+export const projectCardTitles: Record<string, string> = {
+  copa: "copa, off the shore",
+  fdb: "floare din banat",
+  carter: "carter mcgreggor",
+  wanderlust: "hartmann design: wanderlust",
+  smoothies: "smoothies",
+  flipster: "flipster iptv",
+  "podcast-studio-london": "podcast studio london",
+  "freelance-near-me": "freelance near me",
+  konduit: "konduit",
+  viralyz: "viralyz",
+};
+
+const PROJECT_SLUG_ALIASES: Record<string, string> = {
+  "floare-din-banat": "fdb",
+  "carter-mcgreggor": "carter",
+  "flipster-iptv": "flipster",
+};
+
+function canonicalProjectSlug(slug: string): string {
+  return PROJECT_SLUG_ALIASES[slug] ?? slug;
+}
+
+export function cardTitleForProject(slug: string, title: string): string {
+  return projectCardTitles[canonicalProjectSlug(slug)] ?? title;
+}
+
+/** Pull a leading metric (15k, 20k, +22%) out so the card can bold it. */
+export function splitProofLine(line: string): { statValue?: string; stat: string } {
+  const trimmed = line.trim();
+  const match = trimmed.match(/^(\+?\d[\d,.]*[kKmM%]?)(?:\s+)(.+)$/);
+  if (match) return { statValue: match[1], stat: match[2] };
+  return { stat: trimmed };
+}
 
 export const workHowProjectRuns = {
   kicker: "behind the shelf",
@@ -211,7 +273,9 @@ export const contactBudgetReassurance =
   "the budget question is optional and changes nothing about the reply. it just lets us answer with the right-sized plan first instead of third.";
 
 export function outcomeLineForSlug(slug: string, cmsLine?: string): string | undefined {
-  return cmsLine || projectOutcomeLines[slug];
+  if (cmsLine?.trim()) return cmsLine;
+  const key = canonicalProjectSlug(slug);
+  return projectOutcomeLines[key] ?? projectOutcomeLines[slug];
 }
 
 export function captionForProject(slug: string, _title: string): string | undefined {

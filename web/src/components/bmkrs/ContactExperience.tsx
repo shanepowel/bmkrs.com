@@ -245,7 +245,7 @@ export function ContactExperience({
         </div>
       </section>
 
-      <EmailCapture surface="orange" />
+      <EmailCapture surface="orange" inputId="contact-newsletter-email" />
     </main>
   );
 }

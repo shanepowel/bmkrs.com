@@ -117,7 +117,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const [project, nextProject] = await Promise.all([getProject(slug), getNextProject(slug)]);
+  const [project, nextProject, slugs] = await Promise.all([
+    getProject(slug),
+    getNextProject(slug),
+    getCaseStudySlugs(),
+  ]);
   if (!project) notFound();
 
   const services = project.serviceTags?.length
@@ -137,6 +141,12 @@ export default async function CaseStudyPage({ params }: Props) {
     (isFilled(quote.name) || isFilled(quote.attribution));
 
   const thinking = project.thinking || project.challenge;
+  const didItems = project.whatWeDidItems?.filter((item) => isFilled(item)) ?? [];
+  const sheetIndex = slugs.indexOf(slug);
+  const sheetLabel =
+    sheetIndex >= 0
+      ? `sheet ${String(sheetIndex + 1).padStart(2, "0")} / ${String(slugs.length).padStart(2, "0")}`
+      : "sheet";
 
   const jsonLd = [
     creativeWorkJsonLd(project, `${siteUrl}/work/${slug}`),
@@ -148,13 +158,13 @@ export default async function CaseStudyPage({ params }: Props) {
   ];
 
   return (
-    <main>
+    <main data-surface="paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Section theme="ink" className="!pb-0">
+      <Section theme="paper" className="!pb-0">
         <Reveal>
           <Link
             href="/work"
@@ -164,8 +174,15 @@ export default async function CaseStudyPage({ params }: Props) {
           </Link>
         </Reveal>
         <Reveal delay={1}>
-          <p className="mono mt-8 text-meta text-muted">
-            {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
+          <p className="case-sheet mono mt-8">
+            <span>{sheetLabel}</span>
+            {project.year ? <span>rev. {project.year}</span> : null}
+            <span>
+              {[project.sector || project.category, ...(services ?? [])]
+                .filter(Boolean)
+                .slice(0, 3)
+                .join(" · ")}
+            </span>
           </p>
         </Reveal>
         <Reveal delay={1}>
@@ -208,18 +225,26 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
 
           {project.brief && (
-            <CaseSection kicker="the brief">
+            <CaseSection kicker="the situation">
               <p>{project.brief}</p>
             </CaseSection>
           )}
 
-          {project.whatWeDid && (
+          {(didItems.length > 0 || project.whatWeDid) && (
             <CaseSection kicker="what we did" delay={1}>
-              <p>{project.whatWeDid}</p>
+              {didItems.length > 0 ? (
+                <ul className="case-did">
+                  {didItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{project.whatWeDid}</p>
+              )}
             </CaseSection>
           )}
 
-          {thinking && (
+          {thinking && thinking !== project.brief && (
             <CaseSection kicker="the thinking">
               <p>{thinking}</p>
             </CaseSection>
@@ -229,7 +254,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <section className="case-section">
               <SectionRule />
               <div className="case-section__inner">
-                <Kicker theme="paper">outcome</Kicker>
+                <Kicker theme="paper">the result</Kicker>
                 {hasFilledMetrics(metrics) && (
                   <ul className="metric-grid mt-[var(--space-tight)]">
                     {metrics.map((m) => (
@@ -249,6 +274,19 @@ export default async function CaseStudyPage({ params }: Props) {
             </section>
           )}
 
+          {project.externalUrl ? (
+            <p className="mt-[var(--space-block)]">
+              <a
+                href={project.externalUrl}
+                className="font-medium text-accent hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                visit {project.client ?? project.title} →
+              </a>
+            </p>
+          ) : null}
+
         </div>
       </Section>
 
@@ -265,11 +303,12 @@ export default async function CaseStudyPage({ params }: Props) {
         </Section>
       ) : null}
 
-      <Section theme="ink">
+      <Section theme="paper">
         <div className="max-w-[900px]">
           {project.media.length > 1 && (
             <div className="space-y-8">
               <SectionRule />
+              <Kicker theme="paper">the work</Kicker>
               {project.media.slice(1).map((item, idx) => (
                 <Reveal key={idx}>
                   <MediaBlock item={item} title={project.title} />

@@ -20,12 +20,17 @@ const PLACEHOLDER_DATE = "[DATE]";
 const PLACEHOLDER_COMPANY = "[COMPANY NUMBER]";
 const PLACEHOLDER_ADDRESS = "[ADDRESS]";
 
-/** Footer / public-facing registration line — never publishes placeholder values. */
+/**
+ * Footer / public-facing registration line.
+ * Returns empty unless we have a real company number or registered office —
+ * never publishes placeholder values, and never implies Companies Act
+ * particulars we cannot actually display.
+ */
 export function companyLine(companyNumber?: string, registeredAddress?: string): string {
-  const name = "b makers ltd";
-  const parts = [`${name} · registered in england and wales`];
   const number = publicCompanyNumber(companyNumber);
   const office = publicRegisteredAddress(registeredAddress);
+  if (!number && !office) return "";
+  const parts = ["b makers ltd · registered in england and wales"];
   if (number) parts.push(`company no. ${number}`);
   if (office) parts.push(`registered office: ${office}`);
   return parts.join(" · ");

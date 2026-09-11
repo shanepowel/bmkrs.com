@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MotionPageViewReworked } from "@/components/motion/MotionPageViewReworked";
+import { getMotionTiers } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
@@ -8,10 +9,11 @@ export const metadata: Metadata = pageMetadata(
   "/motion",
 );
 
-export default function MotionPage() {
+export default async function MotionPage() {
+  const tiers = await getMotionTiers();
   return (
     <main>
-      <MotionPageViewReworked />
+      <MotionPageViewReworked tiers={tiers} />
     </main>
   );
 }

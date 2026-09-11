@@ -29,4 +29,6 @@ export { SwipeRow, type SwipeRowProps } from "./SwipeRow";
 export { MobileNav, type MobileNavProps } from "./MobileNav";
 export { StickyCTA, type StickyCTAProps, type StickyCTAAction } from "./StickyCTA";
 export { SiteHeader, type SiteHeaderProps } from "./SiteHeader";
+export { CaseStudyCard, type CaseStudyCardProps } from "./CaseStudyCard";
+export { TestimonialGrid, type TestimonialItem } from "./TestimonialGrid";
 export type { NavItem, LogoVariant } from "./types";

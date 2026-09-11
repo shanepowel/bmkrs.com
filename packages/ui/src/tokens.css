@@ -9,7 +9,9 @@
   --bmkrs-meta: #b4b2a9;
   --bmkrs-faint: #7d7b74;
   --bmkrs-orange: #ff4d00;
+  --bmkrs-orange-dim: #c93d00;
   --bmkrs-orange-soft: rgba(255, 77, 0, 0.32);
+  --bmkrs-rule-strong: rgba(241, 239, 232, 0.28);
   --bmkrs-orange-glow: rgba(255, 77, 0, 0.32);
   --bmkrs-rule: rgba(241, 239, 232, 0.14);
   --bmkrs-rule-ink: rgba(241, 239, 232, 0.16);

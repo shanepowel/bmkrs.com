@@ -52,6 +52,18 @@ const nextConfig: NextConfig = {
         destination: "https://www.bmkrs.com/:path*",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "bmkrs.co.uk" }],
+        destination: "https://www.bmkrs.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.bmkrs.co.uk" }],
+        destination: "https://www.bmkrs.com/:path*",
+        permanent: true,
+      },
       { source: "/discover", destination: "/services", permanent: true },
       { source: "/discover/:path*", destination: "/services/:path*", permanent: true },
       { source: "/work/project1", destination: "/work/copa", permanent: true },
@@ -60,6 +72,8 @@ const nextConfig: NextConfig = {
       { source: "/work/project2/", destination: "/work/carter", permanent: true },
       { source: "/work/project3", destination: "/work/wanderlust", permanent: true },
       { source: "/work/project3/", destination: "/work/wanderlust", permanent: true },
+      { source: "/work/hartmann-design", destination: "/work/wanderlust", permanent: true },
+      { source: "/work/hartmann-design/", destination: "/work/wanderlust", permanent: true },
       { source: "/work/project4", destination: "/work/smoothies", permanent: true },
       { source: "/work/project4/", destination: "/work/smoothies", permanent: true },
       {

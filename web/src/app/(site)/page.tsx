@@ -3,38 +3,32 @@ import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { HomeHero } from "@/components/home/HomeHero";
+import { HomeJournal } from "@/components/home/HomeJournal";
 import { HomeMarquee } from "@/components/home/HomeMarquee";
 import { PackagesSection } from "@/components/home/PackagesSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
-import { homePainPoints } from "@/lib/content/expansion-v2";
+import { homeArriveFaqs, homePainPoints } from "@/lib/content/expansion-v2";
 import {
+  getAllPublishedJournalPosts,
   getFeaturedProjects,
   getHomeContent,
   getHomeTestimonials,
   getProducts,
   getSiteSettings,
 } from "@/lib/content";
-import type { Testimonial } from "@/lib/types";
-
-function pickWorkTestimonial(testimonials: Testimonial[]) {
-  const podcast = testimonials.find((item) =>
-    `${item.company ?? ""} ${item.role ?? ""} ${item.attribution ?? ""}`
-      .toLowerCase()
-      .includes("podcast studio london"),
-  );
-  return podcast ?? testimonials[0];
-}
+import { faqPageSchema, offerCatalogSchema } from "@/lib/structured-data";
 
 export default async function HomePage() {
-  const [home, featured, testimonials, products, settings] = await Promise.all([
+  const [home, featured, testimonials, products, settings, journal] = await Promise.all([
     getHomeContent(),
     getFeaturedProjects(),
     getHomeTestimonials(),
     getProducts(),
     getSiteSettings(),
+    getAllPublishedJournalPosts(),
   ]);
 
   if (settings.heroReelUrl) {
@@ -42,10 +36,11 @@ export default async function HomePage() {
   }
 
   const selectedProjects = featured.slice(0, 4);
-  const workTestimonial = pickWorkTestimonial(testimonials);
+  const jsonLd = [faqPageSchema(homeArriveFaqs), offerCatalogSchema(products)];
 
   return (
     <main data-surface="ink">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <HomeHero
         hero={home.hero}
         reelUrl={settings.heroReelUrl}
@@ -64,6 +59,9 @@ export default async function HomePage() {
               <span className="mono shrink-0">why people call us</span>
             </div>
             <ArriveGrid points={homePainPoints} />
+            <p className="home-arrive__which">
+              <a href="/services#which-one">which one&apos;s you? →</a>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -96,7 +94,7 @@ export default async function HomePage() {
       <Reveal>
         <WorkSection
           projects={selectedProjects}
-          testimonial={workTestimonial}
+          testimonials={testimonials}
           eyebrow={home.selectedWork.eyebrow}
           title={home.selectedWork.title}
         />
@@ -104,6 +102,10 @@ export default async function HomePage() {
 
       <Reveal>
         <ProcessSection />
+      </Reveal>
+
+      <Reveal>
+        <HomeJournal latest={journal[0] ?? null} />
       </Reveal>
 
       <Reveal>

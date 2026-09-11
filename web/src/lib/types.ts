@@ -280,6 +280,7 @@ export type JournalPost = {
   body?: PortableBlock[];
   relatedProduct?: { name: string; slug: string; tagline?: string };
   relatedCaseStudy?: { title: string; slug: string };
+  relatedCaseStudies?: { title: string; slug: string }[];
   seo?: { metaTitle?: string; metaDescription?: string; ogImage?: string };
 };
 
@@ -376,10 +377,14 @@ export type Project = {
   media: MediaItem[];
   order: number;
   featured?: boolean;
+  /** false keeps the project off the public shelf until the case study is real. */
+  published?: boolean;
   projectType?: "client" | "studio";
   outcomeLine?: string;
   imageCaption?: string;
   externalUrl?: string;
+  /** Bullet form of what we did, when the narrative is a list. */
+  whatWeDidItems?: string[];
 };
 
 export type JournalArticle = {

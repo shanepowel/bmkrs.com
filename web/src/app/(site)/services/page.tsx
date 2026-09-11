@@ -11,8 +11,9 @@ import { PackageSection } from "@/components/services/PackageSection";
 import { WhichOne } from "@/components/services/WhichOne";
 import { getProducts } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { breadcrumbSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, faqPageSchema, serviceOfferSchema } from "@/lib/structured-data";
 import { marketingImages } from "@/lib/marketing-assets";
+import { servicesFaq } from "@/lib/content/expansion-v2";
 import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
@@ -27,10 +28,14 @@ export default async function ServicesPage() {
   const products = await getProducts();
   const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
 
-  const jsonLd = breadcrumbSchema([
-    { name: "home", path: "/" },
-    { name: "services", path: "/services" },
-  ]);
+  const jsonLd = [
+    breadcrumbSchema([
+      { name: "home", path: "/" },
+      { name: "services", path: "/services" },
+    ]),
+    faqPageSchema(servicesFaq),
+    ...products.map(serviceOfferSchema),
+  ];
 
   return (
     <main>

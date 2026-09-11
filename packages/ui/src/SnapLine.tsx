@@ -67,6 +67,7 @@ export function SnapLine({ tick, trigger, delay = 0, className, thick = false }:
       />
       {tick ? (
         <motion.span
+          data-snap-tick
           className="absolute right-0 -top-[1.5em] font-mono text-[0.62rem] tracking-[0.1em] text-bmkrs-orange"
           initial={{ opacity: reduceMotion ? 0.85 : 0 }}
           animate={{ opacity: drawn ? 0.85 : 0 }}

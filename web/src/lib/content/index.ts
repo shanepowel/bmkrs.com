@@ -29,6 +29,12 @@ import { outcomeLineForSlug } from "./expansion-v2";
 import { fallbackPressKit } from "./press-kit-fallback";
 import { fallbackNetworkPage } from "./network-page-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
+import { journalRelatedWork } from "./journal-related-work";
+import { isOnPublicShelf, publicMetrics } from "./public-shelf";
+import {
+  publicCompanyNumber,
+  publicRegisteredAddress,
+} from "./company-registration";
 import type {
   AboutPageContent,
   HomeContent,
@@ -89,6 +95,11 @@ async function loadSiteSettings(): Promise<SiteSettings> {
   return {
     ...fallbackSiteSettings,
     ...data,
+    companyNumber:
+      publicCompanyNumber(data.companyNumber) ?? fallbackSiteSettings.companyNumber,
+    registeredAddress:
+      publicRegisteredAddress(data.registeredAddress) ??
+      fallbackSiteSettings.registeredAddress,
     email: data.generalEmail || data.email || fallbackSiteSettings.email,
     generalEmail: data.generalEmail || data.email || fallbackSiteSettings.generalEmail,
     pressEmail: data.pressEmail || fallbackSiteSettings.pressEmail,
@@ -127,21 +138,23 @@ export async function getProjects(): Promise<Project[]> {
   for (const p of sanityList) {
     bySlug.set(p.slug, normalizeProject(p));
   }
-  return [...bySlug.values()].sort((a, b) => a.order - b.order);
+  return [...bySlug.values()]
+    .filter(isOnPublicShelf)
+    .sort((a, b) => a.order - b.order);
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   const featured = await fetchSanity<Project[]>(featuredCaseStudiesQuery);
-  if (featured?.length) {
-    return featured.map(normalizeProject).slice(0, 4);
-  }
+  const fromCms = (featured ?? []).map(normalizeProject).filter(isOnPublicShelf);
   const projects = await getProjects();
-  const client = projects.filter((p) => p.projectType !== "studio" && p.featured);
-  const studio = projects.filter((p) => p.projectType === "studio");
-  const picked = [...client.slice(0, 2), ...studio.slice(0, 2)];
-  if (picked.length >= 4) return picked.slice(0, 4);
-  const rest = projects.filter((p) => !picked.includes(p));
-  return [...picked, ...rest].slice(0, 4);
+  const preferred = projects.filter((p) => p.featured);
+  const merged = [
+    ...fromCms,
+    ...preferred.filter((p) => !fromCms.some((c) => c.slug === p.slug)),
+  ];
+  if (merged.length >= 4) return merged.slice(0, 4);
+  const rest = projects.filter((p) => !merged.some((c) => c.slug === p.slug));
+  return [...merged, ...rest].slice(0, 4);
 }
 
 function mergeProducts(sanity: Product[] | null | undefined): Product[] {
@@ -274,15 +287,23 @@ export async function getMotionContent(): Promise<MotionContent> {
   return fallbackMotion;
 }
 
+function publishableProject(project: Project | null | undefined): Project | null {
+  if (!project) return null;
+  const normalized = normalizeProject(project);
+  return isOnPublicShelf(normalized) ? normalized : null;
+}
+
 export async function getProject(slug: string): Promise<Project | null> {
   const fromCaseStudy = await fetchSanity<Project>(caseStudyBySlugQuery, { slug });
-  if (fromCaseStudy) return normalizeProject(fromCaseStudy);
+  const fromCms = publishableProject(fromCaseStudy);
+  if (fromCms) return fromCms;
 
   const legacy = await fetchSanity<Project>(projectBySlugQuery, { slug });
-  if (legacy) return normalizeProject(legacy);
+  const fromLegacy = publishableProject(legacy);
+  if (fromLegacy) return fromLegacy;
 
   const fallback = fallbackProjects.find((p) => p.slug === slug);
-  return fallback ? normalizeProject(fallback) : null;
+  return publishableProject(fallback ?? null);
 }
 
 export async function getNextProject(slug: string): Promise<Project | null> {
@@ -301,6 +322,17 @@ export async function getHomeTestimonials(): Promise<Testimonial[]> {
   const data = await fetchSanity<Testimonial[]>(homeTestimonialsQuery);
   if (data?.length) return data.filter((t) => isFilled(t.quote));
   return fallbackHomeTestimonials.filter((t) => isFilled(t.quote));
+}
+
+function withRelatedWork(post: JournalPost): JournalPost {
+  const related = journalRelatedWork[post.slug];
+  if (!related) return post;
+  return {
+    ...post,
+    relatedProduct: post.relatedProduct ?? related.product,
+    relatedCaseStudy: post.relatedCaseStudy ?? related.cases[0],
+    relatedCaseStudies: post.relatedCaseStudies?.length ? post.relatedCaseStudies : related.cases,
+  };
 }
 
 function allFallbackJournalPosts(): JournalPost[] {
@@ -324,14 +356,14 @@ function buildJournalIndex(
 
   if (markdownPack.length === 0) {
     if (sanityFeatured) {
-      bySlug.set(sanityFeatured.slug, mergePostCover(sanityFeatured));
+      bySlug.set(sanityFeatured.slug, withRelatedWork(mergePostCover(sanityFeatured)));
     }
     for (const p of sanityPosts) {
-      bySlug.set(p.slug, mergePostCover(p));
+      bySlug.set(p.slug, withRelatedWork(mergePostCover(p)));
     }
   }
   for (const p of allFallbackJournalPosts()) {
-    bySlug.set(p.slug, p);
+    bySlug.set(p.slug, withRelatedWork(p));
   }
 
   const published = filterPublishedPosts([...bySlug.values()]).sort((a, b) =>
@@ -381,12 +413,12 @@ export async function getPost(slug: string): Promise<JournalPost | null> {
 
   const fb = allFallbackJournalPosts().find((p) => p.slug === slug);
   if (fb && isJournalPublished(fb.publishedAt)) {
-    return mergePostCover(fb);
+    return withRelatedWork(mergePostCover(fb));
   }
 
   const data = await fetchSanity<JournalPost>(postBySlugQuery, { slug });
   if (data) {
-    const merged = mergePostCover(data);
+    const merged = withRelatedWork(mergePostCover(data));
     return isJournalPublished(merged.publishedAt) ? merged : null;
   }
 
@@ -441,7 +473,7 @@ function normalizeProject(project: Project): Project {
     thinking: project.thinking || project.challenge || project.problem,
     whatWeDid: project.whatWeDid || project.background,
     resultsNarrative: project.resultsNarrative || project.outcome || project.result,
-    results: project.results || project.outcomeMetrics,
+    results: publicMetrics(project.results || project.outcomeMetrics),
     outcome: project.resultsNarrative || project.outcome || project.result,
     testimonial,
   });

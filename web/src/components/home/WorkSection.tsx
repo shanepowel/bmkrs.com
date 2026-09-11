@@ -1,19 +1,33 @@
 import Link from "next/link";
-import { GhostButton } from "@bmkrs/ui";
+import { GhostButton, TestimonialGrid } from "@bmkrs/ui";
+import { isFilled } from "@/lib/content/placeholders";
 import type { Project, Testimonial } from "@/lib/types";
 import { SectionHeader } from "./SectionHeader";
 
+function attributionOf(item: Testimonial): string {
+  if (isFilled(item.attribution)) return item.attribution as string;
+  return [item.name, item.company ?? item.role].filter((part) => isFilled(part)).join(", ");
+}
+
 export function WorkSection({
   projects,
-  testimonial,
+  testimonials = [],
   eyebrow,
   title,
 }: {
   projects: Project[];
-  testimonial?: Testimonial;
+  testimonials?: Testimonial[];
   eyebrow: string;
   title: string;
 }) {
+  const quotes = testimonials
+    .filter((item) => isFilled(item.quote))
+    .map((item) => ({
+      quote: item.quote,
+      attribution: attributionOf(item),
+    }))
+    .filter((item) => item.attribution);
+
   return (
     <section className="home-work home-section" id="work" data-surface="paper">
       <div className="home-wrap">
@@ -31,14 +45,10 @@ export function WorkSection({
             all projects →
           </GhostButton>
         </div>
-        {testimonial ? (
-          <blockquote className="home-work-quote">
-            {testimonial.quote}
-            <cite>
-              {testimonial.name ? `${testimonial.name}, ` : ""}
-              {testimonial.company ?? testimonial.attribution}
-            </cite>
-          </blockquote>
+        {quotes.length ? (
+          <div className="mt-[clamp(48px,7vh,72px)]">
+            <TestimonialGrid items={quotes} theme="paper" />
+          </div>
         ) : null}
       </div>
     </section>

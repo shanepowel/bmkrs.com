@@ -1,25 +1,27 @@
+import { TestimonialGrid } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { isFilled } from "@/lib/content/placeholders";
 import type { Testimonial } from "@/lib/types";
 
-export function Testimonials({ items }: { items: Testimonial[] }) {
-  const real = (items ?? []).filter((t) => isFilled(t.quote));
-  if (real.length === 0) return null;
+function attributionOf(item: Testimonial): string {
+  if (isFilled(item.attribution)) return item.attribution as string;
+  return [item.name, item.company ?? item.role].filter((part) => isFilled(part)).join(", ");
+}
 
-  const lead = real[0];
+export function Testimonials({ items, theme = "ink" }: { items: Testimonial[]; theme?: "ink" | "paper" }) {
+  const quotes = (items ?? [])
+    .filter((item) => isFilled(item.quote))
+    .map((item) => ({
+      quote: item.quote,
+      attribution: attributionOf(item),
+    }))
+    .filter((item) => item.attribution);
+
+  if (quotes.length === 0) return null;
 
   return (
     <Reveal>
-      <figure className="testimonial testimonial--lead">
-        <blockquote className="text-h3 font-medium leading-[1.15]">
-          &ldquo;{lead.quote}&rdquo;
-        </blockquote>
-        <figcaption className="mono mt-4 text-meta font-normal normal-case text-muted">
-          {lead.name}
-          {lead.role ? `, ${lead.role}` : ""}
-          {lead.company ? `, ${lead.company}` : ""}
-        </figcaption>
-      </figure>
+      <TestimonialGrid items={quotes} theme={theme} />
     </Reveal>
   );
 }

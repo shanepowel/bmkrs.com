@@ -8,8 +8,8 @@ const DEFAULT_NAV: NavItem[] = [
   { label: "services", href: "/services" },
   { label: "work", href: "/work" },
   { label: "motion", href: "/motion" },
-  { label: "about", href: "/about" },
   { label: "journal", href: "/journal" },
+  { label: "about", href: "/about" },
 ];
 
 function navItems(navigation?: NavItem[]) {

@@ -2,7 +2,7 @@
 
 :root {
   --bmkrs-ink: #181613;
-  --bmkrs-paper: #f5f1ea;
+  --bmkrs-paper: #f1efe8;
   --bmkrs-paper-bright: #fbf9f5;
   --bmkrs-off-white: #f1efe8;
   --bmkrs-accent: #ff4d00;
@@ -149,4 +149,29 @@
   font-size: var(--text-body-lg);
   line-height: 1.55;
   color: var(--ink);
+}
+
+.case-sheet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.case-sheet span:first-child {
+  color: var(--bmkrs-accent);
+}
+
+.case-did {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.case-did li {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
 }
