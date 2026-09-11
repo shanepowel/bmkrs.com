@@ -1,7 +1,7 @@
 import { BRAND_AVATAR } from "@/lib/brand";
 import { SITE_URL } from "@/lib/og-image";
 import type { FaqItem } from "@/lib/content/expansion-v2";
-import type { JournalPost, Product } from "@/lib/types";
+import type { JournalArticle, JournalPost, Product } from "@/lib/types";
 
 const SITE = SITE_URL;
 const ORG_ID = `${SITE}/#organization`;
@@ -43,6 +43,10 @@ function gbpAmount(price?: string): string | undefined {
   return n || undefined;
 }
 
+function productUrl(product: Product) {
+  return product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`;
+}
+
 export function serviceOfferSchema(product: Product) {
   const amount = gbpAmount(product.price ?? product.priceFrom);
   return {
@@ -50,7 +54,7 @@ export function serviceOfferSchema(product: Product) {
     "@type": "Service",
     name: product.name,
     description: product.tagline,
-    url: product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`,
+    url: productUrl(product),
     provider: { "@id": ORG_ID },
     ...(amount
       ? {
@@ -58,10 +62,59 @@ export function serviceOfferSchema(product: Product) {
             "@type": "Offer",
             priceCurrency: "GBP",
             price: amount,
-            url: product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`,
+            url: productUrl(product),
           },
         }
       : {}),
+  };
+}
+
+function catalogOffer(product: Product) {
+  const amount = gbpAmount(product.price ?? product.priceFrom);
+  const from = product.priceQualifier === "from";
+  const monthly = product.priceQualifier === "per-month" || product.tier === "grow";
+  const offer: Record<string, unknown> = {
+    "@type": "Offer",
+    name: product.name,
+    url: productUrl(product),
+    priceCurrency: "GBP",
+  };
+
+  if (amount) {
+    if (from) {
+      offer.priceSpecification = {
+        "@type": "PriceSpecification",
+        minPrice: amount,
+        priceCurrency: "GBP",
+      };
+    } else {
+      offer.price = amount;
+    }
+  }
+
+  if (monthly) {
+    offer.eligibleDuration = {
+      "@type": "QuantitativeValue",
+      value: "1",
+      unitCode: "MON",
+    };
+  }
+
+  return offer;
+}
+
+export function offerCatalogSchema(products: Product[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Brand, product and communications studio",
+    provider: { "@id": ORG_ID },
+    areaServed: "GB",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "bmkrs services",
+      itemListElement: products.map(catalogOffer),
+    },
   };
 }
 
@@ -82,12 +135,15 @@ export function articleSchema(post: {
   slug: string;
   excerpt: string;
   publishedAt: string;
+  updatedAt?: string;
   author: string;
   authorSlug?: string;
   image?: string;
 }) {
   const date = post.publishedAt.slice(0, 10);
+  const modified = (post.updatedAt ?? post.publishedAt).slice(0, 10);
   const image = post.image?.startsWith("http") ? post.image : post.image ? `${SITE}${post.image}` : `${SITE}${BRAND_AVATAR}`;
+  const namedAuthor = post.author && post.author.toLowerCase() !== "bmkrs";
 
   return {
     "@context": "https://schema.org",
@@ -97,13 +153,15 @@ export function articleSchema(post: {
     url: `${SITE}/journal/${post.slug}`,
     mainEntityOfPage: `${SITE}/journal/${post.slug}`,
     datePublished: date,
-    dateModified: date,
+    dateModified: modified,
     image,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      url: post.authorSlug ? `${SITE}/about#${post.authorSlug}` : SITE,
-    },
+    author: namedAuthor
+      ? {
+          "@type": "Person",
+          name: post.author,
+          url: post.authorSlug ? `${SITE}/about#${post.authorSlug}` : SITE,
+        }
+      : { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
   };
 }
@@ -117,6 +175,16 @@ export function articleSchemaFromPost(post: JournalPost) {
     author: post.author?.name ?? "bmkrs",
     authorSlug: post.author?.name?.toLowerCase().split(" ")[0],
     image: post.cover?.url,
+  });
+}
+
+export function articleSchemaFromLegacy(article: JournalArticle) {
+  return articleSchema({
+    title: article.h1 || article.title,
+    slug: article.slug,
+    excerpt: article.metaDescription,
+    publishedAt: article.publishedAt,
+    author: "bmkrs",
   });
 }
 

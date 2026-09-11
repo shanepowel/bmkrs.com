@@ -22,7 +22,7 @@ export function HomeJournal({ latest }: { latest: JournalPost | null }) {
             </Link>
           )}
         </div>
-        <EmailCapture variant="dark" />
+        <EmailCapture variant="dark" inputId="journal-newsletter-email" />
       </div>
     </section>
   );

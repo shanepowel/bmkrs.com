@@ -3,8 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H2, Kicker, Section } from "@bmkrs/ui";
-import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
+import { CaseStudyCard, H2, Kicker, Section, type SurfaceTheme } from "@bmkrs/ui";
+import {
+  cardTitleForProject,
+  splitProofLine,
+  workHowProjectRuns,
+  workPageIntro,
+} from "@/lib/content/expansion-v2";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { pageMetadata } from "@/lib/seo";
@@ -18,51 +23,43 @@ export const metadata: Metadata = pageMetadata(
 
 function ProjectGrid({
   projects,
+  theme,
 }: {
   projects: Awaited<ReturnType<typeof getProjects>>;
+  theme: SurfaceTheme;
 }) {
   if (!projects.length) return null;
 
   return (
     <div className="work-grid work-grid--index">
-      {projects.map((project) => (
-        <Link
-          key={project.slug}
-          href={`/work/${project.slug}`}
-          className="work-card group block overflow-hidden rounded-[var(--radius)]"
-        >
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={project.thumbnailPath}
-              alt={project.title}
-              fill
-              className="object-cover transition duration-500 group-hover:scale-[1.04]"
-              sizes="(max-width: 768px) 100vw, 400px"
-            />
-            <div className="work-card__overlay" aria-hidden="true">
-              <span className="eyebrow mb-2 block">
-                {project.serviceTags?.length
-                  ? project.serviceTags.join(" · ")
-                  : (project.sector ?? project.category)}
-              </span>
-              <span className="display text-xl">{project.title}</span>
-            </div>
-          </div>
-          <div className="meta">
-            <span className="eyebrow mb-2 block">
-              {project.serviceTags?.length
-                ? project.serviceTags.join(" · ")
-                : (project.sector ?? project.category)}
-            </span>
-            <h3 className="display text-xl">{project.title}</h3>
-            {project.outcomeLine ? (
-              <p className="mono mt-2 text-meta text-muted">{project.outcomeLine}</p>
-            ) : (
-              <p>{project.positioning ?? project.tagline}</p>
-            )}
-          </div>
-        </Link>
-      ))}
+      {projects.map((project) => {
+        const category = project.serviceTags?.length
+          ? project.serviceTags.join(" · ")
+          : (project.sector ?? project.category);
+        const title = cardTitleForProject(project.slug, project.title);
+        const proof = project.outcomeLine ? splitProofLine(project.outcomeLine) : undefined;
+
+        return (
+          <CaseStudyCard
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            category={category}
+            title={title}
+            statValue={proof?.statValue}
+            stat={proof?.stat}
+            theme={theme}
+            image={
+              <Image
+                src={project.thumbnailPath}
+                alt={title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+            }
+          />
+        );
+      })}
     </div>
   );
 }
@@ -103,7 +100,7 @@ export default async function WorkPage() {
       <Section theme="ink">
         <H2 theme="ink">client work</H2>
         <div className="mt-8">
-          <ProjectGrid projects={clientWork} />
+          <ProjectGrid projects={clientWork} theme="ink" />
         </div>
       </Section>
 
@@ -128,7 +125,7 @@ export default async function WorkPage() {
             consequences of our own advice.
           </p>
           <div className="mt-8">
-            <ProjectGrid projects={studioWork} />
+            <ProjectGrid projects={studioWork} theme="paper" />
           </div>
         </div>
       </Section>

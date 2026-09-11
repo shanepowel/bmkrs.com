@@ -10,7 +10,7 @@ import { ProcessSection } from "@/components/home/ProcessSection";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
-import { homePainPoints } from "@/lib/content/expansion-v2";
+import { homeArriveFaqs, homePainPoints } from "@/lib/content/expansion-v2";
 import {
   getAllPublishedJournalPosts,
   getFeaturedProjects,
@@ -19,16 +19,7 @@ import {
   getProducts,
   getSiteSettings,
 } from "@/lib/content";
-import type { Testimonial } from "@/lib/types";
-
-function pickWorkTestimonial(testimonials: Testimonial[]) {
-  const podcast = testimonials.find((item) =>
-    `${item.company ?? ""} ${item.role ?? ""} ${item.attribution ?? ""}`
-      .toLowerCase()
-      .includes("podcast studio london"),
-  );
-  return podcast ?? testimonials[0];
-}
+import { faqPageSchema, offerCatalogSchema } from "@/lib/structured-data";
 
 export default async function HomePage() {
   const [home, featured, testimonials, products, settings, journal] = await Promise.all([
@@ -45,10 +36,11 @@ export default async function HomePage() {
   }
 
   const selectedProjects = featured.slice(0, 4);
-  const workTestimonial = pickWorkTestimonial(testimonials);
+  const jsonLd = [faqPageSchema(homeArriveFaqs), offerCatalogSchema(products)];
 
   return (
     <main data-surface="ink">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <HomeHero
         hero={home.hero}
         reelUrl={settings.heroReelUrl}
@@ -102,7 +94,7 @@ export default async function HomePage() {
       <Reveal>
         <WorkSection
           projects={selectedProjects}
-          testimonial={workTestimonial}
+          testimonials={testimonials}
           eyebrow={home.selectedWork.eyebrow}
           title={home.selectedWork.title}
         />

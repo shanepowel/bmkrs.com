@@ -17,6 +17,29 @@ export type WhatHappensNextStep = {
   body: string;
 };
 
+export const homeArriveFaqs: FaqItem[] = [
+  {
+    question: "my product is good but sales are slow. is that a branding problem?",
+    answer:
+      "usually, yes. if the product is genuinely good and the market has shrugged, the gap is rarely the product itself. it's the story, the name, or the site: the one sentence nobody can repeat back to you.",
+  },
+  {
+    question: "i'm working with a brand agency, a web agency, a copywriter and a pr freelancer separately. is that normal?",
+    answer:
+      "it's common, but it creates accountability gaps. you end up translating between five suppliers. a single team covering brand, voice, pr and product removes that translation layer entirely.",
+  },
+  {
+    question: "we're launching soon and don't have a story yet. is it too late?",
+    answer:
+      "no. launches are typically won or lost in the six weeks before launch day, not months earlier. that window is where a focused studio can still make the biggest difference.",
+  },
+  {
+    question: "our identity is fine but we sound like every competitor. what's wrong?",
+    answer:
+      "that's a voice problem, not a visual one, and it's usually the cheapest big problem to fix: tone of voice and messaging, not a full rebrand.",
+  },
+];
+
 export const homePainPoints: PainPoint[] = [
   {
     number: "01",
@@ -63,19 +86,54 @@ export const heroImageCaptions: Record<string, string> = {
 
 export const workPageIntro = `every project on this shelf shipped. some are client work, some are products we built and run ourselves, and we show both, because a brand company run by builders should have its own things to point at. no spec work, no concepts, no coming soon. what you see is what went out the door.`;
 
-/** Card outcome lines keyed by project slug. */
+/** Card outcome lines keyed by project slug. Scope/speed when there is no confirmed number. */
 export const projectOutcomeLines: Record<string, string> = {
-  fdb: "a storefront that finally matched the product",
-  copa: "a brand that could travel without looking like everyone else",
-  "podcast-studio-london": "from a booth to a production partner, with Disney+ and Twitch proof",
-  "freelance-near-me": "a live marketplace pulling roughly 15,000 visitors a week",
-  carter: "a portfolio that finally reads like the work behind it",
-  flipster: "premium, not grey-market",
-  smoothies: "a first site that made the range legible on day one",
-  wanderlust: "a design language hartmann design can deploy without starting from scratch",
-  konduit: "sourcing infrastructure for Southern Africa, built in the studio",
-  viralyz: "Grammarly for viral content — a studio product",
+  copa: "identity system, shipped end to end",
+  fdb: "identity, copy and storefront as one job",
+  carter: "portrait, motion, one visual thread",
+  wanderlust: "a campaign language that repeats",
+  smoothies: "first site, launch-ready",
+  flipster: "one team, one identity, launch-ready",
+  "podcast-studio-london": "20k views and 86k downloads from the Disney+ campaign",
+  "freelance-near-me": "15k visitors a week",
+  konduit: "studio product, live",
+  viralyz: "studio product, live",
 };
+
+export const projectCardTitles: Record<string, string> = {
+  copa: "copa, off the shore",
+  fdb: "floare din banat",
+  carter: "carter mcgreggor",
+  wanderlust: "hartmann design: wanderlust",
+  smoothies: "smoothies",
+  flipster: "flipster iptv",
+  "podcast-studio-london": "podcast studio london",
+  "freelance-near-me": "freelance near me",
+  konduit: "konduit",
+  viralyz: "viralyz",
+};
+
+const PROJECT_SLUG_ALIASES: Record<string, string> = {
+  "floare-din-banat": "fdb",
+  "carter-mcgreggor": "carter",
+  "flipster-iptv": "flipster",
+};
+
+function canonicalProjectSlug(slug: string): string {
+  return PROJECT_SLUG_ALIASES[slug] ?? slug;
+}
+
+export function cardTitleForProject(slug: string, title: string): string {
+  return projectCardTitles[canonicalProjectSlug(slug)] ?? title;
+}
+
+/** Pull a leading metric (15k, 20k, +22%) out so the card can bold it. */
+export function splitProofLine(line: string): { statValue?: string; stat: string } {
+  const trimmed = line.trim();
+  const match = trimmed.match(/^(\+?\d[\d,.]*[kKmM%]?)(?:\s+)(.+)$/);
+  if (match) return { statValue: match[1], stat: match[2] };
+  return { stat: trimmed };
+}
 
 export const workHowProjectRuns = {
   kicker: "behind the shelf",
@@ -215,7 +273,9 @@ export const contactBudgetReassurance =
   "the budget question is optional and changes nothing about the reply. it just lets us answer with the right-sized plan first instead of third.";
 
 export function outcomeLineForSlug(slug: string, cmsLine?: string): string | undefined {
-  return cmsLine || projectOutcomeLines[slug];
+  if (cmsLine?.trim()) return cmsLine;
+  const key = canonicalProjectSlug(slug);
+  return projectOutcomeLines[key] ?? projectOutcomeLines[slug];
 }
 
 export function captionForProject(slug: string, _title: string): string | undefined {

@@ -141,6 +141,12 @@ main[data-surface="ink"]:has(.home-hero) {
   }
 }
 
+@media (max-width: 767px) {
+  .home-hero [data-snap-tick] {
+    display: none;
+  }
+}
+
 .home-marquee {
   overflow: hidden;
   padding: 14px 0;
@@ -203,6 +209,12 @@ main[data-surface="ink"]:has(.home-hero) {
   background: var(--bmkrs-ink-raised);
 }
 
+.home-arrive__cell:focus-visible {
+  outline: 2px solid var(--bmkrs-orange);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
 .home-arrive__index {
   position: absolute;
   top: clamp(28px, 4vw, 44px);
@@ -240,7 +252,9 @@ main[data-surface="ink"]:has(.home-hero) {
 }
 
 .home-arrive__cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   margin-top: 1.25rem;
   font-family: var(--font-mono), monospace;
   font-size: 0.72rem;

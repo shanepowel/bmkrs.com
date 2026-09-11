@@ -19,7 +19,7 @@ import {
 } from "@/lib/content";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { metadataWithImage, siteUrl } from "@/lib/seo";
-import { articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
+import { articleSchemaFromLegacy, articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -221,7 +221,7 @@ export default async function JournalArticlePage({ params }: Props) {
           </div>
         </Section>
 
-        <EmailCapture surface="orange" />
+        <EmailCapture surface="orange" inputId="journal-post-newsletter-email" />
       </main>
     );
   }
@@ -232,8 +232,18 @@ export default async function JournalArticlePage({ params }: Props) {
   const all = await getJournalArticles();
   const others = all.filter((a) => a.slug !== slug).slice(0, 2);
 
+  const jsonLd = [
+    articleSchemaFromLegacy(article),
+    breadcrumbSchema([
+      { name: "home", path: "/" },
+      { name: "journal", path: "/journal" },
+      { name: article.h1 || article.title, path: `/journal/${article.slug}` },
+    ]),
+  ];
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <article className="page-top px-[var(--pad)] pb-16">
         <div className="wrap">
           <Reveal>

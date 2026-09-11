@@ -156,7 +156,7 @@ export default async function JournalPage() {
         </Section>
       ) : null}
 
-      <EmailCapture surface="orange" />
+      <EmailCapture surface="orange" inputId="journal-index-newsletter-email" />
     </main>
   );
 }
