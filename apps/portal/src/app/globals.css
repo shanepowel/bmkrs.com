@@ -1,4 +1,5 @@
 @import "@bmkrs/ui/tokens.css";
+@import "@bmkrs/ui/library.css";
 
 @tailwind base;
 @tailwind components;

@@ -1,6 +1,5 @@
-import Link from "next/link";
+import { SectionHeading, Stat, StatGrid, TierCard, TierGrid } from "@bmkrs/ui";
 import type { Product, ProductTier } from "@/lib/types";
-import { SectionHeader } from "./SectionHeader";
 
 const TIER_LABELS: Record<
   ProductTier,
@@ -26,46 +25,34 @@ const STATS = [
 ] as const;
 
 export function PackagesSection({ products }: { products: Product[] }) {
-  const byTier = (tier: ProductTier) => products.filter((p) => p.tier === tier);
+  const byTier = (tier: ProductTier) => products.filter((product) => product.tier === tier);
 
   return (
     <>
-      <SectionHeader title="start, make, grow." eyebrow="ways to work with us" />
-      <div className="home-packages">
+      <SectionHeading title="start, make, grow." eyebrow="ways to work with us" />
+      <TierGrid>
         {TIERS.map((tier) => {
           const meta = TIER_LABELS[tier];
           return (
-            <div
+            <TierCard
               key={tier}
-              className={`home-packages__card${meta.featured ? " home-packages__card--featured" : ""}`}
-            >
-              <span className="home-packages__eyebrow">{meta.eyebrow}</span>
-              <h3 className="home-packages__title">{meta.label}</h3>
-              <p className="home-packages__sub">{meta.blurb}</p>
-              <ul className="home-packages__links">
-                {byTier(tier).map((product) => (
-                  <li key={product.slug}>
-                    <Link
-                      href={tier === "grow" ? "/motion" : `/services#${product.slug}`}
-                      className="home-packages__link"
-                    >
-                      {product.name.toLowerCase()}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              eyebrow={meta.eyebrow}
+              title={meta.label}
+              blurb={meta.blurb}
+              featured={meta.featured}
+              links={byTier(tier).map((product) => ({
+                href: tier === "grow" ? "/motion" : `/services#${product.slug}`,
+                label: product.name.toLowerCase(),
+              }))}
+            />
           );
         })}
-      </div>
-      <div className="home-stats">
+      </TierGrid>
+      <StatGrid>
         {STATS.map((stat) => (
-          <div key={stat.label} className="home-stats__cell">
-            <b className="home-stats__value">{stat.value}</b>
-            <span className="home-stats__label">{stat.label}</span>
-          </div>
+          <Stat key={stat.label} value={stat.value} label={stat.label} />
         ))}
-      </div>
+      </StatGrid>
     </>
   );
 }

@@ -1,7 +1,10 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
 import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
-import { tokens } from "./tokens";
+import { useSurface } from "./Surface";
+import { tokens, type SurfaceTheme } from "./tokens";
 
 type Variant = "primary" | "ghost" | "ink" | "orange";
 
@@ -22,13 +25,28 @@ export type ButtonProps = {
 const baseClass =
   "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 font-sans text-[var(--text-body)] font-medium transition touch-manipulation";
 
-const variantClass: Record<Variant, string> = {
-  primary: "bg-bmkrs-ink text-bmkrs-paper hover:bg-bmkrs-orange hover:text-bmkrs-paper",
-  ghost: "border border-bmkrs-paper text-bmkrs-paper hover:bg-bmkrs-paper hover:text-bmkrs-ink",
+function primaryClass(theme: SurfaceTheme) {
+  if (theme === "paper") {
+    return "bg-bmkrs-ink text-bmkrs-paper hover:bg-bmkrs-orange hover:text-bmkrs-paper";
+  }
+  if (theme === "orange") {
+    return "bg-bmkrs-ink text-bmkrs-paper hover:opacity-90";
+  }
+  return "bg-bmkrs-paper text-bmkrs-ink hover:bg-bmkrs-orange hover:text-bmkrs-paper";
+}
+
+function ghostClass(theme: SurfaceTheme) {
+  if (theme === "ink") {
+    return "border border-bmkrs-paper text-bmkrs-paper hover:bg-bmkrs-paper hover:text-bmkrs-ink";
+  }
+  return "border border-bmkrs-ink text-bmkrs-ink hover:bg-bmkrs-ink hover:text-bmkrs-paper";
+}
+
+const fixedClass = {
   ink: "bg-bmkrs-ink text-bmkrs-paper hover:opacity-90",
   orange:
     "border border-bmkrs-orange bg-bmkrs-orange text-bmkrs-paper hover:bg-transparent hover:text-bmkrs-orange",
-};
+} as const;
 
 export function Button({
   children,
@@ -43,7 +61,10 @@ export function Button({
   rel,
   "aria-label": ariaLabel,
 }: ButtonProps) {
-  const classes = clsx(baseClass, variantClass[variant], className);
+  const theme = useSurface();
+  const variantClasses =
+    variant === "primary" ? primaryClass(theme) : variant === "ghost" ? ghostClass(theme) : fixedClass[variant];
+  const classes = clsx(baseClass, variantClasses, className);
 
   if (href) {
     return (

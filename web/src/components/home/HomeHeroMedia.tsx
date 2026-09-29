@@ -28,23 +28,15 @@ export function HomeHeroMedia({
 
   if (!reelUrl && !poster) return null;
 
-  return (
-    <div className="home-hero__media" aria-hidden="true">
-      {showVideo ? (
-        <video
-          className="home-hero__bg"
-          src={reelUrl}
-          poster={poster}
-          preload="auto"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-      ) : poster ? (
-        <Image src={poster} alt="" fill priority sizes="100vw" className="object-cover" />
-      ) : null}
-      <div className="home-hero__scrim" />
-    </div>
-  );
+  if (showVideo) {
+    return (
+      <video src={reelUrl} poster={poster} preload="auto" autoPlay muted loop playsInline />
+    );
+  }
+
+  if (poster) {
+    return <Image src={poster} alt="" fill priority sizes="100vw" className="object-cover" />;
+  }
+
+  return null;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteHeader as UISiteHeader } from "@bmkrs/ui";
+import { SiteHeader as UISiteHeader, Wordmark } from "@bmkrs/ui";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
 
@@ -20,14 +20,7 @@ function navItems(navigation?: NavItem[]) {
 }
 
 function TextWordmark({ light }: { light?: boolean }) {
-  return (
-    <span
-      className="text-logo font-medium tracking-[-0.02em]"
-      style={{ color: light ? "var(--bmkrs-ink)" : "var(--bmkrs-paper)" }}
-    >
-      bmkrs<span className="text-bmkrs-orange">.</span>
-    </span>
-  );
+  return <Wordmark tone={light ? "ink" : "paper"} />;
 }
 
 export function SiteHeader({

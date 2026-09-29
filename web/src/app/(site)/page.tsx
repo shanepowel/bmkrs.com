@@ -1,4 +1,5 @@
 import { preload } from "react-dom";
+import { SectionHeading, Surface } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
@@ -54,44 +55,33 @@ export default async function HomePage() {
 
       <HomeMarquee items={home.marqueeItems} />
 
-      <section className="home-section" id="arrive">
-        <div className="home-wrap">
-          <Reveal>
-            <div className="mb-[var(--section-header-gap)] flex items-baseline justify-between gap-6">
-              <h2 className="max-w-[20ch] text-[clamp(1.9rem,4.2vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.025em]">
-                you usually arrive with one of these.
-              </h2>
-              <span className="mono shrink-0">why people call us</span>
-            </div>
-            <ArriveGrid points={homePainPoints} />
-          </Reveal>
-        </div>
-      </section>
+      <Surface theme="ink" pad="home" id="arrive">
+        <Reveal>
+          <SectionHeading title="you usually arrive with one of these." eyebrow="why people call us" />
+          <ArriveGrid points={homePainPoints} />
+        </Reveal>
+      </Surface>
 
-      <section className="home-section !pt-0" id="services">
-        <div className="home-wrap">
-          <Reveal>
-            <ServicesList
-              eyebrow={home.positioning.eyebrow}
-              statement={home.positioning.statement}
-              lead={home.positioning.lead}
-              tiles={home.capabilityTiles}
-            />
-          </Reveal>
-        </div>
-      </section>
+      <Surface theme="ink" pad="home" id="services" innerClassName="!pt-0">
+        <Reveal>
+          <ServicesList
+            eyebrow={home.positioning.eyebrow}
+            statement={home.positioning.statement}
+            lead={home.positioning.lead}
+            tiles={home.capabilityTiles}
+          />
+        </Reveal>
+      </Surface>
 
       <Reveal>
         <WhyBand />
       </Reveal>
 
-      <section className="home-section" id="packages">
-        <div className="home-wrap">
-          <Reveal>
-            <PackagesSection products={products} />
-          </Reveal>
-        </div>
-      </section>
+      <Surface theme="ink" pad="home" id="packages">
+        <Reveal>
+          <PackagesSection products={products} />
+        </Reveal>
+      </Surface>
 
       <Reveal>
         <WorkSection

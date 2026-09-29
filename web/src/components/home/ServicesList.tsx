@@ -1,6 +1,5 @@
-import Link from "next/link";
+import { Lead, LinkIndex, LinkRow, SectionHeading } from "@bmkrs/ui";
 import type { CapabilityTile } from "@/lib/types";
-import { SectionHeader } from "./SectionHeader";
 
 export function ServicesList({
   eyebrow,
@@ -15,19 +14,18 @@ export function ServicesList({
 }) {
   return (
     <>
-      <SectionHeader title={statement} eyebrow={eyebrow} />
-      <p className="home-services-lede">{lead}</p>
-      <div className="home-services-list">
+      <SectionHeading title={statement} eyebrow={eyebrow} />
+      <Lead>{lead}</Lead>
+      <LinkIndex>
         {tiles.map((tile) => (
-          <Link key={tile.title} href={tile.href} className="home-services-row">
-            <span className="home-services-row__name">{tile.title.toLowerCase()}</span>
-            <span className="home-services-row__desc">{tile.description}</span>
-            <span className="home-services-row__arrow" aria-hidden>
-              →
-            </span>
-          </Link>
+          <LinkRow
+            key={tile.title}
+            href={tile.href}
+            name={tile.title.toLowerCase()}
+            description={tile.description}
+          />
         ))}
-      </div>
+      </LinkIndex>
     </>
   );
 }

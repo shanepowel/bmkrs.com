@@ -1,7 +1,7 @@
 @import "../../../packages/ui/src/tokens.css";
+@import "../../../packages/ui/src/library.css";
 @import "../styles/tokens.css";
 @import "../styles/components.css";
-@import "../styles/home.css";
 
 @tailwind base;
 @tailwind components;
