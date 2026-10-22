@@ -24,11 +24,12 @@ export function HomeHero({
           <span className="bmkrs-hero__underline">
             we ship the whole thing.
             <SnapLine
-              tick="— snapped, not sketched"
+              tick="snapped, not sketched"
               trigger="load"
               delay={350}
               thick
-              className="!absolute inset-x-0 bottom-[0.02em]"
+              place="below"
+              className="!absolute inset-x-0 bottom-[0.12em]"
             />
           </span>
         </>
@@ -36,8 +37,8 @@ export function HomeHero({
       lede={hero.sub}
       actions={
         <>
-          <OrangeButton href={hero.primaryCta.href}>{hero.primaryCta.label}</OrangeButton>
-          <GhostButton href={hero.secondaryCta.href}>{hero.secondaryCta.label}</GhostButton>
+          <OrangeButton href={hero.secondaryCta.href}>{hero.secondaryCta.label}</OrangeButton>
+          <GhostButton href={hero.primaryCta.href}>{hero.primaryCta.label}</GhostButton>
         </>
       }
       plate={

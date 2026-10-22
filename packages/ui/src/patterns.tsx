@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -176,11 +177,34 @@ export function WorkGrid({ children }: { children: ReactNode }) {
   return <div className="bmkrs-work">{children}</div>;
 }
 
-export function WorkTile({ href, tag, name }: { href: string; tag: string; name: string }) {
+export function WorkTile({
+  href,
+  tag,
+  name,
+  image,
+}: {
+  href: string;
+  tag: string;
+  name: string;
+  image?: { src: string; alt?: string };
+}) {
   return (
-    <Link href={href} className="bmkrs-work__card">
-      <span className="bmkrs-work__tag">{tag}</span>
-      <span className="bmkrs-work__name">{name}</span>
+    <Link href={href} className={clsx("bmkrs-work__card", image && "bmkrs-work__card--media")}>
+      {image ? (
+        <span className="bmkrs-work__media">
+          <Image
+            src={image.src}
+            alt={image.alt ?? ""}
+            fill
+            sizes="(max-width: 720px) 100vw, 40vw"
+            className="bmkrs-work__img"
+          />
+        </span>
+      ) : null}
+      <span className="bmkrs-work__copy">
+        <span className="bmkrs-work__tag">{tag}</span>
+        <span className="bmkrs-work__name">{name}</span>
+      </span>
     </Link>
   );
 }

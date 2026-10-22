@@ -26,6 +26,7 @@ export function WorkSection({
             href={`/work/${project.slug}`}
             tag={project.category.toLowerCase()}
             name={project.title.toLowerCase()}
+            image={{ src: project.thumbnailPath, alt: "" }}
           />
         ))}
       </WorkGrid>

@@ -45,7 +45,7 @@ export default async function JournalPage() {
     <main className="journal">
       <PageHeroSplit image={pageHeroImages.journal} minHeight="min-h-[52vh]">
         <Reveal>
-          <h1 className="display text-[clamp(2.25rem,9vw,8rem)] font-bold">the journal</h1>
+          <h1 className="display text-[clamp(2.25rem,8vw,6.5rem)] font-medium leading-[0.98] tracking-[-0.03em]">the journal</h1>
         </Reveal>
         <Reveal delay={1}>
           <p className="lead mt-6 max-w-[65ch]">{journalMastheadIntro}</p>

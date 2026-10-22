@@ -91,7 +91,7 @@ export default async function WorkPage() {
           <p className="eyebrow">work</p>
         </Reveal>
         <Reveal delay={1}>
-          <h1 className="display mt-4 text-[clamp(2.25rem,11vw,10rem)] font-bold">
+          <h1 className="display mt-4 text-[clamp(2.25rem,8vw,6.5rem)] font-medium leading-[0.98] tracking-[-0.03em]">
             we build <span className="text-accent">brands.</span>
           </h1>
         </Reveal>

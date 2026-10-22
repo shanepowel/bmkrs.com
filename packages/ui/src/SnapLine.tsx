@@ -12,9 +12,18 @@ export type SnapLineProps = {
   delay?: number;
   className?: string;
   thick?: boolean;
+  /** where the caption sits relative to the line */
+  place?: "above" | "below";
 };
 
-export function SnapLine({ tick, trigger, delay = 0, className, thick = false }: SnapLineProps) {
+export function SnapLine({
+  tick,
+  trigger,
+  delay = 0,
+  className,
+  thick = false,
+  place = "above",
+}: SnapLineProps) {
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(trigger === "load" && reduceMotion);
@@ -67,7 +76,10 @@ export function SnapLine({ tick, trigger, delay = 0, className, thick = false }:
       />
       {tick ? (
         <motion.span
-          className="absolute right-0 -top-[1.5em] font-mono text-[0.62rem] tracking-[0.1em] text-bmkrs-orange"
+          className={clsx(
+            "absolute right-0 font-mono text-[0.62rem] tracking-[0.1em] text-bmkrs-orange",
+            place === "below" ? "top-[calc(100%+0.55rem)]" : "-top-[1.5em]",
+          )}
           initial={{ opacity: reduceMotion ? 0.85 : 0 }}
           animate={{ opacity: drawn ? 0.85 : 0 }}
           transition={

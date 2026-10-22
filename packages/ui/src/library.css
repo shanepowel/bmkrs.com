@@ -37,6 +37,14 @@ main:has([data-bmkrs-hero]) {
   margin-bottom: var(--section-header-gap);
 }
 
+@media (max-width: 720px) {
+  .bmkrs-section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+}
+
 .bmkrs-section-heading__title {
   max-width: 20ch;
   font-size: clamp(1.9rem, 4.2vw, 3.2rem);
@@ -109,8 +117,8 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__title {
-  max-width: 16ch;
-  font-size: clamp(2.6rem, 7.2vw, 6rem);
+  max-width: 11em;
+  font-size: clamp(2.45rem, 6vw, 5.1rem);
   line-height: 0.98;
   letter-spacing: -0.03em;
   font-weight: 500;
@@ -118,12 +126,14 @@ main:has([data-bmkrs-hero]) {
 
 .bmkrs-hero__underline {
   position: relative;
-  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+  padding-bottom: 0.22em;
 }
 
 .bmkrs-hero__lede {
-  margin: 2rem 0 2.6rem;
-  max-width: 44ch;
+  margin: 2.6rem 0 2.4rem;
+  max-width: 42ch;
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   line-height: 1.55;
   color: var(--bmkrs-body);
@@ -136,12 +146,10 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__plate {
-  position: absolute;
-  top: clamp(72px, 12vh, 140px);
-  right: var(--gutter);
-  display: none;
-  text-align: right;
-  line-height: 1.9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.4rem;
+  margin-top: 1.8rem;
   font-family: var(--bmkrs-font-mono);
   font-size: var(--text-meta);
   letter-spacing: var(--tracking-kicker);
@@ -149,13 +157,7 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__plate span {
-  display: block;
-}
-
-@media (min-width: 960px) {
-  .bmkrs-hero__plate {
-    display: block;
-  }
+  display: inline;
 }
 
 .bmkrs-marquee {
@@ -271,11 +273,10 @@ main:has([data-bmkrs-hero]) {
   align-items: baseline;
   padding-block: clamp(20px, 3vh, 30px);
   border-bottom: 1px solid var(--bmkrs-rule-ink);
-  transition: padding-left 0.25s ease;
 }
 
-.bmkrs-index__row:hover {
-  padding-left: 14px;
+.bmkrs-index__row:hover .bmkrs-index__name {
+  transform: translateX(10px);
 }
 
 .bmkrs-index__row:hover .bmkrs-index__arrow {
@@ -287,6 +288,7 @@ main:has([data-bmkrs-hero]) {
   font-size: clamp(1.2rem, 2.4vw, 1.7rem);
   letter-spacing: -0.015em;
   font-weight: 500;
+  transition: transform 0.25s ease;
 }
 
 .bmkrs-index__desc {
@@ -480,6 +482,42 @@ main:has([data-bmkrs-hero]) {
   border-color: var(--bmkrs-ink);
 }
 
+.bmkrs-work__card--media {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  gap: 0.9rem;
+}
+
+.bmkrs-work__card--media:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+.bmkrs-work__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bmkrs-ink);
+}
+
+.bmkrs-work__img {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.bmkrs-work__card--media:hover .bmkrs-work__img {
+  transform: scale(1.04);
+}
+
+.bmkrs-work__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .bmkrs-work__tag {
   font-family: var(--bmkrs-font-mono);
   font-size: var(--text-meta);
@@ -596,9 +634,11 @@ main:has([data-bmkrs-hero]) {
   .bmkrs-marquee__track,
   .bmkrs-cells__item,
   .bmkrs-index__row,
+  .bmkrs-index__name,
   .bmkrs-index__arrow,
   .bmkrs-tiers__link,
   .bmkrs-work__card,
+  .bmkrs-work__img,
   .bmkrs-work__name::after {
     animation: none;
     transition: none;
