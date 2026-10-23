@@ -8,7 +8,7 @@ export function PortableBody({ blocks }: { blocks?: PortableBlock[] }) {
       {blocks.map((block, i) => {
         if (block._type === "heading" && block.text) {
           return (
-            <h2 key={i} className="display mt-10 mb-4 text-[clamp(1.35rem,3vw,2rem)] font-bold">
+            <h2 key={i} className="display mt-10 mb-4 text-[clamp(1.35rem,3vw,2rem)] font-medium">
               {block.text}
             </h2>
           );

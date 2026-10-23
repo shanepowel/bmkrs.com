@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Reveal } from "@/components/bmkrs/Reveal";
+import { BackLink, Body, H1, Kicker, Meta, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
 import {
   getJournalCategorySlugs,
   getJournalPostsByCategory,
@@ -53,59 +51,40 @@ export default async function JournalCategoryPage({ params }: Props) {
   ]);
 
   return (
-    <main className="journal page-top">
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="section-pad">
-        <div className="wrap section">
-          <Reveal>
-            <Link
-              href="/journal"
-              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
-            >
-              ← journal
-            </Link>
-            <p className="eyebrow mt-8 block">{label}</p>
-            <h1 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold leading-[1.05]">
-              {label}
-            </h1>
-            {intro ? <p className="muted mt-4 max-w-[52ch] text-lg">{intro}</p> : null}
-            <p className="muted mt-2 text-sm">{posts.length} posts</p>
-          </Reveal>
-
-          <div className="journal-grid mt-12">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/journal/${post.slug}`}
-                className="journal-card"
-                data-category={post.category}
-              >
-                {post.cover?.url ? (
-                  <div className="journal-cover relative">
-                    <Image
-                      src={post.cover.url}
-                      alt={post.cover.alt ?? post.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 400px"
-                    />
-                  </div>
-                ) : null}
-                <span className="eyebrow mt-4 block">{label}</span>
-                <h2 className="display mt-2 text-xl">{post.title}</h2>
-                <p className="excerpt mt-2">{post.excerpt}</p>
-                <span className="muted mt-2 block text-sm">
-                  {formatDate(post.publishedAt)}
-                  {post.readingTime ? ` · ${post.readingTime} min` : ""}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Section theme="ink">
+        <BackLink href="/journal">← journal</BackLink>
+        <Kicker theme="ink">journal</Kicker>
+        <H1 theme="ink" className="mt-4">
+          {label}
+        </H1>
+        {intro ? (
+          <Body theme="ink" lead className="mt-4">
+            {intro}
+          </Body>
+        ) : null}
+        <Meta theme="ink" className="mt-3">
+          {posts.length} posts
+        </Meta>
+      </Section>
+      <Section theme="paper">
+        <WorkGrid>
+          {posts.map((post) => (
+            <WorkTile
+              key={post.slug}
+              href={`/journal/${post.slug}`}
+              tag={`${label} · ${formatDate(post.publishedAt)}`}
+              name={post.title}
+              detail={post.excerpt}
+              image={post.cover?.url ? { src: post.cover.url, alt: "" } : undefined}
+            />
+          ))}
+        </WorkGrid>
+      </Section>
     </main>
   );
 }

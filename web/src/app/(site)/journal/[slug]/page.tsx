@@ -3,12 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBody } from "@/components/bmkrs/ArticleBody";
-import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { PortableBody } from "@/components/bmkrs/PortableBody";
-import { Reveal } from "@/components/bmkrs/Reveal";
 import { AuthorBio } from "@/components/bmkrs/AuthorBio";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Section } from "@bmkrs/ui";
+import { BackLink, Body, Button, GhostButton, H1, Kicker, LinkIndex, LinkRow, Meta, Section } from "@bmkrs/ui";
+import { journalRelatedWork } from "@/lib/content/journal-related-work";
 import {
   getJournalArticle,
   getJournalArticles,
@@ -101,26 +100,16 @@ export default async function JournalArticlePage({ params }: Props) {
 
         <Section theme="ink" className="!pb-0">
           <div className="max-w-[900px]">
-            <Link
-              href="/journal"
-              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
-            >
-              ← journal
-            </Link>
-            <p className="eyebrow mt-8 block">
-              {categoryHref ? (
-                <Link href={categoryHref} className="hover:text-accent">
-                  {categoryLabel}
-                </Link>
-              ) : (
-                categoryLabel
-              )}{" "}
-              · {formatDate(post.publishedAt)}
+            <BackLink href="/journal">← journal</BackLink>
+            <Meta theme="ink" className="mt-8">
+              {categoryHref ? <Link href={categoryHref}>{categoryLabel}</Link> : categoryLabel}
+              {" · "}
+              {formatDate(post.publishedAt)}
               {post.readingTime ? ` · ${post.readingTime} min read` : ""}
-            </p>
-            <h1 className="display mt-4 text-[clamp(2rem,6vw,4rem)] font-bold leading-[1.05]">
+            </Meta>
+            <H1 theme="ink" className="mt-4 max-w-[16ch]">
               {post.title}
-            </h1>
+            </H1>
             {post.author && (
               <p className="mt-4 text-sm text-muted">
                 {post.author.name}
@@ -152,60 +141,69 @@ export default async function JournalArticlePage({ params }: Props) {
           <div className="max-w-[900px]">
             {post.author?.name ? <AuthorBio name={post.author.name} /> : null}
 
-            {(post.relatedProduct || post.relatedCaseStudy) && (
-              <aside className="post-cta mt-14 border-t border-[var(--line)] pt-10">
-                <span className="eyebrow block">where this shows up</span>
-                <p className="muted mt-3 max-w-[52ch] text-[15px]">
-                  this thinking shows up in how we deliver{" "}
-                  {post.relatedProduct?.name ?? post.relatedCaseStudy?.title ?? "the work"} for
-                  clients.
-                </p>
-                <div className="mt-4 flex flex-wrap gap-4">
-                  {post.relatedProduct && (
-                    <Link
-                      href={`/services#${post.relatedProduct.slug}`}
-                      className="btn-primary inline-flex"
-                    >
-                      {post.relatedProduct.name} →
-                    </Link>
-                  )}
-                  {post.relatedCaseStudy && (
-                    <Link
-                      href={`/work/${post.relatedCaseStudy.slug}`}
-                      className="font-semibold text-accent hover:underline"
-                    >
-                      see it in {post.relatedCaseStudy.title} →
-                    </Link>
-                  )}
+            {(post.relatedProduct || post.relatedCaseStudy || journalRelatedWork[slug]) && (
+              <aside className="mt-14 border-t border-[var(--line)] pt-10">
+                <Kicker theme="ink">where this shows up</Kicker>
+                <Body theme="ink" className="mt-3">
+                  this thinking shows up in the work, not only on the page.
+                </Body>
+                <div className="mt-6">
+                  <LinkIndex>
+                    {post.relatedProduct ? (
+                      <LinkRow
+                        href={`/services#${post.relatedProduct.slug}`}
+                        name={post.relatedProduct.name}
+                        description="the package"
+                      />
+                    ) : journalRelatedWork[slug]?.product ? (
+                      <LinkRow
+                        href={`/services#${journalRelatedWork[slug].product!.slug}`}
+                        name={journalRelatedWork[slug].product!.name}
+                        description="the package"
+                      />
+                    ) : null}
+                    {post.relatedCaseStudy ? (
+                      <LinkRow
+                        href={`/work/${post.relatedCaseStudy.slug}`}
+                        name={post.relatedCaseStudy.title}
+                        description="the case"
+                      />
+                    ) : (
+                      journalRelatedWork[slug]?.cases.map((item) => (
+                        <LinkRow
+                          key={item.slug}
+                          href={`/work/${item.slug}`}
+                          name={item.title}
+                          description="the case"
+                        />
+                      ))
+                    )}
+                  </LinkIndex>
                 </div>
               </aside>
             )}
 
             {others.length > 0 && (
               <div className="mt-14 border-t border-[var(--line)] pt-10">
-                <h2 className="eyebrow">related posts</h2>
-                <ul className="mt-8 space-y-8">
-                  {others.map((other) => (
-                    <li key={other.slug}>
-                      <Link href={`/journal/${other.slug}`} className="group block">
-                        <h3 className="display text-[clamp(1.25rem,3vw,2rem)] font-semibold group-hover:text-accent">
-                          {other.title} <ArrowIcon />
-                        </h3>
-                        <p className="excerpt mt-2">{other.excerpt}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <Kicker theme="ink">related posts</Kicker>
+                <div className="mt-6">
+                  <LinkIndex>
+                    {others.map((other) => (
+                      <LinkRow
+                        key={other.slug}
+                        href={`/journal/${other.slug}`}
+                        name={other.title}
+                        description={other.excerpt}
+                      />
+                    ))}
+                  </LinkIndex>
+                </div>
               </div>
             )}
 
-            <nav className="post-foot mt-12 flex flex-wrap gap-6 border-t border-[var(--line)] pt-8 text-sm font-semibold">
-              <Link href="/journal" className="text-muted hover:text-accent">
-                more from the journal
-              </Link>
-              <Link href="/contact" className="text-accent hover:underline">
-                start a project
-              </Link>
+            <nav className="mt-12 flex flex-wrap gap-4 border-t border-[var(--line)] pt-8">
+              <GhostButton href="/journal">more from the journal</GhostButton>
+              <Button href="/contact">start a project</Button>
             </nav>
           </div>
         </Section>
@@ -223,69 +221,40 @@ export default async function JournalArticlePage({ params }: Props) {
 
   return (
     <>
-      <article className="page-top px-[var(--pad)] pb-16">
-        <div className="wrap">
-          <Reveal>
-            <Link
-              href="/journal"
-              className="text-sm font-semibold text-muted transition-colors hover:text-accent"
-            >
-              ← journal
-            </Link>
-          </Reveal>
-          <Reveal delay={1}>
-            <time dateTime={article.publishedAt} className="eyebrow mt-8 block">
-              {formatDate(article.publishedAt)}
-            </time>
-          </Reveal>
-          <Reveal delay={1}>
-            <h1 className="display mt-4 max-w-[900px] text-[clamp(2rem,6vw,4.5rem)] font-bold leading-[1.05]">
-              {article.h1}
-            </h1>
-          </Reveal>
-          <Reveal delay={2}>
-            <ArticleBody body={article.body} />
-          </Reveal>
-          {article.relatedLinks && article.relatedLinks.length > 0 && (
-            <Reveal delay={2}>
-              <nav
-                className="mt-14 flex flex-wrap gap-3 border-t-2 border-[var(--line)] pt-10"
-                aria-label="related links"
-              >
-                {article.relatedLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="rounded-full border-2 border-ink/15 px-4 py-2 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-            </Reveal>
-          )}
-        </div>
-      </article>
+      <Section theme="ink">
+        <BackLink href="/journal">← journal</BackLink>
+        <Meta theme="ink" className="mt-8">
+          <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+        </Meta>
+        <H1 theme="ink" className="mt-4 max-w-[16ch]">
+          {article.h1}
+        </H1>
+      </Section>
+      <Section theme="paper">
+        <ArticleBody body={article.body} />
+        {article.relatedLinks && article.relatedLinks.length > 0 ? (
+          <nav className="mt-14 flex flex-wrap gap-3" aria-label="related links">
+            {article.relatedLinks.map((link) => (
+              <GhostButton key={link.href} href={link.href}>
+                {link.label}
+              </GhostButton>
+            ))}
+          </nav>
+        ) : null}
+      </Section>
 
-      {others.length > 0 && (
-        <section className="section-pad border-t-2 border-[var(--line)] bg-ink/[0.02]">
-          <div className="wrap">
-            <h2 className="eyebrow">more from the journal</h2>
-            <ul className="mt-8 space-y-6">
+      {others.length > 0 ? (
+        <Section theme="ink">
+          <Kicker theme="ink">more from the journal</Kicker>
+          <div className="mt-6">
+            <LinkIndex>
               {others.map((other) => (
-                <li key={other.slug}>
-                  <Link
-                    href={`/journal/${other.slug}`}
-                    className="group display text-[clamp(1.25rem,3vw,2rem)] font-semibold hover:text-accent"
-                  >
-                    {other.h1} <ArrowIcon />
-                  </Link>
-                </li>
+                <LinkRow key={other.slug} href={`/journal/${other.slug}`} name={other.h1} description="" />
               ))}
-            </ul>
+            </LinkIndex>
           </div>
-        </section>
-      )}
+        </Section>
+      ) : null}
     </>
   );
 }

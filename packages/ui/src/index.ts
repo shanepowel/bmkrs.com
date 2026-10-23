@@ -54,4 +54,12 @@ export {
   PullQuote,
   StepLine,
   Close,
+  PageHero,
+  Chip,
+  BackLink,
+  RuledGrid,
+  RuledCell,
+  SpecList,
+  PackageEntry,
+  Footer,
 } from "./patterns";

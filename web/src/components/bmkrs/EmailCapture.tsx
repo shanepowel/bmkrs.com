@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Section } from "@bmkrs/ui";
+import { Button, Field, Section } from "@bmkrs/ui";
 import { cn } from "@/lib/utils";
 
 type EmailCaptureProps = {
@@ -38,20 +38,10 @@ export function EmailCapture({ className, variant = "light", surface = "paper" }
           <p className="email-capture__success">got it. the next one is on its way.</p>
         ) : (
           <form className="email-capture__form" onSubmit={onSubmit}>
-            <label className="email-capture__label">
-              <span className="sr-only">email</span>
-              <input
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="your email"
-                className="cx-input"
-              />
-            </label>
-            <button className="btn-ghost-dark" type="submit" disabled={status === "sending"}>
+            <Field name="email" type="email" required autoComplete="email" label="email" placeholder="your email" />
+            <Button type="submit" variant="ghost" disabled={status === "sending"}>
               {status === "sending" ? "sending..." : "send me the next one"}
-            </button>
+            </Button>
           </form>
         )}
         {status === "error" ? (
@@ -73,24 +63,18 @@ export function EmailCapture({ className, variant = "light", surface = "paper" }
         <p className="mt-6 text-accent">got it. the next one is on its way.</p>
       ) : (
         <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end" onSubmit={onSubmit}>
-          <label className="flex-1">
-            <span className="sr-only">email</span>
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              placeholder="your email"
-              className={onOrange ? "field-input field-input--on-orange w-full" : "field-input w-full"}
-            />
-          </label>
-          <button
-            className={onOrange ? "btn-ink shrink-0" : "btn-primary shrink-0"}
-            type="submit"
-            disabled={status === "sending"}
-          >
+          <Field
+            className="flex-1"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            label="email"
+            placeholder="your email"
+          />
+          <Button type="submit" disabled={status === "sending"}>
             {status === "sending" ? "sending..." : "send me the next one"}
-          </button>
+          </Button>
         </form>
       )}
       {status === "error" ? (

@@ -1,8 +1,6 @@
 "use client";
 
-import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
-import { ProjectTile } from "@/components/bmkrs/ProjectTile";
-import { Button, H2, Kicker, Surface, SwipeRow } from "@bmkrs/ui";
+import { Button, H2, Kicker, Surface, SwipeRow, WorkTile } from "@bmkrs/ui";
 import type { Project } from "@/lib/types";
 
 export function WorkProjectsSwipe({
@@ -23,19 +21,19 @@ export function WorkProjectsSwipe({
       </div>
       <div className="block-gap">
         <SwipeRow ariaLabel="selected work" desktopGridClass="md:grid md:grid-cols-2 md:overflow-visible">
-          {projects.map((project, i) => (
-            <ProjectTile
+          {projects.map((project) => (
+            <WorkTile
               key={project.slug}
-              project={project}
-              featured={false}
-              delay={(i as 0 | 1 | 2 | 3) || 0}
-              gradientIndex={i}
+              href={`/work/${project.slug}`}
+              tag={project.category}
+              name={project.title}
+              image={{ src: project.thumbnailPath, alt: "" }}
             />
           ))}
         </SwipeRow>
       </div>
       <Button href="/work" className="block-gap">
-        all projects <ArrowIcon />
+        all projects
       </Button>
     </Surface>
   );

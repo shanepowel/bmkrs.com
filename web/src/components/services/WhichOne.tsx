@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Kicker, Section } from "@bmkrs/ui";
+import { Kicker, LinkIndex, LinkRow, Section } from "@bmkrs/ui";
 
 const ROUTES = [
   { situation: "not sure what's wrong, just that something is", target: "brand check", href: "#brand-check" },
@@ -15,16 +14,13 @@ export function WhichOne() {
   return (
     <Section theme="paper">
       <Kicker theme="paper">which one is mine?</Kicker>
-      <ul className="mt-8 max-w-[65ch] space-y-4">
-        {ROUTES.map((item) => (
-          <li key={item.situation} className="border-t border-line pt-4 first:border-t-0 first:pt-0">
-            {item.situation} →{" "}
-            <Link href={item.href} className="font-medium text-accent hover:underline">
-              {item.target}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-8">
+        <LinkIndex>
+          {ROUTES.map((item) => (
+            <LinkRow key={item.href} href={item.href} name={item.situation} description={item.target} />
+          ))}
+        </LinkIndex>
+      </div>
       <p className="lead mt-8 max-w-[65ch]">still not sure? that&apos;s what the brand check is for.</p>
     </Section>
   );

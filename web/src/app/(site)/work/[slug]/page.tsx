@@ -3,10 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { ArrowIcon } from "@/components/bmkrs/ArrowIcon";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
-import { Kicker, Section } from "@bmkrs/ui";
+import { Button, GhostButton, Kicker, Section } from "@bmkrs/ui";
 import { ServiceTags } from "@/components/bmkrs/ServiceTags";
 import {
   getNextProject,
@@ -15,6 +14,7 @@ import {
   hasFilledMetrics,
   isFilled,
 } from "@/lib/content";
+import { publicMetrics } from "@/lib/content/public-shelf";
 import { creativeWorkJsonLd, metadataWithImage, siteUrl } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import type { MediaItem } from "@/lib/types";
@@ -124,9 +124,7 @@ export default async function CaseStudyPage({ params }: Props) {
     ? project.serviceTags
     : [project.category];
 
-  const metrics = (project.results ?? project.outcomeMetrics ?? []).filter(
-    (m) => isFilled(m.value) && isFilled(m.label),
-  );
+  const metrics = publicMetrics(project.results ?? project.outcomeMetrics);
   const outcomeNarrative = project.resultsNarrative || project.outcome;
   const showOutcome = isFilled(outcomeNarrative) || hasFilledMetrics(metrics);
 
@@ -292,13 +290,9 @@ export default async function CaseStudyPage({ params }: Props) {
                   </span>
                 </Link>
               ) : (
-                <Link href="/work" className="btn-primary">
-                  all projects <ArrowIcon />
-                </Link>
+                <Button href="/work">all projects</Button>
               )}
-              <Link href="/contact" className="btn-ghost">
-                start a project
-              </Link>
+              <GhostButton href="/contact">start a project</GhostButton>
             </div>
           </div>
         </div>

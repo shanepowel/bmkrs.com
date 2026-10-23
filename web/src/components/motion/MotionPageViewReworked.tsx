@@ -1,9 +1,25 @@
 "use client";
 
 import { motion, MotionConfig } from "framer-motion";
-import { C, BenchKicker, mono, PrimaryButton } from "@/lib/bench-ui";
+import {
+  Body,
+  Button,
+  Close,
+  GhostButton,
+  H1,
+  H2,
+  Kicker,
+  OrangeButton,
+  RuledCell,
+  RuledGrid,
+  StatusDot,
+  StepLine,
+  Surface,
+  TierCard,
+  TierGrid,
+} from "@bmkrs/ui";
 import { fadeUp, stagger } from "./animations";
-import { MotionHeroSection } from "./MotionHeroSection";
+import { StarsOrbit } from "./StarsOrbit";
 
 const SYMPTOMS = [
   {
@@ -59,6 +75,7 @@ const TIERS = [
     name: "motion two",
     price: "from £3,000/month",
     b: "the brand kept growing: everything in one, plus campaigns, the content programme, and the quarterly review with numbers.",
+    featured: true,
   },
   {
     name: "motion partner",
@@ -70,96 +87,56 @@ const TIERS = [
 export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
-      <MotionHeroSection>
-        <BenchKicker surface="ink">keep moving</BenchKicker>
-        <h1
-          className="max-w-[12ch] font-medium"
-          style={{
-            fontSize: "clamp(2.75rem,6.5vw,6rem)",
-            lineHeight: 0.98,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          always in motion.
-        </h1>
-        <p style={{ color: C.inkBody }} className="mt-7 max-w-[55ch] text-lg leading-relaxed">
-          launches are exciting. momentum is hard. motion is the team that keeps your brand moving
-          month after month: senior strategy, creative and delivery, without hiring an internal team
-          or re-briefing a new supplier every quarter.
-        </p>
-        <div className="mt-9 flex flex-wrap items-center gap-6">
-          <PrimaryButton href="#tiers">see the tiers + prices</PrimaryButton>
-          <a
-            href="#month"
-            style={{ ...mono, color: C.inkBody }}
-            className="text-[13px] underline-offset-4 hover:underline"
-          >
-            what a month looks like →
-          </a>
+      <Surface theme="ink">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+          <div>
+            <Kicker>keep moving</Kicker>
+            <H1 className="mt-4 max-w-[12ch]">always in motion.</H1>
+            <Body lead className="mt-7">
+              launches are exciting. momentum is hard. motion is the team that keeps your brand moving
+              month after month: senior strategy, creative and delivery, without hiring an internal team
+              or re-briefing a new supplier every quarter.
+            </Body>
+            <div className="mt-9 flex flex-wrap items-center gap-6">
+              <OrangeButton href="#tiers">see the tiers + prices</OrangeButton>
+              <GhostButton href="#month">what a month looks like →</GhostButton>
+            </div>
+          </div>
+          <div className="hidden lg:block">
+            <StarsOrbit />
+          </div>
         </div>
-      </MotionHeroSection>
+      </Surface>
 
-      <section style={{ background: C.paper, color: C.paperText }}>
-        <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <BenchKicker>you might need this if</BenchKicker>
-          <h2
-            className="font-medium"
-            style={{
-              fontSize: "clamp(1.9rem,3.5vw,3rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            growth creates complexity. complexity eats momentum.
-          </h2>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3"
-          >
-            {SYMPTOMS.map((s) => (
-              <motion.div
-                key={s.t}
-                variants={fadeUp}
-                className="pt-5"
-                style={{ borderTop: "1px solid rgba(24,22,19,0.15)" }}
-              >
-                <h3 className="mb-2 text-xl font-medium">{s.t}</h3>
-                <p style={{ color: C.paperBody }} className="text-[15px] leading-relaxed">
-                  {s.b}
-                </p>
+      <Surface theme="paper">
+        <Kicker>you might need this if</Kicker>
+        <H2 className="mt-3 max-w-[18ch]">growth creates complexity. complexity eats momentum.</H2>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="mt-10"
+        >
+          <RuledGrid>
+            {SYMPTOMS.map((item) => (
+              <motion.div key={item.t} variants={fadeUp}>
+                <RuledCell title={item.t} body={item.b} />
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
+          </RuledGrid>
+        </motion.div>
+      </Surface>
 
-      <section
-        style={{
-          background: C.paper,
-          color: C.paperText,
-          borderTop: "1px solid rgba(24,22,19,0.15)",
-        }}
-      >
-        <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-[0.9fr_1fr]">
+      <Surface theme="ink">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr]">
           <div>
-            <BenchKicker>what&apos;s included</BenchKicker>
-            <h2
-              className="font-medium"
-              style={{
-                fontSize: "clamp(1.9rem,3.5vw,3rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              one partner. everything moving.
-            </h2>
-            <p style={{ color: C.paperBody }} className="mt-5 max-w-[50ch] text-[15px] leading-relaxed">
+            <Kicker>what&apos;s included</Kicker>
+            <H2 className="mt-3">one partner. everything moving.</H2>
+            <Body className="mt-5">
               instead of managing several suppliers, you get one embedded team with one plan and one
               report. the mix flexes month to month; the rhythm never does.
-            </p>
+            </Body>
           </div>
           <motion.ul
             variants={stagger}
@@ -169,175 +146,64 @@ export function MotionPageViewReworked() {
             className="grid gap-x-8 sm:grid-cols-2"
           >
             {INCLUDED.map((item) => (
-              <motion.li
-                key={item}
-                variants={fadeUp}
-                className="flex items-baseline gap-2.5 py-3"
-                style={{ borderTop: "1px solid rgba(24,22,19,0.15)" }}
-              >
-                <span
-                  aria-hidden
-                  className="inline-block h-[7px] w-[7px] shrink-0 rounded-full"
-                  style={{ background: C.orange }}
-                />
-                <span className="text-[14px]">{item}</span>
+              <motion.li key={item} variants={fadeUp} className="flex items-center gap-3 py-3">
+                <StatusDot />
+                <span>{item}</span>
               </motion.li>
             ))}
           </motion.ul>
         </div>
-      </section>
+      </Surface>
 
-      <section style={{ background: C.orange, color: "#181613" }} className="overflow-hidden">
-        <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-medium"
-            style={{
-              fontSize: "clamp(2.25rem,5vw,4.5rem)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            consistency compounds.
-          </motion.h2>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-3"
-          >
-            {["brand", "content", "campaigns", "customers", "growth"].map((item, i, arr) => (
-              <motion.span key={item} variants={fadeUp} className="flex items-center gap-4">
-                <span style={{ ...mono }} className="rounded-full border px-5 py-2.5 text-[14px]">
-                  {item}
-                </span>
-                {i < arr.length - 1 && (
-                  <span aria-hidden className="text-xl">
-                    →
-                  </span>
-                )}
-              </motion.span>
+      <Surface theme="orange">
+        <H2>consistency compounds.</H2>
+        <div className="mt-8">
+          <StepLine
+            steps={["brand", "content", "campaigns", "customers", "growth"]}
+            body="every month the brand stays in motion, the next month costs less: recognition builds, content reuses, audiences warm. stop-start resets the meter. that is the entire economics of motion."
+          />
+        </div>
+      </Surface>
+
+      <Surface theme="ink" id="month">
+        <Kicker>what it actually looks like</Kicker>
+        <H2 className="mt-3">a month in motion.</H2>
+        <div className="mt-10">
+          <RuledGrid>
+            {MONTH.map((step) => (
+              <RuledCell key={step.n} kicker={step.n} title={step.t} body={step.b} />
             ))}
-          </motion.div>
-          <p
-            style={{ ...mono, color: "#4A1B0C" }}
-            className="mt-10 max-w-[60ch] text-[13px] leading-relaxed"
-          >
-            every month the brand stays in motion, the next month costs less: recognition builds,
-            content reuses, audiences warm. stop-start resets the meter. that is the entire
-            economics of motion.
-          </p>
+          </RuledGrid>
         </div>
-      </section>
+        <Body className="mt-10">
+          then we plan again. that is the whole rhythm: no retainer mystery, no activity theatre. a
+          team in motion and a paper trail that proves it.
+        </Body>
+      </Surface>
 
-      <section id="month" style={{ background: C.paper, color: C.paperText }}>
-        <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <BenchKicker>what it actually looks like</BenchKicker>
-          <h2
-            className="font-medium"
-            style={{
-              fontSize: "clamp(1.9rem,3.5vw,3rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            a month in motion.
-          </h2>
-          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3">
-            {MONTH.map((s) => (
-              <motion.div
-                key={s.n}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="pt-5"
-                style={{ borderTop: "1px solid rgba(24,22,19,0.15)" }}
-              >
-                <p style={{ ...mono, color: C.orange }} className="mb-2 text-[12px]">
-                  {s.n}
-                </p>
-                <h3 className="mb-2 text-lg font-medium">{s.t}</h3>
-                <p style={{ color: C.paperBody }} className="text-[14px] leading-relaxed">
-                  {s.b}
-                </p>
-              </motion.div>
+      <Surface theme="ink" id="tiers" raised>
+        <Kicker>tiers</Kicker>
+        <H2 className="mt-3 max-w-[16ch]">three speeds. prices on the page, like grown-ups.</H2>
+        <div className="mt-10">
+          <TierGrid>
+            {TIERS.map((tier) => (
+              <TierCard
+                key={tier.name}
+                eyebrow={tier.price}
+                title={tier.name}
+                blurb={tier.b}
+                featured={tier.featured}
+              />
             ))}
-          </div>
-          <p style={{ color: C.paperBody }} className="mt-10 max-w-[60ch] text-[15px] leading-relaxed">
-            then we plan again. that is the whole rhythm: no retainer mystery, no activity theatre.
-            a team in motion and a paper trail that proves it.
-          </p>
+          </TierGrid>
         </div>
-      </section>
+        <Body className="mt-10">30 days notice either way, no lock-in. you stay because it works.</Body>
+      </Surface>
 
-      <section id="tiers" style={{ background: C.ink, color: C.inkText }}>
-        <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <BenchKicker surface="ink">tiers</BenchKicker>
-          <h2
-            className="font-medium"
-            style={{
-              fontSize: "clamp(1.9rem,3.5vw,3rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            three speeds. prices on the page, like grown-ups.
-          </h2>
-          <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
-            {TIERS.map((t) => (
-              <motion.div
-                key={t.name}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="pt-5"
-                style={{ borderTop: `1px solid ${C.inkRule}` }}
-              >
-                <h3 className="text-xl font-medium">{t.name}</h3>
-                <p style={{ ...mono, color: C.orange }} className="mt-1.5 text-[13px]">
-                  {t.price}
-                </p>
-                <p style={{ color: C.inkBody }} className="mt-3 text-[14px] leading-relaxed">
-                  {t.b}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-          <p style={{ ...mono, color: C.inkFaint }} className="mt-10 text-[12px]">
-            30 days notice either way, no lock-in. you stay because it works.
-          </p>
-        </div>
-      </section>
-
-      <section
-        style={{ background: C.ink, borderTop: `1px solid ${C.inkRule}`, color: C.inkText }}
-      >
-        <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
-          <h2
-            className="max-w-[16ch] font-medium"
-            style={{
-              fontSize: "clamp(1.9rem,3.5vw,3rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            your launch was the beginning.
-          </h2>
-          <p style={{ color: C.inkBody }} className="mt-5 max-w-[55ch] text-[15px] leading-relaxed">
-            tell us where the momentum keeps leaking, and we will tell you which tier fixes it, or
-            that you do not need motion yet. both answers are free.
-          </p>
-          <div className="mt-8">
-            <PrimaryButton href="/contact">let&apos;s talk</PrimaryButton>
-          </div>
-        </div>
-      </section>
+      <Close
+        title="your launch was the beginning."
+        action={<Button href="/contact">let&apos;s talk</Button>}
+      />
     </MotionConfig>
   );
 }

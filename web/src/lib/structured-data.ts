@@ -1,6 +1,7 @@
 import { BRAND_AVATAR } from "@/lib/brand";
+import type { FaqItem } from "@/lib/content/expansion-v2";
 import { SITE_URL } from "@/lib/og-image";
-import type { JournalPost } from "@/lib/types";
+import type { JournalPost, Product } from "@/lib/types";
 
 const SITE = SITE_URL;
 const ORG_ID = `${SITE}/#organization`;
@@ -12,6 +13,9 @@ export function organizationSchema() {
     "@id": ORG_ID,
     name: "bmkrs.",
     legalName: "b makers ltd",
+    alternateName: ["bmkrs", "b makers ltd"],
+    foundingDate: "2013",
+    founder: { "@type": "Person", name: "Shane Powell" },
     url: SITE,
     logo: `${SITE}${BRAND_AVATAR}`,
     description:
@@ -33,17 +37,75 @@ export function organizationSchema() {
   };
 }
 
+function gbpAmount(price?: string): string | undefined {
+  if (!price) return undefined;
+  const amount = price.replace(/[^0-9.]/g, "");
+  return amount || undefined;
+}
+
+function productUrl(product: Product) {
+  return product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`;
+}
+
+export function offerCatalogSchema(products: Product[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "brand, product and communications studio",
+    provider: { "@id": ORG_ID },
+    areaServed: "GB",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "bmkrs services",
+      itemListElement: products.map((product) => {
+        const amount = gbpAmount(product.price ?? product.priceFrom);
+        const offer: Record<string, unknown> = {
+          "@type": "Offer",
+          name: product.name,
+          url: productUrl(product),
+          priceCurrency: "GBP",
+        };
+        if (amount && product.priceQualifier === "from") {
+          offer.priceSpecification = {
+            "@type": "PriceSpecification",
+            minPrice: amount,
+            priceCurrency: "GBP",
+          };
+        } else if (amount) {
+          offer.price = amount;
+        }
+        return offer;
+      }),
+    },
+  };
+}
+
+export function faqPageSchema(faqs: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
 export function articleSchema(post: {
   title: string;
   slug: string;
   excerpt: string;
   publishedAt: string;
+  updatedAt?: string;
   author: string;
   authorSlug?: string;
   image?: string;
 }) {
   const date = post.publishedAt.slice(0, 10);
+  const modified = (post.updatedAt ?? post.publishedAt).slice(0, 10);
   const image = post.image?.startsWith("http") ? post.image : post.image ? `${SITE}${post.image}` : `${SITE}${BRAND_AVATAR}`;
+  const namedAuthor = post.author && post.author.toLowerCase() !== "bmkrs";
 
   return {
     "@context": "https://schema.org",
@@ -53,13 +115,15 @@ export function articleSchema(post: {
     url: `${SITE}/journal/${post.slug}`,
     mainEntityOfPage: `${SITE}/journal/${post.slug}`,
     datePublished: date,
-    dateModified: date,
+    dateModified: modified,
     image,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      url: post.authorSlug ? `${SITE}/about#${post.authorSlug}` : SITE,
-    },
+    author: namedAuthor
+      ? {
+          "@type": "Person",
+          name: post.author,
+          url: post.authorSlug ? `${SITE}/about#${post.authorSlug}` : SITE,
+        }
+      : { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
   };
 }

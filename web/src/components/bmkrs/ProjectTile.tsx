@@ -36,7 +36,7 @@ export function ProjectTile({
       >
         <div className={cn("proj-media", grad)}>
           {project.projectType ? (
-            <span className="absolute left-4 top-4 z-10 rounded-full bg-bg/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink">
+            <span className="absolute left-4 top-4 z-10 rounded-full bg-bg/90 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-ink">
               {project.projectType === "studio" ? "built in the studio" : "client work"}
             </span>
           ) : null}
@@ -83,7 +83,7 @@ export function ProjectTilePlaceholder({
   return (
     <Link href={href} className="proj-tile group block">
       <div className={cn("proj-media", grad)}>
-        <span className="absolute inset-0 grid place-items-center font-display text-[clamp(40px,7vw,120px)] font-bold text-ink/15">
+        <span className="absolute inset-0 grid place-items-center font-display text-[clamp(40px,7vw,120px)] font-medium text-ink/15">
           {label || initials(title)}
         </span>
       </div>

@@ -455,7 +455,7 @@ summary:focus-visible,
   }
 
   .field-label {
-    @apply mb-2 block text-[13px] font-semibold text-accent;
+    @apply mb-2 block text-[13px] font-medium text-accent;
   }
 
   .field-input {

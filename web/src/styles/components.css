@@ -1030,7 +1030,7 @@
   align-items: center;
   gap: 0.25rem;
   font-size: var(--bmkrs-step--1);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--bmkrs-muted-on-ink);
 }
 .app-link:hover {

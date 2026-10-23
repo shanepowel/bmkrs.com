@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { PageHeroSplit } from "@/components/bmkrs/PageHeroSplit";
-import { Reveal } from "@/components/bmkrs/Reveal";
-import { H2, Kicker, Section } from "@bmkrs/ui";
+import { Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
 import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
+import { isOnPublicShelf } from "@/lib/content/public-shelf";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structured-data";
+import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "work",
@@ -16,59 +15,33 @@ export const metadata: Metadata = pageMetadata(
   "/work",
 );
 
-function ProjectGrid({
-  projects,
-}: {
-  projects: Awaited<ReturnType<typeof getProjects>>;
-}) {
+function projectTag(project: Project) {
+  return project.serviceTags?.length
+    ? project.serviceTags.join(" · ")
+    : (project.sector ?? project.category);
+}
+
+function ProjectGrid({ projects }: { projects: Project[] }) {
   if (!projects.length) return null;
 
   return (
-    <div className="work-grid work-grid--index">
+    <WorkGrid>
       {projects.map((project) => (
-        <Link
+        <WorkTile
           key={project.slug}
           href={`/work/${project.slug}`}
-          className="work-card group block overflow-hidden rounded-[var(--radius)]"
-        >
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={project.thumbnailPath}
-              alt={project.title}
-              fill
-              className="object-cover transition duration-500 group-hover:scale-[1.04]"
-              sizes="(max-width: 768px) 100vw, 400px"
-            />
-            <div className="work-card__overlay" aria-hidden="true">
-              <span className="eyebrow mb-2 block">
-                {project.serviceTags?.length
-                  ? project.serviceTags.join(" · ")
-                  : (project.sector ?? project.category)}
-              </span>
-              <span className="display text-xl">{project.title}</span>
-            </div>
-          </div>
-          <div className="meta">
-            <span className="eyebrow mb-2 block">
-              {project.serviceTags?.length
-                ? project.serviceTags.join(" · ")
-                : (project.sector ?? project.category)}
-            </span>
-            <h3 className="display text-xl">{project.title}</h3>
-            {project.outcomeLine ? (
-              <p className="mono mt-2 text-meta text-muted">{project.outcomeLine}</p>
-            ) : (
-              <p>{project.positioning ?? project.tagline}</p>
-            )}
-          </div>
-        </Link>
+          tag={projectTag(project)}
+          name={project.title}
+          detail={project.outcomeLine || project.positioning || project.tagline}
+          image={{ src: project.thumbnailPath, alt: "" }}
+        />
       ))}
-    </div>
+    </WorkGrid>
   );
 }
 
 export default async function WorkPage() {
-  const projects = await getProjects();
+  const projects = (await getProjects()).filter(isOnPublicShelf);
   const clientWork = projects.filter((p) => p.projectType !== "studio");
   const studioWork = projects.filter((p) => p.projectType === "studio");
 
@@ -83,22 +56,16 @@ export default async function WorkPage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <PageHeroSplit
-        image={{ src: heroImage, alt: pageHeroImages.work.alt }}
-        minHeight="min-h-[58vh]"
-      >
-        <Reveal>
-          <p className="eyebrow">work</p>
-        </Reveal>
-        <Reveal delay={1}>
-          <h1 className="display mt-4 text-[clamp(2.25rem,8vw,6.5rem)] font-medium leading-[0.98] tracking-[-0.03em]">
+      <PageHero
+        eyebrow="work"
+        title={
+          <>
             we build <span className="text-accent">brands.</span>
-          </h1>
-        </Reveal>
-        <Reveal delay={2}>
-          <p className="lead mt-7 max-w-[60ch]">{workPageIntro}</p>
-        </Reveal>
-      </PageHeroSplit>
+          </>
+        }
+        lede={workPageIntro}
+        image={{ src: heroImage, alt: pageHeroImages.work.alt }}
+      />
 
       <Section theme="ink">
         <H2 theme="ink">client work</H2>
@@ -110,9 +77,11 @@ export default async function WorkPage() {
       <Section theme="paper">
         <Kicker theme="paper">{workHowProjectRuns.kicker}</Kicker>
         <H2 theme="paper">{workHowProjectRuns.headline}</H2>
-        <div className="mt-8 max-w-[65ch] space-y-6 text-lg leading-relaxed">
+        <div className="mt-8 max-w-[65ch] space-y-6">
           {workHowProjectRuns.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            <Body key={paragraph.slice(0, 32)} theme="paper">
+              {paragraph}
+            </Body>
           ))}
         </div>
         <p className="mono mt-8 text-meta">
@@ -123,10 +92,10 @@ export default async function WorkPage() {
 
         <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
           <H2 theme="paper">built in the studio</H2>
-          <p className="lead mt-3 max-w-[52ch]">
+          <Body theme="paper" lead className="mt-3">
             we are builders, so we build our own. these are bmkrs products: proof we live with the
             consequences of our own advice.
-          </p>
+          </Body>
           <div className="mt-8">
             <ProjectGrid projects={studioWork} />
           </div>
@@ -134,13 +103,9 @@ export default async function WorkPage() {
       </Section>
 
       <Section theme="ink">
-        <div className="work-grid work-grid--index max-w-md">
-          <Link href="/contact" className="work-card work-card--cta">
-            <div className="meta meta--static">
-              <span className="eyebrow">+ your brand next</span>
-              <h3 className="display text-2xl">start a project</h3>
-            </div>
-          </Link>
+        <Kicker theme="ink">your brand next</Kicker>
+        <div className="mt-6">
+          <Button href="/contact">start a project</Button>
         </div>
       </Section>
     </main>

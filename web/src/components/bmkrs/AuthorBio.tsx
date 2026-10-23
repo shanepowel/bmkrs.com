@@ -7,7 +7,7 @@ export function AuthorBio({ name }: { name: string }) {
 
   return (
     <footer className="author-bio mt-14 border-t-2 border-[var(--line)] pt-8">
-      <p className="text-sm font-semibold text-ink">
+      <p className="text-sm font-medium text-ink">
         <Link href={`/about#${bio.slug}`} className="hover:text-accent">
           {bio.name}
         </Link>

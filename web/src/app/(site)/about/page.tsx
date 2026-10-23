@@ -4,6 +4,8 @@ import { AboutTicker } from "@/components/bmkrs/AboutTicker";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { PortraitTile } from "@/components/bmkrs/PortraitTile";
 import {
+  Button,
+  GhostButton,
   H2,
   Kicker,
   Section,
@@ -322,16 +324,8 @@ export default async function AboutPage() {
             us.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-8">
-            <Link href="/contact" className="btn-primary">
-              start a project
-            </Link>
-            <Link
-              href="/journal"
-              className="text-meta underline-offset-4 hover:underline"
-              style={{ ...monoStyle, color: ink.body }}
-            >
-              or just read the journal first →
-            </Link>
+            <Button href="/contact">start a project</Button>
+            <GhostButton href="/journal">read the journal first</GhostButton>
           </div>
         </div>
       </Section>

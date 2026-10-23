@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Footer } from "@bmkrs/ui";
 import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
 import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
@@ -24,56 +25,36 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const reg = companyLine(settings.companyNumber, settings.registeredAddress);
 
   return (
-    <footer className="site-footer" data-surface="ink">
-      <div className="site-footer__inner">
-        <div className="site-footer__grid">
-          <div className="site-footer__capture">
-            <FooterEmailCapture />
-          </div>
-          <nav className="site-footer__nav" aria-label="make">
-            <span className="site-footer__nav-label">make</span>
-            <ul role="list">
-              {MAKE_LINKS.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav className="site-footer__nav" aria-label="studio">
-            <span className="site-footer__nav-label">studio</span>
-            <ul role="list">
-              {STUDIO_LINKS.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        <div className="site-footer__legal-row">
-          <span className="mono site-footer__legal-contact">
+    <Footer
+      capture={<FooterEmailCapture />}
+      columns={[
+        { label: "make", links: MAKE_LINKS },
+        { label: "studio", links: STUDIO_LINKS },
+      ]}
+      meta={
+        <>
+          <span>
             <a href={`mailto:${general}`}>{general}</a>
             <span aria-hidden="true"> · </span>
             london, and wherever you are
           </span>
-          <span className="mono site-footer__legal-quip">
+          <span>
             © {year} {settings.companyName ?? "b makers ltd"} · {quip}
           </span>
-        </div>
-
-        <div className="site-footer__legal mono">
+        </>
+      }
+      legal={
+        <>
           <p>{reg}</p>
-          <p className="site-footer__legal-links">
+          <p>
             <Link href="/legal/privacy">privacy notice</Link>
             <span aria-hidden="true"> · </span>
             <Link href="/legal/cookies">cookies notice</Link>
             <span aria-hidden="true"> · </span>
             <Link href="/legal/terms">terms of business</Link>
           </p>
-        </div>
-      </div>
-    </footer>
+        </>
+      }
+    />
   );
 }

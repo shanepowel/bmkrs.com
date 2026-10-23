@@ -11,7 +11,7 @@ function parseBoldSegments(text: string, keyStart = 0): ReactNode[] {
     const bold = /^\*\*([^*]+)\*\*$/.exec(part);
     if (bold) {
       nodes.push(
-        <strong key={key++} className="font-semibold text-ink">
+        <strong key={key++} className="font-medium text-ink">
           {bold[1]}
         </strong>
       );
@@ -70,7 +70,7 @@ export function parseArticleMarkdown(markdown: string): ReactNode[] {
       nodes.push(
         <h3
           key={i}
-          className="display mb-4 mt-10 text-[clamp(1.35rem,3vw,1.75rem)] font-semibold lowercase first:mt-0"
+          className="display mb-4 mt-10 text-[clamp(1.35rem,3vw,1.75rem)] font-medium lowercase first:mt-0"
         >
           {trimmed.slice(4)}
         </h3>
@@ -91,7 +91,7 @@ export function parseArticleMarkdown(markdown: string): ReactNode[] {
                 <span>
                   {boldMatch ? (
                     <>
-                      <strong className="font-semibold text-ink">{boldMatch[1]}</strong>{" "}
+                      <strong className="font-medium text-ink">{boldMatch[1]}</strong>{" "}
                       {parseInline(boldMatch[2])}
                     </>
                   ) : (

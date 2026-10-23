@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AppLink } from "@/components/bmkrs/AppLink";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { H1, H2, Kicker, Section } from "@bmkrs/ui";
+import { Button, GhostButton, H1, H2, Kicker, Section } from "@bmkrs/ui";
 import { getNetworkPage, getSiteSettings } from "@/lib/content";
 import {
   benchRowsToTiles,
@@ -193,12 +192,8 @@ export default async function NetworkPage() {
           </H2>
           <p className="lead mt-6 max-w-[65ch]">{page.connects}</p>
           <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/motion" className="btn-primary">
-              explore motion
-            </Link>
-            <Link href="/services" className="text-sm font-semibold text-muted hover:text-accent">
-              our services
-            </Link>
+            <Button href="/motion">explore motion</Button>
+            <GhostButton href="/services">our services</GhostButton>
           </div>
         </Section>
       ) : null}

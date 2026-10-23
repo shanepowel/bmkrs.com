@@ -1,3 +1,5 @@
+import { Button } from "@bmkrs/ui";
+
 export function AppLink({
   href,
   children,
@@ -10,13 +12,14 @@ export function AppLink({
   className?: string;
 }) {
   return (
-    <a
-      className={primary ? `btn-primary ${className ?? ""}`.trim() : `app-link ${className ?? ""}`.trim()}
+    <Button
       href={href}
-      rel="noopener noreferrer"
+      variant={primary ? "primary" : "ghost"}
+      className={className}
       target="_blank"
+      rel="noopener noreferrer"
     >
       {children} <span aria-hidden="true">↗</span>
-    </a>
+    </Button>
   );
 }
