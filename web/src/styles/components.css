@@ -219,7 +219,7 @@
 .contact-form-panel {
   background: var(--bmkrs-paper-bright, #f1efe8);
   color: var(--bmkrs-ink);
-  border-radius: var(--radius, 24px);
+  border-radius: var(--bmkrs-radius-card, 24px);
   padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 

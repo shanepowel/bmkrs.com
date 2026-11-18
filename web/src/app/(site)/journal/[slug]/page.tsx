@@ -111,13 +111,13 @@ export default async function JournalArticlePage({ params }: Props) {
               {post.title}
             </H1>
             {post.author && (
-              <p className="mt-4 text-sm text-muted">
+              <p className="mt-4 text-sm text-bmkrs-muted">
                 {post.author.name}
                 {post.author.discipline ? ` · ${post.author.discipline}` : ""}
               </p>
             )}
             {post.cover?.url && (
-              <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[var(--radius)]">
+              <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[var(--bmkrs-radius-card)]">
                 <Image
                   src={post.cover.url}
                   alt={post.cover.alt ?? post.title}

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Button as UiButton } from "@/components/ui/button";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Button, Field, H1, Kicker, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
+import { Field, H1, Kicker, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import {
   contactBudgetReassurance,
@@ -116,7 +117,7 @@ export function ContactExperience({
   }
 
   return (
-    <main className="contact-shell">
+    <main className="contact-page">
       <section className="section-pad contact-split-section" data-surface="ink">
         <div className="wrap contact-split">
           <div className="contact-intro">
@@ -150,7 +151,7 @@ export function ContactExperience({
             as="div"
             theme="paper"
             pad="tight"
-            className="contact-form-col"
+            className="contact-form-panel contact-form-col"
             innerClassName="!mx-0 !max-w-none !px-[clamp(1.5rem,4vw,2.5rem)]"
           >
             {status === "sent" ? (
@@ -193,11 +194,11 @@ export function ContactExperience({
                   placeholder="the product, the stage you are at, what you need from us."
                 />
                 <div className="cx-full">
-                  <Button type="submit" disabled={status === "sending"}>
+                  <UiButton type="submit" variant="brand" size="lg" disabled={status === "sending"}>
                     {status === "sending"
                       ? brandMessaging.contactSending
                       : `${brandMessaging.contactSubmit} →`}
-                  </Button>
+                  </UiButton>
                 </div>
                 {fieldError ? <p className="cx-full text-meta">{fieldError}</p> : null}
               </form>

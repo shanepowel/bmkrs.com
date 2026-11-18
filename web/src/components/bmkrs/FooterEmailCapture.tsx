@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { SURFACE } from "@/lib/surfaces";
 
 export function FooterEmailCapture() {
@@ -46,13 +47,9 @@ export function FooterEmailCapture() {
             aria-label="email"
             className="footer-capture__input"
           />
-          <button
-            type="submit"
-            className="footer-capture__btn"
-            disabled={status === "sending"}
-          >
+          <Button type="submit" variant="brand" disabled={status === "sending"} className="footer-capture__btn">
             {status === "sending" ? "sending..." : "send the next one"}
-          </button>
+          </Button>
         </form>
       )}
       {status === "error" ? (

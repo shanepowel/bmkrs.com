@@ -11,9 +11,9 @@ export function AuthorBio({ name }: { name: string }) {
         <Link href={`/about#${bio.slug}`} className="hover:text-accent">
           {bio.name}
         </Link>
-        <span className="text-muted"> · {bio.discipline}</span>
+        <span className="text-bmkrs-muted"> · {bio.discipline}</span>
       </p>
-      <p className="mt-2 max-w-[52ch] text-[15px] leading-relaxed text-muted">{bio.footer}</p>
+      <p className="mt-2 max-w-[52ch] text-[15px] leading-relaxed text-bmkrs-muted">{bio.footer}</p>
     </footer>
   );
 }
