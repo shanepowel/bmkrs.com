@@ -46,7 +46,7 @@ export default async function HomePage() {
 
   return (
     <main data-surface="ink">
-      <HomeHero hero={home.hero} frames={reelFrames} />
+      <HomeHero frames={reelFrames} />
 
       <HomeMarquee items={home.marqueeItems} />
 

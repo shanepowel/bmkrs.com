@@ -19,7 +19,8 @@ import {
   TierGrid,
 } from "@bmkrs/ui";
 import { fadeUp, stagger } from "./animations";
-import { StarsOrbit } from "./StarsOrbit";
+import { MotionLoop } from "./MotionLoop";
+import { brandMessaging } from "@/lib/content/messaging";
 
 const SYMPTOMS = [
   {
@@ -103,7 +104,7 @@ export function MotionPageViewReworked() {
             </div>
           </div>
           <div className="hidden lg:block">
-            <StarsOrbit />
+            <MotionLoop />
           </div>
         </div>
       </Surface>
@@ -202,7 +203,7 @@ export function MotionPageViewReworked() {
 
       <Close
         title="production was the beginning."
-        action={<Button href="/contact">start a build</Button>}
+        action={<Button href="/contact">{brandMessaging.ctaPrimary}</Button>}
       />
     </MotionConfig>
   );
