@@ -1247,3 +1247,14 @@ main:has([data-bmkrs-hero]) {
   outline: 2px solid var(--bmkrs-orange);
   outline-offset: 4px;
 }
+
+/* kept last so it wins over the reel's own transition declarations above */
+@media (prefers-reduced-motion: reduce) {
+  .bmkrs-reel__frame,
+  .bmkrs-reel__frame.is-active,
+  .bmkrs-reel__tick span,
+  .bmkrs-reel__name::after {
+    transition: none;
+    transform: none;
+  }
+}

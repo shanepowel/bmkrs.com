@@ -33,7 +33,11 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export function WorkReel({ frames, interval = 4200, label = "live work", className }: WorkReelProps) {
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  // hover and keyboard focus pause independently, so leaving with the mouse
+  // never restarts the reel under a focused link or tick
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const paused = hovered || focused;
   const count = frames.length;
 
   useEffect(() => {
@@ -48,10 +52,12 @@ export function WorkReel({ frames, interval = 4200, label = "live work", classNa
   return (
     <figure
       className={clsx("bmkrs-reel", className)}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocused(false);
+      }}
     >
       <div className="bmkrs-reel__plate" aria-hidden>
         <span>{label}</span>

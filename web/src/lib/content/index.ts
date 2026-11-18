@@ -24,7 +24,7 @@ import {
 } from "./journal-publish";
 import { getMarkdownJournalPosts } from "./journal-markdown";
 import { fallbackPosts as legacyJournalPosts } from "./journal-posts-fallback";
-import { mergePostCover, mergeProjectImages } from "./image-fallbacks";
+import { isUsableImage, mergePostCover, mergeProjectImages } from "./image-fallbacks";
 import { outcomeLineForSlug } from "./expansion-v2";
 import { fallbackPressKit } from "./press-kit-fallback";
 import { fallbackNetworkPage } from "./network-page-fallback";
@@ -153,7 +153,7 @@ const SHOWCASE_IMAGE_HOLD = new Set(["flipster"]);
 /** True when a project's thumbnail is real project imagery, not a generic studio or marketing image. */
 export function hasShowcaseImagery(project: Project): boolean {
   const src = project.thumbnailPath ?? "";
-  if (!src || SHOWCASE_IMAGE_HOLD.has(project.slug)) return false;
+  if (!isUsableImage(src) || SHOWCASE_IMAGE_HOLD.has(project.slug)) return false;
   return !src.startsWith("/images/marketing/") && !src.includes("placeholder");
 }
 
