@@ -19,7 +19,7 @@ import {
   TierGrid,
 } from "@bmkrs/ui";
 import { fadeUp, stagger } from "./animations";
-import { StarsOrbit } from "./StarsOrbit";
+import { MotionLoop } from "./MotionLoop";
 import { brandMessaging } from "@/lib/content/messaging";
 
 const SYMPTOMS = [
@@ -104,7 +104,7 @@ export function MotionPageViewReworked() {
             </div>
           </div>
           <div className="hidden md:block md:mx-auto md:w-full md:max-w-[30rem] lg:mx-0">
-            <StarsOrbit />
+            <MotionLoop />
           </div>
         </div>
       </Surface>

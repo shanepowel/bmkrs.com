@@ -21,7 +21,7 @@ export function isIncompleteCaseStudy(project: Project): boolean {
 export function isOnPublicShelf(project: Project): boolean {
   // The client asked to publish the current work set. Keep only real metrics and
   // client words in the results/quote blocks; incomplete copy can be labelled.
-  return true;
+  return Boolean(project.slug);
 }
 
 export function publicMetrics(metrics?: CaseStudyMetric[] | null): CaseStudyMetric[] {
