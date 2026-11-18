@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
+import { Accent, Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
 import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
+import { brandMessaging } from "@/lib/content/messaging";
 import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { isOnPublicShelf } from "@/lib/content/public-shelf";
@@ -60,7 +61,7 @@ export default async function WorkPage() {
         eyebrow="work"
         title={
           <>
-            we build <span className="text-accent">brands.</span>
+            we ship <Accent>products.</Accent>
           </>
         }
         lede={workPageIntro}
@@ -90,7 +91,7 @@ export default async function WorkPage() {
           </Link>
         </p>
 
-        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
+        <div className="mt-[var(--space-block)] border-t border-[var(--bmkrs-rule-paper)] pt-[var(--space-block)]">
           <H2 theme="paper">built in the studio</H2>
           <Body theme="paper" lead className="mt-3">
             we are builders, so we build our own. these are bmkrs products: proof we live with the
@@ -103,9 +104,10 @@ export default async function WorkPage() {
       </Section>
 
       <Section theme="ink">
-        <Kicker theme="ink">your brand next</Kicker>
-        <div className="mt-6">
-          <Button href="/contact">start a build</Button>
+        <Kicker theme="ink">next</Kicker>
+        <H2 theme="ink">{brandMessaging.closeTitle}</H2>
+        <div className="mt-8">
+          <Button href="/contact">{brandMessaging.ctaPrimary}</Button>
         </div>
       </Section>
     </main>

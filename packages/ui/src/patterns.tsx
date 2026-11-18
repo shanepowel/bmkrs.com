@@ -396,7 +396,7 @@ export function PageHero({
   return (
     <header className="bmkrs-page-hero" data-surface="ink">
       <div className="bmkrs-wrap bmkrs-page-hero__grid">
-        <div>
+        <div className="bmkrs-page-hero__copy">
           {eyebrow ? <span className="bmkrs-page-hero__eyebrow">{eyebrow}</span> : null}
           {title ? <h1 className="bmkrs-page-hero__title">{title}</h1> : null}
           {lede ? <p className="bmkrs-page-hero__lede">{lede}</p> : null}
@@ -409,7 +409,7 @@ export function PageHero({
               alt={image.alt}
               fill
               priority
-              sizes="(max-width: 960px) 100vw, 520px"
+              sizes="(max-width: 960px) 100vw, 40vw"
               className="bmkrs-page-hero__img"
             />
           </div>

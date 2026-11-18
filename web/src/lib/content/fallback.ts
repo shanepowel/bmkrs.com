@@ -315,7 +315,7 @@ const fallbackProjectsRaw: Project[] = [
     slug: "copa",
     title: "copa, off the shore",
     client: "copa",
-    category: "branding",
+    category: "digital product",
     sector: "outdoor apparel",
     year: "2024",
     positioning: "outdoor apparel with a clear point of view.",
@@ -329,7 +329,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a single, distinctive identity copa now uses consistently across every channel, and a campaign-ready asset kit that carried the brand from its German base toward a wider European audience without losing what made it copa.",
     results: [],
-    serviceTags: ["brand + identity", "voice + messaging"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/optimized/copa-hero.jpg",
     media: [
       { type: "image", src: "/images/copa-off-the-shore.jpg", alt: "copa hero" },
@@ -371,7 +371,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a storefront that finally looks as good as the product, a smoother path from browse to checkout, and a brand the team is proud to share.",
     results: [],
-    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
+    serviceTags: ["product build"],
     thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
     media: [
       { type: "image", src: "/work/images/fdb-2.png", alt: "floare din banat packaging" },
@@ -407,7 +407,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations.",
     results: [],
-    serviceTags: ["brand + identity", "photography / art direction"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/optimized/carter-hero.jpg",
     media: [
       {
@@ -439,7 +439,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a coherent design system the studio can deploy across campaigns without losing personality, and far less time lost starting each brief from zero.",
     results: [],
-    serviceTags: ["brand + identity"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/optimized/wanderlust-hero.jpg",
     media: [
       {
@@ -470,7 +470,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a launch-ready site that shows the range clearly and gives the brand a credible first impression online.",
     results: [],
-    serviceTags: ["product, web + growth"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/optimized/smoothies-hero.jpg",
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
     order: 5,
@@ -481,8 +481,8 @@ const fallbackProjectsRaw: Project[] = [
     slug: "flipster",
     title: "flipster iptv",
     client: "flipster",
-    category: "branding",
-    sector: "branding",
+    category: "digital product",
+    sector: "digital product",
     positioning: "a premium identity in a category most brands get wrong.",
     tagline: "a premium identity in a category most brands get wrong.",
     brief:
@@ -494,7 +494,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
     results: [],
-    serviceTags: ["brand + identity"],
+    serviceTags: ["product build"],
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],
     order: 6,
@@ -519,7 +519,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a live site at podcaststudiolondon.com that leads with evidence, makes the pod system readable, and turns browsing into booked conversations.",
     results: [],
-    serviceTags: ["product build", "voice + messaging"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/work/podcast-studio-london-thumb.jpg",
     media: [
       {
@@ -537,7 +537,7 @@ const fallbackProjectsRaw: Project[] = [
     slug: "david-wheeler-psychology",
     title: "david wheeler psychology",
     client: "david wheeler psychology",
-    category: "brand + identity",
+    category: "product build",
     sector: "healthcare",
     year: "2025",
     positioning: "a clinical practice brand that earns trust before the first session.",
@@ -548,7 +548,7 @@ const fallbackProjectsRaw: Project[] = [
       "clinical brands fail when they look like generic wellness templates. the practice needed warmth without vagueness, and authority without coldness.",
     whatWeDid:
       "positioning, identity and voice for a practice still in launch. full case study copy and imagery to follow once the practice is live.",
-    serviceTags: ["brand + identity", "voice + messaging"],
+    serviceTags: ["product build"],
     thumbnailPath: marketingImages.identityPackaging,
     media: [{ type: "image", src: marketingImages.identityPackaging, alt: "david wheeler psychology" }],
     order: 9,
@@ -573,7 +573,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a live site at three18media.com that reads like the studio: actions, not words, with every figure shown with how it was counted.",
     results: [],
-    serviceTags: ["product build", "voice + messaging"],
+    serviceTags: ["product build"],
     thumbnailPath: "/images/work/three18-media-thumb.jpg",
     media: [
       {

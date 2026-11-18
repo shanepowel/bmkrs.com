@@ -18,6 +18,7 @@ import {
   TierCard,
   TierGrid,
 } from "@bmkrs/ui";
+import { brandMessaging } from "@/lib/content/messaging";
 import { fadeUp, stagger } from "./animations";
 import { StarsOrbit } from "./StarsOrbit";
 
@@ -88,7 +89,7 @@ export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
       <Surface theme="ink">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <div>
             <Kicker>keep shipping</Kicker>
             <H1 className="mt-4 max-w-[12ch]">always in motion.</H1>
@@ -102,7 +103,7 @@ export function MotionPageViewReworked() {
               <GhostButton href="#month">what a month looks like →</GhostButton>
             </div>
           </div>
-          <div className="hidden lg:block">
+          <div className="mx-auto w-full max-w-[28rem] lg:mx-0">
             <StarsOrbit />
           </div>
         </div>
@@ -155,19 +156,11 @@ export function MotionPageViewReworked() {
         </div>
       </Surface>
 
-      <Surface theme="orange">
-        <H2>consistency compounds.</H2>
-        <div className="mt-8">
-          <StepLine
-            steps={["product", "ai", "controls", "users", "growth"]}
-            body="every month the product stays in motion, the next month costs less: knowledge compounds, releases reuse, users stay warm. stop-start resets the meter. that is the entire economics of motion."
-          />
-        </div>
-      </Surface>
-
-      <Surface theme="ink" id="month">
-        <Kicker>what it actually looks like</Kicker>
-        <H2 className="mt-3">a month in motion.</H2>
+      <Surface theme="paper" id="month">
+        <Kicker theme="paper">what it actually looks like</Kicker>
+        <H2 theme="paper" className="mt-3">
+          a month in motion.
+        </H2>
         <div className="mt-10">
           <RuledGrid>
             {MONTH.map((step) => (
@@ -175,13 +168,13 @@ export function MotionPageViewReworked() {
             ))}
           </RuledGrid>
         </div>
-        <Body className="mt-10">
+        <Body theme="paper" className="mt-10">
           then we plan again. that is the whole rhythm: no retainer mystery, no activity theatre. a
           team in motion and a paper trail that proves it.
         </Body>
       </Surface>
 
-      <Surface theme="ink" id="tiers" raised>
+      <Surface theme="ink" id="tiers">
         <Kicker>tiers</Kicker>
         <H2 className="mt-3 max-w-[16ch]">three speeds. prices on the page, like grown-ups.</H2>
         <div className="mt-10">
@@ -200,9 +193,19 @@ export function MotionPageViewReworked() {
         <Body className="mt-10">30 days notice either way, no lock-in. you stay because it works.</Body>
       </Surface>
 
+      <Surface theme="orange">
+        <H2 theme="orange">consistency compounds.</H2>
+        <div className="mt-8">
+          <StepLine
+            steps={["product", "ai", "controls", "users", "growth"]}
+            body="every month the product stays in motion, the next month costs less: knowledge compounds, releases reuse, users stay warm. stop-start resets the meter. that is the entire economics of motion."
+          />
+        </div>
+      </Surface>
+
       <Close
         title="production was the beginning."
-        action={<Button href="/contact">start a build</Button>}
+        action={<Button href="/contact">{brandMessaging.ctaPrimary}</Button>}
       />
     </MotionConfig>
   );

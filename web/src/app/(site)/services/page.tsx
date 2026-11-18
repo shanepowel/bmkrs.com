@@ -57,12 +57,6 @@ export default async function ServicesPage() {
         </Reveal>
       </Section>
 
-      <MarketingBanner
-        src={marketingImages.disciplineIcons}
-        alt="digital product, ai implementation, governance and handover"
-        aspect="4/3"
-      />
-
       <LadderIntro />
 
       {TIERS.map((tier) => (
@@ -70,7 +64,13 @@ export default async function ServicesPage() {
       ))}
 
       <WhichOne />
+
       <ProcessBand />
+
+      <MarketingBanner
+        src={marketingImages.studioWorkspace}
+        alt="product and delivery work in the studio"
+      />
 
       <Section theme="orange">
         <H2 theme="orange">{brandMessaging.closeTitle}</H2>

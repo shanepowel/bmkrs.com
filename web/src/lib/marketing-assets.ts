@@ -33,7 +33,7 @@ export const marketingImages = {
   videoEditing: "/images/marketing/studio-workspace.png",
   contentPlatform: "/images/marketing/portfolio-mockup.png",
   designStudio: "/images/marketing/brand-strategy.png",
-  brandGuidelines: "/images/marketing/discipline-icons.png",
+  brandGuidelines: "/images/marketing/brand-strategy.png",
   creativeDesk: "/images/marketing/studio-workspace.png",
   filmProduction: "/images/marketing/studio-team.png",
   digitalEcosystem: "/images/marketing/portfolio-case-study.png",

@@ -230,16 +230,18 @@ summary:focus-visible,
   .full-bleed {
     width: 100vw;
     margin-inline: calc(50% - 50vw);
+    overflow: hidden;
   }
 
   .full-bleed--21-9 {
     aspect-ratio: 21 / 9;
-    overflow: hidden;
+    max-height: min(40vh, 22rem);
   }
 
   .full-bleed--4-3 {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
+    /* never allow a near-viewport plate; treat 4/3 as a capped band */
+    aspect-ratio: 21 / 9;
+    max-height: min(40vh, 22rem);
   }
 
   .ruled-grid {

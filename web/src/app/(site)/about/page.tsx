@@ -105,12 +105,6 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <MarketingBanner
-        src={marketingImages.studioTeam}
-        alt="the bmkrs team at work in the studio"
-        priority
-      />
-
       <Section theme="ink" tight pad="tight" className="!py-0">
         <Marquee items={ABOUT_TICKER} />
       </Section>
@@ -152,9 +146,9 @@ export default async function AboutPage() {
       ) : null}
 
       <MarketingBanner
-        src={marketingImages.brandStrategy}
-        alt="brand strategy, frameworks and deliverables"
-        aspect="4/3"
+        src={marketingImages.studioTeam}
+        alt="the bmkrs team at work in the studio"
+        priority
       />
 
       <Section theme="ink">
