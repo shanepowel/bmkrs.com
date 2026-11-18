@@ -144,7 +144,7 @@ export default async function PressPage() {
                 className="mono mt-4 inline-flex text-meta underline decoration-1 underline-offset-4"
                 style={{ color: paper.accent }}
               >
-                download →
+                download <span aria-hidden="true">+</span>
               </a>
             </li>
           ))}

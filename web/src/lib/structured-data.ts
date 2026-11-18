@@ -2,6 +2,7 @@ import { BRAND_AVATAR } from "@/lib/brand";
 import type { FaqItem } from "@/lib/content/expansion-v2";
 import { SITE_URL } from "@/lib/og-image";
 import type { JournalPost, Product } from "@/lib/types";
+import { registeredCompany } from "@/lib/content/company-registration";
 
 const SITE = SITE_URL;
 const ORG_ID = `${SITE}/#organization`;
@@ -12,17 +13,22 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": ORG_ID,
     name: "bmkrs.",
-    legalName: "b makers ltd",
-    alternateName: ["bmkrs", "b makers ltd"],
+    legalName: registeredCompany.name,
+    alternateName: ["bmkrs", registeredCompany.name],
     foundingDate: "2013",
-    founder: { "@type": "Person", name: "Shane Powell" },
+    founder: [
+      { "@type": "Person", name: "Shane Powell" },
+      { "@type": "Person", name: "Marcelo" },
+    ],
     url: SITE,
     logo: `${SITE}${BRAND_AVATAR}`,
     description:
-      "bmkrs. builds digital products and brings ai into production. strategy, build, governance and handover, so your teams can own what we leave behind.",
+      "bmkrs is an independent creative and digital studio. We bring strategy, design and technology together to help ambitious businesses make meaningful things happen.",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "london",
+      streetAddress: "128 City Road",
+      addressLocality: "London",
+      postalCode: "EC1V 2NX",
       addressCountry: "GB",
     },
     sameAs: [
@@ -37,12 +43,6 @@ export function organizationSchema() {
   };
 }
 
-function gbpAmount(price?: string): string | undefined {
-  if (!price) return undefined;
-  const amount = price.replace(/[^0-9.]/g, "");
-  return amount || undefined;
-}
-
 function productUrl(product: Product) {
   return product.tier === "grow" ? `${SITE}/motion` : `${SITE}/services#${product.slug}`;
 }
@@ -51,30 +51,18 @@ export function offerCatalogSchema(products: Product[]) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "brand, product and communications studio",
+    serviceType: "creative and digital studio",
     provider: { "@id": ORG_ID },
     areaServed: "GB",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "bmkrs services",
       itemListElement: products.map((product) => {
-        const amount = gbpAmount(product.price ?? product.priceFrom);
-        const offer: Record<string, unknown> = {
+        return {
           "@type": "Offer",
           name: product.name,
           url: productUrl(product),
-          priceCurrency: "GBP",
         };
-        if (amount && product.priceQualifier === "from") {
-          offer.priceSpecification = {
-            "@type": "PriceSpecification",
-            minPrice: amount,
-            priceCurrency: "GBP",
-          };
-        } else if (amount) {
-          offer.price = amount;
-        }
-        return offer;
       }),
     },
   };

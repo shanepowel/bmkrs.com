@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Fragment_Mono } from "next/font/google";
+
 
 /**
  * Type pairing is still open.
@@ -15,9 +15,9 @@ export const cabinet = localFont({
   display: "swap",
 });
 
-export const fragment = Fragment_Mono({
-  weight: "400",
-  subsets: ["latin"],
+export const fragment = localFont({
+  src: "../../public/fonts/GeistMono-Regular.woff2",
   variable: "--font-mono",
+  weight: "400",
   display: "swap",
 });

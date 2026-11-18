@@ -19,35 +19,34 @@ export type WhatHappensNextStep = {
 export const homePainPoints: PainPoint[] = [
   {
     number: "01",
-    headline: '"we have ai pilots. nothing in production."',
-    body: "the demos look good. the board has seen the slides. users still do the work by hand. the gap is almost never the model. it is product, governance and the operating model around them.",
+    headline: '"we know what we want to change. we need the right first move."',
+    body: "An exciting opportunity can be hard to pin down. We help you understand the real need, see what is possible and choose a clear next step.",
   },
   {
     number: "02",
-    headline: '"five suppliers, no one accountable for the product."',
-    body: "a strategy firm, a build shop, a data team, a change partner, and you in the middle translating. when results disappoint, everyone blames the brief. one delivery team ends that conversation.",
+    headline: '"the idea is clear. the experience is not."',
+    body: "Good products make complicated things feel simple. We connect strategy, design and technology around the people who will use it.",
   },
   {
     number: "03",
-    headline: '"we need ai, but we cannot bypass governance."',
-    body: "regulated, programme-heavy, or just careful. you cannot skip stage gates for a chatbot. you need implementation that plugs into the controls you already have.",
+    headline: '"our tools, teams and suppliers do not quite connect."',
+    body: "When the parts of a business work in isolation, opportunities slip through the gaps. We bring the right people together to make the whole thing work better.",
   },
   {
     number: "04",
-    headline: '"the product shipped. the team cannot run it."',
-    body: "handover was a pdf. knowledge left with the agency. every change means re-briefing strangers. capability transfer was never in the scope, and now it shows.",
+    headline: '"we are ready to grow, but what worked before will not get us there."',
+    body: "We help businesses evolve what they have made, make better use of technology and keep creating value as they change.",
   },
 ];
 
-export const homeManifesto = `most ai ambition dies in the pilot. we spent seventeen years shipping products inside organisations where failure is expensive, and watched the same pattern: good ideas, weak product, no governance, no one left who can run it.
+export const homeManifesto = `the right thinking. the right people. the right things built.
 
-it is not a model problem. it is a delivery problem, and it is fixable. so we build the product and the ai that powers it, with the controls and the handover baked in. one team, assess to amplify, because the gaps between agencies are where production goes quiet.`;
+Technology is not the answer to every problem. But when the right thinking meets thoughtful execution, it can change what is possible. We connect strategy, product, design and engineering so the work makes sense for people and the business behind it.`;
 
 export const homeProcessStrip = {
-  steps: "assess → implement → amplify → motion",
-  body: "we start with readiness, value and risk, not a build backlog. then we ship digital products and ai systems inside your change gates. then we transfer capability: training, operating model, documentation your team can use. then, if you want us, we stay in motion.",
-  footnote:
-    "fixed scope. fixed timeline. one point of contact. prices on the services page.",
+  steps: "discover · design · build · grow",
+  body: "we understand the opportunity, shape the right response and bring the people and technology together to make it happen. then we keep learning and improving what works.",
+  footnote: "one connected team, from the first conversation to what comes next.",
 };
 
 export const heroImageCaptions: Record<string, string> = {
@@ -63,7 +62,7 @@ export const heroImageCaptions: Record<string, string> = {
     "data deep clean · built in the studio · see the exposure, then keep clearing it",
 };
 
-export const workPageIntro = `every project on this shelf shipped. some are client work, some are products we built and run ourselves, and we show both, because a product studio should live with its own advice. no spec work, no concepts, no coming soon. what you see is what went out the door.`;
+export const workPageIntro = `a selection of the brands, products and experiences we have helped bring to life. we work closely with ambitious businesses to make meaningful things happen.`;
 
 /** Card outcome lines keyed by project slug. */
 export const projectOutcomeLines: Record<string, string> = {
@@ -81,16 +80,15 @@ export const projectOutcomeLines: Record<string, string> = {
 };
 
 export const workHowProjectRuns = {
-  kicker: "behind the shelf",
-  headline: "what actually happens between hello and production.",
+  kicker: "how we work",
+  headline: "good outcomes start with understanding the challenge.",
   paragraphs: [
-    "week one is assessment. we get under the skin of the product, the data, the risk appetite and the governance you cannot change. no build happens this week, on purpose.",
-    "then decisions. use cases, architecture, controls, the one sentence that decides what ships first. written down and signed off before a sprint starts.",
-    "then making. digital product and ai implementation by the people who made the decisions. nothing gets lost in translation because there is no translation.",
-    "then amplify. handover, training and an operating model your team can run. if you want us to stay, motion keeps the product and the ai moving month after month.",
+    "we listen, ask questions and get close to the people and context around the work. that gives us a shared understanding of what matters and where the opportunity lies.",
+    "we shape the approach together, bringing the right mix of strategy, design and technology to the challenge. the work stays focused on the outcome, with decisions made in the open.",
+    "the same connected team carries the work through design, build and launch. we stay close to your people and the systems around the product so the result works in everyday life.",
+    "then we learn and improve. some partnerships start with one clear piece of work; others keep evolving over time. either way, we help your team move forward with confidence.",
   ],
-  footnote:
-    "every engagement is fixed scope with one point of contact. the packages and prices are on the services page →",
+  footnote: "explore the ways we can work together on the services page.",
 };
 
 export type DisciplineExpansion = {
@@ -149,9 +147,9 @@ export const servicesFaq: FaqItem[] = [
       "readiness is usually one week. product and ai builds run four to twelve weeks depending on scope. you will know which package fits, and what it costs, by the end of the first call.",
   },
   {
-    question: "what does it cost?",
+    question: "how do we get started?",
     answer:
-      "every package carries a from price on this page. if budget and ambition do not match, we say so before any money moves. no discovery theatre.",
+      "tell us what you are trying to make happen. we will listen, ask a few useful questions and suggest a sensible next step together.",
   },
   {
     question: "do you only do ai?",
@@ -186,14 +184,14 @@ export const motionMonthInMotion = {
   kicker: "what it actually looks like",
   headline: "a month in motion.",
   paragraphs: [
-    "week one: we plan. what the product and ai estate needs this month, decided together, written down, with one primary objective. not a backlog. a bet.",
-    "weeks two and three: we make. product changes, model work, integrations, content, whatever the plan called for, shipped as it is finished.",
-    "week four: we report. what shipped, what moved, what we would do differently, in plain language with numbers, in a document you can forward without editing.",
-    "then we plan again. that is the whole rhythm. no retainer mystery, no activity theatre. a team in motion and a paper trail that proves it.",
+    "week one: we get together, set a shared focus and decide what will make the biggest difference this month.",
+    "weeks two and three: we make. design, product improvements and technical delivery move forward with regular check-ins and clear decisions.",
+    "week four: we look at what changed, what we learned and where to focus next. the work stays visible and the next step stays clear.",
+    "then we move into the next month together. a steady rhythm, with room to respond as the business and its ambitions evolve.",
   ],
 };
 
-export const journalMastheadIntro = `notes from a digital product studio that also puts ai into production. one argument, made from different angles: pilots are not progress, governance is not optional, and handover is part of the build. no filler, no funnels. if a post would not change what you do on monday, we do not publish it.`;
+export const journalMastheadIntro = `notes on brands, digital products and technology from an independent creative and digital studio. thoughts, perspectives and useful ideas from the work we do and the things we notice.`;
 
 export const journalCategoryDescriptions: Record<string, string> = {
   brand: "deciding who you are, then making it visible",
@@ -207,21 +205,18 @@ export const contactWhatHappensNext: WhatHappensNextStep[] = [
   { number: "01", body: "a real person reads it. usually shane, the same day." },
   {
     number: "02",
-    body: 'a real reply within one working day: our honest read on what you need, what it would cost, and whether we are the right people, even when the answer is "not us".',
+    body: 'a real reply within one working day: our honest read on the opportunity, how we could help, and whether we are the right people, even when the answer is "not us".',
   },
   {
     number: "03",
-    body: "if it fits, a 30-minute call. no deck, no discovery theatre. just the questions that decide whether this works: what you are building, what must stay governed, and what done looks like.",
+    body: "if it feels like a fit, we will arrange a conversation to explore the opportunity, the people involved and what a useful next step could look like.",
   },
 ];
-
-export const contactBudgetReassurance =
-  "the budget question is optional and changes nothing about the reply. it just lets us answer with the right-sized plan first instead of third.";
 
 export function outcomeLineForSlug(slug: string, cmsLine?: string): string | undefined {
   return cmsLine || projectOutcomeLines[slug];
 }
 
-export function captionForProject(slug: string, _title: string): string | undefined {
-  return heroImageCaptions[slug];
+export function captionForProject(slug: string, title: string): string | undefined {
+  return heroImageCaptions[slug] ?? title;
 }

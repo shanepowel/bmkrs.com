@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { PackageEntry } from "@bmkrs/ui";
-import { formatProductPrice } from "@/lib/format-product-price";
 import type { Product } from "@/lib/types";
 
 export function PackageCard({ product }: { product: Product }) {
-  const price = formatProductPrice(product);
   const specs: { label: string; value: React.ReactNode }[] = [];
 
   if (product.forWho) specs.push({ label: "for", value: product.forWho });
@@ -29,8 +27,6 @@ export function PackageCard({ product }: { product: Product }) {
       name={product.name}
       tagline={product.tagline}
       specs={specs}
-      price={price || undefined}
-      note={product.creditNote}
     />
   );
 }

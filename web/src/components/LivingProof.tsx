@@ -74,7 +74,7 @@ export default function LivingProof({
               }}
             >
               <p className="lp-team-for" style={{ color: tokens.color.orange }}>
-                → team spun up for {team.forWork}
+                + team spun up for {team.forWork}
               </p>
               <div className="lp-pills">
                 {team.core.map((d) => (

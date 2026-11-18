@@ -3,27 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Button as UiButton } from "@bmkrs/ui";
-import { Field, H1, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
-import { contactBudgetReassurance } from "@/lib/content/expansion-v2";
+import { Field, H1, PillSelect, Surface, TextArea } from "@bmkrs/ui";
 import { brandMessaging } from "@/lib/content/messaging";
 
 const SERVICE_OPTIONS = [
-  { value: "product-strategy", label: "product strategy and discovery" },
-  { value: "ai-delivery", label: "AI delivery and integration" },
-  { value: "ai-governance", label: "AI governance and risk" },
-  { value: "enablement", label: "team enablement and handover" },
-  { value: "motion", label: "ongoing product and AI support" },
+  { value: "strategy", label: "strategy and discovery" },
+  { value: "brand", label: "brand and identity" },
+  { value: "digital-product", label: "digital product or experience" },
+  { value: "technology", label: "technology and AI" },
+  { value: "motion", label: "ongoing partnership" },
   { value: "not-sure", label: "not sure yet" },
 ] as const;
-
-const BUDGET_OPTIONS = [
-  { value: "under-5k", label: "under £5k" },
-  { value: "5-15k", label: "£5k to £15k" },
-  { value: "15-50k", label: "£15k to £50k" },
-  { value: "50k-plus", label: "£50k+" },
-  { value: "ongoing", label: "ongoing" },
-  { value: "rather-not", label: "rather not say" },
-];
 
 function ContactEmails({
   helloEmail,
@@ -65,7 +55,6 @@ export function ContactExperience({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [budget, setBudget] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -90,7 +79,6 @@ export function ContactExperience({
           email,
           company: data.company,
           message: data.message,
-          budget: budget || undefined,
           services: selectedServices,
           reason: "project",
         }),
@@ -121,7 +109,7 @@ export function ContactExperience({
               contact
             </H1>
             <p className="contact-promise">
-              Moving an AI pilot into production, or trying to make a digital product work better? Tell us where you are stuck. We&apos;ll help you find a sensible next step.
+              Have an idea worth making real? Tell us a little about it. We&apos;ll listen, ask the right questions and help you find a useful next step.
             </p>
           </div>
 
@@ -163,10 +151,6 @@ export function ContactExperience({
                     onChange={(next) => setSelectedServices(Array.isArray(next) ? next : [next])}
                     multiple
                   />
-                  <div className="mt-4">
-                    <Meta theme="paper">{contactBudgetReassurance}</Meta>
-                    <SelectMenu name="budget" label="budget, roughly (optional)" placeholder="select a range" options={[...BUDGET_OPTIONS]} value={budget || undefined} onValueChange={setBudget} />
-                  </div>
                 </details>
                 <div className="cx-full">
                   <UiButton type="submit" variant="orange" disabled={status === "sending"}>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
-import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
-import { getProjects } from "@/lib/content";
+import { workHowProjectRuns } from "@/lib/content/expansion-v2";
+import { getProjects, prioritizeShowcase } from "@/lib/content";
+import { brandMessaging } from "@/lib/content/messaging";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { isOnPublicShelf } from "@/lib/content/public-shelf";
 import { pageMetadata } from "@/lib/seo";
@@ -11,7 +12,7 @@ import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "work",
-  "selected digital products and client builds, including the products we run ourselves. proof, not promises.",
+  "a selection of the brands, products and experiences we have helped bring to life. ideas are easy; making them work is the interesting part.",
   "/work",
 );
 
@@ -41,7 +42,7 @@ function ProjectGrid({ projects }: { projects: Project[] }) {
 }
 
 export default async function WorkPage() {
-  const projects = (await getProjects()).filter(isOnPublicShelf);
+  const projects = prioritizeShowcase((await getProjects()).filter(isOnPublicShelf));
   const clientWork = projects.filter((p) => p.projectType !== "studio");
   const studioWork = projects.filter((p) => p.projectType === "studio");
 
@@ -57,13 +58,13 @@ export default async function WorkPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <PageHero
-        eyebrow="work"
+        eyebrow="selected work"
         title={
           <>
-            we build <span className="text-accent">brands.</span>
+            ideas are easy. <span className="text-accent">making them work</span> is the interesting part.
           </>
         }
-        lede={workPageIntro}
+        lede={brandMessaging.workSubtitle}
         image={{ src: heroImage, alt: pageHeroImages.work.alt }}
       />
 
@@ -105,7 +106,7 @@ export default async function WorkPage() {
       <Section theme="ink">
         <Kicker theme="ink">your brand next</Kicker>
         <div className="mt-6">
-          <Button href="/contact">start a build</Button>
+          <Button href="/contact">let&apos;s build something</Button>
         </div>
       </Section>
     </main>

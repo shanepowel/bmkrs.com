@@ -14,10 +14,10 @@ const FOOTER_LINKS = [
   { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ] as const;
+const COPYRIGHT_YEAR = new Date().getFullYear();
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const email = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
-  const year = new Date().getFullYear();
 
   return (
     <footer className="hybrid-footer" data-surface="ink">
@@ -27,7 +27,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <Link href="/" aria-label="bmkrs home" className="hybrid-footer__logo">
               <Image src="/brand/bmkrs-primary-dark.svg" alt="bmkrs." width={126} height={40} />
             </Link>
-            <p>From AI ambition.<br />To products in production.</p>
+            <p>Independent by nature.<br />Connected by design.</p>
           </div>
 
           <nav className="hybrid-footer__nav" aria-label="Explore">
@@ -54,9 +54,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="hybrid-footer__legal">
-          <p className="hybrid-footer__registration">{companyLine()}</p>
+          <p className="hybrid-footer__registration">{companyLine(settings.companyNumber, settings.registeredAddress)}</p>
           <div className="hybrid-footer__legal-bottom">
-            <span>© {year} <span className="nocase">{settings.companyName ?? "LRC Labs Ltd"}</span></span>
+            <span>© {COPYRIGHT_YEAR} <span className="nocase">{settings.companyName ?? "LRC Labs Ltd"}</span></span>
             <nav aria-label="Legal">
               <Link href="/legal/privacy">Privacy</Link>
               <Link href="/legal/cookies">Cookies</Link>

@@ -426,8 +426,8 @@ export type MotionTier = {
   id: string;
   tag?: string;
   name: string;
-  /** Shown only after pricing CTA is activated */
-  priceFrom: string;
+  /** Retained for existing CMS records; public site no longer displays pricing. */
+  priceFrom?: string;
   priceNote?: string;
   pricingCtaLabel?: string;
   description: string;

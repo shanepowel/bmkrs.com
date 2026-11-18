@@ -4,7 +4,6 @@ import { OgTemplate, OG_SIZE, absoluteUrl } from "@/lib/og-image";
 import { sanityClient } from "@/lib/sanity/client";
 import { caseStudyBySlugQuery } from "@/lib/sanity/queries";
 
-export const runtime = "edge";
 export const alt = "bmkrs. case study";
 export const size = OG_SIZE;
 export const contentType = "image/png";

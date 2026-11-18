@@ -1,6 +1,7 @@
 import {
   publicCompanyNumber,
   publicRegisteredAddress,
+  registeredCompany,
 } from "@/lib/content/company-registration";
 
 export type LegalSection = {
@@ -16,41 +17,33 @@ export type LegalDocument = {
   lastUpdated: string;
 };
 
-const PLACEHOLDER_DATE = "[DATE]";
-const PLACEHOLDER_COMPANY = "[COMPANY NUMBER]";
-const PLACEHOLDER_ADDRESS = "[ADDRESS]";
+const LAST_UPDATED = "18 November 2026";
 
 /** Footer / public-facing registration line — never publishes placeholder values. */
 export function companyLine(companyNumber?: string, registeredAddress?: string): string {
-  const name = "b makers ltd";
-  const parts = [`${name} · registered in england and wales`];
-  const number = publicCompanyNumber(companyNumber);
-  const office = publicRegisteredAddress(registeredAddress);
-  if (number) parts.push(`company no. ${number}`);
-  if (office) parts.push(`registered office: ${office}`);
-  return parts.join(" · ");
+  const number = publicCompanyNumber(companyNumber) ?? registeredCompany.number;
+  const office = publicRegisteredAddress(registeredAddress) ?? registeredCompany.registeredAddress;
+  return `bmkrs. is part of ${registeredCompany.name}, registered in ${registeredCompany.jurisdiction} · company no. ${number} · registered office: ${office}`;
 }
 
 export function privacyNotice(
   companyNumber?: string,
   registeredAddress?: string,
 ): LegalDocument {
-  const number = publicCompanyNumber(companyNumber);
-  const office = publicRegisteredAddress(registeredAddress);
-  const companyRef = number
-    ? `company no. ${number}`
-    : "registered in england and wales (company number to be added)";
-  const officeRef = office ?? "registered office to be added before publication";
+  const number = publicCompanyNumber(companyNumber) ?? registeredCompany.number;
+  const office = publicRegisteredAddress(registeredAddress) ?? registeredCompany.registeredAddress;
+  const companyRef = `company no. ${number}`;
+  const officeRef = office;
 
   return {
     title: "privacy notice",
     intro:
-      "we keep this short because we keep the data short. b makers ltd (\"bmkrs\", \"we\") is the data controller for personal data collected through bmkrs.com.",
+      `we keep this short because we keep the data short. ${registeredCompany.name} (\"bmkrs\", \"we\") is the data controller for personal data collected through bmkrs.com.`,
     sections: [
       {
         title: "who we are",
         paragraphs: [
-          `b makers ltd, registered in england and wales, ${companyRef}, registered office ${officeRef}. questions about your data: hello@bmkrs.com.`,
+          `${registeredCompany.name}, registered in ${registeredCompany.jurisdiction}, ${companyRef}, registered office ${officeRef}. questions about your data: hello@bmkrs.com.`,
         ],
       },
       {
@@ -95,7 +88,7 @@ export function privacyNotice(
         ],
       },
     ],
-    lastUpdated: PLACEHOLDER_DATE,
+    lastUpdated: LAST_UPDATED,
   };
 }
 
@@ -111,7 +104,7 @@ export const cookiesNotice: LegalDocument = {
       ],
     },
   ],
-  lastUpdated: PLACEHOLDER_DATE,
+  lastUpdated: LAST_UPDATED,
 };
 
 export const termsSkeleton: LegalDocument = {
@@ -122,7 +115,7 @@ export const termsSkeleton: LegalDocument = {
     {
       title: "1. who the agreement is between",
       paragraphs: [
-        `b makers ltd (company no. ${PLACEHOLDER_COMPANY}, registered office ${PLACEHOLDER_ADDRESS}) and the client named in the proposal. the proposal + these terms = the contract.`,
+        `${registeredCompany.name} (company no. ${registeredCompany.number}, registered office ${registeredCompany.registeredAddress}) and the client named in the proposal. the proposal + these terms = the contract.`,
       ],
     },
     {
@@ -187,5 +180,5 @@ export const termsSkeleton: LegalDocument = {
       ],
     },
   ],
-  lastUpdated: PLACEHOLDER_DATE,
+  lastUpdated: LAST_UPDATED,
 };

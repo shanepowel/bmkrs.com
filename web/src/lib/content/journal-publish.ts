@@ -31,14 +31,16 @@ export function journalPublishDate(slug: string, fallback: string): string {
   return journalPublishSchedule[slug] ?? fallback;
 }
 
-export function isJournalPublished(publishedAt: string, now = new Date()): boolean {
+const CONTENT_BUILD_TIME = new Date();
+
+export function isJournalPublished(publishedAt: string, now = CONTENT_BUILD_TIME): boolean {
   const day = now.toISOString().slice(0, 10);
   return publishedAt.slice(0, 10) <= day;
 }
 
 export function filterPublishedPosts<T extends { slug: string; publishedAt: string }>(
   posts: T[],
-  now = new Date(),
+  now = CONTENT_BUILD_TIME,
 ): T[] {
   return posts.filter((p) => isJournalPublished(p.publishedAt, now));
 }

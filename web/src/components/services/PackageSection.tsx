@@ -18,7 +18,7 @@ export function PackageSection({
   products: Product[];
 }) {
   if (tier === "grow") {
-    return <GrowBand motionPrice={products.find((p) => p.slug === "motion")} />;
+    return <GrowBand />;
   }
 
   if (!products.length) return null;

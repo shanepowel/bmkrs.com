@@ -57,7 +57,7 @@ export default async function JournalCategoryPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Section theme="ink">
-        <BackLink href="/journal">← journal</BackLink>
+        <BackLink href="/journal">all journal notes</BackLink>
         <Kicker theme="ink">journal</Kicker>
         <H1 theme="ink" className="mt-4">
           {label}

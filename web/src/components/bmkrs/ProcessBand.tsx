@@ -3,7 +3,7 @@ import { Body, Kicker, Meta, Section } from "@bmkrs/ui";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { marketingImages } from "@/lib/marketing-assets";
 
-const PROCESS_STEPS = homeProcessStrip.steps.split(" → ");
+const PROCESS_STEPS = homeProcessStrip.steps.split(" · ");
 
 export function ProcessBand() {
   return (
@@ -21,7 +21,7 @@ export function ProcessBand() {
               {step}
               {i < PROCESS_STEPS.length - 1 ? (
                 <span className="process-strip__sep" aria-hidden>
-                  →
+                  ·
                 </span>
               ) : null}
             </span>

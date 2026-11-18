@@ -1,6 +1,5 @@
-import { SectionHeading, Surface } from "@bmkrs/ui";
+import { Surface } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
-import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeMarquee } from "@/components/home/HomeMarquee";
@@ -9,13 +8,8 @@ import { ProcessSection } from "@/components/home/ProcessSection";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
-import { homePainPoints } from "@/lib/content/expansion-v2";
-import {
-  getHomeContent,
-  getHomeTestimonials,
-  getProducts,
-  getShowcaseProjects,
-} from "@/lib/content";
+import { brandMessaging } from "@/lib/content/messaging";
+import { getHomeContent, getHomeTestimonials, getProducts, getShowcaseProjects } from "@/lib/content";
 import type { Testimonial } from "@/lib/types";
 
 function pickWorkTestimonial(testimonials: Testimonial[]) {
@@ -47,19 +41,15 @@ export default async function HomePage() {
   return (
     <main data-surface="ink">
       <HomeHero frames={reelFrames} />
-
       <HomeMarquee items={home.marqueeItems} />
 
-      {/* surface rhythm: ink / paper alternating. never two paper blocks adjacent; orange never touches paper. */}
-      <Surface theme="paper" pad="home" id="arrive">
-        <Reveal>
-          <SectionHeading title="you usually arrive with one of these." eyebrow="why people call us" />
-          <ArriveGrid points={homePainPoints} />
-        </Reveal>
-      </Surface>
-
       <Reveal>
-        <WhyBand />
+        <WorkSection
+          projects={showcase}
+          testimonial={workTestimonial}
+          eyebrow="selected work"
+          title={brandMessaging.workTitle}
+        />
       </Reveal>
 
       <Surface theme="paper" pad="home" id="services">
@@ -73,28 +63,14 @@ export default async function HomePage() {
         </Reveal>
       </Surface>
 
-      <Reveal>
-        <WorkSection
-          projects={showcase}
-          testimonial={workTestimonial}
-          eyebrow={home.selectedWork.eyebrow}
-          title={home.selectedWork.title}
-        />
-      </Reveal>
+      <Reveal><WhyBand /></Reveal>
+      <Reveal><ProcessSection /></Reveal>
 
       <Surface theme="paper" pad="home" id="packages">
-        <Reveal>
-          <PackagesSection products={products} />
-        </Reveal>
+        <Reveal><PackagesSection products={products} /></Reveal>
       </Surface>
 
-      <Reveal>
-        <ProcessSection />
-      </Reveal>
-
-      <Reveal>
-        <FinalCTA />
-      </Reveal>
+      <Reveal><FinalCTA /></Reveal>
     </main>
   );
 }

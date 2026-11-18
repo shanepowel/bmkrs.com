@@ -934,8 +934,8 @@
   gap: 2.75rem 2rem;
   padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
-@media (min-width: 900px) {
-  .hybrid-footer__main { grid-template-columns: 1fr 1fr 1fr 1.45fr; gap: 2.5rem; }
+@media (min-width: 1100px) {
+  .hybrid-footer__main { grid-template-columns: 1fr 0.9fr 1fr 1.2fr; gap: 2rem; }
 }
 .hybrid-footer__brand p {
   margin: 1.25rem 0 0;
@@ -997,7 +997,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.65rem;
+  width: 100%;
   max-width: 20rem;
+  min-width: 0;
   margin-top: 1rem;
   border: 0;
 }

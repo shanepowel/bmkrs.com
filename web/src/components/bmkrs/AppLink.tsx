@@ -19,7 +19,7 @@ export function AppLink({
       target="_blank"
       rel="noopener noreferrer"
     >
-      {children} <span aria-hidden="true">↗</span>
+      {children} <span aria-hidden="true">+</span>
     </Button>
   );
 }

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PortraitTile } from "@/components/bmkrs/PortraitTile";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import {
-  Accent,
   Body,
   Button,
   CellGrid,
@@ -30,16 +29,16 @@ import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
   "about",
-  "bmkrs is a digital product studio founded by a builder: seventeen years shipping inside complex organisations, now putting products and ai into production with governance and handover included.",
+  "meet bmkrs, an independent creative and digital studio in London. small enough to care, experienced enough to deliver.",
   "/about",
 );
 
 const ABOUT_TICKER = [
-  "founded by a builder",
-  "partner team, not payroll",
-  "london, and wherever you are",
-  "we ship our own products too",
-  "production is the product",
+  "independent by nature",
+  "connected by design",
+  "london, and everywhere",
+  "strategy meets making",
+  "built for what comes next",
 ];
 
 export default async function AboutPage() {
@@ -96,9 +95,7 @@ export default async function AboutPage() {
       <Section theme="ink">
         <div className="lg:max-w-[80%]">
           <Kicker theme="ink">about bmkrs</Kicker>
-          <H1 theme="ink">
-            built, not <Accent>branded.</Accent>
-          </H1>
+          <H1 theme="ink">{about.headline}</H1>
           <Body theme="ink" lead className="mt-8">
             {about.intro}
           </Body>
@@ -134,7 +131,7 @@ export default async function AboutPage() {
                   rel="me noopener"
                   target="_blank"
                 >
-                  linkedin ↗
+                  linkedin <span aria-hidden="true">+</span>
                 </a>
               </Meta>
             </div>

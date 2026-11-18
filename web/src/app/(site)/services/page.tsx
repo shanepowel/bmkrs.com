@@ -17,7 +17,7 @@ import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "services | bmkrs.",
-  "start with readiness, build with product and ai packages, grow with motion. fixed scope, fixed timeline, prices on the page.",
+  "strategy, design and technology to move ambitious ideas forward. explore ways to start, build and grow with bmkrs.",
   "/services",
 );
 

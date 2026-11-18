@@ -1,7 +1,7 @@
 import { SectionHeading, StepLine, Surface } from "@bmkrs/ui";
 import { homeProcessStrip } from "@/lib/content/expansion-v2";
 
-const STEPS = homeProcessStrip.steps.split(" → ");
+const STEPS = homeProcessStrip.steps.split(" · ");
 
 export function ProcessSection() {
   return (

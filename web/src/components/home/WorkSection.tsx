@@ -33,7 +33,7 @@ export function WorkSection({
         ))}
       </WorkGrid>
       <div className="bmkrs-work__more">
-        <GhostButton href="/work">all projects →</GhostButton>
+        <GhostButton href="/work">all projects <span aria-hidden="true">+</span></GhostButton>
       </div>
       {testimonial ? <PullQuote quote={testimonial.quote} cite={cite} /> : null}
     </Surface>
