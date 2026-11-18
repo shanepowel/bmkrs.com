@@ -1,60 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Footer } from "@bmkrs/ui";
-import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
 import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
 
-const MAKE_LINKS = [
-  { href: "/services", label: "services" },
-  { href: "/motion", label: "motion" },
-  { href: "/work", label: "work" },
-] as const;
-
-const STUDIO_LINKS = [
-  { href: "/about", label: "about" },
-  { href: "/journal", label: "journal" },
-  { href: "/press", label: "press" },
-  { href: "/contact", label: "contact" },
-] as const;
+const groups = [
+  { title: "MAKE", links: [{ href: "/services", label: "Services" }, { href: "/motion", label: "Motion" }, { href: "/work", label: "Work" }] },
+  { title: "STUDIO", links: [{ href: "/about", label: "About" }, { href: "/journal", label: "Journal" }, { href: "/press", label: "Press" }, { href: "/contact", label: "Contact" }] },
+];
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
-  const general = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
+  const email = settings.generalEmail ?? settings.email ?? "hello@bmkrs.com";
   const year = new Date().getFullYear();
-  const quip =
-    settings.footerQuip ?? "they say no one reads the footer. you made it this far, so let's make something.";
-  const reg = companyLine(settings.companyNumber, settings.registeredAddress);
-
-  return (
-    <Footer
-      capture={<FooterEmailCapture />}
-      columns={[
-        { label: "make", links: MAKE_LINKS },
-        { label: "studio", links: STUDIO_LINKS },
-      ]}
-      meta={
-        <>
-          <span>
-            <a href={`mailto:${general}`}>{general}</a>
-            <span aria-hidden="true"> · </span>
-            london, and wherever you are
-          </span>
-          <span>
-            © {year} {settings.companyName ?? "b makers ltd"} · {quip}
-          </span>
-        </>
-      }
-      legal={
-        <>
-          <p>{reg}</p>
-          <p>
-            <Link href="/legal/privacy">privacy notice</Link>
-            <span aria-hidden="true"> · </span>
-            <Link href="/legal/cookies">cookies notice</Link>
-            <span aria-hidden="true"> · </span>
-            <Link href="/legal/terms">terms of business</Link>
-          </p>
-        </>
-      }
-    />
-  );
-}
+  const registration = companyLine(settings.companyNumber, settings.registeredAddress);
+  return <footer className="hybrid-footer">
+    <div className="hybrid-footer__top"><Link href="/" aria-label="bmkrs home"><Image src="/brand/bmkrs-primary-light.svg" alt="bmkrs." width={126} height={40}/></Link><p>Independent by nature.<br/>Connected by design.</p><Link className="hybrid-footer__contact" href="/contact">HAVE A GOOD ONE IN MIND? <span>LET’S TALK ↗</span></Link></div>
+    <div className="hybrid-footer__links">{groups.map((group) => <div key={group.title}><span>{group.title}</span>{group.links.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}</div>)}<div><span>ELSEWHERE</span><a href={`mailto:${email}`}>{email}</a><span className="hybrid-footer__location">LoֻǱ˞
