@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
   "motion",
-  "a rolling monthly partnership for brands that never stop talking. one senior team keeping your brand, voice, pr and growth moving, month after month. no lock-in.",
+  "a rolling monthly partnership for products that cannot go quiet. one senior team keeping your product and ai estate moving, month after month. no lock-in.",
   "/motion",
 );
 

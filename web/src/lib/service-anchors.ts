@@ -5,19 +5,31 @@
 
 /** Legacy discipline hash ids → product anchors (include leading #). */
 export const LEGACY_DISCIPLINE_HASH_MAP: Record<string, string> = {
-  "#branding": "#launch-kit",
-  "#voice": "#story",
-  "#pr": "#press-launch",
-  "#product": "#storefront",
+  "#branding": "#product-build",
+  "#voice": "#product-build",
+  "#pr": "#onboard",
+  "#product": "#product-build",
+  "#launch-kit": "#product-build",
+  "#story": "#product-build",
+  "#press-launch": "#onboard",
+  "#storefront": "#product-build",
+  "#brand-check": "#readiness",
+  "#rebrand": "#product-build",
 };
 
 /** Case study service labels → primary product anchor. */
 const SERVICE_TAG_ANCHORS: Record<string, string> = {
-  "brand + identity": "launch-kit",
-  "voice + messaging": "story",
-  "pr + communications": "press-launch",
-  "product, web + growth": "storefront",
-  "photography / art direction": "launch-kit",
+  "product build": "product-build",
+  "digital product": "product-build",
+  "ai implementation": "ai-implementation",
+  "ai governance": "ai-governance",
+  onboard: "onboard",
+  readiness: "readiness",
+  "brand + identity": "product-build",
+  "voice + messaging": "product-build",
+  "pr + communications": "onboard",
+  "product, web + growth": "product-build",
+  "photography / art direction": "product-build",
 };
 
 export function productHref(slug: string): string {

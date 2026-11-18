@@ -7,11 +7,11 @@ export const fallbackPressKit: PressKitContent = {
   intro:
     "logos, colours, type, boilerplate and usage rules. download what you need. questions: press@bmkrs.com.",
   shortBoilerplate:
-    "bmkrs is a brand company run by builders. one team for brand, voice, pr and product, based in london and working worldwide.",
+    "bmkrs is a digital product studio that builds products and brings ai into production. one team for strategy, build, governance and handover, based in london and working worldwide.",
   longBoilerplate:
-    "b makers ltd trades as bmkrs. we are a brand company founded by a builder: seventeen years shipping products inside organisations where failure is expensive, now pointed at the gap most good products never close, a brand that does them justice. we work with founders and product teams who need the whole journey, from positioning and identity through voice, press and the site that converts, without hiring four agencies and refereeing between them. the studio also ships its own products, so we live with the consequences of our own advice.",
+    "b makers ltd trades as bmkrs. we are a digital product studio founded by a builder: seventeen years shipping inside organisations where failure is expensive, now pointed at the gap most ai programmes never close: production, governance and a team that can own what ships. we work with product and transformation leaders who need the whole journey, from readiness through build and controls to handover, without hiring five suppliers and refereeing between them. the studio also ships its own products, so we live with the consequences of our own advice.",
   founderBio:
-    "shane powell is the founder of bmkrs. he spent seventeen years as a director-level product and delivery consultant in public sector, utilities and regulated industries before starting the studio. he builds brands the way he builds products: strategy before execution, one accountable team, shipped and measured rather than presented and abandoned.",
+    "shane powell is the founder of bmkrs. he spent seventeen years as a director-level product and delivery consultant in public sector, utilities and regulated industries before starting the studio. he builds products the way good programmes get built: assess before implement, controls before code, one accountable team, shipped and measured rather than presented and abandoned.",
   legalName: "b makers ltd",
   location: "london, and wherever you are",
   founded: "2013",

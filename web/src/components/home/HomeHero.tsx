@@ -8,10 +8,10 @@ export function HomeHero({ hero, frames }: { hero: HomeHeroContent; frames: Work
       eyebrow={hero.eyebrow}
       title={
         <>
-          most studios stop at the logo.
+          most ai never leaves the pilot.
           <br />
           <span className="bmkrs-hero__underline">
-            we ship the whole thing.
+            we put it into production.
             <SnapLine
               tick="shipped, not sketched"
               trigger="load"

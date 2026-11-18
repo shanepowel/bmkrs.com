@@ -3,10 +3,10 @@ import { BRAND_AVATAR } from "@/lib/brand";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "bmkrs. a brand company run by builders.",
+    name: "bmkrs. digital products. ai that ships.",
     short_name: "bmkrs.",
     description:
-      "A brand company shaping identity, voice, PR, and product from London to worldwide.",
+      "A digital product studio that builds products and brings ai into production, with governance and handover included.",
     start_url: "/",
     display: "standalone",
     background_color: "#fbf9f5",

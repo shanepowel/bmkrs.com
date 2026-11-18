@@ -1,13 +1,36 @@
 import { Kicker, LinkIndex, LinkRow, Section } from "@bmkrs/ui";
 
 const ROUTES = [
-  { situation: "not sure what's wrong, just that something is", target: "brand check", href: "#brand-check" },
-  { situation: "new brand, nothing built yet", target: "launch kit", href: "#launch-kit" },
-  { situation: "the brand no longer matches the business", target: "rebrand", href: "#rebrand" },
-  { situation: "the brand is fine, the site isn't", target: "storefront", href: "#storefront" },
-  { situation: "you look fine and sound like everyone", target: "story", href: "#story" },
-  { situation: "there's a launch date and no story", target: "press launch", href: "#press-launch" },
-  { situation: "you want it all to keep moving", target: "motion", href: "/motion" },
+  {
+    situation: "not sure what to build, or whether ai belongs in it",
+    target: "readiness",
+    href: "#readiness",
+  },
+  {
+    situation: "you need a digital product in users' hands",
+    target: "product build",
+    href: "#product-build",
+  },
+  {
+    situation: "ai pilots exist. nothing is in production",
+    target: "ai implementation",
+    href: "#ai-implementation",
+  },
+  {
+    situation: "you cannot adopt ai by bypassing controls",
+    target: "ai governance",
+    href: "#ai-governance",
+  },
+  {
+    situation: "the build shipped. the team cannot run it",
+    target: "onboard",
+    href: "#onboard",
+  },
+  {
+    situation: "you want the same team to keep shipping",
+    target: "motion",
+    href: "/motion",
+  },
 ] as const;
 
 export function WhichOne() {
@@ -17,11 +40,18 @@ export function WhichOne() {
       <div className="mt-8">
         <LinkIndex>
           {ROUTES.map((item) => (
-            <LinkRow key={item.href} href={item.href} name={item.situation} description={item.target} />
+            <LinkRow
+              key={item.href}
+              href={item.href}
+              name={item.situation}
+              description={item.target}
+            />
           ))}
         </LinkIndex>
       </div>
-      <p className="lead mt-8 max-w-[65ch]">still not sure? that&apos;s what the brand check is for.</p>
+      <p className="lead mt-8 max-w-[65ch]">
+        still not sure? that&apos;s what readiness is for.
+      </p>
     </Section>
   );
 }

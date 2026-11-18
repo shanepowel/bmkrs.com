@@ -8,21 +8,21 @@ const TIER_LABELS: Record<
 > = {
   start: {
     label: "start",
-    blurb: "a fast, honest read before you commit to more.",
-    eyebrow: "step one",
+    blurb: "readiness before you spend on a build.",
+    eyebrow: "assess",
     shape: "one week, fixed scope",
   },
   make: {
     label: "make",
-    blurb: "fixed-scope sprints that build the brand and what carries it.",
-    eyebrow: "the build",
-    shape: "four to ten weeks, fixed scope",
+    blurb: "fixed-scope sprints that ship product and ai into production.",
+    eyebrow: "implement",
+    shape: "four to twelve weeks, fixed scope",
     featured: true,
   },
   grow: {
     label: "grow",
-    blurb: "one team keeping it all moving, month after month.",
-    eyebrow: "ongoing",
+    blurb: "one team keeping product and ai moving, month after month.",
+    eyebrow: "amplify",
     shape: "rolling, monthly",
   },
 };
@@ -44,9 +44,9 @@ const TIERS: ProductTier[] = ["start", "make", "grow"];
 
 // only claims the offer itself guarantees; add delivery numbers here once they are verified
 const STATS = [
-  { value: "17+", label: "years building brands and the products behind them" },
-  { value: "4", label: "disciplines in one team: brand, voice, pr, product" },
-  { value: "1", label: "point of contact, from first call to launch day" },
+  { value: "17+", label: "years shipping products inside organisations where failure is expensive" },
+  { value: "3", label: "phases every engagement: assess, implement, amplify" },
+  { value: "1", label: "point of contact, from first call to production" },
 ] as const;
 
 export function PackagesSection({ products }: { products: Product[] }) {

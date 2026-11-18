@@ -13,8 +13,8 @@ export function GrowBand({ motionPrice }: { motionPrice?: Product }) {
         motion · motion plus · motion embedded
       </h3>
       <p className="lead mt-4 max-w-[65ch]">
-        one team keeping your brand, voice, and pr moving, month after month. monthly partnership,
-        senior people only, cancel with notice.
+        one team keeping your product and ai estate moving, month after month. monthly
+        partnership, senior people only, cancel with notice.
       </p>
       <p className="mono mt-6 text-meta uppercase tracking-[0.08em] text-accent">
         {price} ·{" "}

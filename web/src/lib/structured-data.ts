@@ -19,7 +19,7 @@ export function organizationSchema() {
     url: SITE,
     logo: `${SITE}${BRAND_AVATAR}`,
     description:
-      "bmkrs. is a brand company run by builders. brand and identity, voice and messaging, pr and communications, and the product and growth to back it up.",
+      "bmkrs. builds digital products and brings ai into production. strategy, build, governance and handover, so your teams can own what we leave behind.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "london",

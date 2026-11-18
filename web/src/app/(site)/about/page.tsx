@@ -24,7 +24,7 @@ import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
   "about",
-  "bmkrs is a brand company founded by a builder: a director-level consultant who spent years shipping products inside complex organisations, now building brands the same way.",
+  "bmkrs is a digital product studio founded by a builder: seventeen years shipping inside complex organisations, now putting products and ai into production with governance and handover included.",
   "/about",
 );
 
@@ -33,7 +33,7 @@ const ABOUT_TICKER = [
   "partner team, not payroll",
   "london, and wherever you are",
   "we ship our own products too",
-  "the better-told brand wins",
+  "production is the product",
 ];
 
 export default async function AboutPage() {

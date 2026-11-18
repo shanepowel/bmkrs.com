@@ -11,7 +11,7 @@ import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "work",
-  "selected brand, product and digital projects, including the products we build ourselves. proof, not promises.",
+  "selected digital products and client builds, including the products we run ourselves. proof, not promises.",
   "/work",
 );
 

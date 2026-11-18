@@ -4,17 +4,17 @@ import { Kicker, Section } from "@bmkrs/ui";
 const COLUMNS = [
   {
     label: "start.",
-    body: "a fast, honest read before you commit to more. one week, one price, no obligation to continue.",
+    body: "a fast, honest readiness read before you commit to a build or an ai programme. one week, one price, no obligation to continue.",
   },
   {
     label: "make.",
-    body: "fixed-scope sprints that build the brand and the thing that carries it. six to ten weeks depending on the package.",
+    body: "fixed-scope sprints that ship digital products, put ai into production, set governance, and leave your team able to run it.",
   },
   {
     label: "grow.",
     body: (
       <>
-        one team keeping brand, voice, and pr moving, month after month. that&apos;s{" "}
+        one team keeping product and ai moving, month after month. that&apos;s{" "}
         <Link href="/motion" className="text-accent hover:underline">
           motion →
         </Link>

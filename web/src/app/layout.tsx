@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: "bmkrs. a brand company run by builders.",
+      default: "bmkrs. digital products. ai that ships.",
       template: "%s",
     },
     description: settings.description,
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "en_GB",
       url: SITE_URL,
-      title: "bmkrs. a brand company run by builders.",
+      title: "bmkrs. digital products. ai that ships.",
       description: settings.description,
       siteName: settings.siteName,
       images: [
@@ -35,13 +35,13 @@ export async function generateMetadata(): Promise<Metadata> {
           url: DEFAULT_OG_IMAGE,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
-          alt: "bmkrs. a brand company run by builders.",
+          alt: "bmkrs. digital products. ai that ships.",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "bmkrs. a brand company run by builders.",
+      title: "bmkrs. digital products. ai that ships.",
       description: settings.description,
       images: [DEFAULT_OG_IMAGE],
     },

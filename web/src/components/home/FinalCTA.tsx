@@ -5,8 +5,8 @@ export function FinalCTA() {
     <Close
       id="contact"
       snap={<SnapLine tick="your line goes here" trigger="inView" />}
-      title="let's make something worth choosing."
-      action={<OrangeButton href="/contact">start a project</OrangeButton>}
+      title="let's put something into production."
+      action={<OrangeButton href="/contact">start a build</OrangeButton>}
     />
   );
 }
