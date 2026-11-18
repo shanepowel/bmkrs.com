@@ -23,17 +23,35 @@ export function Hero({
   actions,
   plate,
   media,
+  aside,
 }: {
   eyebrow: ReactNode;
   title: ReactNode;
   lede: ReactNode;
   actions?: ReactNode;
   plate?: ReactNode;
+  /** full-bleed background behind the copy */
   media?: ReactNode;
+  /** framed panel beside the copy on wide screens, below it on narrow ones */
+  aside?: ReactNode;
 }) {
+  const copy = (
+    <>
+      <span className="bmkrs-hero__eyebrow">{eyebrow}</span>
+      <h1 className="bmkrs-hero__title">{title}</h1>
+      <p className="bmkrs-hero__lede">{lede}</p>
+      {actions ? <div className="bmkrs-hero__actions">{actions}</div> : null}
+      {plate ? (
+        <div className="bmkrs-hero__plate" aria-hidden>
+          {plate}
+        </div>
+      ) : null}
+    </>
+  );
+
   return (
     <header
-      className={clsx("bmkrs-hero", media && "bmkrs-hero--reel")}
+      className={clsx("bmkrs-hero", media && "bmkrs-hero--reel", aside && "bmkrs-hero--split")}
       data-bmkrs-hero=""
       data-surface="ink"
     >
@@ -44,15 +62,14 @@ export function Hero({
         </div>
       ) : null}
       <div className="bmkrs-wrap bmkrs-hero__content">
-        <span className="bmkrs-hero__eyebrow">{eyebrow}</span>
-        <h1 className="bmkrs-hero__title">{title}</h1>
-        <p className="bmkrs-hero__lede">{lede}</p>
-        {actions ? <div className="bmkrs-hero__actions">{actions}</div> : null}
-        {plate ? (
-          <div className="bmkrs-hero__plate" aria-hidden>
-            {plate}
-          </div>
-        ) : null}
+        {aside ? (
+          <>
+            <div className="bmkrs-hero__copy">{copy}</div>
+            <div className="bmkrs-hero__aside">{aside}</div>
+          </>
+        ) : (
+          copy
+        )}
       </div>
     </header>
   );
@@ -134,12 +151,18 @@ export function TierCard({
   title,
   blurb,
   featured = false,
+  price,
+  shape,
   links,
 }: {
   eyebrow: string;
   title: string;
   blurb: string;
   featured?: boolean;
+  /** headline price line, e.g. "from £9,500" */
+  price?: string;
+  /** how the work is shaped, e.g. "one week, fixed scope." */
+  shape?: string;
   links?: { href: string; label: string }[];
 }) {
   return (
@@ -147,6 +170,12 @@ export function TierCard({
       <span className="bmkrs-tiers__eyebrow">{eyebrow}</span>
       <h3 className="bmkrs-tiers__title">{title}</h3>
       <p className="bmkrs-tiers__sub">{blurb}</p>
+      {price || shape ? (
+        <div className="bmkrs-tiers__terms">
+          {price ? <span className="bmkrs-tiers__price">{price}</span> : null}
+          {shape ? <span className="bmkrs-tiers__shape">{shape}</span> : null}
+        </div>
+      ) : null}
       {links?.length ? (
         <ul className="bmkrs-tiers__links">
           {links.map((link) => (
@@ -185,6 +214,7 @@ export function WorkTile({
   name,
   detail,
   image,
+  index,
   wide = false,
 }: {
   href: string;
@@ -192,6 +222,8 @@ export function WorkTile({
   name: string;
   detail?: string;
   image?: { src: string; alt?: string };
+  /** optional plate label shown on the mat, e.g. "fig. 01" */
+  index?: string;
   wide?: boolean;
 }) {
   return (
@@ -212,6 +244,11 @@ export function WorkTile({
             sizes={wide ? "(max-width: 800px) 100vw, 60vw" : "(max-width: 720px) 100vw, 40vw"}
             className="bmkrs-work__img"
           />
+          {index ? (
+            <span className="bmkrs-work__index" aria-hidden>
+              {index}
+            </span>
+          ) : null}
         </span>
       ) : null}
       <span className="bmkrs-work__copy">

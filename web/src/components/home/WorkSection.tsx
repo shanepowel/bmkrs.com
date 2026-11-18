@@ -20,9 +20,11 @@ export function WorkSection({
     <Surface theme="paper" pad="home" id="work">
       <SectionHeading title={title} eyebrow={eyebrow} />
       <WorkGrid>
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <WorkTile
             key={project.slug}
+            index={`fig. ${String(i + 1).padStart(2, "0")}`}
+            detail={project.outcomeLine}
             href={`/work/${project.slug}`}
             tag={project.category.toLowerCase()}
             name={project.title.toLowerCase()}

@@ -144,6 +144,38 @@ export async function getFeaturedProjects(): Promise<Project[]> {
   return [...picked, ...rest].slice(0, 4);
 }
 
+/**
+ * Projects held off the homepage showcase until clean imagery is uploaded.
+ * flipster: current artwork is built around third-party broadcaster logos.
+ */
+const SHOWCASE_IMAGE_HOLD = new Set(["flipster"]);
+
+/** True when a project's thumbnail is real project imagery, not a generic studio or marketing image. */
+export function hasShowcaseImagery(project: Project): boolean {
+  const src = project.thumbnailPath ?? "";
+  if (!src || SHOWCASE_IMAGE_HOLD.has(project.slug)) return false;
+  return !src.startsWith("/images/marketing/") && !src.includes("placeholder");
+}
+
+/**
+ * Homepage showcase: featured projects first, then the rest of the book,
+ * keeping only those with real project imagery. Used by the hero reel and
+ * the selected work grid so the first thing a visitor sees is shipped work.
+ */
+export async function getShowcaseProjects(limit = 4): Promise<Project[]> {
+  const [featured, all] = await Promise.all([getFeaturedProjects(), getProjects()]);
+  const bySlug = new Map(all.map((p) => [p.slug, p]));
+  const ordered = [
+    ...featured.map((p) => bySlug.get(p.slug) ?? p),
+    ...all.filter((p) => !featured.some((f) => f.slug === p.slug)),
+  ];
+  const clientFirst = [
+    ...ordered.filter((p) => p.projectType !== "studio"),
+    ...ordered.filter((p) => p.projectType === "studio"),
+  ];
+  return clientFirst.filter(hasShowcaseImagery).slice(0, limit);
+}
+
 function mergeProducts(sanity: Product[] | null | undefined): Product[] {
   const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
   for (const p of sanity ?? []) {
