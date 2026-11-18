@@ -1,4 +1,5 @@
 import { GhostButton, Hero, OrangeButton, SnapLine, WorkReel, type WorkReelFrame } from "@bmkrs/ui";
+import { brandMessaging } from "@/lib/content/messaging";
 import type { HomeHero as HomeHeroContent } from "@/lib/types";
 
 export function HomeHero({ hero, frames }: { hero: HomeHeroContent; frames: WorkReelFrame[] }) {
@@ -8,10 +9,10 @@ export function HomeHero({ hero, frames }: { hero: HomeHeroContent; frames: Work
       eyebrow={hero.eyebrow}
       title={
         <>
-          most ai never leaves the pilot.
+          {brandMessaging.heroTitleLead}
           <br />
           <span className="bmkrs-hero__underline">
-            we put it into production.
+            {brandMessaging.heroTitleEm}
             <SnapLine
               tick="shipped, not sketched"
               trigger="load"
@@ -32,8 +33,7 @@ export function HomeHero({ hero, frames }: { hero: HomeHeroContent; frames: Work
       }
       plate={
         <>
-          <span>sheet 01 / 07</span>
-          <span>rev. 2026</span>
+          <span>{brandMessaging.processShort}</span>
           <span>london · everywhere</span>
         </>
       }

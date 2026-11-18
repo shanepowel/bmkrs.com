@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "./cn";
 import { tokens } from "./tokens";
 
 export type StickyCTAAction = {
@@ -64,9 +65,10 @@ export function StickyCTA({
             <Link
               key={action.href + action.label}
               href={action.href}
-              className={`rounded-full py-3 text-center text-[14px] font-medium ${
-                isPrimary ? "flex-1" : "px-6"
-              }`}
+              className={cn(
+                "inline-flex min-h-11 items-center justify-center rounded-full text-[0.9375rem] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange",
+                isPrimary ? "flex-1" : "px-6",
+              )}
               style={
                 isPrimary
                   ? { background: tokens.color.orange, color: tokens.color.ink }

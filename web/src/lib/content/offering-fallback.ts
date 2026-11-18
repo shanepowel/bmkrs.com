@@ -26,7 +26,7 @@ export const fallbackProducts: Product[] = [
     price: "£2,500",
     priceQualifier: "fixed",
     creditNote:
-      "if you go on to a make package within ninety days, the readiness fee comes off the price.",
+      "if you go on to a build package within ninety days, the readiness fee comes off the price.",
     order: 1,
     featured: true,
   },
@@ -264,37 +264,37 @@ export const fallbackPeople: Person[] = [
   {
     slug: "marcus",
     name: "marcus",
-    role: "voice + messaging",
+    role: "product narrative",
     shortBio:
-      "came up through broadcast, where nobody owes you their attention. every line he writes has to survive being said out loud.",
-    portraitAlt: "illustrated portrait of marcus, voice + messaging at bmkrs",
+      "came up through broadcast, where nobody owes you their attention. every line he writes has to survive being said out loud, including in the product.",
+    portraitAlt: "illustrated portrait of marcus, product narrative at bmkrs",
     order: 1,
   },
   {
     slug: "sarah",
     name: "sarah",
-    role: "brand + identity",
+    role: "product design",
     shortBio:
-      "builds visual worlds from positioning outwards, never the other way round. will tell you when you do not need a rebrand.",
-    portraitAlt: "illustrated portrait of sarah, brand + identity at bmkrs",
+      "builds interfaces from the job to be done outwards. will tell you when you do not need another screen.",
+    portraitAlt: "illustrated portrait of sarah, product design at bmkrs",
     order: 2,
   },
   {
     slug: "george",
     name: "george",
-    role: "pr + communications",
+    role: "delivery + change",
     shortBio:
-      "would rather find the one right journalist than blast a hundred wrong ones. angle first, always.",
-    portraitAlt: "illustrated portrait of george, pr + communications at bmkrs",
+      "gets programmes through the gates that stop most ai work. angle first, always: what ships, who owns it, how it is measured.",
+    portraitAlt: "illustrated portrait of george, delivery and change at bmkrs",
     order: 3,
   },
   {
     slug: "melissa",
     name: "melissa",
-    role: "product + growth",
+    role: "engineering",
     shortBio:
-      "ships the sites, apps and campaigns that turn brand work into revenue. one primary metric per campaign, no exceptions.",
-    portraitAlt: "illustrated portrait of melissa, product + growth at bmkrs",
+      "ships the platforms and integrations that keep products in production. one primary metric per release, no exceptions.",
+    portraitAlt: "illustrated portrait of melissa, engineering at bmkrs",
     order: 4,
   },
 ];

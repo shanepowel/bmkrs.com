@@ -1,6 +1,7 @@
 /**
- * Canonical /services package anchors (start / make tiers).
- * Legacy discipline hashes (#branding, #voice, #pr, #product) redirect client-side.
+ * Canonical /services package anchors (start / build / grow tiers).
+ * Schema value for build remains `make`; page ids use the display label `build`.
+ * Legacy hashes redirect client-side.
  */
 
 /** Legacy discipline hash ids → product anchors (include leading #). */
@@ -15,6 +16,7 @@ export const LEGACY_DISCIPLINE_HASH_MAP: Record<string, string> = {
   "#storefront": "#product-build",
   "#brand-check": "#readiness",
   "#rebrand": "#product-build",
+  "#make": "#build",
 };
 
 /** Case study service labels → primary product anchor. */

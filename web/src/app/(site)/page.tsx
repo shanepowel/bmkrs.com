@@ -1,4 +1,4 @@
-import { PlateRow, SectionHeading, Surface } from "@bmkrs/ui";
+import { SectionHeading, Surface } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
@@ -10,7 +10,6 @@ import { ServicesList } from "@/components/home/ServicesList";
 import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
 import { homePainPoints } from "@/lib/content/expansion-v2";
-import { brandPlates } from "@/lib/marketing-assets";
 import {
   getHomeContent,
   getHomeTestimonials,
@@ -51,7 +50,7 @@ export default async function HomePage() {
 
       <HomeMarquee items={home.marqueeItems} />
 
-      {/* light-led rhythm: reading on paper, imagery and identity on ink, never two paper blocks touching */}
+      {/* surface rhythm: ink / paper alternating. never two paper blocks adjacent; orange never touches paper. */}
       <Surface theme="paper" pad="home" id="arrive">
         <Reveal>
           <SectionHeading title="you usually arrive with one of these." eyebrow="why people call us" />
@@ -59,14 +58,9 @@ export default async function HomePage() {
         </Reveal>
       </Surface>
 
-      <Surface theme="ink" pad="tight">
-        <Reveal>
-          <PlateRow
-            label="from the studio"
-            plates={[brandPlates.fullStop, brandPlates.method, brandPlates.voice]}
-          />
-        </Reveal>
-      </Surface>
+      <Reveal>
+        <WhyBand />
+      </Reveal>
 
       <Surface theme="paper" pad="home" id="services">
         <Reveal>
@@ -80,16 +74,6 @@ export default async function HomePage() {
       </Surface>
 
       <Reveal>
-        <WhyBand />
-      </Reveal>
-
-      <Surface theme="paper" pad="home" id="packages">
-        <Reveal>
-          <PackagesSection products={products} />
-        </Reveal>
-      </Surface>
-
-      <Reveal>
         <WorkSection
           projects={showcase}
           testimonial={workTestimonial}
@@ -97,6 +81,12 @@ export default async function HomePage() {
           title={home.selectedWork.title}
         />
       </Reveal>
+
+      <Surface theme="paper" pad="home" id="packages">
+        <Reveal>
+          <PackagesSection products={products} />
+        </Reveal>
+      </Surface>
 
       <Reveal>
         <ProcessSection />

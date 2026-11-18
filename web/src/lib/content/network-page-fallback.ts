@@ -3,14 +3,14 @@ import type { NetworkPageContent } from "@/lib/types";
 export const fallbackNetworkPage: NetworkPageContent = {
   headline: "the people behind the work.",
   intro:
-    "every bmkrs project is staffed from a vetted bench of senior builders, designers, writers and specialists. now the bench is open: hire from it, or earn a place on it.",
+    "every bmkrs build is staffed from a vetted bench of senior product, engineering and delivery specialists. now the bench is open: hire from it, or earn a place on it.",
   members: [],
   disciplineTiles: [
-    { title: "brand + identity", sub: "designers" },
-    { title: "voice + copy", sub: "writers" },
-    { title: "pr + comms", sub: "specialists" },
-    { title: "web + product", sub: "engineers" },
-    { title: "growth + seo", sub: "marketers" },
+    { title: "product", sub: "builders" },
+    { title: "engineering", sub: "engineers" },
+    { title: "ai + data", sub: "specialists" },
+    { title: "governance", sub: "leads" },
+    { title: "ux + research", sub: "designers" },
     { title: "delivery", sub: "leads" },
   ],
   stats: [],
@@ -31,7 +31,7 @@ export const fallbackNetworkPage: NetworkPageContent = {
   ],
   forCompanies: {
     heading: "hire from the bench.",
-    body: "bring senior people in to build alongside your team. brand, voice, pr, product, with no recruitment and no ramp-up. the same people who deliver our client work, working as part of yours.",
+    body: "bring senior people in to build alongside your team. product, ai, engineering and delivery, with no recruitment and no ramp-up. the same people who deliver our client work, working as part of yours.",
     steps: [
       "tell us what you need",
       "we match from people we have already worked with",
@@ -54,6 +54,6 @@ export const fallbackNetworkPage: NetworkPageContent = {
   seo: {
     metaTitle: "the network | bmkrs.",
     metaDescription:
-      "the vetted bench of senior builders, designers and specialists behind every bmkrs project. hire from it, or earn a place on it.",
+      "the vetted bench of senior product, engineering and delivery specialists behind every bmkrs build. hire from it, or earn a place on it.",
   },
 };

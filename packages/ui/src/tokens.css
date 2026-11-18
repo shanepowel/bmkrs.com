@@ -7,11 +7,13 @@
   --bmkrs-paper: #f1efe8;
   --bmkrs-paper-bright: #fbf9f5;
   --bmkrs-body: #d3d1c7;
-  --bmkrs-paper-body: #444441;
-  --bmkrs-paper-faint: #5f5e5a;
+  --bmkrs-paper-body: #3a3936;
+  --bmkrs-paper-faint: #4f4e4a;
   --bmkrs-meta: #b4b2a9;
   --bmkrs-faint: #7d7b74;
   --bmkrs-orange: #ff4d00;
+  --bmkrs-orange-body: #2c1005;
+  --bmkrs-orange-faint: #4a1b0c;
   --bmkrs-orange-soft: rgba(255, 77, 0, 0.32);
   --bmkrs-orange-glow: rgba(255, 77, 0, 0.32);
   --bmkrs-rule: rgba(241, 239, 232, 0.14);
@@ -22,19 +24,19 @@
   --bmkrs-font-sans: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
-  /* type scale (source of truth) */
-  --text-hero: clamp(2.5rem, 7vw, 6rem);
-  --text-h2: clamp(1.875rem, 4vw, 3.5rem);
-  --text-h3: clamp(1.125rem, 1.6vw, 1.375rem);
-  --text-lead: clamp(1.125rem, 1.4vw, 1.375rem);
-  --text-body: 1.0625rem;
-  --text-body-sm: 0.9375rem;
+  /* type scale (source of truth) — product-clear, not poster-loud */
+  --text-hero: clamp(2.35rem, 5.8vw, 4.75rem);
+  --text-h2: clamp(1.75rem, 3.4vw, 2.85rem);
+  --text-h3: clamp(1.125rem, 1.5vw, 1.35rem);
+  --text-lead: clamp(1.125rem, 1.35vw, 1.3rem);
+  --text-body: 1.125rem;
+  --text-body-sm: 1rem;
   --text-meta: 0.8125rem;
-  --lh-display: 1.02;
-  --lh-heading: 1.08;
-  --lh-body: 1.6;
-  --tracking-display: -0.02em;
-  --tracking-kicker: 0.04em;
+  --lh-display: 1.05;
+  --lh-heading: 1.12;
+  --lh-body: 1.65;
+  --tracking-display: -0.022em;
+  --tracking-kicker: 0.06em;
 
   /* space scale */
   --section-y: clamp(4.5rem, 9vw, 9rem);

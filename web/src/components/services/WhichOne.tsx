@@ -1,4 +1,4 @@
-import { Kicker, LinkIndex, LinkRow, Section } from "@bmkrs/ui";
+import { Body, Kicker, LinkIndex, LinkRow, Section } from "@bmkrs/ui";
 
 const ROUTES = [
   {
@@ -49,9 +49,9 @@ export function WhichOne() {
           ))}
         </LinkIndex>
       </div>
-      <p className="lead mt-8 max-w-[65ch]">
+      <Body theme="paper" lead className="mt-8">
         still not sure? that&apos;s what readiness is for.
-      </p>
+      </Body>
     </Section>
   );
 }

@@ -159,9 +159,22 @@ export function H3({
   );
 }
 
-export function Rule({ theme }: { theme?: SurfaceTheme }) {
+export function Rule({
+  theme,
+  className = "",
+}: {
+  theme?: SurfaceTheme;
+  className?: string;
+}) {
   const resolved = useTheme(theme);
-  return <div aria-hidden style={{ borderTop: `1px solid ${SURFACE[resolved].rule}` }} />;
+  return (
+    <div
+      role="separator"
+      aria-hidden
+      className={className}
+      style={{ borderTop: `1px solid ${SURFACE[resolved].rule}` }}
+    />
+  );
 }
 
 export function Body({
@@ -206,13 +219,20 @@ export function Meta({
   );
 }
 
+/**
+ * Fallback text mark for contexts without brand SVGs.
+ * Site chrome should prefer the Archivo SVG wordmark from `/brand`.
+ */
 export function Wordmark({ tone = "paper" }: { tone?: "paper" | "ink" }) {
   return (
     <span
       className="bmkrs-wordmark"
       style={{ color: tone === "ink" ? tokens.color.ink : tokens.color.paper }}
+      aria-label="bmkrs."
     >
-      bmkrs<span style={{ color: tokens.color.orange }}>.</span>
+      bmkrs<span style={{ color: tokens.color.orange }} aria-hidden="true">
+        .
+      </span>
     </span>
   );
 }

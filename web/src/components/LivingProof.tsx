@@ -1,47 +1,28 @@
-// components/LivingProof.tsx
-// "one vision, infinite teams" — a living proof element. the bmkrs vision node
-// holds steady while teams visibly assemble and dissolve beside it, each
-// pulling a partner from the bench. demonstrates the scale claim instead of
-// stating it. pure css keyframes (no framer). reduced-motion collapses to a
-// single static team + the facts row.
-//
-// data: `teams` is a prop. hardcode now; later pass live compositions from the
-// bench api (shape is intentionally simple). DO NOT fetch inside this
-// component — keep it presentational; the page passes data in.
+// "one vision, infinite teams" — living proof element. pure css keyframes;
+// reduced-motion collapses to a single static team + the facts row.
 "use client";
 
-const tokens = {
-  ink: "#181613",
-  inkRaised: "#211f1b",
-  paper: "#F1EFE8",
-  body: "#D3D1C7",
-  faint: "#7d7b74",
-  orange: "#FF4D00",
-  rule: "rgba(241,239,232,0.16)",
-} as const;
+import { StatusDot, tokens } from "@bmkrs/ui";
 
 export type ProofTeam = {
-  /** the work this team was spun up for, e.g. "a launch" */
   forWork: string;
-  /** core disciplines on the team (mono pills) */
   core: string[];
-  /** the partner pulled from the bench (highlighted pill) */
   benchPartner: string;
 };
 
 export type ProofFact = { value: string; label: string; accent?: boolean };
 
 const DEFAULT_TEAMS: ProofTeam[] = [
-  { forWork: "a launch", core: ["brand", "voice", "pr"], benchPartner: "motion" },
-  { forWork: "a rebrand + build", core: ["identity", "product", "growth"], benchPartner: "engineering" },
-  { forWork: "an always-on retainer", core: ["strategy", "content", "campaigns"], benchPartner: "3d" },
+  { forWork: "a product build", core: ["product", "ux", "engineering"], benchPartner: "delivery" },
+  { forWork: "an ai implementation", core: ["ai", "governance", "product"], benchPartner: "data" },
+  { forWork: "a motion engagement", core: ["product", "ai", "ops"], benchPartner: "engineering" },
 ];
 
 const DEFAULT_FACTS: ProofFact[] = [
-  { value: "17+", label: "years building" },
-  { value: "4", label: "disciplines per team" },
+  { value: "17+", label: "years shipping" },
+  { value: "3", label: "phases: assess, implement, amplify" },
   { value: "days", label: "to assemble, not months" },
-  { value: "7+", label: "partners on the bench, growing", accent: true },
+  { value: "1", label: "point of contact", accent: true },
 ];
 
 export default function LivingProof({
@@ -55,43 +36,68 @@ export default function LivingProof({
   kicker?: string;
   heading?: string;
 }) {
-  // each team gets an evenly distributed animation delay across the cycle.
-  const cycle = teams.length * 3; // seconds; 3s visible window per team
+  const cycle = teams.length * 3;
 
   return (
-    <div className="lp-wrap" style={{ background: tokens.ink, border: `1px solid ${tokens.rule}` }}>
-      <p className="lp-kicker" style={{ color: tokens.orange }}>{kicker}</p>
-      <p className="lp-heading" style={{ color: tokens.paper }}>{heading}</p>
+    <div
+      className="lp-wrap"
+      style={{ background: tokens.color.ink, border: `1px solid ${tokens.color.ruleInk}` }}
+    >
+      <p className="lp-kicker" style={{ color: tokens.color.orange }}>
+        {kicker}
+      </p>
+      <p className="lp-heading" style={{ color: tokens.color.paper }}>
+        {heading}
+      </p>
 
       <div className="lp-grid">
-        {/* the vision node */}
         <div className="lp-node-col">
-          <div className="lp-node" style={{ borderColor: tokens.orange }}>
-            <span className="lp-node-label lp-pulse" style={{ color: tokens.paper }}>
-              bmkrs<span style={{ color: tokens.orange }}>.</span>
+          <div className="lp-node" style={{ borderColor: tokens.color.orange }}>
+            <span className="lp-node-label lp-pulse" style={{ color: tokens.color.paper }}>
+              bmkrs
+              <StatusDot variant="solid" className="ml-0.5 inline-block align-baseline" />
             </span>
           </div>
-          <p className="lp-node-cap" style={{ color: tokens.faint }}>one vision</p>
+          <p className="lp-node-cap" style={{ color: tokens.color.faint }}>
+            one vision
+          </p>
         </div>
 
-        {/* the forming teams (absolutely stacked; css cycles them) */}
         <div className="lp-teams" aria-live="off">
           {teams.map((team, i) => (
             <div
               key={team.forWork}
               className="lp-team"
-              style={{ animationDelay: `${(cycle / teams.length) * i}s`, animationDuration: `${cycle}s` }}
+              style={{
+                animationDelay: `${(cycle / teams.length) * i}s`,
+                animationDuration: `${cycle}s`,
+              }}
             >
-              <p className="lp-team-for" style={{ color: tokens.orange }}>
+              <p className="lp-team-for" style={{ color: tokens.color.orange }}>
                 → team spun up for {team.forWork}
               </p>
               <div className="lp-pills">
                 {team.core.map((d) => (
-                  <span key={d} className="lp-pill" style={{ color: tokens.body, background: tokens.inkRaised, borderColor: tokens.rule }}>
+                  <span
+                    key={d}
+                    className="lp-pill"
+                    style={{
+                      color: tokens.color.body,
+                      background: tokens.color.inkRaised,
+                      borderColor: tokens.color.rule,
+                    }}
+                  >
                     {d}
                   </span>
                 ))}
-                <span className="lp-pill" style={{ color: tokens.paper, background: tokens.inkRaised, borderColor: tokens.orange }}>
+                <span
+                  className="lp-pill"
+                  style={{
+                    color: tokens.color.paper,
+                    background: tokens.color.inkRaised,
+                    borderColor: tokens.color.orange,
+                  }}
+                >
                   + partner: {team.benchPartner}
                 </span>
               </div>
@@ -100,17 +106,17 @@ export default function LivingProof({
         </div>
       </div>
 
-      {/* grounding facts */}
-      <div className="lp-facts" style={{ borderColor: tokens.rule }}>
+      <div className="lp-facts" style={{ borderColor: tokens.color.rule }}>
         {facts.map((f) => (
-          <span key={f.label} className="lp-fact" style={{ color: tokens.faint }}>
-            <span style={{ color: f.accent ? tokens.orange : tokens.paper }}>{f.value}</span> {f.label}
+          <span key={f.label} className="lp-fact" style={{ color: tokens.color.faint }}>
+            <span style={{ color: f.accent ? tokens.color.orange : tokens.color.paper }}>{f.value}</span>{" "}
+            {f.label}
           </span>
         ))}
       </div>
 
       <style>{`
-        .lp-wrap { border-radius: 16px; padding: clamp(1.5rem, 4vw, 1.875rem); overflow: hidden; }
+        .lp-wrap { border-radius: var(--bmkrs-radius-card, 24px); padding: clamp(1.5rem, 4vw, 1.875rem); overflow: hidden; }
         .lp-kicker { font-family: var(--font-mono, monospace); font-size: 0.8125rem; letter-spacing: 0.08em; margin: 0 0 0.375rem; }
         .lp-heading { font-weight: 500; font-size: clamp(1.375rem, 3vw, 1.5rem); letter-spacing: -0.02em; margin: 0 0 1.5rem; max-width: 24ch; line-height: 1.1; }
         .lp-grid { display: grid; grid-template-columns: auto 1fr; gap: 1.375rem; align-items: center; }
@@ -127,7 +133,6 @@ export default function LivingProof({
         .lp-fact { font-family: var(--font-mono, monospace); font-size: 0.625rem; }
         .lp-pulse { animation: lp-pulse 2s ease-in-out infinite; }
 
-        /* visible window = (3s / cycle) of the loop, with fade in/out either side */
         @keyframes lp-cycle {
           0%, 16%   { opacity: 0; transform: translateY(8px); }
           22%, 40%  { opacity: 1; transform: none; }

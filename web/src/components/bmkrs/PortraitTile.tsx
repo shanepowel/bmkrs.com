@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { BMKRS_ORANGE } from "@/lib/brand";
-import { SURFACE, type SurfaceTheme } from "@/lib/surfaces";
+import { StatusDot, tokens, SURFACE, type SurfaceTheme } from "@bmkrs/ui";
 
 type PortraitTileProps = {
   name: string;
@@ -35,16 +34,16 @@ export function PortraitTile({ name, discipline, portraitUrl, theme, size = 88 }
       style={{
         width: size,
         height: size,
-        background: theme === "paper" ? "#181613" : "#221F1B",
+        background: theme === "paper" ? tokens.color.ink : tokens.color.inkRaised,
         border: `1px solid ${theme === "paper" ? "transparent" : s.rule}`,
       }}
     >
-      <span className="preserve-case text-2xl font-medium leading-none text-[#F1EFE8]">
+      <span
+        className="preserve-case text-2xl font-medium leading-none"
+        style={{ color: tokens.color.paper }}
+      >
         {name.charAt(0)}
-        <span
-          className="ml-[2px] inline-block rounded-full align-baseline"
-          style={{ width: "0.14em", height: "0.14em", background: BMKRS_ORANGE }}
-        />
+        <StatusDot variant="solid" className="ml-[2px] inline-block align-baseline" />
       </span>
     </div>
   );

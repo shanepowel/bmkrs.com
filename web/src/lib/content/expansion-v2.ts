@@ -44,7 +44,7 @@ export const homeManifesto = `most ai ambition dies in the pilot. we spent seven
 it is not a model problem. it is a delivery problem, and it is fixable. so we build the product and the ai that powers it, with the controls and the handover baked in. one team, assess to amplify, because the gaps between agencies are where production goes quiet.`;
 
 export const homeProcessStrip = {
-  steps: "assess → implement → amplify → stay",
+  steps: "assess → implement → amplify → motion",
   body: "we start with readiness, value and risk, not a build backlog. then we ship digital products and ai systems inside your change gates. then we transfer capability: training, operating model, documentation your team can use. then, if you want us, we stay in motion.",
   footnote:
     "fixed scope. fixed timeline. one point of contact. prices on the services page.",

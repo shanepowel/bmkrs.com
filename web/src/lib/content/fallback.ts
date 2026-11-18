@@ -5,6 +5,7 @@ import {
   placeholderResultsBySlug,
 } from "@/lib/content/case-study-placeholders";
 import { companyFromEnv, publicCompanyNumber, publicRegisteredAddress } from "@/lib/content/company-registration";
+import { brandMessaging } from "@/lib/content/messaging";
 import type {
   HomeContent,
   MotionContent,
@@ -26,9 +27,8 @@ export const fallbackNavigation: NavItem[] = [
 
 export const fallbackSiteSettings: SiteSettings = {
   siteName: "bmkrs.",
-  tagline: "digital products. ai that ships.",
-  description:
-    "bmkrs builds digital products and brings ai into production. strategy, build, governance and handover, so your teams can own what we leave behind.",
+  tagline: brandMessaging.tagline,
+  description: brandMessaging.description,
   email: "hello@bmkrs.com",
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
@@ -65,13 +65,13 @@ export const fallbackSiteSettings: SiteSettings = {
 
 export const fallbackHome: HomeContent = {
   hero: {
-    eyebrow: "digital product · ai implementation · governance",
-    headline: "most ai never leaves the pilot. we put it into production.",
+    eyebrow: brandMessaging.heroEyebrow,
+    headline: `${brandMessaging.heroTitleLead} ${brandMessaging.heroTitleEm}`,
     headlineLead: "we ship",
     headlineTail: "products.",
-    sub: "digital products, ai systems and the operating model around them. we build with your teams, then leave them able to run it.",
-    primaryCta: { label: "see the work", href: "/work" },
-    secondaryCta: { label: "start a build", href: "/contact" },
+    sub: brandMessaging.heroSub,
+    primaryCta: { label: brandMessaging.ctaWork, href: "/work" },
+    secondaryCta: { label: brandMessaging.ctaPrimary, href: "/contact" },
     collage: [
       {
         src: "/images/work/podcast-studio-london-thumb.jpg",
@@ -114,9 +114,9 @@ export const fallbackHome: HomeContent = {
     "operating models",
   ],
   positioning: {
-    eyebrow: "what we really do",
-    statement: "we turn ai ambition into shipped product.",
-    lead: "pilots are easy. production is the hard part. we design, build and govern digital products and ai systems with your people in the room, then hand over capability that compounds after we leave.",
+    eyebrow: brandMessaging.positioningEyebrow,
+    statement: brandMessaging.positioningStatement,
+    lead: brandMessaging.positioningLead,
   },
   capabilitiesHead: {
     title: "product-led. governance-first.",
@@ -126,7 +126,7 @@ export const fallbackHome: HomeContent = {
   capabilityTiles: [
     {
       number: "01",
-      title: "Digital product",
+      title: "digital product",
       description:
         "platforms, apps and web products built to ship, measure and keep moving.",
       href: "/services#product-build",
@@ -134,7 +134,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "02",
-      title: "AI implementation",
+      title: "ai implementation",
       description:
         "use cases prioritised, built and put into production inside your change gates.",
       href: "/services#ai-implementation",
@@ -142,7 +142,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "03",
-      title: "AI governance",
+      title: "ai governance",
       description:
         "readiness, risk, policy and board reporting before a line of model code ships.",
       href: "/services#ai-governance",
@@ -150,7 +150,7 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "04",
-      title: "Onboard + operate",
+      title: "onboard + operate",
       description:
         "train your teams, stand up the operating model, stay on if you want a motion partner.",
       href: "/services#onboard",
@@ -168,15 +168,15 @@ export const fallbackHome: HomeContent = {
   ],
   whoWeWorkWith: {
     eyebrow: "who we work with",
-    statement: "product leaders who need ai in production, not another pilot.",
-    lead: "you are responsible for a digital product or an ai programme that has to survive audit, users and the next quarter. you need builders who can design, ship and leave your team able to own it. that is the job we built bmkrs to do.",
+    statement: brandMessaging.whoStatement,
+    lead: brandMessaging.whoLead,
   },
   clientMarquee: ["floare din banat", "copa", "carter mcgreggor", "flipster"],
   motionTeaser: {
     eyebrow: "ongoing partnership",
-    heading: "Always in motion.",
+    heading: "always in motion.",
     body: "a rolling partnership for products that never stand still. one team keeping delivery, ai and the operating model moving, month after month.",
-    ctaLabel: "explore motion",
+    ctaLabel: brandMessaging.ctaMotion,
     href: "/motion",
   },
   howWeWorkIntro:
@@ -201,16 +201,16 @@ export const fallbackHome: HomeContent = {
       order: 3,
     },
     {
-      title: "partner",
+      title: "motion",
       description:
-        "through motion we stay embedded, shipping and improving every month.",
+        "we stay embedded, shipping and improving every month when you want continuity.",
       order: 4,
     },
   ],
   selectedWork: {
     eyebrow: "selected work",
-    title: "products we have shipped",
-    subtitle: "selected builds across product, platforms and digital.",
+    title: brandMessaging.workTitle,
+    subtitle: brandMessaging.workSubtitle,
   },
   closing: {
     quote: "the storefront finally looks as good as the product. we are proud to share the brand now.",

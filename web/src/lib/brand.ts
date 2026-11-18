@@ -1,6 +1,9 @@
 /** Official bmkrs logo assets (see public/brand/). */
 
-export const BMKRS_ORANGE = "#FF4D00";
+import { tokens } from "@bmkrs/ui";
+
+/** @deprecated prefer `tokens.color.orange` from `@bmkrs/ui`. */
+export const BMKRS_ORANGE = tokens.color.orange;
 
 export type WordmarkVariant =
   | "primary-dark"

@@ -18,7 +18,7 @@ export default async function ContactPage() {
     <div className="contact-page">
       <MarketingBanner
         src={marketingImages.teamCollaboration}
-        alt="start a project with the bmkrs team"
+        alt="start a build with the bmkrs team"
         aspect="4/3"
       />
       <ContactExperience fallbackEmail={email} pressEmail={settings.pressEmail} />

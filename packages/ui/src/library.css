@@ -32,6 +32,13 @@ main:has([data-bmkrs-hero]) {
   letter-spacing: -0.02em;
 }
 
+/* logo lock: site chrome should use the Archivo SVG. this class sizes that mark. */
+.wordmark-img {
+  display: block;
+  height: 1.35rem;
+  width: auto;
+}
+
 .bmkrs-raised {
   border-block: 1px solid var(--bmkrs-rule-ink);
 }
@@ -137,10 +144,10 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__title {
-  max-width: 11em;
-  font-size: clamp(2.45rem, 6vw, 5.1rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
+  max-width: 14em;
+  font-size: var(--text-hero);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
   font-weight: 500;
 }
 
@@ -152,10 +159,10 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__lede {
-  margin: 2.6rem 0 2.4rem;
-  max-width: 42ch;
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-  line-height: 1.55;
+  margin: 1.75rem 0 2rem;
+  max-width: 46ch;
+  font-size: var(--text-lead);
+  line-height: var(--lh-body);
   color: var(--bmkrs-body);
 }
 
@@ -269,6 +276,27 @@ main:has([data-bmkrs-hero]) {
 .bmkrs-cells__title::after {
   content: "\201d";
   color: var(--bmkrs-orange);
+}
+
+.bmkrs-cells__item--plain .bmkrs-cells__title::before,
+.bmkrs-cells__item--plain .bmkrs-cells__title::after {
+  content: none;
+}
+
+.bmkrs-accent {
+  color: var(--bmkrs-orange);
+}
+
+.bmkrs-edge-quote {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  max-width: 40ch;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--bmkrs-orange);
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--surface-text);
 }
 
 .bmkrs-cells__body {
@@ -667,6 +695,12 @@ main:has([data-bmkrs-hero]) {
   line-height: 1.12;
   font-weight: 500;
   letter-spacing: -0.025em;
+}
+
+.bmkrs-quote--compact {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
 }
 
 .bmkrs-quote::before {

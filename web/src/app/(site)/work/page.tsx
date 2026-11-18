@@ -105,7 +105,7 @@ export default async function WorkPage() {
       <Section theme="ink">
         <Kicker theme="ink">your brand next</Kicker>
         <div className="mt-6">
-          <Button href="/contact">start a project</Button>
+          <Button href="/contact">start a build</Button>
         </div>
       </Section>
     </main>

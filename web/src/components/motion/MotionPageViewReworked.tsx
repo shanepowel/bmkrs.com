@@ -23,27 +23,27 @@ import { StarsOrbit } from "./StarsOrbit";
 
 const SYMPTOMS = [
   {
-    t: "everything waits for you.",
-    b: "the founder is the bottleneck: every asset, every decision, every brief queues behind your tuesday.",
+    t: "the product launched. improvement stalled.",
+    b: "every change means re-briefing someone from scratch, so the backlog grows and production goes quiet.",
+  },
+  {
+    t: "ai work happens in bursts.",
+    b: "a pilot, then silence, then panic. nobody owns evaluation, change control or the next release.",
   },
   {
     t: "five suppliers, no rhythm.",
-    b: "creative, content and delivery pulling in different directions, and you in the middle translating.",
-  },
-  {
-    t: "launch, then drift.",
-    b: "the brand was great on day one and has not moved since. marketing happens in bursts: sprint, silence, panic.",
+    b: "product, data, change and delivery pull in different directions, and you sit in the middle translating.",
   },
 ];
 
 const INCLUDED = [
   "monthly plan with one primary objective",
-  "creative production",
-  "campaign delivery",
-  "website updates + optimisation",
-  "content programme",
-  "brand governance",
-  "launch support",
+  "product iteration and releases",
+  "ai system upkeep and evaluation",
+  "operating-model support",
+  "priority incident and change line",
+  "governance that stays current",
+  "handover docs kept alive",
   "the monthly report, with numbers",
 ];
 
@@ -51,36 +51,36 @@ const MONTH = [
   {
     n: "01",
     t: "week one: we plan.",
-    b: "what the brand needs this month, decided together, written down. not a backlog. a bet.",
+    b: "what the product and ai estate needs this month, decided together, written down. not a backlog. a bet.",
   },
   {
     n: "02",
-    t: "weeks two + three: we make.",
-    b: "shipped as it is finished, not hoarded for a reveal.",
+    t: "weeks two + three: we build.",
+    b: "product changes, model work, integrations, whatever the plan called for, shipped as it is finished.",
   },
   {
     n: "03",
     t: "week four: we report.",
-    b: "what shipped, what moved, what we would do differently. a document you can forward to your board without editing.",
+    b: "what shipped, what moved, what we would do differently. a document you can forward without editing.",
   },
 ];
 
 const TIERS = [
   {
-    name: "motion one",
-    price: "from £1,500/month",
-    b: "the brand kept alive: monthly plan, production, site updates, governance, priority line.",
+    name: "motion",
+    price: "from £4,500/month",
+    b: "steady shipping for products that cannot go quiet: releases, ai upkeep, operating-model support, monthly readout.",
   },
   {
-    name: "motion two",
-    price: "from £3,000/month",
-    b: "the brand kept growing: everything in one, plus campaigns, the content programme, and the quarterly review with numbers.",
+    name: "motion plus",
+    price: "from £6,500/month",
+    b: "everything in motion, plus deeper discovery, growth loops and an extended specialist bench on demand.",
     featured: true,
   },
   {
-    name: "motion partner",
-    price: "custom",
-    b: "embedded strategic and creative partner, for businesses where brand is a growth lever, not a maintenance task.",
+    name: "motion embedded",
+    price: "from £9,000/month",
+    b: "a named senior product and ai team plugged into yours, with the wider bmkrs network behind them.",
   },
 ];
 
@@ -90,12 +90,12 @@ export function MotionPageViewReworked() {
       <Surface theme="ink">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <div>
-            <Kicker>keep moving</Kicker>
+            <Kicker>keep shipping</Kicker>
             <H1 className="mt-4 max-w-[12ch]">always in motion.</H1>
             <Body lead className="mt-7">
-              launches are exciting. momentum is hard. motion is the team that keeps your brand moving
-              month after month: senior strategy, creative and delivery, without hiring an internal team
-              or re-briefing a new supplier every quarter.
+              launches are exciting. staying in production is hard. motion is the team that keeps your
+              product and ai estate moving month after month: senior delivery, without hiring an
+              internal team or re-briefing a new supplier every quarter.
             </Body>
             <div className="mt-9 flex flex-wrap items-center gap-6">
               <OrangeButton href="#tiers">see the tiers + prices</OrangeButton>
@@ -110,7 +110,7 @@ export function MotionPageViewReworked() {
 
       <Surface theme="paper">
         <Kicker>you might need this if</Kicker>
-        <H2 className="mt-3 max-w-[18ch]">growth creates complexity. complexity eats momentum.</H2>
+        <H2 className="mt-3 max-w-[18ch]">shipping creates complexity. complexity eats momentum.</H2>
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -159,8 +159,8 @@ export function MotionPageViewReworked() {
         <H2>consistency compounds.</H2>
         <div className="mt-8">
           <StepLine
-            steps={["brand", "content", "campaigns", "customers", "growth"]}
-            body="every month the brand stays in motion, the next month costs less: recognition builds, content reuses, audiences warm. stop-start resets the meter. that is the entire economics of motion."
+            steps={["product", "ai", "controls", "users", "growth"]}
+            body="every month the product stays in motion, the next month costs less: knowledge compounds, releases reuse, users stay warm. stop-start resets the meter. that is the entire economics of motion."
           />
         </div>
       </Surface>
@@ -201,8 +201,8 @@ export function MotionPageViewReworked() {
       </Surface>
 
       <Close
-        title="your launch was the beginning."
-        action={<Button href="/contact">let&apos;s talk</Button>}
+        title="production was the beginning."
+        action={<Button href="/contact">start a build</Button>}
       />
     </MotionConfig>
   );

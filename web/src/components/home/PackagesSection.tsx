@@ -1,31 +1,7 @@
 import { SectionHeading, Stat, StatGrid, TierCard, TierGrid } from "@bmkrs/ui";
+import { brandMessaging, TIER_DISPLAY } from "@/lib/content/messaging";
 import { formatProductPrice } from "@/lib/format-product-price";
 import type { Product, ProductTier } from "@/lib/types";
-
-const TIER_LABELS: Record<
-  ProductTier,
-  { label: string; blurb: string; eyebrow: string; shape: string; featured?: boolean }
-> = {
-  start: {
-    label: "start",
-    blurb: "readiness before you spend on a build.",
-    eyebrow: "assess",
-    shape: "one week, fixed scope",
-  },
-  make: {
-    label: "make",
-    blurb: "fixed-scope sprints that ship product and ai into production.",
-    eyebrow: "implement",
-    shape: "four to twelve weeks, fixed scope",
-    featured: true,
-  },
-  grow: {
-    label: "grow",
-    blurb: "one team keeping product and ai moving, month after month.",
-    eyebrow: "amplify",
-    shape: "rolling, monthly",
-  },
-};
 
 const amountOf = (product: Product) =>
   Number((product.price ?? product.priceFrom ?? "").replace(/[^0-9.]/g, "")) || Infinity;
@@ -54,10 +30,10 @@ export function PackagesSection({ products }: { products: Product[] }) {
 
   return (
     <>
-      <SectionHeading title="start, make, grow." eyebrow="ways to work with us" />
+      <SectionHeading title={brandMessaging.packagesTitle} eyebrow={brandMessaging.packagesEyebrow} />
       <TierGrid>
         {TIERS.map((tier) => {
-          const meta = TIER_LABELS[tier];
+          const meta = TIER_DISPLAY[tier];
           return (
             <TierCard
               key={tier}

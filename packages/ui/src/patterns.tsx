@@ -105,6 +105,27 @@ export function QuoteCell({ index, title, body }: { index: string; title: string
   );
 }
 
+/** Belief / fact cell — same ruled grid as QuoteCell, without decorative quotes. */
+export function FactCell({ index, title, body }: { index: string; title: string; body: string }) {
+  return (
+    <article className="bmkrs-cells__item bmkrs-cells__item--plain">
+      <span className="bmkrs-cells__index">{index}</span>
+      <h3 className="bmkrs-cells__title">{title}</h3>
+      <p className="bmkrs-cells__body">{body}</p>
+    </article>
+  );
+}
+
+/** Orange highlight for a word inside a headline. */
+export function Accent({ children }: { children: ReactNode }) {
+  return <span className="bmkrs-accent">{children}</span>;
+}
+
+/** Compact left-edge pull quote for founder / story moments. */
+export function EdgeQuote({ children }: { children: ReactNode }) {
+  return <blockquote className="bmkrs-edge-quote">{children}</blockquote>;
+}
+
 export function Lead({ children }: { children: ReactNode }) {
   return <p className="bmkrs-lead">{children}</p>;
 }
@@ -290,11 +311,20 @@ export function PlateRow({ plates, label }: { plates: Plate[]; label?: string })
   );
 }
 
-export function PullQuote({ quote, cite }: { quote: string; cite: string }) {
+export function PullQuote({
+  quote,
+  cite,
+  compact = false,
+}: {
+  quote: string;
+  cite?: string;
+  /** tighter spacing for in-section quotes */
+  compact?: boolean;
+}) {
   return (
-    <blockquote className="bmkrs-quote">
+    <blockquote className={clsx("bmkrs-quote", compact && "bmkrs-quote--compact")}>
       {quote}
-      <cite>{cite}</cite>
+      {cite ? <cite>{cite}</cite> : null}
     </blockquote>
   );
 }
