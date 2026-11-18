@@ -2,7 +2,6 @@ import { GoogleAnalytics } from "@/components/bmkrs/GoogleAnalytics";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { StickyCTA } from "@/components/mobile/StickyCTA";
 import { getSiteSettings } from "@/lib/content";
 import { resolveMemberLoginUrl } from "@/lib/urls";
 
@@ -21,11 +20,10 @@ export default async function SiteLayout({
         loginUrl={resolveMemberLoginUrl(settings)}
         contactEmail={settings.generalEmail ?? settings.email}
       />
-      <div id="main" tabIndex={-1} className="outline-none pb-24 md:pb-0">
+      <div id="main" tabIndex={-1} className="outline-none">
         {children}
       </div>
       <SiteFooter settings={settings} />
-      <StickyCTA />
       <GoogleAnalytics />
     </>
   );
