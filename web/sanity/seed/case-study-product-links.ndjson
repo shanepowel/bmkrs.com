@@ -1,4 +1,8 @@
-{"_id":"caseStudy-copa","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}
-{"_id":"caseStudy-fdb","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-storefront"}}
-{"_id":"caseStudy-smoothies","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}
-{"_id":"caseStudy-flipster","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-launch-kit"}}
+{"_id":"caseStudy-copa","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-fdb","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-smoothies","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-flipster","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-podcast-studio-london","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-three18-media","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-freelance-near-me","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-product-build"}}
+{"_id":"caseStudy-data-deep-clean","_type":"caseStudy","productType":{"_type":"reference","_ref":"product-ai-implementation"}}

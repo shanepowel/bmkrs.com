@@ -176,16 +176,22 @@ export async function getShowcaseProjects(limit = 4): Promise<Project[]> {
   return clientFirst.filter(hasShowcaseImagery).slice(0, limit);
 }
 
+/**
+ * Canonical catalog is fallbackProducts. Sanity may still hold retired package
+ * docs (brand-check, launch-kit, etc.); ignore any slug that is not in the
+ * current catalog so old seed data cannot reappear alongside the new offers.
+ */
 function mergeProducts(sanity: Product[] | null | undefined): Product[] {
   const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
   for (const p of sanity ?? []) {
     const fb = bySlug.get(p.slug);
+    if (!fb) continue;
     bySlug.set(p.slug, {
       ...fb,
       ...p,
-      priceFrom: p.priceFrom ?? fb?.priceFrom,
-      shape: p.shape ?? fb?.shape,
-      priceNote: p.priceNote ?? fb?.priceNote,
+      priceFrom: p.priceFrom ?? fb.priceFrom,
+      shape: p.shape ?? fb.shape,
+      priceNote: p.priceNote ?? fb.priceNote,
     });
   }
   return [...bySlug.values()].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));

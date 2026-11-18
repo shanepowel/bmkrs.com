@@ -68,12 +68,11 @@ export const homeWhoWeWorkWithImage = {
 };
 
 export const productImageBySlug: Record<string, { src: string; alt: string }> = {
-  "brand-check": { src: marketingImages.brandArchitecture, alt: "brand check" },
-  "launch-kit": { src: marketingImages.brandGuidelines, alt: "launch kit" },
-  rebrand: { src: marketingImages.designStudio, alt: "rebrand" },
-  storefront: { src: marketingImages.digitalEcosystem, alt: "storefront" },
-  story: { src: marketingImages.designStudio, alt: "story" },
-  "press-launch": { src: marketingImages.socialStrategy, alt: "press launch" },
+  readiness: { src: marketingImages.brandArchitecture, alt: "readiness" },
+  "product-build": { src: marketingImages.digitalEcosystem, alt: "product build" },
+  "ai-implementation": { src: marketingImages.contentPlatform, alt: "ai implementation" },
+  "ai-governance": { src: marketingImages.brandGuidelines, alt: "ai governance" },
+  onboard: { src: marketingImages.teamCollaboration, alt: "onboard" },
   motion: { src: marketingImages.contentPlatform, alt: "motion" },
   "motion-plus": { src: marketingImages.filmProduction, alt: "motion plus" },
   "motion-embedded": { src: marketingImages.creativeToolkit, alt: "motion embedded" },
