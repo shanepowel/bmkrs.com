@@ -202,11 +202,19 @@ export async function getShowcaseProjects(limit = 4): Promise<Project[]> {
 function mergeProducts(sanity: Product[] | null | undefined): Product[] {
   const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
   for (const p of sanity ?? []) {
+    if (!p || typeof p !== "object" || typeof p.slug !== "string") continue;
     const fb = bySlug.get(p.slug);
     if (!fb) continue;
+    // Old CMS references can resolve to null after a case study is removed.
+    // Keep only usable proof links and fall back to the curated local links.
+    const proof = (Array.isArray(p.proof) ? p.proof : []).filter(
+      (item): item is NonNullable<Product["proof"]>[number] =>
+        Boolean(item && typeof item.slug === "string" && item.slug && typeof item.title === "string"),
+    );
     bySlug.set(p.slug, {
       ...fb,
       ...p,
+      proof: proof.length ? proof : fb.proof,
       priceFrom: p.priceFrom ?? fb.priceFrom,
       shape: p.shape ?? fb.shape,
       priceNote: p.priceNote ?? fb.priceNote,
