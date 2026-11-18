@@ -148,6 +148,7 @@ export default async function AboutPage() {
       <MarketingBanner
         src={marketingImages.studioTeam}
         alt="the bmkrs team at work in the studio"
+        aspect="21/9"
         priority
       />
 
