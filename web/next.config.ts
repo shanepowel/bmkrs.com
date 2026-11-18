@@ -7,7 +7,8 @@ const projectDir = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig: NextConfig = {
   transpilePackages: ["@bmkrs/ui"],
   turbopack: {
-    root: projectDir,
+    // monorepo hoist: next lives at repo root, not web/node_modules
+    root: path.join(projectDir, ".."),
   },
   webpack: (config) => {
     config.resolve.alias = {

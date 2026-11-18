@@ -8,8 +8,8 @@ export const contentType = ROUTE_OG_CONTENT_TYPE;
 export default function Image() {
   return createRouteOgImage({
     alt,
-    title: "built, not branded.",
-    subtitle: "a brand company founded by a builder.",
+    title: "built to stay in production.",
+    subtitle: "a digital product studio founded by a builder.",
     heroPath: "/images/bmkrs-avatar-512.png",
   });
 }

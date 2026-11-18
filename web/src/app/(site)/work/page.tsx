@@ -11,7 +11,7 @@ import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "work",
-  "selected brand, product and digital projects, including the products we build ourselves. proof, not promises.",
+  "selected digital products and client builds, including the products we run ourselves. proof, not promises.",
   "/work",
 );
 
@@ -105,7 +105,7 @@ export default async function WorkPage() {
       <Section theme="ink">
         <Kicker theme="ink">your brand next</Kicker>
         <div className="mt-6">
-          <Button href="/contact">start a project</Button>
+          <Button href="/contact">start a build</Button>
         </div>
       </Section>
     </main>

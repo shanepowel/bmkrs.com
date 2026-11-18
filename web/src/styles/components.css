@@ -676,7 +676,7 @@
 }
 
 :root[data-header-surface="paper"] .site-nav-link {
-  color: var(--bmkrs-meta);
+  color: var(--bmkrs-paper-faint);
 }
 
 :root[data-header-surface="paper"] .site-nav-link:hover,
@@ -747,7 +747,7 @@
 }
 
 :root[data-header-surface="paper"] .site-nav-link {
-  color: var(--bmkrs-meta);
+  color: var(--bmkrs-paper-faint);
 }
 
 :root[data-header-surface="paper"] .site-nav-link:hover,
@@ -859,8 +859,8 @@
 }
 .footer-capture__label-text {
   font-size: var(--text-meta, 0.8125rem);
-  letter-spacing: 0.08em;
-  color: #b4b2a9;
+  letter-spacing: var(--tracking-kicker, 0.04em);
+  color: var(--bmkrs-meta);
 }
 .footer-capture__form {
   display: flex;
@@ -917,7 +917,7 @@
   display: block;
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: var(--text-meta, 0.8125rem);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-kicker, 0.04em);
   color: var(--bmkrs-accent);
   margin-bottom: 1rem;
 }
@@ -944,7 +944,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid rgba(241, 239, 232, 0.16);
   font-size: var(--text-meta, 0.8125rem);
-  color: #b4b2a9;
+  color: var(--bmkrs-meta);
   margin-bottom: 1.25rem;
 }
 .site-footer__contact a {
@@ -977,7 +977,7 @@
 
 .site-footer__legal {
   font-size: var(--text-meta, 0.8125rem);
-  color: #b4b2a9;
+  color: var(--bmkrs-meta);
   line-height: 1.6;
 }
 .site-footer__legal-links {
@@ -993,7 +993,7 @@
 .site-footer__quip {
   margin-top: 1.5rem;
   font-size: 0.875rem;
-  color: #b4b2a9;
+  color: var(--bmkrs-meta);
 }
 .press-copy-btn {
   border: 1px solid rgba(24, 22, 19, 0.15);

@@ -77,11 +77,11 @@ export function SnapLine({
       {tick ? (
         <motion.span
           className={clsx(
-            "absolute right-0 font-mono text-[0.62rem] tracking-[0.1em] text-bmkrs-orange",
+            "absolute right-0 font-mono text-[0.75rem] tracking-[0.1em] text-bmkrs-orange",
             place === "below" ? "top-[calc(100%+0.55rem)]" : "-top-[1.5em]",
           )}
-          initial={{ opacity: reduceMotion ? 0.85 : 0 }}
-          animate={{ opacity: drawn ? 0.85 : 0 }}
+          initial={{ opacity: reduceMotion ? 1 : 0 }}
+          animate={{ opacity: drawn ? 1 : 0 }}
           transition={
             reduceMotion
               ? { duration: 0 }

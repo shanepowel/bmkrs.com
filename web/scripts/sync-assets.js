@@ -40,7 +40,7 @@ for (const relPath of required) {
 }
 
 /** Subdirs under public/images that are committed in git and must survive prune. */
-const PRESERVED_IMAGE_DIRS = new Set(["marketing"]);
+const PRESERVED_IMAGE_DIRS = new Set(["marketing", "plates", "work"]);
 
 function pruneDir(dirRel, allowedRelPaths) {
   const dir = path.join(publicRoot, dirRel);

@@ -54,13 +54,25 @@ body {
   background: var(--bg);
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 1rem;
-  line-height: var(--lh-body, 1.6);
+  font-weight: 400;
+  line-height: var(--lh-body, 1.65);
   letter-spacing: -0.005em;
   text-transform: lowercase;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* two weights only: 400 body, 500 display. never 600/700. */
+h1,
+h2,
+h3,
+h4,
+.font-medium,
+.bmkrs-hero__title,
+.bmkrs-section-heading__title {
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {

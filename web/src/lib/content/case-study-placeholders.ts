@@ -20,6 +20,7 @@ export const placeholderResultsBySlug: Record<string, PlaceholderResult[]> = {
   "freelance-near-me": placeholderResultsByCaseId["caseStudy-freelance-near-me"] ?? [],
   "david-wheeler-psychology": placeholderResultsByCaseId["caseStudy-david-wheeler-psychology"] ?? [],
   "three18-media": placeholderResultsByCaseId["caseStudy-three18-media"] ?? [],
+  "data-deep-clean": placeholderResultsByCaseId["caseStudy-data-deep-clean"] ?? [],
 };
 
 export const placeholderHomeTestimonials = placeholders.testimonials.map((t) => ({

@@ -1,6 +1,7 @@
 "use client";
 
-import { SiteHeader as UISiteHeader, Wordmark } from "@bmkrs/ui";
+import { SiteHeader as UISiteHeader } from "@bmkrs/ui";
+import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
 
@@ -19,8 +20,14 @@ function navItems(navigation?: NavItem[]) {
   return fromCms?.length ? fromCms : DEFAULT_NAV;
 }
 
-function TextWordmark({ light }: { light?: boolean }) {
-  return <Wordmark tone={light ? "ink" : "paper"} />;
+/** Archivo SVG wordmark only. never set the logo in cabinet grotesk. */
+function BrandLogo({ light }: { light?: boolean }) {
+  return (
+    <Wordmark
+      variant={light ? "primary-light" : "primary-dark"}
+      className="wordmark-img h-5 w-auto md:h-6"
+    />
+  );
 }
 
 export function SiteHeader({
@@ -40,9 +47,9 @@ export function SiteHeader({
       items={items}
       loginUrl={login}
       contactEmail={contactEmail}
-      ctaLabel="start a project"
+      ctaLabel="start a build"
       ctaHref="/contact"
-      renderLogo={(variant) => <TextWordmark light={variant === "light"} />}
+      renderLogo={(variant) => <BrandLogo light={variant === "light"} />}
     />
   );
 }

@@ -9,7 +9,7 @@ const firstBody = quoteSplit > 0 ? opening.slice(quoteSplit).trim() : "";
 const restBody = manifestoParts.slice(1);
 
 export function WhyBand() {
-  const quoteMatch = quoteText.match(/^(.*?)(the best-told one does\.)\s*$/i);
+  const quoteMatch = quoteText.match(/^(.*?)(we put it into production\.|dies in the pilot\.)\s*$/i);
 
   return (
     <Surface theme="ink" raised pad="home">

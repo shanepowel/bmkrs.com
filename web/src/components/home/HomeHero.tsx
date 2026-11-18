@@ -1,30 +1,20 @@
-import { GhostButton, Hero, OrangeButton, SnapLine } from "@bmkrs/ui";
+import { GhostButton, Hero, OrangeButton, SnapLine, WorkReel, type WorkReelFrame } from "@bmkrs/ui";
+import { brandMessaging } from "@/lib/content/messaging";
 import type { HomeHero as HomeHeroContent } from "@/lib/types";
-import { HomeHeroMedia } from "./HomeHeroMedia";
 
-export function HomeHero({
-  hero,
-  reelUrl,
-  poster,
-}: {
-  hero: HomeHeroContent;
-  reelUrl?: string;
-  poster?: string;
-}) {
-  const hasMedia = Boolean(reelUrl || poster);
-
+export function HomeHero({ hero, frames }: { hero: HomeHeroContent; frames: WorkReelFrame[] }) {
   return (
     <Hero
-      media={hasMedia ? <HomeHeroMedia reelUrl={reelUrl} poster={poster} /> : undefined}
+      aside={frames.length ? <WorkReel frames={frames} label="shipped work" /> : undefined}
       eyebrow={hero.eyebrow}
       title={
         <>
-          most studios stop at the logo.
+          {brandMessaging.heroTitleLead}
           <br />
           <span className="bmkrs-hero__underline">
-            we ship the whole thing.
+            {brandMessaging.heroTitleEm}
             <SnapLine
-              tick="snapped, not sketched"
+              tick="shipped, not sketched"
               trigger="load"
               delay={350}
               thick
@@ -43,8 +33,7 @@ export function HomeHero({
       }
       plate={
         <>
-          <span>sheet 01 / 07</span>
-          <span>rev. 2026</span>
+          <span>{brandMessaging.processShort}</span>
           <span>london · everywhere</span>
         </>
       }

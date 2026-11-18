@@ -1,30 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AboutTicker } from "@/components/bmkrs/AboutTicker";
-import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { PortraitTile } from "@/components/bmkrs/PortraitTile";
+import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import {
+  Accent,
+  Body,
   Button,
+  CellGrid,
+  EdgeQuote,
+  FactCell,
   GhostButton,
+  H1,
   H2,
+  H3,
   Kicker,
+  Marquee,
+  Meta,
   Section,
-  mono as monoStyle,
-  themeBodyStyle,
-  themeFaintStyle,
+  SpecList,
+  Stat,
+  StatGrid,
 } from "@bmkrs/ui";
 import { getAboutPage, getNowBuilding, getPeople } from "@/lib/content";
 import { fetchBenchPublic } from "@/lib/bench-public";
-import { BMKRS_ORANGE } from "@/lib/brand";
 import { visibleQuickfire } from "@/lib/quickfire";
-import { SURFACE } from "@/lib/surfaces";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, personSchema } from "@/lib/structured-data";
 import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
   "about",
-  "bmkrs is a brand company founded by a builder: a director-level consultant who spent years shipping products inside complex organisations, now building brands the same way.",
+  "bmkrs is a digital product studio founded by a builder: seventeen years shipping inside complex organisations, now putting products and ai into production with governance and handover included.",
   "/about",
 );
 
@@ -33,7 +39,7 @@ const ABOUT_TICKER = [
   "partner team, not payroll",
   "london, and wherever you are",
   "we ship our own products too",
-  "the better-told brand wins",
+  "production is the product",
 ];
 
 export default async function AboutPage() {
@@ -50,10 +56,6 @@ export default async function AboutPage() {
   const founder = about.founder;
   const founderPerson = people.find((p) => p.slug === "shane-powell") ?? people[0];
   const longGameParagraphs = about.longGame.split(/\n\n+/).filter(Boolean);
-
-  const ink = SURFACE.ink;
-  const paper = SURFACE.paper;
-  const orange = SURFACE.orange;
 
   const jsonLd = [
     founder
@@ -93,13 +95,13 @@ export default async function AboutPage() {
 
       <Section theme="ink">
         <div className="lg:max-w-[80%]">
-            <Kicker theme="ink">about bmkrs</Kicker>
-          <h1 className="display text-hero font-medium">
-            built, not <span style={{ color: BMKRS_ORANGE }}>branded.</span>
-          </h1>
-          <p className="lead mt-8 max-w-[65ch]" style={themeBodyStyle("ink")}>
+          <Kicker theme="ink">about bmkrs</Kicker>
+          <H1 theme="ink">
+            built, not <Accent>branded.</Accent>
+          </H1>
+          <Body theme="ink" lead className="mt-8">
             {about.intro}
-          </p>
+          </Body>
         </div>
       </Section>
 
@@ -109,7 +111,9 @@ export default async function AboutPage() {
         priority
       />
 
-      <AboutTicker items={ABOUT_TICKER} />
+      <Section theme="ink" tight pad="tight" className="!py-0">
+        <Marquee items={ABOUT_TICKER} />
+      </Section>
 
       {founder && founderPerson ? (
         <Section theme="paper">
@@ -122,32 +126,26 @@ export default async function AboutPage() {
                 theme="paper"
                 size={200}
               />
-              <p className="mt-4 text-meta" style={themeFaintStyle("paper")}>
+              <Meta theme="paper" className="mt-4 block">
                 {founder.name} · founder ·{" "}
                 <a
                   href={founder.linkedinUrl}
-                  style={{ color: paper.text }}
                   className="underline decoration-1 underline-offset-4"
                   rel="me noopener"
                   target="_blank"
                 >
                   linkedin ↗
                 </a>
-              </p>
+              </Meta>
             </div>
             <div className="lg:col-span-7 lg:col-start-6">
               <H2 theme="paper">{about.founderStoryTitle}</H2>
-              <div className="mt-8 max-w-[65ch] space-y-6 text-lg leading-relaxed" style={themeBodyStyle("paper")}>
+              <Body theme="paper" className="mt-8 space-y-6 text-lg">
                 {about.founderStory.map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                 ))}
-              </div>
-              <blockquote
-                className="mt-10 max-w-[40ch] pl-5 text-h3 font-medium leading-snug"
-                style={{ borderLeft: `3px solid ${BMKRS_ORANGE}`, color: paper.text }}
-              >
-                &ldquo;{about.founderPullQuote}&rdquo;
-              </blockquote>
+              </Body>
+              <EdgeQuote>&ldquo;{about.founderPullQuote}&rdquo;</EdgeQuote>
             </div>
           </div>
         </Section>
@@ -160,114 +158,83 @@ export default async function AboutPage() {
       />
 
       <Section theme="ink">
-            <H2 theme="ink">{about.beliefsHeadline}</H2>
-        <div className="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
-          {about.beliefs.map((belief, index) => (
-            <div
-              key={belief.title}
-              style={{ borderTop: `1px solid ${ink.rule}` }}
-              className="pt-6"
-            >
-              <p className="mb-3 text-meta" style={{ ...monoStyle, color: BMKRS_ORANGE }}>
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mb-3 text-2xl font-medium">{belief.title}</h3>
-              <p className="max-w-[55ch] leading-relaxed" style={themeBodyStyle("ink")}>
-                {belief.body}
-              </p>
-            </div>
-          ))}
+        <H2 theme="ink">{about.beliefsHeadline}</H2>
+        <div className="mt-12">
+          <CellGrid>
+            {about.beliefs.map((belief, index) => (
+              <FactCell
+                key={belief.title}
+                index={String(index + 1).padStart(2, "0")}
+                title={belief.title}
+                body={belief.body}
+              />
+            ))}
+          </CellGrid>
         </div>
       </Section>
 
       <Section theme="paper">
         <H2 theme="paper">a partner team, not a payroll.</H2>
-        <p className="lead mb-14 mt-6 max-w-[65ch]" style={themeBodyStyle("paper")}>
+        <Body theme="paper" lead className="mb-14 mt-6">
           {about.teamIntro}
-        </p>
+        </Body>
         <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {people.map((person) => {
             const quickfire = visibleQuickfire(person.quickfire);
             return (
-              <article
-                key={person.slug}
-                id={person.slug}
-                style={{ borderTop: `1px solid ${paper.rule}` }}
-                className="pt-6"
-              >
+              <article key={person.slug} id={person.slug} className="border-t border-[var(--bmkrs-rule-paper)] pt-6">
                 <PortraitTile
                   name={person.name}
                   discipline={person.discipline ?? person.role}
                   portraitUrl={person.portraitUrl}
                   theme="paper"
                 />
-                <h3 className="mt-5 text-xl font-medium">
+                <H3 theme="paper" className="mt-5">
                   {person.name}{" "}
-                  <span className="ml-1 text-meta font-normal" style={themeFaintStyle("paper")}>
+                  <Meta theme="paper" className="ml-1 font-normal">
                     {person.role ?? person.discipline}
-                  </span>
-                </h3>
-                <p className="mt-3 leading-relaxed" style={themeBodyStyle("paper")}>
+                  </Meta>
+                </H3>
+                <Body theme="paper" className="mt-3">
                   {person.shortBio ?? person.longBio}
-                </p>
+                </Body>
                 {quickfire.length > 0 ? (
-                  <dl className="mt-5 space-y-1.5">
-                    {quickfire.map((item) => (
-                      <div key={item.label} className="flex gap-2 text-meta" style={monoStyle}>
-                        <dt style={{ color: paper.faint }}>{item.label} →</dt>
-                        <dd style={{ color: paper.text }}>
-                          {item.href ? (
-                            <Link
-                              href={item.href}
-                              className="underline decoration-1 underline-offset-4"
-                              style={{ color: paper.text }}
-                            >
-                              {item.value}
-                            </Link>
-                          ) : (
-                            item.value
-                          )}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
+                  <div className="mt-5">
+                    <SpecList
+                      items={quickfire.map((item) => ({
+                        label: item.label,
+                        value: item.href ? (
+                          <Link href={item.href} className="underline decoration-1 underline-offset-4">
+                            {item.value}
+                          </Link>
+                        ) : (
+                          item.value
+                        ),
+                      }))}
+                    />
+                  </div>
                 ) : null}
               </article>
             );
           })}
         </div>
-        <p className="mt-14 text-lg" style={themeBodyStyle("paper")}>
+        <Body theme="paper" className="mt-14 text-lg">
           {about.teamClosing}
-        </p>
-        <p className="mono mt-6 text-meta" style={themeFaintStyle("paper")}>
+        </Body>
+        <Meta theme="paper" className="mt-6 block">
           collaborators:{" "}
-          <Link
-            href="/network"
-            className="underline decoration-1 underline-offset-4"
-            style={{ color: paper.text }}
-          >
+          <Link href="/network" className="underline decoration-1 underline-offset-4">
             the network
           </Link>
-        </p>
+        </Meta>
       </Section>
 
       <Section theme="ink">
-        <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <StatGrid>
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              style={{ borderTop: `1px solid ${ink.rule}` }}
-              className="pt-5"
-            >
-              <p className="text-5xl font-medium" style={{ letterSpacing: "-0.02em" }}>
-                {stat.value}
-              </p>
-              <p className="mt-3 text-meta leading-relaxed" style={themeFaintStyle("ink")}>
-                {stat.label}
-              </p>
-            </div>
+            <Stat key={stat.label} value={stat.value} label={stat.label} />
           ))}
-        </div>
+        </StatGrid>
       </Section>
 
       <Section theme="orange">
@@ -277,54 +244,40 @@ export default async function AboutPage() {
           {nowLines.map((line) => (
             <li
               key={line}
-              style={{ borderTop: `1px solid ${orange.rule}`, color: orange.body }}
-              className="py-5 text-lg font-medium leading-relaxed"
+              className="border-t border-[var(--bmkrs-rule-orange)] py-5 text-lg font-medium leading-relaxed text-[var(--bmkrs-orange-body)]"
             >
               {line}
             </li>
           ))}
         </ul>
-        <p className="mt-8 text-meta" style={themeFaintStyle("orange")}>
+        <Meta theme="orange" className="mt-8 block">
           updated {nowUpdated}. if this is stale, tell us off:{" "}
-          <a
-            href="mailto:hello@bmkrs.com"
-            style={{ color: orange.text }}
-            className="underline decoration-1 underline-offset-4"
-          >
+          <a href="mailto:hello@bmkrs.com" className="underline decoration-1 underline-offset-4">
             hello@bmkrs.com
           </a>
-        </p>
+        </Meta>
       </Section>
 
       <Section theme="ink">
         <div className="grid gap-10 lg:grid-cols-12">
-          <h2
-            className="text-3xl font-medium lg:col-span-4"
-            style={{ letterSpacing: "-0.01em" }}
-          >
+          <H2 theme="ink" className="lg:col-span-4">
             {about.longGameTitle}
-          </h2>
-          <div
-            className="space-y-6 text-lg leading-relaxed lg:col-span-7 lg:col-start-6"
-            style={themeBodyStyle("ink")}
-          >
+          </H2>
+          <Body theme="ink" className="space-y-6 text-lg lg:col-span-7 lg:col-start-6">
             {longGameParagraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
-          </div>
+          </Body>
         </div>
 
-        <div
-          style={{ borderTop: `1px solid ${ink.rule}` }}
-          className="mt-[clamp(4rem,8vw,7rem)] pt-16"
-        >
+        <div className="mt-[clamp(4rem,8vw,7rem)] border-t border-[var(--surface-rule)] pt-16">
           <H2 theme="ink">got something worth building?</H2>
-          <p className="mt-6 max-w-[60ch] text-lg leading-relaxed" style={themeBodyStyle("ink")}>
+          <Body theme="ink" className="mt-6 text-lg">
             tell us what it is. we will tell you what it needs, including the parts not to buy from
             us.
-          </p>
+          </Body>
           <div className="mt-10 flex flex-wrap items-center gap-8">
-            <Button href="/contact">start a project</Button>
+            <Button href="/contact">start a build</Button>
             <GhostButton href="/journal">read the journal first</GhostButton>
           </div>
         </div>

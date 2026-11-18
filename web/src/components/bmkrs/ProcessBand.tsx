@@ -1,5 +1,5 @@
 import { homeProcessStrip } from "@/lib/content/expansion-v2";
-import { Kicker, Section, themeFaintStyle } from "@bmkrs/ui";
+import { Body, Kicker, Meta, Section } from "@bmkrs/ui";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
 import { marketingImages } from "@/lib/marketing-assets";
 
@@ -10,7 +10,7 @@ export function ProcessBand() {
     <>
       <MarketingBanner
         src={marketingImages.studioWorkspace}
-        alt="design, digital and brand production in the studio"
+        alt="product and delivery work in the studio"
         aspect="4/3"
       />
       <Section theme="ink" tight>
@@ -27,10 +27,12 @@ export function ProcessBand() {
             </span>
           ))}
         </p>
-        <p className="text-lead mt-4 max-w-[65ch]">{homeProcessStrip.body}</p>
-        <p className="mono mt-4 text-meta" style={themeFaintStyle("ink")}>
+        <Body theme="ink" lead className="mt-4">
+          {homeProcessStrip.body}
+        </Body>
+        <Meta theme="ink" className="mt-4 block">
           {homeProcessStrip.footnote}
-        </p>
+        </Meta>
       </Section>
     </>
   );

@@ -1,4 +1,3 @@
-import { preload } from "react-dom";
 import { SectionHeading, Surface } from "@bmkrs/ui";
 import { Reveal } from "@/components/bmkrs/Reveal";
 import { ArriveGrid } from "@/components/home/ArriveGrid";
@@ -12,11 +11,10 @@ import { WhyBand } from "@/components/home/WhyBand";
 import { WorkSection } from "@/components/home/WorkSection";
 import { homePainPoints } from "@/lib/content/expansion-v2";
 import {
-  getFeaturedProjects,
   getHomeContent,
   getHomeTestimonials,
   getProducts,
-  getSiteSettings,
+  getShowcaseProjects,
 } from "@/lib/content";
 import type { Testimonial } from "@/lib/types";
 
@@ -30,39 +28,41 @@ function pickWorkTestimonial(testimonials: Testimonial[]) {
 }
 
 export default async function HomePage() {
-  const [home, featured, testimonials, products, settings] = await Promise.all([
+  const [home, showcase, testimonials, products] = await Promise.all([
     getHomeContent(),
-    getFeaturedProjects(),
+    getShowcaseProjects(4),
     getHomeTestimonials(),
     getProducts(),
-    getSiteSettings(),
   ]);
 
-  if (settings.heroReelUrl) {
-    preload(settings.heroReelUrl, { as: "video", fetchPriority: "high" });
-  }
-
-  const selectedProjects = featured.slice(0, 4);
   const workTestimonial = pickWorkTestimonial(testimonials);
+  const reelFrames = showcase.map((project) => ({
+    href: `/work/${project.slug}`,
+    name: project.title.toLowerCase(),
+    tag: (project.sector || project.category).toLowerCase(),
+    src: project.thumbnailPath,
+    alt: `${project.title.toLowerCase()}, project work`,
+  }));
 
   return (
     <main data-surface="ink">
-      <HomeHero
-        hero={home.hero}
-        reelUrl={settings.heroReelUrl}
-        poster={settings.heroPoster}
-      />
+      <HomeHero hero={home.hero} frames={reelFrames} />
 
       <HomeMarquee items={home.marqueeItems} />
 
-      <Surface theme="ink" pad="home" id="arrive">
+      {/* surface rhythm: ink / paper alternating. never two paper blocks adjacent; orange never touches paper. */}
+      <Surface theme="paper" pad="home" id="arrive">
         <Reveal>
           <SectionHeading title="you usually arrive with one of these." eyebrow="why people call us" />
           <ArriveGrid points={homePainPoints} />
         </Reveal>
       </Surface>
 
-      <Surface theme="ink" pad="home" id="services" innerClassName="!pt-0">
+      <Reveal>
+        <WhyBand />
+      </Reveal>
+
+      <Surface theme="paper" pad="home" id="services">
         <Reveal>
           <ServicesList
             eyebrow={home.positioning.eyebrow}
@@ -74,23 +74,19 @@ export default async function HomePage() {
       </Surface>
 
       <Reveal>
-        <WhyBand />
-      </Reveal>
-
-      <Surface theme="ink" pad="home" id="packages">
-        <Reveal>
-          <PackagesSection products={products} />
-        </Reveal>
-      </Surface>
-
-      <Reveal>
         <WorkSection
-          projects={selectedProjects}
+          projects={showcase}
           testimonial={workTestimonial}
           eyebrow={home.selectedWork.eyebrow}
           title={home.selectedWork.title}
         />
       </Reveal>
+
+      <Surface theme="paper" pad="home" id="packages">
+        <Reveal>
+          <PackagesSection products={products} />
+        </Reveal>
+      </Surface>
 
       <Reveal>
         <ProcessSection />

@@ -6,7 +6,7 @@ export function StickyCTA() {
   return (
     <UIStickyCTA
       actions={[
-        { label: "start a project", href: "/contact", variant: "primary" },
+        { label: "start a build", href: "/contact", variant: "primary" },
         { label: "work", href: "/work", variant: "ghost" },
       ]}
     />

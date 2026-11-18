@@ -2,18 +2,20 @@
 
 import { useState } from "react";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Button, Field, H1, Kicker, Meta, PillSelect, SelectField, Surface, TextArea } from "@bmkrs/ui";
+import { Button, Field, H1, Kicker, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
 import { SectionRule } from "@/components/bmkrs/SectionRule";
 import {
   contactBudgetReassurance,
   contactWhatHappensNext,
 } from "@/lib/content/expansion-v2";
+import { brandMessaging } from "@/lib/content/messaging";
 
 const SERVICE_OPTIONS = [
-  { value: "branding", label: "branding" },
-  { value: "voice", label: "voice" },
-  { value: "pr", label: "pr" },
-  { value: "product-web", label: "product + web" },
+  { value: "readiness", label: "readiness" },
+  { value: "product-build", label: "product build" },
+  { value: "ai-implementation", label: "ai implementation" },
+  { value: "ai-governance", label: "ai governance" },
+  { value: "onboard", label: "onboard" },
   { value: "motion", label: "motion" },
   { value: "not-sure", label: "not sure yet" },
 ] as const;
@@ -67,6 +69,7 @@ export function ContactExperience({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [budget, setBudget] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -90,7 +93,7 @@ export function ContactExperience({
           name: data.name,
           email,
           message: data.message,
-          budget: data.budget || undefined,
+          budget: budget || undefined,
           services: selectedServices,
           reason: "project",
         }),
@@ -117,7 +120,7 @@ export function ContactExperience({
       <section className="section-pad contact-split-section" data-surface="ink">
         <div className="wrap contact-split">
           <div className="contact-intro">
-            <Kicker theme="ink">start a project</Kicker>
+            <Kicker theme="ink">start a build</Kicker>
             <H1 theme="ink" className="mt-[var(--space-tight)]">
               tell us what you&apos;re building.
             </H1>
@@ -165,7 +168,7 @@ export function ContactExperience({
                 />
                 <PillSelect
                   className="cx-full"
-                  label="what are we making?"
+                  label={brandMessaging.contactServicesLabel}
                   options={[...SERVICE_OPTIONS]}
                   value={selectedServices}
                   onChange={(next) => setSelectedServices(Array.isArray(next) ? next : [next])}
@@ -173,14 +176,14 @@ export function ContactExperience({
                 />
                 <div className="cx-full">
                   <Meta theme="paper">{contactBudgetReassurance}</Meta>
-                  <SelectField name="budget" label="budget, roughly (optional)" defaultValue="">
-                    <option value="">select a range</option>
-                    {BUDGET_OPTIONS.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </SelectField>
+                  <SelectMenu
+                    name="budget"
+                    label="budget, roughly (optional)"
+                    placeholder="select a range"
+                    options={[...BUDGET_OPTIONS]}
+                    value={budget || undefined}
+                    onValueChange={setBudget}
+                  />
                 </div>
                 <TextArea
                   className="cx-full"
@@ -191,7 +194,9 @@ export function ContactExperience({
                 />
                 <div className="cx-full">
                   <Button type="submit" disabled={status === "sending"}>
-                    {status === "sending" ? "sending..." : "send it over →"}
+                    {status === "sending"
+                      ? brandMessaging.contactSending
+                      : `${brandMessaging.contactSubmit} →`}
                   </Button>
                 </div>
                 {fieldError ? <p className="cx-full text-meta">{fieldError}</p> : null}

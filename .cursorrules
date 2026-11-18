@@ -6,8 +6,9 @@ These rules are binding. When a request conflicts with them, follow the rules an
 
 All UI is built from `@bmkrs/ui` (local package at `packages/ui`, imported as `@bmkrs/ui`).
 
-- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`.
-- If a needed component does NOT exist in `@bmkrs/ui`, STOP. Add it to the library first (in `packages/ui/src`), export it, THEN use it. Do not inline a one-off. A second use must never require a second implementation.
+- Foundation inside `@bmkrs/ui` is the shadcn stack (Radix UI primitives + CVA + `cn`/tailwind-merge). Brand look stays ours — never drop raw Radix Themes / stock shadcn themes into pages.
+- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<Separator>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`, `<SelectMenu>`.
+- If a needed component does NOT exist in `@bmkrs/ui`, STOP. Add it to the library first (on Radix/CVA in `packages/ui/src`), export it, THEN use it. Do not inline a one-off. A second use must never require a second implementation.
 - Before building any UI, scan `packages/ui/src/index.ts` for what already exists. Prefer composing existing primitives over creating new ones.
 
 ## 2. No hardcoded design values, ever

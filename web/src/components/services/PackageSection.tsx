@@ -1,4 +1,5 @@
 import { Kicker, Section } from "@bmkrs/ui";
+import { tierLabel } from "@/lib/content/messaging";
 import type { Product, ProductTier } from "@/lib/types";
 import { GrowBand } from "./GrowBand";
 import { PackageCard } from "./PackageCard";
@@ -25,8 +26,8 @@ export function PackageSection({
   const theme = TIER_THEME[tier];
 
   return (
-    <Section theme={theme} id={tier}>
-      <Kicker theme={theme}>{tier}</Kicker>
+    <Section theme={theme} id={tierLabel(tier)}>
+      <Kicker theme={theme}>{tierLabel(tier)}</Kicker>
       <div className="mt-[var(--space-block)] space-y-10">
         {products.map((product) => (
           <PackageCard key={product.slug} product={product} />

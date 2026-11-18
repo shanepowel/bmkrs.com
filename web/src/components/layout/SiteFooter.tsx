@@ -4,7 +4,7 @@ import { FooterEmailCapture } from "@/components/bmkrs/FooterEmailCapture";
 import { companyLine } from "@/lib/content/legal";
 import type { SiteSettings } from "@/lib/types";
 
-const MAKE_LINKS = [
+const BUILD_LINKS = [
   { href: "/services", label: "services" },
   { href: "/motion", label: "motion" },
   { href: "/work", label: "work" },
@@ -28,7 +28,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
     <Footer
       capture={<FooterEmailCapture />}
       columns={[
-        { label: "make", links: MAKE_LINKS },
+        { label: "build", links: BUILD_LINKS },
         { label: "studio", links: STUDIO_LINKS },
       ]}
       meta={

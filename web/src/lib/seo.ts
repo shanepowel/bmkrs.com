@@ -8,7 +8,7 @@ const defaultOgImage = {
   url: DEFAULT_OG_IMAGE,
   width: OG_SIZE.width,
   height: OG_SIZE.height,
-  alt: "bmkrs. a brand company run by builders.",
+  alt: "bmkrs. digital products. ai that ships.", // keep in sync with brandMessaging.tagline
 };
 
 /** Per-page metadata with aligned title, og:title, twitter and canonical. */
