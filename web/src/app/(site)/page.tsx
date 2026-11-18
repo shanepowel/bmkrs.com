@@ -1,110 +1,26 @@
-import { PlateRow, SectionHeading, Surface } from "@bmkrs/ui";
-import { Reveal } from "@/components/bmkrs/Reveal";
-import { ArriveGrid } from "@/components/home/ArriveGrid";
-import { FinalCTA } from "@/components/home/FinalCTA";
-import { HomeHero } from "@/components/home/HomeHero";
-import { HomeMarquee } from "@/components/home/HomeMarquee";
-import { PackagesSection } from "@/components/home/PackagesSection";
-import { ProcessSection } from "@/components/home/ProcessSection";
-import { ServicesList } from "@/components/home/ServicesList";
-import { WhyBand } from "@/components/home/WhyBand";
-import { WorkSection } from "@/components/home/WorkSection";
-import { homePainPoints } from "@/lib/content/expansion-v2";
-import { brandPlates } from "@/lib/marketing-assets";
-import {
-  getHomeContent,
-  getHomeTestimonials,
-  getProducts,
-  getShowcaseProjects,
-} from "@/lib/content";
-import type { Testimonial } from "@/lib/types";
+import Image from "next/image";
+import Link from "next/link";
+import { getShowcaseProjects } from "@/lib/content";
 
-function pickWorkTestimonial(testimonials: Testimonial[]) {
-  const podcast = testimonials.find((item) =>
-    `${item.company ?? ""} ${item.role ?? ""} ${item.attribution ?? ""}`
-      .toLowerCase()
-      .includes("podcast studio london"),
-  );
-  return podcast ?? testimonials[0];
-}
+const disciplines = [
+  { n: "01", title: "Strategy & direction", body: "Find the opportunity. Make the hard decisions. Give the next move a clear reason." },
+  { n: "02", title: "Brand & experience", body: "Build a recognisable point of view and make every interaction feel considered." },
+  { n: "03", title: "Digital products & AI", body: "Turn useful ideas into websites, platforms and intelligent tools people want to use." },
+  { n: "04", title: "Technology & growth", body: "Connect the moving parts, improve what exists and keep making progress after launch." },
+];
 
 export default async function HomePage() {
-  const [home, showcase, testimonials, products] = await Promise.all([
-    getHomeContent(),
-    getShowcaseProjects(4),
-    getHomeTestimonials(),
-    getProducts(),
-  ]);
-
-  const workTestimonial = pickWorkTestimonial(testimonials);
-  const reelFrames = showcase.map((project) => ({
-    href: `/work/${project.slug}`,
-    name: project.title.toLowerCase(),
-    tag: (project.sector || project.category).toLowerCase(),
-    src: project.thumbnailPath,
-    alt: `${project.title.toLowerCase()}, project work`,
-  }));
+  const projects = await getShowcaseProjects(4);
+  const work = projects.slice(0, 4);
 
   return (
-    <main data-surface="ink">
-      <HomeHero hero={home.hero} frames={reelFrames} />
-
-      <HomeMarquee items={home.marqueeItems} />
-
-      {/* light-led rhythm: reading on paper, imagery and identity on ink, never two paper blocks touching */}
-      <Surface theme="paper" pad="home" id="arrive">
-        <Reveal>
-          <SectionHeading title="you usually arrive with one of these." eyebrow="why people call us" />
-          <ArriveGrid points={homePainPoints} />
-        </Reveal>
-      </Surface>
-
-      <Surface theme="ink" pad="tight">
-        <Reveal>
-          <PlateRow
-            label="from the studio"
-            plates={[brandPlates.fullStop, brandPlates.method, brandPlates.voice]}
-          />
-        </Reveal>
-      </Surface>
-
-      <Surface theme="paper" pad="home" id="services">
-        <Reveal>
-          <ServicesList
-            eyebrow={home.positioning.eyebrow}
-            statement={home.positioning.statement}
-            lead={home.positioning.lead}
-            tiles={home.capabilityTiles}
-          />
-        </Reveal>
-      </Surface>
-
-      <Reveal>
-        <WhyBand />
-      </Reveal>
-
-      <Surface theme="paper" pad="home" id="packages">
-        <Reveal>
-          <PackagesSection products={products} />
-        </Reveal>
-      </Surface>
-
-      <Reveal>
-        <WorkSection
-          projects={showcase}
-          testimonial={workTestimonial}
-          eyebrow={home.selectedWork.eyebrow}
-          title={home.selectedWork.title}
-        />
-      </Reveal>
-
-      <Reveal>
-        <ProcessSection />
-      </Reveal>
-
-      <Reveal>
-        <FinalCTA />
-      </Reveal>
-    </main>
-  );
-}
+    <main className="hybrid-home">
+      <section className="hybrid-hero">
+        <div className="hybrid-hero__topline"><span>INDEPENDENT DIGITAL PRODUCT STUDIO</span><span>STRATEGY / DESIGN / TECHNOLOGY / AI</span></div>
+        <div className="hybrid-hero__grid">
+          <div className="hybrid-hero__copy">
+            <p className="eyebrow"><span className="eyebrow-dot" /> GOOD IDEAS, MADE REAL</p>
+            <h1>Good ideas deserve better than a <em>slide deck.</em></h1>
+            <div className="hybrid-hero__bottom">
+              <p>We bring strategy, design and technology together to turn ambitious ideas into things that work in the real world.</p>
+ֻǱ˞
