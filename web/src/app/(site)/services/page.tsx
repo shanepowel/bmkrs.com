@@ -70,6 +70,7 @@ export default async function ServicesPage() {
       <MarketingBanner
         src={marketingImages.studioWorkspace}
         alt="product and delivery work in the studio"
+        aspect="21/9"
       />
 
       <Section theme="orange">
