@@ -1,48 +1,17 @@
-"use client";
-
-import { SiteHeader as UISiteHeader, Wordmark } from "@bmkrs/ui";
+import Image from "next/image";
+import Link from "next/link";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
 
 const DEFAULT_NAV: NavItem[] = [
-  { label: "services", href: "/services" },
   { label: "work", href: "/work" },
+  { label: "services", href: "/services" },
   { label: "motion", href: "/motion" },
-  { label: "about", href: "/about" },
-  { label: "journal", href: "/journal" },
+  { label: "studio", href: "/about" },
 ];
 
-function navItems(navigation?: NavItem[]) {
-  const fromCms = navigation?.filter(
-    (item) => item.href !== "/" && item.href !== "/contact" && !item.highlight,
-  );
-  return fromCms?.length ? fromCms : DEFAULT_NAV;
-}
-
-function TextWordmark({ light }: { light?: boolean }) {
-  return <Wordmark tone={light ? "ink" : "paper"} />;
-}
-
-export function SiteHeader({
-  navigation,
-  loginUrl,
-  contactEmail,
-}: {
-  navigation?: NavItem[];
-  loginUrl?: string;
-  contactEmail?: string;
-}) {
-  const items = navItems(navigation);
-  const login = loginUrl ?? MEMBER_LOGIN_URL;
-
-  return (
-    <UISiteHeader
-      items={items}
-      loginUrl={login}
-      contactEmail={contactEmail}
-      ctaLabel="start a project"
-      ctaHref="/contact"
-      renderLogo={(variant) => <TextWordmark light={variant === "light"} />}
-    />
-  );
+export function SiteHeader({ navigation, loginUrl }: { navigation?: NavItem[]; loginUrl?: string; contactEmail?: string }) {
+  const items = navigation?.filter((item) => item.href !== "/" && item.href !== "/contact" && !item.highlight) ?? DEFAULT_NAV;
+  const links = items.length ? items : DEFAULT_NAV;
+  return <header className="hybrid-header"><Link href="/" className="hybrid-header__brand" aria-label="bmkrs home"><Image src="/brand/bmkrs-primary-dark.svg" alt="bmkrs." width={126} height={40} priority /></Link><nav className="hybrid-header__nav" aria-label="Main navigation">{links.slice(0, 4).map((item) => <Link href={item.href} key={`${item.label}-${item.href}`}>{item.label}</Link>)}</nav><div className="hybrid-header__actions"><Link className="hybrid-header__login" href={loginUrl ?? MEMBER_LOGIN_URL}>LOG IN ↗</Link><Link className="hybrid-header__cta" href="/contact">LET’S BUILD <span>↗</span></Link></div></header>;
 }
