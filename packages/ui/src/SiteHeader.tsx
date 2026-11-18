@@ -61,9 +61,9 @@ export function SiteHeader({
   }, [pathname]);
 
   const lightLogo = surface === "paper" || surface === "orange";
-  const desktopItems = items.filter((item) =>
-    ["/services", "/work", "/motion"].includes(item.href),
-  );
+  const desktopItems = ["/services", "/work", "/motion", "/about"]
+    .map((href) => items.find((item) => item.href === href))
+    .filter((item): item is NavItem => Boolean(item));
   const navItems = desktopItems.length ? desktopItems : items.slice(0, 3);
 
   return (
@@ -84,8 +84,8 @@ export function SiteHeader({
               {item.label}
             </Link>
           ))}
-          <a href={loginUrl} className="nav-login hidden lg:inline" rel="noopener noreferrer" target="_blank">
-            log in <span aria-hidden="true">↗</span>
+          <a href={loginUrl} className="nav-login hidden" rel="noopener noreferrer" target="_blank">
+            log in <span aria-hidden="true">+</span>
           </a>
           <Link href={ctaHref} className="btn-nav-cta">
             {ctaLabel}

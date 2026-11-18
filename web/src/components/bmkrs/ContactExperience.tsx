@@ -1,22 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { Button, Field, H1, Kicker, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
-import { SectionRule } from "@/components/bmkrs/SectionRule";
-import {
-  contactBudgetReassurance,
-  contactWhatHappensNext,
-} from "@/lib/content/expansion-v2";
+import Image from "next/image";
+import { Button as UiButton } from "@bmkrs/ui";
+import { Field, H1, Meta, PillSelect, SelectMenu, Surface, TextArea } from "@bmkrs/ui";
+import { contactBudgetReassurance } from "@/lib/content/expansion-v2";
 import { brandMessaging } from "@/lib/content/messaging";
 
 const SERVICE_OPTIONS = [
-  { value: "readiness", label: "readiness" },
-  { value: "product-build", label: "product build" },
-  { value: "ai-implementation", label: "ai implementation" },
-  { value: "ai-governance", label: "ai governance" },
-  { value: "onboard", label: "onboard" },
-  { value: "motion", label: "motion" },
+  { value: "product-strategy", label: "product strategy and discovery" },
+  { value: "ai-delivery", label: "AI delivery and integration" },
+  { value: "ai-governance", label: "AI governance and risk" },
+  { value: "enablement", label: "team enablement and handover" },
+  { value: "motion", label: "ongoing product and AI support" },
   { value: "not-sure", label: "not sure yet" },
 ] as const;
 
@@ -92,6 +88,7 @@ export function ContactExperience({
         body: JSON.stringify({
           name: data.name,
           email,
+          company: data.company,
           message: data.message,
           budget: budget || undefined,
           services: selectedServices,
@@ -116,41 +113,23 @@ export function ContactExperience({
   }
 
   return (
-    <main className="contact-shell">
-      <section className="section-pad contact-split-section" data-surface="ink">
+    <main className="contact-page">
+      <section className="section-pad contact-split-section" data-surface="paper">
         <div className="wrap contact-split">
           <div className="contact-intro">
-            <Kicker theme="ink">start a build</Kicker>
-            <H1 theme="ink" className="mt-[var(--space-tight)]">
-              tell us what you&apos;re building.
+            <H1 theme="paper" className="contact-page-title">
+              contact
             </H1>
-            <p className="contact-promise mt-[var(--space-tight)]">
-              we reply within one working day, with a real answer, not a calendar link.
+            <p className="contact-promise">
+              Moving an AI pilot into production, or trying to make a digital product work better? Tell us where you are stuck. We&apos;ll help you find a sensible next step.
             </p>
-            <ContactEmails
-              helloEmail={fallbackEmail}
-              pressEmail={pressEmail}
-              className="contact-emails contact-emails--desktop"
-            />
-
-            <div className="mt-[var(--space-block)]">
-              <Kicker theme="ink">what happens next</Kicker>
-              <ul className="mt-4 list-none space-y-0 p-0">
-                {contactWhatHappensNext.map((step) => (
-                  <li key={step.number} className="contact-email-row">
-                    <p className="mono text-meta text-accent">{step.number} →</p>
-                    <p className="mt-2 max-w-[48ch] text-[var(--bmkrs-off-white)]/90">{step.body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <Surface
             as="div"
             theme="paper"
             pad="tight"
-            className="contact-form-col"
+            className="contact-form-panel contact-form-col"
             innerClassName="!mx-0 !max-w-none !px-[clamp(1.5rem,4vw,2.5rem)]"
           >
             {status === "sent" ? (
@@ -158,6 +137,7 @@ export function ContactExperience({
             ) : (
               <form className="cx-form" onSubmit={onSubmit} noValidate>
                 <Field name="name" label="name" required autoComplete="name" />
+                <Field name="company" label="company" autoComplete="organization" />
                 <Field
                   name="email"
                   label="email"
@@ -166,63 +146,46 @@ export function ContactExperience({
                   autoComplete="email"
                   aria-invalid={fieldError?.includes("@") ? true : undefined}
                 />
-                <PillSelect
-                  className="cx-full"
-                  label={brandMessaging.contactServicesLabel}
-                  options={[...SERVICE_OPTIONS]}
-                  value={selectedServices}
-                  onChange={(next) => setSelectedServices(Array.isArray(next) ? next : [next])}
-                  multiple
-                />
-                <div className="cx-full">
-                  <Meta theme="paper">{contactBudgetReassurance}</Meta>
-                  <SelectMenu
-                    name="budget"
-                    label="budget, roughly (optional)"
-                    placeholder="select a range"
-                    options={[...BUDGET_OPTIONS]}
-                    value={budget || undefined}
-                    onValueChange={setBudget}
-                  />
-                </div>
                 <TextArea
                   className="cx-full"
                   name="message"
-                  label="tell us about it"
+                  label="project / enquiry"
                   required
-                  placeholder="the product, the stage you are at, what you need from us."
+                  placeholder="what are you trying to change, and what is getting in the way?"
                 />
+                <details className="cx-full contact-more">
+                  <summary>share a little more (optional)</summary>
+                  <PillSelect
+                    className="cx-full mt-4"
+                    label={brandMessaging.contactServicesLabel}
+                    options={[...SERVICE_OPTIONS]}
+                    value={selectedServices}
+                    onChange={(next) => setSelectedServices(Array.isArray(next) ? next : [next])}
+                    multiple
+                  />
+                  <div className="mt-4">
+                    <Meta theme="paper">{contactBudgetReassurance}</Meta>
+                    <SelectMenu name="budget" label="budget, roughly (optional)" placeholder="select a range" options={[...BUDGET_OPTIONS]} value={budget || undefined} onValueChange={setBudget} />
+                  </div>
+                </details>
                 <div className="cx-full">
-                  <Button type="submit" disabled={status === "sending"}>
+                  <UiButton type="submit" variant="orange" disabled={status === "sending"}>
                     {status === "sending"
                       ? brandMessaging.contactSending
-                      : `${brandMessaging.contactSubmit} →`}
-                  </Button>
+                      : `${brandMessaging.contactSubmit} +`}
+                  </UiButton>
                 </div>
-                {fieldError ? <p className="cx-full text-meta">{fieldError}</p> : null}
+                {fieldError ? <p className="cx-full text-meta" role="alert">{fieldError} <a href={`mailto:${fallbackEmail}`} className="underline underline-offset-4">email us directly</a>.</p> : null}
               </form>
             )}
           </Surface>
-
-          <ContactEmails
-            helloEmail={fallbackEmail}
-            pressEmail={pressEmail}
-            className="contact-emails contact-emails--mobile"
-          />
+          <aside className="contact-aside">
+            <div><span>studio</span><p>London, UK</p></div>
+            <div><span>email</span><ContactEmails helloEmail={fallbackEmail} pressEmail={pressEmail} className="contact-emails" /></div>
+            <div className="contact-aside__image"><Image src="/images/bmkrs-architecture-editorial.webp" alt="Vermilion and concrete architectural details" fill sizes="(max-width: 1024px) 100vw, 25vw" unoptimized /></div>
+          </aside>
         </div>
       </section>
-
-      <section className="contact-secondary-ink" data-surface="ink">
-        <div className="wrap">
-          <SectionRule dark />
-          <p className="contact-secondary-lead mt-[var(--space-tight)]">
-            not ready for a project?{" "}
-            <span className="text-[var(--bmkrs-muted)]">join the fortnightly instead.</span>
-          </p>
-        </div>
-      </section>
-
-      <EmailCapture surface="orange" />
     </main>
   );
 }

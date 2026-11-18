@@ -3,44 +3,44 @@
  * Keep pages, SEO and CTAs pointed here so the offer reads as one studio, not a collage of drafts.
  *
  * Ladder (user-facing): start → build → grow
- * Process: assess → implement → amplify → motion
+ * Process (user-facing): discover → design → build → grow
  * Internal Sanity tier value for build remains `make` until a schema migration.
  */
 
 import type { ProductTier } from "@/lib/types";
 
 export const brandMessaging = {
-  tagline: "digital products. ai that ships.",
-  oneLiner: "we ship digital products and put ai into production.",
+  tagline: "from AI ambition to products in production.",
+  oneLiner: "an independent product and AI delivery studio for complex organisations.",
   description:
-    "bmkrs builds digital products and brings ai into production. strategy, build, governance and handover, so your teams can own what we leave behind.",
-  process: "assess → implement → amplify → motion",
-  processShort: "assess → implement → amplify",
-  ctaPrimary: "start a build",
+    "bmkrs is an independent product and AI delivery studio. We help product and transformation leaders move from promising ideas and pilots to useful products their teams can run.",
+  process: "assess · design · build · enable",
+  processShort: "assess · build · govern · enable",
+  ctaPrimary: "talk through a challenge",
   ctaWork: "see the work",
-  ctaMotion: "explore motion",
-  heroEyebrow: "digital product · ai · governance",
-  heroTitleLead: "most ai never leaves the pilot.",
-  heroTitleEm: "we put it into production.",
+  ctaMotion: "keep it moving",
+  heroEyebrow: "independent product and AI delivery studio",
+  heroTitleLead: "the right idea,",
+  heroTitleEm: "made real.",
   heroSub:
-    "digital products, ai systems and the operating model around them. one team from readiness to handover, then motion if you want us to stay.",
-  positioningEyebrow: "what we really do",
-  positioningStatement: "we ship digital products and put ai into production.",
+    "we help product and transformation leaders take AI and digital products into production, inside the systems, safeguards and teams that keep them running.",
+  positioningEyebrow: "the work after the pilot",
+  positioningStatement: "the hard part begins when the demo ends.",
   positioningLead:
-    "pilots are easy. production is the hard part. we design, build and govern with your people in the room, then leave capability that compounds after we leave.",
-  closeTitle: "let's put something into production.",
-  whoStatement: "product leaders who need shipped work, not another pilot.",
+    "we bring product, engineering and governance into one delivery team, so useful AI and digital products can clear the controls, reach real users and stay operational.",
+  closeTitle: "move the work into the real world.",
+  whoStatement: "for product and transformation leaders carrying real-world complexity.",
   whoLead:
-    "you are responsible for a digital product or an ai programme that has to survive audit, users and the next quarter. you need builders who can design, ship and leave your team able to own it. that is the job we built bmkrs to do.",
-  workTitle: "products we have shipped",
-  workSubtitle: "selected builds across product, platforms and ai.",
-  packagesEyebrow: "ways to work with us",
+    "you need products people can use, delivery that respects existing controls, and a team that leaves your people more capable. that's where we work.",
+  workTitle: "built and shipped for real use.",
+  workSubtitle: "digital products, platforms and brands made for clients and built in our studio. all real work, made to be used.",
+  packagesEyebrow: "one team, from first question to live product",
   packagesTitle: "start, build, grow.",
-  servicesHero: "assess, implement, amplify. then stay if you want us.",
+  servicesHero: "move beyond the pilot.",
   servicesLead:
-    "every engagement is bespoke. the packages below shape how we begin, what you get, and what it costs. fixed scope, fixed timeline, one point of contact.",
-  contactServicesLabel: "what are we building?",
-  contactSubmit: "send the brief",
+    "we assess the opportunity, build the product and leave your team ready to run it. one connected team across product, AI, governance and delivery.",
+  contactServicesLabel: "where does the work need to move?",
+  contactSubmit: "send your enquiry",
   contactSending: "sending…",
 } as const;
 
@@ -51,22 +51,22 @@ export const TIER_DISPLAY: Record<
 > = {
   start: {
     label: "start",
-    blurb: "readiness before you spend on a build.",
+    blurb: "find the use cases worth solving, assess the risk and agree what to do next.",
     eyebrow: "assess",
-    shape: "one week, fixed scope",
+    shape: "a focused first step",
   },
   make: {
     label: "build",
-    blurb: "fixed-scope sprints that ship product and ai into production.",
-    eyebrow: "implement",
-    shape: "four to twelve weeks, fixed scope",
+    blurb: "design, integrate and ship usable products within your operating controls.",
+    eyebrow: "build",
+    shape: "timeline and scope agreed together",
     featured: true,
   },
   grow: {
     label: "grow",
-    blurb: "one team keeping product and ai moving, month after month.",
-    eyebrow: "amplify",
-    shape: "rolling, monthly",
+    blurb: "improve what is live, build team capability and keep it working.",
+    eyebrow: "enable",
+    shape: "ongoing partnership, shaped around your team",
   },
 };
 
