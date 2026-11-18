@@ -1,4 +1,5 @@
-import { SplitQuote, Surface } from "@bmkrs/ui";
+import { PlateRow, SplitQuote, Surface } from "@bmkrs/ui";
+import { brandPlates } from "@/lib/marketing-assets";
 import { homeManifesto } from "@/lib/content/expansion-v2";
 
 const manifestoParts = homeManifesto.split("\n\n");
@@ -30,6 +31,9 @@ export function WhyBand() {
           <p key={paragraph.slice(0, 24)}>{paragraph}</p>
         ))}
       </SplitQuote>
+      <div className="mt-[var(--block-gap)]">
+        <PlateRow plates={[brandPlates.brandBoard]} />
+      </div>
     </Surface>
   );
 }

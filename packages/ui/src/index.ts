@@ -53,6 +53,8 @@ export {
   WorkGrid,
   WorkTile,
   PullQuote,
+  PlateRow,
+  type Plate,
   StepLine,
   Close,
   PageHero,

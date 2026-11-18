@@ -260,6 +260,36 @@ export function WorkTile({
   );
 }
 
+export type Plate = { src: string; alt: string; caption?: string };
+
+/**
+ * A band of framed image plates. One plate runs wide; two or three set
+ * one large plate beside a stacked pair, so imagery never reads as a grid of boxes.
+ */
+export function PlateRow({ plates, label }: { plates: Plate[]; label?: string }) {
+  const items = plates.slice(0, 3);
+  if (!items.length) return null;
+
+  return (
+    <div className={clsx("bmkrs-plates", `bmkrs-plates--${items.length}`)} aria-label={label}>
+      {items.map((plate, index) => (
+        <figure key={plate.src} className="bmkrs-plates__item">
+          <span className="bmkrs-plates__frame">
+            <Image
+              src={plate.src}
+              alt={plate.alt}
+              fill
+              sizes={index === 0 ? "(max-width: 800px) 100vw, 60vw" : "(max-width: 800px) 100vw, 40vw"}
+              className="bmkrs-plates__img"
+            />
+          </span>
+          {plate.caption ? <figcaption className="bmkrs-plates__caption">{plate.caption}</figcaption> : null}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 export function PullQuote({ quote, cite }: { quote: string; cite: string }) {
   return (
     <blockquote className="bmkrs-quote">

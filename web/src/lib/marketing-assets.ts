@@ -61,3 +61,14 @@ export const motionStripImages = [
   { src: marketingImages.studioWorkspace, alt: "design and digital production" },
   { src: marketingImages.portfolioMockup, alt: "brand and digital experience" },
 ] as const;
+
+/**
+ * On-brand placeholder plates, generated from the brand palette and fonts.
+ * Swap for real studio and work photography as it is shot.
+ */
+export const brandPlates = {
+  fullStop: { src: "/images/plates/full-stop.jpg", alt: "a lowercase b set large beside an orange full stop", caption: "fig. a  the full stop" },
+  method: { src: "/images/plates/method-board.jpg", alt: "the five steps listen, decide, make, ship, stay set as a type specimen", caption: "fig. b  the method" },
+  voice: { src: "/images/plates/voice-sheet.jpg", alt: "the line say it in one sentence, set large over an orange rule", caption: "fig. d  voice sheet" },
+  brandBoard: { src: "/images/plates/brand-board.jpg", alt: "the bmkrs brand board with ink, orange and paper swatches and type", caption: "fig. c  brand board" },
+} as const;

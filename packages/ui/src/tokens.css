@@ -34,7 +34,7 @@
   --lh-heading: 1.08;
   --lh-body: 1.6;
   --tracking-display: -0.02em;
-  --tracking-kicker: 0.08em;
+  --tracking-kicker: 0.04em;
 
   /* space scale */
   --section-y: clamp(4.5rem, 9vw, 9rem);

@@ -45,7 +45,7 @@ export const tokens = {
   },
   tracking: {
     display: "-0.02em",
-    kicker: "0.08em",
+    kicker: "0.04em",
   },
   space: {
     1: "0.5rem",

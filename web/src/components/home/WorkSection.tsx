@@ -17,7 +17,7 @@ export function WorkSection({
     .join(", ");
 
   return (
-    <Surface theme="paper" pad="home" id="work">
+    <Surface theme="ink" pad="home" id="work">
       <SectionHeading title={title} eyebrow={eyebrow} />
       <WorkGrid>
         {projects.map((project, i) => (
