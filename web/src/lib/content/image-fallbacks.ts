@@ -79,7 +79,7 @@ export const productImageBySlug: Record<string, { src: string; alt: string }> = 
   "motion-embedded": { src: marketingImages.creativeToolkit, alt: "motion embedded" },
 };
 
-function isUsableImage(url?: string): url is string {
+export function isUsableImage(url?: string): url is string {
   return Boolean(url && url !== PLACEHOLDER_LOGO && !url.includes("blacklogo"));
 }
 

@@ -27,6 +27,7 @@ export {
 
 export { Button, GhostButton, InkButton, OrangeButton, type ButtonProps } from "./Button";
 export { SnapLine, type SnapLineProps } from "./SnapLine";
+export { WorkReel, type WorkReelProps, type WorkReelFrame } from "./WorkReel";
 export { StatusDot, Status, type StatusDotVariant } from "./StatusDot";
 export { Field, TextArea, PillSelect, SelectField, Label, type PillOption } from "./forms";
 export { SwipeRow, type SwipeRowProps } from "./SwipeRow";
@@ -52,6 +53,8 @@ export {
   WorkGrid,
   WorkTile,
   PullQuote,
+  PlateRow,
+  type Plate,
   StepLine,
   Close,
   PageHero,

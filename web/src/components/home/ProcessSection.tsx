@@ -5,7 +5,7 @@ const STEPS = homeProcessStrip.steps.split(" → ");
 
 export function ProcessSection() {
   return (
-    <Surface theme="ink" pad="home" id="motion">
+    <Surface theme="paper" pad="home" id="motion">
       <SectionHeading title="how it runs" eyebrow="the method" />
       <StepLine steps={STEPS} body={homeProcessStrip.body} note={homeProcessStrip.footnote} />
     </Surface>
