@@ -11,6 +11,7 @@ import {
   journalCategoryLabel,
 } from "@/lib/journal-categories";
 import { pageMetadata } from "@/lib/seo";
+import { sentenceCase } from "@/lib/sentence-case";
 import { breadcrumbSchema } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -57,14 +58,14 @@ export default async function JournalCategoryPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Section theme="ink">
-        <BackLink href="/journal">all journal notes</BackLink>
+        <BackLink href="/journal">All journal notes</BackLink>
         <Kicker theme="ink">journal</Kicker>
         <H1 theme="ink" className="mt-4">
-          {label}
+          {sentenceCase(label)}
         </H1>
         {intro ? (
           <Body theme="ink" lead className="mt-4">
-            {intro}
+            {sentenceCase(intro)}
           </Body>
         ) : null}
         <Meta theme="ink" className="mt-3">
@@ -78,8 +79,8 @@ export default async function JournalCategoryPage({ params }: Props) {
               key={post.slug}
               href={`/journal/${post.slug}`}
               tag={`${label} · ${formatDate(post.publishedAt)}`}
-              name={post.title}
-              detail={post.excerpt}
+              name={sentenceCase(post.title)}
+              detail={post.excerpt ? sentenceCase(post.excerpt) : post.excerpt}
               image={post.cover?.url ? { src: post.cover.url, alt: "" } : undefined}
             />
           ))}

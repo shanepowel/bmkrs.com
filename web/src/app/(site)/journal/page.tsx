@@ -13,6 +13,7 @@ import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
 import { brandMessaging } from "@/lib/content/messaging";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { pageMetadata, siteUrl } from "@/lib/seo";
+import { sentenceCase } from "@/lib/sentence-case";
 
 export const metadata: Metadata = {
   ...pageMetadata(
@@ -70,8 +71,8 @@ export default async function JournalPage() {
                 wide
                 href={`/journal/${featured.slug}`}
                 tag={`featured · ${JOURNAL_CATEGORY_LABEL[featured.category] ?? featured.category} · ${formatDate(featured.publishedAt)}`}
-                name={featured.title}
-                detail={featured.excerpt}
+                name={sentenceCase(featured.title)}
+                detail={featured.excerpt ? sentenceCase(featured.excerpt) : featured.excerpt}
                 image={{ src: featured.cover.url, alt: "" }}
               />
             </WorkGrid>
@@ -83,7 +84,7 @@ export default async function JournalPage() {
             items={listPosts.map((post) => ({
               href: `/journal/${post.slug}`,
               date: formatListDate(post.publishedAt),
-              title: post.title,
+              title: sentenceCase(post.title),
               category: (JOURNAL_CATEGORY_LABEL[post.category] ?? post.category).toLowerCase(),
             }))}
           />
