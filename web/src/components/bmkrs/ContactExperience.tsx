@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button as UiButton } from "@/components/ui/button";
 import { Field, H1, PillSelect, Surface, TextArea } from "@bmkrs/ui";
 import { brandMessaging } from "@/lib/content/messaging";
+import { marketingImages } from "@/lib/marketing-assets";
 
 const SERVICE_OPTIONS = [
   { value: "strategy", label: "strategy and discovery" },
@@ -166,7 +167,14 @@ export function ContactExperience({
           <aside className="contact-aside">
             <div><span>studio</span><p>London, UK</p></div>
             <div><span>email</span><ContactEmails helloEmail={fallbackEmail} pressEmail={pressEmail} className="contact-emails" /></div>
-            <div className="contact-aside__image"><Image src="/images/bmkrs-architecture-editorial.webp" alt="Vermilion and concrete architectural details" fill sizes="(max-width: 1024px) 100vw, 25vw" unoptimized /></div>
+            <div className="contact-aside__image">
+              <Image
+                src={marketingImages.architectureConcrete}
+                alt="warm concrete architecture, vermilion detail"
+                fill
+                sizes="(max-width: 1024px) 100vw, 25vw"
+              />
+            </div>
           </aside>
         </div>
       </section>
