@@ -35,7 +35,7 @@ All UI is built from `@bmkrs/ui` (local package at `packages/ui`, imported as `@
 
 ## 5. Voice and content rules (copy written in components)
 
-- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("start a build", never "submit"). Errors name the fix.
+- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("talk to us", never "submit"). Errors name the fix.
 - Never ship fabricated testimonials, fake metrics, or placeholder names that could read as real. Leave the slot empty or use a clearly-marked TODO.
 
 ## 6. Accessibility and mobile are not optional

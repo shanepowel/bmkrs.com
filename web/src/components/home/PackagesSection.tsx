@@ -7,7 +7,7 @@ const TIERS: ProductTier[] = ["start", "make", "grow"];
 // only claims the offer itself guarantees; add delivery numbers here once they are verified
 const STATS = [
   { value: "17+", label: "years shipping products inside organisations where failure is expensive" },
-  { value: "3", label: "phases every engagement: discover, design, build" },
+  { value: "4", label: "phases every engagement: discover, design, build, grow" },
   { value: "1", label: "point of contact, from first call to production" },
 ] as const;
 

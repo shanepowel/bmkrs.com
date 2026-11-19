@@ -292,7 +292,7 @@ export default async function CaseStudyPage({ params }: Props) {
               ) : (
                 <Button href="/work">all projects</Button>
               )}
-              <GhostButton href="/contact">start a build</GhostButton>
+              <GhostButton href="/contact">talk to us</GhostButton>
             </div>
           </div>
         </div>

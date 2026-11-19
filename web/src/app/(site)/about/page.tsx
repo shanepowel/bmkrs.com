@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PortraitTile } from "@/components/bmkrs/PortraitTile";
 import { MarketingBanner } from "@/components/bmkrs/MarketingBanner";
@@ -11,25 +12,25 @@ import {
   GhostButton,
   H1,
   H2,
-  H3,
   Kicker,
   Marquee,
   Meta,
   Section,
-  SpecList,
   Stat,
   StatGrid,
+  StorySplit,
+  TeamGrid,
 } from "@bmkrs/ui";
+import { brandMessaging } from "@/lib/content/messaging";
 import { getAboutPage, getNowBuilding, getPeople } from "@/lib/content";
 import { fetchBenchPublic } from "@/lib/bench-public";
-import { visibleQuickfire } from "@/lib/quickfire";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, personSchema } from "@/lib/structured-data";
 import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
   "about",
-  "meet bmkrs, an independent creative and digital studio in London. small enough to care, experienced enough to deliver.",
+  "meet bmkrs, an independent creative and digital studio in london. small enough to care, experienced enough to deliver.",
   "/about",
 );
 
@@ -86,27 +87,21 @@ export default async function AboutPage() {
   ];
 
   return (
-    <main className="about-page">
+    <main className="about-page" data-surface="paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Section theme="ink">
+      <Section theme="paper">
         <div className="lg:max-w-[80%]">
-          <Kicker theme="ink">about bmkrs</Kicker>
-          <H1 theme="ink">{about.headline}</H1>
-          <Body theme="ink" lead className="mt-8">
+          <Kicker theme="paper">about bmkrs</Kicker>
+          <H1 theme="paper">{about.headline}</H1>
+          <Body theme="paper" lead className="mt-8">
             {about.intro}
           </Body>
         </div>
       </Section>
-
-      <MarketingBanner
-        src={marketingImages.studioTeam}
-        alt="the bmkrs team at work in the studio"
-        priority
-      />
 
       <Section theme="ink" tight pad="tight" className="!py-0">
         <Marquee items={ABOUT_TICKER} />
@@ -114,45 +109,89 @@ export default async function AboutPage() {
 
       {founder && founderPerson ? (
         <Section theme="paper">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <PortraitTile
-                name={founder.name}
-                discipline={founderPerson.discipline}
-                portraitUrl={founderPerson.portraitUrl}
-                theme="paper"
-                size={200}
-              />
-              <Meta theme="paper" className="mt-4 block">
-                {founder.name} · founder ·{" "}
-                <a
-                  href={founder.linkedinUrl}
-                  className="underline decoration-1 underline-offset-4"
-                  rel="me noopener"
-                  target="_blank"
-                >
-                  linkedin <span aria-hidden="true">+</span>
-                </a>
-              </Meta>
-            </div>
-            <div className="lg:col-span-7 lg:col-start-6">
-              <H2 theme="paper">{about.founderStoryTitle}</H2>
-              <Body theme="paper" className="mt-8 space-y-6 text-lg">
+          <StorySplit
+            eyebrow="our story"
+            title={about.founderStoryTitle}
+            body={
+              <>
                 {about.founderStory.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+                  <p key={paragraph.slice(0, 24)} className="mb-6 last:mb-0">
+                    {paragraph}
+                  </p>
                 ))}
-              </Body>
-              <EdgeQuote>&ldquo;{about.founderPullQuote}&rdquo;</EdgeQuote>
-            </div>
-          </div>
+                <EdgeQuote>&ldquo;{about.founderPullQuote}&rdquo;</EdgeQuote>
+                <Meta theme="paper" className="mt-6 block">
+                  {founder.name} · founder ·{" "}
+                  <a
+                    href={founder.linkedinUrl}
+                    className="underline decoration-1 underline-offset-4"
+                    rel="me noopener"
+                    target="_blank"
+                  >
+                    linkedin ↗
+                  </a>
+                </Meta>
+              </>
+            }
+            media={
+              founderPerson.portraitUrl ? (
+                <Image
+                  src={founderPerson.portraitUrl}
+                  alt={`${founder.name}, founder`}
+                  width={720}
+                  height={900}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <PortraitTile
+                  name={founder.name}
+                  discipline={founderPerson.discipline}
+                  theme="ink"
+                  size={320}
+                />
+              )
+            }
+          />
         </Section>
       ) : null}
 
       <MarketingBanner
-        src={marketingImages.brandStrategy}
-        alt="brand strategy, frameworks and deliverables"
-        aspect="4/3"
+        src={marketingImages.studioTeam}
+        alt="the bmkrs team at work in the studio"
+        aspect="21/9"
+        priority
       />
+
+      <Section theme="paper">
+        <H2 theme="paper">the team</H2>
+        <Body theme="paper" lead className="mb-14 mt-6">
+          {about.teamIntro}
+        </Body>
+        <TeamGrid
+          members={people.map((person) => ({
+            name: person.name,
+            role: (person.role ?? person.discipline ?? "").toLowerCase(),
+            portrait: (
+              <PortraitTile
+                name={person.name}
+                discipline={person.discipline ?? person.role}
+                portraitUrl={person.portraitUrl}
+                theme="paper"
+                size={320}
+              />
+            ),
+          }))}
+        />
+        <Body theme="paper" className="mt-14 text-lg">
+          {about.teamClosing}
+        </Body>
+        <Meta theme="paper" className="mt-6 block">
+          collaborators:{" "}
+          <Link href="/network" className="underline decoration-1 underline-offset-4">
+            the network
+          </Link>
+        </Meta>
+      </Section>
 
       <Section theme="ink">
         <H2 theme="ink">{about.beliefsHeadline}</H2>
@@ -171,62 +210,6 @@ export default async function AboutPage() {
       </Section>
 
       <Section theme="paper">
-        <H2 theme="paper">a partner team, not a payroll.</H2>
-        <Body theme="paper" lead className="mb-14 mt-6">
-          {about.teamIntro}
-        </Body>
-        <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {people.map((person) => {
-            const quickfire = visibleQuickfire(person.quickfire);
-            return (
-              <article key={person.slug} id={person.slug} className="border-t border-[var(--bmkrs-rule-paper)] pt-6">
-                <PortraitTile
-                  name={person.name}
-                  discipline={person.discipline ?? person.role}
-                  portraitUrl={person.portraitUrl}
-                  theme="paper"
-                />
-                <H3 theme="paper" className="mt-5">
-                  {person.name}{" "}
-                  <Meta theme="paper" className="ml-1 font-normal">
-                    {person.role ?? person.discipline}
-                  </Meta>
-                </H3>
-                <Body theme="paper" className="mt-3">
-                  {person.shortBio ?? person.longBio}
-                </Body>
-                {quickfire.length > 0 ? (
-                  <div className="mt-5">
-                    <SpecList
-                      items={quickfire.map((item) => ({
-                        label: item.label,
-                        value: item.href ? (
-                          <Link href={item.href} className="underline decoration-1 underline-offset-4">
-                            {item.value}
-                          </Link>
-                        ) : (
-                          item.value
-                        ),
-                      }))}
-                    />
-                  </div>
-                ) : null}
-              </article>
-            );
-          })}
-        </div>
-        <Body theme="paper" className="mt-14 text-lg">
-          {about.teamClosing}
-        </Body>
-        <Meta theme="paper" className="mt-6 block">
-          collaborators:{" "}
-          <Link href="/network" className="underline decoration-1 underline-offset-4">
-            the network
-          </Link>
-        </Meta>
-      </Section>
-
-      <Section theme="ink">
         <StatGrid>
           {stats.map((stat) => (
             <Stat key={stat.label} value={stat.value} label={stat.label} />
@@ -255,26 +238,26 @@ export default async function AboutPage() {
         </Meta>
       </Section>
 
-      <Section theme="ink">
+      <Section theme="paper">
         <div className="grid gap-10 lg:grid-cols-12">
-          <H2 theme="ink" className="lg:col-span-4">
+          <H2 theme="paper" className="lg:col-span-4">
             {about.longGameTitle}
           </H2>
-          <Body theme="ink" className="space-y-6 text-lg lg:col-span-7 lg:col-start-6">
+          <Body theme="paper" className="space-y-6 text-lg lg:col-span-7 lg:col-start-6">
             {longGameParagraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
           </Body>
         </div>
 
-        <div className="mt-[clamp(4rem,8vw,7rem)] border-t border-[var(--surface-rule)] pt-16">
-          <H2 theme="ink">got something worth building?</H2>
-          <Body theme="ink" className="mt-6 text-lg">
-            tell us what it is. we will tell you what it needs, including the parts not to buy from
-            us.
+        <div className="mt-[clamp(4rem,8vw,7rem)] border-t border-[var(--bmkrs-rule-paper)] pt-16">
+          <H2 theme="paper">{brandMessaging.closeTitle}</H2>
+          <Body theme="paper" className="mt-6 text-lg">
+            tell us what you are building. we will tell you what it needs, including the parts not to
+            buy from us.
           </Body>
           <div className="mt-10 flex flex-wrap items-center gap-8">
-            <Button href="/contact">start a build</Button>
+            <Button href="/contact">{brandMessaging.ctaPrimary} →</Button>
             <GhostButton href="/journal">read the journal first</GhostButton>
           </div>
         </div>

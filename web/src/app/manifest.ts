@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import { BRAND_AVATAR } from "@/lib/brand";
+import { brandMessaging } from "@/lib/content/messaging";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "bmkrs. digital products. ai that ships.",
+    name: `bmkrs. ${brandMessaging.tagline}`,
     short_name: "bmkrs.",
-    description:
-      "A digital product studio that builds products and brings ai into production, with governance and handover included.",
+    description: brandMessaging.description,
     start_url: "/",
     display: "standalone",
     background_color: "#fbf9f5",

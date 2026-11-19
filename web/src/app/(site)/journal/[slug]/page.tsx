@@ -203,7 +203,7 @@ export default async function JournalArticlePage({ params }: Props) {
 
             <nav className="mt-12 flex flex-wrap gap-4 border-t border-[var(--line)] pt-8">
               <GhostButton href="/journal">more from the journal</GhostButton>
-              <Button href="/contact">start a build</Button>
+              <Button href="/contact">talk to us</Button>
             </nav>
           </div>
         </Section>

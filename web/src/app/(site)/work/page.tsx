@@ -59,17 +59,13 @@ export default async function WorkPage() {
 
       <PageHero
         eyebrow="selected work"
-        title={
-          <>
-            ideas are easy. <span className="text-accent">making them work</span> is the interesting part.
-          </>
-        }
+        title={brandMessaging.workTitle}
         lede={brandMessaging.workSubtitle}
         image={{ src: heroImage, alt: pageHeroImages.work.alt }}
       />
 
-      <Section theme="ink">
-        <H2 theme="ink">client work</H2>
+      <Section theme="paper">
+        <H2 theme="paper">client work</H2>
         <div className="mt-8">
           <ProjectGrid projects={clientWork} />
         </div>
@@ -103,10 +99,11 @@ export default async function WorkPage() {
         </div>
       </Section>
 
-      <Section theme="ink">
-        <Kicker theme="ink">your brand next</Kicker>
+      <Section theme="paper">
+        <Kicker theme="paper">next</Kicker>
+        <H2 theme="paper">{brandMessaging.closeTitle}</H2>
         <div className="mt-6">
-          <Button href="/contact">let&apos;s build something</Button>
+          <Button href="/contact">{brandMessaging.ctaPrimary} →</Button>
         </div>
       </Section>
     </main>

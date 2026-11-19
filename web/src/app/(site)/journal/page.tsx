@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 import { EmailCapture } from "@/components/bmkrs/EmailCapture";
-import { JournalFilter } from "@/components/bmkrs/JournalFilter";
-import { JournalMap } from "@/components/bmkrs/JournalMap";
-import { Body, Chip, Kicker, Meta, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
+import {
+  Body,
+  CategoryTabs,
+  PageHero,
+  RuledList,
+  Section,
+  WorkGrid,
+  WorkTile,
+} from "@bmkrs/ui";
 import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
-import { pageHeroImages } from "@/lib/content/image-fallbacks";
-import { journalMastheadIntro, journalCategoryDescriptions } from "@/lib/content/expansion-v2";
+import { journalMastheadIntro } from "@/lib/content/expansion-v2";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata(
     "journal",
-    "notes on building brands: identity, voice, pr, growth and how we work.",
+    "notes from the studio on product, brand, design and how we work.",
     "/journal",
   ),
   alternates: {
@@ -29,21 +34,37 @@ function formatDate(iso: string) {
     .toLowerCase();
 }
 
+function formatListDate(iso: string) {
+  return new Date(iso)
+    .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+    .toUpperCase();
+}
+
 export default async function JournalPage() {
   const [{ featured, posts }, categorySlugs] = await Promise.all([
     getJournalIndex(),
     getJournalCategorySlugs(),
   ]);
-  const all = [featured, ...posts].filter(Boolean);
-  const mapPosts = all.map((p) => ({ slug: p!.slug, title: p!.title, category: p!.category }));
+  const listPosts = posts.filter((post) => post.slug !== featured?.slug);
+
+  const categoryTabs = [
+    { id: "all", label: "all", href: "/journal" },
+    ...categorySlugs.map((slug) => ({
+      id: slug,
+      label: (JOURNAL_CATEGORY_LABEL[slug] ?? slug).toLowerCase(),
+      href: `/journal/category/${slug}`,
+    })),
+  ];
 
   return (
-    <main className="journal">
-      <PageHero eyebrow="journal" title="the journal" lede={journalMastheadIntro} image={pageHeroImages.journal} />
+    <main className="journal" data-surface="paper">
+      <PageHero eyebrow="journal" title="journal" lede={journalMastheadIntro} />
 
       <Section theme="paper" className="!pt-0">
-        <div className="section">
-          {featured?.cover?.url ? (
+        <CategoryTabs items={categoryTabs} active="all" />
+
+        {featured?.cover?.url ? (
+          <div className="mb-14">
             <WorkGrid>
               <WorkTile
                 wide
@@ -54,59 +75,24 @@ export default async function JournalPage() {
                 image={{ src: featured.cover.url, alt: "" }}
               />
             </WorkGrid>
-          ) : null}
-
-          <JournalFilter />
-
-          {categorySlugs.length > 0 ? (
-            <nav className="mt-10 flex flex-wrap items-center gap-3" aria-label="journal topics">
-              <Meta theme="paper">browse by topic</Meta>
-              {categorySlugs.map((slug) => (
-                <Chip key={slug} href={`/journal/category/${slug}`}>
-                  {JOURNAL_CATEGORY_LABEL[slug] ?? slug}
-                </Chip>
-              ))}
-            </nav>
-          ) : null}
-
-          {categorySlugs.length > 0 ? (
-            <ul className="mt-6 space-y-2">
-              {categorySlugs.map((slug) => (
-                <li key={`desc-${slug}`}>
-                  <Meta theme="paper">{JOURNAL_CATEGORY_LABEL[slug] ?? slug}</Meta>{" "}
-                  <Body theme="paper">{journalCategoryDescriptions[slug] ?? ""}</Body>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          <div className="mt-10">
-            <WorkGrid>
-              {posts.map((post) => (
-                <WorkTile
-                  key={post.slug}
-                  href={`/journal/${post.slug}`}
-                  tag={`${JOURNAL_CATEGORY_LABEL[post.category] ?? post.category} · ${formatDate(post.publishedAt)}`}
-                  name={post.title}
-                  detail={post.excerpt}
-                  image={post.cover?.url ? { src: post.cover.url, alt: "" } : undefined}
-                />
-              ))}
-            </WorkGrid>
           </div>
+        ) : null}
 
-        </div>
+        {listPosts.length ? (
+          <RuledList
+            items={listPosts.map((post) => ({
+              href: `/journal/${post.slug}`,
+              date: formatListDate(post.publishedAt),
+              title: post.title,
+              category: (JOURNAL_CATEGORY_LABEL[post.category] ?? post.category).toLowerCase(),
+            }))}
+          />
+        ) : (
+          <Body theme="paper">no articles yet. check back soon.</Body>
+        )}
       </Section>
 
-      {mapPosts.length > 0 ? (
-        <Section theme="ink">
-          <Kicker theme="ink">wander</Kicker>
-          <p className="muted mb-6 text-sm">optional: explore posts by connection, not chronology.</p>
-          <JournalMap posts={mapPosts} />
-        </Section>
-      ) : null}
-
-      <EmailCapture surface="orange" />
+      <EmailCapture surface="paper" />
     </main>
   );
 }

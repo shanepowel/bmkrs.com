@@ -1,4 +1,4 @@
-import { Button, GhostButton, Hero, WorkReel, type WorkReelFrame } from "@bmkrs/ui";
+import { Button, Hero, WorkReel, type WorkReelFrame } from "@bmkrs/ui";
 import { brandMessaging } from "@/lib/content/messaging";
 
 export function HomeHero({ frames }: { frames: WorkReelFrame[] }) {
@@ -14,10 +14,9 @@ export function HomeHero({ frames }: { frames: WorkReelFrame[] }) {
       }
       lede={brandMessaging.heroSub}
       actions={
-        <>
-          <Button href="/contact">{brandMessaging.ctaPrimary} →</Button>
-          <GhostButton href="/work">{brandMessaging.ctaWork}</GhostButton>
-        </>
+        <Button href="/contact">
+          {brandMessaging.ctaPrimary} →
+        </Button>
       }
       plate={
         <>

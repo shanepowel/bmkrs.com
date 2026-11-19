@@ -33,7 +33,7 @@ export function SiteHeader({
   loginUrl,
   contactEmail,
   homeHref = "/",
-  ctaLabel = "start a build",
+  ctaLabel = "talk to us",
   ctaHref = "/contact",
   renderLogo,
 }: SiteHeaderProps) {
