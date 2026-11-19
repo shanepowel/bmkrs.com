@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
 
 const webRoot = path.join(__dirname, "..");
 const publicRoot = path.join(webRoot, "public");
@@ -20,11 +19,9 @@ const iconLightPng = path.join(brandDir, "bmkrs-icon-light.png");
 const iconDarkSvg = path.join(brandDir, "bmkrs-icon-dark.svg");
 const avatarSvg = path.join(brandDir, "bmkrs-avatar-512.svg");
 
-function resvg(input, output, width) {
-  execSync(
-    `npx --yes @resvg/resvg-js-cli "${input}" "${output}" --fit-width ${width}`,
-    { stdio: "ignore", cwd: webRoot }
-  );
+async function rasterizeSvg(input, output, width) {
+  const sharp = require("sharp");
+  await sharp(input).resize({ width, withoutEnlargement: false }).png().toFile(output);
 }
 
 async function resizePng(input, output, size) {
@@ -48,8 +45,8 @@ async function main() {
     syncAppIcons(faviconIco, icon32, appleIcon);
     console.log("Favicons generated from brand PNG sources (icon-dark + icon-light).");
   } else if (fs.existsSync(iconDarkSvg)) {
-    resvg(iconDarkSvg, icon32, 32);
-    resvg(iconDarkSvg, appleIcon, 180);
+    await rasterizeSvg(iconDarkSvg, icon32, 32);
+    await rasterizeSvg(iconDarkSvg, appleIcon, 180);
     fs.copyFileSync(icon32, faviconIco);
     syncAppIcons(faviconIco, icon32, appleIcon);
     console.log("Favicons generated from icon-dark SVG (add bmkrs-icon-dark.png for production favicons).");
@@ -58,8 +55,8 @@ async function main() {
   }
 
   if (fs.existsSync(avatarSvg)) {
-    resvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-512.png"), 512);
-    resvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-1024.png"), 1024);
+    await rasterizeSvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-512.png"), 512);
+    await rasterizeSvg(avatarSvg, path.join(publicRoot, "images", "bmkrs-avatar-1024.png"), 1024);
   }
 }
 

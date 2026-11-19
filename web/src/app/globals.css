@@ -1,4 +1,3 @@
-@import "../../../packages/ui/src/tokens.css";
 @import "../../../packages/ui/src/library.css";
 @import "../styles/tokens.css";
 @import "../styles/components.css";
@@ -8,12 +7,32 @@
 @tailwind utilities;
 
 :root {
+  --background: 40 23% 94%;
+  --foreground: 30 10% 9%;
+  --card: 40 28% 97%;
+  --card-foreground: 30 10% 9%;
+  --popover: 40 28% 97%;
+  --popover-foreground: 30 10% 9%;
+  --primary: 30 10% 9%;
+  --primary-foreground: 40 23% 94%;
+  --secondary: 36 14% 88%;
+  --secondary-foreground: 30 10% 9%;
+  --muted: 36 14% 88%;
+  --muted-foreground: 30 3% 34%;
+  --accent: 16 100% 50%;
+  --accent-foreground: 30 10% 9%;
+  --border: 30 10% 9% / 15%;
+  --input: 30 10% 9% / 22%;
+  --ring: 16 100% 50%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --radius: 2px;
+  --bmkrs-radius-button: 2px;
   --bg: var(--bmkrs-paper-bright, #fbf9f5);
   --ink: var(--bmkrs-ink, #181613);
-  --muted: var(--bmkrs-muted, rgb(180 178 169));
-  --accent: var(--bmkrs-accent, #ff4d00);
   --line: rgba(24, 22, 19, 0.12);
-  --radius: 24px;
+  --bmkrs-radius-card: 24px;
+  --bmkrs-radius-field: 2px;
   --pad: var(--gutter);
   --page-top: max(0px, env(safe-area-inset-top, 0px));
   --page-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
@@ -30,7 +49,7 @@ html {
   position: absolute;
   left: 0;
   top: -3rem;
-  background: var(--accent);
+  background: var(--bmkrs-accent);
   color: var(--ink);
   padding: 0.6rem 1rem;
   z-index: 100;
@@ -190,7 +209,7 @@ summary:focus-visible,
   }
 
   [data-surface="orange"] {
-    --surface-bg: var(--accent);
+    --surface-bg: var(--bmkrs-accent);
     --surface-text: #181613;
     --surface-body: #2c1005;
     --surface-muted: #4a1b0c;
@@ -204,7 +223,6 @@ summary:focus-visible,
     color: var(--bmkrs-accent-ink);
   }
 
-  [data-surface] .text-muted,
   [data-surface] .muted {
     color: var(--surface-muted);
   }
@@ -390,7 +408,7 @@ summary:focus-visible,
 
   .lead {
     font-size: var(--text-body-lg);
-    @apply text-muted max-w-[65ch];
+    @apply text-muted-foreground max-w-[65ch];
   }
 
   .block-peach {
@@ -441,7 +459,7 @@ summary:focus-visible,
   }
 
   .cap-card {
-    @apply grid grid-cols-[1fr_auto] gap-4 overflow-hidden rounded-[var(--radius)] border-2 border-ink bg-bg p-5 transition hover:-translate-y-1.5 hover:bg-ink hover:text-bg sm:p-7 lg:p-9;
+    @apply grid grid-cols-[1fr_auto] gap-4 overflow-hidden rounded-[var(--bmkrs-radius-card)] border-2 border-ink bg-bg p-5 transition hover:-translate-y-1.5 hover:bg-ink hover:text-bg sm:p-7 lg:p-9;
   }
 
   .cap-card--visual {
@@ -461,7 +479,7 @@ summary:focus-visible,
   }
 
   .proj-tile .proj-media {
-    @apply relative aspect-[4/3] overflow-hidden rounded-[var(--radius)];
+    @apply relative aspect-[4/3] overflow-hidden rounded-[var(--bmkrs-radius-card)];
   }
 
   .proj-tile.featured .proj-media {

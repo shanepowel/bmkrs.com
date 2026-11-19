@@ -14,7 +14,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
         <blockquote className="text-h3 font-medium leading-[1.15]">
           &ldquo;{lead.quote}&rdquo;
         </blockquote>
-        <figcaption className="mono mt-4 text-meta font-normal normal-case text-muted">
+        <figcaption className="mono mt-4 text-meta font-normal normal-case text-bmkrs-muted">
           {lead.name}
           {lead.role ? `, ${lead.role}` : ""}
           {lead.company ? `, ${lead.company}` : ""}

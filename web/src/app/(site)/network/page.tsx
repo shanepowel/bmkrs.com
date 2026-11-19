@@ -73,7 +73,7 @@ export default async function NetworkPage() {
               <AppLink href={join}>earn a place on it</AppLink>
             </div>
           </Reveal>
-          <p className="network-login mono mt-6 text-meta text-muted">
+          <p className="network-login mono mt-6 text-meta text-bmkrs-muted">
             already in?{" "}
             <a
               href={login}
@@ -137,7 +137,7 @@ export default async function NetworkPage() {
                 <Reveal delay={(i % 2) as 0 | 1}>
                   <span className="eyebrow process-num preserve-case">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="display mt-2 text-xl">{s.title}</h3>
-                  <p className="mt-2 text-muted">{s.body}</p>
+                  <p className="mt-2 text-bmkrs-muted">{s.body}</p>
                 </Reveal>
               </li>
             ))}
@@ -151,7 +151,7 @@ export default async function NetworkPage() {
             <article className="network-card">
               <Kicker theme="ink">for companies</Kicker>
               <h3 className="network-door-heading display mt-2 text-xl">{page.forCompanies.heading}</h3>
-              <p className="network-body mt-4 leading-relaxed text-muted">{page.forCompanies.body}</p>
+              <p className="network-body mt-4 leading-relaxed text-bmkrs-muted">{page.forCompanies.body}</p>
               {page.forCompanies.steps?.length ? (
                 <ul role="list" className="door-steps mt-4">
                   {page.forCompanies.steps.map((s, i) => (
@@ -168,7 +168,7 @@ export default async function NetworkPage() {
             <article className="network-card">
               <Kicker theme="ink">for specialists</Kicker>
               <h3 className="network-door-heading display mt-2 text-xl">{page.forSpecialists.heading}</h3>
-              <p className="network-body mt-4 leading-relaxed text-muted">{page.forSpecialists.body}</p>
+              <p className="network-body mt-4 leading-relaxed text-bmkrs-muted">{page.forSpecialists.body}</p>
               {page.forSpecialists.steps?.length ? (
                 <ul role="list" className="door-steps mt-4">
                   {page.forSpecialists.steps.map((s, i) => (

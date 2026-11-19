@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button as UiButton } from "@bmkrs/ui";
+import { Button as UiButton } from "@/components/ui/button";
 import { Field, H1, PillSelect, Surface, TextArea } from "@bmkrs/ui";
 import { brandMessaging } from "@/lib/content/messaging";
 
@@ -153,10 +153,10 @@ export function ContactExperience({
                   />
                 </details>
                 <div className="cx-full">
-                  <UiButton type="submit" variant="orange" disabled={status === "sending"}>
+                  <UiButton type="submit" variant="brand" size="lg" disabled={status === "sending"}>
                     {status === "sending"
                       ? brandMessaging.contactSending
-                      : `${brandMessaging.contactSubmit} +`}
+                      : `${brandMessaging.contactSubmit} →`}
                   </UiButton>
                 </div>
                 {fieldError ? <p className="cx-full text-meta" role="alert">{fieldError} <a href={`mailto:${fallbackEmail}`} className="underline underline-offset-4">email us directly</a>.</p> : null}

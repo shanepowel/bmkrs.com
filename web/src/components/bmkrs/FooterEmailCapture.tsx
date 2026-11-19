@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@bmkrs/ui";
 import Link from "next/link";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { SURFACE } from "@/lib/surfaces";
 
 export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: string }) {
@@ -13,13 +13,13 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
     e.preventDefault();
     setStatus("sending");
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
+    const emailValue = formData.get("email");
     const consent = formData.get("consent") === "on";
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent }),
+        body: JSON.stringify({ email: emailValue, consent }),
       });
       setStatus(res.ok ? "sent" : "error");
     } catch {
@@ -57,14 +57,18 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
               <Link href="/legal/privacy">privacy notice</Link>.
             </span>
           </label>
-          <Button type="submit" variant="orange" disabled={status === "sending"} className="footer-capture__btn">
-            {status === "sending" ? "sending…" : "subscribe"}
+          <Button type="submit" variant="brand" disabled={status === "sending"} className="footer-capture__btn">
+            {status === "sending" ? "sending…" : "send the next one"}
           </Button>
         </form>
       )}
       {status === "error" ? (
         <p className="mt-2 text-sm" role="alert" style={{ color: ink.accent }}>
-          That did not go through. <a href={`mailto:${email}`} className="underline underline-offset-4">Email us directly</a> and we&apos;ll help.
+          That did not go through.{" "}
+          <a href={`mailto:${email}`} className="underline underline-offset-4">
+            Email us directly
+          </a>{" "}
+          and we&apos;ll help.
         </p>
       ) : null}
     </div>

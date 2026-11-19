@@ -17,7 +17,7 @@ export function WorkProjectsSwipe({
         <H2 theme="ink">
           the brands we <span className="text-accent">build for</span>
         </H2>
-        <p className="text-body-sm text-muted max-w-[65ch]">{subtitle}</p>
+        <p className="text-body-sm text-bmkrs-muted max-w-[65ch]">{subtitle}</p>
       </div>
       <div className="block-gap">
         <SwipeRow ariaLabel="selected work" desktopGridClass="md:grid md:grid-cols-2 md:overflow-visible">

@@ -19,7 +19,7 @@ export function HeroCollage({ images }: HeroCollageProps) {
         {slots.map((item, i) => (
           <div
             key={`${item.src}-${i}`}
-            className="hero-carousel__slide relative aspect-[21/9] w-[min(88vw,72rem)] shrink-0 snap-start overflow-hidden rounded-[var(--radius)] border border-ink/10 bg-ink"
+            className="hero-carousel__slide relative aspect-[21/9] w-[min(88vw,72rem)] shrink-0 snap-start overflow-hidden rounded-[var(--bmkrs-radius-card)] border border-ink/10 bg-ink"
           >
             <Image
               src={item.src}
