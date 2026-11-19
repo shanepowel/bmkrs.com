@@ -18,10 +18,10 @@ const postCoverBySlug = new Map(
 /** Discipline imagery used when Sanity has no team photo yet. */
 export const teamPhotoByName: Record<string, { url: string; alt: string }> = {
   shane: { url: marketingImages.brandArchitecture, alt: "delivery and strategy" },
-  george: { url: marketingImages.socialStrategy, alt: "product operations" },
+  george: { url: marketingImages.socialStrategy, alt: "pr and communications" },
   melissa: { url: marketingImages.digitalEcosystem, alt: "product and engineering" },
-  sarah: { url: marketingImages.brandGuidelines, alt: "product design" },
-  marcus: { url: marketingImages.designStudio, alt: "ai and platforms" },
+  sarah: { url: marketingImages.brandGuidelines, alt: "brand and identity" },
+  marcus: { url: marketingImages.designStudio, alt: "voice and messaging" },
   "the wider team": {
     url: marketingImages.creativeToolkit,
     alt: "extended specialist network",
@@ -32,13 +32,13 @@ export const homeMotionStrip = motionStripImages;
 
 export const pageHeroImages = {
   services: {
-    src: marketingImages.studioWorkspace,
-    alt: "digital product and delivery work in the studio",
+    src: marketingImages.disciplinePillars,
+    alt: "brand identity, voice, pr and product — four disciplines, one team",
   },
   about: { src: marketingImages.studioTeam, alt: "bmkrs team collaborating in the studio" },
-  work: { src: marketingImages.portfolioCaseStudy, alt: "shipped digital product work" },
-  motion: { src: marketingImages.studioTeam, alt: "ongoing product and ai partnership" },
-  journal: { src: marketingImages.brandStrategy, alt: "product and delivery thinking" },
+  work: { src: marketingImages.portfolioCaseStudy, alt: "brand and digital experience work" },
+  motion: { src: marketingImages.studioTeam, alt: "ongoing brand and creative partnership" },
+  journal: { src: marketingImages.brandStrategy, alt: "brand strategy and thinking" },
   contact: { src: marketingImages.teamCollaboration, alt: "start a build with bmkrs" },
 } as const;
 
@@ -58,8 +58,8 @@ export const aboutTeamImage = {
 };
 
 export const homePositioningImage = {
-  src: marketingImages.studioWorkspace,
-  alt: "product and delivery on one coordinated team",
+  src: marketingImages.disciplinePillars,
+  alt: "four disciplines on one coordinated team",
 };
 
 export const homeWhoWeWorkWithImage = {

@@ -7,12 +7,12 @@ export const fallbackPressKit: PressKitContent = {
   intro:
     "logos, colours, type, boilerplate and usage rules. download what you need. questions: press@bmkrs.com.",
   shortBoilerplate:
-    "bmkrs is a digital product studio that builds products and brings ai into production. one team for strategy, build, governance and handover, based in london and working worldwide.",
+    "bmkrs is an independent creative and digital studio in London. We bring strategy, design and technology together to help ambitious businesses make meaningful things happen.",
   longBoilerplate:
-    "b makers ltd trades as bmkrs. we are a digital product studio founded by a builder: seventeen years shipping inside organisations where failure is expensive, now pointed at the gap most ai programmes never close: production, governance and a team that can own what ships. we work with product and transformation leaders who need the whole journey, from readiness through build and controls to handover, without hiring five suppliers and refereeing between them. the offer is start, build, grow: readiness, fixed-scope product and ai packages, then motion. the studio also ships its own products, so we live with the consequences of our own advice.",
+    "LRC Labs Ltd is the parent company of bmkrs. Co-founded by Shane Powell and Marcelo, bmkrs is an independent creative and digital studio in London, working with ambitious businesses across strategy, design, digital products and technology. One connected team helps shape ideas, make meaningful products and experiences, and keep building on what works. The studio also makes and runs its own products, so we live with the consequences of our decisions.",
   founderBio:
-    "shane powell is the founder of bmkrs. he spent seventeen years as a director-level product and delivery consultant in public sector, utilities and regulated industries before starting the studio. he builds products the way good programmes get built: assess before implement, controls before code, one accountable team, shipped and measured rather than presented and abandoned.",
-  legalName: "b makers ltd",
+    "Shane Powell co-founded bmkrs with Marcelo. He brings years of experience building products and delivery teams in complex organisations, and works closely with the people shaping and making each project.",
+  legalName: "LRC Labs Ltd",
   location: "london, and wherever you are",
   founded: "2013",
   colors: [

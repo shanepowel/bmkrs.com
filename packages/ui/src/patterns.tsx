@@ -148,7 +148,7 @@ export function LinkRow({
       <span className="bmkrs-index__name">{name}</span>
       <span className="bmkrs-index__desc">{description}</span>
       <span className="bmkrs-index__arrow" aria-hidden>
-        →
+        +
       </span>
     </Link>
   );
@@ -208,6 +208,9 @@ export function TierCard({
           ))}
         </ul>
       ) : null}
+      <Link href="/contact" className="bmkrs-tiers__link bmkrs-tiers__conversation">
+        talk through your project <span aria-hidden="true">+</span>
+      </Link>
     </div>
   );
 }
@@ -346,7 +349,7 @@ export function StepLine({
             <b className="bmkrs-steps__word">{step}</b>
             {index < steps.length - 1 ? (
               <i className="bmkrs-steps__arrow" aria-hidden>
-                →
+                +
               </i>
             ) : null}
           </span>

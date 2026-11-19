@@ -2,28 +2,28 @@ import { Body, Kicker, LinkIndex, LinkRow, Section } from "@bmkrs/ui";
 
 const ROUTES = [
   {
-    situation: "not sure what to build, or whether ai belongs in it",
+    situation: "you have an opportunity and want to find the right first step",
     target: "readiness",
     href: "#readiness",
   },
   {
-    situation: "you need a digital product in users' hands",
+    situation: "you want to make a digital product or experience real",
     target: "product build",
     href: "#product-build",
   },
   {
-    situation: "ai pilots exist. nothing is in production",
+    situation: "the idea is promising, but the route forward is unclear",
     target: "ai implementation",
     href: "#ai-implementation",
   },
   {
-    situation: "you cannot adopt ai by bypassing controls",
+    situation: "your technology and teams need a clearer connection",
     target: "ai governance",
     href: "#ai-governance",
   },
   {
-    situation: "the build shipped. the team cannot run it",
-    target: "onboard",
+    situation: "your team needs the confidence to keep improving the work",
+    target: "team enablement",
     href: "#onboard",
   },
   {
@@ -50,7 +50,7 @@ export function WhichOne() {
         </LinkIndex>
       </div>
       <Body theme="paper" lead className="mt-8">
-        still not sure? that&apos;s what readiness is for.
+        still not sure? tell us what you are trying to make happen and we&apos;ll find a useful place to start.
       </Body>
     </Section>
   );

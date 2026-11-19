@@ -81,7 +81,7 @@ export default async function NetworkPage() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              log in ↗
+              log in <span aria-hidden="true">+</span>
             </a>
           </p>
         </div>
@@ -106,7 +106,7 @@ export default async function NetworkPage() {
               ))}
           <a className="bench-tile bench-tile--cta" href={join} rel="noopener noreferrer" target="_blank">
             <span className="bench-tile-title">+ you, maybe</span>
-            <span>apply ↗</span>
+            <span>apply <span aria-hidden="true">+</span></span>
           </a>
         </div>
         </div>

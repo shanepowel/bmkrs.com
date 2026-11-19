@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "contact",
-  "tell us what you are building. we reply within one working day with a real answer, not a calendar link.",
+  "Tell us where your product or AI work is stuck. We will help you find a sensible next step.",
   "/contact",
 );
 

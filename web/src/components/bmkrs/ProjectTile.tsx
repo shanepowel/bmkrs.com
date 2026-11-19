@@ -53,7 +53,7 @@ export function ProjectTile({
           />
           <div className="pointer-events-none absolute inset-0 bg-ink/0 transition group-hover:bg-ink/10" />
           <span className="absolute right-5 top-4 grid h-12 w-12 place-items-center rounded-full bg-ink text-xl text-bg opacity-0 transition group-hover:opacity-100">
-            ↗
+            +
           </span>
         </div>
         <div className="mt-4 flex items-baseline justify-between gap-4">

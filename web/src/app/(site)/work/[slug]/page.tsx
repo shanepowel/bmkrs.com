@@ -158,7 +158,7 @@ export default async function CaseStudyPage({ params }: Props) {
             href="/work"
             className="mono text-meta text-muted transition-colors hover:text-accent"
           >
-            ← work
+            back to work
           </Link>
         </Reveal>
         <Reveal delay={1}>
@@ -286,7 +286,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 >
                   <span className="mono text-meta text-muted">next project</span>
                   <span className="text-h3 font-medium transition-colors group-hover:text-accent">
-                    {nextProject.title} →
+                    {nextProject.title} <span aria-hidden="true">+</span>
                   </span>
                 </Link>
               ) : (

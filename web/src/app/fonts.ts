@@ -1,11 +1,11 @@
 import localFont from "next/font/local";
-import { Fragment_Mono, Instrument_Serif } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 
 /**
  * Editorial type trio (locked to the moodboard):
  * - Instrument Serif → display / headlines (`--font-display`)
  * - Cabinet Grotesk → UI / body (`--font-sans`)
- * - Fragment Mono → labels / meta (`--font-mono`)
+ * - Geist Mono (local) → labels / meta (`--font-mono`)
  * Archivo stays logo-only via SVG wordmarks, never as a UI face.
  * Sans weights 400 and 500 only. Display serif at 400 (+ italic).
  */
@@ -24,9 +24,9 @@ export const instrument = Instrument_Serif({
   display: "swap",
 });
 
-export const fragment = Fragment_Mono({
-  weight: "400",
-  subsets: ["latin"],
+export const fragment = localFont({
+  src: "../../public/fonts/GeistMono-Regular.woff2",
   variable: "--font-mono",
+  weight: "400",
   display: "swap",
 });

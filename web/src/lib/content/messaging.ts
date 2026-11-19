@@ -3,44 +3,44 @@
  * Keep pages, SEO and CTAs pointed here so the offer reads as one studio, not a collage of drafts.
  *
  * Ladder (user-facing): start → build → grow
- * Process: assess → implement → amplify → motion
+ * Process (user-facing): discover → design → build → grow
  * Internal Sanity tier value for build remains `make` until a schema migration.
  */
 
 import type { ProductTier } from "@/lib/types";
 
 export const brandMessaging = {
-  tagline: "digital products. ai that ships.",
-  oneLiner: "we ship digital products and put ai into production.",
+  tagline: "digital products. built for what comes next.",
+  oneLiner: "we turn ambitious ideas into working digital products and businesses.",
   description:
-    "bmkrs builds digital products and brings ai into production. strategy, build, governance and handover, so your teams can own what we leave behind.",
-  process: "assess → implement → amplify → motion",
-  processShort: "assess → implement → amplify",
-  ctaPrimary: "start a build",
-  ctaWork: "see the work",
-  ctaMotion: "explore motion",
-  heroEyebrow: "digital product · ai · governance",
-  heroTitleLead: "most ai never leaves the pilot.",
-  heroTitleEm: "we put it into production.",
+    "bmkrs is a digital product and technology partner helping ambitious businesses turn ideas into products, solve complex challenges and build what comes next.",
+  process: "discover · design · build · grow",
+  processShort: "strategy · design · build · grow",
+  ctaPrimary: "let's build something",
+  ctaWork: "explore our work",
+  ctaMotion: "grow with us",
+  heroEyebrow: "strategy · digital products · technology · ai",
+  heroTitleLead: "good ideas deserve better than a slide deck.",
+  heroTitleEm: "we make them real.",
   heroSub:
-    "digital products, ai systems and the operating model around them. one team from readiness to handover, then motion if you want us to stay.",
+    "we help ambitious businesses turn ideas into digital products, unlock the potential of ai and build technology that moves them forward. from the first conversation to launch and beyond, we bring strategy, creativity and technical delivery together to make meaningful things happen.",
   positioningEyebrow: "what we really do",
-  positioningStatement: "we ship digital products and put ai into production.",
+  positioningStatement: "the right thinking. the right people. the right things built.",
   positioningLead:
-    "pilots are easy. production is the hard part. we design, build and govern with your people in the room, then leave capability that compounds after we leave.",
-  closeTitle: "let's put something into production.",
-  whoStatement: "product leaders who need shipped work, not another pilot.",
+    "we bring strategy, product, design and engineering together around the problem that needs solving. then we stay close enough to make sure the work succeeds in the real world.",
+  closeTitle: "have something worth making real?",
+  whoStatement: "ambitious businesses ready to move forward.",
   whoLead:
-    "you are responsible for a digital product or an ai programme that has to survive audit, users and the next quarter. you need builders who can design, ship and leave your team able to own it. that is the job we built bmkrs to do.",
-  workTitle: "products we have shipped",
-  workSubtitle: "selected builds across product, platforms and ai.",
+    "whether you are shaping a new idea, improving a product or rethinking how technology can work for your business, we bring the people and perspective to move it forward.",
+  workTitle: "ideas are easy. making them work is the interesting part.",
+  workSubtitle: "a selection of the brands, products and experiences we have helped bring to life.",
   packagesEyebrow: "ways to work with us",
   packagesTitle: "start, build, grow.",
-  servicesHero: "assess, implement, amplify. then stay if you want us.",
+  servicesHero: "everything needed to move an idea forward.",
   servicesLead:
-    "every engagement is bespoke. the packages below shape how we begin, what you get, and what it costs. fixed scope, fixed timeline, one point of contact.",
-  contactServicesLabel: "what are we building?",
-  contactSubmit: "send the brief",
+    "from early-stage thinking to complex delivery, we bring the right expertise together around the problem that needs solving. every engagement is shaped around what will make the biggest difference.",
+  contactServicesLabel: "what would you like to make happen?",
+  contactSubmit: "send your enquiry",
   contactSending: "sending…",
 } as const;
 
@@ -51,22 +51,22 @@ export const TIER_DISPLAY: Record<
 > = {
   start: {
     label: "start",
-    blurb: "readiness before you spend on a build.",
-    eyebrow: "assess",
-    shape: "one week, fixed scope",
+    blurb: "find the opportunity and agree a confident next step.",
+    eyebrow: "discover",
+    shape: "a focused first step",
   },
   make: {
     label: "build",
-    blurb: "fixed-scope sprints that ship product and ai into production.",
-    eyebrow: "implement",
-    shape: "four to twelve weeks, fixed scope",
+    blurb: "turn the right idea into a thoughtful digital product or technology solution.",
+    eyebrow: "make it real",
+    shape: "timeline and scope agreed together",
     featured: true,
   },
   grow: {
     label: "grow",
-    blurb: "one team keeping product and ai moving, month after month.",
-    eyebrow: "amplify",
-    shape: "rolling, monthly",
+    blurb: "keep improving with a partner alongside your team.",
+    eyebrow: "keep moving",
+    shape: "ongoing partnership, shaped around your team",
   },
 };
 

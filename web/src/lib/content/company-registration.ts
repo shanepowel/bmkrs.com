@@ -1,5 +1,12 @@
 const PLACEHOLDER_COMPANY_NUMBER = "12345678";
 
+export const registeredCompany = {
+  name: "LRC Labs Ltd",
+  number: "17311693",
+  registeredAddress: "128 City Road, London, United Kingdom, EC1V 2NX",
+  jurisdiction: "England and Wales",
+} as const;
+
 export function isPlaceholderCompanyNumber(companyNumber?: string | null): boolean {
   if (!companyNumber?.trim()) return true;
   if (companyNumber.trim() === PLACEHOLDER_COMPANY_NUMBER) return true;

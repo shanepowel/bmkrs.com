@@ -1,21 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@bmkrs/ui";
+import Link from "next/link";
 import { SURFACE } from "@/lib/surfaces";
 
-export function FooterEmailCapture() {
+export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const ink = SURFACE.ink;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    const email = new FormData(e.currentTarget).get("email");
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+    const consent = formData.get("consent") === "on";
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, consent }),
       });
       setStatus(res.ok ? "sent" : "error");
     } catch {
@@ -26,14 +30,14 @@ export function FooterEmailCapture() {
   return (
     <div className="footer-capture">
       <h3 className="text-[1.1rem] font-medium" style={{ color: ink.text }}>
-        one idea a fortnight.
+        notes from the work.
       </h3>
       <p className="newsp mt-2 max-w-[34ch] text-[0.92rem]" style={{ color: ink.faint }}>
-        the thinking we use on real brands, written down. no filler, no funnels.
+        Brief notes on brands, products and technology. Thoughtful ideas from the work we do.
       </p>
       {status === "sent" ? (
         <p className="mt-5 text-base" style={{ color: ink.accent }}>
-          got it. the next one is on its way.
+          thanks. the next note is on its way.
         </p>
       ) : (
         <form className="footer-capture__form mt-5" onSubmit={onSubmit}>
@@ -42,22 +46,25 @@ export function FooterEmailCapture() {
             type="email"
             required
             autoComplete="email"
-            placeholder="email"
+            placeholder="your email"
             aria-label="email"
             className="footer-capture__input"
           />
-          <button
-            type="submit"
-            className="footer-capture__btn"
-            disabled={status === "sending"}
-          >
-            {status === "sending" ? "sending..." : "send the next one"}
-          </button>
+          <label className="footer-capture__consent">
+            <input name="consent" type="checkbox" required />
+            <span>
+              Send me occasional notes from bmkrs. I can unsubscribe any time. See our{" "}
+              <Link href="/legal/privacy">privacy notice</Link>.
+            </span>
+          </label>
+          <Button type="submit" variant="orange" disabled={status === "sending"} className="footer-capture__btn">
+            {status === "sending" ? "sending…" : "subscribe"}
+          </Button>
         </form>
       )}
       {status === "error" ? (
-        <p className="mt-2 text-base" role="alert" style={{ color: ink.accent }}>
-          something went wrong. try again.
+        <p className="mt-2 text-sm" role="alert" style={{ color: ink.accent }}>
+          That did not go through. <a href={`mailto:${email}`} className="underline underline-offset-4">Email us directly</a> and we&apos;ll help.
         </p>
       ) : null}
     </div>

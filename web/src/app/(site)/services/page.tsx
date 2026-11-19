@@ -17,7 +17,7 @@ import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "services | bmkrs.",
-  "start with readiness, build with product and ai packages, grow with motion. fixed scope, fixed timeline, prices on the page.",
+  "strategy, design and technology to move ambitious ideas forward. explore ways to start, build and grow with bmkrs.",
   "/services",
 );
 
@@ -57,6 +57,12 @@ export default async function ServicesPage() {
         </Reveal>
       </Section>
 
+      <MarketingBanner
+        src={marketingImages.disciplineIcons}
+        alt="digital product, ai implementation, governance and handover"
+        aspect="4/3"
+      />
+
       <LadderIntro />
 
       {TIERS.map((tier) => (
@@ -64,14 +70,7 @@ export default async function ServicesPage() {
       ))}
 
       <WhichOne />
-
       <ProcessBand />
-
-      <MarketingBanner
-        src={marketingImages.studioWorkspace}
-        alt="product and delivery work in the studio"
-        aspect="21/9"
-      />
 
       <Section theme="orange">
         <H2 theme="orange">{brandMessaging.closeTitle}</H2>

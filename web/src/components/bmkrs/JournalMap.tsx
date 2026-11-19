@@ -108,7 +108,7 @@ export function JournalMap({ posts }: { posts: Post[] }) {
         <div className="jm-actions">
           {selected && (
             <button type="button" className="btn-primary" onClick={() => go(selected.slug)}>
-              read →
+              read <span aria-hidden="true">+</span>
             </button>
           )}
           <button type="button" className="jm-surprise" onClick={surprise}>

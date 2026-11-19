@@ -29,6 +29,7 @@ import { outcomeLineForSlug } from "./expansion-v2";
 import { fallbackPressKit } from "./press-kit-fallback";
 import { fallbackNetworkPage } from "./network-page-fallback";
 import { hasFilledMetrics, isFilled } from "./placeholders";
+import { isOnPublicShelf } from "./public-shelf";
 import type {
   AboutPageContent,
   HomeContent,
@@ -149,6 +150,23 @@ export async function getFeaturedProjects(): Promise<Project[]> {
  * flipster: current artwork is built around third-party broadcaster logos.
  */
 const SHOWCASE_IMAGE_HOLD = new Set(["flipster"]);
+export const SHOWCASE_PRIORITY = [
+  "podcast-studio-london",
+  "freelance-near-me",
+  "three18-media",
+  "data-deep-clean",
+  "kaizened",
+  "viralyz",
+];
+
+export function prioritizeShowcase(projects: Project[]): Project[] {
+  const priority = new Map(SHOWCASE_PRIORITY.map((slug, index) => [slug, index]));
+  return [...projects].sort((a, b) =>
+    (priority.get(a.slug) ?? SHOWCASE_PRIORITY.length) -
+      (priority.get(b.slug) ?? SHOWCASE_PRIORITY.length) ||
+    a.order - b.order,
+  );
+}
 
 /** True when a project's thumbnail is real project imagery, not a generic studio or marketing image. */
 export function hasShowcaseImagery(project: Project): boolean {
@@ -173,7 +191,7 @@ export async function getShowcaseProjects(limit = 4): Promise<Project[]> {
     ...ordered.filter((p) => p.projectType !== "studio"),
     ...ordered.filter((p) => p.projectType === "studio"),
   ];
-  return clientFirst.filter(hasShowcaseImagery).slice(0, limit);
+  return prioritizeShowcase(clientFirst.filter(isOnPublicShelf).filter(hasShowcaseImagery)).slice(0, limit);
 }
 
 /**
@@ -184,11 +202,19 @@ export async function getShowcaseProjects(limit = 4): Promise<Project[]> {
 function mergeProducts(sanity: Product[] | null | undefined): Product[] {
   const bySlug = new Map(fallbackProducts.map((p) => [p.slug, p]));
   for (const p of sanity ?? []) {
+    if (!p || typeof p !== "object" || typeof p.slug !== "string") continue;
     const fb = bySlug.get(p.slug);
     if (!fb) continue;
+    // Old CMS references can resolve to null after a case study is removed.
+    // Keep only usable proof links and fall back to the curated local links.
+    const proof = (Array.isArray(p.proof) ? p.proof : []).filter(
+      (item): item is NonNullable<Product["proof"]>[number] =>
+        Boolean(item && typeof item.slug === "string" && item.slug && typeof item.title === "string"),
+    );
     bySlug.set(p.slug, {
       ...fb,
       ...p,
+      proof: proof.length ? proof : fb.proof,
       priceFrom: p.priceFrom ?? fb.priceFrom,
       shape: p.shape ?? fb.shape,
       priceNote: p.priceNote ?? fb.priceNote,
@@ -314,17 +340,24 @@ export async function getMotionContent(): Promise<MotionContent> {
 
 export async function getProject(slug: string): Promise<Project | null> {
   const fromCaseStudy = await fetchSanity<Project>(caseStudyBySlugQuery, { slug });
-  if (fromCaseStudy) return normalizeProject(fromCaseStudy);
+  if (fromCaseStudy) {
+    const project = normalizeProject(fromCaseStudy);
+    return isOnPublicShelf(project) ? project : null;
+  }
 
   const legacy = await fetchSanity<Project>(projectBySlugQuery, { slug });
-  if (legacy) return normalizeProject(legacy);
+  if (legacy) {
+    const project = normalizeProject(legacy);
+    return isOnPublicShelf(project) ? project : null;
+  }
 
   const fallback = fallbackProjects.find((p) => p.slug === slug);
-  return fallback ? normalizeProject(fallback) : null;
+  const project = fallback ? normalizeProject(fallback) : null;
+  return project && isOnPublicShelf(project) ? project : null;
 }
 
 export async function getNextProject(slug: string): Promise<Project | null> {
-  const projects = await getProjects();
+  const projects = (await getProjects()).filter(isOnPublicShelf);
   const index = projects.findIndex((p) => p.slug === slug);
   if (index === -1 || projects.length < 2) return null;
   return projects[(index + 1) % projects.length] ?? null;
@@ -332,7 +365,7 @@ export async function getNextProject(slug: string): Promise<Project | null> {
 
 export async function getCaseStudySlugs(): Promise<string[]> {
   const projects = await getProjects();
-  return projects.map((p) => p.slug);
+  return projects.filter(isOnPublicShelf).map((p) => p.slug);
 }
 
 export async function getHomeTestimonials(): Promise<Testimonial[]> {

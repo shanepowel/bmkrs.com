@@ -100,7 +100,7 @@ export default async function JournalArticlePage({ params }: Props) {
 
         <Section theme="ink" className="!pb-0">
           <div className="max-w-[900px]">
-            <BackLink href="/journal">← journal</BackLink>
+            <BackLink href="/journal">all journal notes</BackLink>
             <Meta theme="ink" className="mt-8">
               {categoryHref ? <Link href={categoryHref}>{categoryLabel}</Link> : categoryLabel}
               {" · "}
@@ -222,7 +222,7 @@ export default async function JournalArticlePage({ params }: Props) {
   return (
     <>
       <Section theme="ink">
-        <BackLink href="/journal">← journal</BackLink>
+        <BackLink href="/journal">all journal notes</BackLink>
         <Meta theme="ink" className="mt-8">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
         </Meta>

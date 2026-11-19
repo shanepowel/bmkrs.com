@@ -23,10 +23,6 @@ export const fallbackProducts: Product[] = [
     shape: "one week, fixed scope.",
     outcome:
       "you will know what to build, what to govern first, and what not to touch yet. if the answer is \"you do not need us,\" we say so.",
-    price: "£2,500",
-    priceQualifier: "fixed",
-    creditNote:
-      "if you go on to a build package within ninety days, the readiness fee comes off the price.",
     order: 1,
     featured: true,
   },
@@ -45,8 +41,6 @@ export const fallbackProducts: Product[] = [
       "handover your team can run",
     ],
     shape: "six to twelve weeks.",
-    price: "£24,000",
-    priceQualifier: "from",
     outcome:
       "a product in production, with one primary metric and a team that knows how to keep shipping.",
     proof: [
@@ -75,8 +69,6 @@ export const fallbackProducts: Product[] = [
       "capability transfer to your team",
     ],
     shape: "six to twelve weeks.",
-    price: "£32,000",
-    priceQualifier: "from",
     outcome:
       "ai that users touch every week, with an accountability trail your board can follow.",
     proof: [{ title: "data deep clean", slug: "data-deep-clean" }],
@@ -99,8 +91,6 @@ export const fallbackProducts: Product[] = [
       "board-level risk reporting",
     ],
     shape: "four to eight weeks.",
-    price: "£18,000",
-    priceQualifier: "from",
     outcome:
       "controls your auditors can verify, and a path for delivery that does not fight them.",
     order: 4,
@@ -121,8 +111,6 @@ export const fallbackProducts: Product[] = [
       "centre of excellence setup where it earns its keep",
     ],
     shape: "four to six weeks.",
-    price: "£12,000",
-    priceQualifier: "from",
     outcome:
       "your people can own, improve and explain the product without calling the agency every sprint.",
     order: 5,
@@ -137,8 +125,6 @@ export const fallbackProducts: Product[] = [
       "organisations that have shipped and need consistent delivery without rebuilding a team for every job.",
     cadence: "monthly planning, continuous shipping.",
     commitment: "rolling, monthly. thirty days' notice, no lock-in.",
-    price: "£4,500",
-    priceQualifier: "per-month",
     monthlyDeliverables: [
       "product iteration and releases",
       "ai system upkeep and evaluation",
@@ -161,8 +147,6 @@ export const fallbackProducts: Product[] = [
       "product orgs in a growth phase that want delivery, ai and performance pulling together.",
     cadence: "monthly planning, continuous shipping, fortnightly check-ins.",
     commitment: "rolling, monthly. thirty days' notice.",
-    price: "£6,500",
-    priceQualifier: "per-month",
     monthlyDeliverables: [
       "everything in motion",
       "deeper product discovery and experimentation",
@@ -184,8 +168,6 @@ export const fallbackProducts: Product[] = [
       "scale-ups and enterprises who need delivery firepower embedded alongside their own people.",
     cadence: "embedded, agreed weekly capacity.",
     commitment: "rolling, by agreement.",
-    price: "£9,000",
-    priceQualifier: "per-month",
     monthlyDeliverables: [
       "a named, senior team working as part of yours",
       "product, ai and delivery on tap",
@@ -200,48 +182,47 @@ export const fallbackProducts: Product[] = [
 ];
 
 export const fallbackAboutPage: AboutPageContent = {
-  headline: "built to stay in production.",
+  headline: "small enough to care. experienced enough to deliver.",
   intro:
-    "bmkrs is a digital product studio founded by a builder. seventeen years shipping inside organisations where failure is expensive, now pointed at the gap most ai programmes never close: production, governance and a team that can own what ships.",
+    "bmkrs is an independent creative and digital studio in London. We bring strategy, design and technology together to help ambitious businesses make meaningful things happen.",
   founder: {
     name: "shane powell",
     linkedinUrl: "https://www.linkedin.com/in/shanepowell",
     portraitAlt: "illustrated portrait of shane powell, founder at bmkrs",
   },
-  founderStoryTitle: "the short version of a long story.",
+  founderStoryTitle: "the right people, close to the work.",
   founderStory: [
-    "i have spent seventeen years building products and delivery teams inside organisations where things have to actually work: public sector, utilities, infrastructure, regulated industries. real stakes, real scrutiny, no marks for decks.",
-    "and the whole time, one pattern kept ruining my week. good ideas, weak product, no governance, and nobody left who can run the thing after the pilot. ai made that pattern louder, not new. i watched it happen so many times i stopped calling it unfair and started calling it a delivery gap.",
-    "bmkrs is me closing that gap. digital products and ai systems built the way good programmes get built: assess before implement, controls before code, one accountable team, shipped and measured instead of presented and abandoned. and because i never stopped building products of my own, some of the work on these shelves is ours. we live with the consequences of our own advice, which keeps the advice honest.",
+    "Co-founded by Shane Powell and Marcelo, bmkrs brings together the experience to shape a clear direction and the hands-on ability to make it real. We work closely with ambitious businesses, from the first useful question through to launch and what comes next.",
+    "We have seen good ideas lose their way between strategy, design and delivery. So we connect those disciplines around the problem that matters, keep decisions close to the people doing the work, and make things that can thrive beyond the launch.",
+    "Technology is not the answer to every problem. But when the right thinking meets thoughtful execution, it can change what is possible. We build digital products, brands and experiences that make sense for people and for the business behind them.",
   ],
-  founderPullQuote:
-    "most ai ambition dies in the pilot. i got tired of watching it happen on my watch.",
+  founderPullQuote: "the right thinking. the right people. the right things built.",
   teamIntro:
-    "around the studio is a small group of partner collaborators. all of them are multiskilled. each of them leads the thing they are scary-good at. you meet the people who do the work, because there is no one else to meet.",
-  teamClosing: "no account managers. no chain. just us.",
-  beliefsHeadline: "four things we refuse to budge on.",
+    "We are a small, senior team of strategists, designers and technologists. We work closely with ambitious businesses to turn bold ideas into meaningful, lasting products and brands.",
+  teamClosing: "Independent. Collaborative. Ambitious. Long-term.",
+  beliefsHeadline: "how we work.",
   beliefs: [
     {
-      title: "production is the product.",
-      body: "a demo is not a delivery. if it cannot survive users, change control and the next quarter, it does not ship.",
+      title: "start with the real problem.",
+      body: "Understand the people, context and opportunity before deciding what to make.",
     },
     {
-      title: "governance is not optional.",
-      body: "we design delivery that fits the controls you already have. bypassing them is not speed. it is deferred failure.",
+      title: "bring the right disciplines together.",
+      body: "Strategy, design and technology work best when they shape the same outcome.",
     },
     {
-      title: "proof beats noise.",
-      body: "we would rather show one number that moved than ten adjectives that did not. we measure, and we tell you what we find, even when it stings.",
+      title: "make it useful in the real world.",
+      body: "Build for the people, systems and everyday conditions the work will meet.",
     },
     {
-      title: "one team, all in.",
-      body: "no handoffs, no account managers, no whoever-is-free-on-friday. the people in the first meeting are the people doing the work, because they are the only people there are.",
+      title: "stay close to what comes next.",
+      body: "Launch is a beginning. We keep learning, improving and building on what works.",
     },
   ],
   studioProductCount: 2,
-  longGameTitle: "built to stick around.",
+  longGameTitle: "good work keeps going.",
   longGame:
-    "the work we are proudest of comes from relationships, not transactions. the longer we know a product, the better the work gets: we move faster, skip the posturing, and say the hard thing because we have earned the right to.\n\nwe keep the same team on your build. we learn it, look after it, and treat it like ours. the only scoreboard we really watch is who comes back, and who they bring with them.",
+    "We value lasting relationships and useful outcomes. The longer we work together, the better we understand the people, ambitions and constraints around the product. That helps us make clearer decisions, move with more confidence and keep improving what we have built.",
 };
 
 export const fallbackPeople: Person[] = [

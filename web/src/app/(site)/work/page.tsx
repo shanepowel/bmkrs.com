@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Accent, Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
-import { workHowProjectRuns, workPageIntro } from "@/lib/content/expansion-v2";
+import { Body, Button, H2, Kicker, PageHero, Section, WorkGrid, WorkTile } from "@bmkrs/ui";
+import { workHowProjectRuns } from "@/lib/content/expansion-v2";
+import { getProjects, prioritizeShowcase } from "@/lib/content";
 import { brandMessaging } from "@/lib/content/messaging";
-import { getProjects } from "@/lib/content";
 import { pageHeroImages } from "@/lib/content/image-fallbacks";
 import { isOnPublicShelf } from "@/lib/content/public-shelf";
 import { pageMetadata } from "@/lib/seo";
@@ -12,7 +12,7 @@ import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
   "work",
-  "selected digital products and client builds, including the products we run ourselves. proof, not promises.",
+  "a selection of the brands, products and experiences we have helped bring to life. ideas are easy; making them work is the interesting part.",
   "/work",
 );
 
@@ -42,7 +42,7 @@ function ProjectGrid({ projects }: { projects: Project[] }) {
 }
 
 export default async function WorkPage() {
-  const projects = (await getProjects()).filter(isOnPublicShelf);
+  const projects = prioritizeShowcase((await getProjects()).filter(isOnPublicShelf));
   const clientWork = projects.filter((p) => p.projectType !== "studio");
   const studioWork = projects.filter((p) => p.projectType === "studio");
 
@@ -58,13 +58,13 @@ export default async function WorkPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <PageHero
-        eyebrow="work"
+        eyebrow="selected work"
         title={
           <>
-            we ship <Accent>products.</Accent>
+            ideas are easy. <span className="text-accent">making them work</span> is the interesting part.
           </>
         }
-        lede={workPageIntro}
+        lede={brandMessaging.workSubtitle}
         image={{ src: heroImage, alt: pageHeroImages.work.alt }}
       />
 
@@ -91,7 +91,7 @@ export default async function WorkPage() {
           </Link>
         </p>
 
-        <div className="mt-[var(--space-block)] border-t border-[var(--bmkrs-rule-paper)] pt-[var(--space-block)]">
+        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
           <H2 theme="paper">built in the studio</H2>
           <Body theme="paper" lead className="mt-3">
             we are builders, so we build our own. these are bmkrs products: proof we live with the
@@ -104,10 +104,9 @@ export default async function WorkPage() {
       </Section>
 
       <Section theme="ink">
-        <Kicker theme="ink">next</Kicker>
-        <H2 theme="ink">{brandMessaging.closeTitle}</H2>
-        <div className="mt-8">
-          <Button href="/contact">{brandMessaging.ctaPrimary}</Button>
+        <Kicker theme="ink">your brand next</Kicker>
+        <div className="mt-6">
+          <Button href="/contact">let&apos;s build something</Button>
         </div>
       </Section>
     </main>

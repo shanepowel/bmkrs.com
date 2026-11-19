@@ -73,15 +73,15 @@ If the build fails with `Can't resolve 'react-is'` or `@sanity/schema`, ensure `
 
 ## Sanity Studio will not connect
 
-- **Project ID** must be `xwgymvao` (not the duplicate `laqqhrou` project). Match `web/.env.local` and Vercel env vars to `web/.env.example`.
-- **CORS** (sanity.io/manage → API): allow `http://localhost:3000`, `https://bmkrs.com`, and `https://www.bmkrs.com` with credentials. From `web/`: `npx sanity cors add <origin> --credentials --project xwgymvao`.
-- **Access:** your Sanity login must be invited to project **bmkrs** (`xwgymvao`).
+- **Project ID** is `laqqhrou`, using the existing `production` dataset. Match `web/.env.local` and Vercel env vars to `web/.env.example`.
+- **CORS** (sanity.io/manage → API): allow `http://localhost:3000`, `https://bmkrs.com`, and `https://www.bmkrs.com` with credentials. From `web/`: `npx sanity cors add <origin> --credentials --project laqqhrou`.
+- **Access:** the Sanity login used for Studio edits must be invited to the BMKRS project (`laqqhrou`).
 
 ## Environment variables
 
 See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal + Digiteq).
 
-- `NEXT_PUBLIC_SANITY_PROJECT_ID` = `xwgymvao`
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` = `laqqhrou`
 - `NEXT_PUBLIC_SANITY_DATASET` = `production`
 - `NEXT_PUBLIC_SITE_URL` = `https://www.bmkrs.com` (must match the canonical www host; non-www redirects here)
 - `NEXT_PUBLIC_NETWORK_PORTAL_URL` = `https://app.bmkrs.com`
@@ -90,6 +90,8 @@ See also `docs/PRODUCTION.md` for the full go-live checklist (marketing + portal
 - `NEXT_PUBLIC_MEMBER_LOGIN_URL` = `https://app.bmkrs.com/login`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` = `G-4GXGNXYMVL` (optional; defaults to this id; loads in production only)
 - `NEXT_PUBLIC_COMPANY_NUMBER`, `NEXT_PUBLIC_REGISTERED_ADDRESS`, `NEXT_PUBLIC_CONTACT_PHONE` (optional; shown when set)
+- `HUBSPOT_PRIVATE_APP_TOKEN` (optional; sends contact enquiries to HubSpot as an upserted contact with an associated enquiry note; private app scopes: `crm.objects.contacts.write` and `crm.objects.notes.write`)
+- `CONTACT_WEBHOOK_URL` (optional secondary enquiry destination; the contact form returns unavailable if neither HubSpot nor this webhook is configured)
 
 ## app.bmkrs.com (portal)
 

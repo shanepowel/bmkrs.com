@@ -5,19 +5,19 @@ import { TIER_DISPLAY } from "@/lib/content/messaging";
 const COLUMNS = [
   {
     label: `${TIER_DISPLAY.start.label}.`,
-    body: "a fast, honest readiness read before you commit to a build or an ai programme. one week, one price, no obligation to continue.",
+    body: "a focused first step to understand the opportunity, clarify what matters and agree where to go next.",
   },
   {
     label: `${TIER_DISPLAY.make.label}.`,
-    body: "fixed-scope sprints that ship digital products, put ai into production, set governance, and leave your team able to run it.",
+    body: "the right mix of strategy, design and technology to make a digital product or meaningful experience real.",
   },
   {
     label: `${TIER_DISPLAY.grow.label}.`,
     body: (
       <>
-        one team keeping product and ai moving, month after month. that&apos;s{" "}
+        a close creative and digital partnership, shaped around what comes next. that&apos;s{" "}
         <Link href="/motion" className="underline decoration-1 underline-offset-4">
-          motion →
+          motion <span aria-hidden="true">+</span>
         </Link>
       </>
     ),

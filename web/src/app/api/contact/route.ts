@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sendEnquiryToHubSpot } from "@/lib/crm/hubspot";
 
 type Payload = {
   name?: string;
@@ -48,32 +49,47 @@ export async function POST(req: NextRequest) {
         ? [body.service]
         : [];
 
+  const hubSpotToken = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
   const webhook = process.env.CONTACT_WEBHOOK_URL;
-  if (webhook) {
-    await fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: body.name,
-        email: body.email,
-        company,
-        reason,
-        service: body.service,
-        services,
-        budget: body.budget || undefined,
-        message: body.message,
-        inbox,
-      }),
-    });
+  if (!hubSpotToken && !webhook) {
+    return NextResponse.json({ ok: false, error: "contact_unavailable" }, { status: 503 });
   }
 
-  console.info("[contact] enquiry routed to", inbox, {
-    name: body.name,
-    email: body.email,
-    reason,
-    services,
-    budget: body.budget,
-  });
+  try {
+    const enquiry = {
+      name: body.name.trim(),
+      email: body.email.trim(),
+      company,
+      reason,
+      service: body.service,
+      services,
+      budget: body.budget || undefined,
+      message: body.message.trim(),
+      inbox,
+    };
+
+    if (hubSpotToken) {
+      await sendEnquiryToHubSpot(enquiry, hubSpotToken);
+    }
+
+    if (webhook) {
+      try {
+        const response = await fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(enquiry),
+          signal: AbortSignal.timeout(10_000),
+        });
+        if (!response.ok && !hubSpotToken) {
+          return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+        }
+      } catch {
+        if (!hubSpotToken) throw new Error("Contact webhook delivery failed");
+      }
+    }
+  } catch {
+    return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+  }
 
   return NextResponse.json({ ok: true });
 }

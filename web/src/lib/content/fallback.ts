@@ -4,7 +4,7 @@ import {
   placeholderHomeTestimonials,
   placeholderResultsBySlug,
 } from "@/lib/content/case-study-placeholders";
-import { companyFromEnv, publicCompanyNumber, publicRegisteredAddress } from "@/lib/content/company-registration";
+import { companyFromEnv, publicCompanyNumber, publicRegisteredAddress, registeredCompany } from "@/lib/content/company-registration";
 import { brandMessaging } from "@/lib/content/messaging";
 import type {
   HomeContent,
@@ -32,16 +32,16 @@ export const fallbackSiteSettings: SiteSettings = {
   email: "hello@bmkrs.com",
   generalEmail: "hello@bmkrs.com",
   pressEmail: "press@bmkrs.com",
-  companyName: "b makers ltd",
+  companyName: registeredCompany.name,
   companyNumber:
     companyFromEnv().companyNumber ??
-    publicCompanyNumber(placeholderCompany.companyNumber),
+    publicCompanyNumber(placeholderCompany.companyNumber) ?? registeredCompany.number,
   registeredAddress:
     companyFromEnv().registeredAddress ??
-    publicRegisteredAddress(placeholderCompany.registeredAddress),
+    publicRegisteredAddress(placeholderCompany.registeredAddress) ?? registeredCompany.registeredAddress,
   contactPhone: companyFromEnv().contactPhone,
   londonAddress: placeholderCompany.londonAddress,
-  copyright: "© 2026 b makers ltd. all rights reserved.",
+  copyright: "© 2026 LRC Labs Ltd. all rights reserved.",
   footerQuip:
     "they say no one reads the footer. you made it this far, so let's build something that lasts.",
   offices: [{ name: "london" }, { name: "worldwide" }],
@@ -106,12 +106,12 @@ export const fallbackHome: HomeContent = {
     ],
   },
   marqueeItems: [
+    "strategy",
+    "brand systems",
     "digital product",
-    "ai implementation",
-    "ai governance",
-    "onboarding",
-    "platforms",
-    "operating models",
+    "digital experiences",
+    "technology",
+    "motion",
   ],
   positioning: {
     eyebrow: brandMessaging.positioningEyebrow,
@@ -119,9 +119,9 @@ export const fallbackHome: HomeContent = {
     lead: brandMessaging.positioningLead,
   },
   capabilitiesHead: {
-    title: "product-led. governance-first.",
+    title: "from a good idea to a better way forward.",
     subtitle:
-      "four connected practices, one delivery team. strategy, build, controls and handover, not five suppliers arguing over a deck.",
+      "we bring strategy, design and technology together around the opportunity, then stay close to make sure the work succeeds in the real world.",
   },
   capabilityTiles: [
     {
@@ -134,26 +134,26 @@ export const fallbackHome: HomeContent = {
     },
     {
       number: "02",
-      title: "ai implementation",
+      title: "technology + ai",
       description:
-        "use cases prioritised, built and put into production inside your change gates.",
+        "use emerging technology thoughtfully, solving the right problems in ways that work for people and business.",
       href: "/services#ai-implementation",
       image: marketingImages.designStudio,
     },
     {
       number: "03",
-      title: "ai governance",
+      title: "strategy + transformation",
       description:
-        "readiness, risk, policy and board reporting before a line of model code ships.",
-      href: "/services#ai-governance",
+        "find the opportunity, focus the ambition and give change a clear direction.",
+      href: "/services#readiness",
       image: marketingImages.brandGuidelines,
     },
     {
       number: "04",
-      title: "onboard + operate",
+      title: "partnership + growth",
       description:
-        "train your teams, stand up the operating model, stay on if you want a motion partner.",
-      href: "/services#onboard",
+        "stay close to what comes next and keep building on what works.",
+      href: "/services#motion",
       image: marketingImages.studioWorkspace,
     },
   ],
@@ -175,35 +175,35 @@ export const fallbackHome: HomeContent = {
   motionTeaser: {
     eyebrow: "ongoing partnership",
     heading: "always in motion.",
-    body: "a rolling partnership for products that never stand still. one team keeping delivery, ai and the operating model moving, month after month.",
+    body: "a rolling partnership for brands, products and experiences that never stand still. one team helping you keep moving, month after month.",
     ctaLabel: brandMessaging.ctaMotion,
     href: "/motion",
   },
   howWeWorkIntro:
-    "one team, built around your product. no churn, no hand-offs.",
+    "the right people, connected around the work and the outcome that matters.",
   pillars: [
     {
-      title: "assess",
+      title: "discover",
       description:
-        "readiness, risk, value and the operating reality before anyone builds.",
+        "understand the people, context and opportunity before deciding what to make.",
       order: 1,
     },
     {
-      title: "implement",
+      title: "design",
       description:
-        "digital products and ai systems shipped inside your governance, not around it.",
+        "shape the experience and approach together, bringing clarity to what happens next.",
       order: 2,
     },
     {
-      title: "amplify",
+      title: "build",
       description:
-        "handover, training and an operating model your teams can run without us.",
+        "bring the right technology and creativity together to make the idea real.",
       order: 3,
     },
     {
-      title: "motion",
+      title: "grow",
       description:
-        "we stay embedded, shipping and improving every month when you want continuity.",
+        "keep learning and improving what works, with a partner by your side.",
       order: 4,
     },
   ],
@@ -221,91 +221,82 @@ export const fallbackHome: HomeContent = {
 export const fallbackMotion: MotionContent = {
   benefits: [
     {
-      title: "A dedicated team",
-      body: "the same people every month, who already know the product and the constraints around it.",
+      title: "The right people, close to the work",
+      body: "a connected team with a clear understanding of your business, your product and what you want to make happen.",
     },
     {
-      title: "Product that keeps shipping",
-      body: "iteration, releases and measurement against one primary objective, not a mystery retainer.",
+      title: "A steady creative rhythm",
+      body: "regular improvements across product, brand and experience, with clear priorities and useful progress.",
     },
     {
-      title: "Ai that stays governed",
-      body: "evaluation, upkeep and change control so production ai does not drift into risk.",
+      title: "Room for what's next",
+      body: "the right strategic, creative and technical support as your opportunities and ambitions evolve.",
     },
     {
-      title: "No churn, no re-briefing",
-      body: "we stay with the product, so every month compounds on the last.",
+      title: "A partnership that builds",
+      body: "context and trust grow over time, so each new piece of work builds naturally on the last.",
     },
   ],
   motionPlus: {
     eyebrow: "Motion plus",
-    statement: "from in-house to full-house.",
+    statement: "one connected team, with more room to make.",
     paragraphs: [
-      "motion gives you one dedicated team. motion plus opens our extended network: engineers, specialists and studios on call when the product needs a surge, a niche skill or a new market.",
-      "you still get one point of contact. you just get more capacity behind them. the ideal delivery team for your product probably does not all sit in one room. with motion plus, it does not have to.",
+      "motion gives you a close, ongoing partner. motion plus brings more of our trusted network around the work when your ambitions call for a broader mix of skills.",
+      "you still have one connected team and one point of contact, with the experience to bring in the right expertise at the right time.",
     ],
     poweredBy: "powered by amplifiedteams",
   },
   tiersHead: {
-    title: "Pick your pace.",
+    title: "A partnership shaped around what comes next.",
     subtitle:
-      "Three rolling plans, scaled to how much product and ai capacity you need. Pricing is on the services page and confirmed on the call.",
+      "Choose the level of collaboration that fits your team and ambitions. We will shape the people, focus and rhythm together in conversation.",
   },
   tiers: [
     {
       id: "spark",
       name: "motion",
-      priceFrom: "£4.5k",
-      priceNote: "/mo",
-      pricingCtaLabel: "see pricing from",
-      description: "for products that need steady shipping.",
+      description: "for businesses ready to keep good work moving.",
       features: [
         "product iteration and releases",
         "ai system upkeep and evaluation",
         "operating-model support",
         "a monthly readout on what moved",
       ],
-      ctaLabel: "choose motion",
+      ctaLabel: "talk about motion",
     },
     {
       id: "momentum",
       tag: "most popular",
       name: "motion plus",
-      priceFrom: "£6.5k",
-      priceNote: "/mo",
-      pricingCtaLabel: "see pricing from",
-      description: "for teams actively scaling product and growth.",
+      description: "for teams with more opportunity to explore and build.",
       features: [
         "everything in motion",
         "deeper product discovery",
         "growth and performance loops",
         "extended specialist bench",
       ],
-      ctaLabel: "choose motion plus",
+      ctaLabel: "talk about motion plus",
       featured: true,
     },
     {
       id: "motion-plus",
       tag: "embedded",
       name: "motion embedded",
-      priceFrom: "£9k",
-      priceNote: "/mo",
-      pricingCtaLabel: "see pricing from",
-      description: "for organisations that need a senior team plugged in.",
+      description: "for organisations who want experienced people working alongside their team.",
       features: [
         "everything in motion plus",
         "a named team working as part of yours",
         "product, ai and delivery on tap",
         "access to the wider bmkrs network",
       ],
-      ctaLabel: "choose motion embedded",
+      ctaLabel: "talk about embedded motion",
       plus: true,
     },
   ],
   closingCta: {
-    title: "keep it in production.",
-    body: "see what one dedicated team, and the network behind it, can do when your product never goes quiet.",
-    ctaLabel: "book a call",
+    title: "keep good work moving.",
+    body: "tell us what you are building and where you want to go next. we will work out the right way to move it forward together.",
+    ctaLabel: "talk through your needs",
     ctaHref: "/contact",
   },
 };
@@ -315,7 +306,7 @@ const fallbackProjectsRaw: Project[] = [
     slug: "copa",
     title: "copa, off the shore",
     client: "copa",
-    category: "digital product",
+    category: "branding",
     sector: "outdoor apparel",
     year: "2024",
     positioning: "outdoor apparel with a clear point of view.",
@@ -329,7 +320,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a single, distinctive identity copa now uses consistently across every channel, and a campaign-ready asset kit that carried the brand from its German base toward a wider European audience without losing what made it copa.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["brand + identity", "voice + messaging"],
     thumbnailPath: "/images/optimized/copa-hero.jpg",
     media: [
       { type: "image", src: "/images/copa-off-the-shore.jpg", alt: "copa hero" },
@@ -371,7 +362,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a storefront that finally looks as good as the product, a smoother path from browse to checkout, and a brand the team is proud to share.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["brand + identity", "voice + messaging", "product, web + growth"],
     thumbnailPath: "/work/images/optimized/fdb-2-hero.jpg",
     media: [
       { type: "image", src: "/work/images/fdb-2.png", alt: "floare din banat packaging" },
@@ -407,7 +398,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a consistent visual identity across channels, assets he actually uses, and a clearer profile for booking conversations.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["brand + identity", "photography / art direction"],
     thumbnailPath: "/images/optimized/carter-hero.jpg",
     media: [
       {
@@ -439,7 +430,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a coherent design system the studio can deploy across campaigns without losing personality, and far less time lost starting each brief from zero.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["brand + identity"],
     thumbnailPath: "/images/optimized/wanderlust-hero.jpg",
     media: [
       {
@@ -470,7 +461,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a launch-ready site that shows the range clearly and gives the brand a credible first impression online.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["product, web + growth"],
     thumbnailPath: "/images/optimized/smoothies-hero.jpg",
     media: [{ type: "image", src: "/images/smoothies.png", alt: "smoothies" }],
     order: 5,
@@ -481,8 +472,8 @@ const fallbackProjectsRaw: Project[] = [
     slug: "flipster",
     title: "flipster iptv",
     client: "flipster",
-    category: "digital product",
-    sector: "digital product",
+    category: "branding",
+    sector: "branding",
     positioning: "a premium identity in a category most brands get wrong.",
     tagline: "a premium identity in a category most brands get wrong.",
     brief:
@@ -494,7 +485,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a launch-ready identity that reads clearly in a noisy category and gives the team assets they can use across product and marketing.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["brand + identity"],
     thumbnailPath: "/work/images/optimized/flipster-hero.jpg",
     media: [{ type: "image", src: "/work/images/flipster-fff.png", alt: "flipster" }],
     order: 6,
@@ -519,7 +510,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a live site at podcaststudiolondon.com that leads with evidence, makes the pod system readable, and turns browsing into booked conversations.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["product build", "voice + messaging"],
     thumbnailPath: "/images/work/podcast-studio-london-thumb.jpg",
     media: [
       {
@@ -537,7 +528,7 @@ const fallbackProjectsRaw: Project[] = [
     slug: "david-wheeler-psychology",
     title: "david wheeler psychology",
     client: "david wheeler psychology",
-    category: "product build",
+    category: "brand + identity",
     sector: "healthcare",
     year: "2025",
     positioning: "a clinical practice brand that earns trust before the first session.",
@@ -547,8 +538,9 @@ const fallbackProjectsRaw: Project[] = [
     thinking:
       "clinical brands fail when they look like generic wellness templates. the practice needed warmth without vagueness, and authority without coldness.",
     whatWeDid:
-      "positioning, identity and voice for a practice still in launch. full case study copy and imagery to follow once the practice is live.",
-    serviceTags: ["product build"],
+      "positioning, identity and voice for a practice still in launch. the work is presented here while the practice prepares to go live.",
+    resultsNarrative: "case study details and outcomes are still being confirmed.",
+    serviceTags: ["brand + identity", "voice + messaging"],
     thumbnailPath: marketingImages.identityPackaging,
     media: [{ type: "image", src: marketingImages.identityPackaging, alt: "david wheeler psychology" }],
     order: 9,
@@ -573,7 +565,7 @@ const fallbackProjectsRaw: Project[] = [
     resultsNarrative:
       "a live site at three18media.com that reads like the studio: actions, not words, with every figure shown with how it was counted.",
     results: [],
-    serviceTags: ["product build"],
+    serviceTags: ["product build", "voice + messaging"],
     thumbnailPath: "/images/work/three18-media-thumb.jpg",
     media: [
       {
@@ -603,8 +595,8 @@ const fallbackProjectsRaw: Project[] = [
       "a live product in market, built with the same rigour we bring to client launches.",
     results: [],
     serviceTags: ["product build"],
-    thumbnailPath: marketingImages.digitalEcosystem,
-    media: [{ type: "image", src: marketingImages.digitalEcosystem, alt: "freelance near me" }],
+    thumbnailPath: "/images/work/freelance-near-me-home.webp",
+    media: [{ type: "image", src: "/images/work/freelance-near-me-home.webp", alt: "freelance near me homepage" }],
     order: 8,
     featured: true,
     projectType: "studio",

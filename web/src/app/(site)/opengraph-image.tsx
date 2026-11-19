@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 import { OgTemplate, OG_SIZE } from "@/lib/og-image";
 
-export const runtime = "edge";
 export const alt = "bmkrs. digital products. ai that ships.";
 export const size = OG_SIZE;
 export const contentType = "image/png";

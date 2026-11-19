@@ -24,7 +24,11 @@ type OgTemplateProps = {
   heroUrl?: string;
 };
 
-export function OgTemplate({ kicker, title, subtitle, heroUrl }: OgTemplateProps) {
+export function OgTemplate({ kicker, title, subtitle }: OgTemplateProps) {
+  const safeKicker = typeof kicker === "string" ? kicker : "bmkrs.";
+  const safeTitle = typeof title === "string" && title.trim() ? title : "ideas made real.";
+  const safeSubtitle = typeof subtitle === "string" && subtitle.trim() ? subtitle : undefined;
+
   return (
     <div
       style={{
@@ -33,56 +37,22 @@ export function OgTemplate({ kicker, title, subtitle, heroUrl }: OgTemplateProps
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
+        padding: 64,
         backgroundColor: OG_COLORS.ink,
-        backgroundImage: heroUrl ? `url(${heroUrl})` : undefined,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        color: OG_COLORS.paper,
+        fontSize: 64,
+        lineHeight: 1.05,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
-          padding: "56px 64px",
-          width: "100%",
-          background: "linear-gradient(transparent, rgba(24,22,19,0.92))",
-        }}
-      >
-        <div
-          style={{
-            fontSize: 28,
-            color: OG_COLORS.accent,
-            letterSpacing: 2,
-            textTransform: "lowercase",
-          }}
-        >
-          {kicker}
-        </div>
-        <div
-          style={{
-            fontSize: title.length > 48 ? 52 : 64,
-            color: OG_COLORS.paper,
-            fontWeight: 500,
-            lineHeight: 1.05,
-            textTransform: "lowercase",
-          }}
-        >
-          {title}
-        </div>
-        {subtitle ? (
-          <div
-            style={{
-              fontSize: 28,
-              color: OG_COLORS.paper,
-              opacity: 0.85,
-              textTransform: "lowercase",
-            }}
-          >
-            {subtitle}
-          </div>
-        ) : null}
+      <div style={{ display: "flex", color: OG_COLORS.accent, fontSize: 28, marginBottom: 16 }}>
+        {safeKicker}
       </div>
+      <div style={{ display: "flex", fontSize: safeTitle.length > 48 ? 52 : 64 }}>
+        {safeTitle}
+      </div>
+      {safeSubtitle ? (
+        <div style={{ display: "flex", fontSize: 28, marginTop: 20 }}>{safeSubtitle}</div>
+      ) : null}
     </div>
   );
 }
