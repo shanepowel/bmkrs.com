@@ -8,7 +8,7 @@ export function FinalCTA() {
       title={brandMessaging.closeTitle}
       lede={brandMessaging.closeLead}
       action={
-        <Button href="/contact" variant="link">
+        <Button href="/contact" variant="orange">
           {brandMessaging.ctaClose} →
         </Button>
       }
