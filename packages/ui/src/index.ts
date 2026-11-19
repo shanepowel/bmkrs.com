@@ -79,4 +79,10 @@ export {
   SpecList,
   PackageEntry,
   Footer,
+  StorySplit,
+  TeamGrid,
+  RuledList,
+  CategoryTabs,
+  type TeamMember,
+  type RuledListItem,
 } from "./patterns";

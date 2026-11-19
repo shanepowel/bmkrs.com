@@ -23,7 +23,7 @@ const preset: Partial<Config> = {
       fontFamily: {
         sans: [tokens.font.sans, "system-ui", "sans-serif"],
         mono: [tokens.font.mono, "ui-monospace", "monospace"],
-        display: [tokens.font.sans, "system-ui", "sans-serif"],
+        display: [tokens.font.display, "Georgia", "serif"],
       },
       fontSize: {
         hero: [tokens.type.hero, { lineHeight: String(tokens.leading.hero), letterSpacing: tokens.tracking.display }],

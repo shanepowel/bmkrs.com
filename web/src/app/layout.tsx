@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { cabinet, fragment } from "@/app/fonts";
+import { cabinet, fragment, instrument } from "@/app/fonts";
 import { getSiteSettings } from "@/lib/content";
 import { DEFAULT_OG_IMAGE, OG_SIZE, SITE_URL } from "@/lib/og-image";
 import { organizationSchema } from "@/lib/structured-data";
@@ -75,7 +75,10 @@ export default async function RootLayout({
   const jsonLd = organizationSchema();
 
   return (
-    <html lang="en-GB" className={`${cabinet.variable} ${fragment.variable}`}>
+    <html
+      lang="en-GB"
+      className={`${cabinet.variable} ${instrument.variable} ${fragment.variable}`}
+    >
       <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"

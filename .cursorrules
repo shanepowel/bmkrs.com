@@ -7,28 +7,35 @@ These rules are binding. When a request conflicts with them, follow the rules an
 All UI is built from `@bmkrs/ui` (local package at `packages/ui`, imported as `@bmkrs/ui`).
 
 - Foundation inside `@bmkrs/ui` is the shadcn stack (Radix UI primitives + CVA + `cn`/tailwind-merge). Brand look stays ours — never drop raw Radix Themes / stock shadcn themes into pages.
-- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<Separator>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`, `<SelectMenu>`.
+- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<Separator>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`, `<SelectMenu>`, `<StorySplit>`, `<TeamGrid>`, `<RuledList>`, `<CategoryTabs>`.
 - If a needed component does NOT exist in `@bmkrs/ui`, STOP. Add it to the library first (on Radix/CVA in `packages/ui/src`), export it, THEN use it. Do not inline a one-off. A second use must never require a second implementation.
 - Before building any UI, scan `packages/ui/src/index.ts` for what already exists. Prefer composing existing primitives over creating new ones.
 
 ## 2. No hardcoded design values, ever
 
 - NEVER hardcode a colour hex, font family, radius, or spacing value in a page or feature component. All of them come from tokens: `import { tokens } from "@bmkrs/ui"` (or the CSS variables / Tailwind preset the library exposes).
-- The brand palette is exactly: ink #181613, paper #F1EFE8, orange #FF4D00, plus the derived body/meta/rule values in `tokens`. No other colours. No second accent. If a design seems to need one, that is a signal to re-read the surface system, not to add a colour.
-- Type: Cabinet Grotesk (sans, via `--font-sans`) and Fragment Mono (`--font-mono`) only. Archivo is reserved for the logo and never imported as a UI font. Two weights, 400 and 500. Never 600/700.
+- The brand palette is exactly: ink #181613, paper #F3F0E9, orange #FF4D00, plus the derived body/meta/rule values in `tokens`. No other colours. No second accent (no acid/lime). If a design seems to need one, that is a signal to re-read the surface system, not to add a colour.
+- Type trio:
+  - Display / headlines: Instrument Serif via `--font-display` (and `--bmkrs-font-display`)
+  - UI / body: Cabinet Grotesk via `--font-sans`
+  - Labels / meta: Fragment Mono via `--font-mono`
+- Archivo is reserved for the logo SVG and never imported as a UI font.
+- Weights: 400 and 500 only for sans. Display serif ships at 400 (italic allowed). Never 600/700.
 
-## 3. The surface system is the layout primitive
+## 3. Editorial surface system
 
+- Art direction is paper-led editorial: warm paper field, hairline rules, generous whitespace, magazine pacing. Identity moments and close CTAs may still use `ink` or a single `orange` act block.
 - Every section is a `<Surface theme="ink|paper|orange">`. Colours derive from the surface; child components read it via context. Never set text colour manually on a surface.
-- Rules: reading-heavy content goes on `paper`; identity/arrival/imagery on `ink`; max one `orange` block per page (the act moment). Never two `paper` blocks adjacent; `orange` never touches `paper`; pages open and close on `ink`.
+- Rules: reading-heavy and arrival content prefer `paper`; max one `orange` Surface per page (the act moment). Prefer a `<Rule>` between adjacent paper bands rather than inventing a new colour. Orange CTAs on paper are fine; a full `orange` Surface should not sit flush against another loud block without a rule or ink buffer.
+- Default CTAs are rectangular (editorial radius from tokens), not pills. Orange fill on paper is the primary action.
 
 ## 4. The orange dot is the icon system
 
-- The brand mark's full stop is the status/accent device. Use `<StatusDot>` for it. Do not introduce an icon library (lucide, heroicons, etc.) without explicit human approval; most "icons" should be the dot, a mono label, or a rule.
+- The brand mark's full stop is the status/accent device. Use `<StatusDot>` for it. Do not introduce an icon library (lucide, heroicons, etc.) without explicit human approval; most "icons" should be the dot, a mono label, a hairline rule, or a simple arrow glyph in the button label.
 
 ## 5. Voice and content rules (copy written in components)
 
-- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("send the brief", never "submit"). Errors name the fix.
+- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("start a build", never "submit"). Errors name the fix.
 - Never ship fabricated testimonials, fake metrics, or placeholder names that could read as real. Leave the slot empty or use a clearly-marked TODO.
 
 ## 6. Accessibility and mobile are not optional

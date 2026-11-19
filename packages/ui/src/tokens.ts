@@ -5,7 +5,7 @@ export const tokens = {
   color: {
     ink: "#181613",
     inkRaised: "#211f1b",
-    paper: "#F1EFE8",
+    paper: "#F3F0E9",
     body: "#D3D1C7",
     meta: "#B4B2A9",
     faint: "#7d7b74",
@@ -28,8 +28,8 @@ export const tokens = {
     swipeInactive: "#444441",
   },
   type: {
-    hero: "clamp(2.35rem, 5.8vw, 4.75rem)",
-    h2: "clamp(1.75rem, 3.4vw, 2.85rem)",
+    hero: "clamp(2.75rem, 7vw, 5.5rem)",
+    h2: "clamp(1.85rem, 3.8vw, 3.1rem)",
     h3: "clamp(1.125rem, 1.5vw, 1.35rem)",
     body: "1.125rem",
     bodySm: "1rem",
@@ -38,13 +38,13 @@ export const tokens = {
     input: "1rem",
   },
   leading: {
-    hero: 1.05,
+    hero: 1.02,
     h2: 1.12,
     h3: 1.15,
     body: 1.65,
   },
   tracking: {
-    display: "-0.022em",
+    display: "-0.01em",
     kicker: "0.06em",
   },
   space: {
@@ -66,10 +66,12 @@ export const tokens = {
   },
   radius: {
     pill: "999px",
-    card: "24px",
+    card: "4px",
     field: "2px",
+    button: "2px",
   },
   font: {
+    display: "var(--font-display, var(--font-sans, Georgia, serif))",
     sans: "var(--font-sans, system-ui, sans-serif)",
     mono: "var(--font-mono, ui-monospace, monospace)",
   },

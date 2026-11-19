@@ -38,7 +38,7 @@ export function SiteHeader({
   renderLogo,
 }: SiteHeaderProps) {
   const pathname = usePathname();
-  const [surface, setSurface] = useState<SurfaceTheme>("ink");
+  const [surface, setSurface] = useState<SurfaceTheme>("paper");
 
   useEffect(() => {
     const sync = () => {

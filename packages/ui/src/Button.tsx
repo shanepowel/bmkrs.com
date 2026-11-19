@@ -9,7 +9,7 @@ import { useSurface } from "./Surface";
 import { tokens, type SurfaceTheme } from "./tokens";
 
 const buttonVariants = cva(
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 font-sans text-[var(--text-body)] font-medium transition touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-bg,transparent)] disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--bmkrs-radius-button)] px-7 py-3 font-sans text-[var(--text-body)] font-medium transition touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-bg,transparent)] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -17,7 +17,7 @@ const buttonVariants = cva(
         ghost: "",
         ink: "bg-bmkrs-ink text-bmkrs-paper hover:opacity-90",
         orange:
-          "border border-bmkrs-orange bg-bmkrs-orange text-bmkrs-paper hover:bg-transparent hover:text-bmkrs-orange",
+          "border border-bmkrs-orange bg-bmkrs-orange text-bmkrs-paper hover:bg-bmkrs-ink hover:border-bmkrs-ink",
       },
     },
     defaultVariants: {
@@ -28,12 +28,12 @@ const buttonVariants = cva(
 
 function primaryClass(theme: SurfaceTheme) {
   if (theme === "paper") {
-    return "bg-bmkrs-ink text-bmkrs-paper hover:bg-bmkrs-orange hover:text-bmkrs-paper";
+    return "bg-bmkrs-orange text-bmkrs-paper hover:bg-bmkrs-ink";
   }
   if (theme === "orange") {
     return "bg-bmkrs-ink text-bmkrs-paper hover:opacity-90";
   }
-  return "bg-bmkrs-paper text-bmkrs-ink hover:bg-bmkrs-orange hover:text-bmkrs-paper";
+  return "bg-bmkrs-orange text-bmkrs-paper hover:bg-bmkrs-paper hover:text-bmkrs-ink";
 }
 
 function ghostClass(theme: SurfaceTheme) {

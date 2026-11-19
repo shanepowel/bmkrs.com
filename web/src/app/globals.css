@@ -64,7 +64,7 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
 }
 
-/* two weights only: 400 body, 500 display. never 600/700. */
+/* sans: 400 body / 500 emphasis. display serif at 400. never 600/700. */
 h1,
 h2,
 h3,
@@ -379,8 +379,8 @@ summary:focus-visible,
   }
 
   .display {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    @apply font-medium;
+    font-family: var(--font-display), Georgia, serif;
+    @apply font-normal;
     letter-spacing: var(--tracking-display);
   }
 

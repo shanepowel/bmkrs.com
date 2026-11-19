@@ -103,8 +103,9 @@ export function H1({
   const resolved = useTheme(theme);
   return (
     <h1
-      className={`display text-hero font-medium ${className}`}
+      className={`display text-hero font-normal ${className}`}
       style={{
+        fontFamily: "var(--bmkrs-font-display)",
         lineHeight: "var(--lh-display)",
         letterSpacing: "var(--tracking-display)",
         color: SURFACE[resolved].text,
@@ -127,8 +128,9 @@ export function H2({
   const resolved = useTheme(theme);
   return (
     <h2
-      className={`display text-h2 font-medium ${className}`}
+      className={`display text-h2 font-normal ${className}`}
       style={{
+        fontFamily: "var(--bmkrs-font-display)",
         lineHeight: "var(--lh-heading)",
         letterSpacing: "var(--tracking-display)",
         color: SURFACE[resolved].text,
@@ -151,8 +153,11 @@ export function H3({
   const resolved = useTheme(theme);
   return (
     <h3
-      className={`display text-h3 font-medium ${className}`}
-      style={{ color: SURFACE[resolved].text }}
+      className={`display text-h3 font-normal ${className}`}
+      style={{
+        fontFamily: "var(--bmkrs-font-display)",
+        color: SURFACE[resolved].text,
+      }}
     >
       {children}
     </h3>

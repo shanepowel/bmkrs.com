@@ -2,9 +2,9 @@
 
 :root {
   --bmkrs-ink: #181613;
-  --bmkrs-paper: #f5f1ea;
+  --bmkrs-paper: #f3f0e9;
   --bmkrs-paper-bright: #fbf9f5;
-  --bmkrs-off-white: #f1efe8;
+  --bmkrs-off-white: #f3f0e9;
   --bmkrs-accent: #ff4d00;
   --bmkrs-accent-ink: #c93d00;
   --bmkrs-accent-focus: rgba(255, 77, 0, 0.25);
@@ -30,7 +30,7 @@
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --bmkrs-radius: 2px;
 
-  --bmkrs-font-display: var(--font-sans, system-ui, sans-serif);
+  --bmkrs-font-display: var(--font-display, Georgia, serif);
   --bmkrs-font-body: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
