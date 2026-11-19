@@ -25,7 +25,7 @@ export function Hero({
   media,
   aside,
 }: {
-  eyebrow: ReactNode;
+  eyebrow?: ReactNode;
   title: ReactNode;
   lede: ReactNode;
   actions?: ReactNode;
@@ -37,7 +37,7 @@ export function Hero({
 }) {
   const copy = (
     <>
-      <span className="bmkrs-hero__eyebrow">{eyebrow}</span>
+      {eyebrow ? <span className="bmkrs-hero__eyebrow">{eyebrow}</span> : null}
       <h1 className="bmkrs-hero__title">{title}</h1>
       <p className="bmkrs-hero__lede">{lede}</p>
       {actions ? <div className="bmkrs-hero__actions">{actions}</div> : null}
@@ -365,19 +365,26 @@ export function Close({
   id,
   snap,
   title,
+  lede,
   action,
 }: {
   id?: string;
   snap?: ReactNode;
   title: ReactNode;
+  lede?: ReactNode;
   action: ReactNode;
 }) {
   return (
     <section id={id} className="bmkrs-close" data-surface="paper">
-      <div className="bmkrs-wrap">
-        {snap ? <div className="bmkrs-close__snap">{snap}</div> : null}
-        <h2>{title}</h2>
-        {action}
+      <div className="bmkrs-wrap bmkrs-close__row">
+        <div className="bmkrs-close__main">
+          {snap ? <div className="bmkrs-close__snap">{snap}</div> : null}
+          <h2>{title}</h2>
+        </div>
+        <div className="bmkrs-close__aside">
+          {lede ? <p className="bmkrs-close__lede">{lede}</p> : null}
+          {action}
+        </div>
       </div>
     </section>
   );

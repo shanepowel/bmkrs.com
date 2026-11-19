@@ -57,9 +57,9 @@ function ghostClass(theme: SurfaceTheme) {
 }
 
 function linkClass(theme: SurfaceTheme) {
-  if (theme === "ink") return "text-bmkrs-paper";
+  if (theme === "ink") return "text-bmkrs-paper hover:text-bmkrs-orange";
   if (theme === "orange") return "text-bmkrs-ink";
-  return "text-bmkrs-ink";
+  return "text-bmkrs-orange";
 }
 
 export type ButtonProps = {

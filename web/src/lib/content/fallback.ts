@@ -66,12 +66,12 @@ export const fallbackSiteSettings: SiteSettings = {
 export const fallbackHome: HomeContent = {
   hero: {
     eyebrow: brandMessaging.heroEyebrow,
-    headline: `${brandMessaging.heroTitleLead} ${brandMessaging.heroTitleEm}`,
-    headlineLead: "we ship",
-    headlineTail: "products.",
+    headline: brandMessaging.heroTitle,
+    headlineLead: "A creative and digital studio",
+    headlineTail: "in London.",
     sub: brandMessaging.heroSub,
-    primaryCta: { label: brandMessaging.ctaWork, href: "/work" },
-    secondaryCta: { label: brandMessaging.ctaPrimary, href: "/contact" },
+    primaryCta: { label: brandMessaging.ctaPrimary, href: "/contact" },
+    secondaryCta: { label: brandMessaging.ctaWork, href: "/work" },
     collage: [
       {
         src: "/images/work/podcast-studio-london-thumb.jpg",

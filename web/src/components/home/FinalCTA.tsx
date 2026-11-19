@@ -6,7 +6,12 @@ export function FinalCTA() {
     <Close
       id="contact"
       title={brandMessaging.closeTitle}
-      action={<Button href="/contact">{brandMessaging.ctaPrimary} →</Button>}
+      lede={brandMessaging.closeLead}
+      action={
+        <Button href="/contact" variant="link">
+          {brandMessaging.ctaClose} →
+        </Button>
+      }
     />
   );
 }

@@ -70,27 +70,37 @@ html {
 
 body {
   color: var(--ink);
-  background: var(--bg);
+  background: var(--bmkrs-paper, var(--bg));
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: var(--lh-body, 1.65);
-  letter-spacing: -0.005em;
-  text-transform: lowercase;
+  letter-spacing: 0;
+  text-transform: none;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
 
-/* sans: 400 body / 500 emphasis. display serif at 400. never 600/700. */
+/* display serif stays 400. sans uses 500 only for emphasis. never stretch. */
 h1,
 h2,
 h3,
 h4,
-.font-medium,
 .bmkrs-hero__title,
-.bmkrs-section-heading__title {
+.bmkrs-section-heading__title,
+.bmkrs-page-hero__title,
+.bmkrs-story__title,
+.bmkrs-close h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: var(--tracking-display, -0.005em);
+  font-stretch: normal;
+  font-synthesis: none;
+}
+
+.font-medium {
   font-weight: 500;
 }
 

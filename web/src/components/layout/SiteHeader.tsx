@@ -47,7 +47,7 @@ export function SiteHeader({
       items={items}
       loginUrl={login}
       contactEmail={contactEmail}
-      ctaLabel="talk to us"
+      ctaLabel="Talk to us"
       ctaHref="/contact"
       renderLogo={(variant) => <BrandLogo light={variant === "light"} />}
     />

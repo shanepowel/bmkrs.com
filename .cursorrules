@@ -2,48 +2,47 @@
 
 These rules are binding. When a request conflicts with them, follow the rules and say so.
 
-## 1. The component library is mandatory
+## 1. Match the editorial render
 
-All UI is built from `@bmkrs/ui` (local package at `packages/ui`, imported as `@bmkrs/ui`).
+Art direction is locked to the studio moodboard: warm paper field, elegant serif headlines, quiet sans body, terracotta orange CTAs, hairline rules, generous whitespace, magazine pacing.
 
-- Foundation inside `@bmkrs/ui` is the shadcn stack (Radix UI primitives + CVA + `cn`/tailwind-merge). Brand look stays ours — never drop raw Radix Themes / stock shadcn themes into pages.
-- NEVER write a raw styled element when a library component exists. Use `<Button>`, not a hand-styled `<a className="rounded-full ...">`. Use `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<Separator>`, `<StatusDot>`, `<SwipeRow>`, `<Field>`, `<PillSelect>`, `<SelectMenu>`, `<StorySplit>`, `<TeamGrid>`, `<RuledList>`, `<CategoryTabs>`.
-- If a needed component does NOT exist in `@bmkrs/ui`, STOP. Add it to the library first (on Radix/CVA in `packages/ui/src`), export it, THEN use it. Do not inline a one-off. A second use must never require a second implementation.
-- Before building any UI, scan `packages/ui/src/index.ts` for what already exists. Prefer composing existing primitives over creating new ones.
+- Pages open on paper. Prefer paper throughout. Ink and orange are rare accents, not the default canvas.
+- Headlines use sentence case (capital first letter). Nav and meta stay lowercase.
+- UK English. No em or en dashes. Buttons say what happens ("Talk to us", never "Submit").
+- Never ship fabricated people, testimonials, or metrics. Use real CMS/fallback people or leave the slot empty.
 
-## 2. No hardcoded design values, ever
+## 2. The component library is mandatory
 
-- NEVER hardcode a colour hex, font family, radius, or spacing value in a page or feature component. All of them come from tokens: `import { tokens } from "@bmkrs/ui"` (or the CSS variables / Tailwind preset the library exposes).
-- The brand palette is exactly: ink #181613, paper #F3F0E9, orange #FF4D00, plus the derived body/meta/rule values in `tokens`. No other colours. No second accent (no acid/lime). If a design seems to need one, that is a signal to re-read the surface system, not to add a colour.
+All UI is built from `@bmkrs/ui` (`packages/ui`). Generic shadcn controls may live in `web/src/components/ui` for form chrome only.
+
+- NEVER write a raw styled element when a library component exists. Use `<Button>`, `<Surface>`, `<Kicker>`, `<H1>/<H2>`, `<Body>`, `<Rule>`, `<StorySplit>`, `<TeamGrid>`, `<RuledList>`, `<CategoryTabs>`, `<Sheet>`.
+- Missing primitive? Add it to `packages/ui` first, export it, then use it. Do not inline a one-off.
+
+## 3. No hardcoded design values
+
+- NEVER hardcode a colour hex, font family, radius, or spacing in a page or feature component. Use `tokens` / CSS variables from `@bmkrs/ui`.
+- Palette: ink `#181613`, paper `#F5F2EB`, orange `#FF4D00`, plus derived body/meta/rule values. No second accent.
 - Type trio:
-  - Display / headlines: Instrument Serif via `--font-display` (and `--bmkrs-font-display`)
-  - UI / body: Cabinet Grotesk via `--font-sans`
-  - Labels / meta: Fragment Mono via `--font-mono`
-- Archivo is reserved for the logo SVG and never imported as a UI font.
-- Weights: 400 and 500 only for sans. Display serif ships at 400 (italic allowed). Never 600/700.
+  - Display: Instrument Serif via `--font-display` (weight 400 only, italic allowed)
+  - Body / UI: Cabinet Grotesk via `--font-sans` (weights 400 and 500 only)
+  - Meta: Fragment/Geist Mono via `--font-mono`
+- Archivo is logo SVG only. Never 600/700. Never `font-stretch`, `scaleX`, or tracking tighter than `-0.02em` on display type.
 
-## 3. Editorial surface system
+## 4. Surfaces and CTAs
 
-- Art direction is paper-led editorial: warm paper field, hairline rules, generous whitespace, magazine pacing. Identity moments and close CTAs may still use `ink` or a single `orange` act block.
-- Every section is a `<Surface theme="ink|paper|orange">`. Colours derive from the surface; child components read it via context. Never set text colour manually on a surface.
-- Rules: reading-heavy and arrival content prefer `paper`; max one `orange` Surface per page (the act moment). Prefer a `<Rule>` between adjacent paper bands rather than inventing a new colour. Orange CTAs on paper are fine; a full `orange` Surface should not sit flush against another loud block without a rule or ink buffer.
-- Default CTAs are rectangular (editorial radius from tokens), not pills. Orange fill on paper is the primary action.
+- Every section is a `<Surface theme="ink|paper|orange">`. Colours come from context.
+- Default CTA: rectangular orange fill (`--bmkrs-radius-button`). No pills for primary actions.
+- Max one full `orange` Surface per page.
 
-## 4. The orange dot is the icon system
+## 5. Icons
 
-- The brand mark's full stop is the status/accent device. Use `<StatusDot>` for it. Do not introduce an icon library (lucide, heroicons, etc.) without explicit human approval; most "icons" should be the dot, a mono label, a hairline rule, or a simple arrow glyph in the button label.
+- Prefer `<StatusDot>`, mono labels, hairline rules, or a simple arrow in the button label.
+- No icon library (lucide, heroicons, etc.) without explicit human approval.
 
-## 5. Voice and content rules (copy written in components)
+## 6. Accessibility
 
-- All UI copy is lowercase, UK English, no em or en dashes. Buttons say what happens ("talk to us", never "submit"). Errors name the fix.
-- Never ship fabricated testimonials, fake metrics, or placeholder names that could read as real. Leave the slot empty or use a clearly-marked TODO.
-
-## 6. Accessibility and mobile are not optional
-
-- Tap targets >= 44px. All interactive components from `@bmkrs/ui` already meet this; do not override smaller.
-- Respect `prefers-reduced-motion` in anything animated (the library components already do).
-- Forms: real labels, focus rings (orange), 16px input text minimum (prevents iOS zoom).
+- Tap targets >= 44px. Respect `prefers-reduced-motion`. Forms: real labels, orange focus rings, 16px input text minimum.
 
 ## 7. When unsure
 
-State which library component you're using and why. If you cannot do it within these rules, say what's missing rather than working around them. A rule worked around silently is the failure mode this file exists to prevent.
+State which library component you are using and why. If you cannot do it within these rules, say what is missing rather than working around them.

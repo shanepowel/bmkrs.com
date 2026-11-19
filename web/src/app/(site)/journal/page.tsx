@@ -10,14 +10,14 @@ import {
   WorkTile,
 } from "@bmkrs/ui";
 import { getJournalCategorySlugs, getJournalIndex } from "@/lib/content";
-import { journalMastheadIntro } from "@/lib/content/expansion-v2";
+import { brandMessaging } from "@/lib/content/messaging";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata(
     "journal",
-    "notes from the studio on product, brand, design and how we work.",
+    brandMessaging.journalLede,
     "/journal",
   ),
   alternates: {
@@ -58,7 +58,7 @@ export default async function JournalPage() {
 
   return (
     <main className="journal" data-surface="paper">
-      <PageHero eyebrow="journal" title="journal" lede={journalMastheadIntro} />
+      <PageHero title={brandMessaging.journalTitle} lede={brandMessaging.journalLede} />
 
       <Section theme="paper" className="!pt-0">
         <CategoryTabs items={categoryTabs} active="all" />

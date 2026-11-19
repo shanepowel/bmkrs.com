@@ -5,7 +5,7 @@ export const tokens = {
   color: {
     ink: "#181613",
     inkRaised: "#211f1b",
-    paper: "#F3F0E9",
+    paper: "#F5F2EB",
     body: "#D3D1C7",
     meta: "#B4B2A9",
     faint: "#7d7b74",
@@ -38,14 +38,14 @@ export const tokens = {
     input: "1rem",
   },
   leading: {
-    hero: 1.02,
-    h2: 1.12,
-    h3: 1.15,
+    hero: 1.08,
+    h2: 1.15,
+    h3: 1.2,
     body: 1.65,
   },
   tracking: {
-    display: "-0.01em",
-    kicker: "0.06em",
+    display: "-0.005em",
+    kicker: "0.04em",
   },
   space: {
     1: "0.5rem",

@@ -34,7 +34,7 @@ export function SiteHeader({
   loginUrl,
   contactEmail,
   homeHref = "/",
-  ctaLabel = "talk to us",
+  ctaLabel = "Talk to us",
   ctaHref = "/contact",
   renderLogo,
 }: SiteHeaderProps) {

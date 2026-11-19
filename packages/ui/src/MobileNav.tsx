@@ -28,7 +28,7 @@ export function MobileNav({
   loginUrl,
   contactEmail = "hello@bmkrs.com",
   homeHref = "/",
-  ctaLabel = "talk to us",
+  ctaLabel = "Talk to us",
   ctaHref = "/contact",
   renderLogo,
 }: MobileNavProps) {
