@@ -1,40 +1,27 @@
-import { GhostButton, Hero, OrangeButton, SnapLine, WorkReel, type WorkReelFrame } from "@bmkrs/ui";
+import Image from "next/image";
+import { Button, Hero } from "@bmkrs/ui";
 import { brandMessaging } from "@/lib/content/messaging";
+import { marketingImages } from "@/lib/marketing-assets";
 
-export function HomeHero({ frames }: { frames: WorkReelFrame[] }) {
+export function HomeHero() {
   return (
     <Hero
-      aside={frames.length ? <WorkReel frames={frames} label="selected work" /> : undefined}
-      eyebrow={brandMessaging.heroEyebrow}
-      title={
-        <>
-          {brandMessaging.heroTitleLead}
-          <br />
-          <span className="bmkrs-hero__underline">
-            {brandMessaging.heroTitleEm}
-            <SnapLine
-              tick="shipped, not sketched"
-              trigger="load"
-              delay={350}
-              thick
-              place="below"
-              className="!absolute inset-x-0 bottom-[0.12em]"
-            />
-          </span>
-        </>
-      }
+      title={brandMessaging.heroTitle}
       lede={brandMessaging.heroSub}
       actions={
-        <>
-          <OrangeButton href="/contact">{brandMessaging.ctaPrimary} <span aria-hidden="true">+</span></OrangeButton>
-          <GhostButton href="/work">{brandMessaging.ctaWork} <span aria-hidden="true">+</span></GhostButton>
-        </>
+        <Button href="/contact" variant="orange">
+          {brandMessaging.ctaPrimary} →
+        </Button>
       }
-      plate={
-        <>
-          <span>{brandMessaging.processShort}</span>
-          <span>london · everywhere</span>
-        </>
+      aside={
+        <Image
+          src={marketingImages.architectureConcrete}
+          alt="sunlit architecture with terracotta wall"
+          width={960}
+          height={1200}
+          priority
+          className="h-full w-full object-cover"
+        />
       }
     />
   );

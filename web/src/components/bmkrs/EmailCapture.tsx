@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { Button, Field, Section } from "@bmkrs/ui";
+import { brandMessaging } from "@/lib/content/messaging";
 import { cn } from "@/lib/utils";
 
 type EmailCaptureProps = {
   className?: string;
   variant?: "light" | "dark";
-  /** orange = spec act surface; paper = default reading surface */
+  /** orange = act surface; paper = default reading surface */
   surface?: "paper" | "orange";
 };
 
@@ -35,17 +36,17 @@ export function EmailCapture({ className, variant = "light", surface = "paper" }
     return (
       <div className={cn("email-capture email-capture--dark", className)}>
         {status === "sent" ? (
-          <p className="email-capture__success">got it. the next one is on its way.</p>
+          <p className="email-capture__success">{brandMessaging.newsletterSent}</p>
         ) : (
           <form className="email-capture__form" onSubmit={onSubmit}>
-            <Field name="email" type="email" required autoComplete="email" label="email" placeholder="your email" />
+            <Field name="email" type="email" required autoComplete="email" label="Email" placeholder="Your email" />
             <Button type="submit" variant="ghost" disabled={status === "sending"}>
-              {status === "sending" ? "sending..." : "send me the next one"}
+              {status === "sending" ? brandMessaging.newsletterSending : brandMessaging.newsletterCta}
             </Button>
           </form>
         )}
         {status === "error" ? (
-          <p className="email-capture__error">something went wrong. try again.</p>
+          <p className="email-capture__error">Something went wrong. Try again.</p>
         ) : null}
       </div>
     );
@@ -54,31 +55,29 @@ export function EmailCapture({ className, variant = "light", surface = "paper" }
   const onOrange = surface === "orange";
 
   const inner = (
-    <div className={cn("section max-w-[560px]", className)}>
-      <h3 className="display text-h3 font-medium">one idea a fortnight.</h3>
-      <p className="muted mt-3">
-        the thinking we use on real brands, written down. no filler, no funnels.
-      </p>
+    <div className={cn("max-w-[34rem]", className)}>
+      <h3 className="display text-h3 font-normal">{brandMessaging.newsletterTitle}</h3>
+      <p className="mt-3 text-body text-[var(--bmkrs-paper-body)]">{brandMessaging.newsletterLede}</p>
       {status === "sent" ? (
-        <p className="mt-6 text-accent">got it. the next one is on its way.</p>
+        <p className="mt-6 text-[var(--bmkrs-orange)]">{brandMessaging.newsletterSent}</p>
       ) : (
-        <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end" onSubmit={onSubmit}>
+        <form className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end" onSubmit={onSubmit}>
           <Field
             className="flex-1"
             name="email"
             type="email"
             required
             autoComplete="email"
-            label="email"
-            placeholder="your email"
+            label="Email"
+            placeholder="Your email"
           />
-          <Button type="submit" disabled={status === "sending"}>
-            {status === "sending" ? "sending..." : "send me the next one"}
+          <Button type="submit" variant="orange" disabled={status === "sending"}>
+            {status === "sending" ? brandMessaging.newsletterSending : brandMessaging.newsletterCta}
           </Button>
         </form>
       )}
       {status === "error" ? (
-        <p className="mt-2 text-sm text-accent">something went wrong. try again.</p>
+        <p className="mt-2 text-sm text-[var(--bmkrs-orange)]">Something went wrong. Try again.</p>
       ) : null}
     </div>
   );

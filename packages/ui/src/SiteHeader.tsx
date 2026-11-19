@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
+import { Button } from "./Button";
 import { MobileNav } from "./MobileNav";
 import type { SurfaceTheme } from "./tokens";
 import type { LogoVariant, NavItem } from "./types";
@@ -33,12 +34,12 @@ export function SiteHeader({
   loginUrl,
   contactEmail,
   homeHref = "/",
-  ctaLabel = "start a build",
+  ctaLabel = "Talk to us",
   ctaHref = "/contact",
   renderLogo,
 }: SiteHeaderProps) {
   const pathname = usePathname();
-  const [surface, setSurface] = useState<SurfaceTheme>("ink");
+  const [surface, setSurface] = useState<SurfaceTheme>("paper");
 
   useEffect(() => {
     const sync = () => {
@@ -87,9 +88,9 @@ export function SiteHeader({
           <a href={loginUrl} className="nav-login hidden" rel="noopener noreferrer" target="_blank">
             log in <span aria-hidden="true">+</span>
           </a>
-          <Link href={ctaHref} className="btn-nav-cta">
+          <Button href={ctaHref} variant="orange" size="nav">
             {ctaLabel}
-          </Link>
+          </Button>
         </nav>
 
         <MobileNav

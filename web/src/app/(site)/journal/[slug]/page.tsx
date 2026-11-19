@@ -16,8 +16,10 @@ import {
   getPost,
   getPostSlugs,
 } from "@/lib/content";
+import { brandMessaging } from "@/lib/content/messaging";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { metadataWithImage, siteUrl } from "@/lib/seo";
+import { sentenceCase } from "@/lib/sentence-case";
 import { articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -39,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
   if (post) {
-    const title = post.seo?.metaTitle ?? `${post.title} | bmkrs.`;
+    const title = post.seo?.metaTitle ?? `${sentenceCase(post.title)} | bmkrs.`;
     const description = post.seo?.metaDescription ?? post.excerpt;
     const base: Metadata = {
       title,
@@ -87,7 +89,7 @@ export default async function JournalArticlePage({ params }: Props) {
       breadcrumbSchema([
         { name: "home", path: "/" },
         { name: "journal", path: "/journal" },
-        { name: post.title, path: `/journal/${post.slug}` },
+        { name: sentenceCase(post.title), path: `/journal/${post.slug}` },
       ]),
     ];
 
@@ -100,7 +102,7 @@ export default async function JournalArticlePage({ params }: Props) {
 
         <Section theme="ink" className="!pb-0">
           <div className="max-w-[900px]">
-            <BackLink href="/journal">all journal notes</BackLink>
+            <BackLink href="/journal">All journal notes</BackLink>
             <Meta theme="ink" className="mt-8">
               {categoryHref ? <Link href={categoryHref}>{categoryLabel}</Link> : categoryLabel}
               {" · "}
@@ -108,16 +110,16 @@ export default async function JournalArticlePage({ params }: Props) {
               {post.readingTime ? ` · ${post.readingTime} min read` : ""}
             </Meta>
             <H1 theme="ink" className="mt-4 max-w-[16ch]">
-              {post.title}
+              {sentenceCase(post.title)}
             </H1>
             {post.author && (
-              <p className="mt-4 text-sm text-muted">
+              <p className="mt-4 text-sm text-bmkrs-muted">
                 {post.author.name}
                 {post.author.discipline ? ` · ${post.author.discipline}` : ""}
               </p>
             )}
             {post.cover?.url && (
-              <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[var(--radius)]">
+              <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[var(--bmkrs-radius-card)]">
                 <Image
                   src={post.cover.url}
                   alt={post.cover.alt ?? post.title}
@@ -145,7 +147,7 @@ export default async function JournalArticlePage({ params }: Props) {
               <aside className="mt-14 border-t border-[var(--line)] pt-10">
                 <Kicker theme="ink">where this shows up</Kicker>
                 <Body theme="ink" className="mt-3">
-                  this thinking shows up in the work, not only on the page.
+                  This thinking shows up in the work, not only on the page.
                 </Body>
                 <div className="mt-6">
                   <LinkIndex>
@@ -192,7 +194,7 @@ export default async function JournalArticlePage({ params }: Props) {
                       <LinkRow
                         key={other.slug}
                         href={`/journal/${other.slug}`}
-                        name={other.title}
+                        name={sentenceCase(other.title)}
                         description={other.excerpt}
                       />
                     ))}
@@ -202,8 +204,8 @@ export default async function JournalArticlePage({ params }: Props) {
             )}
 
             <nav className="mt-12 flex flex-wrap gap-4 border-t border-[var(--line)] pt-8">
-              <GhostButton href="/journal">more from the journal</GhostButton>
-              <Button href="/contact">start a build</Button>
+              <GhostButton href="/journal">More from the journal</GhostButton>
+              <Button href="/contact">{brandMessaging.ctaPrimary}</Button>
             </nav>
           </div>
         </Section>
@@ -222,12 +224,12 @@ export default async function JournalArticlePage({ params }: Props) {
   return (
     <>
       <Section theme="ink">
-        <BackLink href="/journal">all journal notes</BackLink>
+        <BackLink href="/journal">All journal notes</BackLink>
         <Meta theme="ink" className="mt-8">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
         </Meta>
         <H1 theme="ink" className="mt-4 max-w-[16ch]">
-          {article.h1}
+          {sentenceCase(article.h1)}
         </H1>
       </Section>
       <Section theme="paper">
@@ -249,7 +251,12 @@ export default async function JournalArticlePage({ params }: Props) {
           <div className="mt-6">
             <LinkIndex>
               {others.map((other) => (
-                <LinkRow key={other.slug} href={`/journal/${other.slug}`} name={other.h1} description="" />
+                <LinkRow
+                  key={other.slug}
+                  href={`/journal/${other.slug}`}
+                  name={sentenceCase(other.h1)}
+                  description=""
+                />
               ))}
             </LinkIndex>
           </div>

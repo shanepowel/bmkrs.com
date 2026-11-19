@@ -2,10 +2,21 @@
 
 :root {
   --bmkrs-ink: #181613;
-  --bmkrs-paper: #f5f1ea;
+  --bmkrs-ink-raised: #211f1b;
+  --bmkrs-paper: #f5f2eb;
   --bmkrs-paper-bright: #fbf9f5;
-  --bmkrs-off-white: #f1efe8;
+  --bmkrs-off-white: #f5f2eb;
+  --bmkrs-body: #d3d1c7;
+  --bmkrs-paper-body: #3a3936;
+  --bmkrs-paper-faint: #4f4e4a;
+  --bmkrs-meta: #b4b2a9;
+  --bmkrs-faint: #7d7b74;
   --bmkrs-accent: #ff4d00;
+  --bmkrs-orange: var(--bmkrs-accent);
+  --bmkrs-orange-body: #2c1005;
+  --bmkrs-orange-faint: #4a1b0c;
+  --bmkrs-orange-soft: rgba(255, 77, 0, 0.32);
+  --bmkrs-orange-glow: rgba(255, 77, 0, 0.32);
   --bmkrs-accent-ink: #c93d00;
   --bmkrs-accent-focus: rgba(255, 77, 0, 0.25);
   --bmkrs-field-fill: #221f1b;
@@ -15,6 +26,10 @@
   --bmkrs-muted-on-ink: rgba(245, 241, 234, 0.82);
   --bmkrs-line-on-ink: rgb(241 239 232 / 0.12);
   --bmkrs-rule-on-ink: rgb(241 239 232 / 0.12);
+  --bmkrs-rule: rgba(241, 239, 232, 0.14);
+  --bmkrs-rule-ink: rgba(241, 239, 232, 0.16);
+  --bmkrs-rule-paper: rgba(24, 22, 19, 0.15);
+  --bmkrs-rule-orange: rgba(24, 22, 19, 0.25);
 
   --bmkrs-space-1: 0.5rem;
   --bmkrs-space-2: 1rem;
@@ -23,14 +38,14 @@
   --bmkrs-space-5: 4rem;
   --bmkrs-space-6: 6.5rem;
   --bmkrs-space-7: 10rem;
-  --bmkrs-maxw: var(--maxw, 75rem);
-  --bmkrs-gutter: var(--gutter, clamp(1.25rem, 5vw, 3.5rem));
+  --bmkrs-maxw: var(--maxw, 72rem);
+  --bmkrs-gutter: var(--gutter, clamp(1.25rem, 4vw, 2.75rem));
   --bmkrs-line: rgba(24, 22, 19, 0.12);
   --bmkrs-muted: rgb(180 178 169);
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --bmkrs-radius: 2px;
 
-  --bmkrs-font-display: var(--font-sans, system-ui, sans-serif);
+  --bmkrs-font-display: var(--font-display, Georgia, serif);
   --bmkrs-font-body: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 
@@ -48,6 +63,31 @@
   --bmkrs-step-2: var(--text-h2);
   --bmkrs-step-3: var(--text-hero);
   --bmkrs-step-4: var(--text-hero);
+
+  /* Editorial scale — magazine pacing, not billboard. */
+  --text-hero: clamp(2.5rem, 5.5vw, 4.25rem);
+  --text-h2: clamp(1.75rem, 3.2vw, 2.75rem);
+  --text-h3: clamp(1.125rem, 1.5vw, 1.35rem);
+  --text-lead: clamp(1.05rem, 1.2vw, 1.2rem);
+  --text-body: 1.0625rem;
+  --text-body-sm: 1rem;
+  --text-meta: 0.75rem;
+  --lh-display: 1.08;
+  --lh-heading: 1.15;
+  --lh-body: 1.65;
+  --tracking-display: -0.005em;
+  --tracking-kicker: 0.04em;
+  --section-y: clamp(3rem, 6vw, 5.5rem);
+  --section-y-home: clamp(48px, 7vh, 80px);
+  --section-y-sm: clamp(2rem, 4vw, 3.25rem);
+  --section-header-gap: clamp(1.5rem, 3vh, 2.5rem);
+  --block-gap: clamp(1.75rem, 3.5vw, 3rem);
+  --cluster-gap: 1rem;
+  --grid-gap: clamp(1.25rem, 2vw, 2rem);
+  --gutter: clamp(1.25rem, 4vw, 2.75rem);
+  --maxw: 72rem;
+  --bmkrs-font-sans: var(--font-sans, system-ui, sans-serif);
+  --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 }
 
 .section--paper {
@@ -79,17 +119,17 @@
   font-family: var(--font-display), sans-serif;
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 500;
-  color: var(--accent);
+  color: var(--bmkrs-accent);
   line-height: 1;
 }
 
 .metric-label {
   font-size: 14px;
-  color: var(--muted);
+  color: var(--bmkrs-muted);
 }
 
 .case-testimonial {
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--bmkrs-accent);
   padding-left: var(--bmkrs-space-3);
   margin-block: var(--bmkrs-space-5);
 }
@@ -104,7 +144,7 @@
 
 .case-testimonial figcaption {
   font-size: 14px;
-  color: var(--muted);
+  color: var(--bmkrs-muted);
 }
 
 .case-meta {

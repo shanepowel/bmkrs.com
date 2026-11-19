@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "./cn";
+import { Button } from "./Button";
+import { SurfaceProvider } from "./Surface";
 import { tokens } from "./tokens";
 
 export type StickyCTAAction = {
@@ -58,31 +58,23 @@ export function StickyCTA({
         paddingBottom: "env(safe-area-inset-bottom)",
       }}
     >
-      <div className="flex gap-2.5 px-4 py-3">
-        {actions.map((action, i) => {
-          const isPrimary = action.variant === "primary" || (i === 0 && !action.variant);
-          return (
-            <Link
-              key={action.href + action.label}
-              href={action.href}
-              className={cn(
-                "inline-flex min-h-11 items-center justify-center rounded-full text-[0.9375rem] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange",
-                isPrimary ? "flex-1" : "px-6",
-              )}
-              style={
-                isPrimary
-                  ? { background: tokens.color.orange, color: tokens.color.ink }
-                  : {
-                      border: `1px solid ${tokens.color.ghostBorder}`,
-                      color: tokens.color.paper,
-                    }
-              }
-            >
-              {action.label}
-            </Link>
-          );
-        })}
-      </div>
+      <SurfaceProvider theme="ink">
+        <div className="flex gap-2.5 px-4 py-3">
+          {actions.map((action, i) => {
+            const isPrimary = action.variant === "primary" || (i === 0 && !action.variant);
+            return (
+              <Button
+                key={action.href + action.label}
+                href={action.href}
+                variant={isPrimary ? "orange" : "ghost"}
+                size={isPrimary ? "sticky" : "nav"}
+              >
+                {action.label}
+              </Button>
+            );
+          })}
+        </div>
+      </SurfaceProvider>
 
       <style>{`
         .sticky-cta { transform: translateY(110%); transition: transform 0.3s ease; }

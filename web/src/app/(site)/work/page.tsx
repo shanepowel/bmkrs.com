@@ -11,8 +11,8 @@ import { breadcrumbSchema } from "@/lib/structured-data";
 import type { Project } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
-  "work",
-  "a selection of the brands, products and experiences we have helped bring to life. ideas are easy; making them work is the interesting part.",
+  "Work",
+  "A selection of the brands, products and experiences we have helped bring to life. Ideas are easy; making them work is the interesting part.",
   "/work",
 );
 
@@ -49,64 +49,68 @@ export default async function WorkPage() {
   const heroImage = pageHeroImages.work.src;
 
   const jsonLd = breadcrumbSchema([
-    { name: "home", path: "/" },
-    { name: "work", path: "/work" },
+    { name: "Home", path: "/" },
+    { name: "Work", path: "/work" },
   ]);
 
   return (
-    <main>
+    <main data-surface="paper">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <PageHero
         eyebrow="selected work"
-        title={
-          <>
-            ideas are easy. <span className="text-accent">making them work</span> is the interesting part.
-          </>
-        }
+        title={brandMessaging.workTitle}
         lede={brandMessaging.workSubtitle}
         image={{ src: heroImage, alt: pageHeroImages.work.alt }}
       />
 
-      <Section theme="ink">
-        <H2 theme="ink">client work</H2>
-        <div className="mt-8">
+      <Section theme="paper" className="!pt-0">
+        <H2 theme="paper">Client work</H2>
+        <div className="mt-6">
           <ProjectGrid projects={clientWork} />
         </div>
       </Section>
 
       <Section theme="paper">
         <Kicker theme="paper">{workHowProjectRuns.kicker}</Kicker>
-        <H2 theme="paper">{workHowProjectRuns.headline}</H2>
-        <div className="mt-8 max-w-[65ch] space-y-6">
+        <H2 theme="paper" className="mt-3">
+          {workHowProjectRuns.headline}
+        </H2>
+        <div className="mt-6 max-w-[65ch] space-y-5">
           {workHowProjectRuns.paragraphs.map((paragraph) => (
             <Body key={paragraph.slice(0, 32)} theme="paper">
               {paragraph}
             </Body>
           ))}
         </div>
-        <p className="mono mt-8 text-meta">
+        <p className="mono mt-6 text-meta">
           <Link href="/services" className="underline decoration-1 underline-offset-4">
             {workHowProjectRuns.footnote}
           </Link>
         </p>
+      </Section>
 
-        <div className="mt-[var(--space-block)] border-t border-line pt-[var(--space-block)]">
-          <H2 theme="paper">built in the studio</H2>
-          <Body theme="paper" lead className="mt-3">
-            we are builders, so we build our own. these are bmkrs products: proof we live with the
-            consequences of our own advice.
-          </Body>
-          <div className="mt-8">
-            <ProjectGrid projects={studioWork} />
-          </div>
+      <Section theme="paper">
+        <H2 theme="paper">Built in the studio</H2>
+        <Body theme="paper" lead className="mt-3">
+          We are builders, so we build our own. These are bmkrs products: proof we live with the
+          consequences of our own advice.
+        </Body>
+        <div className="mt-6">
+          <ProjectGrid projects={studioWork} />
         </div>
       </Section>
 
-      <Section theme="ink">
-        <Kicker theme="ink">your brand next</Kicker>
+      <Section theme="paper">
+        <Kicker theme="paper">next</Kicker>
+        <H2 theme="paper" className="mt-3">
+          {brandMessaging.closeTitle}
+        </H2>
+        <Body theme="paper" className="mt-4">
+          {brandMessaging.closeLead}
+        </Body>
         <div className="mt-6">
-          <Button href="/contact">let&apos;s build something</Button>
+          <Button href="/contact">{brandMessaging.ctaPrimary} →</Button>
         </div>
       </Section>
     </main>

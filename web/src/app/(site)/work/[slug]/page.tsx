@@ -31,7 +31,7 @@ export const revalidate = 3600;
 function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
   if (item.type === "iframe" && item.src) {
     return (
-      <div className="aspect-video overflow-hidden rounded-[var(--radius)] ring-2 ring-ink/10">
+      <div className="aspect-video overflow-hidden rounded-[var(--bmkrs-radius-card)] ring-2 ring-ink/10">
         <iframe
           src={item.src}
           title={`${title} video`}
@@ -45,7 +45,7 @@ function MediaBlock({ item, title }: { item: MediaItem; title: string }) {
   }
   if (item.type === "image" && item.src) {
     return (
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--bmkrs-radius-card)]">
         <Image
           src={item.src}
           alt={item.alt || title}
@@ -156,13 +156,13 @@ export default async function CaseStudyPage({ params }: Props) {
         <Reveal>
           <Link
             href="/work"
-            className="mono text-meta text-muted transition-colors hover:text-accent"
+            className="mono text-meta text-bmkrs-muted transition-colors hover:text-accent"
           >
             back to work
           </Link>
         </Reveal>
         <Reveal delay={1}>
-          <p className="mono mt-8 text-meta text-muted">
+          <p className="mono mt-8 text-meta text-bmkrs-muted">
             {[project.sector || project.category, project.year].filter(Boolean).join(" · ")}
           </p>
         </Reveal>
@@ -175,7 +175,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </Reveal>
         )}
         <Reveal delay={2}>
-          <div className="relative mt-[var(--space-block)] aspect-[21/9] overflow-hidden rounded-[var(--radius)] bg-ink/5">
+          <div className="relative mt-[var(--space-block)] aspect-[21/9] overflow-hidden rounded-[var(--bmkrs-radius-card)] bg-ink/5">
             <Image
               src={project.thumbnailPath}
               alt={project.heroImage?.alt || project.title}
@@ -194,12 +194,12 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className="max-w-[900px]">
           <div className="case-meta">
             <div>
-              <p className="mono text-meta text-muted">services</p>
+              <p className="mono text-meta text-bmkrs-muted">services</p>
               <ServiceTags tags={services} />
             </div>
             {project.client && (
               <div>
-                <p className="mono text-meta text-muted">client</p>
+                <p className="mono text-meta text-bmkrs-muted">client</p>
                 <p className="mt-2 text-body-lg">{project.client}</p>
               </div>
             )}
@@ -284,15 +284,15 @@ export default async function CaseStudyPage({ params }: Props) {
                   href={`/work/${nextProject.slug}`}
                   className="group inline-flex flex-col gap-1"
                 >
-                  <span className="mono text-meta text-muted">next project</span>
+                  <span className="mono text-meta text-bmkrs-muted">Next project</span>
                   <span className="text-h3 font-medium transition-colors group-hover:text-accent">
                     {nextProject.title} <span aria-hidden="true">+</span>
                   </span>
                 </Link>
               ) : (
-                <Button href="/work">all projects</Button>
+                <Button href="/work">All projects</Button>
               )}
-              <GhostButton href="/contact">start a build</GhostButton>
+              <GhostButton href="/contact">Talk to us</GhostButton>
             </div>
           </div>
         </div>

@@ -3,8 +3,8 @@ import { MotionPageViewReworked } from "@/components/motion/MotionPageViewRework
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "motion",
-  "an ongoing creative and digital partnership for brands, products and experiences ready to keep moving forward.",
+  "Motion",
+  "An ongoing creative and digital partnership for brands, products and experiences ready to keep moving forward.",
   "/motion",
 );
 

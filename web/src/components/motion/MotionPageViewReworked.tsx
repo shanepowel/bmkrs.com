@@ -18,70 +18,70 @@ import {
   TierCard,
   TierGrid,
 } from "@bmkrs/ui";
-import { fadeUp, stagger } from "./animations";
-import { MotionLoop } from "./MotionLoop";
 import { brandMessaging } from "@/lib/content/messaging";
+import { fadeUp, stagger } from "./animations";
+import { StarsOrbit } from "./StarsOrbit";
 
 const SYMPTOMS = [
   {
-    t: "the work launched. the next chapter is still unwritten.",
-    b: "there are new opportunities to explore, but no space to keep building on what is already working.",
+    t: "the product launched. improvement stalled.",
+    b: "every change means re-briefing someone from scratch, so the backlog grows and production goes quiet.",
   },
   {
-    t: "your team needs a partner who knows the whole story.",
-    b: "context matters. Continuity makes better decisions possible and lets each piece of work build on the last.",
+    t: "ai work happens in bursts.",
+    b: "a pilot, then silence, then panic. nobody owns evaluation, change control or the next release.",
   },
   {
-    t: "ambition is growing faster than capacity.",
-    b: "bring the right mix of strategic, creative and technical experience around the work, when you need it.",
+    t: "five suppliers, no rhythm.",
+    b: "product, data, change and delivery pull in different directions, and you sit in the middle translating.",
   },
 ];
 
 const INCLUDED = [
-  "a shared plan and clear priorities",
-  "product and experience improvements",
-  "design and creative development",
-  "technical delivery and integrations",
-  "specialist expertise when needed",
-  "collaboration with your own team",
-  "regular learning and review",
-  "clear ownership and next steps",
+  "monthly plan with one primary objective",
+  "product iteration and releases",
+  "ai system upkeep and evaluation",
+  "operating-model support",
+  "priority incident and change line",
+  "governance that stays current",
+  "handover docs kept alive",
+  "the monthly report, with numbers",
 ];
 
 const MONTH = [
   {
     n: "01",
     t: "week one: we plan.",
-    b: "what will make the biggest difference this month, decided together, with one shared focus.",
+    b: "what the product and ai estate needs this month, decided together, written down. not a backlog. a bet.",
   },
   {
     n: "02",
-    t: "weeks two + three: we make.",
-    b: "design, product improvements and technical delivery move forward with clear decisions and regular check-ins.",
+    t: "weeks two + three: we build.",
+    b: "product changes, model work, integrations, whatever the plan called for, shipped as it is finished.",
   },
   {
     n: "03",
-    t: "week four: we learn.",
-    b: "what changed, what we learned and where to focus next. the work stays visible and the next step stays clear.",
+    t: "week four: we report.",
+    b: "what shipped, what moved, what we would do differently. a document you can forward without editing.",
   },
 ];
 
 const TIERS = [
   {
     name: "motion",
-    eyebrow: "steady partnership",
-    b: "a connected team for regular improvements across your product, brand and experience.",
+    price: "from £4,500/month",
+    b: "steady shipping for products that cannot go quiet: releases, ai upkeep, operating-model support, monthly readout.",
   },
   {
     name: "motion plus",
-    eyebrow: "deeper collaboration",
-    b: "everything in motion, with more room for exploration, design and specialist delivery.",
+    price: "from £6,500/month",
+    b: "everything in motion, plus deeper discovery, growth loops and an extended specialist bench on demand.",
     featured: true,
   },
   {
     name: "motion embedded",
-    eyebrow: "embedded team",
-    b: "a senior creative and digital team working alongside yours, with the wider bmkrs network behind them.",
+    price: "from £9,000/month",
+    b: "a named senior product and ai team plugged into yours, with the wider bmkrs network behind them.",
   },
 ];
 
@@ -89,29 +89,29 @@ export function MotionPageViewReworked() {
   return (
     <MotionConfig reducedMotion="user">
       <Surface theme="ink">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <div>
             <Kicker>keep shipping</Kicker>
             <H1 className="mt-4 max-w-[12ch]">always in motion.</H1>
             <Body lead className="mt-7">
-              good work does not stop at launch. motion is a close, ongoing partnership that keeps
-              your product, brand and experience moving forward month after month, with a team that
-              already understands where you want to go.
+              launches are exciting. staying in production is hard. motion is the team that keeps your
+              product and ai estate moving month after month: senior delivery, without hiring an
+              internal team or re-briefing a new supplier every quarter.
             </Body>
             <div className="mt-9 flex flex-wrap items-center gap-6">
-              <OrangeButton href="#tiers">explore the partnership</OrangeButton>
-              <GhostButton href="#month">what a month looks like <span aria-hidden="true">+</span></GhostButton>
+              <OrangeButton href="#tiers">see the tiers + prices</OrangeButton>
+              <GhostButton href="#month">what a month looks like →</GhostButton>
             </div>
           </div>
-          <div className="hidden md:block md:mx-auto md:w-full md:max-w-[30rem] lg:mx-0">
-            <MotionLoop />
+          <div className="mx-auto w-full max-w-[28rem] lg:mx-0">
+            <StarsOrbit />
           </div>
         </div>
       </Surface>
 
       <Surface theme="paper">
         <Kicker>you might need this if</Kicker>
-        <H2 className="mt-3 max-w-[18ch]">keep the good work moving.</H2>
+        <H2 className="mt-3 max-w-[18ch]">shipping creates complexity. complexity eats momentum.</H2>
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -135,8 +135,8 @@ export function MotionPageViewReworked() {
             <Kicker>what&apos;s included</Kicker>
             <H2 className="mt-3">one partner. everything moving.</H2>
             <Body className="mt-5">
-              One connected team brings the right mix of strategy, design and technology around the
-              work. The focus can change month to month; the partnership stays consistent.
+              instead of managing several suppliers, you get one embedded team with one plan and one
+              report. the mix flexes month to month; the rhythm never does.
             </Body>
           </div>
           <motion.ul
@@ -156,19 +156,11 @@ export function MotionPageViewReworked() {
         </div>
       </Surface>
 
-      <Surface theme="orange">
-        <H2>good work builds on itself.</H2>
-        <div className="mt-8">
-          <StepLine
-            steps={["understanding", "ideas", "experience", "product", "momentum"]}
-            body="with the same people close to the work, knowledge grows, decisions get clearer and each improvement builds on what came before."
-          />
-        </div>
-      </Surface>
-
-      <Surface theme="ink" id="month">
-        <Kicker>what it actually looks like</Kicker>
-        <H2 className="mt-3">a month in motion.</H2>
+      <Surface theme="paper" id="month">
+        <Kicker theme="paper">what it actually looks like</Kicker>
+        <H2 theme="paper" className="mt-3">
+          a month in motion.
+        </H2>
         <div className="mt-10">
           <RuledGrid>
             {MONTH.map((step) => (
@@ -176,21 +168,21 @@ export function MotionPageViewReworked() {
             ))}
           </RuledGrid>
         </div>
-        <Body className="mt-10">
-          Then we plan again. A steady rhythm creates room to respond as the business and its
-          ambitions evolve.
+        <Body theme="paper" className="mt-10">
+          then we plan again. that is the whole rhythm: no retainer mystery, no activity theatre. a
+          team in motion and a paper trail that proves it.
         </Body>
       </Surface>
 
-      <Surface theme="ink" id="tiers" raised>
+      <Surface theme="ink" id="tiers">
         <Kicker>tiers</Kicker>
-        <H2 className="mt-3 max-w-[16ch]">a partnership shaped around what comes next.</H2>
+        <H2 className="mt-3 max-w-[16ch]">three speeds. prices on the page, like grown-ups.</H2>
         <div className="mt-10">
           <TierGrid>
             {TIERS.map((tier) => (
               <TierCard
                 key={tier.name}
-                eyebrow={tier.eyebrow}
+                eyebrow={tier.price}
                 title={tier.name}
                 blurb={tier.b}
                 featured={tier.featured}
@@ -198,14 +190,21 @@ export function MotionPageViewReworked() {
             ))}
           </TierGrid>
         </div>
-        <Body className="mt-10 max-w-[60ch]">Every partnership is shaped around your priorities, team and the work ahead. Tell us what you need and we&apos;ll work out the right approach together.</Body>
+        <Body className="mt-10">30 days notice either way, no lock-in. you stay because it works.</Body>
+      </Surface>
+
+      <Surface theme="orange">
+        <H2 theme="orange">consistency compounds.</H2>
         <div className="mt-8">
-          <OrangeButton href="/contact">talk through your needs</OrangeButton>
+          <StepLine
+            steps={["product", "ai", "controls", "users", "growth"]}
+            body="every month the product stays in motion, the next month costs less: knowledge compounds, releases reuse, users stay warm. stop-start resets the meter. that is the entire economics of motion."
+          />
         </div>
       </Surface>
 
       <Close
-        title="have something worth keeping in motion?"
+        title="production was the beginning."
         action={<Button href="/contact">{brandMessaging.ctaPrimary}</Button>}
       />
     </MotionConfig>

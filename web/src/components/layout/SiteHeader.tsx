@@ -4,7 +4,6 @@ import { SiteHeader as UISiteHeader } from "@bmkrs/ui";
 import { Wordmark } from "@/components/bmkrs/Wordmark";
 import type { NavItem } from "@/lib/types";
 import { MEMBER_LOGIN_URL } from "@/lib/urls";
-import { brandMessaging } from "@/lib/content/messaging";
 
 const DEFAULT_NAV: NavItem[] = [
   { label: "services", href: "/services" },
@@ -48,7 +47,7 @@ export function SiteHeader({
       items={items}
       loginUrl={login}
       contactEmail={contactEmail}
-      ctaLabel={brandMessaging.ctaPrimary}
+      ctaLabel="Talk to us"
       ctaHref="/contact"
       renderLogo={(variant) => <BrandLogo light={variant === "light"} />}
     />

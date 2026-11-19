@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { brandMessaging } from "@/lib/content/messaging";
 import { OgTemplate, OG_SIZE } from "@/lib/og-image";
 
-export const alt = "bmkrs. digital products. ai that ships.";
+export const alt = `bmkrs. ${brandMessaging.tagline}`;
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
@@ -10,8 +11,8 @@ export default function Image() {
     (
       <OgTemplate
         kicker="bmkrs."
-        title="digital products. ai that ships."
-        subtitle="build, govern, hand over."
+        title={brandMessaging.tagline}
+        subtitle={brandMessaging.ctaPrimary}
       />
     ),
     { ...size },

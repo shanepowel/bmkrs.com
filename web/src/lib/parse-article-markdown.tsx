@@ -70,7 +70,7 @@ export function parseArticleMarkdown(markdown: string): ReactNode[] {
       nodes.push(
         <h3
           key={i}
-          className="display mb-4 mt-10 text-[clamp(1.35rem,3vw,1.75rem)] font-medium lowercase first:mt-0"
+          className="display mb-4 mt-10 text-[clamp(1.35rem,3vw,1.75rem)] font-medium first:mt-0"
         >
           {trimmed.slice(4)}
         </h3>

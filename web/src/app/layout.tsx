@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { cabinet, fragment } from "@/app/fonts";
+import { cabinet, fragment, instrument } from "@/app/fonts";
 import { getSiteSettings } from "@/lib/content";
+import { brandMessaging } from "@/lib/content/messaging";
 import { DEFAULT_OG_IMAGE, OG_SIZE, SITE_URL } from "@/lib/og-image";
 import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
@@ -18,31 +19,31 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: "bmkrs. digital products. ai that ships.",
+      default: `bmkrs. ${brandMessaging.tagline}`,
       template: "%s",
     },
-    description: settings.description,
+    description: settings.description || brandMessaging.description,
     robots: isPreview ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
       type: "website",
       locale: "en_GB",
       url: SITE_URL,
-      title: "bmkrs. digital products. ai that ships.",
-      description: settings.description,
+      title: `bmkrs. ${brandMessaging.tagline}`,
+      description: settings.description || brandMessaging.description,
       siteName: settings.siteName,
       images: [
         {
           url: DEFAULT_OG_IMAGE,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
-          alt: "bmkrs. digital products. ai that ships.",
+          alt: `bmkrs. ${brandMessaging.tagline}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "bmkrs. digital products. ai that ships.",
-      description: settings.description,
+      title: `bmkrs. ${brandMessaging.tagline}`,
+      description: settings.description || brandMessaging.description,
       images: [DEFAULT_OG_IMAGE],
     },
     icons: {
@@ -75,7 +76,10 @@ export default async function RootLayout({
   const jsonLd = organizationSchema();
 
   return (
-    <html lang="en-GB" className={`${cabinet.variable} ${fragment.variable}`}>
+    <html
+      lang="en-GB"
+      className={`${cabinet.variable} ${instrument.variable} ${fragment.variable}`}
+    >
       <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"

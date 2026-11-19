@@ -13,10 +13,10 @@ import { cn } from "./cn";
 import { useSurface } from "./Surface";
 import { tokens, type SurfaceTheme } from "./tokens";
 
-const labelClass = "font-mono text-meta tracking-[var(--bmkrs-tracking-kicker)] lowercase";
+const labelClass = "font-sans text-meta tracking-[var(--bmkrs-tracking-kicker)] text-[var(--bmkrs-paper-faint)]";
 
 const fieldClass =
-  "bmkrs-field w-full rounded-[var(--bmkrs-radius-field)] border px-4 py-[0.85rem] text-input leading-snug focus:outline-none focus-visible:border-bmkrs-orange focus-visible:shadow-[0_0_0_3px_var(--bmkrs-accent-focus)]";
+  "bmkrs-field w-full min-h-11 rounded-[var(--bmkrs-radius-field)] border px-4 py-2.5 text-input leading-normal focus:outline-none focus-visible:border-bmkrs-orange focus-visible:shadow-[0_0_0_3px_var(--bmkrs-accent-focus)]";
 
 function fieldColors(theme: SurfaceTheme): CSSProperties & {
   label: string;
@@ -177,7 +177,7 @@ export function PillSelect({
               type="button"
               aria-pressed={active}
               onClick={() => toggle(opt.value)}
-              className="min-h-11 cursor-pointer rounded-full border px-4 py-2 text-[0.9375rem] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange"
+              className="min-h-11 cursor-pointer rounded-[var(--bmkrs-radius-field)] border px-4 py-2 text-[0.9375rem] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange"
               style={{
                 borderColor: active ? colors.activeBg : colors.borderColor,
                 background: active ? colors.activeBg : "transparent",

@@ -6,11 +6,15 @@ Shared bmkrs design system. **All new UI primitives go here** — never inline o
 
 Interactive primitives are built on the **shadcn stack**:
 
-- [Radix UI](https://www.radix-ui.com/) — accessible behaviour (Slot, Label, Select, Separator, Dialog, Navigation Menu)
-- [class-variance-authority](https://cva.style/) — variant APIs
+- [Radix UI](https://www.radix-ui.com/) — accessible behaviour (Slot, Label, Select, Separator, Dialog/Sheet, Navigation Menu)
+- [class-variance-authority](https://cva.style/) — variant APIs (`buttonVariants`, sheet sides, …)
 - [tailwind-merge](https://github.com/dcastil/tailwind-merge) via `cn()`
 
-Brand look stays ours: ink / paper / orange surfaces, Cabinet + Fragment type, StatusDot as the mark. Do not import a second visual system (Radix Themes, generic shadcn themes) into pages.
+Brand look stays ours: ink / paper / orange surfaces, Instrument Serif + Cabinet + Fragment type, StatusDot as the mark. Do not import a second visual system (Radix Themes, stock shadcn themes, lucide) into product UI.
+
+### shadcn MCP / CLI
+
+Project MCP config lives at `.cursor/mcp.json` (`npx shadcn@latest mcp`). Use it to **browse and compare** registry items. Adapt patterns into `packages/ui` — never dump stock registry files into `web/src/components/ui`. No lucide icons without explicit approval.
 
 ```ts
 import { Surface, Kicker, H2, Button, tokens, cn } from "@bmkrs/ui";

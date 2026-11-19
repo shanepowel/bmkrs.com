@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@bmkrs/ui";
 import Link from "next/link";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { SURFACE } from "@/lib/surfaces";
 
 export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: string }) {
@@ -13,13 +13,13 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
     e.preventDefault();
     setStatus("sending");
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
+    const emailValue = formData.get("email");
     const consent = formData.get("consent") === "on";
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent }),
+        body: JSON.stringify({ email: emailValue, consent }),
       });
       setStatus(res.ok ? "sent" : "error");
     } catch {
@@ -30,14 +30,14 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
   return (
     <div className="footer-capture">
       <h3 className="text-[1.1rem] font-medium" style={{ color: ink.text }}>
-        notes from the work.
+        The bmkrs newsletter
       </h3>
       <p className="newsp mt-2 max-w-[34ch] text-[0.92rem]" style={{ color: ink.faint }}>
-        Brief notes on brands, products and technology. Thoughtful ideas from the work we do.
+        Occasional notes on design, technology and the work we are making.
       </p>
       {status === "sent" ? (
         <p className="mt-5 text-base" style={{ color: ink.accent }}>
-          thanks. the next note is on its way.
+          Thanks. The next note is on its way.
         </p>
       ) : (
         <form className="footer-capture__form mt-5" onSubmit={onSubmit}>
@@ -46,8 +46,8 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
             type="email"
             required
             autoComplete="email"
-            placeholder="your email"
-            aria-label="email"
+            placeholder="Your email"
+            aria-label="Email"
             className="footer-capture__input"
           />
           <label className="footer-capture__consent">
@@ -57,14 +57,18 @@ export function FooterEmailCapture({ email = "hello@bmkrs.com" }: { email?: stri
               <Link href="/legal/privacy">privacy notice</Link>.
             </span>
           </label>
-          <Button type="submit" variant="orange" disabled={status === "sending"} className="footer-capture__btn">
-            {status === "sending" ? "sending…" : "subscribe"}
+          <Button type="submit" variant="brand" disabled={status === "sending"} className="footer-capture__btn">
+            {status === "sending" ? "Sending…" : "Subscribe"}
           </Button>
         </form>
       )}
       {status === "error" ? (
         <p className="mt-2 text-sm" role="alert" style={{ color: ink.accent }}>
-          That did not go through. <a href={`mailto:${email}`} className="underline underline-offset-4">Email us directly</a> and we&apos;ll help.
+          That did not go through.{" "}
+          <a href={`mailto:${email}`} className="underline underline-offset-4">
+            Email us directly
+          </a>{" "}
+          and we will help.
         </p>
       ) : null}
     </div>

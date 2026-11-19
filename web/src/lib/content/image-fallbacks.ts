@@ -39,7 +39,7 @@ export const pageHeroImages = {
   work: { src: marketingImages.portfolioCaseStudy, alt: "brand and digital experience work" },
   motion: { src: marketingImages.studioTeam, alt: "ongoing brand and creative partnership" },
   journal: { src: marketingImages.brandStrategy, alt: "brand strategy and thinking" },
-  contact: { src: marketingImages.teamCollaboration, alt: "start a build with bmkrs" },
+  contact: { src: marketingImages.teamCollaboration, alt: "talk to us at bmkrs" },
 } as const;
 
 export const aboutStoryImage = {

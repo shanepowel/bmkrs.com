@@ -25,7 +25,7 @@ export function Hero({
   media,
   aside,
 }: {
-  eyebrow: ReactNode;
+  eyebrow?: ReactNode;
   title: ReactNode;
   lede: ReactNode;
   actions?: ReactNode;
@@ -37,7 +37,7 @@ export function Hero({
 }) {
   const copy = (
     <>
-      <span className="bmkrs-hero__eyebrow">{eyebrow}</span>
+      {eyebrow ? <span className="bmkrs-hero__eyebrow">{eyebrow}</span> : null}
       <h1 className="bmkrs-hero__title">{title}</h1>
       <p className="bmkrs-hero__lede">{lede}</p>
       {actions ? <div className="bmkrs-hero__actions">{actions}</div> : null}
@@ -53,7 +53,7 @@ export function Hero({
     <header
       className={clsx("bmkrs-hero", media && "bmkrs-hero--reel", aside && "bmkrs-hero--split")}
       data-bmkrs-hero=""
-      data-surface="ink"
+      data-surface="paper"
     >
       {media ? (
         <div className="bmkrs-hero__media" aria-hidden="true">
@@ -365,21 +365,136 @@ export function Close({
   id,
   snap,
   title,
+  lede,
   action,
 }: {
   id?: string;
   snap?: ReactNode;
   title: ReactNode;
+  lede?: ReactNode;
   action: ReactNode;
 }) {
   return (
-    <section id={id} className="bmkrs-close" data-surface="ink">
-      <div className="bmkrs-wrap">
-        {snap ? <div className="bmkrs-close__snap">{snap}</div> : null}
-        <h2>{title}</h2>
-        {action}
+    <section id={id} className="bmkrs-close" data-surface="paper">
+      <div className="bmkrs-wrap bmkrs-close__row">
+        <div className="bmkrs-close__main">
+          {snap ? <div className="bmkrs-close__snap">{snap}</div> : null}
+          <h2>{title}</h2>
+        </div>
+        <div className="bmkrs-close__aside">
+          {lede ? <p className="bmkrs-close__lede">{lede}</p> : null}
+          {action}
+        </div>
       </div>
     </section>
+  );
+}
+
+/** Two-column story band: copy + media plate. */
+export function StorySplit({
+  eyebrow,
+  title,
+  body,
+  media,
+  reverse = false,
+}: {
+  eyebrow?: ReactNode;
+  title: ReactNode;
+  body: ReactNode;
+  media: ReactNode;
+  reverse?: boolean;
+}) {
+  return (
+    <div className={clsx("bmkrs-story", reverse && "bmkrs-story--reverse")}>
+      <div className="bmkrs-story__copy">
+        {eyebrow ? <span className="bmkrs-story__eyebrow">{eyebrow}</span> : null}
+        <h2 className="bmkrs-story__title">{title}</h2>
+        <div className="bmkrs-story__body">{body}</div>
+      </div>
+      <div className="bmkrs-story__media">{media}</div>
+    </div>
+  );
+}
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  portrait?: ReactNode;
+};
+
+/** Equal portrait row for the studio team. */
+export function TeamGrid({ members }: { members: TeamMember[] }) {
+  return (
+    <ul className="bmkrs-team" role="list">
+      {members.map((member) => (
+        <li key={member.name} className="bmkrs-team__item">
+          <div className="bmkrs-team__portrait">{member.portrait}</div>
+          <span className="bmkrs-team__name">{member.name}</span>
+          <span className="bmkrs-team__role">{member.role}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export type RuledListItem = {
+  href?: string;
+  date?: string;
+  title: string;
+  category?: string;
+};
+
+/** Hairline journal / index list. */
+export function RuledList({ items }: { items: RuledListItem[] }) {
+  return (
+    <ul className="bmkrs-ruled-list" role="list">
+      {items.map((item) => {
+        const inner = (
+          <>
+            {item.date ? <span className="bmkrs-ruled-list__date">{item.date}</span> : null}
+            <span className="bmkrs-ruled-list__title">{item.title}</span>
+            {item.category ? (
+              <span className="bmkrs-ruled-list__category">{item.category}</span>
+            ) : null}
+          </>
+        );
+        return (
+          <li key={`${item.title}-${item.date ?? ""}`} className="bmkrs-ruled-list__row">
+            {item.href ? (
+              <Link href={item.href} className="bmkrs-ruled-list__link">
+                {inner}
+              </Link>
+            ) : (
+              <div className="bmkrs-ruled-list__link">{inner}</div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/** Underline category filter for journal hubs. */
+export function CategoryTabs({
+  items,
+  active,
+}: {
+  items: { id: string; label: string; href: string }[];
+  active?: string;
+}) {
+  return (
+    <nav className="bmkrs-cats" aria-label="categories">
+      {items.map((item) => (
+        <Link
+          key={item.id}
+          href={item.href}
+          className={clsx("bmkrs-cats__item", active === item.id && "bmkrs-cats__item--active")}
+          aria-current={active === item.id ? "page" : undefined}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </nav>
   );
 }
 
@@ -397,9 +512,9 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <header className="bmkrs-page-hero" data-surface="ink">
+    <header className="bmkrs-page-hero" data-surface="paper">
       <div className="bmkrs-wrap bmkrs-page-hero__grid">
-        <div>
+        <div className="bmkrs-page-hero__copy">
           {eyebrow ? <span className="bmkrs-page-hero__eyebrow">{eyebrow}</span> : null}
           {title ? <h1 className="bmkrs-page-hero__title">{title}</h1> : null}
           {lede ? <p className="bmkrs-page-hero__lede">{lede}</p> : null}
@@ -412,7 +527,7 @@ export function PageHero({
               alt={image.alt}
               fill
               priority
-              sizes="(max-width: 960px) 100vw, 520px"
+              sizes="(max-width: 960px) 100vw, 40vw"
               className="bmkrs-page-hero__img"
             />
           </div>

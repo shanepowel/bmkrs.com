@@ -16,8 +16,8 @@ import { marketingImages } from "@/lib/marketing-assets";
 import type { ProductTier } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata(
-  "services | bmkrs.",
-  "strategy, design and technology to move ambitious ideas forward. explore ways to start, build and grow with bmkrs.",
+  "Services",
+  "Strategy, design and technology to move ambitious ideas forward. Explore ways to start, build and grow with bmkrs.",
   "/services",
 );
 
@@ -41,17 +41,17 @@ export default async function ServicesPage() {
       <LegacyHashRedirect />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <Section theme="ink">
+      <Section theme="paper">
         <Reveal>
-          <Kicker theme="ink">services</Kicker>
+          <Kicker theme="paper">services</Kicker>
         </Reveal>
         <Reveal delay={1}>
-          <H1 theme="ink" className="mt-4 max-w-[16ch]">
+          <H1 theme="paper" className="mt-3 max-w-[16ch]">
             {brandMessaging.servicesHero}
           </H1>
         </Reveal>
         <Reveal delay={2}>
-          <Body theme="ink" lead className="mt-8">
+          <Body theme="paper" lead className="mt-6">
             {brandMessaging.servicesLead}
           </Body>
         </Reveal>
@@ -59,7 +59,7 @@ export default async function ServicesPage() {
 
       <MarketingBanner
         src={marketingImages.disciplineIcons}
-        alt="digital product, ai implementation, governance and handover"
+        alt="Digital product, AI implementation, governance and handover"
         aspect="4/3"
       />
 
@@ -74,11 +74,11 @@ export default async function ServicesPage() {
 
       <Section theme="orange">
         <H2 theme="orange">{brandMessaging.closeTitle}</H2>
-        <Body theme="orange" lead className="mt-6">
-          every package starts with a conversation, not a contract. tell us what you are building
+        <Body theme="orange" lead className="mt-5">
+          Every package starts with a conversation, not a contract. Tell us what you are building
           and we will tell you honestly which of these fits, including &quot;none of them yet.&quot;
         </Body>
-        <div className="mt-10">
+        <div className="mt-8">
           <Button href="/contact">{brandMessaging.ctaPrimary}</Button>
         </div>
       </Section>

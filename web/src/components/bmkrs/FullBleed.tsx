@@ -1,20 +1,23 @@
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 type FullBleedProps = {
   children: React.ReactNode;
   className?: string;
   aspect?: "21/9" | "4/3" | "auto";
+  style?: CSSProperties;
 };
 
-export function FullBleed({ children, className, aspect = "auto" }: FullBleedProps) {
+export function FullBleed({ children, className, aspect = "auto", style }: FullBleedProps) {
   return (
     <div
       className={cn(
         "full-bleed",
         aspect === "21/9" && "full-bleed--21-9",
         aspect === "4/3" && "full-bleed--4-3",
-        className
+        className,
       )}
+      style={style}
     >
       {children}
     </div>
