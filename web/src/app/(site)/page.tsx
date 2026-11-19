@@ -60,7 +60,7 @@ export default async function HomePage() {
                     discipline={person.discipline ?? person.role}
                     portraitUrl={person.portraitUrl}
                     theme="paper"
-                    size={320}
+                    size={260}
                   />
                 ),
               }))}

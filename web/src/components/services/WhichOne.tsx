@@ -50,7 +50,7 @@ export function WhichOne() {
         </LinkIndex>
       </div>
       <Body theme="paper" lead className="mt-8">
-        still not sure? tell us what you are trying to make happen and we&apos;ll find a useful place to start.
+        Still not sure? Tell us what you are trying to make happen and we will find a useful place to start.
       </Body>
     </Section>
   );

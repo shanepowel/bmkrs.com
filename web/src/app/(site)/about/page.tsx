@@ -149,7 +149,7 @@ export default async function AboutPage() {
                   name={founder.name}
                   discipline={founderPerson.discipline}
                   theme="ink"
-                  size={320}
+                  size={260}
                 />
               )
             }
@@ -179,7 +179,7 @@ export default async function AboutPage() {
                 discipline={person.discipline ?? person.role}
                 portraitUrl={person.portraitUrl}
                 theme="paper"
-                size={320}
+                size={260}
               />
             ),
           }))}

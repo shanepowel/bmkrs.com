@@ -94,7 +94,7 @@ main:has([data-bmkrs-hero]) {
 
 .bmkrs-hero {
   position: relative;
-  padding-block: var(--section-y) var(--section-y-sm);
+  padding-block: clamp(3rem, 6vh, 5rem) clamp(2.5rem, 5vh, 4rem);
   background: var(--bmkrs-paper);
   color: var(--bmkrs-ink);
   overflow: hidden;
@@ -161,7 +161,7 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-hero__lede {
-  margin: 1.75rem 0 2rem;
+  margin: 1.25rem 0 1.5rem;
   max-width: 46ch;
   font-size: var(--text-lead);
   line-height: var(--lh-body);
@@ -1197,7 +1197,7 @@ main:has([data-bmkrs-hero]) {
   }
 
   .bmkrs-hero--split .bmkrs-hero__aside {
-    min-height: 28rem;
+    min-height: 22rem;
     aspect-ratio: 5 / 6;
   }
 }
