@@ -15,6 +15,17 @@ export function useSurface(): SurfaceTheme {
   return useContext(SurfaceContext);
 }
 
+/** Theme context only — for chrome that must not draw a full Surface band. */
+export function SurfaceProvider({
+  theme,
+  children,
+}: {
+  theme: SurfaceTheme;
+  children: ReactNode;
+}) {
+  return <SurfaceContext.Provider value={theme}>{children}</SurfaceContext.Provider>;
+}
+
 function useTheme(theme?: SurfaceTheme): SurfaceTheme {
   const current = useSurface();
   return theme ?? current;

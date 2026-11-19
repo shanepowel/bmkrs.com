@@ -177,7 +177,7 @@ export function PillSelect({
               type="button"
               aria-pressed={active}
               onClick={() => toggle(opt.value)}
-              className="min-h-11 cursor-pointer rounded-full border px-4 py-2 text-[0.9375rem] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange"
+              className="min-h-11 cursor-pointer rounded-[var(--bmkrs-radius-field)] border px-4 py-2 text-[0.9375rem] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bmkrs-orange"
               style={{
                 borderColor: active ? colors.activeBg : colors.borderColor,
                 background: active ? colors.activeBg : "transparent",

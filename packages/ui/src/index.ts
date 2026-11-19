@@ -1,5 +1,6 @@
 export {
   Surface,
+  SurfaceProvider,
   Section,
   Kicker,
   H1,
@@ -26,7 +27,27 @@ export {
 } from "./tokens";
 
 export { cn } from "./cn";
-export { Button, GhostButton, InkButton, OrangeButton, type ButtonProps } from "./Button";
+export {
+  Button,
+  GhostButton,
+  InkButton,
+  OrangeButton,
+  buttonVariants,
+  type ButtonProps,
+} from "./Button";
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetPortal,
+  SheetOverlay,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+  type SheetContentProps,
+} from "./Sheet";
 export { Separator, type SeparatorProps } from "./Separator";
 export { SnapLine, type SnapLineProps } from "./SnapLine";
 export { WorkReel, type WorkReelProps, type WorkReelFrame } from "./WorkReel";
