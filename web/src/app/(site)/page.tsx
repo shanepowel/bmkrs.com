@@ -23,7 +23,7 @@ export default async function HomePage() {
             body={
               <>
                 <p>{brandMessaging.positioningLead}</p>
-                <p className="mt-6">{brandMessaging.positioningBody}</p>
+                <p className="mt-5">{brandMessaging.positioningBody}</p>
               </>
             }
             media={
@@ -39,9 +39,9 @@ export default async function HomePage() {
         </Reveal>
       </Section>
 
-      <Section theme="paper" id="team" className="!pt-0">
+      <Section theme="paper" id="team">
         <Reveal>
-          <div className="mb-14 grid gap-6 lg:grid-cols-12 lg:items-end">
+          <div className="mb-10 grid gap-4 lg:grid-cols-12 lg:items-end">
             <H2 theme="paper" className="lg:col-span-3">
               {brandMessaging.teamEyebrow}
             </H2>

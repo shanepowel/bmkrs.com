@@ -75,8 +75,8 @@ main:has([data-bmkrs-hero]) {
 .bmkrs-section-heading__title {
   max-width: 22ch;
   font-family: var(--bmkrs-font-display);
-  font-size: clamp(1.9rem, 4.2vw, 3.2rem);
-  line-height: 1.04;
+  font-size: var(--text-h2);
+  line-height: var(--lh-heading);
   letter-spacing: var(--tracking-display);
   font-weight: 400;
 }
@@ -94,7 +94,7 @@ main:has([data-bmkrs-hero]) {
 
 .bmkrs-hero {
   position: relative;
-  padding-block: clamp(72px, 12vh, 140px) clamp(56px, 9vh, 110px);
+  padding-block: var(--section-y) var(--section-y-sm);
   background: var(--bmkrs-paper);
   color: var(--bmkrs-ink);
   overflow: hidden;
@@ -263,7 +263,7 @@ main:has([data-bmkrs-hero]) {
 .bmkrs-cells__title {
   margin-bottom: 1.1rem;
   max-width: 18ch;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-size: var(--text-h2);
   line-height: 1.08;
   letter-spacing: -0.02em;
   font-weight: 500;
@@ -387,7 +387,7 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-split__quote {
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  font-size: var(--text-h2);
   line-height: 1.15;
   letter-spacing: -0.02em;
   font-weight: 500;
@@ -534,7 +534,7 @@ main:has([data-bmkrs-hero]) {
 .bmkrs-stats__value {
   display: block;
   margin-bottom: 0.35rem;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-size: var(--text-hero);
   line-height: 1;
   letter-spacing: -0.03em;
   font-weight: 500;
@@ -768,7 +768,7 @@ main:has([data-bmkrs-hero]) {
 }
 
 .bmkrs-close {
-  padding-block: clamp(72px, 12vh, 140px);
+  padding-block: var(--section-y);
   background: var(--bmkrs-paper);
   color: var(--bmkrs-ink);
   border-top: 1px solid var(--bmkrs-rule-paper);
@@ -790,8 +790,8 @@ main:has([data-bmkrs-hero]) {
   max-width: 12ch;
   margin: 0;
   font-family: var(--bmkrs-font-display);
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  line-height: 1.08;
+  font-size: var(--text-hero);
+  line-height: var(--lh-display);
   letter-spacing: var(--tracking-display);
   font-weight: 400;
 }

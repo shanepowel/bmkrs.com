@@ -31,7 +31,7 @@
   --bg: var(--bmkrs-paper-bright, #fbf9f5);
   --ink: var(--bmkrs-ink, #181613);
   --line: rgba(24, 22, 19, 0.12);
-  --bmkrs-radius-card: 24px;
+  --bmkrs-radius-card: 4px;
   --bmkrs-radius-field: 2px;
   --pad: var(--gutter);
   --page-top: max(0px, env(safe-area-inset-top, 0px));

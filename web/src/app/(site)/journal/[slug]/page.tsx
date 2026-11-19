@@ -16,6 +16,7 @@ import {
   getPost,
   getPostSlugs,
 } from "@/lib/content";
+import { brandMessaging } from "@/lib/content/messaging";
 import { JOURNAL_CATEGORY_LABEL } from "@/lib/journal-categories";
 import { metadataWithImage, siteUrl } from "@/lib/seo";
 import { articleSchemaFromPost, breadcrumbSchema } from "@/lib/structured-data";
@@ -202,8 +203,8 @@ export default async function JournalArticlePage({ params }: Props) {
             )}
 
             <nav className="mt-12 flex flex-wrap gap-4 border-t border-[var(--line)] pt-8">
-              <GhostButton href="/journal">more from the journal</GhostButton>
-              <Button href="/contact">talk to us</Button>
+              <GhostButton href="/journal">More from the journal</GhostButton>
+              <Button href="/contact">{brandMessaging.ctaPrimary}</Button>
             </nav>
           </div>
         </Section>

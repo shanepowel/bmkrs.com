@@ -8,7 +8,7 @@ export default function Image() {
   return createRouteOgImage({
     alt,
     title: "start, build, grow.",
-    subtitle: "a creative and digital studio in london. one team.",
+    subtitle: "A creative and digital studio in London. One team.",
     heroPath: "/images/optimized/copa-hero.jpg",
   });
 }

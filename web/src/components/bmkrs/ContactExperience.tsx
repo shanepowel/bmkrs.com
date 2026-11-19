@@ -8,12 +8,12 @@ import { brandMessaging } from "@/lib/content/messaging";
 import { marketingImages } from "@/lib/marketing-assets";
 
 const SERVICE_OPTIONS = [
-  { value: "strategy", label: "strategy and discovery" },
-  { value: "brand", label: "brand and identity" },
-  { value: "digital-product", label: "digital product or experience" },
-  { value: "technology", label: "technology and AI" },
-  { value: "motion", label: "ongoing partnership" },
-  { value: "not-sure", label: "not sure yet" },
+  { value: "strategy", label: "Strategy and discovery" },
+  { value: "brand", label: "Brand and identity" },
+  { value: "digital-product", label: "Digital product or experience" },
+  { value: "technology", label: "Technology and AI" },
+  { value: "motion", label: "Ongoing partnership" },
+  { value: "not-sure", label: "Not sure yet" },
 ] as const;
 
 function ContactEmails({
@@ -66,7 +66,7 @@ export function ContactExperience({
     const email = String(data.email ?? "").trim();
 
     if (!email.includes("@")) {
-      setFieldError("that email is missing an @");
+      setFieldError("That email is missing an @");
       return;
     }
 
@@ -87,16 +87,16 @@ export function ContactExperience({
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         if (body.error === "invalid_email") {
-          setFieldError("that email is missing an @");
+          setFieldError("That email is missing an @");
         } else {
-          setFieldError("something went wrong. try again, or email us directly.");
+          setFieldError("Something went wrong. Try again, or email us directly.");
         }
         setStatus("error");
         return;
       }
       setStatus("sent");
     } catch {
-      setFieldError("something went wrong. try again, or email us directly.");
+      setFieldError("Something went wrong. Try again, or email us directly.");
       setStatus("error");
     }
   }
@@ -107,29 +107,27 @@ export function ContactExperience({
         <div className="wrap contact-split">
           <div className="contact-intro">
             <H1 theme="paper" className="contact-page-title">
-              contact
+              {brandMessaging.contactTitle}
             </H1>
-            <p className="contact-promise">
-              Have an idea worth making real? Tell us a little about it. We&apos;ll listen, ask the right questions and help you find a useful next step.
-            </p>
+            <p className="contact-promise">{brandMessaging.contactLead}</p>
           </div>
 
           <Surface
             as="div"
             theme="paper"
-            pad="tight"
+            pad="none"
             className="contact-form-panel contact-form-col"
-            innerClassName="!mx-0 !max-w-none !px-[clamp(1.5rem,4vw,2.5rem)]"
+            innerClassName="!mx-0 !max-w-none !px-0 !py-0"
           >
             {status === "sent" ? (
-              <h2 className="text-h3 font-medium">got it. a real person reads this today. talk soon.</h2>
+              <h2 className="text-h3 font-medium">{brandMessaging.contactSent}</h2>
             ) : (
               <form className="cx-form" onSubmit={onSubmit} noValidate>
-                <Field name="name" label="name" required autoComplete="name" />
-                <Field name="company" label="company" autoComplete="organization" />
+                <Field name="name" label="Name" required autoComplete="name" />
+                <Field name="company" label="Company" autoComplete="organization" />
                 <Field
                   name="email"
-                  label="email"
+                  label="Email"
                   type="email"
                   required
                   autoComplete="email"
@@ -138,12 +136,12 @@ export function ContactExperience({
                 <TextArea
                   className="cx-full"
                   name="message"
-                  label="project / enquiry"
+                  label="Project / enquiry"
                   required
-                  placeholder="what are you trying to change, and what is getting in the way?"
+                  placeholder="What are you trying to change, and what is getting in the way?"
                 />
                 <details className="cx-full contact-more">
-                  <summary>share a little more (optional)</summary>
+                  <summary>Share a little more (optional)</summary>
                   <PillSelect
                     className="cx-full mt-4"
                     label={brandMessaging.contactServicesLabel}
@@ -160,7 +158,7 @@ export function ContactExperience({
                       : `${brandMessaging.contactSubmit} →`}
                   </UiButton>
                 </div>
-                {fieldError ? <p className="cx-full text-meta" role="alert">{fieldError} <a href={`mailto:${fallbackEmail}`} className="underline underline-offset-4">email us directly</a>.</p> : null}
+                {fieldError ? <p className="cx-full text-meta" role="alert">{fieldError} <a href={`mailto:${fallbackEmail}`} className="underline underline-offset-4">Email us directly</a>.</p> : null}
               </form>
             )}
           </Surface>

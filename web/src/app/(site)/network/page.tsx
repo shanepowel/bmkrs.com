@@ -20,9 +20,9 @@ const isReal = (s?: string) => !!s && !s.includes("{{");
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getNetworkPage();
   return pageMetadata(
-    page.seo?.metaTitle ?? "the network",
+    page.seo?.metaTitle ?? "The network",
     page.seo?.metaDescription ??
-      "the vetted bench of senior builders, designers and specialists behind every bmkrs project. hire from it, or earn a place on it.",
+      "The vetted bench of senior builders, designers and specialists behind every bmkrs project. Hire from it, or earn a place on it.",
     "/network",
   );
 }
@@ -51,26 +51,26 @@ export default async function NetworkPage() {
 
   return (
     <main>
-      <Section theme="ink" className="network-hero">
+      <Section theme="paper" className="network-hero">
         <div className="network-hero--split">
         <div className="network-hero-copy">
           <Reveal>
-            <Kicker theme="ink">the network</Kicker>
+            <Kicker theme="paper">the network</Kicker>
           </Reveal>
           <Reveal delay={1}>
-            <H1 theme="ink" className="mt-4">
+            <H1 theme="paper" className="mt-3">
               {page.headline}
             </H1>
           </Reveal>
           <Reveal delay={2}>
-            <p className="lead mt-8 max-w-[65ch]">{page.intro}</p>
+            <p className="lead mt-6 max-w-[65ch]">{page.intro}</p>
           </Reveal>
           <Reveal delay={3}>
-            <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
+            <div className="hero-cta mt-8 flex flex-wrap items-center gap-4">
               <AppLink href={hire} primary>
-                hire from the bench
+                Hire from the bench
               </AppLink>
-              <AppLink href={join}>earn a place on it</AppLink>
+              <AppLink href={join}>Earn a place on it</AppLink>
             </div>
           </Reveal>
           <p className="network-login mono mt-6 text-meta text-bmkrs-muted">
@@ -128,10 +128,10 @@ export default async function NetworkPage() {
       {page.barSteps?.length ? (
         <Section theme="paper">
           <Kicker theme="paper">how you get in</Kicker>
-          <H2 theme="paper" className="mt-4">
+          <H2 theme="paper" className="mt-3">
             {page.barHeadline}
           </H2>
-          <ol className="process mt-10">
+          <ol className="process mt-8">
             {page.barSteps.map((s, i) => (
               <li key={i} className="process-step">
                 <Reveal delay={(i % 2) as 0 | 1}>
@@ -187,13 +187,13 @@ export default async function NetworkPage() {
       {page.connects ? (
         <Section theme="paper">
           <Kicker theme="paper">how it connects</Kicker>
-          <H2 theme="paper" className="mt-4">
-            the same bench, whoever runs the work.
+          <H2 theme="paper" className="mt-3">
+            The same bench, whoever runs the work.
           </H2>
-          <p className="lead mt-6 max-w-[65ch]">{page.connects}</p>
-          <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
-            <Button href="/motion">explore motion</Button>
-            <GhostButton href="/services">our services</GhostButton>
+          <p className="lead mt-5 max-w-[65ch]">{page.connects}</p>
+          <div className="hero-cta mt-8 flex flex-wrap items-center gap-4">
+            <Button href="/motion">Explore motion</Button>
+            <GhostButton href="/services">Our services</GhostButton>
           </div>
         </Section>
       ) : null}

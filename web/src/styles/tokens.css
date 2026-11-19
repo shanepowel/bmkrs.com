@@ -38,8 +38,8 @@
   --bmkrs-space-5: 4rem;
   --bmkrs-space-6: 6.5rem;
   --bmkrs-space-7: 10rem;
-  --bmkrs-maxw: var(--maxw, 75rem);
-  --bmkrs-gutter: var(--gutter, clamp(1.25rem, 5vw, 3.5rem));
+  --bmkrs-maxw: var(--maxw, 72rem);
+  --bmkrs-gutter: var(--gutter, clamp(1.25rem, 4vw, 2.75rem));
   --bmkrs-line: rgba(24, 22, 19, 0.12);
   --bmkrs-muted: rgb(180 178 169);
   --bmkrs-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -64,28 +64,28 @@
   --bmkrs-step-3: var(--text-hero);
   --bmkrs-step-4: var(--text-hero);
 
-  /* Compatibility aliases consumed by the current site components. */
-  --text-hero: clamp(2.35rem, 5.8vw, 4.75rem);
-  --text-h2: clamp(1.75rem, 3.4vw, 2.85rem);
+  /* Editorial scale — magazine pacing, not billboard. */
+  --text-hero: clamp(2.5rem, 5.5vw, 4.25rem);
+  --text-h2: clamp(1.75rem, 3.2vw, 2.75rem);
   --text-h3: clamp(1.125rem, 1.5vw, 1.35rem);
-  --text-lead: clamp(1.125rem, 1.35vw, 1.3rem);
-  --text-body: 1.125rem;
+  --text-lead: clamp(1.05rem, 1.2vw, 1.2rem);
+  --text-body: 1.0625rem;
   --text-body-sm: 1rem;
-  --text-meta: 0.8125rem;
-  --lh-display: 1.05;
-  --lh-heading: 1.12;
+  --text-meta: 0.75rem;
+  --lh-display: 1.08;
+  --lh-heading: 1.15;
   --lh-body: 1.65;
-  --tracking-display: -0.022em;
-  --tracking-kicker: 0.06em;
-  --section-y: clamp(4.5rem, 9vw, 9rem);
-  --section-y-home: clamp(72px, 10vh, 130px);
-  --section-y-sm: clamp(3rem, 6vw, 5rem);
-  --section-header-gap: clamp(36px, 6vh, 64px);
-  --block-gap: clamp(2.5rem, 5vw, 4.5rem);
-  --cluster-gap: 1.25rem;
-  --grid-gap: clamp(1.5rem, 2.5vw, 2.5rem);
-  --gutter: clamp(1.25rem, 5vw, 3.5rem);
-  --maxw: 75rem;
+  --tracking-display: -0.005em;
+  --tracking-kicker: 0.04em;
+  --section-y: clamp(3.5rem, 7vw, 6.5rem);
+  --section-y-home: clamp(56px, 8vh, 96px);
+  --section-y-sm: clamp(2.25rem, 4vw, 3.75rem);
+  --section-header-gap: clamp(1.5rem, 3vh, 2.5rem);
+  --block-gap: clamp(1.75rem, 3.5vw, 3rem);
+  --cluster-gap: 1rem;
+  --grid-gap: clamp(1.25rem, 2vw, 2rem);
+  --gutter: clamp(1.25rem, 4vw, 2.75rem);
+  --maxw: 72rem;
   --bmkrs-font-sans: var(--font-sans, system-ui, sans-serif);
   --bmkrs-font-mono: var(--font-mono, ui-monospace, monospace);
 }

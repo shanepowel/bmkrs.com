@@ -1,7 +1,7 @@
 import type { NetworkPageContent } from "@/lib/types";
 
 export const fallbackNetworkPage: NetworkPageContent = {
-  headline: "the people behind the work.",
+  headline: "The people behind the work.",
   intro:
     "every bmkrs build is staffed from a vetted bench of senior product, engineering and delivery specialists. now the bench is open: hire from it, or earn a place on it.",
   members: [],

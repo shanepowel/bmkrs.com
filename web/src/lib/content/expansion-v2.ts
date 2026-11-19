@@ -81,14 +81,14 @@ export const projectOutcomeLines: Record<string, string> = {
 
 export const workHowProjectRuns = {
   kicker: "how we work",
-  headline: "good outcomes start with understanding the challenge.",
+  headline: "Good outcomes start with understanding the challenge.",
   paragraphs: [
-    "we listen, ask questions and get close to the people and context around the work. that gives us a shared understanding of what matters and where the opportunity lies.",
-    "we shape the approach together, bringing the right mix of strategy, design and technology to the challenge. the work stays focused on the outcome, with decisions made in the open.",
-    "the same connected team carries the work through design, build and launch. we stay close to your people and the systems around the product so the result works in everyday life.",
-    "then we learn and improve. some partnerships start with one clear piece of work; others keep evolving over time. either way, we help your team move forward with confidence.",
+    "We listen, ask questions and get close to the people and context around the work. That gives us a shared understanding of what matters and where the opportunity lies.",
+    "We shape the approach together, bringing the right mix of strategy, design and technology to the challenge. The work stays focused on the outcome, with decisions made in the open.",
+    "The same connected team carries the work through design, build and launch. We stay close to your people and the systems around the product so the result works in everyday life.",
+    "Then we learn and improve. Some partnerships start with one clear piece of work; others keep evolving over time. Either way, we help your team move forward with confidence.",
   ],
-  footnote: "explore the ways we can work together on the services page.",
+  footnote: "Explore the ways we can work together on the services page.",
 };
 
 export type DisciplineExpansion = {

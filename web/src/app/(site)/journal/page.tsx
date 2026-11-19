@@ -64,7 +64,7 @@ export default async function JournalPage() {
         <CategoryTabs items={categoryTabs} active="all" />
 
         {featured?.cover?.url ? (
-          <div className="mb-14">
+          <div className="mb-10">
             <WorkGrid>
               <WorkTile
                 wide
@@ -88,7 +88,7 @@ export default async function JournalPage() {
             }))}
           />
         ) : (
-          <Body theme="paper">no articles yet. check back soon.</Body>
+          <Body theme="paper">No articles yet. Check back soon.</Body>
         )}
       </Section>
 

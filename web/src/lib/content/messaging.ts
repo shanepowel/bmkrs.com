@@ -42,11 +42,18 @@ export const brandMessaging = {
   servicesHero: "Everything needed to move an idea forward.",
   servicesLead:
     "From early-stage thinking to complex delivery, we bring the right expertise together around the problem that needs solving.",
+  contactTitle: "Contact",
+  contactLead:
+    "Have an idea worth making real? Tell us a little about it. We will listen, ask the right questions and help you find a useful next step.",
   contactServicesLabel: "What would you like to make happen?",
   contactSubmit: "Send the brief",
   contactSending: "Sending…",
+  contactSent: "Got it. A real person reads this today. Talk soon.",
   newsletterTitle: "The bmkrs newsletter",
   newsletterLede: "Occasional notes on design, technology and the work we are making.",
+  newsletterCta: "Subscribe",
+  newsletterSending: "Sending…",
+  newsletterSent: "Thanks. The next note is on its way.",
 } as const;
 
 export const TIER_DISPLAY: Record<

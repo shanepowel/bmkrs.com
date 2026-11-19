@@ -29,8 +29,8 @@ import { breadcrumbSchema, personSchema } from "@/lib/structured-data";
 import { marketingImages } from "@/lib/marketing-assets";
 
 export const metadata: Metadata = pageMetadata(
-  "about",
-  "meet bmkrs, an independent creative and digital studio in london. small enough to care, experienced enough to deliver.",
+  "About",
+  "Meet bmkrs, an independent creative and digital studio in London. Small enough to care, experienced enough to deliver.",
   "/about",
 );
 
@@ -61,28 +61,28 @@ export default async function AboutPage() {
     founder
       ? personSchema({
           name: founder.name,
-          jobTitle: "founder",
+          jobTitle: "Founder",
           description: about.founderStory[0] ?? "",
           linkedinUrl: founder.linkedinUrl,
           image: founderPerson?.portraitUrl,
         })
       : null,
     breadcrumbSchema([
-      { name: "home", path: "/" },
-      { name: "about", path: "/about" },
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
     ]),
   ].filter(Boolean);
 
   const stats = [
     {
       value: "2013",
-      label: "building products and teams since. the studio came later. the rigour did not.",
+      label: "Building products and teams since. The studio came later. The rigour did not.",
     },
-    { value: "4", label: "disciplines, one coordinated team" },
-    { value: "1", label: "point of contact, brief to ship" },
+    { value: "4", label: "Disciplines, one coordinated team" },
+    { value: "1", label: "Point of contact, brief to ship" },
     {
       value: String(about.studioProductCount),
-      label: "products of our own, live right now",
+      label: "Products of our own, live right now",
     },
   ];
 
@@ -96,8 +96,10 @@ export default async function AboutPage() {
       <Section theme="paper">
         <div className="lg:max-w-[80%]">
           <Kicker theme="paper">about bmkrs</Kicker>
-          <H1 theme="paper">{about.headline}</H1>
-          <Body theme="paper" lead className="mt-8">
+          <H1 theme="paper" className="mt-3">
+            {about.headline}
+          </H1>
+          <Body theme="paper" lead className="mt-6">
             {about.intro}
           </Body>
         </div>
@@ -115,12 +117,12 @@ export default async function AboutPage() {
             body={
               <>
                 {about.founderStory.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)} className="mb-6 last:mb-0">
+                  <p key={paragraph.slice(0, 24)} className="mb-5 last:mb-0">
                     {paragraph}
                   </p>
                 ))}
                 <EdgeQuote>&ldquo;{about.founderPullQuote}&rdquo;</EdgeQuote>
-                <Meta theme="paper" className="mt-6 block">
+                <Meta theme="paper" className="mt-5 block">
                   {founder.name} · founder ·{" "}
                   <a
                     href={founder.linkedinUrl}
@@ -128,7 +130,7 @@ export default async function AboutPage() {
                     rel="me noopener"
                     target="_blank"
                   >
-                    linkedin ↗
+                    LinkedIn ↗
                   </a>
                 </Meta>
               </>
@@ -157,20 +159,20 @@ export default async function AboutPage() {
 
       <MarketingBanner
         src={marketingImages.studioTeam}
-        alt="the bmkrs team at work in the studio"
+        alt="The bmkrs team at work in the studio"
         aspect="21/9"
         priority
       />
 
       <Section theme="paper">
-        <H2 theme="paper">the team</H2>
-        <Body theme="paper" lead className="mb-14 mt-6">
+        <H2 theme="paper">{brandMessaging.teamEyebrow}</H2>
+        <Body theme="paper" lead className="mb-10 mt-5">
           {about.teamIntro}
         </Body>
         <TeamGrid
           members={people.map((person) => ({
             name: person.name,
-            role: (person.role ?? person.discipline ?? "").toLowerCase(),
+            role: person.role ?? person.discipline ?? "",
             portrait: (
               <PortraitTile
                 name={person.name}
@@ -182,10 +184,10 @@ export default async function AboutPage() {
             ),
           }))}
         />
-        <Body theme="paper" className="mt-14 text-lg">
+        <Body theme="paper" className="mt-10">
           {about.teamClosing}
         </Body>
-        <Meta theme="paper" className="mt-6 block">
+        <Meta theme="paper" className="mt-5 block">
           collaborators:{" "}
           <Link href="/network" className="underline decoration-1 underline-offset-4">
             the network
@@ -195,7 +197,7 @@ export default async function AboutPage() {
 
       <Section theme="ink">
         <H2 theme="ink">{about.beliefsHeadline}</H2>
-        <div className="mt-12">
+        <div className="mt-8">
           <CellGrid>
             {about.beliefs.map((belief, index) => (
               <FactCell
@@ -209,7 +211,7 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Section theme="paper">
+      <Section theme="paper" pad="tight">
         <StatGrid>
           {stats.map((stat) => (
             <Stat key={stat.label} value={stat.value} label={stat.label} />
@@ -219,18 +221,20 @@ export default async function AboutPage() {
 
       <Section theme="orange">
         <Kicker theme="orange">now</Kicker>
-        <H2 theme="orange">what is on the bench this month.</H2>
-        <ul className="mt-10 max-w-[70ch]">
+        <H2 theme="orange" className="mt-3">
+          What is on the bench this month.
+        </H2>
+        <ul className="mt-8 max-w-[70ch]">
           {nowLines.map((line) => (
             <li
               key={line}
-              className="border-t border-[var(--bmkrs-rule-orange)] py-5 text-lg font-medium leading-relaxed text-[var(--bmkrs-orange-body)]"
+              className="border-t border-[var(--bmkrs-rule-orange)] py-4 text-[length:var(--text-body)] font-medium leading-relaxed text-[var(--bmkrs-orange-body)]"
             >
               {line}
             </li>
           ))}
         </ul>
-        <Meta theme="orange" className="mt-8 block">
+        <Meta theme="orange" className="mt-6 block">
           updated {nowUpdated}. if this is stale, tell us off:{" "}
           <a href="mailto:hello@bmkrs.com" className="underline decoration-1 underline-offset-4">
             hello@bmkrs.com
@@ -239,26 +243,25 @@ export default async function AboutPage() {
       </Section>
 
       <Section theme="paper">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid gap-8 lg:grid-cols-12">
           <H2 theme="paper" className="lg:col-span-4">
             {about.longGameTitle}
           </H2>
-          <Body theme="paper" className="space-y-6 text-lg lg:col-span-7 lg:col-start-6">
+          <Body theme="paper" className="space-y-5 lg:col-span-7 lg:col-start-6">
             {longGameParagraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
           </Body>
         </div>
 
-        <div className="mt-[clamp(4rem,8vw,7rem)] border-t border-[var(--bmkrs-rule-paper)] pt-16">
+        <div className="mt-[var(--space-block)] border-t border-[var(--bmkrs-rule-paper)] pt-[var(--space-block)]">
           <H2 theme="paper">{brandMessaging.closeTitle}</H2>
-          <Body theme="paper" className="mt-6 text-lg">
-            tell us what you are building. we will tell you what it needs, including the parts not to
-            buy from us.
+          <Body theme="paper" className="mt-5">
+            {brandMessaging.closeLead} Including the parts not to buy from us.
           </Body>
-          <div className="mt-10 flex flex-wrap items-center gap-8">
+          <div className="mt-8 flex flex-wrap items-center gap-6">
             <Button href="/contact">{brandMessaging.ctaPrimary} →</Button>
-            <GhostButton href="/journal">read the journal first</GhostButton>
+            <GhostButton href="/journal">Read the journal first</GhostButton>
           </div>
         </div>
       </Section>

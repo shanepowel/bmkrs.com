@@ -13,10 +13,10 @@ import { cn } from "./cn";
 import { useSurface } from "./Surface";
 import { tokens, type SurfaceTheme } from "./tokens";
 
-const labelClass = "font-mono text-meta tracking-[var(--bmkrs-tracking-kicker)] lowercase";
+const labelClass = "font-sans text-meta tracking-[var(--bmkrs-tracking-kicker)] text-[var(--bmkrs-paper-faint)]";
 
 const fieldClass =
-  "bmkrs-field w-full rounded-[var(--bmkrs-radius-field)] border px-4 py-[0.85rem] text-input leading-snug focus:outline-none focus-visible:border-bmkrs-orange focus-visible:shadow-[0_0_0_3px_var(--bmkrs-accent-focus)]";
+  "bmkrs-field w-full min-h-12 rounded-[var(--bmkrs-radius-field)] border px-3.5 py-3 text-input leading-normal focus:outline-none focus-visible:border-bmkrs-orange focus-visible:shadow-[0_0_0_3px_var(--bmkrs-accent-focus)]";
 
 function fieldColors(theme: SurfaceTheme): CSSProperties & {
   label: string;

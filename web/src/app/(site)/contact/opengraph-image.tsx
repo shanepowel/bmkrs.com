@@ -7,7 +7,7 @@ export const contentType = ROUTE_OG_CONTENT_TYPE;
 export default function Image() {
   return createRouteOgImage({
     alt,
-    title: "let's talk.",
+    title: "Let's talk.",
     subtitle: "tell us what you are building.",
     heroPath: "/images/optimized/smoothies-hero.jpg",
   });

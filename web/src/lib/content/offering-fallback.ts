@@ -182,45 +182,45 @@ export const fallbackProducts: Product[] = [
 ];
 
 export const fallbackAboutPage: AboutPageContent = {
-  headline: "small enough to care. experienced enough to deliver.",
+  headline: "Small enough to care. Experienced enough to deliver.",
   intro:
     "bmkrs is an independent creative and digital studio in London. We bring strategy, design and technology together to help ambitious businesses make meaningful things happen.",
   founder: {
-    name: "shane powell",
+    name: "Shane Powell",
     linkedinUrl: "https://www.linkedin.com/in/shanepowell",
-    portraitAlt: "illustrated portrait of shane powell, founder at bmkrs",
+    portraitAlt: "Illustrated portrait of Shane Powell, founder at bmkrs",
   },
-  founderStoryTitle: "the right people, close to the work.",
+  founderStoryTitle: "The right people, close to the work.",
   founderStory: [
     "Co-founded by Shane Powell and Marcelo, bmkrs brings together the experience to shape a clear direction and the hands-on ability to make it real. We work closely with ambitious businesses, from the first useful question through to launch and what comes next.",
     "We have seen good ideas lose their way between strategy, design and delivery. So we connect those disciplines around the problem that matters, keep decisions close to the people doing the work, and make things that can thrive beyond the launch.",
     "Technology is not the answer to every problem. But when the right thinking meets thoughtful execution, it can change what is possible. We build digital products, brands and experiences that make sense for people and for the business behind them.",
   ],
-  founderPullQuote: "the right thinking. the right people. the right things built.",
+  founderPullQuote: "The right thinking. The right people. The right things built.",
   teamIntro:
     "We are a small, senior team of strategists, designers and technologists. We work closely with ambitious businesses to turn bold ideas into meaningful, lasting products and brands.",
   teamClosing: "Independent. Collaborative. Ambitious. Long-term.",
-  beliefsHeadline: "how we work.",
+  beliefsHeadline: "How we work.",
   beliefs: [
     {
-      title: "start with the real problem.",
+      title: "Start with the real problem.",
       body: "Understand the people, context and opportunity before deciding what to make.",
     },
     {
-      title: "bring the right disciplines together.",
+      title: "Bring the right disciplines together.",
       body: "Strategy, design and technology work best when they shape the same outcome.",
     },
     {
-      title: "make it useful in the real world.",
+      title: "Make it useful in the real world.",
       body: "Build for the people, systems and everyday conditions the work will meet.",
     },
     {
-      title: "stay close to what comes next.",
+      title: "Stay close to what comes next.",
       body: "Launch is a beginning. We keep learning, improving and building on what works.",
     },
   ],
   studioProductCount: 2,
-  longGameTitle: "good work keeps going.",
+  longGameTitle: "Good work keeps going.",
   longGame:
     "We value lasting relationships and useful outcomes. The longer we work together, the better we understand the people, ambitions and constraints around the product. That helps us make clearer decisions, move with more confidence and keep improving what we have built.",
 };
