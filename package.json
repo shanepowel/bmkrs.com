@@ -1,23 +1,23 @@
 {
   "name": "bmkrs.com",
   "version": "2.0.0",
-  "description": "BMKRS — design and growth studio (Next.js)",
+  "description": "bmkrs: brands, digital products and practical AI (Next.js site in web/)",
   "private": true,
   "workspaces": [
-    "web",
     "packages/*",
     "apps/*"
   ],
   "scripts": {
     "dev": "npm run dev --prefix web",
     "dev:portal": "npm run dev --prefix apps/portal",
-    "install:web": "npm ci --legacy-peer-deps",
+    "install:web": "npm ci --prefix web",
     "install:portal": "npm ci --legacy-peer-deps --prefix apps/portal",
     "build": "npm run build --prefix web",
     "build:portal": "npm run build --prefix apps/portal",
     "vercel-build": "npm run build",
     "lint": "npm run lint --prefix web",
-    "start": "npm run start --prefix web"
+    "start": "npm run start --prefix web",
+    "seed:sanity": "npm run seed:sanity --prefix web"
   },
   "repository": {
     "type": "git",

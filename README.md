@@ -1,27 +1,43 @@
-# BMKRS.com
+# bmkrs.com
 
-Design and growth studio site — **Next.js 15** app in [`web/`](web/).
+The bmkrs site: brands, digital products and practical AI. A Next.js app in [`web/`](web/), with content in Sanity.
 
 ## Quick start
 
 ```bash
-cd web
-npm ci --legacy-peer-deps
-npm run dev
+npm ci --prefix web
+npm run dev          # http://localhost:3000  (Sanity Studio: /studio)
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000). CMS studio: [http://localhost:3000/studio](http://localhost:3000/studio).
+## Where things live
 
-## Deploy (Vercel)
+| What | Where |
+|---|---|
+| Pages and routes | `web/app/` |
+| Page template and design system | `web/client/src/components/bmk/`, `web/client/src/components/ui/` (shadcn/ui) |
+| Navigation (header, mobile menu and footer all read this) | `web/client/src/content/nav.ts` |
+| Page copy (fallback and seed source) | `web/client/src/content/bmk-pages-*.ts` |
+| Sanity schema and Studio structure | `web/studio/` |
+| Company and brand constants (incl. legal details) | `web/client/src/lib/brand.ts` |
+| Old-copy coverage map | [`docs/content-coverage.md`](docs/content-coverage.md) |
 
-- **Root Directory:** `web`
-- **Env:** see [`web/VERCEL.md`](web/VERCEL.md) and [`web/CMS.md`](web/CMS.md)
+## Content (Sanity)
 
-## Repository layout
+Pages and insights load from the **BMKRS** Sanity project (`laqqhrou`, dataset `production`) and fall back to the bundled copy if Sanity isn't configured. Edit at `/studio`; changes appear within about a minute.
 
-| Path | Purpose |
-|------|---------|
-| `web/` | Active Next.js + Sanity application |
-| `archive/` | Legacy PHP/React site, other projects, old deployment docs |
+To reload the bundled copy into Sanity: `SANITY_API_WRITE_TOKEN=... npm run seed:sanity` (add `-- --remove-legacy` to remove old Amplified-era document types).
 
-Legacy marketing assets for local sync live under `archive/legacy-public-site/public_html/` (used by `web/scripts/sync-assets.js`).
+## Environment
+
+| Variable | Needed for |
+|---|---|
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` | Reading content from Sanity |
+| `DATABASE_URL` | Saving contact and consultation form submissions (Postgres) |
+| `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `CONTACT_EMAIL` | Form notification emails |
+| `HUBSPOT_API_KEY` | Optional: pushing enquiries to HubSpot |
+| `NEXT_PUBLIC_BOOKING_URL` | Optional: a booking page for "Book a call" (otherwise it opens the enquiry form) |
+
+## Other folders
+
+`apps/portal` and `packages/ui` are separate apps; `archive/` is legacy. The previous site lives in git history on `master`.

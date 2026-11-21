@@ -1,94 +1,69 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import type { NextConfig } from "next";
-
-const projectDir = path.dirname(fileURLToPath(import.meta.url));
+import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@bmkrs/ui"],
+  serverExternalPackages: ['isomorphic-dompurify', 'pdfkit'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  async redirects() {
+    const r = (source: string, destination: string) => ({ source, destination, permanent: true });
+    return [
+      r('/ai-governance', '/ai/embernest'),
+      r('/ai-implementation', '/ai'),
+      r('/structured-delivery', '/services/delivery'),
+      r('/capability', '/services'),
+      r('/coaching', '/services'),
+      r('/org-design', '/services'),
+      r('/transformation', '/services/products'),
+      r('/engagements', '/services'),
+      r('/engagements/:slug*', '/services'),
+      r('/sectors/technology', '/for/scale-ups'),
+      r('/sectors/:slug*', '/for/ctos'),
+      r('/for-cios', '/for/ctos'),
+      r('/for-delivery-directors', '/for/ctos'),
+      r('/for-digital-leads', '/for/ctos'),
+      r('/teams', '/services/delivery'),
+      r('/amp-store', '/our-work'),
+      r('/what-we-believe', '/about'),
+      r('/press', '/about'),
+      r('/about/team', '/about'),
+      r('/about/methodology', '/how-we-work'),
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=()' },
+        ],
+      },
+    ];
+  },
   turbopack: {
-    // monorepo hoist: next lives at repo root, not web/node_modules
-    root: path.join(projectDir, ".."),
+    resolveAlias: {
+      '@/*': ['./client/src/*'],
+      '@assets/*': ['./client/src/assets/*'],
+      '@shared/*': ['./shared/*'],
+    },
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "react-is": path.join(projectDir, "node_modules/react-is"),
+      '@': path.resolve(__dirname, 'client/src'),
+      '@assets': path.resolve(__dirname, 'client/src/assets'),
+      '@shared': path.resolve(__dirname, 'shared'),
     };
     return config;
-  },
-  images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
-  },
-  async headers() {
-    const securityHeaders = [
-      { key: "X-Content-Type-Options", value: "nosniff" },
-      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-    ];
-    return [
-      {
-        source: "/((?!studio).*)",
-        headers: [...securityHeaders, { key: "X-Frame-Options", value: "SAMEORIGIN" }],
-      },
-      {
-        source: "/studio/:path*",
-        headers: securityHeaders,
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "bmkrs.com" }],
-        destination: "https://www.bmkrs.com/:path*",
-        permanent: true,
-      },
-      { source: "/discover", destination: "/services", permanent: true },
-      { source: "/discover/:path*", destination: "/services/:path*", permanent: true },
-      { source: "/work/project1", destination: "/work/copa", permanent: true },
-      { source: "/work/project1/", destination: "/work/copa", permanent: true },
-      { source: "/work/project2", destination: "/work/carter", permanent: true },
-      { source: "/work/project2/", destination: "/work/carter", permanent: true },
-      { source: "/work/project3", destination: "/work/wanderlust", permanent: true },
-      { source: "/work/project3/", destination: "/work/wanderlust", permanent: true },
-      { source: "/work/project4", destination: "/work/smoothies", permanent: true },
-      { source: "/work/project4/", destination: "/work/smoothies", permanent: true },
-      {
-        source: "/work/flipster-project",
-        destination: "/work/flipster",
-        permanent: true,
-      },
-      {
-        source: "/work/flipster-project/",
-        destination: "/work/flipster",
-        permanent: true,
-      },
-      {
-        source: "/journal/better-told-brand-isnt-fair",
-        destination: "/journal/better-told-brand-wins",
-        permanent: true,
-      },
-      {
-        source: "/journal/same-team",
-        destination: "/journal/one-team-vs-five-agencies",
-        permanent: true,
-      },
-      {
-        source: "/journal/hand-off-brands-die",
-        destination: "/journal/one-team-vs-five-agencies",
-        permanent: true,
-      },
-    ];
   },
 };
 

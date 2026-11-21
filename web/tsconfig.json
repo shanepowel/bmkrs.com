@@ -1,4 +1,19 @@
 {
+  "include": [
+    "app/**/*",
+    "client/src/**/*",
+    "lib/**/*",
+    "next.config.ts",
+    "shared/**/*",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    ".next",
+    "**/*.test.ts"
+  ],
   "compilerOptions": {
     "target": "ES2017",
     "lib": [
@@ -15,30 +30,34 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./client/src/*"
       ],
-      "@bmkrs/ui": [
-        "../packages/ui/src/index.ts"
+      "@assets/*": [
+        "./client/src/assets/*"
+      ],
+      "@shared/*": [
+        "./shared/*"
+      ],
+      "@/components/*": [
+        "./client/src/components/*"
+      ],
+      "@/lib/*": [
+        "./lib/*",
+        "./client/src/lib/*"
+      ],
+      "@/hooks/*": [
+        "./client/src/hooks/*"
       ]
     }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

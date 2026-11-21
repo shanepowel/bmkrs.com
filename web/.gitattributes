@@ -1,0 +1,4 @@
+.next/cache/webpack/client-development/1.pack.gz filter=lfs diff=lfs merge=lfs -text
+client/src/assets/Final[[:space:]]amplified[[:space:]]logos[[:space:]]for[[:space:]]launch[[:space:]]Sept[[:space:]]25[[:space:]]FINAL[[:space:]]3_1758794816158.zip filter=lfs diff=lfs merge=lfs -text
+client/src/assets/amplified[[:space:]](2480[[:space:]]x[[:space:]]3508[[:space:]]px)[[:space:]](5)_1758724456689.png filter=lfs diff=lfs merge=lfs -text
+export/amplified-migration.zip filter=lfs diff=lfs merge=lfs -text
