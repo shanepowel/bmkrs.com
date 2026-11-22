@@ -30,7 +30,7 @@ const organisationJsonLd = {
       url: brand.url,
       logo: {
         '@type': 'ImageObject',
-        url: `${brand.url}/favicon.png`,
+        url: `${brand.url}/brand/bmkrs-avatar-512.png`,
         width: 200,
         height: 60,
       },
@@ -110,8 +110,13 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-light.png', type: 'image/png', sizes: '32x32', media: '(prefers-color-scheme: dark)' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   manifest: '/manifest.json',
 };

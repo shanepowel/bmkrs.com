@@ -6,6 +6,7 @@ import { Linkedin, Mail } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { Container, Eyebrow, Grid, Stack, Text } from "@/components/system";
 import { brand } from "@/lib/brand";
+import { BrandLogo } from "@/components/bmk/logo";
 import { navMenus, legalLinks } from "@/content/nav";
 
 /** Footer columns come from the same menu data as the header, so they always match. */
@@ -30,10 +31,11 @@ const Footer = memo(function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="mb-4 inline-block font-sans text-2xl font-semibold tracking-tight text-white transition-colors hover:text-[#F85C70]"
+              aria-label={`${brand.name}, return to homepage`}
+              className="mb-5 inline-block text-white transition-opacity hover:opacity-80"
               data-testid="footer-logo"
             >
-              {brand.nameDisplay}
+              <BrandLogo className="h-8 w-auto" title={brand.name} />
             </Link>
             <Text variant="small" className="mb-2 text-white/60">
               {brand.tagline}

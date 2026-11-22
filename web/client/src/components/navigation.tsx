@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { brand } from "@/lib/brand";
+import { BrandLogo } from "@/components/bmk/logo";
 import { navMenus, type NavItem, type NavMenu } from "@/content/nav";
 
 interface NavigationProps {
@@ -129,12 +130,9 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
             aria-label={`${brand.name}, return to homepage`}
             className="group relative block flex-shrink-0 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F85C70] focus-visible:ring-offset-4 focus-visible:ring-offset-[#181F4F]"
           >
-            <span
-              className="font-display text-2xl font-extrabold tracking-[-0.02em] text-white transition-colors duration-200 [font-stretch:115%] group-hover:text-[#F85C70]"
-              data-testid="logo"
-            >
-              {brand.name}
-              <span className="text-[#F85C70]">.</span>
+            {/* Brand rule: the logo is never recoloured, so hover only softens it */}
+            <span className="block text-white transition-opacity duration-200 group-hover:opacity-80" data-testid="logo">
+              <BrandLogo className="h-7 w-auto" title={brand.name} />
             </span>
           </Link>
 
@@ -229,9 +227,8 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                 </SheetDescription>
                 <div className="flex h-full flex-col">
                   <div className="border-b border-white/10 p-6">
-                    <span className="font-display text-2xl font-extrabold [font-stretch:115%]">
-                      {brand.name}
-                      <span className="text-[#F85C70]">.</span>
+                    <span className="block text-white">
+                      <BrandLogo className="h-7 w-auto" title={brand.name} />
                     </span>
                   </div>
                   <div className="flex-1 overflow-y-auto px-2 py-2">

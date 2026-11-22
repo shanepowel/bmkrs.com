@@ -26,6 +26,7 @@ export async function GET() {
     { path: '/how-we-work', priority: '0.8', changefreq: 'monthly' },
     { path: '/insights', priority: '0.9', changefreq: 'weekly' },
     { path: '/careers', priority: '0.6', changefreq: 'monthly' },
+    { path: '/press', priority: '0.5', changefreq: 'monthly' },
     { path: '/contact', priority: '0.8', changefreq: 'monthly' },
     { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
     { path: '/terms', priority: '0.3', changefreq: 'yearly' },

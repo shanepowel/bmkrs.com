@@ -53,7 +53,7 @@ export function createArticleSchema({
       name: 'bmkrs',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://bmkrs.com/favicon.png',
+        url: 'https://bmkrs.com/brand/bmkrs-avatar-512.png',
       },
     },
     image: image || 'https://bmkrs.com/og-image.png',

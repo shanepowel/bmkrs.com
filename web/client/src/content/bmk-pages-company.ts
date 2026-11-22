@@ -38,7 +38,7 @@ export const companyPages: Record<string, BmkPageContent> = {
         eyebrow: "Why us",
         title: "We spend your money like it's ours.",
         paragraphs: [
-          "Because sometimes it is. We run Viralyz, Konduit and FreelanceNearMe ourselves, so we know what a wasted month feels like.",
+          "Because sometimes it is. We run EmberNest, Viralyz, FreelanceNearMe and OneScope ourselves, so we know what a wasted month feels like.",
           "You'll get straight advice on what to build now, what can wait, and what you shouldn't build at all.",
         ],
         image: "workshop",
@@ -342,7 +342,7 @@ export const companyPages: Record<string, BmkPageContent> = {
     path: "/our-work",
     metaTitle: "Our work | Products we've made and run | bmkrs",
     metaDescription:
-      "Products bmkrs has designed, built and runs itself, including Viralyz, Konduit and FreelanceNearMe, plus programmes our team has led.",
+      "Products bmkrs has designed, built and runs, including EmberNest, Viralyz, FreelanceNearMe and OneScope, plus programmes our team has led.",
     hero: {
       code: "BMK / WORK",
       eyebrow: "What we've made",
@@ -360,10 +360,12 @@ export const companyPages: Record<string, BmkPageContent> = {
         code: "§ 01",
         eyebrow: "On the bench",
         title: "Products we run ourselves.",
+        cols: 2,
         items: [
-          { code: "MADE 01", title: "Viralyz", body: "Scores short-form video and ad creative before it goes live, so creators and brands know what will land and why.", tags: ["Creator tools", "AI scoring"], href: "https://viralyz.com", external: true },
-          { code: "MADE 02", title: "Konduit", body: "Sourcing and procurement for Zimbabwe and the region, with suppliers in the UK, USA and China and stock you can order online.", tags: ["Marketplace", "E-commerce"], href: "https://konduit.co.zw", external: true },
+          { code: "MADE 01", title: "EmberNest", body: "The governed delivery layer for AI-assisted software development. It assesses a codebase and turns improvements into scoped, approved and evidenced work, so AI speeds teams up without making the software messier.", tags: ["AI delivery", "Governance"], href: "https://embernest.ai", external: true },
+          { code: "MADE 02", title: "Viralyz", body: "Scores short-form video and ad creative before it goes live, so creators and brands know what will land and why.", tags: ["Creator tools", "AI scoring"], href: "https://viralyz.com", external: true },
           { code: "MADE 03", title: "FreelanceNearMe", body: "Connects people with local freelancers. Around 15,000 visitors a week, and being rebuilt as a proper SaaS platform.", tags: ["Marketplace", "Rebuild in progress"] },
+          { code: "MADE 04", title: "OneScope", body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.", tags: ["Fintech", "Trading bots"], href: "https://onescope.vercel.app", external: true },
         ],
       },
       {
@@ -429,7 +431,7 @@ export const companyPages: Record<string, BmkPageContent> = {
         type: "callout",
         eyebrow: "Our own products",
         title: "See what we build for ourselves.",
-        body: "Viralyz, Konduit and FreelanceNearMe: designed, built and run by bmkrs.",
+        body: "EmberNest, Viralyz, FreelanceNearMe and OneScope: designed, built and run by bmkrs.",
         href: "/our-work",
         linkLabel: "What we've made",
       },

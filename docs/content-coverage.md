@@ -42,7 +42,7 @@ Every page and content block from the previous site (branch `cursor/bmkrs-rebran
 | Methodology Assess / Implement / Amplify and its principles (governance first, embedded delivery, capability transfer, honest sequencing, measurable outputs) | Rewritten | `/how-we-work`: Sketch / Make / Ship / Grow and four principles |
 | Team page (partnership, anonymous partner roles) | Dropped | No named team yet. Add one when you're ready to name people |
 | Careers (partnership, BMK lines, ecosystem) | Rewritten | `/careers` |
-| Press page (brand colours, key facts, assets) | Dropped | Old Amplified palette and facts. Easy to add back as a bmkrs press kit |
+| Press page (brand colours, key facts, assets) | Rewritten | `/press`: bmkrs facts, boilerplate, outlined logo files, palette, usage rules and a downloadable brand kit |
 | Offices: London (7 Bell Yard) and Porto | Dropped | Amplified offices. Site now says "UK based, working wherever the work is" |
 | Sustainability: remote-first, ethical suppliers, proportionate growth, honest annual review | Rewritten | `/about` Responsibility section |
 | Social impact: pro-bono for social enterprises, digital literacy, mentoring, inclusive hiring | Rewritten | `/about` Responsibility section. "Public sector as social good" and "regulated industries as the multiplier" dropped (Amplified positioning) |

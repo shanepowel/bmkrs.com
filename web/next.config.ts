@@ -31,7 +31,6 @@ const nextConfig: NextConfig = {
       r('/teams', '/services/delivery'),
       r('/amp-store', '/our-work'),
       r('/what-we-believe', '/about'),
-      r('/press', '/about'),
       r('/about/team', '/about'),
       r('/about/methodology', '/how-we-work'),
     ];

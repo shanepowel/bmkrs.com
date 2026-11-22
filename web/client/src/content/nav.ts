@@ -59,7 +59,7 @@ export const navMenus: NavMenu[] = [
     width: "md:w-[320px]",
     align: "center",
     items: [
-      { name: "What we've made", desc: "Viralyz, Konduit, FreelanceNearMe", href: "/our-work" },
+      { name: "What we've made", desc: "EmberNest, Viralyz, FreelanceNearMe, OneScope", href: "/our-work" },
       { name: "Track record", desc: "Programmes our people have led", href: "/case-studies" },
       { name: "Insights", desc: "Notes from the studio", href: "/insights" },
     ],
@@ -73,6 +73,7 @@ export const navMenus: NavMenu[] = [
       { name: `About ${brand.name}`, desc: "Who we are and how we think", href: "/about" },
       { name: "How we work", desc: "Sketch, make, ship, grow", href: "/how-we-work" },
       { name: "Careers", desc: "Make things with us", href: "/careers" },
+      { name: "Press and brand kit", desc: "Logos, colours and key facts", href: "/press" },
       { name: "Contact", desc: "Start a conversation", href: "/contact" },
     ],
   },

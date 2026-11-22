@@ -33,17 +33,17 @@ const heroFigures: { img: StaticImageData; label: string; alt: string }[] = [
 const ownProducts = [
   {
     code: "MADE 01",
-    name: "Viralyz",
-    kind: "Creator tools",
-    body: "Scores short-form video before it goes live, so creators and brands know what will land and why.",
-    href: "https://viralyz.com",
+    name: "EmberNest",
+    kind: "AI delivery",
+    body: "The governed delivery layer for AI-assisted software development. It assesses a codebase and turns improvements into scoped, approved and evidenced work.",
+    href: "https://embernest.ai",
   },
   {
     code: "MADE 02",
-    name: "Konduit",
-    kind: "Marketplace",
-    body: "Sourcing and procurement for Zimbabwe and the region, with suppliers in the UK, USA and China and stock you can order online.",
-    href: "https://konduit.co.zw",
+    name: "Viralyz",
+    kind: "Creator tools",
+    body: "Scores short-form video and ad creative before it goes live, so creators and brands know what will land and why.",
+    href: "https://viralyz.com",
   },
   {
     code: "MADE 03",
@@ -52,6 +52,13 @@ const ownProducts = [
     kind: "Marketplace",
     body: "Connects people with local freelancers. Around 15,000 visitors a week and being rebuilt as a proper SaaS platform.",
     href: undefined,
+  },
+  {
+    code: "MADE 04",
+    name: "OneScope",
+    kind: "Fintech",
+    body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.",
+    href: "https://onescope.vercel.app",
   },
 ];
 
@@ -197,7 +204,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
               title={<>We build our own products too.</>}
               lead="The best way to stay sharp is to have skin in the game. These are ours: designed, built and run by the same team that works on yours."
             />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {ownProducts.map((p, i) => {
                 const inner = (
                   <BmkCard

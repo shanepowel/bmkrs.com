@@ -285,7 +285,7 @@ export const aiPages: Record<string, BmkPageContent> = {
           { code: "EN 03", title: "Improvement work", body: "Our engineers deliver the scoped work, AI-assisted and fully governed." },
           { code: "EN 04", title: "Tokenomics", body: "Put budgets and cost per outcome on your AI coding, so spend goes on work that ships." },
           { code: "EN 05", title: "Delivery leadership", body: "For larger estates, we lead the programme across teams and suppliers." },
-          { code: "EN 06", title: "Roadmap input", body: "We work closely with the EmberNest team, so what you need feeds straight into what gets built next." },
+          { code: "EN 06", title: "Roadmap input", body: "EmberNest is one of our own ventures, built with our partners, so what you need feeds straight into what gets built next." },
         ],
       },
       {
@@ -296,7 +296,7 @@ export const aiPages: Record<string, BmkPageContent> = {
         items: [
           { label: "AI tokenomics", href: "/ai/tokenomics", desc: "Control what your AI, including AI coding, costs to run." },
           { label: "AI and automation", href: "/ai", desc: "Everything else we build with AI." },
-          { label: "embernest.ai", href: "https://embernest.ai", desc: "The platform itself, from the EmberNest team.", external: true },
+          { label: "embernest.ai", href: "https://embernest.ai", desc: "The platform itself.", external: true },
         ],
       },
     ],
