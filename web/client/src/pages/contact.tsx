@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { submitConsultationRequest, type ConsultationResponse } from "@/lib/api";
-import type { InsertConsultationRequest, CustomerPersona } from "@shared/schema";
+import type { InsertConsultationRequest } from "@shared/schema";
 import { insertConsultationRequestSchema } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Label } from "@/components/ui/label";
@@ -172,7 +172,16 @@ const Contact = memo(function Contact({ onOpenConsultation }: ContactProps) {
               A few lines is plenty. What you want to make, roughly when, and anything that&apos;s keeping you up at night. We&apos;ll reply within two working days, and if we&apos;re not the right people we&apos;ll tell you who is.
             </Text>
 
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+              onSubmit={form.handleSubmit(onSubmit, () =>
+                toast({
+                  title: "Check the form",
+                  description: "Please fill in the highlighted fields and try again.",
+                  variant: "destructive",
+                }),
+              )}
+              className="space-y-8"
+            >
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <Label htmlFor="name" className="mb-2 block font-mono text-xs uppercase tracking-[0.08em] text-[#6B6E81]">
@@ -262,7 +271,7 @@ const Contact = memo(function Contact({ onOpenConsultation }: ContactProps) {
                   How Did You Hear About Us?
                 </Label>
                 <Select
-                  onValueChange={(value) => form.setValue("persona", value as CustomerPersona)}
+                  onValueChange={(value) => form.setValue("persona", value)}
                   defaultValue={form.watch("persona")}
                 >
                   <SelectTrigger

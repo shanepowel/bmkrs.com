@@ -45,7 +45,8 @@ export const insertConsultationRequestSchema = createInsertSchema(consultationRe
   })
   .extend({
     serviceInterest: z.enum(serviceInterestEnum),
-    persona: z.enum(customerPersonaEnum).optional(),
+    /** Free text: the contact page stores "how did you hear about us" here. */
+    persona: z.string().max(60).optional(),
     urgencyLevel: z.enum(urgencyLevelEnum).optional(),
   });
 
