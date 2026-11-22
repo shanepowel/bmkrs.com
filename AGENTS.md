@@ -6,7 +6,7 @@ The bmkrs studio site (`www.bmkrs.com`): brands, digital products and practical 
 
 - **App:** `web/`: Next.js 15 (App Router), React, TypeScript, Tailwind CSS 3, shadcn/ui (Radix)
 - **CMS:** Sanity v3 (embedded Studio at `/studio`), project `laqqhrou`, dataset `production`. Pages fall back to bundled copy in `web/client/src/content/` when Sanity isn't configured.
-- **Deploy:** Vercel, built from the repo root via `vercel.json` (`npm ci --prefix web`, `npm run build --prefix web`).
+- **Deploy:** Vercel project `bmkrs.com`, root directory `web/`, configured by `web/vercel.json` (installs and builds inside `web/` with its own lockfile).
 
 ## Commands
 
