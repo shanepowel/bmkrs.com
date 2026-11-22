@@ -2,19 +2,16 @@
 export const brand = {
   name: "bmkrs",
   nameDisplay: "bmkrs.",
-  legalName: "b makers ltd",
-  /**
-   * Company register details used on the legal pages. CONFIRM AGAINST COMPANIES HOUSE BEFORE GOING LIVE:
-   * these were inherited from the previous site and the office address is the former Amplified one.
-   */
-  companyNumber: "08589016",
-  registeredOffice: "7 Bell Yard, London WC2A 2JR",
-  incorporated: "28 June 2013",
-  natureOfBusiness: "Information technology consultancy (SIC 62020)",
+  legalName: "LRC Labs Ltd",
+  /** Company register details used on the legal pages and in structured data. bmkrs is a trading name of LRC Labs Ltd. */
+  companyNumber: "17311693",
+  registeredOffice: "128 City Road, London EC1V 2NX",
+  incorporated: "1 July 2026",
+  natureOfBusiness: "Business and domestic software development (SIC 62012); data processing, hosting and related activities (SIC 63110)",
   email: "hello@bmkrs.com",
   url: "https://bmkrs.com",
   location: "UK based, working wherever the work is",
-  foundingYear: "2013",
+  foundingYear: "2026",
   tagline: "Brands, digital products and practical AI, made real.",
   shortTagline: "Good ideas deserve better than a slide deck. We make them real.",
   description:

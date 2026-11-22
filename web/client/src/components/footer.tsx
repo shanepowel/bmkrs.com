@@ -69,7 +69,7 @@ const Footer = memo(function Footer() {
 
         <Stack direction="row-responsive" gap="md" justify="between" align="center" className="flex-wrap">
           <Text variant="caption" className="text-white/30">
-            © {new Date().getFullYear()} {brand.legalName} · UK
+            © {new Date().getFullYear()} bmkrs is a trading name of {brand.legalName}, registered in England and Wales, company no. {brand.companyNumber}. Registered office: {brand.registeredOffice}.
           </Text>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">

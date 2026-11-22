@@ -38,9 +38,9 @@ const organisationJsonLd = {
       foundingDate: brand.foundingYear,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '7 Bell Yard',
+        streetAddress: '128 City Road',
         addressLocality: 'London',
-        postalCode: 'WC2A 2JR',
+        postalCode: 'EC1V 2NX',
         addressCountry: 'GB',
       },
       contactPoint: {
