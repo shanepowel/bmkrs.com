@@ -19,7 +19,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "what",
     label: "What we do",
-    width: "w-[520px]",
+    width: "md:w-[520px]",
     align: "center",
     feature: {
       eyebrow: "Three ways to start",
@@ -39,7 +39,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "ai",
     label: "AI",
-    width: "w-[460px]",
+    width: "md:w-[460px]",
     align: "center",
     feature: {
       eyebrow: "AI Sprint · 2 weeks",
@@ -56,7 +56,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "work",
     label: "Our work",
-    width: "w-[320px]",
+    width: "md:w-[320px]",
     align: "center",
     items: [
       { name: "What we've made", desc: "Viralyz, Konduit, FreelanceNearMe", href: "/our-work" },
@@ -67,7 +67,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "company",
     label: "Company",
-    width: "w-[300px]",
+    width: "md:w-[300px]",
     align: "center",
     items: [
       { name: `About ${brand.name}`, desc: "Who we are and how we think", href: "/about" },
@@ -79,7 +79,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "who",
     label: "Who we work with",
-    width: "w-[340px]",
+    width: "md:w-[340px]",
     align: "right",
     items: [
       { name: "Founders and start-ups", desc: "Idea to launch without the bloat", href: "/for/founders" },
