@@ -168,7 +168,7 @@ class EmailService {
           <div style="margin-top: 30px; text-align: center; color: #6b7280; font-size: 14px;">
             <p>This email was sent from the bmkrs contact form</p>
             <p style="margin-top: 10px;">
-              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://bmkrs.com'}" style="color: #F85C70; text-decoration: none;">
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.bmkrs.com'}" style="color: #F85C70; text-decoration: none;">
                 Visit bmkrs
               </a>
             </p>

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Privacy Policy | bmkrs',
     description: 'bmkrs\'s privacy policy. How we collect, use, and protect your personal data in line with UK GDPR.',
-    url: 'https://bmkrs.com/privacy',
+    url: 'https://www.bmkrs.com/privacy',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'bmkrs\'s privacy policy. How we collect, use, and protect your personal data in line with UK GDPR.',
   },
   alternates: {
-    canonical: 'https://bmkrs.com/privacy',
+    canonical: 'https://www.bmkrs.com/privacy',
   },
 };
 

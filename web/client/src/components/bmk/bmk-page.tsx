@@ -430,7 +430,7 @@ const defaultCta: NonNullable<BmkPageContent["cta"]> = {
 const crumbLabels: Record<string, string> = { "/ai": "AI and automation", "/services": "What we do" };
 
 function pageJsonLd(page: BmkPageContent) {
-  const site = "https://bmkrs.com";
+  const site = "https://www.bmkrs.com";
   const url = `${site}${page.path}`;
   const segments = page.path.split("/").filter(Boolean);
   const crumbs = [{ name: "Home", item: `${site}/` }];

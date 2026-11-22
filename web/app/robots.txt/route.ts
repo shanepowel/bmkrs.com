@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const robotsTxt = `# bmkrs - brands, digital products and practical AI
-# https://bmkrs.com
+# https://www.bmkrs.com
 
 User-agent: *
 Allow: /
@@ -47,7 +47,7 @@ User-agent: *
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://bmkrs.com/sitemap.xml
+Sitemap: https://www.bmkrs.com/sitemap.xml
 `;
 
   return new NextResponse(robotsTxt, {

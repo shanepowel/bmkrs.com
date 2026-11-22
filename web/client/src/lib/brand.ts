@@ -9,7 +9,7 @@ export const brand = {
   incorporated: "1 July 2026",
   natureOfBusiness: "Business and domestic software development (SIC 62012); data processing, hosting and related activities (SIC 63110)",
   email: "hello@bmkrs.com",
-  url: "https://bmkrs.com",
+  url: "https://www.bmkrs.com",
   location: "UK based, working wherever the work is",
   foundingYear: "2026",
   tagline: "Brands, digital products and practical AI, made real.",

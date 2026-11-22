@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await loadArticle(slug);
   if (!article) return { title: 'Article not found | bmkrs', robots: { index: false } };
-  const url = `https://bmkrs.com/insights/${slug}`;
+  const url = `https://www.bmkrs.com/insights/${slug}`;
   const description: string =
     article.content?.description || `${article.title}: notes from the bmkrs studio on AI, products and brands.`;
   const image = article.content?.image || '/og-image.png';
@@ -43,7 +43,7 @@ export default async function Page({ params }: Props) {
   const { slug } = await params;
   const article = await loadArticle(slug);
   if (!article) notFound();
-  const url = `https://bmkrs.com/insights/${slug}`;
+  const url = `https://www.bmkrs.com/insights/${slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -54,17 +54,17 @@ export default async function Page({ params }: Props) {
         description: article.content?.description,
         datePublished: article.content?.date,
         dateModified: article.lastModified ?? article.content?.date,
-        author: { '@type': 'Organization', name: 'bmkrs', url: 'https://bmkrs.com' },
-        publisher: { '@id': 'https://bmkrs.com/#organisation' },
-        image: article.content?.image || 'https://bmkrs.com/og-image.png',
+        author: { '@type': 'Organization', name: 'bmkrs', url: 'https://www.bmkrs.com' },
+        publisher: { '@id': 'https://www.bmkrs.com/#organisation' },
+        image: article.content?.image || 'https://www.bmkrs.com/og-image.png',
         mainEntityOfPage: url,
         inLanguage: 'en-GB',
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bmkrs.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://bmkrs.com/insights' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bmkrs.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://www.bmkrs.com/insights' },
           { '@type': 'ListItem', position: 3, name: article.title, item: url },
         ],
       },

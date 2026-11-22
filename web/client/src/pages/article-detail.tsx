@@ -265,7 +265,7 @@ export default function ArticleDetail({ onOpenConsultation, initialArticle }: Ar
   const articleSchema = createArticleSchema({
     headline: article.title,
     description: article.content?.description || '',
-    url: `https://bmkrs.com/insights/${article.slug}`,
+    url: `https://www.bmkrs.com/insights/${article.slug}`,
     datePublished: dateIso,
     dateModified: article.lastModified ? new Date(article.lastModified).toISOString() : dateIso,
     authorName: article.content?.author || 'bmkrs',
@@ -276,9 +276,9 @@ export default function ArticleDetail({ onOpenConsultation, initialArticle }: Ar
   });
 
   const breadcrumbSchema = createBreadcrumbSchema([
-    { name: 'Home', url: 'https://bmkrs.com/' },
-    { name: 'Insights', url: 'https://bmkrs.com/insights' },
-    { name: article.title, url: `https://bmkrs.com/insights/${article.slug}` },
+    { name: 'Home', url: 'https://www.bmkrs.com/' },
+    { name: 'Insights', url: 'https://www.bmkrs.com/insights' },
+    { name: article.title, url: `https://www.bmkrs.com/insights/${article.slug}` },
   ]);
 
   const faqSchema = articleFaqs.length > 0 ? createFAQSchema(articleFaqs) : null;

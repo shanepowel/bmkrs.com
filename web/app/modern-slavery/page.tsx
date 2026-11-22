@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Modern Slavery Statement | bmkrs',
     description: 'bmkrs\'s Modern Slavery and Human Trafficking Statement. Our policies, risk assessment, and due diligence approach.',
-    url: 'https://bmkrs.com/modern-slavery',
+    url: 'https://www.bmkrs.com/modern-slavery',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'bmkrs\'s Modern Slavery and Human Trafficking Statement. Our policies, risk assessment, and due diligence approach.',
   },
   alternates: {
-    canonical: 'https://bmkrs.com/modern-slavery',
+    canonical: 'https://www.bmkrs.com/modern-slavery',
   },
 };
 

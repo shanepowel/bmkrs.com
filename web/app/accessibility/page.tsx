@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Accessibility Statement | bmkrs',
     description: 'bmkrs\'s commitment to digital accessibility. How we design our website to meet WCAG 2.2 AA and remain usable for everyone, on any device.',
-    url: 'https://bmkrs.com/accessibility',
+    url: 'https://www.bmkrs.com/accessibility',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'bmkrs\'s commitment to digital accessibility. How we design our website to meet WCAG 2.2 AA and remain usable for everyone, on any device.',
   },
   alternates: {
-    canonical: 'https://bmkrs.com/accessibility',
+    canonical: 'https://www.bmkrs.com/accessibility',
   },
 };
 

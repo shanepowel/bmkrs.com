@@ -46,17 +46,17 @@ export function createArticleSchema({
     author: {
       '@type': 'Person',
       name: authorName,
-      url: 'https://bmkrs.com/about',
+      url: 'https://www.bmkrs.com/about',
     },
     publisher: {
-      '@id': 'https://bmkrs.com/#organisation',
+      '@id': 'https://www.bmkrs.com/#organisation',
       name: 'bmkrs',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://bmkrs.com/brand/bmkrs-avatar-512.png',
+        url: 'https://www.bmkrs.com/brand/bmkrs-avatar-512.png',
       },
     },
-    image: image || 'https://bmkrs.com/og-image.png',
+    image: image || 'https://www.bmkrs.com/og-image.png',
     keywords: keywords.join(', '),
     ...(wordCount && { wordCount }),
     mainEntityOfPage: {
@@ -87,21 +87,21 @@ export function createFAQSchema(faqs: Array<{ question: string; answer: string }
 export const insightsHubSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  '@id': 'https://bmkrs.com/insights',
+  '@id': 'https://www.bmkrs.com/insights',
   'name': 'bmkrs Insights: notes from the studio',
   'description': 'Practical notes on brands, digital products and AI from the bmkrs studio, including AI tokenomics and governed AI-assisted delivery.',
-  'url': 'https://bmkrs.com/insights',
+  'url': 'https://www.bmkrs.com/insights',
   'publisher': {
     '@type': 'Organization',
     'name': 'bmkrs',
-    'url': 'https://bmkrs.com',
-    '@id': 'https://bmkrs.com/#organisation',
+    'url': 'https://www.bmkrs.com',
+    '@id': 'https://www.bmkrs.com/#organisation',
   },
   'breadcrumb': {
     '@type': 'BreadcrumbList',
     'itemListElement': [
-      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://bmkrs.com/' },
-      { '@type': 'ListItem', 'position': 2, 'name': 'Insights', 'item': 'https://bmkrs.com/insights' },
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.bmkrs.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Insights', 'item': 'https://www.bmkrs.com/insights' },
     ],
   },
 };

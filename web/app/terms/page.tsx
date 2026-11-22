@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Terms of Use | bmkrs',
     description: 'Terms and conditions governing use of the bmkrs website and services.',
-    url: 'https://bmkrs.com/terms',
+    url: 'https://www.bmkrs.com/terms',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Terms and conditions governing use of the bmkrs website and services.',
   },
   alternates: {
-    canonical: 'https://bmkrs.com/terms',
+    canonical: 'https://www.bmkrs.com/terms',
   },
 };
 

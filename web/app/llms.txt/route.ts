@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getInsights } from '../../lib/content/insights';
 
-const SITE = 'https://bmkrs.com';
+const SITE = 'https://www.bmkrs.com';
 
 /** A plain-text map of the site for AI assistants and AI search (llms.txt convention). */
 export async function GET() {

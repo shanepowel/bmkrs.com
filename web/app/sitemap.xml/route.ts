@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getInsights } from '../../lib/content/insights';
 
 export async function GET() {
-  const PRODUCTION_URL = 'https://bmkrs.com';
+  const PRODUCTION_URL = 'https://www.bmkrs.com';
   const currentDate = new Date().toISOString().split('T')[0];
 
   const pages = [

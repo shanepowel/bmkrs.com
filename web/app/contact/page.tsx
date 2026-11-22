@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Contact bmkrs | Let's build something`,
     description: `Tell bmkrs what you want to make: a brand, a product, an AI build or an AI bill that needs taming. Straight answer and a rough price on the first call.`,
-    url: 'https://bmkrs.com/contact',
+    url: 'https://www.bmkrs.com/contact',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: `Tell bmkrs what you want to make: a brand, a product, an AI build or an AI bill that needs taming. Straight answer and a rough price on the first call.`,
   },
   alternates: {
-    canonical: 'https://bmkrs.com/contact',
+    canonical: 'https://www.bmkrs.com/contact',
   },
 };
 

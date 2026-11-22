@@ -39,7 +39,7 @@ export function ServiceSchema({ name, description, url, serviceType = "Consultin
     "description": description,
     "url": url,
     "serviceType": serviceType,
-    "provider": { "@id": "https://bmkrs.com/#organization" },
+    "provider": { "@id": "https://www.bmkrs.com/#organization" },
     "areaServed": { "@type": "Country", "name": "United Kingdom" },
     "audience": {
       "@type": "Audience",

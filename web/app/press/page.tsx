@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: 'Press and brand kit | bmkrs',
   description:
     'bmkrs logos, colours, boilerplate and key facts for press and partners. Download the full brand kit.',
-  alternates: { canonical: 'https://bmkrs.com/press' },
+  alternates: { canonical: 'https://www.bmkrs.com/press' },
   openGraph: {
     title: 'Press and brand kit | bmkrs',
     description: 'bmkrs logos, colours, boilerplate and key facts for press and partners.',
-    url: 'https://bmkrs.com/press',
+    url: 'https://www.bmkrs.com/press',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',

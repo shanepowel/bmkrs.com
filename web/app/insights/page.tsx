@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Insights on AI tokenomics and practical AI | bmkrs`,
     description: `Guides on AI tokenomics, AI costs and FinOps for AI, plus practical notes on AI delivery, products and brands from the bmkrs studio.`,
-    url: 'https://bmkrs.com/insights',
+    url: 'https://www.bmkrs.com/insights',
     siteName: 'bmkrs',
     type: 'website',
     locale: 'en_GB',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: `Guides on AI tokenomics, AI costs and FinOps for AI, plus practical notes on AI delivery, products and brands from the bmkrs studio.`,
   },
   alternates: {
-    canonical: 'https://bmkrs.com/insights',
+    canonical: 'https://www.bmkrs.com/insights',
   },
 };
 

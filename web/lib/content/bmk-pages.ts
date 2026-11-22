@@ -4,7 +4,7 @@ import type { BmkBlock, BmkPageContent } from '../../client/src/content/bmk-type
 import { sanityFetch } from '../sanity/client';
 import { BMK_PAGE_QUERY } from '../sanity/queries';
 
-const SITE = 'https://bmkrs.com';
+const SITE = 'https://www.bmkrs.com';
 
 /** Block type in the site template ↔ Sanity object type name. */
 export const blockTypeMap: Record<BmkBlock['type'], string> = {
