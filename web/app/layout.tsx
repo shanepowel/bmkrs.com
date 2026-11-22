@@ -31,8 +31,8 @@ const organisationJsonLd = {
       logo: {
         '@type': 'ImageObject',
         url: `${brand.url}/brand/bmkrs-avatar-512.png`,
-        width: 200,
-        height: 60,
+        width: 512,
+        height: 512,
       },
       description: brand.description,
       foundingDate: brand.foundingYear,
@@ -50,6 +50,12 @@ const organisationJsonLd = {
       },
       areaServed: { '@type': 'Country', name: 'United Kingdom' },
       knowsAbout: [
+        'AI tokenomics',
+        'AI cost optimisation',
+        'LLM cost management',
+        'FinOps for AI',
+        'AI governance',
+        'AI-assisted software delivery',
         'Digital Products',
         'Product Strategy',
         'Brand Identity',
@@ -65,6 +71,9 @@ const organisationJsonLd = {
         '@type': 'OfferCatalog',
         name: `${brand.name} Services`,
         itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI token audit', url: `${brand.url}/ai/tokenomics` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Sprint', url: `${brand.url}/ai` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'EmberNest implementation', url: `${brand.url}/ai/embernest` } },
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sprint' } },
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Build' } },
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Crew' } },
@@ -79,14 +88,6 @@ const organisationJsonLd = {
       name: brand.name,
       description: brand.tagline,
       publisher: { '@id': `${brand.url}/#organisation` },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${brand.url}/insights?q={search_term_string}`,
-        },
-        'query-input': 'required name=search_term_string',
-      },
     },
   ],
 };
@@ -123,7 +124,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${plexMono.variable}`}>
+    <html lang="en-GB" suppressHydrationWarning className={`${archivo.variable} ${plexMono.variable}`}>
       <body className={archivo.className}>
         <GoogleTagManagerNoScript />
         <script

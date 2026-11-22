@@ -58,6 +58,8 @@ interface ArticleContent {
 
 interface ArticleDetailProps {
   onOpenConsultation: (serviceType?: string) => void;
+  /** Article fetched on the server, so the full text is in the first HTML for search engines and AI crawlers. */
+  initialArticle?: ArticleContent | null;
 }
 
 function formatArticleContent(content: string): string {
@@ -163,17 +165,17 @@ function FAQAccordion({ faqs }: { faqs: FAQItem[] }) {
   );
 }
 
-export default function ArticleDetail({ onOpenConsultation }: ArticleDetailProps) {
+export default function ArticleDetail({ onOpenConsultation, initialArticle }: ArticleDetailProps) {
   const params = useParams<{ slug: string }>();
   const slug = params?.slug;
-  const [article, setArticle] = useState<ArticleContent | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [article, setArticle] = useState<ArticleContent | null>(initialArticle ?? null);
+  const [isLoading, setIsLoading] = useState(!initialArticle);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     const fetchArticle = async () => {
-      if (!slug) return;
+      if (!slug || initialArticle) return;
       try {
         setIsLoading(true);
         const response = await fetch(`/api/cms/content/slug/${slug}`);
@@ -188,7 +190,7 @@ export default function ArticleDetail({ onOpenConsultation }: ArticleDetailProps
       }
     };
     fetchArticle();
-  }, [slug]);
+  }, [slug, initialArticle]);
 
   const articleTags = article?.content?.tags || [];
   const articleFaqs = article?.content?.faq || [];
@@ -283,8 +285,6 @@ export default function ArticleDetail({ onOpenConsultation }: ArticleDetailProps
 
   return (
     <PageShell className="relative overflow-hidden bg-background">
-      <StructuredData data={articleSchema} id="article-schema" />
-      <StructuredData data={breadcrumbSchema} id="article-breadcrumb" />
       {faqSchema && <StructuredData data={faqSchema} id="article-faq-schema" />}
 
       <div className="absolute inset-0 modern-pattern opacity-5" aria-hidden="true" />

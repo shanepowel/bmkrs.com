@@ -1,71 +1,79 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { PageWrapper } from '../../../client/src/components/page-wrapper';
 import ArticleDetail from '../../../client/src/pages/article-detail';
+import { getInsightBySlug } from '../../../lib/content/insights';
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-): Promise<Metadata> {
+export const revalidate = 300;
+
+type Props = { params: Promise<{ slug: string }> };
+
+/** Plain JSON so dates and other values cross the server/client boundary cleanly. */
+async function loadArticle(slug: string) {
+  const item = await getInsightBySlug(slug);
+  return item ? JSON.parse(JSON.stringify(item)) : null;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-
-  const title = slug
-    .split('-')
-    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bmkrs.com';
-    const res = await fetch(`${baseUrl}/api/cms/content/insight`, { next: { revalidate: 300 } });
-    if (res.ok) {
-      const data = await res.json();
-      const articles: Array<{ slug?: string; title?: string; metaDescription?: string; description?: string; featuredImage?: string }> = data.data || [];
-      const article = articles.find((a) => a.slug === slug);
-      if (article) {
-        return {
-          title: `${article.title || title} | bmkrs Insights`,
-          description: article.metaDescription || article.description || `Read ${article.title || title} - notes from the bmkrs studio on brands, products and AI.`,
-          openGraph: {
-            title: article.title || title,
-            description: article.metaDescription || article.description || `Read ${article.title || title}: notes from the bmkrs studio.`,
-            url: `https://bmkrs.com/insights/${slug}`,
-            images: article.featuredImage ? [{ url: article.featuredImage }] : [{ url: '/og-image.png' }],
-            type: 'article',
-          },
-          twitter: {
-            card: 'summary_large_image',
-            title: article.title || title,
-            description: article.metaDescription || article.description || `Read ${article.title || title}: notes from the bmkrs studio.`,
-            images: article.featuredImage ? [article.featuredImage] : ['/og-image.png'],
-          },
-          alternates: {
-            canonical: `https://bmkrs.com/insights/${slug}`,
-          },
-        };
-      }
-    }
-  } catch {
-    // Fall through to default metadata
-  }
-
+  const article = await loadArticle(slug);
+  if (!article) return { title: 'Article not found | bmkrs', robots: { index: false } };
+  const url = `https://bmkrs.com/insights/${slug}`;
+  const description: string =
+    article.content?.description || `${article.title}: notes from the bmkrs studio on AI, products and brands.`;
+  const image = article.content?.image || '/og-image.png';
   return {
-    title: `${title} | bmkrs Insights`,
-    description: `Read ${title}: notes from the bmkrs studio on brands, products and AI.`,
+    title: `${article.title} | bmkrs`,
+    description,
     openGraph: {
-      title,
-      description: `Read ${title}: notes from the bmkrs studio.`,
-      url: `https://bmkrs.com/insights/${slug}`,
+      title: article.title,
+      description,
+      url,
+      siteName: 'bmkrs',
+      images: [{ url: image }],
       type: 'article',
+      publishedTime: article.content?.date,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description: `Read ${title}: notes from the bmkrs studio.`,
-    },
-    alternates: {
-      canonical: `https://bmkrs.com/insights/${slug}`,
-    },
+    twitter: { card: 'summary_large_image', title: article.title, description, images: [image] },
+    alternates: { canonical: url },
   };
 }
 
-export default function Page() {
-  return <PageWrapper component={ArticleDetail} />;
+export default async function Page({ params }: Props) {
+  const { slug } = await params;
+  const article = await loadArticle(slug);
+  if (!article) notFound();
+  const url = `https://bmkrs.com/insights/${slug}`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${url}#article`,
+        headline: article.title,
+        description: article.content?.description,
+        datePublished: article.content?.date,
+        dateModified: article.lastModified ?? article.content?.date,
+        author: { '@type': 'Organization', name: 'bmkrs', url: 'https://bmkrs.com' },
+        publisher: { '@id': 'https://bmkrs.com/#organisation' },
+        image: article.content?.image || 'https://bmkrs.com/og-image.png',
+        mainEntityOfPage: url,
+        inLanguage: 'en-GB',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bmkrs.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://bmkrs.com/insights' },
+          { '@type': 'ListItem', position: 3, name: article.title, item: url },
+        ],
+      },
+    ],
+  };
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <PageWrapper component={ArticleDetail} props={{ initialArticle: article }} />
+    </>
+  );
 }

@@ -82,6 +82,180 @@ Measure first. A two-week token audit is usually enough to trace every AI call, 
     },
   },
   {
+    id: 'bmk-insight-004',
+    type: 'insight' as const,
+    title: "How to work out the cost per outcome of AI",
+    slug: 'ai-cost-per-outcome',
+    status: 'published' as const,
+    modifiedBy: 'system',
+    version: 1,
+    content: {
+      description: "Your AI bill says what you spent, not what you got. Here is a six-step method for working out the cost per outcome of any AI feature, using your own usage.",
+      date: '2026-11-22',
+      readTime: '5 min read',
+      author: 'bmkrs',
+      tags: ["AI", "Tokenomics", "Cost per outcome"],
+      relatedServices: [
+        { label: 'AI tokenomics', href: '/ai/tokenomics' },
+        { label: 'EmberNest', href: '/ai/embernest' },
+        { label: 'AI and automation', href: '/ai' },
+      ],
+      keyTakeaways: [
+        "Cost per outcome is the cost of all the AI work behind one finished, useful result.",
+        "Tag every model call to the feature and step it serves, or you can only ever see totals.",
+        "Count retries, failed attempts and reasoning tokens: you paid for them.",
+        "Divide by successful outcomes, not attempts, so quality improvements show up as savings.",
+        "Recalculate after every change and check quality on a fixed set of test cases."
+      ],
+      body: `## Why the monthly bill tells you almost nothing
+
+Your AI invoice says what you spent. It doesn't say what you got. A bill that doubled might be great news if the number of customer problems solved tripled, and terrible news if it bought the same work as last month with longer prompts.
+
+Cost per outcome fixes that. It is the cost of all the AI work behind one finished, useful result: one resolved support ticket, one approved product description, one merged pull request, one claim processed. Once you have that number you can compare it with what the outcome is worth, with what it cost before AI, and with itself next month.
+
+## Step 1: name the outcome
+
+Start with the job, not the model. For each AI feature or workflow, write down the single result it exists to produce, and how you know it happened. "Ticket closed without a human reply" is an outcome. "Chat message sent" is not, because a message can be useless.
+
+If you can't name the outcome, that's a finding in itself. It usually means the feature is being run on hope rather than evidence.
+
+## Step 2: tag every call
+
+Every call to a model needs a label saying which feature, workflow and step it belongs to, and ideally which customer or team triggered it. Most providers and gateways let you attach metadata to a request; if yours doesn't, log it alongside the request ID.
+
+This is the dull part, and it is where most attempts stall. Without tags you can only ever see totals by model, which tells you how you spent money, not why.
+
+## Step 3: count all the tokens behind one outcome
+
+An outcome rarely takes one call. A support answer might involve a classification step, a retrieval step, a draft, a check and a rewrite. An agent might take twenty steps. Add them all up, including:
+
+- input tokens, with system prompts, retrieved documents and conversation history
+- output tokens, which are usually priced several times higher than input
+- reasoning tokens, where the model is billed for thinking it doesn't show you
+- retries, failed attempts and abandoned runs, because you paid for those too
+
+Multiply by the price of each model used, net of any discounts or caching credits on your contract.
+
+## Step 4: divide by outcomes delivered
+
+Cost per outcome = total token cost for the workflow ÷ number of successful outcomes.
+
+Use successful outcomes, not attempts. If the assistant resolves 600 of 1,000 conversations, the cost of the other 400 belongs to the 600 that worked. That's what keeps the number honest, and it's why improving quality often cuts cost per outcome faster than cutting token prices.
+
+## Step 5: compare it with value
+
+Now the number becomes useful. Put it next to:
+
+- the cost of the same outcome done by a person or the previous process
+- the revenue or margin the outcome supports, for customer-facing features
+- the price the customer pays, if AI is part of what you sell
+
+If an AI-resolved ticket costs pennies and a human one costs pounds, scale it. If an AI feature costs more per user than the user pays you, you have a pricing or design problem to fix before you grow.
+
+## Step 6: make it move
+
+With cost per outcome in place, every optimisation can be judged properly. Route simple steps to smaller models, trim context, cache repeat questions, cap agent steps, and shorten answers nobody reads. After each change, check quality on a fixed set of test cases and recalculate. Keep the changes that lower cost per outcome without lowering quality; roll back the rest.
+
+## Common mistakes
+
+**Measuring per token instead of per result.** A cheaper model that needs three attempts can cost more per outcome than a dearer one that gets it right first time.
+
+**Ignoring the failures.** Leaving out retries and abandoned runs flatters the number and hides the most expensive problems.
+
+**Forgetting internal AI.** AI coding tools and staff assistants often outspend customer features. They have outcomes too, such as merged changes or hours saved, and deserve the same treatment.
+
+**Measuring once.** Model prices, your usage and your prompts all change. Cost per outcome is a dashboard, not a report.
+
+## Where to start
+
+Pick your two or three busiest AI workflows and run steps 1 to 5 on a week of real usage. That's usually enough to show where the money goes and which lever to pull first. If you'd like help, it's exactly what our two-week [token audit](/ai/tokenomics) does.
+`,
+      faq: [
+        { question: "What is cost per outcome in AI?", answer: "The total token cost of all the AI calls behind one finished, useful result, such as a resolved ticket or a merged pull request, divided across the successful outcomes delivered." },
+        { question: "Why not just track cost per token?", answer: "Because a cheaper model that needs several attempts can cost more per result than a dearer one that gets it right first time. Cost per outcome captures that; cost per token does not." },
+      ],
+    },
+  },
+  {
+    id: 'bmk-insight-005',
+    type: 'insight' as const,
+    title: "FinOps for AI and AI tokenomics: who owns AI spend?",
+    slug: 'finops-for-ai-and-ai-tokenomics',
+    status: 'published' as const,
+    modifiedBy: 'system',
+    version: 1,
+    content: {
+      description: "AI spend has landed on the FinOps desk, but it does not behave like cloud. How FinOps for AI and AI tokenomics fit together, who owns what, and a 90-day plan.",
+      date: '2026-11-22',
+      readTime: '5 min read',
+      author: 'bmkrs',
+      tags: ["AI", "Tokenomics", "FinOps"],
+      relatedServices: [
+        { label: 'AI tokenomics', href: '/ai/tokenomics' },
+        { label: 'EmberNest', href: '/ai/embernest' },
+        { label: 'AI and automation', href: '/ai' },
+      ],
+      keyTakeaways: [
+        "AI is billed by the token, so its cost is set in prompts, routing rules and agent design, not by servers being on.",
+        "FinOps for AI is the operating model; AI tokenomics is the practice that changes what goes on the bill.",
+        "Cutting AI cost without measuring quality just moves the cost somewhere else.",
+        "Finance owns budgets and allocation, engineering owns the levers, product owns the outcome definitions.",
+        "A 90-day plan: see it, price it, fix the obvious, then hold the line with budgets and alerts."
+      ],
+      body: `## AI spend has landed on the FinOps desk
+
+For most of the last decade FinOps meant cloud: servers, storage, reserved instances and the monthly argument about who left something running. That has changed fast. AI model usage, AI coding tools and AI features inside SaaS products now show up in the same budgets, and the people who manage cloud costs are being asked to manage these too.
+
+The trouble is that AI doesn't behave like cloud. Understanding why is the difference between controlling AI spend and just reporting on it.
+
+## What makes AI costs different
+
+**It's billed by the token, not the hour.** You don't pay for a machine being on. You pay for every chunk of text sent to a model and every chunk that comes back. The same feature can cost ten times more on Tuesday than Monday because users asked longer questions.
+
+**The cost is decided in the code and the prompt.** Which model is called, how much context is attached, how long the answer is allowed to be and how many steps an agent can take are product and engineering decisions, often made once and never revisited.
+
+**Quality and cost are tied together.** Switching to a cheaper model is easy. Knowing whether it still does the job is not. Cutting AI cost without measuring quality just moves the cost somewhere else, usually to a customer or a colleague fixing the output.
+
+**Spend is spread everywhere.** Product features, internal assistants, developer tools, data teams and SaaS licences with AI add-ons all draw on different accounts and contracts. Shadow AI is easy to start and hard to see.
+
+## Where AI tokenomics fits
+
+FinOps for AI is the operating model: visibility, allocation, budgets, forecasting and accountability, applied to AI. AI tokenomics is the engineering and product practice underneath it: how tokens are actually consumed, what each outcome costs, and how to change that without hurting results.
+
+Put simply, FinOps for AI tells you the bill and who owns it. AI tokenomics changes what goes on it.
+
+You need both. Without FinOps, savings aren't tracked or sustained. Without tokenomics, FinOps teams can see the spend but can't change it, because the levers sit in prompts, routing rules and agent design.
+
+## Who owns what
+
+A setup that tends to work:
+
+- **Finance and FinOps** own budgets, allocation and forecasting, and report AI spend as cost per outcome by feature, team and customer.
+- **Engineering** owns the levers: model routing, context and caching, agent limits, and the logging that makes allocation possible.
+- **Product** owns the outcome definitions and the trade-off between cost, quality and speed for each feature.
+- **Leadership** gets one view that answers the only question that matters: is this spend buying results?
+
+## The first 90 days
+
+**Weeks 1 to 2: see it.** Find every place AI is used and paid for, including developer tools and SaaS add-ons. Tag model calls to features and teams.
+
+**Weeks 3 to 4: price it.** Work out cost per outcome for the biggest workflows, and compare it with the value of the outcome.
+
+**Weeks 5 to 8: fix the obvious.** Route routine steps to smaller models, trim context, cache repeat questions, cap agents, and test quality before and after each change.
+
+**Weeks 9 to 12: hold the line.** Set budgets and alerts per feature and team, add AI to the forecast, and agree who signs off new AI usage and on what evidence.
+
+## The point
+
+AI is one of the few technology costs that can grow faster than the business without anyone deciding it should. Treat it with the same discipline as cloud, but use the right levers. That's what AI tokenomics is for, and it's where we spend most of our time right now. See how our [token audit](/ai/tokenomics) works, or read our guide to [working out cost per outcome](/insights/ai-cost-per-outcome).
+`,
+      faq: [
+        { question: "What is FinOps for AI?", answer: "Applying FinOps practices such as visibility, allocation, budgets and forecasting to AI spend, including model usage, AI coding tools and AI features in SaaS products." },
+        { question: "How is AI tokenomics different from FinOps for AI?", answer: "FinOps for AI tells you the bill and who owns it. AI tokenomics is the engineering and product practice that changes it: model routing, context and caching, agent limits and cost per outcome." },
+      ],
+    },
+  },
+  {
     id: 'bmk-insight-002',
     type: 'insight' as const,
     title: 'AI writes the code. Who checks what it ships?',

@@ -426,11 +426,70 @@ const defaultCta: NonNullable<BmkPageContent["cta"]> = {
 
 /* ------------------------------------------------------------------ */
 
+/** Structured data for an inner page, rendered into the server HTML: breadcrumbs, the service it describes, and its FAQs. */
+const crumbLabels: Record<string, string> = { "/ai": "AI and automation", "/services": "What we do" };
+
+function pageJsonLd(page: BmkPageContent) {
+  const site = "https://bmkrs.com";
+  const url = `${site}${page.path}`;
+  const segments = page.path.split("/").filter(Boolean);
+  const crumbs = [{ name: "Home", item: `${site}/` }];
+  segments.forEach((_, i) => {
+    const path = `/${segments.slice(0, i + 1).join("/")}`;
+    const isLast = i === segments.length - 1;
+    if (!isLast && !crumbLabels[path]) return; // skip levels with no page of their own, such as /for
+    crumbs.push({
+      name: isLast ? page.hero.eyebrow : (crumbLabels[path] ?? path.slice(1)),
+      item: `${site}${path}`,
+    });
+  });
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: page.metaTitle,
+      description: page.metaDescription,
+      isPartOf: { "@id": `${site}/#website` },
+      inLanguage: "en-GB",
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })),
+    },
+  ];
+  if (page.path.startsWith("/services") || page.path.startsWith("/ai")) {
+    graph.push({
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: page.hero.eyebrow,
+      serviceType: page.cta?.serviceType ?? page.hero.eyebrow,
+      description: page.metaDescription,
+      url,
+      provider: { "@id": `${site}/#organisation` },
+      areaServed: [{ "@type": "Country", name: "United Kingdom" }, { "@type": "Place", name: "Europe" }],
+    });
+  }
+  const faqs = page.blocks.flatMap((b) => (b.type === "faq" ? b.items : []));
+  if (faqs.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
+}
+
 export function BmkPage({ page }: { page: BmkPageContent }) {
   const { openConsultation } = useConsultation();
   let alt = false;
   return (
     <PageShell className="bg-[#181F4F]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd(page)) }}
+      />
       <div className="bg-[#181F4F] text-white">
         <Hero hero={page.hero} />
         {page.blocks.map((block, i) => {

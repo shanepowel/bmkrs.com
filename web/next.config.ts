@@ -33,6 +33,20 @@ const nextConfig: NextConfig = {
       r('/what-we-believe', '/about'),
       r('/about/team', '/about'),
       r('/about/methodology', '/how-we-work'),
+      // URLs from the previous bmkrs.com site, so indexed pages and links keep working after go-live.
+      r('/motion', '/services'),
+      r('/network', '/about'),
+      r('/work', '/our-work'),
+      r('/work/:slug(freelance-near-me|viralyz|three18-media|data-deep-clean|kaizened|podcast-studio-london)', '/our-work'),
+      r('/work/:slug*', '/case-studies'),
+      r('/journal', '/insights'),
+      r('/journal/feed.xml', '/insights'),
+      r('/journal/category/:slug*', '/insights'),
+      r('/journal/:slug*', '/insights'),
+      r('/legal/privacy', '/privacy'),
+      r('/legal/terms', '/terms'),
+      r('/legal/cookies', '/privacy'),
+      r('/legal', '/privacy'),
     ];
   },
   async headers() {

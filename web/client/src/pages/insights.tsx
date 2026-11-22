@@ -26,6 +26,8 @@ import {
 
 interface InsightsProps {
   onOpenConsultation: (serviceType?: string) => void;
+  /** Articles fetched on the server, so the list is in the first HTML. */
+  initialArticles?: InsightItem[];
 }
 
 interface ArticleContent {
@@ -39,7 +41,7 @@ interface ArticleContent {
   sources?: string;
 }
 
-export default function Insights({ onOpenConsultation }: InsightsProps) {
+export default function Insights({ onOpenConsultation, initialArticles }: InsightsProps) {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const [newsletterMounted, setNewsletterMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,6 +50,7 @@ export default function Insights({ onOpenConsultation }: InsightsProps) {
 
   const { data: response, isLoading } = useQuery<{ success: boolean; data: InsightItem[] }>({
     queryKey: ["/api/cms/content", "insight"],
+    initialData: initialArticles ? { success: true, data: initialArticles } : undefined,
   });
 
   const articles = response?.data || [];

@@ -50,15 +50,15 @@ const ownProducts = [
     name: "FreelanceNearMe",
     display: <>Freelance<wbr />NearMe</>,
     kind: "Marketplace",
-    body: "Connects people with local freelancers. Around 15,000 visitors a week and being rebuilt as a proper SaaS platform.",
-    href: undefined,
+    body: "Connects people with local freelancers across the UK and beyond. Around 15,000 visitors a week and being rebuilt as a proper SaaS platform.",
+    href: "https://freelancenearme.com",
   },
   {
     code: "MADE 04",
     name: "OneScope",
     kind: "Fintech",
     body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.",
-    href: "https://onescope.vercel.app",
+    href: "https://onescope.io",
   },
 ];
 
@@ -149,7 +149,8 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                 </h1>
                 <Text variant="lead" tone="white-80" className="mt-8 max-w-[36rem]">
                   bmkrs is a small, senior studio. We design, build and launch brands, digital
-                  products and practical AI, in short cycles you can see from week one.
+                  products and practical AI, and we help organisations get their AI token costs
+                  under control. In short cycles you can see from week one.
                 </Text>
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                   <AmpButton asChild size="md" data-testid="button-hero-build">
@@ -192,6 +193,48 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           </Container>
           <Container className="relative z-10">
             <div className="bmk-ruler" aria-hidden />
+          </Container>
+        </section>
+
+        {/* ===================== AI TOKENOMICS ===================== */}
+        <section aria-labelledby="home-tokenomics" className="border-b border-white/10 bg-[#141a44] py-16 lg:py-20">
+          <Container>
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-7">
+                <Eyebrow className="mb-4">Where we&apos;re busiest right now</Eyebrow>
+                <h2 id="home-tokenomics" className="font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:118%] sm:text-4xl lg:text-5xl">
+                  AI tokenomics: <span className="text-[#F85C70]">know what your AI costs.</span>
+                </h2>
+                <Text variant="lead" tone="white-75" className="mt-6 max-w-2xl">
+                  Every AI call is billed by the token, and the bill grows faster than the value
+                  unless someone is watching. We measure the cost per outcome of your AI, cut the
+                  spend that isn&apos;t buying anything, and set budgets that hold as usage grows.
+                </Text>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <AmpButton asChild size="md" data-testid="button-home-tokenomics">
+                    <Link href="/ai/tokenomics">
+                      AI tokenomics <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </AmpButton>
+                  <AmpButton asChild size="md" variant="outlineLight">
+                    <Link href="/insights/ai-tokenomics-what-your-ai-really-costs">Read the guide</Link>
+                  </AmpButton>
+                </div>
+              </div>
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+                {[
+                  ["TK 01", "Cost per outcome", "What one resolved ticket or merged change really costs."],
+                  ["TK 02", "Model routing and caching", "The same result from a cheaper path."],
+                  ["TK 03", "Budgets for agents and AI coding", "Limits that stop overnight spend surprises."],
+                ].map(([code, title, body]) => (
+                  <li key={code} className="border border-white/10 bg-[#181F4F] p-5">
+                    <span className="font-mono text-[11px] tracking-[0.12em] text-[#F85C70]">{code}</span>
+                    <p className="mt-2 font-semibold text-white">{title}</p>
+                    <p className="mt-1 text-sm text-white/65">{body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Container>
         </section>
 

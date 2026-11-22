@@ -112,8 +112,16 @@ export async function getBmkMetadata(id: string): Promise<Metadata> {
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    openGraph: { title: page.metaTitle, description: page.metaDescription, url, siteName: 'bmkrs', type: 'website' },
-    twitter: { card: 'summary_large_image', title: page.metaTitle, description: page.metaDescription },
+    openGraph: {
+      title: page.metaTitle,
+      description: page.metaDescription,
+      url,
+      siteName: 'bmkrs',
+      type: 'website',
+      locale: 'en_GB',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'bmkrs' }],
+    },
+    twitter: { card: 'summary_large_image', title: page.metaTitle, description: page.metaDescription, images: ['/og-image.png'] },
     alternates: { canonical: url },
   };
 }

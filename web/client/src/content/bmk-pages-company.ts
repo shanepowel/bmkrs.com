@@ -364,8 +364,8 @@ export const companyPages: Record<string, BmkPageContent> = {
         items: [
           { code: "MADE 01", title: "EmberNest", body: "The governed delivery layer for AI-assisted software development. It assesses a codebase and turns improvements into scoped, approved and evidenced work, so AI speeds teams up without making the software messier.", tags: ["AI delivery", "Governance"], href: "https://embernest.ai", external: true },
           { code: "MADE 02", title: "Viralyz", body: "Scores short-form video and ad creative before it goes live, so creators and brands know what will land and why.", tags: ["Creator tools", "AI scoring"], href: "https://viralyz.com", external: true },
-          { code: "MADE 03", title: "FreelanceNearMe", body: "Connects people with local freelancers. Around 15,000 visitors a week, and being rebuilt as a proper SaaS platform.", tags: ["Marketplace", "Rebuild in progress"] },
-          { code: "MADE 04", title: "OneScope", body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.", tags: ["Fintech", "Trading bots"], href: "https://onescope.vercel.app", external: true },
+          { code: "MADE 03", title: "FreelanceNearMe", body: "Connects people with local freelancers, at freelancenearme.com and freelancenearme.co.uk. Around 15,000 visitors a week, and being rebuilt as a proper SaaS platform.", tags: ["Marketplace", "Rebuild in progress"], href: "https://freelancenearme.com", external: true },
+          { code: "MADE 04", title: "OneScope", body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.", tags: ["Fintech", "Trading bots"], href: "https://onescope.io", external: true },
         ],
       },
       {

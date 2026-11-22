@@ -19,9 +19,9 @@ export const brand = {
   shortTagline: "Good ideas deserve better than a slide deck. We make them real.",
   description:
     "bmkrs is a small, senior studio that designs, builds and launches brands, digital products and practical AI. We work in short, visible cycles so you can see the thing taking shape from week one.",
-  metaTitle: "bmkrs | We make good ideas real",
+  metaTitle: "bmkrs | AI tokenomics, practical AI and digital products",
   metaDescription:
-    "bmkrs designs, builds and launches brands, digital products and practical AI for ambitious organisations. Small team, senior people, real things shipped.",
+    "bmkrs helps organisations control what their AI costs with AI tokenomics, and designs, builds and launches practical AI, digital products and brands. Small, senior, UK based.",
   ctaPrimary: "Let's build something",
   ctaSecondary: "See what we've made",
   social: {

@@ -11,9 +11,12 @@ export const metadata: Metadata = {
     url: `${brand.url}/`,
     siteName: brand.name,
     type: 'website',
+    locale: 'en_GB',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'bmkrs' }],
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/og-image.png'],
     title: brand.metaTitle,
     description: brand.metaDescription,
   },
