@@ -156,7 +156,7 @@ export const companyPages: Record<string, BmkPageContent> = {
     path: "/about",
     metaTitle: "About bmkrs | A small, senior studio that makes things real",
     metaDescription:
-      "bmkrs is a small, senior studio that designs, builds and launches brands, products and practical AI. Part of Digiteq, and we run our own products too.",
+      "bmkrs is a small, senior studio that designs, builds and launches brands, products and practical AI. Part of LRC Labs, and we run our own products too.",
     hero: {
       code: "BMK / ABOUT",
       eyebrow: "About us",
@@ -177,7 +177,7 @@ export const companyPages: Record<string, BmkPageContent> = {
         paragraphs: [
           "Between us we've spent seventeen years leading digital delivery: websites, payment platforms, portals, AI products. Too often we watched good ideas die in a slide deck, or get built so slowly that the moment passed.",
           "So we set up the studio we wanted to hire. Small enough that the people you meet are the people doing the work. Broad enough to take an idea from name to launch to growth.",
-          "bmkrs is part of Digiteq, a UK group that builds and runs digital brands. That's why we have our own products on the bench, and why we think like owners.",
+          "bmkrs is part of LRC Labs, a UK company that builds and runs software products. That's why we have our own products on the bench, and why we think like owners.",
         ],
         image: "portrait",
         figLabel: "FIG. 02 / LAUNCH DAY",

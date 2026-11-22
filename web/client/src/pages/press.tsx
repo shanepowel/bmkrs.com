@@ -15,7 +15,7 @@ const facts = [
   { label: "Name", value: "bmkrs (always lowercase)" },
   { label: "Company", value: `${brand.legalName}, trading as bmkrs` },
   { label: "What we do", value: "Brands, digital products and practical AI" },
-  { label: "Part of", value: "Digiteq, a UK group that builds and runs digital brands" },
+  { label: "Part of", value: "LRC Labs, a UK company that builds and runs software products" },
   { label: "Based", value: "UK, working wherever the work is" },
   { label: "Press contact", value: "hello@bmkrs.com" },
 ];
@@ -27,7 +27,7 @@ const boilerplates = [
   },
   {
     label: "Short",
-    text: "bmkrs is a small, senior studio that designs, builds and launches brands, digital products and practical AI. It works in short, visible cycles, helps organisations control what their AI costs, and runs its own products, including EmberNest, Viralyz, FreelanceNearMe and OneScope. bmkrs is part of Digiteq, a UK group that builds and runs digital brands.",
+    text: "bmkrs is a small, senior studio that designs, builds and launches brands, digital products and practical AI. It works in short, visible cycles, helps organisations control what their AI costs, and runs its own products, including EmberNest, Viralyz, FreelanceNearMe and OneScope. bmkrs is part of LRC Labs, a UK company that builds and runs software products.",
   },
 ];
 
