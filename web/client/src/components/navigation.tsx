@@ -25,7 +25,7 @@ interface NavigationProps {
 
 const panel = "absolute top-full z-50 overflow-hidden border border-white/10 bg-[#141a44] shadow-2xl shadow-black/40";
 const itemCls =
-  "group flex items-start gap-3 px-3 py-2.5 transition-colors duration-150 hover:bg-white/[0.05] focus:outline-none focus-visible:bg-white/[0.07]";
+  "group/navitem flex items-start gap-3 px-3 py-2.5 transition-colors duration-150 hover:bg-white/[0.05] focus:outline-none focus-visible:bg-white/[0.07]";
 
 /**
  * Extra classes for links inside the shadcn menu. They're passed to NavigationMenuLink (not the
@@ -44,7 +44,7 @@ function MenuItems({ items, onNavigate, inMenu }: { items: NavItem[]; onNavigate
             <span className="w-12 flex-shrink-0 pt-0.5 font-mono text-[11px] tracking-[0.08em] text-[#F85C70]">{item.tag}</span>
           )}
           <span className="min-w-0">
-            <span className="block text-sm font-semibold text-white group-hover:text-[#F85C70]">{item.name}</span>
+            <span className="block text-sm font-semibold text-white group-hover/navitem:text-[#F85C70] group-focus-visible/navitem:text-[#F85C70]">{item.name}</span>
             <span className="mt-0.5 block text-xs text-white/55">{item.desc}</span>
           </span>
         </Link>
@@ -61,7 +61,7 @@ function MenuItems({ items, onNavigate, inMenu }: { items: NavItem[]; onNavigate
   );
 }
 
-const featureCls = "group block border-b border-white/10 bg-[#181F4F] px-5 py-4 transition-colors hover:bg-[#60266A]/40";
+const featureCls = "group/navfeat block border-b border-white/10 bg-[#181F4F] px-5 py-4 transition-colors hover:bg-[#60266A]/40";
 
 function Feature({ feature, onNavigate, inMenu }: { feature: NonNullable<NavMenu["feature"]>; onNavigate?: () => void; inMenu?: boolean }) {
   const link = (
@@ -76,7 +76,7 @@ function Feature({ feature, onNavigate, inMenu }: { feature: NonNullable<NavMenu
           <p className="text-sm font-semibold text-white">{feature.title}</p>
           <p className="mt-0.5 text-xs text-white/55">{feature.desc}</p>
         </div>
-        <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-[#F85C70] transition-transform group-hover:translate-x-1" />
+        <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-[#F85C70] transition-transform group-hover/navfeat:translate-x-1" />
       </div>
     </Link>
   );
