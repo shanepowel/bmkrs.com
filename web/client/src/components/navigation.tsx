@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, memo, useEffect } from "react";
+import { useState, memo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -27,12 +27,19 @@ const panel = "absolute top-full z-50 overflow-hidden border border-white/10 bg-
 const itemCls =
   "group flex items-start gap-3 px-3 py-2.5 transition-colors duration-150 hover:bg-white/[0.05] focus:outline-none focus-visible:bg-white/[0.07]";
 
+/**
+ * Extra classes for links inside the shadcn menu. They're passed to NavigationMenuLink (not the
+ * Next Link) so tailwind-merge replaces shadcn's defaults (stacked layout, light hover fill).
+ */
+const menuLinkReset =
+  "flex-row gap-3 rounded-none p-0 text-inherit hover:bg-white/[0.05] hover:text-inherit focus:bg-white/[0.07] focus:text-inherit data-[active=true]:bg-white/[0.07] data-[active=true]:text-inherit";
+
 function MenuItems({ items, onNavigate, inMenu }: { items: NavItem[]; onNavigate?: () => void; inMenu?: boolean }) {
   return (
     <>
       {items.map((item) => {
         const link = (
-        <Link key={item.href + item.name} href={item.href} className={itemCls} onClick={onNavigate}>
+        <Link key={item.href + item.name} href={item.href} className={inMenu ? undefined : itemCls} onClick={onNavigate}>
           {item.tag && (
             <span className="w-12 flex-shrink-0 pt-0.5 font-mono text-[11px] tracking-[0.08em] text-[#F85C70]">{item.tag}</span>
           )}
@@ -43,7 +50,7 @@ function MenuItems({ items, onNavigate, inMenu }: { items: NavItem[]; onNavigate
         </Link>
         );
         return inMenu ? (
-          <NavigationMenuLink asChild key={item.href + item.name}>
+          <NavigationMenuLink asChild key={item.href + item.name} className={`${menuLinkReset} ${itemCls}`}>
             {link}
           </NavigationMenuLink>
         ) : (
@@ -54,12 +61,14 @@ function MenuItems({ items, onNavigate, inMenu }: { items: NavItem[]; onNavigate
   );
 }
 
+const featureCls = "group block border-b border-white/10 bg-[#181F4F] px-5 py-4 transition-colors hover:bg-[#60266A]/40";
+
 function Feature({ feature, onNavigate, inMenu }: { feature: NonNullable<NavMenu["feature"]>; onNavigate?: () => void; inMenu?: boolean }) {
   const link = (
     <Link
       href={feature.href}
       onClick={onNavigate}
-      className="group block border-b border-white/10 bg-[#181F4F] px-5 py-4 transition-colors hover:bg-[#60266A]/40"
+      className={inMenu ? undefined : featureCls}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -71,7 +80,13 @@ function Feature({ feature, onNavigate, inMenu }: { feature: NonNullable<NavMenu
       </div>
     </Link>
   );
-  return inMenu ? <NavigationMenuLink asChild>{link}</NavigationMenuLink> : link;
+  return inMenu ? (
+    <NavigationMenuLink asChild className={`${menuLinkReset} ${featureCls} focus:bg-[#60266A]/40 hover:bg-[#60266A]/40`}>
+      {link}
+    </NavigationMenuLink>
+  ) : (
+    link
+  );
 }
 
 const Navigation = memo(function Navigation(_props: NavigationProps) {
@@ -80,6 +95,9 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [openMenu, setOpenMenu] = useState("");
+  // Hovering opens a menu after a short delay, so a mouse click that follows would toggle it shut.
+  // We remember how the trigger was pressed and ignore mouse clicks on a menu that's already open.
+  const lastPointer = useRef<string>("");
 
   useEffect(() => {
     setIsOpen(false);
@@ -136,6 +154,13 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                             : "text-white/80 hover:text-white focus:text-white data-[state=open]:text-white"
                         }`}
                         data-testid={`nav-${menu.id}`}
+                        onPointerDown={(e) => {
+                          lastPointer.current = e.pointerType;
+                        }}
+                        onClick={(e) => {
+                          if (lastPointer.current === "mouse" && openMenu === menu.id) e.preventDefault();
+                          lastPointer.current = "";
+                        }}
                       >
                         {menu.label}
                       </NavigationMenuTrigger>
@@ -150,11 +175,11 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                           <MenuItems items={menu.items} inMenu />
                         </div>
                         {menu.footer && (
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={menu.footer.href}
-                              className="flex items-center justify-between border-t border-white/10 px-5 py-3 transition-colors hover:bg-white/[0.04]"
-                            >
+                          <NavigationMenuLink
+                            asChild
+                            className={`${menuLinkReset} items-center justify-between border-t border-white/10 px-5 py-3 transition-colors hover:bg-white/[0.04]`}
+                          >
+                            <Link href={menu.footer.href}>
                               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/45">{menu.footer.label}</span>
                               <span className="text-xs font-semibold text-[#F85C70]">{menu.footer.value}</span>
                             </Link>
