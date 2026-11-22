@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
       r('/journal', '/insights'),
       r('/journal/feed.xml', '/insights'),
       r('/journal/category/:slug*', '/insights'),
-      r('/journal/:slug*', '/insights'),
+      r('/journal/:slug', '/insights/:slug'),
       r('/legal/privacy', '/privacy'),
       r('/legal/terms', '/terms'),
       r('/legal/cookies', '/privacy'),

@@ -66,7 +66,7 @@ class EmailService {
           <title>New Contact Form Submission</title>
         </head>
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #1e3a8a 0%, #f97316 100%); padding: 30px; border-radius: 10px 10px 0 0;">
+          <div style="background: #181F4F; padding: 30px; border-radius: 10px 10px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
           </div>
           
@@ -88,7 +88,7 @@ class EmailService {
                     <strong style="color: #1e3a8a;">Email:</strong>
                   </td>
                   <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
-                    <a href="mailto:${consultation.email}" style="color: #f97316; text-decoration: none;">${consultation.email}</a>
+                    <a href="mailto:${consultation.email}" style="color: #F85C70; text-decoration: none;">${consultation.email}</a>
                   </td>
                 </tr>
                 ${consultation.phone ? `
@@ -97,7 +97,7 @@ class EmailService {
                     <strong style="color: #1e3a8a;">Phone:</strong>
                   </td>
                   <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
-                    <a href="tel:${consultation.phone}" style="color: #f97316; text-decoration: none;">${consultation.phone}</a>
+                    <a href="tel:${consultation.phone}" style="color: #F85C70; text-decoration: none;">${consultation.phone}</a>
                   </td>
                 </tr>
                 ` : ''}
@@ -168,7 +168,7 @@ class EmailService {
           <div style="margin-top: 30px; text-align: center; color: #6b7280; font-size: 14px;">
             <p>This email was sent from the bmkrs contact form</p>
             <p style="margin-top: 10px;">
-              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://bmkrs.com'}" style="color: #f97316; text-decoration: none;">
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://bmkrs.com'}" style="color: #F85C70; text-decoration: none;">
                 Visit bmkrs
               </a>
             </p>
@@ -213,7 +213,7 @@ class EmailService {
   private getUrgencyColor(level: string): string {
     const colors: Record<string, string> = {
       'immediate': '#dc2626',
-      'urgent': '#f97316',
+      'urgent': '#F85C70',
       'standard': '#1e3a8a',
       'compliance': '#7c3aed'
     };

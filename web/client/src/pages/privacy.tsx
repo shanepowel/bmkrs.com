@@ -8,7 +8,7 @@ const LAST_UPDATED = "1 March 2026";
 const sections = [
   {
     title: "Who we are",
-    body: `b makers ltd is registered in England and Wales (Company No. ${brand.companyNumber}). Our registered office is ${brand.registeredOffice}. We are the data controller for information collected through this website.
+    body: `${brand.legalName} is registered in England and Wales (Company No. ${brand.companyNumber}). Our registered office is ${brand.registeredOffice}. We are the data controller for information collected through this website.
 
 Contact us about data protection matters at privacy@bmkrs.com.`,
   },
@@ -90,7 +90,7 @@ Contact us about data protection matters at privacy@bmkrs.com.`,
   },
   {
     title: "How to exercise your rights",
-    body: `To exercise any of the above rights, contact us at privacy@bmkrs.com or write to: b makers ltd, ${brand.registeredOffice}. We will respond within one calendar month. We may need to verify your identity before processing a request.
+    body: `To exercise any of the above rights, contact us at privacy@bmkrs.com or write to: ${brand.legalName}, ${brand.registeredOffice}. We will respond within one calendar month. We may need to verify your identity before processing a request.
 
 You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk, or by calling 0303 123 1113.`,
   },
@@ -108,7 +108,7 @@ export default function Privacy() {
       lastUpdated={LAST_UPDATED}
       sections={sections}
       companyInfo={[
-        ["Legal name", "b makers ltd"],
+        ["Legal name", brand.legalName],
         ["Company number", brand.companyNumber],
         ["Registered office", brand.registeredOffice],
         ["Incorporated", brand.incorporated],

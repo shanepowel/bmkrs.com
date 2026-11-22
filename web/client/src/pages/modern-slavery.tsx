@@ -10,13 +10,13 @@ const LAST_UPDATED = "1 March 2026";
 const sections = [
   {
     title: "Introduction",
-    body: `This statement is made pursuant to Section 54(1) of the Modern Slavery Act 2015. It constitutes b makers ltd's Modern Slavery and Human Trafficking Statement for the financial year ${financialYear}. It sets out the steps we have taken to ensure that slavery and human trafficking are not taking place in our business operations or supply chains.
+    body: `This statement is made pursuant to Section 54(1) of the Modern Slavery Act 2015. It constitutes ${brand.legalName}'s Modern Slavery and Human Trafficking Statement for the financial year ${financialYear}. It sets out the steps we have taken to ensure that slavery and human trafficking are not taking place in our business operations or supply chains.
 
-This statement has been approved by the Board of Directors of b makers ltd and is reviewed annually.`,
+This statement has been approved by the Board of Directors of ${brand.legalName} and is reviewed annually.`,
   },
   {
     title: "Our organisation",
-    body: `b makers ltd (trading as bmkrs) is a small UK studio that designs, builds and launches brands, digital products and practical AI. We work remotely by default and serve clients ranging from founders and growing businesses to large organisations.
+    body: `${brand.legalName} (trading as bmkrs) is a small UK studio that designs, builds and launches brands, digital products and practical AI. We work remotely by default and serve clients ranging from founders and growing businesses to large organisations.
 
 Our operations consist mainly of professional services delivered by our own team and a small number of trusted specialists. Everyone who works with us is employed or engaged on contracts that comply with UK employment law.`,
   },
@@ -117,7 +117,7 @@ export default function ModernSlavery() {
         </div>
       }
       companyInfo={[
-        ["Legal name", "b makers ltd"],
+        ["Legal name", brand.legalName],
         ["Company number", brand.companyNumber],
         ["Registered office", brand.registeredOffice],
         ["Incorporated", brand.incorporated],

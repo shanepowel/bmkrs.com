@@ -10,7 +10,7 @@ const sections = [
     title: "1. Definitions and interpretation",
     body: null,
     list: [
-      `"bmkrs" means b makers ltd, a company registered in England and Wales (No. ${brand.companyNumber}).`,
+      `"bmkrs" means ${brand.legalName}, a company registered in England and Wales (No. ${brand.companyNumber}).`,
       "\"Client\" or \"Buyer\" means the organisation or individual purchasing Services from bmkrs.",
       "\"Contract\" means the agreement between bmkrs and the Client for the supply of Services, formed when a Statement of Work or order is accepted by both parties.",
       "\"Deliverables\" means any outputs, documents, reports, software, or materials produced by bmkrs in performing the Services.",
@@ -91,14 +91,14 @@ export default function Terms() {
       lastUpdated={LAST_UPDATED}
       intro={
         <>
-          These Terms of Use govern your use of the bmkrs website and the basis on which b makers ltd
+          These Terms of Use govern your use of the bmkrs website and the basis on which {brand.legalName}
           provides professional services. By engaging bmkrs for services or using this website, you
           agree to be bound by these Terms.
         </>
       }
       sections={sections}
       companyInfo={[
-        ["Legal name", "b makers ltd"],
+        ["Legal name", brand.legalName],
         ["Company number", brand.companyNumber],
         ["Registered office", brand.registeredOffice],
         ["Incorporated", brand.incorporated],

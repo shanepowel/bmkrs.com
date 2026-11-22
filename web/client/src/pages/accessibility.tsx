@@ -8,7 +8,7 @@ const LAST_UPDATED = "1 March 2026";
 const sections = [
   {
     title: "Our commitment",
-    body: `b makers ltd is committed to making this website accessible to everyone, including people with disabilities. We work to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA, as referenced by the Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018 and recognised as best practice across all sectors.
+    body: `${brand.legalName} is committed to making this website accessible to everyone, including people with disabilities. We work to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA, as referenced by the Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018 and recognised as best practice across all sectors.
 
 We believe that accessible design is good design. Clarity, legibility, and logical structure benefit every user, not only those using assistive technology.`,
   },
@@ -82,7 +82,7 @@ export default function Accessibility() {
       lastUpdated={LAST_UPDATED}
       sections={sections}
       companyInfo={[
-        ["Legal name", "b makers ltd"],
+        ["Legal name", brand.legalName],
         ["Company number", brand.companyNumber],
         ["Registered office", brand.registeredOffice],
         ["Accessibility contact", "accessibility@bmkrs.com"],
