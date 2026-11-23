@@ -63,6 +63,10 @@ const nextConfig: NextConfig = {
       r('/expertise', '/services'),
       r('/industries-served', '/services'),
       r('/portfolio-project-:slug', '/our-work'),
+      // Leftovers from the app that used to run on bmkrs.co.uk (Search Console 404 / soft 404).
+      r('/feed', '/insights'),
+      r('/discover', '/our-work'),
+      r('/bookmarklet', '/'),
     ];
   },
   async headers() {
@@ -75,6 +79,11 @@ const nextConfig: NextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=()' },
         ],
+      },
+      {
+        // Brand source files are for people, not search results.
+        source: '/brand/:file*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
     ];
   },
