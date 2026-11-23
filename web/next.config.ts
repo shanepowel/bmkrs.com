@@ -50,11 +50,19 @@ const nextConfig: NextConfig = {
       r('/journal', '/insights'),
       r('/journal/feed.xml', '/insights'),
       r('/journal/category/:slug*', '/insights'),
+      r('/journal/:slug/:rest+', '/insights/:slug'),
       r('/journal/:slug', '/insights/:slug'),
       r('/legal/privacy', '/privacy'),
       r('/legal/terms', '/terms'),
       r('/legal/cookies', '/privacy'),
       r('/legal', '/privacy'),
+      // URLs from the earlier WordPress site that Google still has on file.
+      r('/about-us', '/about'),
+      r('/privacy-policy', '/privacy'),
+      r('/ai-integration-consulting', '/ai'),
+      r('/expertise', '/services'),
+      r('/industries-served', '/services'),
+      r('/portfolio-project-:slug', '/our-work'),
     ];
   },
   async headers() {
