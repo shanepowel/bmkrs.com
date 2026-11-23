@@ -1,59 +1,33 @@
 import { NextResponse } from 'next/server';
 
+/**
+ * One group per crawler. A crawler obeys only the most specific group that
+ * names it, so every group repeats the private paths.
+ */
+const PRIVATE = ['/api/', '/studio'];
+const allow = (agents: string[]) =>
+  `${agents.map((a) => `User-agent: ${a}`).join('\n')}\nAllow: /\n${PRIVATE.map((p) => `Disallow: ${p}`).join('\n')}`;
+
 export async function GET() {
-  const robotsTxt = `# bmkrs - brands, digital products and practical AI
+  const body = `# bmkrs: AI tokenomics, practical AI and digital products
 # https://www.bmkrs.com
 
-User-agent: *
-Allow: /
+${allow(['*'])}
 
-# AI search crawlers - explicitly permitted
-User-agent: GPTBot
-Allow: /
+# AI search and answer engines: welcome
+${allow(['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended', 'Applebot', 'Amazonbot'])}
 
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-# Training-only bots - blocked
+# Bulk training-only crawlers: not permitted
 User-agent: CCBot
-Disallow: /
-
 User-agent: Applebot-Extended
-Disallow: /
-
 User-agent: meta-externalagent
+User-agent: Bytespider
 Disallow: /
 
-# Disallow admin/internal pages
-User-agent: *
-Disallow: /api/
-
-# Sitemap location
 Sitemap: https://www.bmkrs.com/sitemap.xml
 `;
 
-  return new NextResponse(robotsTxt, {
-    headers: {
-      'Content-Type': 'text/plain',
-      'Cache-Control': 'public, max-age=3600',
-    },
+  return new NextResponse(body, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'public, max-age=3600' },
   });
 }

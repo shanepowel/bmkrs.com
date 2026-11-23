@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     const r = (source: string, destination: string) => ({ source, destination, permanent: true });
     return [
+      // One canonical host: send every bmkrs.co.uk address to the same page on www.bmkrs.com,
+      // so Google never sees two copies of the site.
+      {
+        source: '/:path*',
+        has: [{ type: 'host' as const, value: '(?:www\\.)?bmkrs\\.co\\.uk' }],
+        destination: 'https://www.bmkrs.com/:path*',
+        permanent: true,
+      },
       r('/ai-governance', '/ai/embernest'),
       r('/ai-implementation', '/ai'),
       r('/structured-delivery', '/services/delivery'),
