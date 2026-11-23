@@ -20,6 +20,14 @@ export interface BmkGridItem {
   external?: boolean;
 }
 
+export interface BmkPerson {
+  name: string;
+  role: string;
+  bio: string;
+  focus?: string[];
+  linkedin?: string;
+}
+
 export type BmkBlock =
   | {
       type: "grid";
@@ -85,6 +93,15 @@ export type BmkBlock =
       eyebrow: string;
       title: string;
       items: { label: string; href: string; desc: string; external?: boolean }[];
+    }
+  | {
+      type: "people";
+      code: string;
+      eyebrow: string;
+      title: string;
+      lead?: string;
+      items: BmkPerson[];
+      note?: string;
     };
 
 export interface BmkPageContent {

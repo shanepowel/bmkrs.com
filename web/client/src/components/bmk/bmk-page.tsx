@@ -386,6 +386,70 @@ function LinksBlock({ block, alt }: { block: Extract<BmkBlock, { type: "links" }
   );
 }
 
+function PeopleBlock({ block, alt }: { block: Extract<BmkBlock, { type: "people" }>; alt: boolean }) {
+  const initials = (name: string) =>
+    name
+      .split(/\s+/)
+      .map((w) => w[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  return (
+    <section className={`border-t border-white/10 py-20 lg:py-24 ${alt ? "bg-[#141a44]" : ""}`}>
+      <Container>
+        <SectionHead code={block.code} eyebrow={block.eyebrow} title={block.title} lead={block.lead} />
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {block.items.map((p) => (
+            <li key={p.name}>
+              <BmkCard className="flex h-full flex-col p-7">
+                <div className="flex items-center gap-4">
+                  <span
+                    aria-hidden
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#F85C70]/40 bg-[#F85C70]/10 font-display text-lg font-bold text-[#F85C70] [font-stretch:110%]"
+                  >
+                    {initials(p.name)}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl font-bold [font-stretch:108%]">{p.name}</h3>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#F85C70]">{p.role}</p>
+                  </div>
+                </div>
+                <Text variant="small" tone="white-70" className="mt-5 flex-1">
+                  {p.bio}
+                </Text>
+                {p.focus && p.focus.length > 0 && (
+                  <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${p.name} focuses on`}>
+                    {p.focus.map((f) => (
+                      <li key={f} className="border border-white/15 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-white/70">
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {p.linkedin && (
+                  <a
+                    href={p.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-[#F85C70]"
+                  >
+                    LinkedIn <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </BmkCard>
+            </li>
+          ))}
+        </ul>
+        {block.note && (
+          <Text variant="small" tone="white-70" className="mt-8 max-w-3xl">
+            {block.note}
+          </Text>
+        )}
+      </Container>
+    </section>
+  );
+}
+
 function CtaSection({ cta, onOpen }: { cta: NonNullable<BmkPageContent["cta"]>; onOpen: (s?: string) => void }) {
   return (
     <section className="bmk-chalk-grid relative overflow-hidden border-t border-white/10 py-20 lg:py-28">
@@ -470,6 +534,18 @@ function pageJsonLd(page: BmkPageContent) {
       areaServed: [{ "@type": "Country", name: "United Kingdom" }, { "@type": "Place", name: "Europe" }],
     });
   }
+  const people = page.blocks.flatMap((b) => (b.type === "people" ? b.items : []));
+  for (const p of people) {
+    graph.push({
+      "@type": "Person",
+      name: p.name,
+      jobTitle: p.role,
+      description: p.bio,
+      worksFor: { "@id": `${site}/#organisation` },
+      ...(p.linkedin ? { sameAs: [p.linkedin] } : {}),
+      ...(p.focus?.length ? { knowsAbout: p.focus } : {}),
+    });
+  }
   const faqs = page.blocks.flatMap((b) => (b.type === "faq" ? b.items : []));
   if (faqs.length) {
     graph.push({
@@ -512,6 +588,8 @@ export function BmkPage({ page }: { page: BmkPageContent }) {
               return <FaqBlock key={key} block={block} alt={!alt} />;
             case "links":
               return <LinksBlock key={key} block={block} alt={!alt} />;
+            case "people":
+              return <PeopleBlock key={key} block={block} alt={!alt} />;
             default:
               return null;
           }

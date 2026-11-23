@@ -163,6 +163,37 @@ export const bmkFaq = defineType({
   preview: { select: { title: 'title' }, prepare: ({ title }) => ({ title, subtitle: 'Questions' }) },
 });
 
+export const bmkPeople = defineType({
+  name: 'bmkPeople',
+  title: 'People',
+  type: 'object',
+  fields: [
+    ...sectionHead,
+    defineField({ name: 'lead', title: 'Lead', type: 'text', rows: 2 }),
+    defineField({
+      name: 'items',
+      title: 'People',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'person',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Name', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'role', title: 'Role', type: 'string' }),
+            defineField({ name: 'bio', title: 'Short bio', type: 'text', rows: 3 }),
+            defineField({ name: 'focus', title: 'Focus areas', type: 'array', of: [{ type: 'string' }] }),
+            defineField({ name: 'linkedin', title: 'LinkedIn URL', type: 'url' }),
+          ],
+          preview: { select: { title: 'name', subtitle: 'role' } },
+        }),
+      ],
+    }),
+    defineField({ name: 'note', title: 'Note under the cards', type: 'text', rows: 2 }),
+  ],
+  preview: { select: { title: 'title' }, prepare: ({ title }) => ({ title, subtitle: 'People' }) },
+});
+
 export const bmkLinks = defineType({
   name: 'bmkLinks',
   title: 'Related links',
@@ -276,6 +307,7 @@ export const bmkPage = defineType({
         { type: 'bmkStatement' },
         { type: 'bmkFaq' },
         { type: 'bmkLinks' },
+        { type: 'bmkPeople' },
       ],
     }),
     defineField({
@@ -297,4 +329,4 @@ export const bmkPage = defineType({
   },
 });
 
-export const bmkPageTypes = [bmkGrid, bmkSteps, bmkSplit, bmkLedger, bmkCallout, bmkStatement, bmkFaq, bmkLinks, bmkPage];
+export const bmkPageTypes = [bmkGrid, bmkSteps, bmkSplit, bmkLedger, bmkCallout, bmkStatement, bmkFaq, bmkLinks, bmkPeople, bmkPage];

@@ -154,9 +154,9 @@ export const companyPages: Record<string, BmkPageContent> = {
   about: {
     id: "about",
     path: "/about",
-    metaTitle: "About bmkrs | A small, senior studio that makes things real",
+    metaTitle: "About bmkrs | The people behind the studio",
     metaDescription:
-      "bmkrs is a small, senior studio that designs, builds and launches brands, products and practical AI. Part of LRC Labs, and we run our own products too.",
+      "Meet the bmkrs team: Shane, Duncan, Simon, Marcelo and Claire. A small, senior studio for AI tokenomics, practical AI, products and brands. Part of LRC Labs.",
     hero: {
       code: "BMK / ABOUT",
       eyebrow: "About us",
@@ -183,8 +183,48 @@ export const companyPages: Record<string, BmkPageContent> = {
         figLabel: "FIG. 02 / LAUNCH DAY",
       },
       {
-        type: "grid",
+        type: "people",
         code: "§ 02",
+        eyebrow: "The people",
+        title: "Who you'll actually work with.",
+        lead: "Five people, all senior and all hands-on. The people in the first meeting are the people who do the work.",
+        items: [
+          {
+            name: "Shane",
+            role: "Founder · Delivery and AI tokenomics",
+            bio: "Seventeen years leading digital delivery: customer websites, payment platforms, portals and AI products. Leads our AI tokenomics work, turning AI spend into a cost per outcome a board can act on.",
+            focus: ["AI tokenomics", "Delivery leadership", "AI governance"],
+          },
+          {
+            name: "Duncan",
+            role: "Technical lead · EmberNest",
+            bio: "Built EmberNest, the governed delivery layer for AI-assisted software development. Decides what the platform can and can't do, and makes sure AI coding effort goes on work that ships.",
+            focus: ["EmberNest", "AI-assisted engineering", "Architecture"],
+          },
+          {
+            name: "Simon",
+            role: "Commercial lead",
+            bio: "Runs the commercial side: proposals, pricing and partnerships, including how EmberNest is taken to market. Makes sure what we sell is what we can deliver.",
+            focus: ["Commercial", "Partnerships", "EmberNest"],
+          },
+          {
+            name: "Marcelo",
+            role: "Engineering lead",
+            bio: "Builds the products, platforms and AI features we ship, and the plumbing behind them that keeps them fast, safe and affordable to run.",
+            focus: ["Product engineering", "AI integration", "Platforms"],
+          },
+          {
+            name: "Claire",
+            role: "Design lead",
+            bio: "Leads brand and product design, from identity to interface. Makes complex products feel obvious to the people using them.",
+            focus: ["Brand identity", "Product design", "UX"],
+          },
+        ],
+        note: "Behind the five is a trusted network of engineers, data specialists and consultants we bring in when the work calls for it. Same standard, no strangers.",
+      },
+      {
+        type: "grid",
+        code: "§ 03",
         eyebrow: "What we believe",
         title: "Six rules we work by.",
         items: [
@@ -198,7 +238,7 @@ export const companyPages: Record<string, BmkPageContent> = {
       },
       {
         type: "ledger",
-        code: "§ 03",
+        code: "§ 04",
         eyebrow: "Responsibility",
         title: "How we try to do right by people and the planet.",
         lead: "Small commitments we can actually keep, rather than big claims we can't.",
