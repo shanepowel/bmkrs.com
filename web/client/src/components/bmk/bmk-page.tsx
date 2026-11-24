@@ -83,7 +83,7 @@ function Hero({ hero }: { hero: BmkPageContent["hero"] }) {
               <span className="h-px w-8 bg-[#F85C70]" aria-hidden />
               <span className="text-[#F85C70]">{hero.eyebrow}</span>
             </div>
-            <h1 className="font-display text-[2.4rem] font-extrabold uppercase leading-[0.92] tracking-[-0.025em] [font-stretch:118%] sm:text-5xl lg:text-[3.9rem]">
+            <h1 className="font-display text-[clamp(1.85rem,6.4vw,3.25rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:115%] lg:text-[clamp(2.5rem,3.6vw,3.5rem)]">
               {hero.title}
               {hero.accent && <span className="mt-2 block text-[#F85C70]">{hero.accent}</span>}
             </h1>
@@ -121,7 +121,7 @@ function Hero({ hero }: { hero: BmkPageContent["hero"] }) {
           </div>
           {img && (
             <div className="min-w-0 lg:col-span-5" style={revealStyle(visible, 0.15)}>
-              <figure className="bmk-tile group relative h-[340px] overflow-hidden sm:h-[420px] lg:h-[480px]">
+              <figure className="bmk-tile group relative aspect-[16/9] max-h-[380px] w-full overflow-hidden lg:aspect-auto lg:h-[460px] lg:max-h-none">
                 <Image
                   src={img.src}
                   alt={img.alt}
@@ -243,7 +243,7 @@ function SplitBlock({ block, alt }: { block: Extract<BmkBlock, { type: "split" }
           </div>
           <div className={`lg:col-span-5 ${block.reverse ? "lg:order-1" : "lg:col-start-8"}`}>
             {img && (
-              <figure className="relative mb-8 aspect-[4/3] overflow-hidden">
+              <figure className="relative mb-8 aspect-[16/9] max-h-[360px] w-full overflow-hidden lg:aspect-[4/3] lg:max-h-none">
                 <Image src={img.src} alt={img.alt} fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
                 {block.figLabel && <FigLabel>{block.figLabel}</FigLabel>}
               </figure>
