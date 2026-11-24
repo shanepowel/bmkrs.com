@@ -1,4 +1,4 @@
-/** bmkrs brand constants: a small, senior studio that makes brands, products and practical AI. */
+/** bmkrs brand constants: a small team of senior makers for practical AI, digital products and brands. */
 export const brand = {
   name: "bmkrs",
   nameDisplay: "bmkrs.",
@@ -12,13 +12,13 @@ export const brand = {
   url: "https://www.bmkrs.com",
   location: "UK based, working wherever the work is",
   foundingYear: "2026",
-  tagline: "Brands, digital products and practical AI, made real.",
-  shortTagline: "Good ideas deserve better than a slide deck. We make them real.",
+  tagline: "Practical AI, digital products and brands, made real.",
+  shortTagline: "AI is everywhere. Results aren't. We make them real.",
   description:
-    "bmkrs is a small, senior studio that designs, builds and launches brands, digital products and practical AI. We work in short, visible cycles so you can see the thing taking shape from week one.",
-  metaTitle: "bmkrs | AI tokenomics, practical AI and digital products",
+    "bmkrs is a small team of senior makers. We design, build and run practical AI, digital products and brands, and make sure each one earns its keep in cost, quality and results. We work in short, visible cycles so you can see the thing taking shape from week one.",
+  metaTitle: "bmkrs | Practical AI, AI tokenomics and digital products",
   metaDescription:
-    "bmkrs helps organisations control what their AI costs with AI tokenomics, and designs, builds and launches practical AI, digital products and brands. Small, senior, UK based.",
+    "bmkrs helps organisations get real results from AI: pilots into production, AI-built software that stays solid, AI costs under control with tokenomics, and the products and brands around it. Small, senior, UK based.",
   ctaPrimary: "Let's build something",
   ctaSecondary: "See what we've made",
   social: {

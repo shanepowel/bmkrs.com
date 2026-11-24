@@ -8,6 +8,8 @@ import { useReveal } from "@/hooks/use-intersection-observer";
 import { AmpButton, Container, Eyebrow, PageShell, Text } from "@/components/system";
 import { SpecTags, BmkCard } from "@/components/bmk/ui";
 import { Corners, SectionHead, SnapLine, revealStyle } from "@/components/bmk/primitives";
+import { StatGrid } from "@/components/bmk/stat-grid";
+import { marketStats, statsFootnote } from "@/content/market-stats";
 
 import imgVr from "@assets/56_1760470571209.webp";
 import imgMegaphone from "@assets/36_1760470798015.webp";
@@ -62,6 +64,46 @@ const ownProducts = [
   },
 ];
 
+const landscape = [
+  marketStats.valueGap,
+  marketStats.pilotToProduction,
+  marketStats.agentsCancelled,
+  marketStats.devTrust,
+  marketStats.searchClicks,
+  marketStats.ukAdoption,
+];
+
+const gaps = [
+  {
+    code: "GAP 01",
+    title: "From pilot to production",
+    body: "Most AI never leaves the demo. We pick the use case most likely to pay, prove it on your real data in two weeks, then ship it with the guardrails a live service needs.",
+    href: "/ai",
+    link: "Practical AI",
+  },
+  {
+    code: "GAP 02",
+    title: "Software that stays solid",
+    body: "AI writes code faster than teams can review it. We keep AI-assisted work scoped, approved and evidenced with EmberNest, so speed doesn't turn into mess.",
+    href: "/ai/embernest",
+    link: "Governed delivery",
+  },
+  {
+    code: "GAP 03",
+    title: "AI costs you can defend",
+    body: "Token prices keep falling and bills keep rising. We measure the cost per outcome, cut the spend that buys nothing and set budgets that hold as usage grows.",
+    href: "/ai/tokenomics",
+    link: "AI tokenomics",
+  },
+  {
+    code: "GAP 04",
+    title: "Found when AI answers first",
+    body: "Fewer people click through from search now. We make brands, sites and content that people remember and AI tools can understand, cite and point to.",
+    href: "/services/websites",
+    link: "Brand and web",
+  },
+];
+
 const offers = [
   {
     code: "MK 01",
@@ -74,7 +116,7 @@ const offers = [
     code: "MK 02",
     name: "Build",
     duration: "6 to 12 weeks",
-    body: "We design, engineer and launch the first real version. A brand, a website, a product or an AI tool, live and in the hands of real users.",
+    body: "We design, engineer and launch the first real version: an AI tool, a product, a website or a brand, live and in the hands of real users, with its running costs known.",
     youGet: ["Live product or site", "Design system", "Handover your team can run"],
   },
   {
@@ -117,6 +159,8 @@ const method = [
 
 const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
   const [heroRef, heroVisible] = useReveal(0.05);
+  const [statsRef, statsVisible] = useReveal();
+  const [gapsRef, gapsVisible] = useReveal();
   const [madeRef, madeVisible] = useReveal();
   const [offersRef, offersVisible] = useReveal();
   const [capsRef, capsVisible] = useReveal();
@@ -141,16 +185,17 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
               <div className="min-w-0 lg:col-span-7" style={revealStyle(heroVisible)}>
                 <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-white/55">
                   <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#F85C70]" />
-                  Studio open · taking on new builds
+                  Studio open · taking on new work
                 </div>
                 <h1 className="font-display text-[2.6rem] font-extrabold uppercase leading-[0.9] tracking-[-0.025em] [font-stretch:120%] sm:text-6xl lg:text-[4.4rem] xl:text-[4.9rem]">
-                  Good ideas deserve better than a slide deck.
+                  AI is everywhere. Results aren&apos;t.
                   <span className="mt-3 block text-[#F85C70]">We make them real.</span>
                 </h1>
                 <Text variant="lead" tone="white-80" className="mt-8 max-w-[36rem]">
-                  bmkrs is a small, senior studio. We design, build and launch brands, digital
-                  products and practical AI, and we help organisations get their AI token costs
-                  under control. In short cycles you can see from week one.
+                  bmkrs is a small team of senior makers. We design, build and run practical AI,
+                  digital products and brands, and we make sure each one earns its keep: in what it
+                  costs, how well it works and what it changes for your business. In short cycles
+                  you can see from week one.
                 </Text>
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                   <AmpButton asChild size="md" data-testid="button-hero-build">
@@ -159,7 +204,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                     </Link>
                   </AmpButton>
                   <AmpButton asChild size="md" variant="outlineLight" data-testid="button-hero-made">
-                    <a href="#made">See what we&apos;ve made</a>
+                    <a href="#picture">See the picture right now</a>
                   </AmpButton>
                 </div>
               </div>
@@ -196,95 +241,46 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           </Container>
         </section>
 
-        {/* ===================== AI TOKENOMICS ===================== */}
-        <section aria-labelledby="home-tokenomics" className="border-b border-white/10 bg-[#141a44] py-16 lg:py-20">
-          <Container>
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
-              <div className="lg:col-span-7">
-                <Eyebrow className="mb-4">Where we&apos;re busiest right now</Eyebrow>
-                <h2 id="home-tokenomics" className="font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:118%] sm:text-4xl lg:text-5xl">
-                  AI tokenomics: <span className="text-[#F85C70]">know what your AI costs.</span>
-                </h2>
-                <Text variant="lead" tone="white-75" className="mt-6 max-w-2xl">
-                  Every AI call is billed by the token, and the bill grows faster than the value
-                  unless someone is watching. We measure the cost per outcome of your AI, cut the
-                  spend that isn&apos;t buying anything, and set budgets that hold as usage grows.
-                </Text>
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <AmpButton asChild size="md" data-testid="button-home-tokenomics">
-                    <Link href="/ai/tokenomics">
-                      AI tokenomics <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </AmpButton>
-                  <AmpButton asChild size="md" variant="outlineLight">
-                    <Link href="/insights/ai-tokenomics-what-your-ai-really-costs">Read the guide</Link>
-                  </AmpButton>
-                </div>
-              </div>
-              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
-                {[
-                  ["TK 01", "Cost per outcome", "What one resolved ticket or merged change really costs."],
-                  ["TK 02", "Model routing and caching", "The same result from a cheaper path."],
-                  ["TK 03", "Budgets for agents and AI coding", "Limits that stop overnight spend surprises."],
-                ].map(([code, title, body]) => (
-                  <li key={code} className="border border-white/10 bg-[#181F4F] p-5">
-                    <span className="font-mono text-[11px] tracking-[0.12em] text-[#F85C70]">{code}</span>
-                    <p className="mt-2 font-semibold text-white">{title}</p>
-                    <p className="mt-1 text-sm text-white/65">{body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Container>
-        </section>
-
-        {/* ===================== THINGS WE'VE MADE ===================== */}
-        <section id="made" ref={madeRef} className="py-20 lg:py-28">
+        {/* ===================== THE PICTURE RIGHT NOW ===================== */}
+        <section id="picture" ref={statsRef} className="border-b border-white/10 bg-[#141a44] py-20 lg:py-28">
           <Container>
             <SectionHead
               code="§ 01"
-              eyebrow="On the bench"
-              title={<>We build our own products too.</>}
-              lead="The best way to stay sharp is to have skin in the game. These are ours: designed, built and run by the same team that works on yours."
+              eyebrow="The picture right now"
+              title={<>Adoption is racing ahead. <span className="text-[#F85C70]">Results are not.</span></>}
+              lead="We keep a close eye on the research, because it shapes what's worth building. The pattern is clear: almost everyone is trying AI, far fewer are getting value, trust or control from it. That gap is where most of our work sits."
+            />
+            <StatGrid items={landscape} visible={statsVisible} />
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">{statsFootnote}</p>
+          </Container>
+        </section>
+
+        {/* ========================= WHERE WE HELP ========================= */}
+        <section ref={gapsRef} className="py-20 lg:py-28">
+          <Container>
+            <SectionHead
+              code="§ 02"
+              eyebrow="Where we come in"
+              title={<>Four gaps we close.</>}
+              lead="Each one shows up in the numbers above, and each one has a fix that's practical, measurable and quicker than most people expect."
             />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {ownProducts.map((p, i) => {
-                const inner = (
-                  <BmkCard
-                    className="flex h-full flex-col p-7 lg:p-8"
-                    style={revealStyle(madeVisible, i * 0.08)}
-                  >
-                    <div className="mb-10 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
-                      <span className="text-[#F85C70]">{p.code}</span>
-                      <span className="text-white/45">{p.kind}</span>
-                    </div>
-                    <h3 className="font-display text-3xl font-extrabold uppercase tracking-[-0.02em] [font-stretch:115%] lg:text-4xl">
-                      {"display" in p && p.display ? p.display : p.name}
+              {gaps.map((g, i) => (
+                <Link key={g.code} href={g.href} className="group block">
+                  <BmkCard className="flex h-full flex-col p-7 lg:p-9" style={revealStyle(gapsVisible, i * 0.08)}>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#F85C70]">{g.code}</span>
+                    <h3 className="mt-6 font-display text-2xl font-extrabold uppercase tracking-[-0.02em] [font-stretch:115%] lg:text-3xl">
+                      {g.title}
                     </h3>
-                    <Text variant="small" tone="white-70" className="mt-4 flex-1">
-                      {p.body}
+                    <Text variant="body" tone="white-75" className="mt-4 flex-1">
+                      {g.body}
                     </Text>
-                    <span className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white/70 transition-colors group-hover:text-[#F85C70]">
-                      {p.href ? (
-                        <>
-                          Visit {p.href.replace("https://", "")} <ArrowUpRight className="h-3.5 w-3.5" />
-                        </>
-                      ) : (
-                        <>Rebuild in progress</>
-                      )}
+                    <span className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white/70 transition-all group-hover:gap-3 group-hover:text-[#F85C70]">
+                      {g.link} <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </BmkCard>
-                );
-                return p.href ? (
-                  <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" className="group block">
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={p.name} className="group">
-                    {inner}
-                  </div>
-                );
-              })}
+                </Link>
+              ))}
             </div>
           </Container>
         </section>
@@ -293,7 +289,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section ref={offersRef} className="border-t border-white/10 bg-[#141a44] py-20 lg:py-28">
           <Container>
             <SectionHead
-              code="§ 02"
+              code="§ 03"
               eyebrow="Three ways to start"
               title={<>Pick a size. We&apos;ll pick up the tools.</>}
               lead="Every engagement ends with something you can use, not a report about something you might do."
@@ -375,9 +371,9 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section id="services" ref={capsRef} className="border-t border-white/10 py-20 lg:py-28">
           <Container>
             <SectionHead
-              code="§ 03"
+              code="§ 04"
               eyebrow="What we make"
-              title={<>Six things we&apos;re very good at.</>}
+              title={<>Six disciplines. One senior team.</>}
               action={
                 <Link
                   href="/services"
@@ -412,11 +408,62 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           </Container>
         </section>
 
+        {/* ===================== THINGS WE'VE MADE ===================== */}
+        <section id="made" ref={madeRef} className="border-t border-white/10 py-20 lg:py-28">
+          <Container>
+            <SectionHead
+              code="§ 05"
+              eyebrow="On the bench"
+              title={<>We build our own products too.</>}
+              lead="The best way to stay sharp is to have skin in the game. These are ours: designed, built and run by the same people who work on yours, so we live with the same costs and trade-offs you do."
+            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {ownProducts.map((p, i) => {
+                const inner = (
+                  <BmkCard
+                    className="flex h-full flex-col p-7 lg:p-8"
+                    style={revealStyle(madeVisible, i * 0.08)}
+                  >
+                    <div className="mb-10 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
+                      <span className="text-[#F85C70]">{p.code}</span>
+                      <span className="text-white/45">{p.kind}</span>
+                    </div>
+                    <h3 className="font-display text-3xl font-extrabold uppercase tracking-[-0.02em] [font-stretch:115%] lg:text-4xl">
+                      {"display" in p && p.display ? p.display : p.name}
+                    </h3>
+                    <Text variant="small" tone="white-70" className="mt-4 flex-1">
+                      {p.body}
+                    </Text>
+                    <span className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white/70 transition-colors group-hover:text-[#F85C70]">
+                      {p.href ? (
+                        <>
+                          Visit {p.href.replace("https://", "")} <ArrowUpRight className="h-3.5 w-3.5" />
+                        </>
+                      ) : (
+                        <>Rebuild in progress</>
+                      )}
+                    </span>
+                  </BmkCard>
+                );
+                return p.href ? (
+                  <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" className="group block">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={p.name} className="group">
+                    {inner}
+                  </div>
+                );
+              })}
+            </div>
+          </Container>
+        </section>
+
         {/* ========================== METHOD =========================== */}
         <section className="border-t border-white/10 bg-[#141a44] py-16 lg:py-20">
           <Container>
             <div className="mb-10 flex items-center gap-4">
-              <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 04</span>
+              <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 06</span>
               <Eyebrow>The method</Eyebrow>
             </div>
             <ol className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
@@ -446,16 +493,17 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <div className="mb-8 flex items-center gap-4">
-                  <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 05</span>
+                  <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 07</span>
                   <SnapLine className="flex-1" />
                 </div>
-                <Eyebrow className="mb-4">Where our people have shipped</Eyebrow>
+                <Eyebrow className="mb-4">Where we&apos;ve shipped before</Eyebrow>
                 <Text variant="h2" tone="white" className="text-3xl md:text-4xl lg:text-5xl">
-                  Seventeen years of making things go live.
+                  Big programmes, live and proven.
                 </Text>
                 <Text variant="lead" tone="white-70" className="mt-5">
-                  Before bmkrs, our team led delivery for some well-known names. Different
-                  sectors, same habit: get it built, get it live, prove it worked.
+                  Before bmkrs, people on this team led delivery for well-known names in
+                  retail, energy, housebuilding and media. Different sectors, same habit: get it
+                  built, get it live, prove it worked.
                 </Text>
                 <div className="relative mt-10 hidden aspect-[4/3] overflow-hidden lg:block">
                   <Image src={imgMesh} alt="Abstract violet data mesh" fill sizes="40vw" className="object-cover" />
@@ -512,17 +560,24 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
               <div className="lg:col-span-7 lg:col-start-6">
                 <Eyebrow className="mb-4">Why bmkrs</Eyebrow>
                 <Text variant="h2" tone="white" className="text-3xl md:text-4xl lg:text-5xl">
-                  Small enough to care. Senior enough to ship.
+                  Five people. All senior. All hands-on.
                 </Text>
                 <Text variant="lead" tone="white-75" className="mt-6">
-                  You work with the people doing the work, not a sales team and a bench of
-                  juniors. We are more hands-on than a consultancy and more joined-up than a
-                  build shop: brand, product, engineering and AI under one roof.
+                  Design, engineering, AI-assisted delivery, delivery leadership and commercial
+                  each have a senior owner, and every one of us does the work. No account
+                  managers in between, no bench of juniors learning on your budget.
                 </Text>
                 <Text variant="lead" tone="white-75" className="mt-4">
-                  And because we run our own products, we know what it costs when something
+                  We&apos;re more hands-on than a consultancy and more joined-up than a build
+                  shop. And because we run our own products, we know what it costs when something
                   doesn&apos;t work. We spend your money like it&apos;s ours.
                 </Text>
+                <Link
+                  href="/about"
+                  className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-[#F85C70] transition-all hover:gap-3"
+                >
+                  Meet the team <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </Container>
@@ -537,7 +592,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           />
           <Container className="relative z-10 text-center" >
             <div style={revealStyle(ctaVisible)}>
-              <Eyebrow className="mb-8">Got an idea?</Eyebrow>
+              <Eyebrow className="mb-8">Got an idea, or an AI pilot that&apos;s stuck?</Eyebrow>
               <p className="font-display text-5xl font-black uppercase leading-[0.88] tracking-[-0.03em] [font-stretch:125%] sm:text-7xl lg:text-[7.5rem]">
                 <span className="bmk-outline-text block">Let&apos;s build</span>
                 <span className="block text-[#F85C70]">something.</span>

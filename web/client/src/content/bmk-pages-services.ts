@@ -1,4 +1,5 @@
 import type { BmkPageContent } from "./bmk-types";
+import { marketStats, statsFootnote } from "./market-stats";
 
 const threeWays = {
   type: "grid" as const,
@@ -39,7 +40,7 @@ export const servicesPages: Record<string, BmkPageContent> = {
       eyebrow: "What we make",
       title: "Brands, products and AI.",
       accent: "Made, not just planned.",
-      lead: "Seven things we're very good at, one team doing all of them. Pick the one you need now; we'll make sure it joins up with the rest later.",
+      lead: "One senior team for the AI, the product and the brand. Pick the one you need now; we'll make sure it joins up with the rest later.",
       image: "megaphone",
       figLabel: "FIG. 01 / THE STUDIO",
       primaryCta: { label: "Let's build something", href: "/contact" },
@@ -143,9 +144,9 @@ export const servicesPages: Record<string, BmkPageContent> = {
     hero: {
       code: "BMK 02",
       eyebrow: "Websites and platforms",
-      title: "Sites that load fast,",
-      accent: "rank well and sell.",
-      lead: "We design and build websites on modern, proven tools, with a content system your team can run without a developer on speed dial. Then we keep making them better.",
+      title: "Sites that get found,",
+      accent: "by people and by AI.",
+      lead: "Search is changing: more answers, fewer clicks. We design and build fast websites on modern, proven tools, with content that AI tools can understand and cite, and a CMS your team can run without a developer on speed dial.",
       image: "laptop",
       figLabel: "FIG. 01 / WEB",
       primaryCta: { label: "Talk about your site", href: "/contact" },
@@ -171,12 +172,21 @@ export const servicesPages: Record<string, BmkPageContent> = {
         ],
       },
       {
-        type: "split",
+        type: "stats",
         code: "§ 02",
+        eyebrow: "Why this matters now",
+        title: "AI summaries are answering before your site gets a look.",
+        lead: "Your site still has to win the click that's left, and give AI tools something clear, structured and trustworthy to quote.",
+        items: [marketStats.searchClicks, marketStats.searchCitedClicks],
+        footnote: statsFootnote,
+      },
+      {
+        type: "split",
+        code: "§ 03",
         eyebrow: "Proof",
         title: "We've rebuilt big sites under pressure.",
         paragraphs: [
-          "Our team led the rebuild of a leading online wine retailer's customer website onto React and Node, across several agencies. Checkout got faster and sales went up by 20%.",
+          "People on our team led the rebuild of a leading online wine retailer's customer website onto React and Node, across several agencies. Checkout got faster and sales went up by 20%.",
           "Same approach for you, at whatever size fits: modern stack, clear ownership, measurable results.",
         ],
         listTitle: "You walk away with",
@@ -184,7 +194,7 @@ export const servicesPages: Record<string, BmkPageContent> = {
       },
       {
         type: "faq",
-        code: "§ 03",
+        code: "§ 04",
         title: "Things people ask.",
         items: [
           { q: "Can you work with our existing CMS?", a: "Usually, yes. If it's holding you back we'll say so and show you the cost of moving, but we won't force a rebuild you don't need." },
@@ -317,7 +327,7 @@ export const servicesPages: Record<string, BmkPageContent> = {
         type: "ledger",
         code: "§ 01",
         eyebrow: "Where our people have led",
-        title: "Seventeen years of getting big things live.",
+        title: "Big programmes, led to live.",
         footnote: "Programmes led by members of the bmkrs team in previous roles.",
         items: [
           { title: "Online wine retailer", body: "Customer website replatformed across several agencies, including pricing and technical decisions.", meta: "20% more sales" },

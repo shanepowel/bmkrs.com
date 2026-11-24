@@ -17,6 +17,7 @@ export const blockTypeMap: Record<BmkBlock['type'], string> = {
   faq: 'bmkFaq',
   links: 'bmkLinks',
   people: 'bmkPeople',
+  stats: 'bmkStats',
 };
 const reverseBlockTypeMap = Object.fromEntries(
   Object.entries(blockTypeMap).map(([k, v]) => [v, k]),
@@ -30,6 +31,7 @@ const itemTypeMap: Partial<Record<BmkBlock['type'], string>> = {
   faq: 'faqItem',
   links: 'linkItem',
   people: 'person',
+  stats: 'stat',
 };
 
 type Loose = Record<string, unknown>;
