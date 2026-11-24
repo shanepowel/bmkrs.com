@@ -1,4 +1,5 @@
 import type { BmkPageContent } from "./bmk-types";
+import { marketStats, statsFootnote } from "./market-stats";
 
 export const companyPages: Record<string, BmkPageContent> = {
   /* ------------------------- WHO WE WORK WITH ------------------------- */
@@ -58,7 +59,7 @@ export const companyPages: Record<string, BmkPageContent> = {
       eyebrow: "Growing businesses",
       title: "What got you here",
       accent: "won't get you there.",
-      lead: "The website, the product and the spreadsheets that worked at ten people start creaking at fifty. We rebuild what's holding you back, and put AI to work on the jobs that are eating your team's week.",
+      lead: "The website, the product and the spreadsheets that worked at ten people start creaking at fifty. We rebuild what's holding you back, and put AI to work on the jobs that are eating your team's week, in a way you can measure.",
       image: "speakers",
       figLabel: "FIG. 01 / GROWTH",
       primaryCta: { label: "Talk to us", href: "/contact" },
@@ -143,6 +144,14 @@ export const companyPages: Record<string, BmkPageContent> = {
         ],
       },
       {
+        type: "stats",
+        code: "§ 02",
+        eyebrow: "What CTOs are up against",
+        title: "Everyone's coding with AI. Few trust what it ships.",
+        items: [marketStats.devAdoption, marketStats.devTrust, marketStats.agentsCancelled],
+        footnote: statsFootnote,
+      },
+      {
         type: "statement",
         text: "More code isn't progress.",
         accent: "Better software is.",
@@ -156,13 +165,13 @@ export const companyPages: Record<string, BmkPageContent> = {
     path: "/about",
     metaTitle: "About bmkrs | The people behind the studio",
     metaDescription:
-      "Meet the bmkrs team: Shane, Duncan, Simon, Marcelo and Claire. A small, senior studio for AI tokenomics, practical AI, products and brands. Part of LRC Labs.",
+      "Meet the bmkrs team: Claire, Duncan, Marcelo, Shane and Simon. Five senior people across design, engineering, AI-assisted delivery, delivery and commercial, making practical AI, products and brands that pay their way. Part of LRC Labs.",
     hero: {
       code: "BMK / ABOUT",
       eyebrow: "About us",
       title: "We're makers.",
       accent: "It's in the name.",
-      lead: "bmkrs is a small, senior studio. We design, build and launch brands, digital products and practical AI for ambitious organisations, and we run our own products alongside.",
+      lead: "bmkrs is five senior people, each owning a part of the work: design, engineering, AI-assisted delivery, delivery leadership and commercial. Together we design, build and run practical AI, digital products and brands, and we run our own products alongside.",
       image: "workshop",
       figLabel: "FIG. 01 / THE TEAM",
       primaryCta: { label: "Work with us", href: "/contact" },
@@ -175,8 +184,8 @@ export const companyPages: Record<string, BmkPageContent> = {
         eyebrow: "Our story",
         title: "Built by people who got tired of decks.",
         paragraphs: [
-          "Between us we've spent seventeen years leading digital delivery: websites, payment platforms, portals, AI products. Too often we watched good ideas die in a slide deck, or get built so slowly that the moment passed.",
-          "So we set up the studio we wanted to hire. Small enough that the people you meet are the people doing the work. Broad enough to take an idea from name to launch to growth.",
+          "Between us we've led design, engineering, delivery and commercial teams on websites, payment platforms, portals and AI products. Too often we watched good ideas die in a slide deck, or get built so slowly that the moment passed.",
+          "Now AI has made building faster and cheaper, and made it easier than ever to build the wrong thing, or the right thing badly. So we set up the studio we'd want to hire: small enough that the people you meet are the people doing the work, broad enough to take an idea from first sketch to something that pays its way.",
           "bmkrs is part of LRC Labs, a UK company that builds and runs software products. That's why we have our own products on the bench, and why we think like owners.",
         ],
         image: "portrait",
@@ -187,13 +196,13 @@ export const companyPages: Record<string, BmkPageContent> = {
         code: "§ 02",
         eyebrow: "The people",
         title: "Who you'll actually work with.",
-        lead: "Five people, all senior and all hands-on. The people in the first meeting are the people who do the work.",
+        lead: "Five people, all senior and all hands-on, each owning a part of the work. Nobody here manages from a distance: the people in your first meeting are the people who do the work.",
         items: [
           {
-            name: "Shane",
-            role: "Founder · Delivery and AI tokenomics",
-            bio: "Seventeen years leading digital delivery: customer websites, payment platforms, portals and AI products. Leads our AI tokenomics work, turning AI spend into a cost per outcome a board can act on.",
-            focus: ["AI tokenomics", "Delivery leadership", "AI governance"],
+            name: "Claire",
+            role: "Design lead",
+            bio: "Leads brand and product design, from identity to interface. Makes complex products, including AI ones, feel obvious to the people using them.",
+            focus: ["Brand identity", "Product design", "UX"],
           },
           {
             name: "Duncan",
@@ -202,22 +211,22 @@ export const companyPages: Record<string, BmkPageContent> = {
             focus: ["EmberNest", "AI-assisted engineering", "Architecture"],
           },
           {
-            name: "Simon",
-            role: "Commercial lead",
-            bio: "Runs the commercial side: proposals, pricing and partnerships, including how EmberNest is taken to market. Makes sure what we sell is what we can deliver.",
-            focus: ["Commercial", "Partnerships", "EmberNest"],
-          },
-          {
             name: "Marcelo",
             role: "Engineering lead",
             bio: "Builds the products, platforms and AI features we ship, and the plumbing behind them that keeps them fast, safe and affordable to run.",
             focus: ["Product engineering", "AI integration", "Platforms"],
           },
           {
-            name: "Claire",
-            role: "Design lead",
-            bio: "Leads brand and product design, from identity to interface. Makes complex products feel obvious to the people using them.",
-            focus: ["Brand identity", "Product design", "UX"],
+            name: "Shane",
+            role: "Delivery and AI economics lead",
+            bio: "Leads delivery and our AI tokenomics work: keeping programmes with several teams and suppliers pointed the same way, and turning AI spend into a cost per outcome a board can act on.",
+            focus: ["Delivery leadership", "AI tokenomics", "AI governance"],
+          },
+          {
+            name: "Simon",
+            role: "Commercial lead",
+            bio: "Runs the commercial side: proposals, pricing and partnerships, including how EmberNest is taken to market. Makes sure what we sell is what we can deliver.",
+            focus: ["Commercial", "Partnerships", "EmberNest"],
           },
         ],
         note: "Behind the five is a trusted network of engineers, data specialists and consultants we bring in when the work calls for it. Same standard, no strangers.",
@@ -388,7 +397,7 @@ export const companyPages: Record<string, BmkPageContent> = {
       eyebrow: "What we've made",
       title: "We'd rather",
       accent: "show you.",
-      lead: "Our own products, built and run by the same team that works on yours, plus the programmes our people have led along the way.",
+      lead: "Our own products, built and run by the same people who work on yours, plus the programmes people on our team have led along the way.",
       image: "laptop",
       figLabel: "FIG. 01 / ON THE BENCH",
       primaryCta: { label: "Let's build something", href: "/contact" },
@@ -422,7 +431,7 @@ export const companyPages: Record<string, BmkPageContent> = {
       {
         type: "ledger",
         code: "§ 03",
-        eyebrow: "Where our people have shipped",
+        eyebrow: "Where we've shipped before",
         title: "Selected programmes.",
         footnote: "Programmes led by members of the bmkrs team in previous roles.",
         items: [
@@ -444,9 +453,9 @@ export const companyPages: Record<string, BmkPageContent> = {
     hero: {
       code: "BMK / RECORD",
       eyebrow: "Track record",
-      title: "Seventeen years of",
-      accent: "making things go live.",
-      lead: "Different sectors, same habit: get it built, get it live, prove it worked. These are programmes our people have led.",
+      title: "Big programmes,",
+      accent: "live and proven.",
+      lead: "Different sectors, same habit: get it built, get it live, prove it worked. These are programmes people on our team have led.",
       image: "mesh",
       figLabel: "FIG. 01 / RESULTS",
       primaryCta: { label: "Let's build something", href: "/contact" },

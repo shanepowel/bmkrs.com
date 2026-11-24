@@ -1,4 +1,5 @@
 import type { BmkPageContent } from "./bmk-types";
+import { marketStats, statsFootnote } from "./market-stats";
 
 export const aiPages: Record<string, BmkPageContent> = {
   ai: {
@@ -25,8 +26,17 @@ export const aiPages: Record<string, BmkPageContent> = {
     },
     blocks: [
       {
-        type: "grid",
+        type: "stats",
         code: "§ 01",
+        eyebrow: "Why most AI stalls",
+        title: "Trying AI is easy. Getting paid for it isn't.",
+        lead: "The research keeps saying the same thing: the problem is rarely the model. It's picking the wrong job, skipping the integration work and not measuring what comes back.",
+        items: [marketStats.valueGap, marketStats.pilotToProduction, marketStats.agentsCancelled],
+        footnote: statsFootnote,
+      },
+      {
+        type: "grid",
+        code: "§ 02",
         eyebrow: "What we build",
         title: "Six places AI usually pays for itself.",
         items: [
@@ -40,7 +50,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "steps",
-        code: "§ 02",
+        code: "§ 03",
         eyebrow: "How we run AI work",
         title: "Find it, prove it, ship it, run it.",
         items: [
@@ -52,7 +62,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "split",
-        code: "§ 03",
+        code: "§ 04",
         eyebrow: "Guardrails",
         title: "Fast doesn't have to mean reckless.",
         paragraphs: [
@@ -72,7 +82,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "split",
-        code: "§ 04",
+        code: "§ 05",
         eyebrow: "Readiness, governance and skills",
         title: "Ready for AI, without the paperwork theatre.",
         paragraphs: [
@@ -101,7 +111,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "faq",
-        code: "§ 05",
+        code: "§ 06",
         title: "Things people ask about AI.",
         items: [
           { q: "Which models do you use?", a: "Whichever does the job best for the money. We're not tied to one provider, and we often use more than one: a small, cheap model for simple steps and a stronger one only where it's needed." },
@@ -162,8 +172,17 @@ export const aiPages: Record<string, BmkPageContent> = {
         ],
       },
       {
-        type: "split",
+        type: "stats",
         code: "§ 02",
+        eyebrow: "The numbers behind it",
+        title: "Cheaper tokens. Bigger bills.",
+        lead: "AI cost has moved from a line in the cloud bill to a board-level question in two years.",
+        items: [marketStats.tokenPrices, marketStats.finopsAi, marketStats.costConstraint],
+        footnote: statsFootnote,
+      },
+      {
+        type: "split",
+        code: "§ 03",
         eyebrow: "The problem",
         title: "AI bills grow quietly, then all at once.",
         paragraphs: [
@@ -185,7 +204,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "grid",
-        code: "§ 03",
+        code: "§ 04",
         eyebrow: "What we do",
         title: "Six levers we pull.",
         lead: "None of them mean a worse result. Most of them mean a faster one.",
@@ -200,7 +219,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "ledger",
-        code: "§ 04",
+        code: "§ 05",
         eyebrow: "Cost per outcome, worked through",
         title: "One support assistant, three ways to run it.",
         lead: "The same assistant answering the same customer questions. The answers are just as good in each version; only the route to them changes.",
@@ -213,7 +232,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "steps",
-        code: "§ 05",
+        code: "§ 06",
         eyebrow: "The token audit",
         title: "Two weeks to a clear picture.",
         items: [
@@ -225,7 +244,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "grid",
-        code: "§ 06",
+        code: "§ 07",
         eyebrow: "Who it's for",
         title: "Everyone who signs off, builds or pays for AI.",
         cols: 2,
@@ -238,7 +257,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "split",
-        code: "§ 07",
+        code: "§ 08",
         eyebrow: "Tokenomics for AI coding",
         title: "Your biggest AI bill might be your developers'.",
         paragraphs: [
@@ -258,7 +277,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "faq",
-        code: "§ 08",
+        code: "§ 09",
         title: "AI tokenomics, explained.",
         items: [
           { q: "What is AI tokenomics?", a: "The practice of measuring, pricing and managing the tokens your AI systems use, so each AI outcome costs less than the value it creates. It covers model choice, prompt and context size, answer length, agent behaviour, caching and budgets." },
@@ -273,7 +292,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "links",
-        code: "§ 09",
+        code: "§ 10",
         eyebrow: "Read more",
         title: "Guides on AI costs.",
         items: [
@@ -323,8 +342,16 @@ export const aiPages: Record<string, BmkPageContent> = {
         figLabel: "FIG. 02 / CONTROL",
       },
       {
-        type: "steps",
+        type: "stats",
         code: "§ 02",
+        eyebrow: "The state of AI coding",
+        title: "Nearly everyone uses it. Far fewer trust it.",
+        items: [marketStats.devAdoption, marketStats.devTrust],
+        footnote: statsFootnote,
+      },
+      {
+        type: "steps",
+        code: "§ 03",
         eyebrow: "How it works",
         title: "From assessment to evidence.",
         items: [
@@ -336,7 +363,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "grid",
-        code: "§ 03",
+        code: "§ 04",
         eyebrow: "Where bmkrs comes in",
         title: "We help you get it working, then make it pay.",
         items: [
@@ -350,7 +377,7 @@ export const aiPages: Record<string, BmkPageContent> = {
       },
       {
         type: "links",
-        code: "§ 04",
+        code: "§ 05",
         eyebrow: "Keep reading",
         title: "Related.",
         items: [

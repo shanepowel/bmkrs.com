@@ -194,6 +194,36 @@ export const bmkPeople = defineType({
   preview: { select: { title: 'title' }, prepare: ({ title }) => ({ title, subtitle: 'People' }) },
 });
 
+export const bmkStats = defineType({
+  name: 'bmkStats',
+  title: 'Market stats',
+  type: 'object',
+  fields: [
+    ...sectionHead,
+    defineField({ name: 'lead', title: 'Lead', type: 'text', rows: 2 }),
+    defineField({ name: 'footnote', title: 'Footnote', type: 'string', description: 'e.g. when the figures were last checked' }),
+    defineField({
+      name: 'items',
+      title: 'Stats',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'stat',
+          type: 'object',
+          fields: [
+            defineField({ name: 'value', title: 'Figure', type: 'string', description: 'e.g. 37%', validation: (r) => r.required() }),
+            defineField({ name: 'label', title: 'What it means', type: 'text', rows: 2, validation: (r) => r.required() }),
+            defineField({ name: 'source', title: 'Source and date', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'href', title: 'Source link', type: 'url' }),
+          ],
+          preview: { select: { title: 'value', subtitle: 'source' } },
+        }),
+      ],
+    }),
+  ],
+  preview: { select: { title: 'title' }, prepare: ({ title }) => ({ title, subtitle: 'Market stats' }) },
+});
+
 export const bmkLinks = defineType({
   name: 'bmkLinks',
   title: 'Related links',
@@ -308,6 +338,7 @@ export const bmkPage = defineType({
         { type: 'bmkFaq' },
         { type: 'bmkLinks' },
         { type: 'bmkPeople' },
+        { type: 'bmkStats' },
       ],
     }),
     defineField({
@@ -329,4 +360,4 @@ export const bmkPage = defineType({
   },
 });
 
-export const bmkPageTypes = [bmkGrid, bmkSteps, bmkSplit, bmkLedger, bmkCallout, bmkStatement, bmkFaq, bmkLinks, bmkPeople, bmkPage];
+export const bmkPageTypes = [bmkGrid, bmkSteps, bmkSplit, bmkLedger, bmkCallout, bmkStatement, bmkFaq, bmkLinks, bmkPeople, bmkStats, bmkPage];

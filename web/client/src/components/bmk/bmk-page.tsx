@@ -9,6 +9,7 @@ import { AmpButton, Container, Eyebrow, PageShell, Text } from "@/components/sys
 import type { BmkBlock, BmkImageKey, BmkPageContent } from "@/content/bmk-types";
 import { Corners, FigLabel, SectionHead, SnapLine, revealStyle } from "./primitives";
 import { BmkCard, BmkFaq, SpecTags } from "./ui";
+import { StatGrid } from "./stat-grid";
 
 import imgVr from "@assets/56_1760470571209.webp";
 import imgMegaphone from "@assets/36_1760470798015.webp";
@@ -304,6 +305,21 @@ function LedgerBlock({ block, alt }: { block: Extract<BmkBlock, { type: "ledger"
   );
 }
 
+function StatsBlock({ block, alt }: { block: Extract<BmkBlock, { type: "stats" }>; alt: boolean }) {
+  const [ref, visible] = useReveal();
+  return (
+    <section ref={ref} className={`border-t border-white/10 py-20 lg:py-24 ${alt ? "bg-[#141a44]" : ""}`}>
+      <Container>
+        <SectionHead code={block.code} eyebrow={block.eyebrow} title={block.title} lead={block.lead} />
+        <StatGrid items={block.items} visible={visible} />
+        {block.footnote && (
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">{block.footnote}</p>
+        )}
+      </Container>
+    </section>
+  );
+}
+
 function CalloutBlock({ block }: { block: Extract<BmkBlock, { type: "callout" }> }) {
   return (
     <section className="border-t border-white/10 py-14 lg:py-16">
@@ -590,6 +606,8 @@ export function BmkPage({ page }: { page: BmkPageContent }) {
               return <LinksBlock key={key} block={block} alt={!alt} />;
             case "people":
               return <PeopleBlock key={key} block={block} alt={!alt} />;
+            case "stats":
+              return <StatsBlock key={key} block={block} alt={!alt} />;
             default:
               return null;
           }

@@ -28,7 +28,24 @@ export interface BmkPerson {
   linkedin?: string;
 }
 
+/** A published figure with its source, shown in a stats block. */
+export interface BmkStat {
+  value: string;
+  label: string;
+  source: string;
+  href?: string;
+}
+
 export type BmkBlock =
+  | {
+      type: "stats";
+      code: string;
+      eyebrow: string;
+      title: string;
+      lead?: string;
+      footnote?: string;
+      items: BmkStat[];
+    }
   | {
       type: "grid";
       code: string;
