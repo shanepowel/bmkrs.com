@@ -180,24 +180,28 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                 "radial-gradient(circle at 85% 15%, rgba(96, 38, 106, 0.35) 0%, transparent 55%), radial-gradient(circle at 10% 90%, rgba(248, 92, 112, 0.10) 0%, transparent 50%)",
             }}
           />
-          <Container className="relative z-10 pb-16 pt-14 lg:pb-24 lg:pt-20">
-            <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
-              <div className="min-w-0 lg:col-span-7" style={revealStyle(heroVisible)}>
-                <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-white/55">
-                  <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#F85C70]" />
-                  Studio open · taking on new work
-                </div>
-                <h1 className="font-display text-[2.6rem] font-extrabold uppercase leading-[0.9] tracking-[-0.025em] [font-stretch:120%] sm:text-6xl lg:text-[4.4rem] xl:text-[4.9rem]">
-                  AI is everywhere. Results aren&apos;t.
-                  <span className="mt-3 block text-[#F85C70]">We make them real.</span>
-                </h1>
-                <Text variant="lead" tone="white-80" className="mt-8 max-w-[36rem]">
+          <Container className="relative z-10 pb-14 pt-12 lg:pb-20 lg:pt-16">
+            <div className="min-w-0" style={revealStyle(heroVisible)}>
+              <div className="mb-7 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-white/55">
+                <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#F85C70]" />
+                Studio open · taking on new work
+              </div>
+              <h1 className="font-display text-[clamp(2rem,4.9vw,4.4rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:118%]">
+                <span className="block">AI is everywhere.</span>
+                <span className="block">Results aren&apos;t.</span>
+                <span className="mt-2 block text-[#F85C70]">We make them real.</span>
+              </h1>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
+              <div className="min-w-0 lg:col-span-5" style={revealStyle(heroVisible, 0.1)}>
+                <Text variant="lead" tone="white-80" className="max-w-[34rem]">
                   bmkrs is a small team of senior makers. We design, build and run practical AI,
                   digital products and brands, and we make sure each one earns its keep: in what it
                   costs, how well it works and what it changes for your business. In short cycles
                   you can see from week one.
                 </Text>
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <div className="mt-9 flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
                   <AmpButton asChild size="md" data-testid="button-hero-build">
                     <Link href="/contact">
                       Let&apos;s build something <ArrowRight className="h-4 w-4" />
@@ -209,21 +213,19 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                 </div>
               </div>
 
-              <div className="min-w-0 lg:col-span-5" style={revealStyle(heroVisible, 0.15)}>
-                <div className="grid grid-cols-2 gap-3 [grid-template-rows:minmax(0,1fr)_minmax(0,0.62fr)] h-[440px] sm:h-[520px] lg:h-[560px]">
+              <div className="min-w-0 lg:col-span-7" style={revealStyle(heroVisible, 0.2)}>
+                <div className="grid h-[240px] grid-cols-3 gap-3 sm:h-[300px] lg:h-[340px]">
                   {heroFigures.map((f, i) => (
                     <figure
                       key={f.label}
-                      className={`bmk-tile group relative overflow-hidden ${
-                        i === 0 ? "col-span-2" : ""
-                      }`}
+                      className={`bmk-tile group relative overflow-hidden ${i === 0 ? "col-span-3 sm:col-span-1 sm:row-span-1" : "hidden sm:block"}`}
                     >
                       <Image
                         src={f.img}
                         alt={f.alt}
                         fill
                         priority={i === 0}
-                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       />
                       <figcaption className="absolute left-0 top-0 bg-[#181F4F]/85 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/85">
@@ -550,7 +552,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           <Container>
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
               <div className="lg:col-span-4">
-                <div className="relative aspect-square overflow-hidden">
+                <div className="relative aspect-[16/9] max-h-[360px] w-full overflow-hidden lg:aspect-square lg:max-h-none">
                   <Image src={imgPortrait} alt="Smiling person in an orange jumper against a purple wall" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
                   <span className="absolute left-0 top-0 bg-[#181F4F]/85 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/85">
                     FIG. 06 / YOU, LAUNCH DAY

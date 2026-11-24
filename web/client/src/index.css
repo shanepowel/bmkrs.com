@@ -84,12 +84,19 @@
     height: auto;
   }
 
+  /* Headings wrap between words only; type sizes are fluid so the longest word fits. */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6,
+  h6 {
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: manual;
+    text-wrap: balance;
+  }
+
   p,
   li,
   dd,
