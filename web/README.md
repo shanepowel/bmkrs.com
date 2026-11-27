@@ -133,15 +133,20 @@ scripts/             seed scripts
 
 ## Design system
 
-Layout and marketing surfaces should use the Amplified primitives in
-`@/components/system` rather than one-off inline styles:
+Open `/design-system` on the running site to try the actual components and see their
+token pairings, field states and keyboard interactions. The reference is excluded
+from search indexing and uses the same site theme as the rest of the app.
 
-- `Container`, `Section`, `Stack`, `Grid` — consistent page width, spacing, equal-height grids
-- `Text`, `Eyebrow` — overflow-safe typography with optional line clamps
-- `Surface`, `ContentCard`, `AmpButton` — standard panels and CTAs with fixed heights
-
-These components enforce `min-w-0`, word wrapping, and equal card heights so
-sections stay aligned when copy lengths differ.
+- `@/components/ui` owns the local shadcn/Radix primitives. Use their variant and
+  composition APIs for controls such as buttons, inputs and dialogs.
+- `@/components/bmk` owns the branded marketing patterns, including `SpecTag`,
+  `BmkCard` and `BmkFaq`. Compose the shared primitives here when a pattern needs
+  bmkrs-specific styling or structure.
+- `@/components/system` provides layout and typography helpers such as
+  `Container`, `Stack` and `Text`. `AmpButton` delegates to the shared `Button`.
+- `app/globals.css` defines the semantic light and dark CSS tokens, and
+  `tailwind.config.ts` exposes them as utilities. Use a surface with its matching
+  foreground. Keep field help and errors linked to their inputs.
 
 ## Content conventions
 

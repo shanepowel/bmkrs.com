@@ -17,15 +17,16 @@
   --muted: hsl(291, 15%, 96%);
   --muted-foreground: hsl(215.4, 16.3%, 46.9%);
   --accent: hsl(352, 92%, 67%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --accent-foreground: var(--navy);
   --vivid-red: hsl(352, 92%, 67%);
   --warm-neutral: hsl(30, 20%, 92%);
   --support-tone: hsl(220, 15%, 88%);
-  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive: hsl(0, 72%, 40%);
   --destructive-foreground: hsl(210, 40%, 98%);
+  --error-text: var(--destructive);
   --border: hsl(291, 10%, 90%);
   --border-subtle: hsl(291, 8%, 94%);
-  --input: hsl(291, 10%, 90%);
+  --input: hsl(291, 10%, 54%);
   --ring: hsl(291, 47%, 28%);
   --font-sans: var(--font-archivo), 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: var(--font-archivo), 'Archivo', system-ui, sans-serif;
@@ -51,13 +52,14 @@
   --muted: hsl(291, 32.6%, 17.5%);
   --muted-foreground: hsl(215, 20.2%, 65.1%);
   --accent: hsl(352, 90%, 70%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --accent-foreground: var(--navy);
   --vivid-red: hsl(352, 90%, 70%);
   --destructive: hsl(0, 62.8%, 30.6%);
+  --error-text: hsl(0, 90%, 77%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(217.2, 32.6%, 17.5%);
-  --input: hsl(217.2, 32.6%, 17.5%);
-  --ring: hsl(291, 47%, 38%);
+  --input: hsl(217, 20%, 51%);
+  --ring: var(--accent);
 }
 
 @layer base {
