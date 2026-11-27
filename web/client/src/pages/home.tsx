@@ -187,8 +187,8 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                 Studio open · taking on new work
               </div>
               <h1 className="font-display text-[clamp(2rem,4.9vw,4.4rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:118%]">
-                <span className="block">AI is everywhere.</span>
-                <span className="block">Results aren&apos;t.</span>
+                <span className="block">AI is everywhere.</span>{" "}
+                <span className="block">Results aren&apos;t.</span>{" "}
                 <span className="mt-2 block text-[#F85C70]">We make them real.</span>
               </h1>
             </div>
