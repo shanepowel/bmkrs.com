@@ -12,8 +12,8 @@ export const companyPages: Record<string, BmkPageContent> = {
     hero: {
       code: "FOR / 01",
       eyebrow: "Founders and start-ups",
-      title: "From idea to launch",
-      accent: "without the agency bloat.",
+      title: "For founders and start-ups",
+      accent: "From idea to launch.",
       lead: "You need a brand, a product and a launch, and you need them to cost what you planned. We've built our own start-ups, so we'll tell you what to skip as well as what to build.",
       image: "portrait",
       figLabel: "FIG. 01 / DAY ONE",
@@ -34,13 +34,24 @@ export const companyPages: Record<string, BmkPageContent> = {
         cols: 2,
       },
       {
-        type: "split",
+        type: "grid",
         code: "§ 02",
+        eyebrow: "How we work with founders",
+        title: "Scope the first release.",
+        cols: 2,
+        items: [
+          { title: "Agree what to test", body: "We start with the customer problem, what you've already learnt and the decision you need to make next. Together we agree what to build first, what it will cost and what can wait." },
+          { title: "Build around what you learn", body: "Put a prototype in front of prospective customers before committing to a full build. Use what you learn to shape the first release and decide what needs to be ready for launch." },
+        ],
+      },
+      {
+        type: "split",
+        code: "§ 03",
         eyebrow: "Why us",
         title: "We spend your money like it's ours.",
         paragraphs: [
           "Because sometimes it is. We run EmberNest, Viralyz, FreelanceNearMe and OneScope ourselves, so we know what a wasted month feels like.",
-          "You'll get straight advice on what to build now, what can wait, and what you shouldn't build at all.",
+          "For example, we built Viralyz around a specific decision: whether a short video or ad is ready to go live. It scores the creative and explains why, giving creators and brands something to act on before they publish.",
         ],
         image: "workshop",
         figLabel: "FIG. 02 / THE BENCH",
@@ -395,8 +406,8 @@ export const companyPages: Record<string, BmkPageContent> = {
     hero: {
       code: "BMK / WORK",
       eyebrow: "What we've made",
-      title: "We'd rather",
-      accent: "show you.",
+      title: "Our work",
+      accent: "Products we build and run.",
       lead: "Our own products, built and run by the same people who work on yours, plus the programmes people on our team have led along the way.",
       image: "laptop",
       figLabel: "FIG. 01 / ON THE BENCH",
