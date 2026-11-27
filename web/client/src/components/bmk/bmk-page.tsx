@@ -85,7 +85,7 @@ function Hero({ hero }: { hero: BmkPageContent["hero"] }) {
             </div>
             <h1 className="font-display text-[clamp(1.85rem,6.4vw,3.25rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] [font-stretch:115%] lg:text-[clamp(2.5rem,3.6vw,3.5rem)]">
               {hero.title}
-              {hero.accent && <span className="mt-2 block text-[#F85C70]">{hero.accent}</span>}
+              {hero.accent && <>{" "}<span className="mt-2 block text-[#F85C70]">{hero.accent}</span></>}
             </h1>
             <Text variant="lead" tone="white-80" className="mt-7 max-w-[38rem]">
               {hero.lead}
