@@ -52,6 +52,16 @@ export function hasAnalyticsConsent(): boolean {
   return getConsent()?.analytics === true;
 }
 
+/**
+ * Whether the analytics scripts have run during this page view. Tracked separately from the saved choice, because
+ * a choice can expire while the page is open, and withdrawal must still clean up scripts that already ran.
+ */
+let analyticsLoaded = false;
+
+export function markAnalyticsLoaded() {
+  analyticsLoaded = true;
+}
+
 function clearAnalyticsCookies() {
   const host = window.location.hostname;
   const domains = ["", host, `.${host}`, `.${host.replace(/^www\./, "")}`];
@@ -68,7 +78,7 @@ function clearAnalyticsCookies() {
  * that have already run cannot be unloaded.
  */
 export function setConsent(analytics: boolean) {
-  const wasOn = hasAnalyticsConsent();
+  const wasOn = analyticsLoaded || hasAnalyticsConsent();
   try {
     localStorage.setItem(KEY, JSON.stringify({ analytics, decidedAt: new Date().toISOString() }));
     LEGACY_KEYS.forEach((k) => localStorage.removeItem(k));

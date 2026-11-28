@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
-import { CONSENT_CHANGED, hasAnalyticsConsent } from '@/lib/consent';
+import { CONSENT_CHANGED, hasAnalyticsConsent, markAnalyticsLoaded } from '@/lib/consent';
 
 const GTM_ID = 'GTM-MC5S82CJ';
 const MAILCHIMP_SCRIPT =
@@ -13,7 +13,9 @@ export function AnalyticsScripts() {
 
   useEffect(() => {
     const onConsentChange = () => {
-      setEnabled(hasAnalyticsConsent());
+      const on = hasAnalyticsConsent();
+      if (on) markAnalyticsLoaded();
+      setEnabled(on);
     };
 
     onConsentChange();
