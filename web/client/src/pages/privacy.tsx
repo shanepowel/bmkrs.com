@@ -3,7 +3,7 @@ import { brand } from "@/lib/brand";
 
 import { LegalDocumentLayout } from "@/components/system";
 
-const LAST_UPDATED = "1 March 2026";
+const LAST_UPDATED = "28 November 2026";
 
 const sections = [
   {
@@ -59,7 +59,7 @@ Contact us about data protection matters at privacy@bmkrs.com.`,
     body: `We use two categories of cookies:`,
     list: [
       "Strictly necessary cookies: required for the website to function. These do not require consent and cannot be switched off.",
-      "Analytics cookies: used to understand how visitors use the site. These are only set with your explicit consent via our cookie banner. You may withdraw consent at any time by clearing your browser cookies or revisiting the cookie banner.",
+      "Analytics cookies: set by Google Tag Manager and Mailchimp's site script to understand how visitors use the site. These load only after you accept them in our cookie banner, and we ask again after 12 months. You can withdraw consent at any time from Cookie settings in the footer of every page.",
     ],
   },
   {
