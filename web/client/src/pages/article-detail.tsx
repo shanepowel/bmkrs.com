@@ -408,7 +408,7 @@ export default function ArticleDetail({ onOpenConsultation, initialArticle }: Ar
           {articleFaqs.length > 0 && (
             <Stack gap="md" className="mb-12">
               <Stack gap="xs">
-                <Eyebrow>Frequently Asked Questions</Eyebrow>
+                <Eyebrow tone="coralOnLight">Frequently asked questions</Eyebrow>
                 <Text variant="h2">Common Questions</Text>
               </Stack>
               <FAQAccordion faqs={articleFaqs} />
@@ -416,7 +416,7 @@ export default function ArticleDetail({ onOpenConsultation, initialArticle }: Ar
           )}
 
           <Surface variant="mist" padding="md" radius="lg" className="mb-12">
-            <Eyebrow className="mb-4">Related Services</Eyebrow>
+            <Eyebrow tone="coralOnLight" className="mb-4">Related services</Eyebrow>
             <div className="flex flex-wrap gap-3">
               {articleRelatedServices.map((s) => (
                 <AmpButton key={s.href} asChild size="sm" variant="navy">

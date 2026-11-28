@@ -19,7 +19,7 @@ export function BreadcrumbBar({
     <div className={cn("bg-[#F2F0F7] py-5", className)}>
       <Container>
         <nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-[0.1em]">
-          <ol className="flex min-w-0 flex-wrap items-center gap-2 text-[#6B6E81]">
+          <ol className="flex min-w-0 flex-wrap items-center gap-2 text-[#5B5E72]">
             {items.map((item, index) => {
               const isLast = index === items.length - 1;
               return (

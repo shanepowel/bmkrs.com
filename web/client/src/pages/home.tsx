@@ -20,6 +20,8 @@ import imgPortrait from "@assets/59_1760471391711.webp";
 
 interface HomeProps {
   onOpenConsultation: (serviceType?: string) => void;
+  /** "short" is the trimmed version on /home-short, kept for testing against the full page. */
+  variant?: "full" | "short";
 }
 
 /* ------------------------------------------------------------------ */
@@ -52,14 +54,14 @@ const ownProducts = [
     name: "FreelanceNearMe",
     display: <>Freelance<wbr />NearMe</>,
     kind: "Marketplace",
-    body: "Connects people with local freelancers across the UK and beyond. Around 15,000 visitors a week and being rebuilt as a proper SaaS platform.",
+    body: "Connects people with local freelancers across the UK and beyond. Now being rebuilt as a proper SaaS platform.",
     href: "https://freelancenearme.com",
   },
   {
     code: "MADE 04",
     name: "OneScope",
     kind: "Fintech",
-    body: "AI-driven crypto trading across several exchanges, with automated bots, portfolio insights and risk controls.",
+    body: "Portfolio tracking, insights and risk controls for people who trade crypto across several exchanges.",
     href: "https://onescope.io",
   },
 ];
@@ -157,7 +159,12 @@ const method = [
 /* Page                                                                */
 /* ------------------------------------------------------------------ */
 
-const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
+const Home = memo(function Home({ onOpenConsultation, variant = "full" }: HomeProps) {
+  const short = variant === "short";
+  /** Section numbers follow the sections actually shown, so the short version has no gaps. */
+  const codes = short
+    ? { picture: "§ 01", gaps: "§ 02", offers: "§ 03", record: "§ 04" }
+    : { picture: "§ 01", gaps: "§ 02", offers: "§ 03", record: "§ 07" };
   const [heroRef, heroVisible] = useReveal(0.05);
   const [statsRef, statsVisible] = useReveal();
   const [gapsRef, gapsVisible] = useReveal();
@@ -247,13 +254,13 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section id="picture" ref={statsRef} className="border-b border-white/10 bg-[#141a44] py-20 lg:py-28">
           <Container>
             <SectionHead
-              code="§ 01"
+              code={codes.picture}
               eyebrow="The picture right now"
               title={<>Adoption is racing ahead. <span className="text-[#F85C70]">Results are not.</span></>}
               lead="We keep a close eye on the research, because it shapes what's worth building. The pattern is clear: almost everyone is trying AI, far fewer are getting value, trust or control from it. That gap is where most of our work sits."
             />
-            <StatGrid items={landscape} visible={statsVisible} />
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">{statsFootnote}</p>
+            <StatGrid items={short ? landscape.slice(0, 3) : landscape} visible={statsVisible} />
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">{statsFootnote}</p>
           </Container>
         </section>
 
@@ -261,7 +268,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section ref={gapsRef} className="py-20 lg:py-28">
           <Container>
             <SectionHead
-              code="§ 02"
+              code={codes.gaps}
               eyebrow="Where we come in"
               title={<>Four gaps we close.</>}
               lead="Each one shows up in the numbers above, and each one has a fix that's practical, measurable and quicker than most people expect."
@@ -291,7 +298,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section ref={offersRef} className="border-t border-white/10 bg-[#141a44] py-20 lg:py-28">
           <Container>
             <SectionHead
-              code="§ 03"
+              code={codes.offers}
               eyebrow="Three ways to start"
               title={<>Pick a size. We&apos;ll pick up the tools.</>}
               lead="Every engagement ends with something you can use, not a report about something you might do."
@@ -304,7 +311,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                   style={revealStyle(offersVisible, i * 0.08)}
                 >
                   <div className="mb-8 flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
-                    <span className="text-white/45">{o.code}</span>
+                    <span className="text-white/60">{o.code}</span>
                     <span className="text-[#F85C70]">{o.duration}</span>
                   </div>
                   <h3 className="bmk-outline-text whitespace-nowrap font-display text-5xl font-black uppercase leading-none tracking-[-0.03em] [font-stretch:120%] transition-colors duration-300 group-hover:text-white lg:text-[3.25rem] xl:text-6xl">
@@ -314,7 +321,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                     {o.body}
                   </Text>
                   <div className="mt-8 border-t border-white/10 pt-5">
-                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white/45">You walk away with</p>
+                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white/60">You walk away with</p>
                     <ul className="space-y-2">
                       {o.youGet.map((g) => (
                         <li key={g} className="flex items-center gap-3 text-sm text-white/85">
@@ -337,6 +344,8 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           </Container>
         </section>
 
+        {!short && (
+          <>
         {/* ========================= MANIFESTO ========================== */}
         <section className="relative overflow-hidden border-t border-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -428,7 +437,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                   >
                     <div className="mb-10 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
                       <span className="text-[#F85C70]">{p.code}</span>
-                      <span className="text-white/45">{p.kind}</span>
+                      <span className="text-white/60">{p.kind}</span>
                     </div>
                     <h3 className="font-display text-3xl font-extrabold uppercase tracking-[-0.02em] [font-stretch:115%] lg:text-4xl">
                       {"display" in p && p.display ? p.display : p.name}
@@ -465,7 +474,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
         <section className="border-t border-white/10 bg-[#141a44] py-16 lg:py-20">
           <Container>
             <div className="mb-10 flex items-center gap-4">
-              <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 06</span>
+              <span className="font-mono text-xs tracking-[0.12em] text-white/60">§ 06</span>
               <Eyebrow>The method</Eyebrow>
             </div>
             <ol className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
@@ -489,13 +498,16 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
           </Container>
         </section>
 
+          </>
+        )}
+
         {/* ======================== TRACK RECORD ======================== */}
         <section ref={recordRef} className="border-t border-white/10 py-20 lg:py-28">
           <Container>
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <div className="mb-8 flex items-center gap-4">
-                  <span className="font-mono text-xs tracking-[0.12em] text-white/40">§ 07</span>
+                  <span className="font-mono text-xs tracking-[0.12em] text-white/60">{codes.record}</span>
                   <SnapLine className="flex-1" />
                 </div>
                 <Eyebrow className="mb-4">Where we&apos;ve shipped before</Eyebrow>
@@ -522,7 +534,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                       className="group grid grid-cols-1 gap-3 border-b border-white/10 py-8 sm:grid-cols-12 sm:gap-6"
                       style={revealStyle(recordVisible, i * 0.08)}
                     >
-                      <span className="font-mono text-xs tracking-[0.14em] text-white/40 sm:col-span-1">
+                      <span className="font-mono text-xs tracking-[0.14em] text-white/60 sm:col-span-1">
                         0{i + 1}
                       </span>
                       <div className="sm:col-span-6">
@@ -539,7 +551,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">
+                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">
                   Programmes led by members of the bmkrs team in previous roles.
                 </p>
               </div>
@@ -606,7 +618,7 @@ const Home = memo(function Home({ onOpenConsultation }: HomeProps) {
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <AmpButton asChild size="md" data-testid="button-final-cta">
                   <Link href="/contact">
-                    Book the call <ArrowRight className="h-4 w-4" />
+                    Ask for a call <ArrowRight className="h-4 w-4" />
                   </Link>
                 </AmpButton>
                 <a

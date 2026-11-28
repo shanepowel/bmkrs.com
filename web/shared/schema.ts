@@ -44,6 +44,9 @@ export const insertConsultationRequestSchema = createInsertSchema(consultationRe
     createdAt: true,
   })
   .extend({
+    name: z.string().trim().min(1, "Enter your name"),
+    /** Both forms turn off browser validation (noValidate), so the email format is checked here, client and server. */
+    email: z.string().trim().email("Enter a valid email address, like jane@organisation.com"),
     serviceInterest: z.enum(serviceInterestEnum),
     /** Free text: the contact page stores "how did you hear about us" here. */
     persona: z.string().max(60).optional(),

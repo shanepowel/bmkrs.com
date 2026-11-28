@@ -91,7 +91,7 @@ export default function Terms() {
       lastUpdated={LAST_UPDATED}
       intro={
         <>
-          These Terms of Use govern your use of the bmkrs website and the basis on which {brand.legalName}
+          These Terms of Use govern your use of the bmkrs website and the basis on which {brand.legalName}{" "}
           provides professional services. By engaging bmkrs for services or using this website, you
           agree to be bound by these Terms.
         </>

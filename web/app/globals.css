@@ -27,7 +27,7 @@
   --border: hsl(291, 10%, 90%);
   --border-subtle: hsl(291, 8%, 94%);
   --input: hsl(291, 10%, 54%);
-  --ring: hsl(291, 47%, 28%);
+  --ring: #F85C70;
   --font-sans: var(--font-archivo), 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: var(--font-archivo), 'Archivo', system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), 'IBM Plex Mono', Menlo, monospace;
@@ -728,15 +728,16 @@
   @apply border-primary shadow-lg;
 }
 
-/* Modern focus styles for accessibility */
-.focus-visible {
-  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
-}
-
-/* Improved button accessibility */
-button:focus-visible,
-[role="button"]:focus-visible {
-  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+/*
+ * One keyboard focus style for the whole site (WCAG 2.4.7, 1.4.11).
+ * A coral outline (5.4:1 on navy) around a navy inner ring (about 15:1 on white and the light greys), so the
+ * indicator passes 3:1 on both dark and light sections without each component choosing its own colours.
+ * !important so per-component ring utilities, including the old purple ring, cannot weaken it.
+ */
+:where(a, button, input, select, textarea, summary, [tabindex], [role="button"], [role="switch"], [role="tab"], [role="checkbox"], [role="combobox"]):focus-visible {
+  outline: 2px solid #F85C70 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #181F4F !important;
 }
 
 /* Enhanced logo visibility */

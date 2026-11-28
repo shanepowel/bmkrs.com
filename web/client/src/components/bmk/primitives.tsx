@@ -54,7 +54,7 @@ export function SectionHead({
   return (
     <div className="mb-12 lg:mb-16">
       <div className="mb-8 flex items-center gap-4">
-        <span className="font-mono text-xs tracking-[0.12em] text-white/40">{code}</span>
+        <span className="font-mono text-xs tracking-[0.12em] text-white/60">{code}</span>
         <SnapLine className="flex-1" />
       </div>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

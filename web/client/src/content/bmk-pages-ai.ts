@@ -305,7 +305,7 @@ export const aiPages: Record<string, BmkPageContent> = {
     cta: {
       title: "Know your",
       accent: "cost per outcome.",
-      lead: "Book a call and we'll tell you what a token audit would look like for your setup, and roughly what it would cost.",
+      lead: "Ask for a call and we'll tell you what a token audit would look like for your setup, and roughly what it would cost.",
       label: "Book a token audit call",
       serviceType: "AI tokenomics",
     },
@@ -390,7 +390,7 @@ export const aiPages: Record<string, BmkPageContent> = {
     cta: {
       title: "Make your codebase",
       accent: "solid.",
-      lead: "Book a call and we'll walk you through EmberNest on a codebase like yours, and what getting started would take.",
+      lead: "Ask for a call and we'll walk you through EmberNest on a codebase like yours, and what getting started would take.",
       label: "Book an EmberNest call",
       serviceType: "EmberNest",
     },

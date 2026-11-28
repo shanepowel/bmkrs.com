@@ -12,7 +12,7 @@ export const ampTokens = {
   borderStrong: "#C8C4D8",
   ink: "#181F4F",
   inkMuted: "#65677B",
-  inkSubtle: "#6B6E81",
+  inkSubtle: "#5B5E72",
   white: "#FFFFFF",
   white70: "rgba(255,255,255,0.70)",
   white75: "rgba(255,255,255,0.75)",
@@ -40,10 +40,10 @@ export const containerVariants = cva("mx-auto w-full min-w-0 px-4 sm:px-6 lg:px-
 export const sectionVariants = cva("w-full min-w-0 overflow-x-clip", {
   variants: {
     tone: {
-      white: "bg-white text-[#181F4F]",
-      mist: "bg-[#F2F0F7] text-[#181F4F]",
-      navy: "bg-[#181F4F] text-white",
-      purple: "bg-[#60266A] text-white",
+      white: "bg-white text-[#181F4F] [--coral-text:#C23A4F]",
+      mist: "bg-[#F2F0F7] text-[#181F4F] [--coral-text:#C23A4F]",
+      navy: "bg-[#181F4F] text-white [--coral-text:#F85C70]",
+      purple: "bg-[#60266A] text-white [--coral-text:#FF8A99]",
       transparent: "bg-transparent",
     },
     padding: {
@@ -149,13 +149,15 @@ export const textVariants = cva("min-w-0 max-w-full break-words", {
     tone: {
       ink: "text-[#181F4F]",
       muted: "text-[#65677B]",
-      subtle: "text-[#6B6E81]",
-      coral: "text-[#F85C70]",
+      subtle: "text-[#5B5E72]",
+      coral: "text-[color:var(--coral-text,#F85C70)]",
+      /** Coral for small text on white or mist, where the brand coral is under 4.5:1. */
+      coralOnLight: "text-[#C23A4F]",
       white: "text-white",
       "white-80": "text-white/80",
       "white-75": "text-white/75",
       "white-70": "text-white/70",
-      "white-45": "text-white/45",
+      "white-45": "text-white/60",
     },
     clamp: {
       none: "",

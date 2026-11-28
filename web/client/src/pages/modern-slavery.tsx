@@ -3,8 +3,8 @@ import { brand } from "@/lib/brand";
 
 import { LegalDocumentLayout, Text } from "@/components/system";
 
-const currentYear = new Date().getFullYear();
-const financialYear = `${currentYear - 1}/${currentYear}`;
+/** The financial year this statement covers. Change it, and LAST_UPDATED, only when the board re-approves the statement. */
+const financialYear = "2025/2026";
 const LAST_UPDATED = "1 March 2026";
 
 const sections = [
@@ -73,7 +73,7 @@ Managers and those involved in procurement receive additional guidance on suppli
     body: null,
     list: [
       "Completion of modern slavery awareness training by all new employees within their first month.",
-      "Number of concerns raised through the whistleblowing channel: zero for the financial year ${financialYear}.",
+      `Number of concerns raised through the whistleblowing channel: zero for the financial year ${financialYear}.`,
       "Annual review of supplier compliance statements for all material suppliers.",
       "Annual board review and approval of this statement.",
     ],
@@ -106,7 +106,7 @@ export default function ModernSlavery() {
         <div className="mt-4 border-t border-[#E5E3EE] pt-10">
           <Text variant="small" tone="muted" className="mb-2">
             For questions about this statement, contact us at{" "}
-            <a href="mailto:ethics@bmkrs.com" className="text-[#F85C70]">
+            <a href="mailto:ethics@bmkrs.com" className="text-[#C23A4F] underline-offset-2 hover:underline">
               ethics@bmkrs.com
             </a>
           </Text>

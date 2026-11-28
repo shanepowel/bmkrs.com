@@ -105,7 +105,7 @@ export default function Press() {
             <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em]">
-                  <span className="text-white/45">BMK / PRESS</span>
+                  <span className="text-white/60">BMK / PRESS</span>
                   <span className="h-px w-8 bg-[#F85C70]" aria-hidden />
                   <span className="text-[#F85C70]">Press and brand kit</span>
                 </div>
@@ -149,7 +149,7 @@ export default function Press() {
               <dl className="grid grid-cols-1 gap-px self-start border border-white/10 bg-white/10 sm:grid-cols-2 lg:col-span-6">
                 {facts.map((f) => (
                   <div key={f.label} className="bg-[#181F4F] p-5">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">{f.label}</dt>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">{f.label}</dt>
                     <dd className="mt-1.5 text-sm font-semibold">
                       {f.value.includes("@") ? (
                         <a href={`mailto:${f.value}`} className="text-[#F85C70] hover:underline">

@@ -60,7 +60,7 @@ export function FloatingCTA({ onOpenConsultation }: FloatingCTAProps) {
               data-testid="floating-cta-book-call"
             >
               <Calendar className="h-4 w-4" />
-              Book a 30-minute call
+              Ask for a 30-minute call
             </AmpButton>
             <Text variant="caption" tone="subtle" className="text-center">
               We reply within two working days

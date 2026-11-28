@@ -93,11 +93,11 @@ export default function NotFound() {
             </Surface>
 
             <Text variant="small" tone="muted">
-              Need help?{" "}
-              <Link href="/contact" className="text-[#F85C70] hover:underline">
-                Contact our support team
-              </Link>{" "}
-              or call us at +44 20 7946 0958
+              Can&apos;t find what you need? Email{" "}
+              <a href="mailto:hello@bmkrs.com" className="text-[#C23A4F] underline-offset-2 hover:underline">
+                hello@bmkrs.com
+              </a>{" "}
+              and we&apos;ll point you to it.
             </Text>
           </Stack>
         </Container>

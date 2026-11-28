@@ -160,7 +160,7 @@ export default function Insights({ onOpenConsultation, initialArticles }: Insigh
             </div>
 
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-[#6B6E81]" />
+              <Filter className="h-4 w-4 text-[#5B5E72]" />
               <Select value={selectedType} onValueChange={setSelectedType}>
                 <SelectTrigger aria-label="Filter insights by type" className="w-[180px] border-0 bg-white font-sans text-sm shadow-none" data-testid="select-type-filter">
                   <SelectValue placeholder="All Types" />
@@ -175,7 +175,7 @@ export default function Insights({ onOpenConsultation, initialArticles }: Insigh
             </div>
 
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-[#6B6E81]" />
+              <Calendar className="h-4 w-4 text-[#5B5E72]" />
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger aria-label="Sort insights" className="w-[160px] border-0 bg-white font-sans text-sm shadow-none" data-testid="select-sort-by">
                   <SelectValue placeholder="Sort By" />
@@ -236,7 +236,7 @@ export default function Insights({ onOpenConsultation, initialArticles }: Insigh
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#181F4F]/70 via-transparent to-transparent" />
                               <div className="absolute top-5 left-5">
-                                <span className="rounded bg-[#181F4F]/85 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-[#F85C70]">
+                                <span className="rounded bg-[#181F4F] px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-white">
                                   {content.type || "Insight"}
                                 </span>
                               </div>
@@ -277,7 +277,7 @@ export default function Insights({ onOpenConsultation, initialArticles }: Insigh
                                 </div>
                               )}
                               <span
-                                className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-[#F85C70] transition-all duration-200 group-hover:gap-3"
+                                className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-[#C23A4F] transition-all duration-200 group-hover:gap-3"
                                 data-testid={`button-featured-cta-${article.slug}`}
                               >
                                 Read full article <ArrowRight className="h-3 w-3" />
@@ -316,7 +316,7 @@ export default function Insights({ onOpenConsultation, initialArticles }: Insigh
                               />
                               {content.type && (
                                 <div className="absolute top-4 left-4">
-                                  <span className="rounded bg-[#181F4F]/80 px-2 py-1 font-mono text-xs uppercase tracking-[0.08em] text-[#F85C70]">
+                                  <span className="rounded bg-[#181F4F] px-2 py-1 font-mono text-xs uppercase tracking-[0.08em] text-white">
                                     {content.type}
                                   </span>
                                 </div>
