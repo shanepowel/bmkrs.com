@@ -3,6 +3,7 @@
 import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { submitConsultationRequest, type ConsultationResponse } from "@/lib/api";
 import type { InsertConsultationRequest } from "@shared/schema";
@@ -37,6 +38,12 @@ interface ContactProps {
   onOpenConsultation: (serviceType?: string) => void;
 }
 
+/** The contact page asks for organisation and a description as well; the dialog keeps them optional. */
+const contactFormSchema = insertConsultationRequestSchema.extend({
+  company: z.string().trim().min(1, "Enter your organisation"),
+  description: z.string().trim().min(1, "Tell us a little about what you need"),
+});
+
 const fieldBase =
   "w-full rounded border-0 border-b-2 border-[#7D8098] bg-transparent px-4 py-3 font-sans text-sm text-[#181F4F] transition-colors duration-200 focus:outline-none focus:ring-0";
 
@@ -52,7 +59,7 @@ const Contact = memo(function Contact({ onOpenConsultation }: ContactProps) {
   const bookCall = () => (BOOKING_URL ? setShowCalendar(true) : onOpenConsultation("discovery"));
 
   const form = useForm<InsertConsultationRequest>({
-    resolver: zodResolver(insertConsultationRequestSchema),
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
