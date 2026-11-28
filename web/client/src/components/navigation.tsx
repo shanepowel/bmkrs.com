@@ -178,7 +178,7 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                             className={`${menuLinkReset} items-center justify-between border-t border-white/10 px-5 py-3 transition-colors hover:bg-white/[0.04]`}
                           >
                             <Link href={menu.footer.href}>
-                              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/45">{menu.footer.label}</span>
+                              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">{menu.footer.label}</span>
                               <span className="text-xs font-semibold text-[#F85C70]">{menu.footer.value}</span>
                             </Link>
                           </NavigationMenuLink>
@@ -256,7 +256,7 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                                 onClick={() => setIsOpen(false)}
                                 className="mt-1 flex items-center justify-between border-t border-white/10 px-3 pt-3"
                               >
-                                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/45">{menu.footer.label}</span>
+                                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">{menu.footer.label}</span>
                                 <span className="text-xs font-semibold text-[#F85C70]">{menu.footer.value}</span>
                               </Link>
                             )}
@@ -271,7 +271,7 @@ const Navigation = memo(function Navigation(_props: NavigationProps) {
                         {brand.ctaPrimary} →
                       </Link>
                     </AmpButton>
-                    <p className="mt-3 text-center text-xs text-white/50">No pitch. No deck. Just a 30-minute call.</p>
+                    <p className="mt-3 text-center text-xs text-white/65">No pitch. No deck. Just a 30-minute call.</p>
                   </div>
                 </div>
               </SheetContent>

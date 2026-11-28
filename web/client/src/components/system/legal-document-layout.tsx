@@ -105,11 +105,11 @@ export function LegalDocumentLayout({
       </Section>
 
       <Section tone="mist" padding="sm" containerClassName={legalContainerClass}>
-        <Eyebrow className="mb-6 text-[#6B6E81]">Company information</Eyebrow>
+        <Eyebrow className="mb-6 text-[#5B5E72]">Company information</Eyebrow>
         <Grid cols={2} gap="md" equal={false}>
           {companyInfo.map(([label, value]) => (
             <div key={label}>
-              <Text variant="caption" className="mb-1 uppercase tracking-[0.08em] text-[#9597A5]">
+              <Text variant="caption" className="mb-1 uppercase tracking-[0.08em] text-[#5B5E72]">
                 {label}
               </Text>
               <Text variant="small">{value}</Text>

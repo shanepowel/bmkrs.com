@@ -28,13 +28,13 @@ export function StatGrid({ items, visible = true }: { items: BmkStat[]; visible?
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-white/50 transition-colors hover:text-white"
+              className="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-white/65 transition-colors hover:text-white"
             >
               {s.source} <ArrowUpRight className="h-3 w-3" aria-hidden />
               <span className="sr-only">(opens in a new tab)</span>
             </a>
           ) : (
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/50">{s.source}</p>
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/65">{s.source}</p>
           )}
         </li>
       ))}

@@ -41,12 +41,12 @@ const Footer = memo(function Footer() {
             <Text variant="small" className="mb-2 text-white/60">
               {brand.tagline}
             </Text>
-            <Text variant="small" className="mb-1 text-white/40">
+            <Text variant="small" className="mb-1 text-white/70">
               {brand.location}
             </Text>
             <a
               href={`mailto:${brand.email}`}
-              className="text-sm text-white/40 transition-colors hover:text-[#F85C70]"
+              className="inline-block py-1 text-sm text-white/70 transition-colors hover:text-[#F85C70]"
             >
               {brand.email}
             </a>
@@ -55,10 +55,10 @@ const Footer = memo(function Footer() {
           {footerColumns.map((col) => (
             <div key={col.label}>
               <Eyebrow className="mb-4">{col.label}</Eyebrow>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 {col.items.map((link) => (
                   <li key={link.href + link.name}>
-                    <Link href={link.href} className="text-sm text-white/50 transition-colors hover:text-white/90">
+                    <Link href={link.href} className="inline-block py-1 text-sm text-white/70 transition-colors hover:text-white/90">
                       {link.name}
                     </Link>
                   </li>
@@ -69,7 +69,7 @@ const Footer = memo(function Footer() {
         </Grid>
 
         <Stack direction="row-responsive" gap="md" justify="between" align="center" className="flex-wrap">
-          <Text variant="caption" className="text-white/30">
+          <Text variant="caption" className="text-white/60">
             © {new Date().getFullYear()} bmkrs is a trading name of {brand.legalName}, registered in England and Wales, company no. {brand.companyNumber}. Registered office: {brand.registeredOffice}.
           </Text>
 
@@ -78,7 +78,7 @@ const Footer = memo(function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-xs text-white/30 transition-colors hover:text-white/70"
+                className="inline-block py-1 text-xs text-white/60 transition-colors hover:text-white"
                 data-testid={`footer-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {link.label}
@@ -87,7 +87,7 @@ const Footer = memo(function Footer() {
             <button
               type="button"
               onClick={openCookieSettings}
-              className="rounded text-xs text-white/30 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F85C70]"
+              className="rounded py-1 text-xs text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F85C70]"
               data-testid="footer-cookie-settings"
             >
               Cookie settings
@@ -105,7 +105,7 @@ const Footer = memo(function Footer() {
                   target={s.href.startsWith("mailto") ? undefined : "_blank"}
                   rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
                   aria-label={s.label}
-                  className="text-white/30 transition-colors hover:text-[#F85C70]"
+                  className="inline-flex h-6 w-6 items-center justify-center text-white/60 transition-colors hover:text-[#F85C70]"
                 >
                   {s.icon}
                 </a>

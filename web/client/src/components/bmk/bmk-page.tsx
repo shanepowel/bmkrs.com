@@ -79,7 +79,7 @@ function Hero({ hero }: { hero: BmkPageContent["hero"] }) {
         <div className={`grid grid-cols-1 items-end gap-12 ${img ? "lg:grid-cols-12" : ""}`}>
           <div className={`min-w-0 ${img ? "lg:col-span-7" : "max-w-4xl"}`} style={revealStyle(visible)}>
             <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em]">
-              <span className="text-white/45">{hero.code}</span>
+              <span className="text-white/60">{hero.code}</span>
               <span className="h-px w-8 bg-[#F85C70]" aria-hidden />
               <span className="text-[#F85C70]">{hero.eyebrow}</span>
             </div>
@@ -112,7 +112,7 @@ function Hero({ hero }: { hero: BmkPageContent["hero"] }) {
               <dl className="mt-12 grid grid-cols-2 gap-px border border-white/10 bg-white/10 sm:grid-cols-3">
                 {hero.facts.map((f) => (
                   <div key={f.label} className="bg-[#181F4F] p-4">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">{f.label}</dt>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">{f.label}</dt>
                     <dd className="mt-1.5 text-sm font-semibold text-white">{f.value}</dd>
                   </div>
                 ))}
@@ -226,7 +226,7 @@ function SplitBlock({ block, alt }: { block: Extract<BmkBlock, { type: "split" }
     <section className={`border-t border-white/10 py-20 lg:py-24 ${alt ? "bg-[#141a44]" : ""}`}>
       <Container>
         <div className="mb-8 flex items-center gap-4">
-          <span className="font-mono text-xs tracking-[0.12em] text-white/40">{block.code}</span>
+          <span className="font-mono text-xs tracking-[0.12em] text-white/60">{block.code}</span>
           <SnapLine className="flex-1" />
         </div>
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
@@ -251,7 +251,7 @@ function SplitBlock({ block, alt }: { block: Extract<BmkBlock, { type: "split" }
             {block.list && (
               <div className="border border-white/10 p-7">
                 {block.listTitle && (
-                  <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-white/45">{block.listTitle}</p>
+                  <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-white/60">{block.listTitle}</p>
                 )}
                 <ul className="space-y-3">
                   {block.list.map((l) => (
@@ -278,7 +278,7 @@ function LedgerBlock({ block, alt }: { block: Extract<BmkBlock, { type: "ledger"
         <ul className="border-t border-white/10">
           {block.items.map((r, i) => (
             <li key={r.title} className="group grid grid-cols-1 gap-3 border-b border-white/10 py-7 sm:grid-cols-12 sm:gap-6">
-              <span className="font-mono text-xs tracking-[0.14em] text-white/40 sm:col-span-1">
+              <span className="font-mono text-xs tracking-[0.14em] text-white/60 sm:col-span-1">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="sm:col-span-7">
@@ -298,7 +298,7 @@ function LedgerBlock({ block, alt }: { block: Extract<BmkBlock, { type: "ledger"
           ))}
         </ul>
         {block.footnote && (
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">{block.footnote}</p>
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">{block.footnote}</p>
         )}
       </Container>
     </section>
@@ -313,7 +313,7 @@ function StatsBlock({ block, alt }: { block: Extract<BmkBlock, { type: "stats" }
         <SectionHead code={block.code} eyebrow={block.eyebrow} title={block.title} lead={block.lead} />
         <StatGrid items={block.items} visible={visible} />
         {block.footnote && (
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">{block.footnote}</p>
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">{block.footnote}</p>
         )}
       </Container>
     </section>
@@ -484,7 +484,7 @@ function CtaSection({ cta, onOpen }: { cta: NonNullable<BmkPageContent["cta"]>; 
         </Text>
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <AmpButton size="md" onClick={() => onOpen(cta.serviceType)}>
-            {cta.label ?? "Book the call"} <ArrowRight className="h-4 w-4" />
+            {cta.label ?? "Ask for a call"} <ArrowRight className="h-4 w-4" />
           </AmpButton>
           <a
             href="mailto:hello@bmkrs.com"
