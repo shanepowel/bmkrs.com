@@ -27,9 +27,12 @@ export interface LegalDocumentLayoutProps {
 
 const legalContainerClass = "max-w-[860px]";
 
+/** Heading anchor, e.g. "Cookies" → "cookies", so other pages can link to a section. */
+const sectionId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 function LegalProseBlock({ section }: { section: LegalDocumentSection }) {
   return (
-    <section>
+    <section id={sectionId(section.title)} className="scroll-mt-28">
       <div className="mb-5 flex items-start gap-4">
         <div className="mt-0.5 h-7 w-0.5 flex-shrink-0 rounded bg-[#F85C70]" />
         <Text variant="h3">{section.title}</Text>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Archivo, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
-import { AnalyticsScripts, GoogleTagManagerNoScript } from '../client/src/components/analytics-scripts';
+import { AnalyticsScripts } from '../client/src/components/analytics-scripts';
 import { Providers } from '../client/src/components/providers';
 import { brand } from '../client/src/lib/brand';
 
@@ -126,7 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB" suppressHydrationWarning className={`${archivo.variable} ${plexMono.variable}`}>
       <body className={archivo.className}>
-        <GoogleTagManagerNoScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationJsonLd) }}

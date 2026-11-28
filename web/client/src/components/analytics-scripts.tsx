@@ -2,15 +2,11 @@
 
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
+import { CONSENT_CHANGED, hasAnalyticsConsent } from '@/lib/consent';
 
 const GTM_ID = 'GTM-MC5S82CJ';
 const MAILCHIMP_SCRIPT =
   'https://chimpstatic.com/mcjs-connected/js/users/0093b5b911c3fa3403a042a58/12fa33d6538a7ef133f2c2210.js';
-
-function hasAnalyticsConsent(): boolean {
-  if (typeof window === 'undefined') return false;
-  return localStorage.getItem('analytics-cookies') === 'accepted';
-}
 
 export function AnalyticsScripts() {
   const [enabled, setEnabled] = useState(false);
@@ -22,10 +18,10 @@ export function AnalyticsScripts() {
 
     onConsentChange();
     window.addEventListener('storage', onConsentChange);
-    window.addEventListener('bmkrs:cookie-consent', onConsentChange);
+    window.addEventListener(CONSENT_CHANGED, onConsentChange);
     return () => {
       window.removeEventListener('storage', onConsentChange);
-      window.removeEventListener('bmkrs:cookie-consent', onConsentChange);
+      window.removeEventListener(CONSENT_CHANGED, onConsentChange);
     };
   }, []);
 
@@ -44,19 +40,5 @@ export function AnalyticsScripts() {
       `}</Script>
       <Script id="mailchimp-connected-sites" src={MAILCHIMP_SCRIPT} strategy="afterInteractive" />
     </>
-  );
-}
-
-export function GoogleTagManagerNoScript() {
-  return (
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-        height="0"
-        width="0"
-        style={{ display: 'none', visibility: 'hidden' }}
-        title="Google Tag Manager"
-      />
-    </noscript>
   );
 }

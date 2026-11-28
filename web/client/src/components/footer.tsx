@@ -8,6 +8,7 @@ import { Container, Eyebrow, Grid, Stack, Text } from "@/components/system";
 import { brand } from "@/lib/brand";
 import { BrandLogo } from "@/components/bmk/logo";
 import { navMenus, legalLinks } from "@/content/nav";
+import { openCookieSettings } from "@/lib/consent";
 
 /** Footer columns come from the same menu data as the header, so they always match. */
 const byId = Object.fromEntries(navMenus.map((m) => [m.id, m]));
@@ -83,6 +84,14 @@ const Footer = memo(function Footer() {
                 {link.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="rounded text-xs text-white/30 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F85C70]"
+              data-testid="footer-cookie-settings"
+            >
+              Cookie settings
+            </button>
 
             <div className="ml-2 flex items-center gap-3">
               {[
